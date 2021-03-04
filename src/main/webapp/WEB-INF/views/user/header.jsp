@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<meta charset='utf-8'>
+<title>SUBWAY 써브웨이</title>
+<link rel='stylesheet' type='text/css' href='src/resources/css/header.css'>
+<link rel="stylesheet" type="text/css" href="src/resources/css/main.css" />
+<link rel="stylesheet" type="text/css" href="src/resources/css/footer.css" />
+<link rel="stylesheet" type="text/css" href="src/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="src/resources/slick/slick-theme.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+	<div class="header">
+		<div class="content">
+			<div class="logo">
+				<a href="/"><img alt="SUBWAY" src="images/logo_w.png" /></a>
+			</div>
+			<ul class="login">
+				<li class="before_sign"><a href="/member/login">로그인</a></li>
+				<li class="before_sign"><a href="/member/join/step1">회원가입</a></li>
+
+				<li class="icon_menu global_subway"><a
+					href="http://www.subway.com/en-us/exploreourworld" target="_blank"
+					title="Global Subway"><span class="blind"><img
+							alt="Global Subway" src="images/icon_utill_global.png" /></span></a></li>
+			</ul>
+			<!-- gnb -->
+			<nav id="gnb">
+				<ul id="gnb">
+					<li><a class="dp1" href="#none">메뉴소개</a>
+						<ul>
+							<li><a href="/sandwichList">샌드위치</a></li>
+							<li><a href="/wrapList">랩ㆍ기타</a></li>
+							<li><a href="/saladList">찹샐러드</a></li>
+							<li><a href="/morningList">아침메뉴</a></li>
+							<li><a href="/sideDrink">스마일 썹</a></li>
+						</ul></li>
+					<li><a href="/utilizationSubway" class="dp1">이용방법</a></li>
+					<li><a href="#none" class="dp1">새소식</a>
+						<div class="dp2">
+							<ul>
+								<li><a href="/eventList">이벤트ㆍ프로모션</a></li>
+								<li><a href="/newsList">뉴스ㆍ공지사항</a></li>
+								<li><a href="/tvCommercial">광고영상</a></li>
+							</ul>
+						</div></li>
+					<li><a href="#none" class="dp1">써브웨이</a>
+						<div class="dp2">
+							<ul>
+								<li><a href="/subwayHistory">써브웨이 역사</a></li>
+								<li><a href="/subwayPromise">써브웨이 약속</a></li>
+								<li style="display: none;"><a href="#">써브웨이 사회공헌</a></li>
+								<li><a href="/storeSearch">매장찾기</a></li>
+							</ul>
+						</div></li>
+					<li><a href="#none" class="dp1">가맹점</a>
+						<div class="dp2">
+							<ul>
+								<li><a href="/franchise">써브웨이 프랜차이즈</a></li>
+								<li><a href="/franchiseFaq">가맹관련 FAQ</a></li>
+								<li><a href="/franchiseInquiry">가맹신청ㆍ문의</a></li>
+							</ul>
+						</div></li>
+					<li><a class="dp1" href="javascript:void(0);">온라인 주문</a>
+						<div class="dp2">
+							<ul>
+								<li><a href="/order/view/fast/near/store">FAST-SUB</a></li>
+								<li><a href="/order/view/home/step1">HOME-SUB</a></li>
+							</ul>
+						</div></li>
+				</ul>
+			</nav>
+			<!-- gnb 끝 -->
+		</div>
+	</div>
+
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="src/resources/slick/slick.min.js"></script>
+	<script type="text/javascript">
+		$('.banner').slick({
+			slidesToShow : 1,
+			slidesToScroll : 1,
+			autoplay : true,
+			autoplaySpeed : 2000,
+		});
+	</script>
+</body>
+</html>

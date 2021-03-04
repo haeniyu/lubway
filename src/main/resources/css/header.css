@@ -1,0 +1,148 @@
+@charset "utf-8";
+/* 초기화 */
+* {
+	border-collapse: collapse;
+	margin: 0px;
+	padding: 0px;
+	text-decoration: none;
+	color: black;
+	list-style: none;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+/******************************** 헤더 영역 *********************************/
+/* 로고 위치 */
+.logo {
+	padding-top: 40px;
+	text-align: center;
+}
+
+.logo>a>img {
+	width: 202px;
+	height: 40px;
+}
+
+/* 로그인 / 회원가입 */
+.login {
+	display: flex;
+	justify-content: flex-end;
+	float: right;
+	margin: -40px 250px 0 0;
+}
+
+.before_sign {
+	margin-right: 20px;
+	margin-top: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	color: #666;
+}
+
+/* 메인 메뉴 */
+nav #gnb {
+	margin-top: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 70px;
+	position: relative;
+	z-index: 30;
+}
+
+#gnb>ul {
+	display: inline-block;
+	overflow: hidden;
+	height: 70px;
+	transition: all 0.5s;
+	text-align: center;
+}
+
+#gnb>ul:hover {
+	overflow: visible;
+}
+
+#gnb:hover {
+	height: 350px;
+	opacity: 1;
+}
+
+#gnb>ul>li {
+	display: inline-block;
+	position: relative;
+}
+
+.dp1 {
+	flex: 1;
+	font-size: 18px;
+	font-weight: 700;
+	display: block;
+	position: relative;
+	width: 160px;
+	height: 70px;
+	line-height: 70px;
+}
+
+.dp1:hover {
+	color: #009223;
+}
+
+.dp1:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -1px;
+	width: 0;
+	height: 2px;
+	background: #fff;
+	transition: all 0.5s;
+}
+
+#gnb>ul>li:hover>a:after {
+	left: 0;
+	width: 100%;
+}
+
+#gnb>ul ul {
+	position: absolute;
+	width: 100%;
+	height: 230px;
+	padding: 22px 0 0;
+	text-align: center;
+	opacity: 0;
+	transition: all 0.5s;
+}
+
+#gnb>ul:hover ul {
+	opacity: 1;
+}
+
+#gnb>ul ul li {
+	line-height: 39px;
+}
+
+#gnb>ul ul a {
+	position: relative;
+	font-size: 14px;
+	transition: all 0.5s;
+}
+
+#gnb>ul ul a:hover {
+	color: #009223;
+}
+
+#gnb>ul ul a:after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	bottom: -7px;
+	width: 0;
+	height: 2px;
+	background: #009223;
+	transition: all 0.5s;
+}
+
+#gnb>ul ul a:hover:after {
+	left: 0;
+	width: 100%;
+}

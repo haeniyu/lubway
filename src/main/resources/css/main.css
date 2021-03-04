@@ -1,0 +1,403 @@
+@charset "UTF-8";
+
+/* 퀵 링크 */
+.quick_link {
+	width: 1170px;
+	height: 80px;
+	position: relative;
+	top: -30px;
+	margin: auto;
+}
+
+.quick_link_content {
+	display: flex;
+	justify-content: flex-end;
+	text-align: center;
+}
+
+.quick_link_content>div a>strong:before {
+	content: '';
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: 13px;
+	position: relative;
+	top: -2px;
+}
+
+.store {
+	width: 300px;
+	line-height: 80px;
+	font-size: 22px;
+	background-color: #ffce32;
+	border-radius: 30px 0 0 0;
+}
+
+.store img {
+	position: relative;
+	top: 7px;
+}
+
+.franchise {
+	width: 300px;
+	font-size: 22px;
+	color: white;
+	line-height: 80px;
+	background-color: #009223;
+	border-radius: 0 0 30px 0;
+}
+
+.franchise img {
+	position: relative;
+	top: 7px;
+}
+
+/* 서브웨이 메뉴 */
+.subway_slider_menu_wrap {
+	height: 450px;
+	background-color: white;
+}
+
+.subway_slider_menu_wrap h2 {
+    font-size: 40px;
+    font-weight: bold;
+    background: url(../images/main/bul_tit.png) 0 12px no-repeat;
+    min-height: 60px;
+    padding: 17px 0 0 25px;
+    width: 1230px;
+    margin: 0 auto;
+}
+
+input[type="radio"] {
+	display: none;
+}
+
+.subway_slider_menu {
+	width: 1230px;
+	text-align: right;
+	margin: -40px auto 40px auto;
+}
+
+.subway_slider_content {
+	width: 1200px;
+	height: 320px;
+	margin: auto;
+	display: none;
+}
+
+label[for*="m_"] {
+	display: inline-block;
+	padding: 0 30px;
+	cursor: pointer;
+}
+
+label[for="m_classic"] {
+	border-right: 1px solid #E1E1E1;
+}
+
+label[for="m_fresh"] {
+	border-right: 1px solid #E1E1E1;
+}
+
+label[for="m_premium"] {
+	border-right: 1px solid #E1E1E1;
+}
+
+input[id="m_classic"]:checked ~ .cl {
+	display: block;
+}
+
+input[id="m_fresh"]:checked ~ .fr {
+	display: block;
+}
+
+input[id="m_premium"]:checked ~ .pe {
+	display: block;
+}
+
+input[id="m_morning"]:checked ~ .mo {
+	display: block;
+}
+
+input[id="m_classic"]:checked ~ .subway_slider_menu>label[for="m_classic"]
+	{
+	color: #009223;
+}
+
+input[id="m_fresh"]:checked ~ .subway_slider_menu>label[for="m_fresh"] {
+	color: #009223;
+}
+
+input[id="m_premium"]:checked ~ .subway_slider_menu>label[for="m_premium"]
+	{
+	color: #009223;
+}
+
+input[id="m_morning"]:checked ~ .subway_slider_menu>label[for="m_morning"]
+	{
+	color: #009223;
+}
+
+div .wrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 296px;
+	margin-top: 20px;
+}
+
+.wrap>.best_menu {
+	height: 320px;
+	justify-content: space-around;
+}
+
+div .wrap>.best_menu>a>img {
+	width: 260px;
+}
+
+div .wrap>.best_menu>a>strong.title {
+	text-align: center;
+	font-size: 18px;
+	color: #292929;
+	margin: 3px 0 10px;
+	display: block;
+	font-size: 18px;
+}
+
+div .wrap>.best_menu>a>p {
+	text-align: center;
+	font-size: 13px;
+	color: #999999;
+	line-height: 21px;
+	opacity: 1;
+	width: 260px;
+	margin: 0 auto;
+	letter-spacing: -0.04em;
+}
+
+/* section_subway */
+.sub_section{
+	background-color: green;
+}
+
+.section_subway {
+	width: 1280px;
+	margin: 0 auto;
+	padding: 80px 0 20px 0;
+}
+
+.section_subway .content_top {
+	overflow: hidden;
+}
+
+.section_subway .content_top .utilization {
+	background: url(../images/main/bg_utilization.png) 0 0 no-repeat;
+	width: 400px;
+	height: 300px;
+	position: relative;
+	margin-left: 55px;
+	float: left;
+}
+
+.section_subway .content_top .utilization p {
+	color: #fff;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 40px;
+	letter-spacing: -0.03em;
+	position: absolute;
+	left: 39px;
+	top: 38px;
+}
+
+.section_subway .content_top .utilization .btn {
+	position: absolute;
+	left: 41px;
+	bottom: 42px;
+	border: 2px solid #fff;
+	border-radius: 20px;
+	width: 92px;
+}
+
+.section_subway .content_top .utilization .btn span {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.section_subway .content_top .history {
+	float: left;
+	width: 825px;
+	position: relative
+}
+
+.section_subway .content_top .history p {
+	color: #fff;
+	font-size: 28px;
+	font-weight: bold;
+	line-height: 40px;
+	letter-spacing: -0.03em;
+	position: absolute;
+	left: 410px;
+	top: 38px;
+}
+
+.section_subway .content_top .history .btn {
+	position: absolute;
+	left: 410px;
+	bottom: 42px;
+	border: 2px solid #fff;
+	border-radius: 20px;
+	width: 128px;
+}
+
+.section_subway .content_top .history .btn span {
+	display: block;
+	height: 36px;
+	line-height: 36px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.section_subway .content_bottom {
+	margin: 30px 0 0 55px;
+	overflow: hidden;
+}
+
+.section_subway .content_bottom .whats_new {
+	background-color: #F6F6F6;
+	width: 870px;
+	height: 300px;
+	border-radius: 30px 0 30px 0;
+	position: relative;
+	float: left;
+}
+
+.section_subway .content_bottom .whats_new .hd {
+	position: absolute;
+	top: 75px;
+	left: 60px
+}
+
+.section_subway .content_bottom .whats_new .hd h2 {
+	color: #292929;
+	font-size: 30px;
+	font-weight: bold;
+	font-family: font_sw;
+	background: url(../images/main/bul_tit.png) 0 0 no-repeat;
+	min-height: 60px;
+	padding: 17px 0 0 25px;
+	margin-bottom: 1px
+}
+
+.section_subway .content_bottom .whats_new .hd p {
+	text-align: center;
+	line-height: 26px;
+	letter-spacing: -0.04em;
+}
+
+.section_subway .content_bottom .whats_new .board_list {
+	position: absolute;
+	left: 389px;
+	top: 76px;
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li {
+	margin-top: 21px;
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li:first-child
+	{
+	margin-top: 0
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li a {
+	display: inline-block;
+	font-size: 16px;
+	color: #292929;
+	position: relative;
+	letter-spacing: -0.04em
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li a:after {
+	content: '';
+	height: 1px;
+	left: 0;
+	bottom: 1px;
+	width: 0;
+	background-color: #009223;
+	position: absolute;
+	transition-duration: 0.2s
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li a:hover {
+	color: #009223;
+}
+
+.section_subway .content_bottom .whats_new .board_list ul li a:hover:after
+	{
+	width: 100%;
+}
+
+.section_subway .content_bottom .whats_new .board_list .more {
+	display: inline-block;
+	color: #999999;
+	font-size: 14px;
+	padding: 33px 0 8px
+}
+
+.section_subway .content_bottom .banner_sponsor {
+	float: left;
+	width: 270px;
+	height: 300px;
+	margin-left: 30px;
+	position: relative;
+	overflow: hidden;;
+	border-radius: 0 30px 0 30px;
+	background-color: #F6F6F6;
+}
+
+.section_subway .content_bottom .banner_sponsor .mini_banner {
+	float: left;
+	width: 270px;
+	height: 300px;
+	border-radius: 0 30px 0 30px;
+	background-color: #F6F6F6;
+}
+
+.section_subway .content_bottom .banner_sponsor .bx-wrapper .bx-pager {
+	position: absolute;
+	right: 15px;
+	top: 14px
+}
+
+.section_subway .content_bottom .banner_sponsor .bx-wrapper .bx-pager .bx-pager-item
+	{
+	display: inline-block;
+	margin: 0 5px;
+}
+
+.section_subway .content_bottom .banner_sponsor .bx-wrapper .bx-pager a
+	{
+	display: block;
+	width: 10px;
+	height: 10px;
+	background-color: #fff;
+	font-size: 0;
+	line-height: 0;
+	text-indent: -9999px;
+	overflow: hidden;
+	border-radius: 30px;
+	transition-duration: 0.3s
+}
+
+.section_subway .content_bottom .banner_sponsor .bx-wrapper .bx-pager a.active
+	{
+	background-color: #ffc300;
+	width: 30px;
+}
