@@ -5,9 +5,9 @@
 <configuration>
 	<properties resource="db.properties" />
 	<typeAliases>
-		<typeAlias type="#package.#modelname" alias="#modelname"></typeAlias>
+		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"></typeAlias>
 	</typeAliases>
 	<mappers>
-		<mapper resource="mappings/join-mapping.xml" />
+		<mapper resource="mappings/admin-mapping.xml" />
 	</mappers>
 </configuration>

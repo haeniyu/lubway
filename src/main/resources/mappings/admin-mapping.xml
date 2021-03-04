@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="AdminDAO">
+
+	<select id="getAdmin" parameterType="admin" resultType="admin">
+		SELECT
+		adminmember_password
+		FROM adminmember
+		WHERE adminmember_id = #{adminmember_id}
+	</select>
+
+</mapper>

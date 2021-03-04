@@ -4,8 +4,6 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
 	version="4.0">
 
-	<display-name>Archetype Created Web Application</display-name>
-
 	<!-- 2 Layered Architecture 적용 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>

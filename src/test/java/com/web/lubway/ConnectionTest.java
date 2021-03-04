@@ -1,23 +1,42 @@
 package com.web.lubway;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.lubway.admin.AdminVO;
+import com.lubway.admin.service.AdminService;
+
+@RunWith(value = SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"file:src/main/resources/applicationContext.xml","file:src/main/webapp/WEB-INF/config/adminContext/admin-servlet.xml"})
 public class ConnectionTest {
-	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql://lubwaydb.cev6lvxux0tw.ap-northeast-2.rds.amazonaws.com:5432/lubwaydb";
-	private static final String ID = "lubwaydb";
-	private static final String PASS = "lubwaydb";
+
+	@Autowired
+	private AdminService as;
 
 	@Test
-	public void testConnection() throws Exception {
-		Class.forName(DRIVER);
-		try (Connection conn = DriverManager.getConnection(URL, ID, PASS)) {
-			System.out.println(conn);
+	public void testConnection() throws Exception{
+		try {
+			AdminVO vo = new AdminVO();
+			vo.setAdminmember_id("admin");
+			vo.setAdminmember_password("admin");
+			
+			String pwd = as.getAdmin(vo);
+			
+			if(pwd.equals(vo.getAdminmember_password())) {
+				System.out.println("로그인 성공");
+			}else {
+				System.out.println("비밀번호 틀림");
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
+
+	
 }
