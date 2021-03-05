@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +11,18 @@
 	rel="stylesheet">
 <meta charset='utf-8'>
 <title>SUBWAY 써브웨이</title>
-<link rel='stylesheet' type='text/css' href='src/resources/css/header.css'>
-<link rel="stylesheet" type="text/css" href="src/resources/css/main.css" />
-<link rel="stylesheet" type="text/css" href="src/resources/css/footer.css" />
-<link rel="stylesheet" type="text/css" href="src/resources/slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="src/resources/slick/slick-theme.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
+
 <body>
 	<div class="header">
 		<div class="content">
 			<div class="logo">
-				<a href="/"><img alt="SUBWAY" src="images/logo_w.png" /></a>
+				<a href="/"><img alt="SUBWAY" src="${path}/resources/images/logo_w.png" /></a>
 			</div>
 			<ul class="login">
 				<li class="before_sign"><a href="/member/login">로그인</a></li>
@@ -29,7 +31,7 @@
 				<li class="icon_menu global_subway"><a
 					href="http://www.subway.com/en-us/exploreourworld" target="_blank"
 					title="Global Subway"><span class="blind"><img
-							alt="Global Subway" src="images/icon_utill_global.png" /></span></a></li>
+							alt="Global Subway" src="${path}/resources/images/icon_utill_global.png" /></span></a></li>
 			</ul>
 			<!-- gnb -->
 			<nav id="gnb">
@@ -80,19 +82,5 @@
 			<!-- gnb 끝 -->
 		</div>
 	</div>
-
-	<script type="text/javascript"
-		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	<script type="text/javascript"
-		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-	<script type="text/javascript" src="src/resources/slick/slick.min.js"></script>
-	<script type="text/javascript">
-		$('.banner').slick({
-			slidesToShow : 1,
-			slidesToScroll : 1,
-			autoplay : true,
-			autoplaySpeed : 2000,
-		});
-	</script>
 </body>
 </html>

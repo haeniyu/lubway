@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick-theme.css" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -12,14 +16,14 @@
 	<div class="banner">
 		<div>
 			<img alt="1-2월 에그마요 콜렉션 윈도우"
-				src="upload/banner/main_PC_1920x440_20201223014928858.jpg" />
+				src="${path}/resources/upload/banner/main_PC_1920x440_20201223014928858.jpg" />
 		</div>
 		<div>
 			<img alt="민트초코"
-				src="upload/banner/main_PC_1920x440_20210205043330107.jpg" />
+				src="${path}/resources/upload/banner/main_PC_1920x440_20210205043330107.jpg" />
 		</div>
 		<div>
-			<img alt="02.내손안의 작은 써브웨이" src="upload/banner/benner.png" />
+			<img alt="02.내손안의 작은 써브웨이" src="${path}/resources/upload/banner/benner.png" />
 		</div>
 	</div>
 	<!-- 배너 끝 -->
@@ -28,12 +32,12 @@
 		<div class="quick_link_content">
 			<div class="store">
 				<a href="/storeSearch"> <img alt="map"
-					src="images/main/icon_map.png" /> <strong>매장찾기</strong>
+					src="${path}/resources/images/main/icon_map.png" /> <strong>매장찾기</strong>
 				</a>
 			</div>
 			<div class="franchise">
 				<a href="/franchiseInquiry"> <img alt="franchise"
-					src="images/main/icon_franchise.png" /> <strong>가맹신청ㆍ문의</strong></a>
+					src="${path}/resources/images/main/icon_franchise.png" /> <strong>가맹신청ㆍ문의</strong></a>
 			</div>
 		</div>
 	</div>
@@ -55,7 +59,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=cl06"> <img alt="에그마요"
-						src="images/menu/sandwich_cl06.jpg" /> <strong class="title">에그마요</strong>
+						src="${path}/resources/images/menu/sandwich_cl06.jpg" /> <strong class="title">에그마요</strong>
 						<p>
 							친환경 인증 받은 농장에서 생산된 달걀과<br />고소한 마요네즈가 만나 더 부드러운<br />스테디셀러
 						</p>
@@ -65,7 +69,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=cl01"> <img alt="이탈리안 비엠티"
-						src="images/menu/sandwich_cl01.jpg" /> <strong class="title">이탈리안
+						src="${path}/resources/images/menu/sandwich_cl01.jpg" /> <strong class="title">이탈리안
 							비엠티</strong>
 						<p>
 							7시간 숙성된 페퍼로니, 살라미<br />그리고 햄이 만들어내는 최상의 조화!<br />전세계가 사랑하는 No.1
@@ -77,7 +81,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=cl02"> <img alt="비엘티"
-						src="images/menu/sandwich_cl02.jpg" /> <strong class="title">비엘티</strong>
+						src="${path}/resources/images/menu/sandwich_cl02.jpg" /> <strong class="title">비엘티</strong>
 						<p>
 							오리지널 아메리칸 베이컨의<br />풍미와 바삭함 그대로~
 						</p>
@@ -87,7 +91,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=cl03"> <img alt="미트볼"
-						src="images/menu/sandwich_cl03.jpg" /> <strong class="title">미트볼</strong>
+						src="${path}/resources/images/menu/sandwich_cl03.jpg" /> <strong class="title">미트볼</strong>
 						<p>
 							이탈리안 스타일 비프 미트볼에<br />써브웨이만의 풍부한 토마토 향이 살아있는<br />마리나라소스를 듬뿍
 						</p>
@@ -99,7 +103,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=fl01"> <img alt="로티세리 바비큐 치킨"
-						src="images/menu/sandwich_fl01.jpg" /> <strong class="title">로티세리
+						src="${path}/resources/images/menu/sandwich_fl01.jpg" /> <strong class="title">로티세리
 							바비큐 치킨</strong>
 						<p>
 							촉촉한 바비큐 치킨의 풍미가득.<br />손으로 찢어 더욱 부드러운 치킨의 혁명
@@ -110,7 +114,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=fl02"> <img alt="로스트 치킨"
-						src="images/menu/sandwich_fl02.jpg" /> <strong class="title">로스트
+						src="${path}/resources/images/menu/sandwich_fl02.jpg" /> <strong class="title">로스트
 							치킨</strong>
 						<p>
 							오븐에 구워 담백한 저칼로리<br />닭가슴살의 건강한 풍미
@@ -121,7 +125,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=fl04"> <img alt="써브웨이 클럽"
-						src="images/menu/sandwich_fl04.jpg" /> <strong class="title">써브웨이
+						src="${path}/resources/images/menu/sandwich_fl04.jpg" /> <strong class="title">써브웨이
 							클럽</strong>
 						<p>
 							명실공히 시그니처 써브!<br />터키, 비프, 포크 햄의 완벽한 앙상블
@@ -132,7 +136,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=fl05"> <img alt="터키"
-						src="images/menu/sandwich_fl05.jpg" /> <strong class="title">터키</strong>
+						src="${path}/resources/images/menu/sandwich_fl05.jpg" /> <strong class="title">터키</strong>
 						<p>
 							280kcal로 슬림하게 즐기는<br />오리지날 터키 샌드위치
 						</p>
@@ -144,7 +148,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=pm10"> <img alt="풀드포크"
-						src="images/menu/sandwich_pm08.jpg" /> <strong class="title">풀드포크</strong>
+						src="${path}/resources/images/menu/sandwich_pm08.jpg" /> <strong class="title">풀드포크</strong>
 						<p>
 							7시간 저온 훈연한 미국 정통 스타일의<br />리얼 바비큐 풀드포크는 오직 써브웨이에서
 						</p>
@@ -154,7 +158,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=pm01"> <img alt="스테이크&amp;치즈"
-						src="images/menu/sandwich_pm01.jpg" /> <strong class="title">스테이크&amp;치즈</strong>
+						src="${path}/resources/images/menu/sandwich_pm01.jpg" /> <strong class="title">스테이크&amp;치즈</strong>
 						<p>
 							육즙이 쫙~<br />풍부한 비프 스테이크의 풍미가 입안 한가득
 						</p>
@@ -164,7 +168,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=pm02"> <img alt="터키 베이컨 아보카도"
-						src="images/menu/sandwich_pm02.jpg" /> <strong class="title">터키
+						src="${path}/resources/images/menu/sandwich_pm02.jpg" /> <strong class="title">터키
 							베이컨 아보카도</strong>
 						<p>
 							담백한 터키와 바삭한 베이컨 환상조합에<br />부드러운 아보카도는 신의 한수
@@ -175,7 +179,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=pm04"> <img alt="스파이시 이탈리안"
-						src="images/menu/sandwich_pm06.jpg" /> <strong class="title">스파이시
+						src="${path}/resources/images/menu/sandwich_pm06.jpg" /> <strong class="title">스파이시
 							이탈리안</strong>
 						<p>
 							살라미, 페퍼로니가 입안 한가득!<br />쏘 핫한 이탈리아의 맛
@@ -188,7 +192,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=bf01"> <img alt="햄, 에그&치즈"
-						src="images/menu/sandwich_bf01.jpg" /> <strong class="title">햄,
+						src="${path}/resources/images/menu/sandwich_bf01.jpg" /> <strong class="title">햄,
 							에그&치즈</strong>
 						<p>푹신한 오믈렛과 햄의 가장 클래식한 조화</p>
 					</a>
@@ -197,7 +201,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=bf02"> <img alt="웨스턴, 에그 & 치즈"
-						src="images/menu/sandwich_bf02.jpg" /> <strong class="title">웨스턴,
+						src="${path}/resources/images/menu/sandwich_bf02.jpg" /> <strong class="title">웨스턴,
 							에그 & 치즈</strong>
 						<p>
 							토마토, 피망, 양파 세가지 야채가 더해져<br />더욱 신선한 하루 시작
@@ -208,7 +212,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=bf03"> <img alt="베이컨, 에그 & 치즈"
-						src="images/menu/sandwich_bf03.jpg" /> <strong class="title">베이컨,
+						src="${path}/resources/images/menu/sandwich_bf03.jpg" /> <strong class="title">베이컨,
 							에그 & 치즈</strong>
 						<p>
 							오리지널 아메리칸 베이컨으로<br />더욱 풍성한 아침 식사
@@ -219,7 +223,7 @@
 			<div class="wrap">
 				<div class="best_menu">
 					<a href="/sandwichView?param=bf04"> <img alt="스테이크, 에그 & 치즈"
-						src="images/menu/sandwich_bf04.jpg" /> <strong class="title">스테이크,
+						src="${path}/resources/images/menu/sandwich_bf04.jpg" /> <strong class="title">스테이크,
 							에그 & 치즈</strong>
 						<p>
 							육즙 가득 비프 스테이크로<br />든든한 아침 식사
@@ -249,7 +253,7 @@
 					50년 역사를 가진<br />No.1 프랜차이즈의 성장기
 				</p>
 				<a class="btn" href="/subwayHistory"><span>써브웨이 역사</span></a> <img
-					src="images/main/img_subway_history.png" />
+					src="${path}/resources/images/main/img_subway_history.png" />
 			</div>
 			<!--// 써브웨이 역사 -->
 		</div>
@@ -284,7 +288,7 @@
 				<div class="mini_banner">
 					<div>
 						<img alt="SUBWAY BI 우하단 배너 (★상시 / SSL만료일도 이날임)"
-							src="upload/banner/subway_logo_bn_20200602031229667.png" />
+							src="${path}/resources/upload/banner/subway_logo_bn_20200602031229667.png" />
 					</div>
 				</div>
 			</div>
@@ -293,5 +297,19 @@
 		<!--// content bottom -->
 	</div>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
+
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript"
+		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="${path}/resources/slick/slick.min.js"></script>
+	<script type="text/javascript">
+		$('.banner').slick({
+			slidesToShow : 1,
+			slidesToScroll : 1,
+			autoplay : true,
+			autoplaySpeed : 2000,
+		});
+	</script>
 </body>
 </html>
