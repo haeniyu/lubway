@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick-theme.css" />
 </head>

@@ -12,7 +12,6 @@
 <meta charset='utf-8'>
 <title>SUBWAY 써브웨이</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,8 +24,8 @@
 				<a href="/"><img alt="SUBWAY" src="${path}/resources/images/logo_w.png" /></a>
 			</div>
 			<ul class="login">
-				<li class="before_sign"><a href="/member/login">로그인</a></li>
-				<li class="before_sign"><a href="/member/join/step1">회원가입</a></li>
+				<li class="before_sign"><a href="login">로그인</a></li>
+				<li class="before_sign"><a href="join/step1">회원가입</a></li>
 
 				<li class="icon_menu global_subway"><a
 					href="http://www.subway.com/en-us/exploreourworld" target="_blank"
