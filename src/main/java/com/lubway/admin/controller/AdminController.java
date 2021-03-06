@@ -13,8 +13,14 @@ public class AdminController {
 	AdminService adminService;
 	
 	@RequestMapping("/main.mdo")
-	public String mainView() {
+	public String main() {
 		System.out.println("관리자 메인 화면으로 이동");
 		return "main";
+	}
+	
+	@RequestMapping("/login.mdo")
+	public String login() {
+		System.out.println("관리자 로그인 화면으로 이동");
+		return "login";
 	}
 }

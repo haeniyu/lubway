@@ -10,5 +10,10 @@
 		FROM adminmember
 		WHERE adminmember_id = #{adminmember_id}
 	</select>
+	
+	<insert id="insertAdmin" parameterType="admin">
+		INSERT INTO adminmember(adminmember_id, adminmember_password) 
+		VALUES(#{adminmember_id} , #{adminmember_password})
+	</insert>
 
 </mapper>

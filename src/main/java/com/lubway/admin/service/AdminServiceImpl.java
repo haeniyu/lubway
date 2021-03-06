@@ -17,4 +17,9 @@ public class AdminServiceImpl implements AdminService {
 		return dao.getAdmin(vo);
 	}
 
+	@Override
+	public void insertAdmin(AdminVO vo) {
+		dao.insertAdmin(vo);
+	}
+
 }

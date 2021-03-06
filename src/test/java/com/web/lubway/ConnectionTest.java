@@ -20,16 +20,16 @@ public class ConnectionTest {
 	public void testConnection() throws Exception{
 		try {
 			AdminVO vo = new AdminVO();
-			vo.setAdminmember_id("admin");
-			vo.setAdminmember_password("admin");
+			vo.setAdminmember_id("test");
+			vo.setAdminmember_password("test");
 			
-			String pwd = as.getAdmin(vo);
+			as.insertAdmin(vo);
 			
-			if(pwd.equals(vo.getAdminmember_password())) {
-				System.out.println("로그인 성공");
-			}else {
-				System.out.println("비밀번호 틀림");
-			}
+//			if(pwd.equals(vo.getAdminmember_password())) {
+//				System.out.println("로그인 성공");
+//			}else {
+//				System.out.println("비밀번호 틀림");
+//			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

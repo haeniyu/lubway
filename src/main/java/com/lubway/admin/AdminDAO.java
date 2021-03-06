@@ -15,4 +15,9 @@ public class AdminDAO {
 		System.out.println(admin.toString());
 		return admin.getAdminmember_password();
 	}
+	
+	public void insertAdmin(AdminVO vo) {
+		System.out.println("마이바티스로 인서트 하기");
+		sqlSessionTemplate.insert("AdminDAO.insertAdmin", vo);
+	}
 }

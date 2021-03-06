@@ -1,0 +1,26 @@
+@charset "utf-8";
+/* --- button --- */
+button.btn{border-radius:0; display:inline-block; font-weight:400; text-align:center; vertical-align:middle; cursor:pointer; border:1px solid transparent; padding:6px 12px; font-size:14px;  box-shadow:none !important; outline:0 !important; line-height:1.44; transition-duration:0.15s}
+
+/* --- button - size --- */
+button.btn.lg{padding:10px 16px; font-size:18px;}
+button.btn.sm{padding:5px 10px; font-size:12px;}
+button.btn.xs{padding:1px 5px; font-size:12px;}
+
+/* --- button - align --- */
+.btn_wrapper,
+.btn_wrapper.ta_c{text-align:center}
+.btn_wrapper.ta_l{text-align:left;}
+.btn_wrapper.ta_r{text-align:right}
+.btn_col_wrapper{overflow:hidden;}
+.btn_col_wrapper .col{float:left; width:50%;}
+.btn_col_wrapper .col:last-child{text-align:right;}
+
+/* --- button - color --- */
+button.default{color:#333; background-color:#fff; border-color:#ccc;}
+button.default.active,
+button.default:hover{background-color: #e6e6e6; border-color: #adadad;}
+button.blue{color:#fff; background-color:#337ab7; border-color:#2e6da4}
+button.blue:hover{background-color:#204d74; border-color:#122b40;}
+button.gray{color:#666; background-color:#e1e5ec; border-color:#e1e5ec;}
+button.gray:hover{background-color:#c2cad8; border-color:#bcc5d4;}
