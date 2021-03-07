@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>휴대폰 인증</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step02.css" />
-<script type="text/javascript" src="${path}/resources/js/step02.js"></script>
+<script type="text/javascript" src="${path}/resources/js/step02.js?v=1"></script>
 </head>
 <body>
 	<!-- container s -->
@@ -40,10 +40,8 @@
 											<div class="btn_input_in">
 												<input class="required-val" id="#" type="hidden" value="N" />
 												<a class="in_form_btn" href="javascript:void(0);" id="pop"
-													onclick="#"><span>전송</span></a>
+													onclick="phoneCheck()"><span>전송</span></a>
 											</div>
-											<span class="pw_check miss" id="worng-msg-email"
-												style="display: none;">휴대폰 번호를 입력해주세요.</span>
 										</dd>
 									</dl>
 									<dl>
@@ -58,10 +56,8 @@
 											<div class="btn_input_in">
 												<input class="required-val" id="#" type="hidden" value="N" />
 												<a class="in_form_btn" href="javascript:void(0);" id="pop"
-													onclick="#"><span>확인</span></a>
+													onclick="phoneCheck()"><span>확인</span></a>
 											</div>
-											<span class="pw_check miss" id="worng-msg-email"
-												style="display: none;">인증번호를 확인해주세요.</span>
 										</dd>
 									</dl>
 								</div>
