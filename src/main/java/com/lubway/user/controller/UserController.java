@@ -53,4 +53,17 @@ public class UserController {
 		System.out.println("아이디 찾기 화면으로 이동");
 		return "findid";
 	}
+	
+	@RequestMapping("/notice.do")
+	public String notice() {
+		System.out.println("공지사항 으로 이동");
+		return "notice";
+	}
+	
+	@RequestMapping("/noticein.do")
+	public String noticein(){
+		System.out.println("공지 상세정보로 이동");
+		return "noticein";
+	}
+	
 }
