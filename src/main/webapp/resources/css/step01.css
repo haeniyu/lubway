@@ -130,7 +130,7 @@ em{font-style:normal;}
 .sub_header.type01 .sub_loc ul li.active a{color:#ffce32 !important}
 .sub_header.type01 .sub_loc ul li.active a:after{background-color:#ffce32 !important;}
 
-#container{margin-top:170px; position:relative;}
+#container{position:relative;}
 #container.bg_type01{background-color:#f6f6f6; padding-bottom:130px;}
 #container.bg_type01 .sub_header{background:#f6f6f6; border-bottom:0}
 #container.bg_type01 #content{padding-top:59px;}

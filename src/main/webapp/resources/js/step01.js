@@ -77,15 +77,21 @@ $(function() {
 			$('#authBtn').on('click', function(e) {
 				e.preventDefault();
 
-
 				if (!$(this).hasClass('i_reg')) {
 					alert('필수값을 선택해주세요.');
 					return false;
 				}
 
-				view.callCheckAuth();
+				view.step02();
 			});
 		},
+
+		//go to step02
+		step02: function() {
+			url = "step02.do";
+			window.open(url, "post", "toolbar=no,width=600,height=700,directories=no,status=yes,scrollbars=yes,menubar=no");
+		},
+		
 
 		createAgrObj: function() {
 

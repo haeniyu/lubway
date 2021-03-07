@@ -1,0 +1,204 @@
+@charset "UTF-8";
+
+* {
+	border-collapse: collapse;
+	text-decoration: none;
+	color: black;
+	list-style: none;
+	font-family: "Noto Sans KR", sans-serif;
+}
+
+select {
+	-webkit-appearance: none; /* 화살표 없애기 for chrome*/
+	-moz-appearance: none; /* 화살표 없애기 for firefox*/
+	appearance: none; /* 화살표 없애기 공통*/
+}
+
+select::-ms-expand {
+	display: none; /* 화살표 없애기 for IE10, 11*/
+}
+
+/* subTitle ::2019 */
+#content h2.subTitle_02 {
+	text-align: center;
+	font-size: 40px;
+	color: #292929;
+	font-weight: 600;
+	letter-spacing: -0.05em;
+	padding: 20px 0 10px;
+}
+
+.joining_wrapper {
+	position: relative;
+	width: 550px;
+	margin: 0 auto;
+}
+
+.joining_wrapper .step03_cont {
+	padding: 30px 50px;
+}
+
+.joining_wrapper .step_tit {
+	overflow: hidden;
+	height: 70px;
+	font-size: 24px;
+	line-height: 70px;
+	color: #ffc300;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 40px 0 0 0;
+	background-color: #58006c;
+}
+
+.joining_wrapper .step_tit>span {
+	color: #fff;
+}
+
+.form_box h2, .form_box h3 {
+	font-size: 26px;
+	font-weight: bold;
+	margin-bottom: 26px;
+	letter-spacing: -0.05em;
+}
+
+.write_info_wrap .input_set dl {
+	background-color: #fff;
+	border: 1px solid #e5e5e5;
+	padding: 22px 30px;
+	overflow: hidden;
+	margin-top: 10px;
+}
+
+.write_info_wrap .input_set dt {
+	float: left;
+	position: relative;
+	font-weight: 500;
+	width: 150px;
+	line-height: 35px;
+	letter-spacing: -0.05em;
+	color: #999999;
+}
+
+.write_info_wrap .input_set dt .ess {
+	background: url(../images/common/icon_ess.png) 0 0 no-repeat;
+	width: 7px;
+	height: 6px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	margin-left: 3px;
+}
+
+.write_info_wrap .input_set dd {
+	float: left;
+	position: relative;
+	width: 350px;
+}
+
+.write_info_wrap .input_set dd .form_text input {
+	height: 35px;
+	line-height: 35px;
+	text-indent: 20px;
+	letter-spacing: -0.05em;
+	border: 0;
+	background: transparent;
+}
+
+.write_info_wrap .input_set dd .form_text input::placeholder {
+	color: #e8e8e8;
+}
+
+.form_select:before {
+	content: '';
+	position: absolute;
+	top: 15px;
+	right: 205px;
+	width: 12px;
+	height: 7px;
+	background: url(../images/common/icon_select_arr.png) 0 0 no-repeat;
+	z-index: 3;
+}
+
+.write_info_wrap .input_set .form_select select {
+	height: 35px;
+	line-height: 35px;
+	text-indent: 16px;
+	width: 230px;
+	font-size: 16px;
+	color: #999999;
+	position: relative;
+	border: 0;
+	z-index: 1;
+}
+
+.write_info_wrap .input_set .form_select select > option {
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	margin: 3px;
+	text-indent: 5px;
+	letter-spacing: 0.05em;
+	color: #999999;
+}
+
+.write_info_wrap .input_set ::focus {
+	border: 0 solid white;
+}
+
+.write_info_wrap .input_set .form_select ~ .form_select {
+	margin-left: 15px;
+}
+
+.write_info_wrap .input_set .btn_input_in:before {
+	background-color: #e8e8e8;
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 50%;
+	margin-top: -19px;
+	height: 32px;
+	width: 2px;
+}
+
+.write_info_wrap .input_set .btn_input_in {
+	position: absolute;
+	bottom: 0;
+	right: -30px;
+	width: 127px;
+	text-align: center;
+	padding-bottom: 8px;
+}
+
+.btn {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 30px;
+	transition-duration: 0.2s;
+}
+
+.btn.bgc_point {
+	background-color: #009223;
+	color: #fff;
+}
+
+.joining_wrapper .btn_area {
+	padding: 30px 0 30px;
+	border-top: 1px solid #e8e8e8;
+	text-align: center;
+}
+
+.btn.bgc_point span {
+	height: 50px;
+	line-height: 50px;
+	letter-spacing: -0.03em;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#submitBtn span {
+	color: #fff;
+	font-weight: 700;
+}

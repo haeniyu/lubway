@@ -58,12 +58,12 @@
 .joining_wrapper .step04_cont .order_gobtn li .icon { display:block; margin:35px 0 25px; height:120px; background-position:50% 50%; background-repeat:no-repeat; }
 .joining_wrapper .step04_cont .order_gobtn li .txt { font-size:16px; font-weight:300; line-height:26px; color:#fff;}
 .joining_wrapper .step04_cont .order_gobtn li.fast { border-radius:60px 10px 10px 10px; background:#ff8300;}
-.joining_wrapper .step04_cont .order_gobtn li.fast .icon { background-image:url(../images/joining/icon_order_fast02.png);}
+.joining_wrapper .step04_cont .order_gobtn li.fast .icon { background-image:url(../images/common/icon_order_fast02.png);}
 .joining_wrapper .step04_cont .order_gobtn li.fast a:hover .icon {animation:fast_mov 2s ease-in-out infinite;}
 .joining_wrapper .step04_cont .order_gobtn li.home { border-radius:10px; background:#01a5e2 }
-.joining_wrapper .step04_cont .order_gobtn li.home .icon { background-image:url(../images/joining/icon_order_home02.png);}
+.joining_wrapper .step04_cont .order_gobtn li.home .icon { background-image:url(../images/common/icon_order_home02.png);}
 .joining_wrapper .step04_cont .order_gobtn li.group { border-radius:10px 10px 60px 10px; background:#ffd800;}
-.joining_wrapper .step04_cont .order_gobtn li.group .icon { background-image:url(../images/joining/icon_order_group.png);}
+.joining_wrapper .step04_cont .order_gobtn li.group .icon { background-image:url(../images/common/icon_order_group.png);}
 
 /* 마케팅 정보 수신 동의 */
 .joining_wrapper.marketing .join_step ul li.check {background-position:-210px 0;}
