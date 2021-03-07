@@ -24,8 +24,8 @@
 				<a href="/"><img alt="SUBWAY" src="${path}/resources/images/logo_w.png" /></a>
 			</div>
 			<ul class="login">
-				<li class="before_sign"><a href="login">로그인</a></li>
-				<li class="before_sign"><a href="join/step1">회원가입</a></li>
+				<li class="before_sign"><a href="login.do">로그인</a></li>
+				<li class="before_sign"><a href="step01.do">회원가입</a></li>
 
 				<li class="icon_menu global_subway"><a
 					href="http://www.subway.com/en-us/exploreourworld" target="_blank"
