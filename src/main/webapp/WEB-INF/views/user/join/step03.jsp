@@ -10,6 +10,7 @@
 	href="${path}/resources/css/step03.css" />
 </head>
 <body>
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<!-- container s -->
 	<div class="bg_type01" id="container">
 		<!-- sub content -->
@@ -132,5 +133,6 @@
 		<!--// 멤버십가입 -->
 	</div>
 	<!--// sub content -->
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

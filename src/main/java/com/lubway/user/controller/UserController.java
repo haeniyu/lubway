@@ -18,10 +18,10 @@ public class UserController {
 		return "join/step01";
 	}
 	
-	@RequestMapping("/step02.do")
+	@RequestMapping("/step03.do")
 	public String joinStep() {
 		System.out.println("회원가입 정보입력 화면으로 이동");
-		return "join/step02";
+		return "join/step03";
 	}
 	
 	@RequestMapping("/findpwd.do")
