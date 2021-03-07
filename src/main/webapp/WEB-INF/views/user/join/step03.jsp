@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/step03.css" />
+	href="${path}/resources/css/step03.css?v=1" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

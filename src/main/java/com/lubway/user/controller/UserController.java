@@ -19,9 +19,15 @@ public class UserController {
 	}
 	
 	@RequestMapping("/step01.do")
-	public String terms() {
+	public String termsStep() {
 		System.out.println("약관동의 화면으로 이동");
 		return "join/step01";
+	}
+	
+	@RequestMapping("/step02.do")
+	public String phoneStep() {
+		System.out.println("휴대폰 인증 화면으로 이동");
+		return "join/step02";
 	}
 	
 	@RequestMapping("/step03.do")

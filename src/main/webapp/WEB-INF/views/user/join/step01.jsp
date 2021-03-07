@@ -8,10 +8,10 @@
 <meta charset="UTF-8">
 <title>약관동의</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/joining.css" />
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css?v=1" />
 <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
-<script type="text/javascript" src="${path}/resources/js/step01.js"></script>
+<script type="text/javascript" src="${path}/resources/js/step01.js?v=1"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
