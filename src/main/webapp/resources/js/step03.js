@@ -83,7 +83,6 @@ var view  = {
             return false;
          }
 
-         // (2020.08.11) 회원 가입 시 이메일 두번 입력하도록 변경
          if ($("#mbrLgnId1").val() && !$("#subMbrLgnId1").val()) {
             $("#worng-msg-email-sub").text("이메일 주소를 한번 더 입력하여 주세요.").show();
             $("#subMbrLgnId1").focus();
@@ -114,15 +113,14 @@ var view  = {
 		nameCheck : function(){
 			view.chk = false;
 			$("span.worng-msg-id").text("").hide();
-			if(!$("#inputid").val() || $("#inputid").val().length < 2) {
+			if(!$("#inname").val() || $("#inname").val().length < 2) {
             $("#idMsg").text("이름을 입력해 주세요.").show();
-               $("#inputid").focus();
+               $("#inname").focus();
             return false;
          }
 			view.chk = true;
 		},
       pwdCheck : function () {
-            /*if(!view.chk) return false;*/
          view.chk = false;
          $("span.worng-msg-pw").text("").hide();
          if(!$("#pw").val() || $("#pw").val().length < 8) {
@@ -179,10 +177,7 @@ var view  = {
          var obj = {
                mbrLgnId : $('#mbrLgnId').val(),
                pw : $('#pw').val(),
-               pw : $('#inputid').val(),
-               zipCd : $('#zipCd').val(),
-               baseAddr : $('#baseAddr').val(),
-               dtlAddr : $('#dtlAddr').val(),
+               inname : $('#inname').val(),
                subPw : $('#subPw').val()
          }
          var param = JSON.stringify(obj);

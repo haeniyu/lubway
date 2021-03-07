@@ -100,7 +100,7 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 235px"> <input
-												class="required-value input_name" id="inputid" name="inputid"
+												class="required-value input_name" id="inname" name="inname"
 												placeholder="이름 입력" type="text" /><span class="pw_check miss worng-msg-id" id="idMsg"></span>
 											</span>
 										</dd>
@@ -125,9 +125,9 @@
 											비밀번호 확인<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 235px"> <!-- 2019-11-11 inline style 수정 -->
+											<span class="form_text" style="width: 235px"> 
 												<input class="required-value input_pw" id="subPw"
-												name="subPw" placeholder="비밀번호 입력" type="password" /> <!-- 2019-11-11 placeholder 수정 -->
+												name="subPw" placeholder="비밀번호 입력" type="password" /> 
 											</span> <span class="pw_check miss worng-msg-pw" id="pwdMsg2"></span>
 										</dd>
 									</dl>
@@ -138,9 +138,7 @@
 											전화번호<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 235px"> 여기에
-												전화번호가 뜹니다 </span> <span class="pw_check miss worng-msg-pw"
-												id="pwdMsg1"></span>
+											<span class="form_text" style="width: 235px"> 여기에 전화번호가 뜹니다 </span> 
 										</dd>
 									</dl>
 								</div>
