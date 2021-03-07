@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/join.css" />
+	href="${path}/resources/css/step03.css" />
 </head>
 <body>
 	<!-- container s -->
@@ -18,7 +18,7 @@
 			<div class="joining_wrapper">
 				<h2 class="subTitle_02">회원가입</h2>
 				<h3 class="step_tit">
-					<span>Step.2</span> 정보입력
+					<span>Step3.</span> 정보입력
 				</h3>
 				<!-- step_cont_box -->
 				<div class="step_cont_box">
