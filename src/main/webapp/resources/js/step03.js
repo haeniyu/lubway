@@ -31,10 +31,6 @@ var view  = {
             view.pwdCheck();
          });
 
-         $('.input_name').on('keyup', function(e){
-            view.pwdCheck();
-         });
-
          $('#submitBtn').on('click', function(e) {
             e.preventDefault();
             view.idCheck();
