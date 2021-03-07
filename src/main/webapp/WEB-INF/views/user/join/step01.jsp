@@ -7,11 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>약관동의</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/joining.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/step01.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
+
 	<!-- container s -->
 	<div class="bg_type01" id="container">
 		<!-- sub content -->
@@ -19,18 +23,6 @@
 			<!-- 멤버십가입 -->
 			<div class="joining_wrapper">
 				<h2 class="subTitle_02">회원가입</h2>
-
-				<!-- join step -->
-				<div class="join_step">
-					<ul>
-						<li class="step01 curr"><span class="blind">약관동의</span></li>
-						<!-- 현재 step에 class="curr" 추가 -->
-						<li class="step02"><span class="blind">본인인증</span></li>
-						<li class="step03"><span class="blind">정보입력</span></li>
-						<li class="step04"><span class="blind">가입완료</span></li>
-					</ul>
-				</div>
-				<!--// join step -->
 
 				<h3 class="step_tit">
 					<span>Step1.</span> 약관동의
@@ -41,9 +33,8 @@
 					<!-- step01_cont -->
 					<div class="step01_cont">
 						<div class="all_agree">
-							<label class="form_checkbox"> <input id="agreeAllCbx"
-								type="checkbox" /> <span class="icon"></span><strong>약관
-									전체 동의</strong>
+							<label class="form_checkbox"> <input id="agreeAllCbx" type="checkbox" /> 
+							<span class="icon"></span><strong>약관 전체 동의</strong>
 							</label>
 						</div>
 						<div class="agree_wrapper twin">

@@ -12,6 +12,12 @@ public class UserController {
 		return "main";
 	}
 	
+	@RequestMapping("/login.do")
+	public String login() {
+		System.out.println("로그인 화면으로 이동");
+		return "login";
+	}
+	
 	@RequestMapping("/step01.do")
 	public String terms() {
 		System.out.println("약관동의 화면으로 이동");
