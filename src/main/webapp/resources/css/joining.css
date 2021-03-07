@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+#container.bg_type01 #content { padding-top:0;}
+.joining_wrapper { position:relative; width:1170px; margin:0 auto;}
+.joining_wrapper .blind {overflow:hidden; font-size:0; line-height:0; position:absolute; height:0; width:0;}
+
+.joining_wrapper .join_step { margin-bottom:70px; text-align:center;}
+.joining_wrapper .join_step ul { display:inline-block; }
+.joining_wrapper .join_step ul li { float:left; position:relative; margin-left:85px; width:70px; height:70px; background-image:url(../images/joining/icon_join_step.png); background-repeat:no-repeat;}
+.joining_wrapper .join_step ul li:first-child { margin-left:0;}
+.joining_wrapper .join_step ul li:before { content:''; position:absolute; right:-65px; top:50%; margin-top:-2.5px; width:45px; height:5px; background-image:url(../images/joining/bg_step_bullet.png); }
+.joining_wrapper .join_step ul li.curr:before { background-position:0 -5px;}
+.joining_wrapper .join_step ul li.step01 { background-position:0 0;}
+.joining_wrapper .join_step ul li.step02 { background-position:-70px 0;}
+.joining_wrapper .join_step ul li.step03 { background-position:-140px 0;}
+.joining_wrapper .join_step ul li.step04 { background-position:-210px 0;}
+.joining_wrapper .join_step ul li.step04:before { display:none;}
+.joining_wrapper .join_step ul li.step01.curr { background-position:0 -70px;}
+.joining_wrapper .join_step ul li.step02.curr { background-position:-70px -70px;}
+.joining_wrapper .join_step ul li.step03.curr { background-position:-140px -70px;}
+.joining_wrapper .join_step ul li.step04.curr { background-position:-210px -70px;}
+
+.joining_wrapper .step_tit { overflow:hidden; height:70px; font-size:24px; line-height:70px; color:#ffc300; font-weight:bold; text-align:center; border-radius:40px 0 0 0; background-color:#58006c;}
+.joining_wrapper .step_tit > span { color:#fff;}
+.joining_wrapper .step_cont_box { background:#fff;}
+.joining_wrapper .btn_area { padding:40px 0 60px; border-top:1px solid #e8e8e8;}
+
+/* 약관동의 */
+.joining_wrapper .step01_cont { padding:85px 100px 100px 100px;}
+.joining_wrapper .step01_cont .agree_wrapper.twin { margin-top:40px;}
+.joining_wrapper .step01_cont .agree_wrapper.twin .agree + .agree .scroll_wrapper { border-left:1px solid #e5e5e5;}
+/*.joining_wrapper .step01_cont .agree_wrapper.twin .agree:nth-child(even) .scroll_wrapper { border-left:0;}*/
+.joining_wrapper .step01_cont .agree_wrapper.twin .agree.marketing .scroll_wrapper { height:130px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box { border-bottom:1px solid #e5e5e5; border-right:1px solid #e5e5e5; box-sizing:border-box; padding:16px 15px; height:50px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox { font-size:13px; line-height:17px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox + .form_checkbox { margin-left:25px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox .icon { background:url(../images/common/icon_checkbox_basic.png) no-repeat; border:none; width:18px; height:15px; margin-right:8px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox .icon:before { position:absolute; left:0; top:0; width:0; height:15px; background-image:url(../images/common/icon_checkbox_basic.png); background-position:0 -15px;}
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox input[type="checkbox"]:checked + .icon:before { width:18px; }
+.joining_wrapper .step01_cont .agree.marketing .marketing_agree_box .form_checkbox input[type="checkbox"]:checked + .icon + span { color:#009223;}
+.joining_wrapper .step01_cont .inquiry_notice { margin-top:20px;}
+.joining_wrapper .step01_cont .inquiry_notice strong { font-weight:300; line-height:23px; color:#666;}
+.joining_wrapper .step01_cont .inquiry_notice .txt { line-height:23px;}
+
+/* 정보입력 */
+.joining_wrapper .step03_cont { padding:90px 100px 100px 100px; }
+
+/* 가입완료 */
+.joining_wrapper .step04_cont { padding:70px 100px 100px 100px; text-align:center}
+.joining_wrapper .step04_cont .cont_tit { margin-bottom:40px; font-size:36px; font-weight:300; line-height:50px; text-align:center; color:#222222; }
+.joining_wrapper .step04_cont .order_gobtn { display:inline-block; overflow:hidden; }
+.joining_wrapper .step04_cont .order_gobtn li { float:left; margin-left:10px; height:350px; width:455px;}
+.joining_wrapper .step04_cont .order_gobtn li a { display:block; width:100%; height:100%;}
+.joining_wrapper .step04_cont .order_gobtn li:first-child { margin-left:0;}
+.joining_wrapper .step04_cont .order_gobtn li strong { display:block; padding-top:50px; font-size:20px;}
+.joining_wrapper .step04_cont .order_gobtn li.fast strong,
+.joining_wrapper .step04_cont .order_gobtn li.home strong { font-family:font_sw; }
+.joining_wrapper .step04_cont .order_gobtn li .icon { display:block; margin:35px 0 25px; height:120px; background-position:50% 50%; background-repeat:no-repeat; }
+.joining_wrapper .step04_cont .order_gobtn li .txt { font-size:16px; font-weight:300; line-height:26px; color:#fff;}
+.joining_wrapper .step04_cont .order_gobtn li.fast { border-radius:60px 10px 10px 10px; background:#ff8300;}
+.joining_wrapper .step04_cont .order_gobtn li.fast .icon { background-image:url(../images/joining/icon_order_fast02.png);}
+.joining_wrapper .step04_cont .order_gobtn li.fast a:hover .icon {animation:fast_mov 2s ease-in-out infinite;}
+.joining_wrapper .step04_cont .order_gobtn li.home { border-radius:10px; background:#01a5e2 }
+.joining_wrapper .step04_cont .order_gobtn li.home .icon { background-image:url(../images/joining/icon_order_home02.png);}
+.joining_wrapper .step04_cont .order_gobtn li.group { border-radius:10px 10px 60px 10px; background:#ffd800;}
+.joining_wrapper .step04_cont .order_gobtn li.group .icon { background-image:url(../images/joining/icon_order_group.png);}
+
+/* 마케팅 정보 수신 동의 */
+.joining_wrapper.marketing .join_step ul li.check {background-position:-210px 0;}
+.joining_wrapper.marketing .join_step ul li.check:before {display:none;}
+.joining_wrapper.marketing .join_step ul li.check.curr {background-position:-210px -70px;}
+.joining_wrapper.marketing .step01_cont {padding: 50px 100px;}
+.joining_wrapper.marketing .step01_cont .agree_wrapper.twin {margin-top: 0;}
+.joining_wrapper.marketing .step01_cont .agree_wrapper.twin .agree {margin-bottom: 0;}
+.joining_wrapper.marketing .step01_cont .agree.marketing .marketing_agree_box {border: 0;}
