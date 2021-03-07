@@ -30,6 +30,12 @@ public class UserController {
 		return "join/step03";
 	}
 	
+	@RequestMapping("/step04.do")
+	public String endStep() {
+		System.out.println("회원가입 완료 화면으로 이동");
+		return "join/step04";
+	}
+	
 	@RequestMapping("/findpwd.do")
 	public String findpwd() {
 		System.out.println("비밀번호 찾기 화면으로 이동");
