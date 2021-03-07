@@ -6,14 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/step03.js"></script>
-=======
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/step03.css?v=1" />
->>>>>>> f128d6f9ff424c170389f93950175d5a905bb0df
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
