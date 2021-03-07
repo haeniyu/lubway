@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 
 	<div class="login_content">
 		<h3>LUBWAY 매장관리자 사이트 로그인</h3>
-		<form action="main.mdo">
+		<form action="main.sdo">
 			<div class="form-group">
 				<input type="text" class="form-text" placeholder="아이디" id="username" name="id" />
 			</div>
@@ -33,13 +32,10 @@
 			<button type="submit" class="btn_login" id="ui_login_btn">로그인</button>
 		</form>
 		<p>
-			본 시스템은 등록된 관리자에 한하여 사용하실 수 있습니다.<br /> 불법적인 접근 및 사용 시 관련 법규에 의해 처벌 될
-			수 있습니다.
+			본 시스템은 등록된 관리자에 한하여 사용하실 수 있습니다.<br /> 불법적인 접근 및 사용 시 관련 법규에 의해 처벌 될 수 있습니다.
 		</p>
 	</div>
-	<div class="copyright">© 2021 Lubway’s Associates Inc. LUBWAY® is
-		a registered trademark of Lubway’s Associates Inc.. All rights
-		reserved.</div>
+	<div class="copyright">© 2021 Lubway’s Associates Inc. LUBWAY® is a registered trademark of Lubway’s Associates Inc.. All rights reserved.</div>
 
 </body>
 </html>
