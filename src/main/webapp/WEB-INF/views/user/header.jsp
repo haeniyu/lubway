@@ -15,6 +15,20 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css" />
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>  
+<script type="text/javascript">
+$(function(){
+	var $firstMenu = $('nav > ul > li ');
+	
+	$firstMenu.mouseenter(function(){
+		$('#gnb').stop().animate({height:'350px'});
+	})
+	.mouseleave(function(){
+		$('#gnb').stop().animate({height:'85px'});
+	});
+	
+});
+</script>
 </head>
 
 <body>

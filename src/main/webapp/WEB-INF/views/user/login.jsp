@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css" />
 </head>
 <body>
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
 <!-- login -->
 	<!-- container s -->
 	<div class="bg_type01" id="container">
@@ -64,5 +65,6 @@
 		</div>
 		<!--// sub content e -->
 	</div>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
