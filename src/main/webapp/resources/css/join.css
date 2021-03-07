@@ -96,11 +96,15 @@ select::-ms-expand {
 	background: transparent;
 }
 
+.write_info_wrap .input_set dd .form_text input::placeholder {
+	color: #e8e8e8;
+}
+
 .form_select:before {
 	content: '';
 	position: absolute;
-	right: 13px;
-	top: 18px;
+	top: 15px;
+	right: 205px;
 	width: 12px;
 	height: 7px;
 	background: url(../images/common/icon_select_arr.png) 0 0 no-repeat;
@@ -111,13 +115,26 @@ select::-ms-expand {
 	height: 35px;
 	line-height: 35px;
 	text-indent: 16px;
-	letter-spacing: -0.09em;
-	width: 100%;
-	border: 0;
+	width: 230px;
 	font-size: 16px;
 	color: #999999;
 	position: relative;
+	border: 0;
 	z-index: 1;
+}
+
+.write_info_wrap .input_set .form_select select > option {
+	height: 35px;
+	line-height: 35px;
+	font-size: 16px;
+	margin: 3px;
+	text-indent: 5px;
+	letter-spacing: 0.05em;
+	color: #999999;
+}
+
+.write_info_wrap .input_set ::focus {
+	border: 0 solid white;
 }
 
 .write_info_wrap .input_set .form_select ~ .form_select {
@@ -130,7 +147,7 @@ select::-ms-expand {
 	position: absolute;
 	left: 0;
 	top: 50%;
-	margin-top: -16px;
+	margin-top: -19px;
 	height: 32px;
 	width: 2px;
 }
@@ -141,6 +158,7 @@ select::-ms-expand {
 	right: -30px;
 	width: 127px;
 	text-align: center;
+	padding-bottom: 8px;
 }
 
 .btn {
@@ -174,5 +192,5 @@ select::-ms-expand {
 
 #submitBtn span {
 	color: #fff;
-	font-weight: 500;
+	font-weight: 700;
 }
