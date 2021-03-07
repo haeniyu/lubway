@@ -10,7 +10,6 @@ select::-ms-expand {
 	display: none; /* 화살표 없애기 for IE10, 11*/
 }
 
-/* subTitle ::2019 */
 #content h2.subTitle_02 {
 	text-align: center;
 	font-size: 40px;
@@ -100,6 +99,17 @@ select::-ms-expand {
 	color: #e8e8e8;
 }
 
+.write_info_wrap .input_set dd .pw_check {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 35px;
+	letter-spacing: -0.05em;
+}
+
+.write_info_wrap .input_set dd .pw_check.miss {
+	color: #ff4b06
+}
+
 .form_select:before {
 	content: '';
 	position: absolute;
@@ -123,7 +133,7 @@ select::-ms-expand {
 	z-index: 1;
 }
 
-.write_info_wrap .input_set .form_select select > option {
+.write_info_wrap .input_set .form_select select>option {
 	height: 35px;
 	line-height: 35px;
 	font-size: 16px;

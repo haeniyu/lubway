@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/step03.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/step03.js"></script>
 </head>
 <body>
-<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<!-- container s -->
 	<div class="bg_type01" id="container">
 		<!-- sub content -->
@@ -45,7 +46,7 @@
 												placeholder="이메일 도메인 입력" type="text" />
 											</span> <span class="form_select" style="width: 155px"> <select
 												id="mbrLgnId3" name="mbrLgnId3">
-													<option value="">도메인 선택</option>
+													<option value="">직접 입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
 													<option value="hanmail.net">hanmail.net</option>
@@ -79,7 +80,7 @@
 												placeholder="이메일 도메인 입력" type="text" />
 											</span> <span class="form_select" style="width: 155px"> <select
 												id="subMbrLgnId3" name="subMbrLgnId3">
-													<option value="">도메인 선택</option>
+													<option value="">직접 입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
 													<option value="hanmail.net">hanmail.net</option>
@@ -92,6 +93,19 @@
 										</dd>
 									</dl>
 								</div>
+								<div class="input_set input_name_div">
+									<dl>
+										<dt>
+											이름<span class="ess"></span>
+										</dt>
+										<dd>
+											<span class="form_text" style="width: 235px"> <input
+												class="required-value input_name" id="inputid" name="inputid"
+												placeholder="이름 입력" type="text" /><span class="pw_check miss worng-msg-id" id="idMsg"></span>
+											</span>
+										</dd>
+									</dl>
+								</div>
 								<div class="input_set input_pw_div">
 									<dl>
 										<dt>
@@ -100,7 +114,7 @@
 										<dd>
 											<span class="form_text" style="width: 235px"> <input
 												class="required-value input_pw" id="pw" name="pw"
-												placeholder="비밀번호 입력" type="password" /> <!-- 2019-11-11 placeholder 수정 -->
+												placeholder="비밀번호 입력" type="password" />
 											</span> <span class="pw_check miss worng-msg-pw" id="pwdMsg1"></span>
 										</dd>
 									</dl>
@@ -118,13 +132,25 @@
 										</dd>
 									</dl>
 								</div>
+								<div class="input_set input_pw_div">
+									<dl>
+										<dt>
+											전화번호<span class="ess"></span>
+										</dt>
+										<dd>
+											<span class="form_text" style="width: 235px"> 여기에
+												전화번호가 뜹니다 </span> <span class="pw_check miss worng-msg-pw"
+												id="pwdMsg1"></span>
+										</dd>
+									</dl>
+								</div>
 							</div>
 						</section>
 					</div>
 				</div>
 				<!--// step03_cont -->
 				<div class="btn_area">
-					<a class="btn bgc_point i_reg" href="javascript:void(0);"
+					<a class="btn bgc_point i_reg" onclick="joinform_check();"
 						id="submitBtn" style="width: 170px;"><span>회원가입 완료</span></a>
 				</div>
 			</div>
