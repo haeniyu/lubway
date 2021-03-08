@@ -66,33 +66,6 @@
 										</dd>
 									</dl>
 								</div>
-								<div class="input_set">
-									<dl>
-										<dt>
-											아이디(이메일) 확인<span class="ess"></span>
-										</dt>
-										<dd>
-											<span class="form_text" style="width: 155px"> <input
-												class="required-value" id="subMbrLgnId1" name="subMbrLgnId1"
-												placeholder="이메일 아이디 입력" type="text" />
-											</span> @ <span class="form_text" style="width: 155px"> <input
-												class="required-value" id="subMbrLgnId2" name="subMbrLgnId2"
-												placeholder="이메일 도메인 입력" type="text" />
-											</span> <span class="form_select" style="width: 155px"> <select
-												id="subMbrLgnId3" name="subMbrLgnId3">
-													<option value="">직접 입력</option>
-													<option value="naver.com">naver.com</option>
-													<option value="daum.net">daum.net</option>
-													<option value="hanmail.net">hanmail.net</option>
-													<option value="gmail.com">gmail.com</option>
-													<option value="icloud.com">icloud.com</option>
-													<option value="nate.com">nate.com</option>
-											</select>
-											</span> <span class="pw_check miss" id="worng-msg-email-sub"
-												style="display: none;">이메일 주소를 입력해주세요.</span>
-										</dd>
-									</dl>
-								</div>
 								<div class="input_set input_name_div">
 									<dl>
 										<dt>
