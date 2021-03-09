@@ -150,25 +150,8 @@
 			</div>
 		</div>
 	</div><!-- End of container-fluid -->
-	<!-- 이 밑으로 수정 불가. 그대로 쓰세요 -->
 
 	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
-	<script src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="${path}/resources/js/sb-admin-2.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
-	<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

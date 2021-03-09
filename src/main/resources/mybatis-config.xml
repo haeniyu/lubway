@@ -6,8 +6,10 @@
 	<properties resource="db.properties" />
 	<typeAliases>
 		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"></typeAlias>
+		<typeAlias type="com.lubway.user.UserVO" alias="user"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/admin-mapping.xml" />
+		<mapper resource="mappings/user-mapping.xml" />
 	</mappers>
 </configuration>

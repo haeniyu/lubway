@@ -10,6 +10,10 @@ select::-ms-expand {
 	display: none; /* 화살표 없애기 for IE10, 11*/
 }
 
+#content{
+	background-color: #F6F6F6;
+}
+
 #content h2.subTitle_02 {
 	text-align: center;
 	font-size: 40px;
@@ -27,6 +31,7 @@ select::-ms-expand {
 
 .joining_wrapper .step03_cont {
 	padding: 90px 100px 100px 100px;
+	background-color: white;
 }
 
 .joining_wrapper .step_tit {

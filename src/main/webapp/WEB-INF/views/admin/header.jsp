@@ -31,7 +31,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="admin.html">
+				href="main.mdo">
 				<div class="sidebar-brand-icon">
 					<img class="img-profile rounded-circle" src="${path}/resources/images/logo.png">
 				</div>
@@ -43,7 +43,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="main.jsp"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+				href="main.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
 			</li>
 
 			<!-- Divider -->

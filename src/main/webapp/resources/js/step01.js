@@ -82,16 +82,10 @@ $(function() {
 					return false;
 				}
 
-				view.step02();
+				location.href = "step02.do";
 			});
 		},
 
-		//go to step02
-		step02: function() {
-			url = "step02.do";
-			window.open(url, "post", "toolbar=no,width=600,height=700,directories=no,status=yes,scrollbars=yes,menubar=no");
-		},
-		
 
 		createAgrObj: function() {
 

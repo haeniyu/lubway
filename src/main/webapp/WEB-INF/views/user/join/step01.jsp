@@ -11,11 +11,10 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css?v=1" />
 <script type="text/javascript" src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
-<script type="text/javascript" src="${path}/resources/js/step01.js?v=1"></script>
+<script type="text/javascript" src="${path}/resources/js/step01.js?v=2"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-
 	<!-- container s -->
 	<div class="bg_type01" id="container">
 		<!-- sub content -->
@@ -944,17 +943,17 @@
 								</div>
 								<div class="marketing_agree_box">
 									<label class="form_checkbox"> <input
-										class="sns-value cd-value" id="sms_recep" name="sms_recep"
+										class="sns-value cd-value" id="sms_recep" name="sms_usable"
 										type="checkbox" data-code="MEMBER_AGR.SMS_RECEP" /> <span
 										class="icon"></span> <span>SMS/LMS/MMS 수신 동의</span>
 									</label> <label class="form_checkbox"> <input
-										class="sns-value cd-value" id="email_recep" name="email_recep"
+										class="sns-value cd-value" id="email_recep" name="email_usable"
 										type="checkbox" data-code="MEMBER_AGR.EMAIL_RECEP" /> <span
 										class="icon"></span> <span>E-mail 수신 동의</span>
 									</label>
 									<!-- 2019-11-11 알림톡수신동의 추가 -->
 									<label class="form_checkbox"> <input
-										class="sns-value cd-value" id="kakao_recep" name="kakao_recep"
+										class="sns-value cd-value" id="kakao_recep" name="tok_usable"
 										type="checkbox" data-code="MEMBER_AGR.KAKAO_RECEP" /> <span
 										class="icon"></span> <span>알림톡 수신 동의</span>
 									</label>

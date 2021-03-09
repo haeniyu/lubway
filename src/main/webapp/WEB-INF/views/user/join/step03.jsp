@@ -6,8 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/step03.css" />
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/step03.js"></script>
 </head>
 <body>
@@ -23,13 +25,11 @@
 					<span>Step3.</span> 정보입력
 				</h3>
 				<!-- step_cont_box -->
+				<form action="step04.do" method="post">
 				<div class="step_cont_box">
 					<!-- step03_cont -->
 					<div class="step03_cont">
 						<section class="form_box">
-							<input id="mbrYn" name="mbrYn" type="hidden" /> <input
-								id="mbrLgnId" name="mbrLgnId" type="hidden" />
-
 							<h2>기본 정보 (필수 입력)</h2>
 							<div class="write_info_wrap">
 								<div class="input_set">
@@ -39,13 +39,13 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
-												class="required-value" id="mbrLgnId1" name="mbrLgnId1"
+												class="required-value" id="mbrLgnId1" name="id"
 												placeholder="이메일 아이디 입력" type="text" />
 											</span> @ <span class="form_text" style="width: 155px"> <input
-												class="required-value" id="mbrLgnId2" name="mbrLgnId2"
+												class="required-value" id="mbrLgnId2" name="at"
 												placeholder="이메일 도메인 입력" type="text" />
 											</span> <span class="form_select" style="width: 155px"> <select
-												id="mbrLgnId3" name="mbrLgnId3">
+												id="mbrLgnId3" name="domain">
 													<option value="">직접 입력</option>
 													<option value="naver.com">naver.com</option>
 													<option value="daum.net">daum.net</option>
@@ -73,8 +73,9 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 235px"> <input
-												class="required-value input_name" id="inname" name="inname"
-												placeholder="이름 입력" type="text" /><span class="pw_check miss worng-msg-id" id="idMsg"></span>
+												class="required-value input_name" id="inname" name="name"
+												placeholder="이름 입력" type="text" /> <span
+												class="pw_check miss worng-msg-id" id="idMsg"></span>
 											</span>
 										</dd>
 									</dl>
@@ -86,7 +87,7 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 235px"> <input
-												class="required-value input_pw" id="pw" name="pw"
+												class="required-value input_pw" id="pw" name="password"
 												placeholder="비밀번호 입력" type="password" />
 											</span> <span class="pw_check miss worng-msg-pw" id="pwdMsg1"></span>
 										</dd>
@@ -98,9 +99,9 @@
 											비밀번호 확인<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 235px"> 
-												<input class="required-value input_pw" id="subPw"
-												name="subPw" placeholder="비밀번호 입력" type="password" /> 
+											<span class="form_text" style="width: 235px"> <input
+												class="required-value input_pw" id="subPw"
+												placeholder="비밀번호 입력" type="password" />
 											</span> <span class="pw_check miss worng-msg-pw" id="pwdMsg2"></span>
 										</dd>
 									</dl>
@@ -111,7 +112,8 @@
 											전화번호<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 235px"> 여기에 전화번호가 뜹니다 </span> 
+											<span class="form_text" style="width: 235px"> 여기에
+												전화번호가 뜹니다 </span>
 										</dd>
 									</dl>
 								</div>
@@ -123,7 +125,7 @@
 				<div class="btn_area">
 					<a class="btn bgc_point i_reg" onclick="joinform_check();"
 						id="submitBtn" style="width: 170px;"><span>회원가입 완료</span></a>
-				</div>
+				</div></form>
 			</div>
 			<!--// step_cont_box -->
 		</div>
