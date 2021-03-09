@@ -3,8 +3,10 @@ package com.lubway.user.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.lubway.user.UserVO;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -43,7 +45,15 @@ public class UserController {
 		return "join/step03";
 	}
 	
-	@RequestMapping("/step04.do")
+	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
+	@ResponseBody
+	public String idCheck(@RequestParam("userId") String id) {
+		System.out.println("UserController -> ID 중복 검증");
+		System.out.println("체크 결과 값 : " + userService.idCheck(id));
+		return String.valueOf(userService.idCheck(id));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/step04.do")
 	public String endStep() {
 		//userService.insertUser(vo);
 		System.out.println("회원가입 완료 화면으로 이동");

@@ -17,5 +17,4 @@ public class UserVO {
 	private boolean email_usable;
 	private boolean tok_usable;
 	private int point;
-	private String domain;
 }
