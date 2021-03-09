@@ -6,6 +6,8 @@ import java.util.Random;
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.nurigo.java_sdk.api.Message;
@@ -15,8 +17,8 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class SmsController {
 
 	@ResponseBody
-	@RequestMapping("/sendSms.do")
-	public String sendSms(String tel) {
+	@RequestMapping(method = RequestMethod.POST, value = "/sendSms.do")
+	public String sendSms(@RequestParam("tell") String tel) {
 
 		String code = codeGen();
 

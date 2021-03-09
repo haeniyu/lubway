@@ -10,7 +10,47 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css?v=1" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script type="text/javascript" src="${path}/resources/js/step02.js?v=1"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//인증 받았는지 확인하는 변수
+		var check = false;
+		
+		//전송 버튼 눌렀을 때
+		$("#sendBtn").on("click", function() {
+				var phoneNum = $('#phoneNum').val();
+				if (phoneNum != '') {					
+					$.ajax({
+						url : '/lubway/sendSms.do?tell=' + phoneNum,
+						type : 'post',
+						success : function(data) {
+							$("#codeNum").val(data);
+							$("#checkBtn").on("click", function() {
+								if($("#codeNum").val() == data) {
+									alert("인증에 성공하였습니다.");
+									check = true;
+								}
+							});
+						},
+						error : function(data) {
+							alert("인증에 실패하였습니다.");
+							check = false;
+						}
+					});
+				}
+		});
+		
+		//인증 완료 버튼 눌렀을 때
+		$("#submitBtn").on("click",function(){
+			if(check){
+				console.log("다음페이지로 가자");
+				document.location.href="step03.do";
+			}else
+				alert("인증을 진행해주세요.");
+		});
+		
+		
+	});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -43,7 +83,7 @@
 											<div class="btn_input_in">
 												
 												<a class="in_form_btn" href="javascript:void(0);" id="sendBtn"
-													onclick="view.sendSms('sendSms');"><span>전송</span></a>
+													><span>전송</span></a>
 											</div>
 										</dd>
 									</dl>
@@ -59,7 +99,7 @@
 											<div class="btn_input_in">
 			
 												<a class="in_form_btn" href="javascript:void(0);" id="checkBtn"
-													onclick="view.codeCheck();"><span>확인</span></a>
+													><span>확인</span></a>
 											</div>
 										</dd>
 									</dl>
@@ -67,8 +107,8 @@
 
 								<!--// step03_cont -->
 								<div class="btn_area">
-									<a class="btn bgc_point i_reg" href="javascript:void(0);"
-										id="submitBtn" onclick="view.done();" style="width: 170px;"><span>인증 완료</span></a>
+									<a class="btn bgc_point i_reg" href="javascript:void(0);" 
+										id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
 								</div>
 							</div>
 						</form>
