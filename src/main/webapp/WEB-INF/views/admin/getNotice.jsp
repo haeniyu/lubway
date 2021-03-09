@@ -13,34 +13,60 @@
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">글 등록</h1><br>
+		<h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
+		<br>
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">공지사항 등록</h6>
+				<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 			</div>
 			<div class="card-body">
-				<div class="table-responsive">
-					<table class="table table-bordered" id="dataTable" width="100%"
-						cellspacing="0">
-						<tr>
-							<td>제목</td>
-							<td colspan="2"><input type="text" name="title" /></td>
-						</tr>
-						<tr>
-							<td>첨부파일</td>
-							<td colspan="2"><input type="text" name="add_file" /><input type="button" value="파일찾기"></td>
-						</tr>
-						<tr>
-							<td colspan="3">내용</td>
-						</tr>
-						<tr>
-							<td colspan="3"><textarea name="content"></textarea></td>
-						</tr>
-						<tr>
-							<td colspan="3"><input type="submit" value="등록"><input type="submit" value="목록"></td>
-						</tr>
-					</table>
+				<form action="noticeList.mdo" method="post">
+					<div class="table-responsive">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<tr>
+								<td>제목</td>
+								<td colspan="2"><input type="text" name="title"
+									style="width: 80%" /></td>
+							</tr>
+							<tr>
+								<td>이미지 첨부</td>
+								<td colspan="2"><input type="text" name="add_file"
+									style="width: 80%" /><input style="margin: 5px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="button"
+									value="파일찾기" /></td>
+							</tr>
+							<tr>
+								<td>원본 이미지 첨부</td>
+								<td colspan="2"><input type="text" name="add_file"
+									style="width: 80%" /><input style="margin: 5px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="button"
+									value="파일찾기" /></td>
+							</tr>
+							<tr>
+								<td colspan="3">내용</td>
+							</tr>
+							<tr>
+								<td colspan="3"><textarea style="width: 100%" rows="15"
+										name="content"></textarea></td>
+							</tr>
+							<tr>
+								<td colspan="3">
+									<div align="center">
+										<input style="padding: 3px"
+											class="btn btn-warning btn-icon-split" type="submit"
+											value="등록하기">
+									</div>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</form>
+				<div align="right">
+					<a href="noticeList.mdo" class="btn btn-light btn-icon-split">
+						<span class="text">목록가기</span>
+					</a>
 				</div>
 			</div>
 		</div>

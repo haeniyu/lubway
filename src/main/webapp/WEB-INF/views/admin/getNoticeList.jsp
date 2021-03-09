@@ -21,11 +21,16 @@
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">Notice Board</h6>
+				<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-				<a href="insertNotice.mdo">글 등록</a>
+					<div align="right">
+						<a href="getNotice.mdo" class="btn btn-warning btn-icon-split">
+							<span class="text">글 등록</span>
+						</a>
+					</div>
+					<div class="my-2"></div>
 					<table class="table table-bordered" id="dataTable" width="100%"
 						cellspacing="0">
 						<thead>
@@ -49,17 +54,19 @@
 
 						</tbody>
 					</table>
-					<form action="noticeList.mdo" method="post">
-						<tr>
-							<td>
-								<select name="searchCondition">
+					<div align="right">
+						<form action="noticeList.mdo" method="post">
+							<tr>
+								<td><select name="searchCondition">
 										<option value="TITLE">제목</option>
 										<option value="CONTENT">내용</option>
-								</select> 
-							<input type="text" name="searchKeyword" /> 
-							<input type="submit" value="search" />
-						</tr>
-					</form>
+								</select> <input type="text" name="searchKeyword" /> <input
+									style="margin: 3px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="submit"
+									value="search" /></td>
+							</tr>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
