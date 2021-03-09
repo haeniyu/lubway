@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.lubway.user.UserVO;
+import com.lubway.user.service.EmailService;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -12,6 +13,9 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	@RequestMapping("/main.do")
 	public String mainView() {
@@ -45,7 +49,8 @@ public class UserController {
 	
 	@RequestMapping("/step04.do")
 	public String endStep() {
-		//userService.insertUser(vo);
+//		userService.insertUser(vo);
+//		emailService.sendMail(dto);
 		System.out.println("회원가입 완료 화면으로 이동");
 		return "join/step04";
 	}
