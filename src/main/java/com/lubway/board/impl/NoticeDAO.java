@@ -15,7 +15,7 @@ public class NoticeDAO {
 
 	public void insertNotice(NoticeVO vo) {
 		System.out.println("마이바티스로 insertNotice() 기능 처리");
-		sqlSessionTemplate.insert("NoticeDAO.insertNotice", vo);
+		//sqlSessionTemplate.insert("NoticeDAO.insertNotice", vo);
 	}
 
 	public void updateNotice(NoticeVO vo) {
