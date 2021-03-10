@@ -10,7 +10,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-
+<form action="/lubway/getNotice.bdo" method="post">
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
@@ -28,11 +28,12 @@
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
-						<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
+						<!-- <a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
 							<span class="text">글 등록</span>
-						</a>
-							<input type="submit" value="글 등록"
-								class="btn btn-warning btn-icon-split">
+						</a> -->
+							<input type=submit value="글 등록"
+								class="btn btn-warning btn-icon-split"
+								>
 						</div>
 						<div class="my-2"></div>
 						<table class="table table-bordered" id="dataTable" width="100%"
@@ -55,6 +56,13 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						</div>
+						</div>
+						</div>
+						</div>
+						
+						
+						</form>
 		<!-- 검색 시작 -->
 		<div align="right">
 			<form action="noticeList.bdo" method="post">
