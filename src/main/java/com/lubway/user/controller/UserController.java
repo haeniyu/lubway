@@ -1,15 +1,12 @@
 package com.lubway.user.controller;
 
-<<<<<<< HEAD
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
-=======
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
->>>>>>> fd625620988591f4a879ada458a6ef0d7385262b
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,16 +28,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-<<<<<<< HEAD
-	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
-	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpSession session) throws IOException {
-=======
 	@Autowired
 	JavaMailSender mailSender;
 	
-	@RequestMapping("/main.do")
-	public String mainView() {
->>>>>>> fd625620988591f4a879ada458a6ef0d7385262b
+	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
+	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpSession session) throws IOException {
 		System.out.println("메인 화면으로 이동");
 		
 		response.setContentType("text/html; charset=utf-8");
