@@ -40,10 +40,10 @@
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
 												class="required-value" id="mbrLgnId1" name="id"
-												placeholder="이메일 아이디 입력" type="text" />
+												placeholder="이메일 아이디 입력" type="text" value="${sms}" />
 											</span> @ <span class="form_text" style="width: 155px"> <input
 												class="required-value" id="mbrLgnId2" name="at"
-												placeholder="이메일 도메인 입력" type="text" />
+												placeholder="이메일 도메인 입력" type="text" value="${email}" />
 											</span> <span class="form_select" style="width: 155px"> <select
 												id="mbrLgnId3" name="domain">
 													<option value="">직접 입력</option>
@@ -112,8 +112,7 @@
 											전화번호<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 235px"> 여기에
-												전화번호가 뜹니다 </span>
+											<span class="form_text" style="width: 235px"> ${vo.getTel() } </span>
 										</dd>
 									</dl>
 								</div>

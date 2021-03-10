@@ -76,31 +76,71 @@ $(function() {
 			// auth btn bind
 			$('#authBtn').on('click', function(e) {
 				e.preventDefault();
-
+				
 				if (!$(this).hasClass('i_reg')) {
 					alert('필수값을 선택해주세요.');
 					return false;
-				}
+				} else {
+					const sms = $("#sms_recep").is(":checked");
+					const email = $("#email_recep").is(":checked");
+					console.log("sms = " + sms);
+					console.log("email = " + email);
 
-				location.href = "step02.do";
+					$.ajax({
+						type: "POST",
+						url: "/lubway/step02.do",
+						data: {
+							sms : $("#sms_recep").is(":checked"),
+							email : $("#email_recep").is(":checked")
+						},
+						success: function() {
+							$("#checkForm").submit();
+						},
+						error: function() {
+							console.log("실패");
+						}
+					});
+				}
+					
+/*
+					const sms = $("#sms_recep").is(":checked");
+					console.log("sms = " + sms);
+					const email = $("#email_recep").is(":checked");
+					console.log("email = " + email);
+
+					const vo = {
+						sms_usable: sms,
+						email_usable: email
+					};
+
+					$.ajax({
+						type: "POST",
+						url: "/lubway/step02.do",
+						headers: {
+							"Content-Type": "application/json"
+						},
+						data: JSON.stringify(vo),
+						success: function() {
+							var f = document.createElement("form"); // form 엘리멘트 생성 
+							f.setAttribute("method", "post"); // method 속성을 post로 설정
+							f.setAttribute("action", "step02.do"); // submit했을 때 무슨 동작을 할 것인지 설정
+							document.body.appendChild(f); // 현재 페이지에 form 엘리멘트 추가 
+							//f.submit();
+							console.log("sms = " + sms);
+							console.log("email = " + email);
+						},
+						error: function() {
+							console.log("실패");
+						}
+					});
+*/
+				
+
 			});
 		},
 
 
-		createAgrObj: function() {
 
-			var termsList = new Array();
-			$.each($('.cd-value'), function(i, v) {
-				var obj = {
-					"agrCode": $(v).data('code')
-					, "agrFg": ($(v).is(':checked') ? 'Y' : 'N')
-				};
-
-				termsList.push(obj);
-			});
-
-			return termsList;
-		}
 
 	}
 

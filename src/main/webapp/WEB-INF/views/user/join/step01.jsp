@@ -928,6 +928,7 @@
 							</div>
 
 							<!-- 마케팅 전체 동의 -->
+					
 							<div class="agree marketing">
 								<!-- checkbox -->
 								<label class="form_checkbox"> <input
@@ -941,25 +942,22 @@
 									있습니다. <br />
 									<br /> 이용 목적 : 새로운 서비스 및 이벤트 정보등의 안내
 								</div>
-								<div class="marketing_agree_box">
-									<label class="form_checkbox"> <input
-										class="sns-value cd-value" id="sms_recep" name="sms_usable"
-										type="checkbox" data-code="MEMBER_AGR.SMS_RECEP" /> <span
-										class="icon"></span> <span>SMS/LMS/MMS 수신 동의</span>
-									</label> <label class="form_checkbox"> <input
-										class="sns-value cd-value" id="email_recep" name="email_usable"
-										type="checkbox" data-code="MEMBER_AGR.EMAIL_RECEP" /> <span
-										class="icon"></span> <span>E-mail 수신 동의</span>
-									</label>
-									<!-- 2019-11-11 알림톡수신동의 추가 -->
-									<label class="form_checkbox"> <input
-										class="sns-value cd-value" id="kakao_recep" name="tok_usable"
-										type="checkbox" data-code="MEMBER_AGR.KAKAO_RECEP" /> <span
-										class="icon"></span> <span>알림톡 수신 동의</span>
-									</label>
-									<!--// 2019-11-11 알림톡수신동의 추가 -->
-								</div>
+								<form action="step02.do" method="get" id="checkForm">
+									<div class="marketing_agree_box">
+										<label class="form_checkbox"> <input
+											class="sns-value cd-value" id="sms_recep" name="sms_usable"
+											type="checkbox" data-code="MEMBER_AGR.SMS_RECEP" /> <span
+											class="icon"></span> <span>SMS/LMS/MMS 수신 동의</span>
+										</label> <label class="form_checkbox"> <input
+											class="sns-value cd-value" id="email_recep" name="email_usable"
+											type="checkbox" data-code="MEMBER_AGR.EMAIL_RECEP" /> <span
+											class="icon"></span> <span>E-mail 수신 동의</span>
+										</label>
+									</div>
+								</form>
 							</div>
+							
+							
 							<!--// 마케팅 전체 동의 -->
 						</div>
 
@@ -975,10 +973,11 @@
 					<!--// step01_cont -->
 
 					<div class="btn_area">
-						<a class="btn bgc_white" href="javascript:void(0);" id="authBtn"
+						<a class="btn bgc_white" href="/step02.do" id="authBtn"
 							style="width: 170px;"><span>다음</span></a>
 					</div>
 				</div>
+				
 				<!--// step_cont_box -->
 
 			</div>

@@ -43,7 +43,7 @@
 		$("#submitBtn").on("click",function(){
 			if(check){
 				console.log("다음페이지로 가자");
-				document.location.href="step03.do";
+				$("#certForm").submit();
 			}else
 				alert("인증을 진행해주세요.");
 		});
@@ -78,7 +78,7 @@
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
 												class="required-value" id="phoneNum" name="tel"
-												placeholder="번호 입력" type="text" />
+												placeholder="휴대폰 번호 입력 ${sms}" type="text">
 											</span>
 											<div class="btn_input_in">
 												
@@ -94,7 +94,7 @@
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
 												class="required-value" id="codeNum" 
-												placeholder="인증번호 입력" type="text" />
+												placeholder="인증번호 입력 ${email}" type="text" />
 											</span>
 											<div class="btn_input_in">
 			
@@ -111,6 +111,8 @@
 										id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
 								</div>
 							</div>
+							<input type="hidden" id="sms" value="${sms}">
+							<input type="hidden" id="email" value="${email}">
 						</form>
 						<!--// step_cont_box -->
 					</div>
