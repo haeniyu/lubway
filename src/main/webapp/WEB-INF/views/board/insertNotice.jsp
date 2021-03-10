@@ -27,13 +27,11 @@
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
-								<td colspan="2"><input type="text" name="title" /></td>
+								<td colspan="2"><input type="text" name="title" width="80%" /></td>
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
-								<td colspan="2"><input type="file" name="upload_img"
-									 /><input class="btn btn-warning btn-icon-split" type="button"
-									value="파일찾기" /></td>
+								<td colspan="2"><input type="file" name="upload_img" width="80%"/>
 							</tr>
 							<!-- 
 							<tr>
@@ -48,15 +46,17 @@
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
-								<td colspan="3"><textarea rows="15"
-										name="content"></textarea></td>
+								<td colspan="3"><textarea rows="15" name="content" width="100%"></textarea></td>
+							</tr>
+							<tr>
+								<td colspan="3" align="center">
+									<span><input type="checkbox"/>&nbsp;상단에 고정하기</span>								
+								</td>
 							</tr>
 							<tr>
 								<td colspan="3">
 									<div align="center">
-										<input 
-											class="btn btn-warning btn-icon-split" type="submit"
-											value="등록하기">
+										<input style="padding: 5px" class="btn btn-warning btn-icon-split" type="submit" value="등록하기" />
 									</div>
 								</td>
 							</tr>

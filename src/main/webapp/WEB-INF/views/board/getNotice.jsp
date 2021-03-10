@@ -28,15 +28,12 @@
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
-								<td colspan="2" align="left"><input type="text" name="title"
-									style="width: 80%" value="${notice.title}" /></td>
+								<td colspan="2" align="left"><input type="text" name="title" width="80%" value="${notice.title}" /></td>
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
-								<td colspan="2" align="left"><input type="file" name="upload_img"
-									style="width: 80%" value="${notice.img }" /><input style="margin: 5px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="button"
-									value="파일찾기" /></td>
+								<td colspan="2" align="left"><input type="file" name="upload_img" width="80%" value="${notice.img }" />
+								<input style="margin: 5px; padding: 3px" class="btn btn-warning btn-icon-split" type="button" value="파일찾기" /></td>
 							</tr>
 							<!-- 
 							<tr>
@@ -51,15 +48,12 @@
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
-								<td colspan="3" align="left"><textarea style="width: 100%" rows="15"
-										name="content">${notice.content }</textarea></td>
+								<td colspan="3" align="left"><textarea width="100%" rows="15" name="content">${notice.content }</textarea></td>
 							</tr>
 							<tr>
 								<td colspan="3">
 									<div align="center">
-										<input style="padding: 3px"
-											class="btn btn-warning btn-icon-split" type="submit"
-											value="수정하기">
+										<input style="padding: 5px" class="btn btn-warning btn-icon-split" type="submit" value="수정하기">
 									</div>
 								</td>
 							</tr>
@@ -70,7 +64,6 @@
 					<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
 						<span class="text">등록하기</span>
 					</a>&nbsp;&nbsp;&nbsp;
-					<!-- 삭제할때 href 다시보기 -->
 					<a href="deleteNotice.bdo?no=${notice.no }" class="btn btn-danger btn-icon-split">
 						<span class="text">삭제하기</span>
 					</a>&nbsp;&nbsp;&nbsp;
