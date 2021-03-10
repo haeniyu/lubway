@@ -114,6 +114,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+<<<<<<< HEAD
 
 		<!-- SMTP - 메일발송 서비스 관련 -->
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
@@ -129,6 +130,14 @@
 			<version>5.3.4</version>
 		</dependency>
 
+=======
+		<!-- CoolSMS -->
+		<dependency>
+			<groupId>net.nurigo</groupId>
+			<artifactId>javaSDK</artifactId>
+			<version>2.2</version>
+		</dependency>
+>>>>>>> main
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

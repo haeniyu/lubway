@@ -76,34 +76,31 @@ $(function() {
 			// auth btn bind
 			$('#authBtn').on('click', function(e) {
 				e.preventDefault();
-
+				
 				if (!$(this).hasClass('i_reg')) {
 					alert('필수값을 선택해주세요.');
 					return false;
+				} else {
+					$.ajax({
+						type: "POST",
+						url: "/lubway/step02.do",
+						data: {
+							sms : $("#sms_recep").is(":checked"),
+							email : $("#email_recep").is(":checked")
+						},
+						success: function() {
+							$("#checkForm").submit();
+						},
+						error: function() {
+							console.log("실패");
+						}
+					});
 				}
 
-				location.href = "step02.do";
 			});
 		},
 
-
-		createAgrObj: function() {
-
-			var termsList = new Array();
-			$.each($('.cd-value'), function(i, v) {
-				var obj = {
-					"agrCode": $(v).data('code')
-					, "agrFg": ($(v).is(':checked') ? 'Y' : 'N')
-				};
-
-				termsList.push(obj);
-			});
-
-			return termsList;
-		}
-
 	}
-
 
 	$(document).ready(function() {
 		view.init();

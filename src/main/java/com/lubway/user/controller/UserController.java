@@ -1,8 +1,14 @@
 package com.lubway.user.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.user.UserVO;
 import com.lubway.user.service.EmailService;
@@ -35,23 +41,57 @@ public class UserController {
 		return "join/step01";
 	}
 	
-	@RequestMapping("/step02.do")
-	public String phoneStep() {
-		System.out.println("휴대폰 인증 화면으로 이동");
+	@RequestMapping(method = RequestMethod.POST, value = "/step02.do")
+	public String phoneStep(@RequestParam("sms") boolean sms, @RequestParam("email") boolean email, HttpSession session) {
+		System.out.println(sms);
+		System.out.println(email);
+		System.out.println("휴대폰 인증 화면으로 이동");	
+		session.setAttribute("sms", sms);
+		session.setAttribute("email", email);
 		return "join/step02";
 	}
 	
-	@RequestMapping("/step03.do")
-	public String joinStep() {
+	@RequestMapping(method = RequestMethod.GET, value = "/step02.do")
+	public String moveStep() {
+		return "join/step02";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/step03.do")
+	public String joinStep(String tel, Model model, HttpSession session) {
 		System.out.println("회원가입 정보입력 화면으로 이동");
+		UserVO vo = new UserVO();
+		vo.setSms_usable((Boolean) session.getAttribute("sms"));
+		vo.setEmail_usable((Boolean) session.getAttribute("email"));
+		vo.setTel(tel);
+		model.addAttribute("vo", vo);
 		return "join/step03";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("/step04.do")
 	public String endStep() {
 //		userService.insertUser(vo);
 //		emailService.sendMail(dto);
+=======
+
+	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
+	@ResponseBody
+	public String idCheck(@RequestParam("userId") String id) {
+
+		System.out.println("체크 결과 값 : " + userService.idCheck(id));
+		return String.valueOf(userService.idCheck(id));
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/step04.do")
+	public String endStep(UserVO vo, HttpSession session) {
+		System.out.println(vo.toString());
+		
+		userService.insertUser(vo);
+		
+>>>>>>> main
 		System.out.println("회원가입 완료 화면으로 이동");
+		session.removeAttribute("sms");
+		session.removeAttribute("email");
 		return "join/step04";
 	}
 	

@@ -8,11 +8,18 @@ import com.lubway.user.UserVO;
 
 @Service
 public class UserServiceImpl implements UserService {
+
 	@Autowired
 	private UserDAO dao;
+	
+	@Override
+	public int idCheck(String id) {
+		return dao.idCheck(id);
+	}
 	
 	@Override
 	public void insertUser(UserVO vo) {
 		dao.insertUser(vo);
 	}
+
 }

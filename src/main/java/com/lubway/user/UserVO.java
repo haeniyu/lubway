@@ -15,7 +15,5 @@ public class UserVO {
 	private String name;
 	private boolean sms_usable;
 	private boolean email_usable;
-	private boolean tok_usable;
 	private int point;
-	private String domain;
 }

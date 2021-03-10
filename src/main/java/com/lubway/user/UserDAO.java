@@ -9,6 +9,11 @@ public class UserDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
+	public int idCheck(String id) {
+		System.out.println("ID 중복 검증");
+		return sqlSessionTemplate.selectOne("UserDAO.idCheck", id);
+	}
+	
 	public void insertUser(UserVO vo) {
 		System.out.println("DB에 회원 등록");
 		sqlSessionTemplate.insert("UserDAO.insertUser", vo);

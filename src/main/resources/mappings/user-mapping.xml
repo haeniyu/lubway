@@ -4,9 +4,14 @@
 
 <mapper namespace="UserDAO">
 	
+	<select id="idCheck" parameterType="String" resultType="int">
+		SELECT count(id) FROM lubuser
+		WHERE id = #{id};
+	</select>
+	
 	<insert id="insertUser" parameterType="user">
-		INSERT INTO lubuser(id, domain, password, tel, name, sms_usable, email_usable, tok_usable)
-		VALUES(#{id}, #{domain}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable}, #{tok_usable})
+		INSERT INTO lubuser(id, password, tel, name, sms_usable, email_usable)
+		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
 	</insert>
 
 </mapper>
