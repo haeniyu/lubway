@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class NoticeVO {
-	private int no;
+	private String no;
 	private String title;
 	private String content;
 	private String img;
@@ -21,6 +21,6 @@ public class NoticeVO {
 	private boolean fix;
 	private String searchCondition;
 	private String searchKeyword;
-	private MultipartFile upload_img;
+//	private MultipartFile upload_img;
 	//private MultipartFile upload_originimg;
 }

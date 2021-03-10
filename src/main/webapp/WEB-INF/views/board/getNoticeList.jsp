@@ -20,10 +20,11 @@ function list(page){
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-
+<form action="/lubway/getNotice.bdo" method="post">
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
+<<<<<<< HEAD
 		<!-- Page Heading -->
 		<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
 		<br>
@@ -57,6 +58,64 @@ function list(page){
 									<td><fmt:formatDate value="${notice.regDate }"
 											pattern="yyyy-MM-dd" /></td>
 								</tr>
+=======
+			<!-- Page Heading -->
+			<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
+			<p class="mb-4">DataTables is a third party plugin that is used
+				to generate the demo table below. For more information about
+				DataTables, please visit the</p>
+
+			<!-- DataTales Example -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<div align="right">
+						<!-- <a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
+							<span class="text">글 등록</span>
+						</a> -->
+							<input type=submit value="글 등록"
+								class="btn btn-warning btn-icon-split"
+								>
+						</div>
+						<div class="my-2"></div>
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr align="center">
+									<th width="10%">NO</th>
+									<th width="70%">Title</th>
+									<th width="20%">Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${noticeList }" var="notice">
+									<tr>
+										<td>${notice.no }</td>
+										<td align="left"><a href="getNotice.bdo?no=${notice.no }">${notice.title }</a></td>
+										<td><fmt:formatDate value="${notice.regDate }"
+												pattern="yyyy-MM-dd" /></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						</div>
+						</div>
+						</div>
+						</div>
+						
+						
+						</form>
+		<!-- 검색 시작 -->
+		<div align="right">
+			<form action="noticeList.bdo" method="post">
+				<tr>
+					<td><select name="searchCondition">
+							<c:forEach items="${conditionMap }" var="option">
+								<option value="${option.value }">${option.key }</option>
+>>>>>>> 723e012167d9703d32cd58000fe690904105037f
 							</c:forEach>
 						</tbody>
 					</table>

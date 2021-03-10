@@ -1,4 +1,4 @@
-package com.lubway.board.impl;
+package com.lubway.board;
 
 import java.util.List;
 
@@ -6,16 +6,15 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lubway.board.NoticeVO;
-
 @Repository
 public class NoticeDAO {
+	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	public void insertNotice(NoticeVO vo) {
 		System.out.println("마이바티스로 insertNotice() 기능 처리");
-		//sqlSessionTemplate.insert("NoticeDAO.insertNotice", vo);
+		sqlSessionTemplate.insert("NoticeDAO.insertNotice", vo);
 	}
 
 	public void updateNotice(NoticeVO vo) {

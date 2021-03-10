@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,15 +25,16 @@ public class NoticeController {
 
 	// 글 등록
 	@RequestMapping("/insertNotice.bdo")
-	public String insertNotice(NoticeVO vo) throws IOException {
+	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
 		// 파일 업로드
 //		MultipartFile upload_img = vo.getUpload_img();
 //		if(!upload_img.isEmpty()) {
 //			String fileName = upload_img.getOriginalFilename();
 //			upload_img.transferTo(new File("D:/" + fileName));
 //		}
+		System.out.println("db등록됨");
 		noticeService.insertNotice(vo);
-		return "insertNotice";
+		return "getNoticeList";
 	}
 
 	// 글 수정
@@ -65,13 +67,19 @@ public class NoticeController {
 		return conditionMap;
 	}
 
-	// 글목록 검색
-	@RequestMapping("/noticeList.bdo")
-	public String getNoticeList(NoticeVO vo, Model model) {
-		// NULL check
-		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
-		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
+//	// 글목록 검색
+//	@RequestMapping("/noticeList.bdo")
+//	public String getNoticeList(NoticeVO vo, Model model) {
+//		// NULL check
+//		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
+//		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+//		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
+//		return "getNoticeList";
+//	}
+	
+	@RequestMapping("/getNoticeList.bdo")
+	public String getNoticeList(NoticeVO vo) {
+		
 		return "getNoticeList";
 	}
 

@@ -7,7 +7,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-
+<form action="/lubway/insertNotice.bdo" method="post">
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 	<div class="container-fluid">
@@ -21,14 +21,19 @@
 				<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 			</div>
 			<div class="card-body">
-				<form action="noticeList.bdo" method="post" enctype="multipart/form-data">
+				
 				<input name="no" type="hidden" value="${notice.no} }">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
+<<<<<<< HEAD
 								<td colspan="2" align="left"><input type="text" name="title" width="80%" value="${notice.title}" /></td>
+=======
+								<td colspan="2" align="left"><input type="text" name="title"
+									style="width: 80%" value="title" /></td>
+>>>>>>> 723e012167d9703d32cd58000fe690904105037f
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
@@ -48,7 +53,12 @@
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
+<<<<<<< HEAD
 								<td colspan="3" align="left"><textarea width="100%" rows="15" name="content">${notice.content }</textarea></td>
+=======
+								<td colspan="3" align="left"><textarea style="width: 100%" rows="15"
+										name="content" value="content">${notice.content }</textarea></td>
+>>>>>>> 723e012167d9703d32cd58000fe690904105037f
 							</tr>
 							<tr>
 								<td colspan="3">
@@ -61,9 +71,26 @@
 					</div>
 				</form>
 				<div align="right">
+<<<<<<< HEAD
 					<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
 						<span class="text">등록하기</span>
 					</a>&nbsp;&nbsp;&nbsp;
+=======
+				<script>
+					<input class="yesno" type="submit" style="padding: 7px" class="btn btn-warning btn-icon-split" value="등록하기">
+					
+$('.yesno').click(function(){
+    if(confirm("정말 등록하시겠습니까 ?") == true){
+        alert("등록되었습니다");
+    }
+    else{
+        return ;
+    }
+});
+</script>			
+					&nbsp;&nbsp;&nbsp;
+					<!-- 삭제할때 href 다시보기 -->
+>>>>>>> 723e012167d9703d32cd58000fe690904105037f
 					<a href="deleteNotice.bdo?no=${notice.no }" class="btn btn-danger btn-icon-split">
 						<span class="text">삭제하기</span>
 					</a>&nbsp;&nbsp;&nbsp;
@@ -75,6 +102,9 @@
 		</div>
 
 	</div>
+	
+		</form>
+	
 	<!-- /.container-fluid -->
 
 	<!-- End of Main Content -->
