@@ -9,7 +9,48 @@
 <title>휴대폰 인증</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css?v=1" />
-<script type="text/javascript" src="${path}/resources/js/step02.js?v=2"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		//인증 받았는지 확인하는 변수
+		var check = false;
+		
+		//전송 버튼 눌렀을 때
+		$("#sendBtn").on("click", function() {
+				var phoneNum = $('#phoneNum').val();
+				if (phoneNum != '') {					
+					$.ajax({
+						url : '/lubway/sendSms.do?tell=' + phoneNum,
+						type : 'post',
+						success : function(data) {
+							$("#codeNum").val(data);
+							$("#checkBtn").on("click", function() {
+								if($("#codeNum").val() == data) {
+									alert("인증에 성공하였습니다.");
+									check = true;
+								}
+							});
+						},
+						error : function(data) {
+							alert("인증에 실패하였습니다.");
+							check = false;
+						}
+					});
+				}
+		});
+		
+		//인증 완료 버튼 눌렀을 때
+		$("#submitBtn").on("click",function(){
+			if(check){
+				console.log("다음페이지로 가자");
+				$("#certForm").submit();
+			}else
+				alert("인증을 진행해주세요.");
+		});
+		
+		
+	});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -27,7 +68,7 @@
 				<div class="step_cont_box">
 					<!-- step03_cont -->
 					<div class="step03_cont">
-						<form action="step03.do" method="post" class="form_box" name="certForm">
+						<form action="step03.do" method="post" class="form_box" id="certForm">
 							<div class="write_info_wrap">
 								<div class="input_set">
 									<dl>
@@ -36,13 +77,13 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
-												class="required-value" id="phoneNum" name="phone"
-												placeholder="번호 입력" type="text" />
+												class="required-value" id="phoneNum" name="tel"
+												placeholder="휴대폰 번호 입력 ${sms}" type="text">
 											</span>
 											<div class="btn_input_in">
-												<input class="required-val" id="#" type="hidden" value="N" />
-												<a class="in_form_btn" href="javascript:void(0);" id="pop"
-													onclick="view.phoneCheck();"><span>전송</span></a>
+												
+												<a class="in_form_btn" href="javascript:void(0);" id="sendBtn"
+													><span>전송</span></a>
 											</div>
 										</dd>
 									</dl>
@@ -52,13 +93,13 @@
 										</dt>
 										<dd>
 											<span class="form_text" style="width: 155px"> <input
-												class="required-value" id="codeNum" name="code"
-												placeholder="인증번호 입력" type="text" />
+												class="required-value" id="codeNum" 
+												placeholder="인증번호 입력 ${email}" type="text" />
 											</span>
 											<div class="btn_input_in">
-												<input class="required-val" id="#" type="hidden" value="N" />
-												<a class="in_form_btn" href="javascript:void(0);" id="pop"
-													onclick="view.codeCheck();"><span>확인</span></a>
+			
+												<a class="in_form_btn" href="javascript:void(0);" id="checkBtn"
+													><span>확인</span></a>
 											</div>
 										</dd>
 									</dl>
@@ -66,10 +107,12 @@
 
 								<!--// step03_cont -->
 								<div class="btn_area">
-									<a class="btn bgc_point i_reg" href="javascript:void(0);"
-										id="submitBtn" onclick="view.done();" style="width: 170px;"><span>인증 완료</span></a>
+									<a class="btn bgc_point i_reg" href="javascript:void(0);" 
+										id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
 								</div>
 							</div>
+							<input type="hidden" id="sms" value="${sms}">
+							<input type="hidden" id="email" value="${email}">
 						</form>
 						<!--// step_cont_box -->
 					</div>

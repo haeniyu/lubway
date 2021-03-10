@@ -1,11 +1,20 @@
 package com.lubway.user.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
+=======
+>>>>>>> feature/sms
 
 import com.lubway.user.service.UserService;
 
@@ -33,18 +42,36 @@ public class UserController {
 		return "join/step01";
 	}
 	
-	@RequestMapping("/step02.do")
-	public String phoneStep() {
-		System.out.println("휴대폰 인증 화면으로 이동");
+	@RequestMapping(method = RequestMethod.POST, value = "/step02.do")
+	public String phoneStep(@RequestParam("sms") boolean sms, @RequestParam("email") boolean email, HttpSession session) {
+		System.out.println(sms);
+		System.out.println(email);
+		System.out.println("휴대폰 인증 화면으로 이동");	
+		session.setAttribute("sms", sms);
+		session.setAttribute("email", email);
 		return "join/step02";
 	}
 	
-	@RequestMapping("/step03.do")
-	public String joinStep() {
+	@RequestMapping(method = RequestMethod.GET, value = "/step02.do")
+	public String moveStep() {
+		return "join/step02";
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/step03.do")
+	public String joinStep(String tel, Model model, HttpSession session) {
 		System.out.println("회원가입 정보입력 화면으로 이동");
+		
+		UserVO vo = new UserVO();
+		vo.setSms_usable((Boolean) session.getAttribute("sms"));
+		vo.setEmail_usable((Boolean) session.getAttribute("email"));
+		vo.setTel(tel);
+		model.addAttribute("vo", vo);
+		System.out.println(vo.toString());
+		
 		return "join/step03";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id) {
@@ -55,6 +82,11 @@ public class UserController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/step04.do")
 	public String endStep() {
+=======
+	@RequestMapping("/step04.do")
+	public String endStep(UserVO vo) {
+		System.out.println(vo.toString());
+>>>>>>> feature/sms
 		//userService.insertUser(vo);
 		System.out.println("회원가입 완료 화면으로 이동");
 		return "join/step04";
