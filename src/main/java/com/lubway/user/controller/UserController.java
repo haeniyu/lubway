@@ -1,8 +1,13 @@
 package com.lubway.user.controller;
 
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.user.UserVO;
-import com.lubway.user.service.EmailService;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -21,7 +25,7 @@ public class UserController {
 	private UserService userService;
 	
 	@Autowired
-	private EmailService emailService;
+	JavaMailSender mailSender;
 	
 	@RequestMapping("/main.do")
 	public String mainView() {
@@ -66,13 +70,6 @@ public class UserController {
 		model.addAttribute("vo", vo);
 		return "join/step03";
 	}
-	
-<<<<<<< HEAD
-	@RequestMapping("/step04.do")
-	public String endStep() {
-//		userService.insertUser(vo);
-//		emailService.sendMail(dto);
-=======
 
 	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
 	@ResponseBody
@@ -87,11 +84,30 @@ public class UserController {
 		System.out.println(vo.toString());
 		
 		userService.insertUser(vo);
-		
->>>>>>> main
 		System.out.println("회원가입 완료 화면으로 이동");
 		session.removeAttribute("sms");
 		session.removeAttribute("email");
+		
+		String mailTo = vo.getId();
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			
+			String content = "<p><b><span style=\"font-size: 24pt;  color: #009223;\">환영합니다!</span></b></p><p><b><span style=\"font-size: 24pt;  color: #009223;\">"+ vo.getName() + "님</span></b></p><p><br></p><p>안녕하세요!</p><p>러브웨이 멤버십에 가입해 주셔서 감사합니다.</p>";	
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setFrom(new InternetAddress("lu6way@gmail.com","LUBWAY", "UTF-8")); // 보내는 사람
+				mimeMessage.setSubject("LUBWAY에 가입하신것을 환영합니다.", "UTF-8");
+				mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+				mimeMessage.setContent(content, "text/html;charset=UTF-8");
+				mimeMessage.setReplyTo(InternetAddress.parse(mailTo));
+			}
+		};
+
+		try {
+			mailSender.send(preparator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "join/step04";
 	}
 	
