@@ -1,12 +1,20 @@
 package com.lubway.user.controller;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
+=======
+import javax.mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+>>>>>>> fd625620988591f4a879ada458a6ef0d7385262b
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +31,16 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
+<<<<<<< HEAD
 	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
 	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpSession session) throws IOException {
+=======
+	@Autowired
+	JavaMailSender mailSender;
+	
+	@RequestMapping("/main.do")
+	public String mainView() {
+>>>>>>> fd625620988591f4a879ada458a6ef0d7385262b
 		System.out.println("메인 화면으로 이동");
 		
 		response.setContentType("text/html; charset=utf-8");
@@ -93,7 +109,6 @@ public class UserController {
 		model.addAttribute("vo", vo);
 		return "join/step03";
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
 	@ResponseBody
@@ -108,10 +123,30 @@ public class UserController {
 		System.out.println(vo.toString());
 		
 		userService.insertUser(vo);
-		
 		System.out.println("회원가입 완료 화면으로 이동");
 		session.removeAttribute("sms");
 		session.removeAttribute("email");
+		
+		String mailTo = vo.getId();
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+			
+			String content = "<p><b><span style=\"font-size: 24pt;  color: #009223;\">환영합니다!</span></b></p><p><b><span style=\"font-size: 24pt;  color: #009223;\">"+ vo.getName() + "님</span></b></p><p><br></p><p>안녕하세요!</p><p>러브웨이 멤버십에 가입해 주셔서 감사합니다.</p>";	
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setFrom(new InternetAddress("lu6way@gmail.com","LUBWAY", "UTF-8")); // 보내는 사람
+				mimeMessage.setSubject("LUBWAY에 가입하신것을 환영합니다.", "UTF-8");
+				mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+				mimeMessage.setContent(content, "text/html;charset=UTF-8");
+				mimeMessage.setReplyTo(InternetAddress.parse(mailTo));
+			}
+		};
+
+		try {
+			mailSender.send(preparator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "join/step04";
 	}
 	
