@@ -1,21 +1,16 @@
 package com.lubway.user.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
-import org.omg.CORBA.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.ResponseBody;
-=======
->>>>>>> feature/sms
 
+import com.lubway.user.UserVO;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -60,35 +55,32 @@ public class UserController {
 	@RequestMapping(method = RequestMethod.POST, value = "/step03.do")
 	public String joinStep(String tel, Model model, HttpSession session) {
 		System.out.println("회원가입 정보입력 화면으로 이동");
-		
 		UserVO vo = new UserVO();
 		vo.setSms_usable((Boolean) session.getAttribute("sms"));
 		vo.setEmail_usable((Boolean) session.getAttribute("email"));
 		vo.setTel(tel);
 		model.addAttribute("vo", vo);
-		System.out.println(vo.toString());
-		
 		return "join/step03";
 	}
 	
-<<<<<<< HEAD
+
 	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id) {
-		System.out.println("UserController -> ID 중복 검증");
+
 		System.out.println("체크 결과 값 : " + userService.idCheck(id));
 		return String.valueOf(userService.idCheck(id));
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/step04.do")
-	public String endStep() {
-=======
-	@RequestMapping("/step04.do")
-	public String endStep(UserVO vo) {
+	public String endStep(UserVO vo, HttpSession session) {
 		System.out.println(vo.toString());
->>>>>>> feature/sms
-		//userService.insertUser(vo);
+		
+		userService.insertUser(vo);
+		
 		System.out.println("회원가입 완료 화면으로 이동");
+		session.removeAttribute("sms");
+		session.removeAttribute("email");
 		return "join/step04";
 	}
 	

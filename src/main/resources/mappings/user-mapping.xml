@@ -10,13 +10,8 @@
 	</select>
 	
 	<insert id="insertUser" parameterType="user">
-<<<<<<< HEAD
-		INSERT INTO lubuser(id, password, tel, name, sms_usable, email_usable, tok_usable)
-		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable}, #{tok_usable})
-=======
-		INSERT INTO lubuser(id, domain, password, tel, name, sms_usable, email_usable, tok_usable)
-		VALUES(#{id}, #{domain}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
->>>>>>> feature/sms
+		INSERT INTO lubuser(id, password, tel, name, sms_usable, email_usable)
+		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
 	</insert>
 
 </mapper>
