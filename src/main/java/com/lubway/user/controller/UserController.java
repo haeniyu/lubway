@@ -1,5 +1,9 @@
 package com.lubway.user.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +23,36 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping("/main.do")
-	public String mainView() {
+	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
+	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpSession session) throws IOException {
 		System.out.println("메인 화면으로 이동");
+		
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		UserVO user = new UserVO();
+		user.setId(id);
+		UserVO getUser = userService.getUser(user);
+		
+		if(getUser == null || !getUser.getPassword().equals(password)) {
+			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
+			out.flush();
+			out.close();
+			return null;
+		} else {
+			if(getUser.getPassword().equals(password)) {
+				session.setAttribute("user", getUser);
+				System.out.println("ID, Password 일치");
+				System.out.println("로그인 성공");
+				return "main";
+			}
+		}
+		return null;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/main.do")
+	public String mainView() {
+		
 		return "main";
 	}
 	

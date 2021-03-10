@@ -14,4 +14,7 @@
 		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
 	</insert>
 
+	<select id="getUser" parameterType="user" resultType="user">
+		SELECT * FROM lubuser WHERE id = #{id};
+	</select>
 </mapper>

@@ -22,4 +22,9 @@ public class UserServiceImpl implements UserService {
 		dao.insertUser(vo);
 	}
 
+	@Override
+	public UserVO getUser(UserVO vo) {
+		return dao.getUser(vo);
+	}
+
 }

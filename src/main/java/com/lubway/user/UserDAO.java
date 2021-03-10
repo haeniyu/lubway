@@ -18,4 +18,9 @@ public class UserDAO {
 		System.out.println("DB에 회원 등록");
 		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
 	}
+	
+	public UserVO getUser(UserVO vo) {
+		System.out.println("UserDAO - getUser() 실행");
+		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
+	}
 }
