@@ -21,40 +21,40 @@
 				<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 			</div>
 			<div class="card-body">
-				<form action="noticeList.mdo" method="post">
+				<form action="insertNotice.bdo" method="post" enctype="multipart/form-data">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
-								<td colspan="2"><input type="text" name="title"
-									style="width: 80%" /></td>
+								<td colspan="2"><input type="text" name="title" /></td>
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
-								<td colspan="2"><input type="text" name="add_file"
-									style="width: 80%" /><input style="margin: 5px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="button"
+								<td colspan="2"><input type="file" name="upload_img"
+									 /><input class="btn btn-warning btn-icon-split" type="button"
 									value="파일찾기" /></td>
 							</tr>
+							<!-- 
 							<tr>
 								<td>원본 이미지 첨부</td>
-								<td colspan="2"><input type="text" name="add_file"
+								<td colspan="2"><input type="file" name="upload_originimg"
 									style="width: 80%" /><input style="margin: 5px; padding: 3px"
 									class="btn btn-warning btn-icon-split" type="button"
 									value="파일찾기" /></td>
 							</tr>
+							-->
 							<tr>
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
-								<td colspan="3"><textarea style="width: 100%" rows="15"
+								<td colspan="3"><textarea rows="15"
 										name="content"></textarea></td>
 							</tr>
 							<tr>
 								<td colspan="3">
 									<div align="center">
-										<input style="padding: 3px"
+										<input 
 											class="btn btn-warning btn-icon-split" type="submit"
 											value="등록하기">
 									</div>
@@ -64,7 +64,7 @@
 					</div>
 				</form>
 				<div align="right">
-					<a href="noticeList.mdo" class="btn btn-light btn-icon-split">
+					<a href="noticeList.bdo" class="btn btn-light btn-icon-split">
 						<span class="text">목록가기</span>
 					</a>
 				</div>
@@ -74,7 +74,6 @@
 	</div>
 	<!-- /.container-fluid -->
 
-	</div>
 	<!-- End of Main Content -->
 
 	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
