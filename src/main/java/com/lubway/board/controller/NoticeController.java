@@ -39,7 +39,7 @@ public class NoticeController {
 	//글 등록 기능
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
-		
+
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
 		
@@ -59,6 +59,8 @@ public class NoticeController {
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
 		System.out.println("삭제 실행됨");
+		
+		
 		return "redirect:/getNoticeList.bdo";
 	}
 
@@ -89,14 +91,12 @@ public class NoticeController {
 	public String getSearch( NoticeVO vo, Model model) {
 		// NULL check
 		System.out.println("글 목록 검색 처리");
-		if(vo.getSearchCondition() == null) {vo.setSearchCondition("TITLE");
-			System.out.println("아무것도 없어요");
-		}
-		if(vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); 
-			 System.out.println("없어");
-		}
 		
 		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
+			
+			System.out.println("없어");
+
+		
 		model.addAttribute("noticeList", noticeList);
 		
 		return "getNoticeList";
