@@ -21,5 +21,9 @@ public interface NoticeService {
 
 	// 글 목록 조회
 	List<NoticeVO> getNoticeList(NoticeVO vo);
+	
+	//페이징처리 개수
+	int getBoardListCnt();
+
 
 }

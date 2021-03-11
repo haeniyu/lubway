@@ -6,9 +6,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public class NoticeDAO {
+
 	
+
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 
@@ -38,4 +42,16 @@ public class NoticeDAO {
 		System.out.println("마이바티스로 getNoticeList() 기능 처리");
 		return sqlSessionTemplate.selectList("NoticeDAO.getNoticeList", vo);
 	}
+	
+	public int getBoardListCnt() throws Exception {
+
+		return sqlSessionTemplate.selectOne("NoticeDAO.pagingCnt");
+
+	}
+
+
+
+
+
+
 }

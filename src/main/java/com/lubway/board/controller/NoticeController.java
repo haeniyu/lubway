@@ -59,8 +59,6 @@ public class NoticeController {
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
 		System.out.println("삭제 실행됨");
-		
-		
 		return "redirect:/getNoticeList.bdo";
 	}
 
@@ -75,7 +73,6 @@ public class NoticeController {
 	@RequestMapping("/getNoticeList.bdo")
 	public String getNoticeList( NoticeVO vo, Model model) {
 
-		
 		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
 		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
 		

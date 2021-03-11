@@ -38,4 +38,11 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getNoticeList(vo);
 	}
 
+	@Override
+	public int getBoardListCnt() {
+		return NoticeDAO.;
+
+		출처: https://freehoon.tistory.com/112?category=735500 [훈잇 블로그]
+	}
+
 }

@@ -45,6 +45,8 @@
 									<span><input type="checkbox"/>&nbsp;상단에 고정하기</span>								
 								</td>
 							</tr>
+							
+							
 							<tr>
 								<td colspan="3">
 									<div align="center">
