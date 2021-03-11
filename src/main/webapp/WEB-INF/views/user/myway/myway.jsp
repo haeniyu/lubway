@@ -6,24 +6,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.mypage.css" />
+<title>마이페이지</title>
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/ui.common.css" />
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/ui.mypage.css" />
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<!-- container s -->
 	<div id="container">
-		<!-- E-GIFT 선물 -->
-		<input id="egiftOrdNo" name="egiftOrdNo" type="hidden" value="" />
-
 		<!-- sub content s -->
 		<div id="content">
 			<!-- My SUB Index -->
 			<div class="mysub_index">
-				<h2 class="subTitle_02 font_sw">MY SUB</h2>
+				<h2 class="subTitle_02 font_sw">MY WAY</h2>
 				<section class="member_active">
 					<!-- 회원정보 -->
 					<section class="my_info">
@@ -31,16 +28,16 @@
 							<div class="name_gender">
 								<i class="character female"></i>
 								<p class="name">
-									<strong><em class="multiple_line">이지수</em>님</strong>
+									<strong><em class="multiple_line">${user.name }</em>님</strong>
 								</p>
 							</div>
-							<a class="btn go_view infoBtn" href="/mypage/info/pw" > <span>회원 정보 변경</span></a>
+							<a class="btn go_view infoBtn" href="/lubway/checkpwd.do" > <span>회원 정보 변경</span></a>
 						</div>
 						<div class="info point">
 							<dl>
 								<dt>멤버십 포인트</dt>
 								<dd>
-									<strong><em>0</em>P</strong>
+									<strong><em>${user.point }</em>P</strong>
 								</dd>
 							</dl>
 							<a class="btn go_view whiteBtn" href="/mypage/point"><span>포인트 관리</span></a>

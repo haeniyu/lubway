@@ -10,7 +10,7 @@
 	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
 	rel="stylesheet">
 <meta charset='utf-8'>
-<title>SUBWAY 써브웨이</title>
+<title>LUBWAY 러브웨이</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css" />
 
@@ -40,7 +40,7 @@ $(function(){
 			<c:if test="${user != null}">
 				<ul class="login">
 					<li class="before_sign"><a href="logout.do">로그아웃</a></li>
-					<li class="before_sign"><a href="#">My Way</a></li>
+					<li class="before_sign"><a href="myway.do">MY-WAY</a></li>
 	
 					<li class="icon_menu global_subway"><a
 						href="http://www.subway.com/en-us/exploreourworld" target="_blank"

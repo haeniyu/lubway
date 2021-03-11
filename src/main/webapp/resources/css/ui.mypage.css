@@ -80,7 +80,7 @@
 	border: 2px solid #ffffff;
 	color: #ffffff;
 	font-size: 16px;
-	font-weight: 300;
+	font-weight: bold;
 	position: absolute;
 	left: 50%;
 	bottom: 42px;
@@ -106,13 +106,13 @@
 
 .mysub_index .member_active .my_info dt {
 	font-size: 20px;
-	font-weight: 300;
+	font-weight: bold;
 	margin-bottom: 20px;
 }
 
 .mysub_index .member_active .my_info dd {
 	font-size: 28px;
-	font-weight: 300;
+	font-weight: bold;
 }
 
 .mysub_index .member_active .my_info dd strong {
@@ -282,7 +282,7 @@
 
 .mysub_index .member_active .my_news .active_info dt, .mysub_index .member_active .my_news .active_info dd
 	{
-	font-weight: 300;
+	font-weight: bold;
 	text-align: center;
 }
 
@@ -690,7 +690,7 @@
 .manage_wrapper .manage_cont_box .mbs_withdraw .mbs_status ul li strong
 	{
 	float: left;
-	font-weight: 300;
+	font-weight: bold;
 	line-height: 68px;
 	color: #666666;
 }
@@ -807,7 +807,7 @@
 	line-height: 26px;
 	font-size: 16px;
 	padding: 30px 20px 0;
-	font-weight: 300;
+	font-weight: bold;
 }
 
 .info_wrapper .fre .i_mag {
@@ -1151,7 +1151,7 @@
 .membership .point_use .board_list_wrapper .month_term a span {
 	color: #666666;
 	font-size: 14px;
-	font-weight: 300;
+	font-weight: bold;
 }
 
 .membership .point_use .board_list_wrapper .month_term a.on span {
@@ -1197,7 +1197,7 @@
 	position: absolute;
 	right: 0;
 	top: 0;
-	font-weight: 300;
+	font-weight: bold;
 	color: #009223;
 	line-height: 38px;
 	letter-spacing: -0.05em;
@@ -1433,7 +1433,7 @@
 }
 
 .order_wrapper .order_box .search_order>span {
-	font-weight: 300;
+	font-weight: bold;
 	letter-spacing: -0.05em;
 	display: inline-block;
 	vertical-align: middle;
@@ -1513,7 +1513,7 @@
 }
 
 .order_wrapper .order_box .order_list .order_card .order_type span {
-	font-weight: 300;
+	font-weight: bold;
 	margin-left: 3px;
 	font-family: font_ns;
 	display: inline-block;
@@ -1523,7 +1523,7 @@
 .order_wrapper .order_box .order_list .order_card .order_menu {
 	padding: 8px 0 28px;
 	font-size: 20px;
-	font-weight: 300;
+	font-weight: bold;
 	letter-spacing: -0.05em;
 	color: #292929;
 	border-bottom: 1px solid #e5e5e5;
@@ -1539,13 +1539,13 @@
 }
 
 .order_wrapper .order_box .order_list .order_card .price em {
-	font-weight: 300;
+	font-weight: bold;
 	font-family: font_ns;
 }
 
 .order_wrapper .order_box .order_list .order_card .store {
 	font-size: 13px;
-	font-weight: 300;
+	font-weight: bold;
 	color: #999;
 	letter-spacing: -0.05em;
 	margin-left: 16px;
@@ -1574,7 +1574,7 @@
 	float: right;
 	font-size: 14px;
 	color: #999;
-	font-weight: 300;
+	font-weight: bold;
 	letter-spacing: -0.05em;
 }
 
@@ -1653,7 +1653,7 @@
 	display: inline;
 	color: #ffffff;
 	font-size: 20px;
-	font-weight: 300;
+	font-weight: bold;
 	line-height: 1.1em;
 }
 
@@ -1703,7 +1703,7 @@
 .my_order_wrap .payment dt, .my_order_wrap .payment dd {
 	color: #292929;
 	font-family: 'font_sw', 'font_ns';
-	font-weight: 300;
+	font-weight: bold;
 }
 
 .my_order_wrap .payment dt {

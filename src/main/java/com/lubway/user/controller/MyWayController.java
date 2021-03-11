@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class MyWayController {
-
+	
 	@RequestMapping("/myway.do")
 	public String myWay() {
 		System.out.println("마이웨이 페이지로 이동");
