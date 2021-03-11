@@ -3,11 +3,11 @@ package com.lubway.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,7 +33,10 @@ public class UserController {
 	@Autowired
 	JavaMailSender mailSender;
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
+	/**
+	 * 로그인 처리 후 메인 페이지 이동
+	 */
+	@PostMapping("/main.do")
 	public String main(@RequestParam("id") String id, 
 			@RequestParam("password") String password, 
 			HttpServletResponse response, 
@@ -63,24 +67,36 @@ public class UserController {
 		return null;
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/main.do")
+	/**
+	 * 메인 페이지 이동
+	 */
+	@GetMapping("/main.do")
 	public String mainView() {
 		return "main";
 	}
 	
+	/**
+	 * 로그인 화면 이동
+	 */
 	@RequestMapping("/login.do")
 	public String login() {
 		System.out.println("로그인 화면으로 이동");
 		return "login";
 	}
 	
+	/**
+	 * 회원가입 페이지 이동
+	 */
 	@RequestMapping("/step01.do")
 	public String termsStep() {
 		System.out.println("약관동의 화면으로 이동");
 		return "join/step01";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/step02.do")
+	/**
+	 * 회원가입 페이지 2 - 휴대폰 인증
+	 */
+	@PostMapping("/step02.do")
 	public String phoneStep(@RequestParam("sms") boolean sms, @RequestParam("email") boolean email, HttpSession session) {
 		System.out.println(sms);
 		System.out.println(email);
@@ -90,12 +106,18 @@ public class UserController {
 		return "join/step02";
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/step02.do")
+	/**
+	 * 필요했나?
+	 */
+	@GetMapping("/step02.do")
 	public String moveStep() {
 		return "join/step02";
 	}
-	
-	@RequestMapping(method = RequestMethod.POST, value = "/step03.do")
+
+	/**
+	 * 회원가입 페이지 3 - 정보 입력
+	 */
+	@PostMapping("/step03.do")
 	public String joinStep(String tel, Model model, HttpSession session) {
 		System.out.println("회원가입 정보입력 화면으로 이동");
 		UserVO vo = new UserVO();
@@ -106,7 +128,10 @@ public class UserController {
 		return "join/step03";
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/idCheck.do")
+	/**
+	 * 아이디 중복 검증
+	 */
+	@GetMapping("/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id) {
 
@@ -114,9 +139,14 @@ public class UserController {
 		return String.valueOf(userService.idCheck(id));
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/step04.do")
+	/**
+	 * 회원가입 완료 - 이메일 전송 / 비밀번호 암호화 / DB저장
+	 */
+	@PostMapping("/step04.do")
 	public String endStep(UserVO vo, HttpSession session) {
 		System.out.println(vo.toString());
+		
+		
 		
 		userService.insertUser(vo);
 		System.out.println("회원가입 완료 화면으로 이동");
@@ -146,24 +176,36 @@ public class UserController {
 		return "join/step04";
 	}
 	
+	/**
+	 * 비밀번호 찾기 화면 이동
+	 */
 	@RequestMapping("/findpwd.do")
 	public String findpwd() {
 		System.out.println("비밀번호 찾기 화면으로 이동");
 		return "findpwd";
 	}
 	
+	/**
+	 * 아이디 찾기 화면 이동
+	 */
 	@RequestMapping("/findid.do")
 	public String findid() {
 		System.out.println("아이디 찾기 화면으로 이동");
 		return "findid";
 	}
 	
+	/**
+	 * 공지사항 페이지 이동
+	 */
 	@RequestMapping("/notice.do")
 	public String notice() {
 		System.out.println("공지사항 으로 이동");
 		return "notice";
 	}
 	
+	/**
+	 * 공지 상세 페이지 이동
+	 */
 	@RequestMapping("/noticein.do")
 	public String noticein(){
 		System.out.println("공지 상세정보로 이동");
