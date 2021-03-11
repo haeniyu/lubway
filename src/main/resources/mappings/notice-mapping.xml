@@ -20,7 +20,7 @@
 	</update>
 	
 	<delete id="deleteNotice">
-		DELETE NOTICE_BOARD WHERE NO=#{no}
+		DELETE FROM NOTICE_BOARD WHERE NO=#{no}
 	</delete>
 	
 	<select id="getNotice" parameterType="notice" resultType="notice">

@@ -38,11 +38,11 @@
 				<div class="table-responsive">
 					<div align="right">
 					
-						<input type="submit" class="btn btn-warning btn-icon-split">
-							<span class="text">글 등록</span>
+						<input type="submit" class="btn btn-warning btn-icon-split" value="글등록">
+							
 						
 					</div>
-					
+					</form>
 					<div class="my-2"></div>
 					<table class="table table-bordered" id="dataTable" width="100%"
 						cellspacing="0">
@@ -67,7 +67,7 @@
 
 					<!-- 검색 시작 -->
 					<div align="right">
-						<form action="noticeList.bdo" method="post">
+						<form action="/lubway/search.bdo" method="get">
 							<tr>
 								<td><select name="searchCondition">
 										<c:forEach items="${conditionMap }" var="option">
@@ -78,10 +78,10 @@
 									class="btn btn-warning btn-icon-split" type="submit"
 									value="search" /></td>
 							</tr>
-						</form>
+						
 
+					</form>
 					</div>
-
 					<!-- 검색 종료 -->
 					<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 					<div align="center">
@@ -120,7 +120,7 @@
 
 
 	</div>
-</form>
+
 	<!-- /.container-fluid -->
 
 	<!-- End of Main Content -->

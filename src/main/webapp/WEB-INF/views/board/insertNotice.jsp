@@ -33,15 +33,7 @@
 								<td>이미지 첨부</td>
 								<td colspan="2"><input type="file" name="upload_img"/>
 							</tr>
-							<!-- 
-							<tr>
-								<td>원본 이미지 첨부</td>
-								<td colspan="2"><input type="file" name="upload_originimg"
-									style="width: 80%" /><input style="margin: 5px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="button"
-									value="파일찾기" /></td>
-							</tr>
-							-->
+							
 							<tr>
 								<td colspan="3">내용</td>
 							</tr>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.lubway.board.NoticeVO;
@@ -50,7 +51,7 @@ public class NoticeController {
 
 	// 글 수정
 	@RequestMapping("/updateNotice.bdo")
-	public String updateNotice(@ModelAttribute("notice") NoticeVO vo) {
+	public String updateNotice(@RequestParam("no") NoticeVO vo) throws IOException, PSQLException{
 		noticeService.updateNotice(vo);
 		System.out.println("업데이트 실행됨");
 		return "redirect:/getNoticeList.bdo";
@@ -58,9 +59,10 @@ public class NoticeController {
 
 	// 글 삭제
 	@RequestMapping("/deleteNotice.bdo")
-	public String deleteNotice(NoticeVO vo) {
+	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
-		return "getNoticeList";
+		System.out.println("삭제 실행됨");
+		return "redirect:/getNoticeList.bdo";
 	}
 
 	// 글 상세 조회
@@ -69,12 +71,25 @@ public class NoticeController {
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "getNotice";
 	}
+	
+	//글 목록들
+	@RequestMapping("/getNoticeList.bdo")
+	public String getNoticeList( NoticeVO vo, Model model) {
 
-
+		
+		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
+		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+		
+		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
+		model.addAttribute("noticeList", noticeList);
+		
+		return "getNoticeList";
+	}
+	
 
 	// 글목록 검색
-	@RequestMapping("/getNoticeList.bdo")
-	public String getNoticeList(NoticeVO vo, Model model) {
+	@RequestMapping("/search.bdo")
+	public String getSearch( NoticeVO vo, Model model) {
 		// NULL check
 		System.out.println("글 목록 검색 처리");
 		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
