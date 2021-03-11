@@ -7,7 +7,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="getNoticeList.bdo" method="post">
+	<form action="/lubway/updateNotice.bdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 		<div class="container-fluid">

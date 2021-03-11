@@ -19,7 +19,7 @@ import com.lubway.board.NoticeVO;
 import com.lubway.board.impl.NoticeService;
 
 @Controller
-@SessionAttributes("board")
+//@SessionAttributes("board")
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
@@ -33,31 +33,27 @@ public class NoticeController {
 		return conditionMap;
 	}
 	
-	// 글 등록
-	@GetMapping("/insertNotice.bdo")
+	// 글 등록 화면
+	@RequestMapping("/insertNotice.bdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException{
-		// 파일 업로드
-//		MultipartFile upload_img = vo.getUpload_img();
-//		if(!upload_img.isEmpty()) {
-//			String fileName = upload_img.getOriginalFilename();
-//			upload_img.transferTo(new File("D:/" + fileName));
-//		}
 		return "insertNotice";
 	}
 	
-	@PostMapping("/insertNotice.bdo")
+	//글 등록 기능
+	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
 		
-		return "getNoticeList";
+		return "redirect:/getNoticeList.bdo";
 	}
 
 	// 글 수정
 	@RequestMapping("/updateNotice.bdo")
 	public String updateNotice(@ModelAttribute("notice") NoticeVO vo) {
 		noticeService.updateNotice(vo);
-		return "getNoticeList";
+		System.out.println("업데이트 실행됨");
+		return "redirect:/getNoticeList.bdo";
 	}
 
 	// 글 삭제

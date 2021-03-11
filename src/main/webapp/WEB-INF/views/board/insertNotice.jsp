@@ -7,7 +7,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-
+<form action="/lubway/insertDB.bdo">
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 	<div class="container-fluid">
@@ -21,7 +21,7 @@
 				<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 			</div>
 			<div class="card-body">
-				<form action="getNoticeList.bdo" method="post" enctype="multipart/form-data">
+
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
@@ -62,7 +62,6 @@
 							</tr>
 						</table>
 					</div>
-				</form>
 				<div align="right">
 					<a href="getNoticeList.bdo" class="btn btn-light btn-icon-split">
 						<span class="text">목록가기</span>
@@ -72,6 +71,7 @@
 		</div>
 
 	</div>
+	</form>
 	<!-- /.container-fluid -->
 
 	<!-- End of Main Content -->
