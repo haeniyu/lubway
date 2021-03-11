@@ -46,8 +46,14 @@
 									<dl>
 										<dt>이메일 아이디</dt>
 										<dd>
-											<span class="form_text"> <input class="required-value"
-												id="username" name="id" placeholder="이메일 아이디 입력" type="text">
+											<span class="form_text">
+												<c:if test="${findId == null}"> 
+													<input class="required-value" id="username" name="id" placeholder="이메일 아이디 입력" type="text">
+												</c:if>
+												
+												<c:if test="${findId != null}"> 
+													<input class="required-value" id="username" name="id" placeholder="이메일 아이디 입력" type="text" value="${findId}">
+												</c:if>
 											</span>
 										</dd>
 										<dt>비밀번호</dt>
@@ -69,7 +75,7 @@
 				</form>
 				<div class="signin_link">
 					<ul>
-						<li><a href="javascript:void(0);" id="findIdBtn">아이디 찾기</a></li>
+						<li><a href="findId.do" id="findIdBtn">아이디 찾기</a></li>
 						<li><a href="javascript:void(0);" id="findPwBtn">비밀번호 찾기</a></li>
 						<li><a href="step01.do">회원가입</a></li>
 					</ul>

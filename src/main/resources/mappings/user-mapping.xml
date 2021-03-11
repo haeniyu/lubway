@@ -17,4 +17,8 @@
 	<select id="getUser" parameterType="user" resultType="user">
 		SELECT * FROM lubuser WHERE id = #{id};
 	</select>
+	
+	<select id="getId" parameterType="String" resultType="String">
+		SELECT id FROM lubuser WHERE tel = #{tel};
+	</select>
 </mapper>

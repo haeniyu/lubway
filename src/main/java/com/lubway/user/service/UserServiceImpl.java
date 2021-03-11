@@ -27,4 +27,9 @@ public class UserServiceImpl implements UserService {
 		return dao.getUser(vo);
 	}
 
+	@Override
+	public String getId(String tel) {
+		return dao.getId(tel);
+	}
+
 }

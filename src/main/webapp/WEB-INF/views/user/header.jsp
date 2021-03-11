@@ -35,7 +35,7 @@ $(function(){
 	<div class="header">
 		<div class="content">
 			<div class="logo">
-				<a href="/"><img alt="SUBWAY" src="${path}/resources/images/logo_w.png" /></a>
+				<a href="main.do"><img alt="LUBWAY" src="${path}/resources/images/logo_w.png" /></a>
 			</div>
 			<c:if test="${user != null}">
 				<ul class="login">

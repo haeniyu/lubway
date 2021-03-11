@@ -23,4 +23,9 @@ public class UserDAO {
 		System.out.println("UserDAO - getUser() 실행");
 		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
+	
+	public String getId(String tel) {
+		System.out.println("UserDAO - getId() 실행");
+		return sqlSessionTemplate.selectOne("UserDAO.getId", tel);
+	}
 }

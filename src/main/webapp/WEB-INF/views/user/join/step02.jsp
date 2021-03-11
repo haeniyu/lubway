@@ -13,6 +13,9 @@
 	href="${path}/resources/css/step03.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
+
+	var findId = '<%=(String)session.getAttribute("findId") %>';
+
 	$(document).ready(function() {
 		//인증 받았는지 확인하는 변수
 		var check = false;
@@ -41,18 +44,24 @@
 				url : '/lubway/sendSms.do?tell=' + phoneNum,
 				type : 'post',
 				success : function(data) {
-					alert("인증번호를 전송하였습니다.");
-					$("#codeNum").val(data);
-					$("#checkBtn").on("click", function() {
-						if ($("#codeNum").val() == data) {
-							alert("인증에 성공하였습니다.");
-							check = true;
-						}else{
-							alert("인증번호가 틀렸습니다.");
-							$("#codeNum").focus();
-							check=false;
-						}
-					});
+					if(data == "" && findId != 1) {
+						alert("이미 가입된 휴대폰 번호입니다.");
+						check = false;
+						return false;
+					} else {
+						alert("인증번호를 전송하였습니다.");
+						$("#codeNum").val(data);
+						$("#checkBtn").on("click", function() {
+							if ($("#codeNum").val() == data) {
+								alert("인증에 성공하였습니다.");
+								check = true;
+							} else {
+								alert("인증번호가 틀렸습니다.");
+								$("#codeNum").focus();
+								check=false;
+							}
+						});
+					}
 				},
 				error : function(data) {
 					alert("인증에 실패하였습니다.");
@@ -60,18 +69,36 @@
 				}
 			});
 			
-
 		});
 
 		//인증 완료 버튼 눌렀을 때
 		$("#submitBtn").on("click", function() {
 			if (check) {
-				console.log("다음페이지로 가자");
-				$("#certForm").submit();
-			} else
-				alert("인증을 진행해주세요.");
-		});
+				if(findId != "null") {	
+					
+					var tel = $("#phoneNum").val();
+					var form = document.createElement("form");
+			        form.setAttribute("method", "Post");
+			        form.setAttribute("action", "/lubway/resultId.do");
 
+			        var hiddenField = document.createElement("input");
+			        hiddenField.setAttribute("type", "hidden");
+			        hiddenField.setAttribute("name", "tel");
+			        hiddenField.setAttribute("value", tel);
+
+			        form.appendChild(hiddenField);
+			        document.body.appendChild(form);
+			        form.submit();
+					
+				} else {
+					console.log("다음페이지로 가자");
+					$("#certForm").submit();
+				}
+			} else {
+				alert("인증을 진행해주세요.");
+			}
+		});
+		
 	});
 </script>
 </head>
@@ -83,10 +110,19 @@
 		<div id="content">
 			<!-- 멤버십가입 -->
 			<div class="joining_wrapper">
-				<h2 class="subTitle_02">회원가입</h2>
-				<h3 class="step_tit">
-					<span>Step2.</span> 번호 인증
-				</h3>
+				<c:if test="${findId == null}">
+					<h2 class="subTitle_02">회원가입</h2>
+					<h3 class="step_tit">
+						<span>Step2.</span> 번호 인증
+					</h3>
+				</c:if>
+			
+				<c:if test="${findId != null}">
+					<h2 class="subTitle_02">아이디 찾기</h2>
+					<h3 class="step_tit">
+						휴대폰 번호 인증
+					</h3>
+				</c:if>
 				<!-- step_cont_box -->
 				<div class="step_cont_box">
 					<!-- step03_cont -->
@@ -130,10 +166,19 @@
 								</div>
 
 								<!--// step03_cont -->
-								<div class="btn_area">
-									<a class="btn bgc_point i_reg" href="javascript:void(0);"
-										id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
-								</div>
+								<c:if test="${findId == null}">
+									<div class="btn_area">
+										<a class="btn bgc_point i_reg" href="javascript:void(0);"
+											id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
+									</div>
+								</c:if>
+
+								<c:if test="${findId != null}">
+									<div class="btn_area">
+										<a class="btn bgc_point i_reg" href="javascript:void(0);"
+											id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
+									</div>
+								</c:if>
 							</div>
 							<input type="hidden" id="sms" value="${sms}"> <input
 								type="hidden" id="email" value="${email}">

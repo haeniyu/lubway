@@ -3,12 +3,17 @@ package com.lubway.user.controller;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.lubway.user.service.SmsService;
 
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
@@ -16,10 +21,21 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 @Controller
 public class SmsController {
 
+	@Autowired
+	private SmsService smsService;
+	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/sendSms.do")
-	public String sendSms(@RequestParam("tell") String tel) {
+	public String sendSms(@RequestParam("tell") String tel, HttpSession seesion) {
 
+		System.out.println("전화번호 : " + tel);
+		System.out.println("DB에 해당 번호로 조회한 값 : " + smsService.checkTel(tel));
+		System.out.println("session findId 값 : " + seesion.getAttribute("findId"));
+
+		if(smsService.checkTel(tel) == 1 && seesion.getAttribute("findId") == null) {
+			return "";
+		}
+		
 		String code = codeGen();
 
 		String api_key = "NCSFJMEFEST6QZ5N";

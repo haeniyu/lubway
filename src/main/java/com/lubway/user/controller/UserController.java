@@ -71,6 +71,9 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * 로그아웃 처리
+	 */
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
@@ -99,8 +102,11 @@ public class UserController {
 	 * 회원가입 페이지 이동
 	 */
 	@RequestMapping("/step01.do")
-	public String termsStep() {
+	public String termsStep(HttpSession session) {
 		System.out.println("약관동의 화면으로 이동");
+		
+		if(session.getAttribute("findId") != null) session.removeAttribute("findId");
+		
 		return "join/step01";
 	}
 	
@@ -191,8 +197,8 @@ public class UserController {
 	/**
 	 * 비밀번호 찾기 화면 이동
 	 */
-	@RequestMapping("/findpwd.do")
-	public String findpwd() {
+	@RequestMapping("/resultPwd.do")
+	public String resultPwd() {
 		System.out.println("비밀번호 찾기 화면으로 이동");
 		return "findpwd";
 	}
@@ -200,10 +206,25 @@ public class UserController {
 	/**
 	 * 아이디 찾기 화면 이동
 	 */
-	@RequestMapping("/findid.do")
-	public String findid() {
+	@PostMapping("/resultId.do")
+	public String resultId(@RequestParam("tel") String tel, HttpSession seesion) {
+		
+		String id = userService.getId(tel);
+		seesion.setAttribute("findId", id);
+
 		System.out.println("아이디 찾기 화면으로 이동");
 		return "findid";
+	}
+	
+	/**
+	 * 아이디 찾기 기능
+	 */
+	@GetMapping("/findId.do")
+	public String findId(HttpSession seesion) {
+		
+		seesion.setAttribute("findId", new String("1"));
+		
+		return "join/step02";
 	}
 	
 	/**

@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findid.css" />
+<script type="text/javascript">
+</script>
 </head>
 <body>
-<!-- container s -->
+	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<!-- container s -->
 	<div class="bg_gray" id="container">
 
 		<!-- sub content s -->
@@ -28,8 +31,8 @@
 								<dl>
 									<dt>아이디</dt>
 									<dd>
-										<span class="form_text"> <input readonly="" type="text"
-											value="이메일이 여기에 나와요" />
+										<span class="form_text"> 
+											<input type="text" id="id" value="${findId}" />
 										</span>
 									</dd>
 								</dl>
@@ -37,10 +40,11 @@
 						</div>
 					</div>
 					<div class="btn_area">
-						<a class="btn bgc_white" href="javascript:void(0);" id="findPwBtn"
-							style="width: 170px;"> <span>비밀번호 찾기</span>
-						</a> <a class="btn bgc_point i_reg" href="login"
-							style="width: 170px;"> <span>로그인하기</span>
+						<a class="btn bgc_white" href="step02.do" id="findPwBtn" style="width: 170px;"> 
+							<span>비밀번호 찾기</span>
+						</a> 
+						<a class="btn bgc_point i_reg" href="login.do" style="width: 170px;"> 
+							<span>로그인하기</span>
 						</a>
 					</div>
 				</div>
@@ -51,6 +55,8 @@
 			<!--// 아이디찾기 -->
 		</div>
 	</div>
+	<input type="hidden" name="id" value="${id}">
 	<!--// sub content e -->
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
