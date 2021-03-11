@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.logging.LogException;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -51,7 +52,7 @@ public class NoticeController {
 
 	// 글 수정
 	@RequestMapping("/updateNotice.bdo")
-	public String updateNotice(@RequestParam("no") NoticeVO vo) throws IOException, PSQLException{
+	public String updateNotice(NoticeVO vo) throws IOException, PSQLException{
 		noticeService.updateNotice(vo);
 		System.out.println("업데이트 실행됨");
 		return "redirect:/getNoticeList.bdo";
@@ -92,8 +93,12 @@ public class NoticeController {
 	public String getSearch( NoticeVO vo, Model model) {
 		// NULL check
 		System.out.println("글 목록 검색 처리");
-		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+		if(vo.getSearchCondition() == null) {vo.setSearchCondition("TITLE");
+			System.out.println("아무것도 없어요");
+		}
+		if(vo.getSearchKeyword() == null) { vo.setSearchKeyword(""); 
+			 System.out.println("없어");
+		}
 		
 		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
 		model.addAttribute("noticeList", noticeList);
