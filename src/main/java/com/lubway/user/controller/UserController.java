@@ -3,6 +3,7 @@ package com.lubway.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -32,7 +33,10 @@ public class UserController {
 	JavaMailSender mailSender;
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/main.do")
-	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpSession session) throws IOException {
+	public String main(@RequestParam("id") String id, 
+			@RequestParam("password") String password, 
+			HttpServletResponse response, 
+			HttpServletRequest request) throws IOException {
 		System.out.println("메인 화면으로 이동");
 		
 		response.setContentType("text/html; charset=utf-8");
@@ -49,6 +53,7 @@ public class UserController {
 			return null;
 		} else {
 			if(getUser.getPassword().equals(password)) {
+				HttpSession session = request.getSession();
 				session.setAttribute("user", getUser);
 				System.out.println("ID, Password 일치");
 				System.out.println("로그인 성공");
@@ -60,7 +65,6 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/main.do")
 	public String mainView() {
-		
 		return "main";
 	}
 	
