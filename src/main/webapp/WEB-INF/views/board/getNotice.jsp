@@ -7,7 +7,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertNotice.bdo" method="post">
+	<form action="getNoticeList.bdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 		<div class="container-fluid">
@@ -22,37 +22,27 @@
 				</div>
 				<div class="card-body">
 
-					<input name="no" type="hidden" value="${notice.no} }">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
 								<td colspan="2" align="left"><input type="text"
-									name="title" width="80%" value="${notice.title}" /></td>
+									name="title" style="width:80%" value="${notice.title}" /></td>
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
 								<td colspan="2" align="left"><input type="file"
-									name="upload_img" width="80%" value="${notice.img }" /> <input
+									name="upload_img" style="width:80%" value="${notice.upload_img }" /> <input
 									style="margin: 5px; padding: 3px"
 									class="btn btn-warning btn-icon-split" type="button"
 									value="파일찾기" /></td>
 							</tr>
-							<!-- 
-							<tr>
-								<td>원본 이미지 첨부</td>
-								<td colspan="2" align="left"><input type="file" name="upload_originimg"
-									style="width: 80%" value="${notice.originimg }" /><input style="margin: 5px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="button"
-									value="파일찾기" /></td>
-							</tr>
-							-->
 							<tr>
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
-								<td colspan="3" align="left"><textarea width="100%"
+								<td colspan="3" align="left"><textarea style="width:100%"
 										rows="15" name="content">${notice.content }</textarea></td>
 							</tr>
 							<tr>
@@ -74,22 +64,10 @@
 		<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
 			<span class="text">등록하기</span>
 		</a>&nbsp;&nbsp;&nbsp;
-		<script>
-			<input class="yesno" type="submit" style="padding: 7px" class="btn btn-warning btn-icon-split" value="등록하기">
-
-			$('.yesno').click(function() {
-				if (confirm("정말 등록하시겠습니까 ?") == true) {
-					alert("등록되었습니다");
-				} else {
-					return;
-				}
-			});
-		</script>
-		&nbsp;&nbsp;&nbsp;
 		<!-- 삭제할때 href 다시보기 -->
 		<a href="deleteNotice.bdo?no=${notice.no }"
 			class="btn btn-danger btn-icon-split"> <span class="text">삭제하기</span>
-		</a>&nbsp;&nbsp;&nbsp; <a href="noticeList.bdo"
+		</a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.bdo"
 			class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
 		</a>
 	</div>

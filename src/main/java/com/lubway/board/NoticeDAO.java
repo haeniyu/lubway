@@ -29,7 +29,9 @@ public class NoticeDAO {
 
 	public NoticeVO getNotice(NoticeVO vo) {
 		System.out.println("마이바티스로 getNotice() 기능 처리");
-		return (NoticeVO) sqlSessionTemplate.selectOne("NoticeDAO.getNotice", vo);
+		NoticeVO notice = sqlSessionTemplate.selectOne("NoticeDAO.getNotice", vo);
+		System.out.println(notice.toString());
+		return notice;
 	}
 
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {

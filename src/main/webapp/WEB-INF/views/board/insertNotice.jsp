@@ -21,17 +21,17 @@
 				<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 			</div>
 			<div class="card-body">
-				<form action="insertNotice.bdo" method="post" enctype="multipart/form-data">
+				<form action="getNoticeList.bdo" method="post" enctype="multipart/form-data">
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<tr>
 								<td>제목</td>
-								<td colspan="2"><input type="text" name="title" width="80%" /></td>
+								<td colspan="2"><input type="text" name="title" style="width: 80%" /></td>
 							</tr>
 							<tr>
 								<td>이미지 첨부</td>
-								<td colspan="2"><input type="file" name="upload_img" width="80%"/>
+								<td colspan="2"><input type="file" name="upload_img"/>
 							</tr>
 							<!-- 
 							<tr>
@@ -46,7 +46,7 @@
 								<td colspan="3">내용</td>
 							</tr>
 							<tr>
-								<td colspan="3"><textarea rows="15" name="content" width="100%"></textarea></td>
+								<td colspan="3"><textarea rows="15" name="content" style="width:100%"></textarea></td>
 							</tr>
 							<tr>
 								<td colspan="3" align="center">
@@ -64,7 +64,7 @@
 					</div>
 				</form>
 				<div align="right">
-					<a href="noticeList.bdo" class="btn btn-light btn-icon-split">
+					<a href="getNoticeList.bdo" class="btn btn-light btn-icon-split">
 						<span class="text">목록가기</span>
 					</a>
 				</div>

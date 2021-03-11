@@ -1,6 +1,8 @@
 package com.lubway.board;
 
-import java.util.Date;
+import java.sql.Timestamp;
+
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,15 +14,13 @@ import lombok.ToString;
 @Setter
 @ToString
 public class NoticeVO {
-	private String no;
+	private Integer no;
 	private String title;
 	private String content;
-	private String img;
-	private String originImg;
-	private Date regDate;
+	private Timestamp regDate;
 	private boolean fix;
 	private String searchCondition;
 	private String searchKeyword;
-//	private MultipartFile upload_img;
+	private String upload_img;
 	//private MultipartFile upload_originimg;
 }

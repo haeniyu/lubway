@@ -5,25 +5,25 @@
 <mapper namespace="NoticeDAO">
 	<resultMap type="notice" id="noticeResult">
 		<id property="no" column="NO"/>
-		<result property="title" column="title"/>
-		<result property="content" column="content"/>
-		<result property="regDate" column="regDate"/>
-		<result property="fix" column="fix"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT"/>
+		<result property="regDate" column="REGDATE"/>
+		<result property="fix" column="FIX"/>
 	</resultMap>
 
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO NOTICE_BOARD(title, content) VALUES(#{title},#{content})
+		INSERT INTO NOTICE_BOARD(TITLE, CONTENT) VALUES(#{title},#{content})
 	</insert>
 	
-	<update id="updateNotice">
-		UPDATE NOTICE_BOARD SET TITLE=#{title}, content=#{content} WHERE NO=#{no}
+	<update id="updateNotice" parameterType="notice">
+		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content} WHERE NO=#{no}
 	</update>
 	
 	<delete id="deleteNotice">
 		DELETE NOTICE_BOARD WHERE NO=#{no}
 	</delete>
 	
-	<select id="getNotice" resultType="notice">
+	<select id="getNotice" parameterType="notice" resultType="notice">
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
 	

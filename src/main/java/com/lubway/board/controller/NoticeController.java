@@ -1,18 +1,19 @@
 package com.lubway.board.controller;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.lubway.board.NoticeVO;
 import com.lubway.board.impl.NoticeService;
@@ -23,17 +24,32 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 
+	// 검색 조건 목록 설정
+	@ModelAttribute("conditionMap")
+	public Map<String, String> searchConditionMap() {
+		Map<String, String> conditionMap = new HashMap<String, String>();
+		conditionMap.put("제목", "TITLE");
+		conditionMap.put("내용", "CONTENT");
+		return conditionMap;
+	}
+	
 	// 글 등록
-	@RequestMapping("/insertNotice.bdo")
-	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
+	@GetMapping("/insertNotice.bdo")
+	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException{
 		// 파일 업로드
 //		MultipartFile upload_img = vo.getUpload_img();
 //		if(!upload_img.isEmpty()) {
 //			String fileName = upload_img.getOriginalFilename();
 //			upload_img.transferTo(new File("D:/" + fileName));
 //		}
-		System.out.println("db등록됨");
+		return "insertNotice";
+	}
+	
+	@PostMapping("/insertNotice.bdo")
+	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
 		noticeService.insertNotice(vo);
+		System.out.println("db등록됨");
+		
 		return "getNoticeList";
 	}
 
@@ -58,29 +74,26 @@ public class NoticeController {
 		return "getNotice";
 	}
 
-	// 검색 조건 목록 설정
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		return conditionMap;
-	}
 
-//	// 글목록 검색
-//	@RequestMapping("/noticeList.bdo")
-//	public String getNoticeList(NoticeVO vo, Model model) {
-//		// NULL check
-//		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-//		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
-//		model.addAttribute("noticeList", noticeService.getNoticeList(vo));
-//		return "getNoticeList";
-//	}
-	
+
+	// 글목록 검색
 	@RequestMapping("/getNoticeList.bdo")
-	public String getNoticeList(NoticeVO vo) {
+	public String getNoticeList(NoticeVO vo, Model model) {
+		// NULL check
+		System.out.println("글 목록 검색 처리");
+		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
+		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+		
+		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
+		model.addAttribute("noticeList", noticeList);
 		
 		return "getNoticeList";
 	}
+	
+//	@RequestMapping("/getNoticeList.bdo")
+//	public String getNoticeList(NoticeVO vo) {
+//		
+//		return "getNoticeList";
+//	}
 
 }
