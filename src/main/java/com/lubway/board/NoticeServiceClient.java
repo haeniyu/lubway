@@ -21,14 +21,14 @@ public class NoticeServiceClient {
 		vo.setContent("임시 내용");
 		noticeService.insertNotice(vo);
 		
-		// 4. 글 목록 검색 기능 테스트
-		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
-		for(NoticeVO notice : noticeList) {
-			System.out.println("--->" + notice.toString());
-		}
-		
-		// 5. Spring 컨테이너 종료
-		container.close();
+//		// 4. 글 목록 검색 기능 테스트
+////		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
+//		for(NoticeVO notice : noticeList) {
+//			System.out.println("--->" + notice.toString());
+//		}
+//		
+//		// 5. Spring 컨테이너 종료
+//		container.close();
 		
 	}
 }

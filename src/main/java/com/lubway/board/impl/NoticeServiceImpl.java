@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lubway.board.NoticeDAO;
 import com.lubway.board.NoticeVO;
+import com.lubway.board.Pagination;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
@@ -36,13 +37,17 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		return noticeDAO.getNoticeList(vo);
+		
 	}
-
+	
+	public List<NoticeVO> getPageList(Pagination pagination){
+		return noticeDAO.getPageList(pagination);
+	}
+	
 	@Override
-	public int getBoardListCnt() {
-		return NoticeDAO.;
+	public int getPageListCnt() {
+		return noticeDAO.getPageListCnt();
 
-		출처: https://freehoon.tistory.com/112?category=735500 [훈잇 블로그]
 	}
 
 }

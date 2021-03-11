@@ -18,6 +18,7 @@ public class Pagination {
 	private int endPage;
 	private boolean prev;
 	private boolean next;
+	private String searchKeyword;
 	
 	public void pageInfo(int page, int range, int listCnt) {
 
@@ -41,7 +42,9 @@ public class Pagination {
 		this.prev = range == 1 ? false : true;
 
 		//다음 버튼 상태
-		this.next = endPage > pageCnt ? false : true;
+		this.next = pageCnt > endPage ? true : false;
+
+
 		
 		if (this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;

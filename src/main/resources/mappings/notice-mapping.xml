@@ -20,7 +20,7 @@
 	</update>
 	
 	<delete id="deleteNotice">
-		DELETE FROM NOTICE_BOARD WHERE title=#{title} 
+		DELETE FROM NOTICE_BOARD WHERE no=#{no} 
 		
 	</delete>
 	
@@ -28,13 +28,13 @@
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
 	
-	<select id="getNoticeList" resultMap="noticeResult">
-		SELECT * FROM NOTICE_BOARD
+	<select id="getNoticeList" resultType="notice">
+		SELECT * FROM NOTICE_BOARD 
 		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY NO DESC
 	</select>
 	
-	<select id="pagingList" resultMap="noticeResult">
+	<select id="pagingList" resultType="notice">
 		select * from notice_board limit #{listSize} offset #{startList}
 	</select>
 	

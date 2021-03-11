@@ -43,7 +43,11 @@ public class NoticeDAO {
 		return sqlSessionTemplate.selectList("NoticeDAO.getNoticeList", vo);
 	}
 	
-	public int getBoardListCnt() throws Exception {
+	public List<NoticeVO> getPageList(Pagination pagination){
+		return sqlSessionTemplate.selectList("NoticeDAO.pagingList", pagination);
+	}
+	
+	public int getPageListCnt() {
 
 		return sqlSessionTemplate.selectOne("NoticeDAO.pagingCnt");
 
