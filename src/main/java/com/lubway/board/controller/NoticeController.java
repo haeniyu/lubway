@@ -10,12 +10,9 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.lubway.board.NoticeVO;
 import com.lubway.board.impl.NoticeService;
@@ -44,6 +41,7 @@ public class NoticeController {
 	//글 등록 기능
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo) throws IOException, PSQLException{
+		
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
 		
@@ -52,7 +50,11 @@ public class NoticeController {
 
 	// 글 수정
 	@RequestMapping("/updateNotice.bdo")
+<<<<<<< HEAD
 	public String updateNotice(NoticeVO vo) throws IOException, PSQLException{
+=======
+	public String updateNotice( NoticeVO vo) throws IOException, PSQLException{
+>>>>>>> bf86e39b62f1af8a8918c974053bbffe9a26f552
 		noticeService.updateNotice(vo);
 		System.out.println("업데이트 실행됨");
 		return "redirect:/getNoticeList.bdo";
