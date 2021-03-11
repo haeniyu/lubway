@@ -12,8 +12,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#loginBtn").on("click", function(){
-			console.log("눌림 ㅎ");
-			$("#login").submit();
+			if($("#username").val().trim() == "" || $("#password").val().trim() == "") {
+				alert("아이디와 비밀번호를 확인해주세요.");
+				return;
+			} else {
+				console.log("눌림 ㅎ");
+				$("#login").submit();
+			}
 		});
 	});
 </script>

@@ -37,15 +37,28 @@ $(function(){
 			<div class="logo">
 				<a href="/"><img alt="SUBWAY" src="${path}/resources/images/logo_w.png" /></a>
 			</div>
-			<ul class="login">
-				<li class="before_sign"><a href="login.do">로그인</a></li>
-				<li class="before_sign"><a href="step01.do">회원가입</a></li>
-
-				<li class="icon_menu global_subway"><a
-					href="http://www.subway.com/en-us/exploreourworld" target="_blank"
-					title="Global Subway"><span class="blind"><img
-							alt="Global Subway" src="${path}/resources/images/icon_utill_global.png" /></span></a></li>
-			</ul>
+			<c:if test="${user != null}">
+				<ul class="login">
+					<li class="before_sign"><a href="logout.do">로그아웃</a></li>
+					<li class="before_sign"><a href="#">My Way</a></li>
+	
+					<li class="icon_menu global_subway"><a
+						href="http://www.subway.com/en-us/exploreourworld" target="_blank"
+						title="Global Subway"><span class="blind"><img
+								alt="Global Subway" src="${path}/resources/images/icon_utill_global.png" /></span></a></li>
+				</ul>
+			</c:if>
+			<c:if test="${user == null}">
+				<ul class="login">
+					<li class="before_sign"><a href="login.do">로그인</a></li>
+					<li class="before_sign"><a href="step01.do">회원가입</a></li>
+	
+					<li class="icon_menu global_subway"><a
+						href="http://www.subway.com/en-us/exploreourworld" target="_blank"
+						title="Global Subway"><span class="blind"><img
+								alt="Global Subway" src="${path}/resources/images/icon_utill_global.png" /></span></a></li>
+				</ul>
+			</c:if>
 			<!-- gnb -->
 			<nav id="gnb">
 				<ul id="gnb">

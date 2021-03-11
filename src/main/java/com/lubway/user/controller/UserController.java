@@ -3,6 +3,7 @@ package com.lubway.user.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.inject.Inject;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,9 @@ public class UserController {
 	@Autowired
 	JavaMailSender mailSender;
 	
+	@Inject
+	BCryptPasswordEncoder passEncoder;
+	
 	/**
 	 * 로그인 처리 후 메인 페이지 이동
 	 */
@@ -50,21 +55,27 @@ public class UserController {
 		user.setId(id);
 		UserVO getUser = userService.getUser(user);
 		
-		if(getUser == null || !getUser.getPassword().equals(password)) {
+		boolean check = passEncoder.matches(password, getUser.getPassword());
+		
+		if(getUser == null || !check) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
 			out.close();
 			return null;
 		} else {
-			if(getUser.getPassword().equals(password)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", getUser);
 				System.out.println("ID, Password 일치");
 				System.out.println("로그인 성공");
 				return "main";
-			}
 		}
-		return null;
+	}
+	
+	@GetMapping("/logout.do")
+	public String logout(HttpSession session) {
+		session.removeAttribute("user");
+		System.out.println("로그아웃 처리");
+		return "main";
 	}
 
 	/**
@@ -146,7 +157,8 @@ public class UserController {
 	public String endStep(UserVO vo, HttpSession session) {
 		System.out.println(vo.toString());
 		
-		
+		String securityPwd = passEncoder.encode(vo.getPassword());
+		vo.setPassword(securityPwd);
 		
 		userService.insertUser(vo);
 		System.out.println("회원가입 완료 화면으로 이동");
