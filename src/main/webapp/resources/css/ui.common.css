@@ -33,7 +33,14 @@ em{font-style:normal;}
 
 /* --- content --- */
 #content{overflow:hidden; position:relative; z-index:3; margin-top:46px;}
-
+#content h2.subTitle_02 {
+    text-align: center;
+    font-size: 40px;
+    color: #292929;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+    padding: 73px 0 50px;
+}
 
 /* --- form - text --- */
 .form-text{width:400px; height:34px; padding:6px 12px; background-color:#fff; border:1px solid #c2cad8; font-size:14px; line-height:1.42857; color:#555; display:inline-block; box-sizing:border-box;}
