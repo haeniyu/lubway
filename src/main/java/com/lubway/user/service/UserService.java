@@ -11,4 +11,6 @@ public interface UserService {
 	void updateUser(UserVO vo);
 
 	UserVO getUser(UserVO vo);
+
+	void deleteUser(UserVO vo);
 }

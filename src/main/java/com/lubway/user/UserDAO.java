@@ -28,4 +28,9 @@ public class UserDAO {
 		System.out.println("UserDAO - updateUser() 실행");
 		sqlSessionTemplate.update("UserDAO.updateUser", vo);
 	}
+
+	public void deleteUser(UserVO vo) {
+		System.out.println("UserDAO - deleteUser() 실행");
+		sqlSessionTemplate.delete("UserDAO.deleteUser", vo);
+	}
 }

@@ -22,4 +22,8 @@
 	<select id="getUser" parameterType="user" resultType="user">
 		SELECT * FROM lubuser WHERE id = #{id}
 	</select>
+	
+	<delete id="deleteUser" parameterType="user">
+		DELETE FROM lubuser WHERE id = #{id}
+	</delete>
 </mapper>

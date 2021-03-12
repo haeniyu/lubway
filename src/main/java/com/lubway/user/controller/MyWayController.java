@@ -87,4 +87,13 @@ public class MyWayController {
 	public String point() {
 		return "myway/point";
 	}
+	
+	@RequestMapping("/withdrawal.do")
+	public String withdrwal(HttpSession session) {
+		System.out.println("컨트롤러 - withdrawal 실행");
+		UserVO vo = (UserVO) session.getAttribute("user");
+		userService.deleteUser(vo);
+		session.invalidate();
+		return "main";
+	}
 }

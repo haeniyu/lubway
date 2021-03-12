@@ -89,6 +89,16 @@ $(document).ready(function() {
         form.submit();
 		
 	});
+	
+	$("#withdrawal").on("click",function(){
+		var flag = confirm("정말로 탈퇴하시겠습니까?");
+		if(flag){
+			alert("그동안 이용해주셔서 감사합니다.");
+			window.location.href="/lubway/withdrawal.do";
+		}
+		
+	});
+	
 });
 </script>
 <title>개인 정보 수정</title>
