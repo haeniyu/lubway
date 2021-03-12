@@ -5,13 +5,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <c:url var="getBoardListURL" value="/lubway/getNoticeList.bdo">
-	<c:param name="page" value="${pagination.page}"/>
-	<c:param name="range" value="${pagination.range}"/>
+	<c:url var="getsearchList" value="/lubway/search.bdo=">
+		<c:param name="page" value="${pagination.page}" />
+		<c:param name="range" value="${pagination.range}" />
+		<c:param name="searchKeyword" value="${notice.searchKeyword}" />
+	</c:url>
 </c:url>
-
-
-
-
 
 <!DOCTYPE html>
 <html>
@@ -19,51 +18,19 @@
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
-	//이전 버튼 이벤트
-
-	function fn_prev(page, range, rangeSize) {
-
-		var page = ((range - 2) * rangeSize) + 1;
-
-		var range = range - 1;
-
-		var url = "${getNoticeList}";
-
-		url = url + "?page=" + page;
-
-		url = url + "&range=" + range;
-
-		location.href = url;
-
-	}
-
 	//페이지 번호 클릭
-
-	function fn_pagination(page, range, rangeSize, pageType, keyword) {
+	
+	//location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
+	//getNoticeList.bdo?page=1&range=1&searchKeyword=undefined
+	function fn_pagination(page, range, rangeSize, searchKeyword) {
 
 		var url = "${getNoticeList}";
-
-		url = url + "?page=" + page;
-
-		url = url + "&range=" + range;
 		
-		location.href = url;
-
-	}
-
-	//다음 버튼 이벤트
-
-	function fn_next(page, range, rangeSize) {
-
-		var page = parseInt((range * rangeSize)) + 1;
-
-		var range = parseInt(range) + 1;
-
-		var url = "${getNoticeList}";
-
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
+
+		url = url + "&searchKeyword=" + searchKeyword;
 
 		location.href = url;
 
@@ -112,24 +79,30 @@
 		</thead>
 		<tbody>
 			<c:forEach items="${noticeList}" var="notice">
+
 				<tr>
 					<td>${notice.no }</td>
-					<td align="left"><a href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
+					<td align="left"><a type="hidden"
+						href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
 					<td><fmt:formatDate value="${notice.regDate }"
 							pattern="yyyy-MM-dd" /></td>
 				</tr>
 			</c:forEach>
+
 		</tbody>
 	</table>
 
 	<!-- 검색 시작 -->
 	<div align="right">
-		<form action="/lubway/search.bdo" method="get">
+		<form
+			action="/lubway/search.bdo"
+			method="get">
 			<tr>
 				<td><input type="text" name="searchKeyword"
 					placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
 					style="margin: 3px; padding: 3px"
-					class="btn btn-warning btn-icon-split" type="submit" value="search" /></td>
+					class="btn btn-warning btn-icon-split" type="submit" value="search" />
+				</td>
 			</tr>
 		</form>
 	</div>
@@ -140,14 +113,6 @@
 	<div id="paginationBox">
 
 		<ul class="pagination">
-
-			<c:if test="${pagination.prev}">
-
-				<li class="page-item"><a class="page-link" href="#"
-					onClick="fn_prev('${pagination.page}', '${pagination.range}', '${pagination.rangeSize}')">Previous</a></li>
-
-			</c:if>
-
 
 
 			<c:forEach begin="${pagination.startPage}"
@@ -161,16 +126,6 @@
 
 			</c:forEach>
 
-
-
-			<c:if test="${pagination.next}">
-
-				<li class="page-item"><a class="page-link" href="#"
-					onClick="fn_next('${pagination.range}', 
-
-'${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
-
-			</c:if>
 
 		</ul>
 

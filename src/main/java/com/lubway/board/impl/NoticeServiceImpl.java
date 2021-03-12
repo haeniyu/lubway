@@ -50,4 +50,19 @@ public class NoticeServiceImpl implements NoticeService {
 
 	}
 
+	@Override
+	public int getSearchTitleCnt(String title) {
+		return noticeDAO.getSearchTitleCnt(title);
+	}
+
+	@Override
+	public List<NoticeVO> getSearchPagingList(Pagination pagination) {
+		return noticeDAO.getSearchPagingList(pagination);
+		
+	}
+
+	
+	
+
+
 }

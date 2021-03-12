@@ -27,7 +27,12 @@ public interface NoticeService {
 	List<NoticeVO> getPageList(Pagination pagination);
 	
 	//페이징처리 개수
-	public int getPageListCnt();
+	int getPageListCnt();
 
+	//검색한 글 목록 개수
+	int getSearchTitleCnt(String title);
+	
+	//검색한 글 페이징 리스트
+	List<NoticeVO> getSearchPagingList(Pagination pagination);
 
 }

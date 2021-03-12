@@ -37,7 +37,7 @@ public class NoticeDAO {
 		System.out.println(notice.toString());
 		return notice;
 	}
-
+	
 	public List<NoticeVO> getNoticeList(NoticeVO vo) {
 		System.out.println("마이바티스로 getNoticeList() 기능 처리");
 		return sqlSessionTemplate.selectList("NoticeDAO.getNoticeList", vo);
@@ -48,12 +48,16 @@ public class NoticeDAO {
 	}
 	
 	public int getPageListCnt() {
-
 		return sqlSessionTemplate.selectOne("NoticeDAO.pagingCnt");
-
+	}
+	
+	public int getSearchTitleCnt(String title) {
+		return sqlSessionTemplate.selectOne("NoticeDAO.searchTitleCnt", title);
 	}
 
-
+	public List<NoticeVO> getSearchPagingList(Pagination pagination){
+		return sqlSessionTemplate.selectList("NoticeDAO.searchPagingList", pagination);
+	}
 
 
 

@@ -9,7 +9,13 @@
 		<result property="content" column="CONTENT"/>
 		<result property="regDate" column="REGDATE"/>
 		<result property="fix" column="FIX"/>
+		
 	</resultMap>
+	
+	<sql id="page" >
+	
+		select * from notice_board limit #{listSize} offset #{startList}
+	</sql>
 
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO NOTICE_BOARD(TITLE, CONTENT) VALUES(#{title},#{content})
@@ -28,7 +34,7 @@
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
 	
-	<select id="getNoticeList" resultType="notice">
+	<select id="getNoticeList" parameterType="notice" resultType="notice">
 		SELECT * FROM NOTICE_BOARD 
 		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY NO DESC
@@ -38,7 +44,15 @@
 		select * from notice_board limit #{listSize} offset #{startList}
 	</select>
 	
+	<select id="searchPagingList" resultType="notice" >
+		select * from notice_board where TITLE LIKE '%'||#{searchKeyword}||'%' limit #{listSize} offset #{startList}
+	</select>
+	
 	<select id="pagingCnt" resultType="int">
 		select count(*) as listCnt from notice_board
+	</select>
+	
+	<select id="searchTitleCnt" parameterType="String" resultType="int">
+		select count(*) from notice_board where TITLE LIKE '%'||#{searchKeyword}||'%';
 	</select>
 </mapper>
