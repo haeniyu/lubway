@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+
+/* 써브웨이 이용방법 ::: tab */
+.utilization_subway_wrapper .tab{background:url(../images/utilization/bg_tab_subway.png) -5px -1px no-repeat; width:1189px; height:79px; margin:0 auto; position:relative; left:9px; z-index:10}
+.utilization_subway_wrapper .tab ul{overflow:hidden; border-top:1px solid #e5e5e5; width:1172px;}
+.utilization_subway_wrapper .tab ul li{float:left; width:585px; border-right:1px solid #e5e5e5; position:relative;}
+.utilization_subway_wrapper .tab ul li:first-child{border-left:1px solid #e5e5e5; border-right:0}
+.utilization_subway_wrapper .tab ul li a{display:block; height:68px; line-height:68px; position:relative; font-size:18px; color:#666666; text-align:center; background-color:#fff;}
+.utilization_subway_wrapper .tab ul li.active{z-index:3;}
+.utilization_subway_wrapper .tab ul li.active a{background-color:#009223; color:#fff;}
+
+#store_order .slider_wrapper .img_content{margin-top:67px; position:relative; overflow:hidden; height:420px;}
+#store_order .slider_wrapper .img_content ol{position:relative;}
+#store_order .slider_wrapper .img_content ol li{width:1170px; position:absolute; left:100%;}

@@ -138,7 +138,7 @@
 										<dd>
 											<span class="form_text"> <input
 												class="required-value" id="phoneNum" name="tel"
-												placeholder="휴대폰 번호 입력 (숫자만)" type="text" style="width: 200px">
+												placeholder="휴대폰 번호 입력 (숫자만 입력하세요)" type="text" style="width: 500px;">
 											</span>
 											<div class="btn_input_in">
 
@@ -152,9 +152,9 @@
 											인증 번호<span class="ess"></span>
 										</dt>
 										<dd>
-											<span class="form_text" style="width: 155px"> <input
+											<span class="form_text"> <input
 												class="required-value" id="codeNum"
-												placeholder="인증번호 입력 " type="text" />
+												placeholder="인증번호 입력 " type="text" style="width: 500px;"/>
 											</span>
 											<div class="btn_input_in">
 

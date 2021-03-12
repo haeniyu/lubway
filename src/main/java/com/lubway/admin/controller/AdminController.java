@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.AdminVO;
 import com.lubway.admin.service.AdminService;
-import com.lubway.user.UserVO;
 
 @Controller
 public class AdminController {
