@@ -135,7 +135,7 @@ em{font-style:normal;}
 #container.bg_type01 .sub_header{background:#f6f6f6; border-bottom:0}
 #container.bg_type01 #content{padding-top:59px;}
 #content{padding-top:0; position:relative; z-index:3;}
-#content h2.subTitle{text-align:center; font-size:40px; color:#292929; font-weight:bold; letter-spacing:-0.07em; padding:134px 0 80px;}
+#content h2.subTitle{text-align:center; font-size:40px; color:#292929; font-weight:bold; letter-spacing:-0.07em; padding:50px 0 80px;}
 #content h2.subTitle > span{margin-bottom:-20px;display: block;color: #666;font-weight:normal;font-size:16px;letter-spacing: -0.025em}
 #content h3.h_title{font-size:28px; color:#292929; font-weight:bold; letter-spacing:-0.05em; padding-bottom:38px;}
 
@@ -495,7 +495,7 @@ address {font-style:normal;}
 .write_info_wrap .input_set dl {background-color:#fff; overflow:hidden; border:1px solid #e5e5e5; padding:22px 30px;}
 .write_info_wrap .input_set dl ~ dl {border-top:none;}
 .write_info_wrap .input_set dl:focusin {border:1px solid #009223}
-.write_info_wrap .input_set dt {float:left;position:relative;font-weight:bold; width:120px; line-height:35px; letter-spacing:-0.05em}
+.write_info_wrap .input_set dt {float:left;position:relative;font-weight:500; width:120px; line-height:35px; letter-spacing:-0.05em}
 .write_info_wrap .input_set dt .ess{background:url(../images/common/icon_ess.png) 0 0 no-repeat; width:7px; height:6px; display:inline-block; vertical-align:middle; position:relative; top:-2px; margin-left:4px;}
 .write_info_wrap .input_set dt ~ dt, .write_info_wrap .input_set dd ~ dd {padding-top:44px;}
 .write_info_wrap .input_set dt ~ dt:before {content:'';position:absolute;top:22px;right:0;width:100%;height:1px;background-color:#e5e5e5;padding-left:30px}
@@ -608,7 +608,6 @@ address {font-style:normal;}
 .form_checkbox strong {font-size:26px; color:#666; margin-left:3px;}
 
 /* 탭 ::2019 */
-.tab02{width:1170px; height:70px; margin:0 auto; position:relative; z-index:10;box-shadow:7px 7px 20px 0px rgba(0, 0, 0, 0.1);}
 .tab02 ul{overflow:hidden; width:1170px;display:flex; border-left:1px solid #e5e5e5}
 .tab02 ul li{flex:1; border:1px solid #e5e5e5;margin-left:-1px;position:relative;}
 .tab02 ul li:first-child{border-left:0;}
