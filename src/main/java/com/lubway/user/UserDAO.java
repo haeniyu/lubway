@@ -23,4 +23,9 @@ public class UserDAO {
 		System.out.println("UserDAO - getUser() 실행");
 		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
+	
+	public void updateUser(UserVO vo) {
+		System.out.println("UserDAO - updateUser() 실행");
+		sqlSessionTemplate.update("UserDAO.updateUser", vo);
+	}
 }
