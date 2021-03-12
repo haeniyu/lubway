@@ -70,7 +70,7 @@ $(function(){
 							<li><a href="/morningList">아침메뉴</a></li>
 							<li><a href="/sideDrink">스마일 썹</a></li>
 						</ul></li>
-					<li><a href="/utilizationSubway" class="dp1">이용방법</a></li>
+					<li><a href="/lubway/howtouse.do" class="dp1">이용방법</a></li>
 					<li><a href="#none" class="dp1">새소식</a>
 						<div class="dp2">
 							<ul>
@@ -79,11 +79,11 @@ $(function(){
 								<li><a href="/tvCommercial">광고영상</a></li>
 							</ul>
 						</div></li>
-					<li><a href="#none" class="dp1">써브웨이</a>
+					<li><a href="#none" class="dp1">러브웨이</a>
 						<div class="dp2">
 							<ul>
-								<li><a href="/subwayHistory">써브웨이 역사</a></li>
-								<li><a href="/subwayPromise">써브웨이 약속</a></li>
+								<li><a href="/lubway/history.do">러브웨이 역사</a></li>
+								<li><a href="/lubway/promise.do">러브웨이 약속</a></li>
 								<li style="display: none;"><a href="#">써브웨이 사회공헌</a></li>
 								<li><a href="/storeSearch">매장찾기</a></li>
 							</ul>
