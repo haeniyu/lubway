@@ -40,7 +40,7 @@
 						</div>
 					</div>
 					<div class="btn_area">
-						<a class="btn bgc_white" href="step02.do" id="findPwBtn" style="width: 170px;"> 
+						<a class="btn bgc_white" href="findPwd.do" id="findPwBtn" style="width: 170px;"> 
 							<span>비밀번호 찾기</span>
 						</a> 
 						<a class="btn bgc_point i_reg" href="login.do" style="width: 170px;"> 

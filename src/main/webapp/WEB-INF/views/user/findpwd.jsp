@@ -25,6 +25,7 @@
 							가입하신 <span>이메일주소(으)로</span><br />
 							<br />비밀번호 재설정에 필요한 메일이 발송되었습니다.
 						</p>
+						
 					</div>
 					<div class="btn_area">
 						<a class="btn bgc_point i_reg" href="/user/login" style="width: 150px;"> <span>로그인</span>

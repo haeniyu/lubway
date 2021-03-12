@@ -15,6 +15,7 @@
 <script type="text/javascript">
 
 	var findId = '<%=(String)session.getAttribute("findId") %>';
+	var findPwd = '<%=(String)session.getAttribute("findPwd") %>';
 
 	$(document).ready(function() {
 		//인증 받았는지 확인하는 변수
@@ -44,7 +45,7 @@
 				url : '/lubway/sendSms.do?tell=' + phoneNum,
 				type : 'post',
 				success : function(data) {
-					if(data == "" && findId != 1) {
+					if(data == "" && findId != 1 && findPwd == 'null') {
 						alert("이미 가입된 휴대폰 번호입니다.");
 						check = false;
 						return false;
@@ -79,7 +80,8 @@
 					var tel = $("#phoneNum").val();
 					var form = document.createElement("form");
 			        form.setAttribute("method", "Post");
-			        form.setAttribute("action", "/lubway/resultId.do");
+			        
+			       	form.setAttribute("action", "/lubway/resultId.do");
 
 			        var hiddenField = document.createElement("input");
 			        hiddenField.setAttribute("type", "hidden");
@@ -90,8 +92,9 @@
 			        document.body.appendChild(form);
 			        form.submit();
 					
+				} else if(false) {
+					form.setAttribute("action", "/lubway/resultPwd.do");
 				} else {
-					console.log("다음페이지로 가자");
 					$("#certForm").submit();
 				}
 			} else {
@@ -110,19 +113,31 @@
 		<div id="content">
 			<!-- 멤버십가입 -->
 			<div class="joining_wrapper">
-				<c:if test="${findId == null}">
+			
+				<!-- 회원가입 -->
+				<c:if test="${findId == null && findPwd == null}">
 					<h2 class="subTitle_02">회원가입</h2>
 					<h3 class="step_tit">
 						<span>Step2.</span> 번호 인증
 					</h3>
 				</c:if>
 			
-				<c:if test="${findId != null}">
+				<!-- 아이디 찾기 -->
+				<c:if test="${findId != null && findPwd == null}">
 					<h2 class="subTitle_02">아이디 찾기</h2>
 					<h3 class="step_tit">
 						휴대폰 번호 인증
 					</h3>
 				</c:if>
+				
+				<!-- 비밀번호 찾기 -->
+				<c:if test="${findPwd != null}">
+					<h2 class="subTitle_02">비밀번호 찾기</h2>
+					<h3 class="step_tit">
+						휴대폰 번호 인증
+					</h3>
+				</c:if>				
+				
 				<!-- step_cont_box -->
 				<div class="step_cont_box">
 					<!-- step03_cont -->
@@ -164,24 +179,15 @@
 										</dd>
 									</dl>
 								</div>
-
-								<!--// step03_cont -->
-								<c:if test="${findId == null}">
-									<div class="btn_area">
-										<a class="btn bgc_point i_reg" href="javascript:void(0);"
-											id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
-									</div>
-								</c:if>
-
-								<c:if test="${findId != null}">
-									<div class="btn_area">
-										<a class="btn bgc_point i_reg" href="javascript:void(0);"
-											id="submitBtn" style="width: 170px;"><span>인증 완료</span></a>
-									</div>
-								</c:if>
+								<div class="btn_area">
+									<a class="btn bgc_point i_reg" href="javascript:void(0);" id="submitBtn" style="width: 170px;">
+										<span>인증 완료</span>
+									</a>
+								</div>
 							</div>
-							<input type="hidden" id="sms" value="${sms}"> <input
-								type="hidden" id="email" value="${email}">
+							
+							<input type="hidden" id="sms" value="${sms}">
+							<input type="hidden" id="email" value="${email}">
 						</form>
 						<!--// step_cont_box -->
 					</div>

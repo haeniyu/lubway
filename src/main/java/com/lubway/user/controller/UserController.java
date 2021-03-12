@@ -28,16 +28,16 @@ import com.lubway.user.service.UserService;
 
 @Controller
 public class UserController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	JavaMailSender mailSender;
-	
+
 	@Inject
 	BCryptPasswordEncoder passEncoder;
-	
+
 	/**
 	 * 로그인 처리 후 메인 페이지 이동
 	 */
@@ -46,31 +46,32 @@ public class UserController {
 			@RequestParam("password") String password, 
 			HttpServletResponse response, 
 			HttpServletRequest request) throws IOException {
+
 		System.out.println("메인 화면으로 이동");
-		
+
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
-		
+
 		UserVO user = new UserVO();
 		user.setId(id);
 		UserVO getUser = userService.getUser(user);
-		
+
 		boolean check = passEncoder.matches(password, getUser.getPassword());
-		
+
 		if(getUser == null || !check) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
 			out.close();
 			return null;
 		} else {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", getUser);
-				System.out.println("ID, Password 일치");
-				System.out.println("로그인 성공");
-				return "main";
+			HttpSession session = request.getSession();
+			session.setAttribute("user", getUser);
+			System.out.println("ID, Password 일치");
+			System.out.println("로그인 성공");
+			return "main";
 		}
 	}
-	
+
 	/**
 	 * 로그아웃 처리
 	 */
@@ -85,31 +86,33 @@ public class UserController {
 	 * 메인 페이지 이동
 	 */
 	@GetMapping("/main.do")
-	public String mainView() {
+	public String mainView(HttpSession seesion) {
+		if(seesion.getAttribute("findPwd") != null) seesion.removeAttribute("findPwd");
 		return "main";
 	}
-	
+
 	/**
 	 * 로그인 화면 이동
 	 */
 	@RequestMapping("/login.do")
-	public String login() {
+	public String login(HttpSession seesion) {
 		System.out.println("로그인 화면으로 이동");
+		if(seesion.getAttribute("findPwd") != null) seesion.removeAttribute("findPwd");
 		return "login";
 	}
-	
+
 	/**
 	 * 회원가입 페이지 이동
 	 */
 	@RequestMapping("/step01.do")
 	public String termsStep(HttpSession session) {
 		System.out.println("약관동의 화면으로 이동");
-		
+
 		if(session.getAttribute("findId") != null) session.removeAttribute("findId");
-		
+
 		return "join/step01";
 	}
-	
+
 	/**
 	 * 회원가입 페이지 2 - 휴대폰 인증
 	 */
@@ -122,12 +125,13 @@ public class UserController {
 		session.setAttribute("email", email);
 		return "join/step02";
 	}
-	
+
 	/**
 	 * 필요했나?
 	 */
 	@GetMapping("/step02.do")
 	public String moveStep() {
+		System.out.println("쓰이고 있니 ?");
 		return "join/step02";
 	}
 
@@ -155,25 +159,25 @@ public class UserController {
 		System.out.println("체크 결과 값 : " + userService.idCheck(id));
 		return String.valueOf(userService.idCheck(id));
 	}
-	
+
 	/**
 	 * 회원가입 완료 - 이메일 전송 / 비밀번호 암호화 / DB저장
 	 */
 	@PostMapping("/step04.do")
 	public String endStep(UserVO vo, HttpSession session) {
 		System.out.println(vo.toString());
-		
+
 		String securityPwd = passEncoder.encode(vo.getPassword());
 		vo.setPassword(securityPwd);
-		
+
 		userService.insertUser(vo);
 		System.out.println("회원가입 완료 화면으로 이동");
 		session.removeAttribute("sms");
 		session.removeAttribute("email");
-		
+
 		String mailTo = vo.getId();
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
-			
+
 			String content = "<p><b><span style=\"font-size: 24pt;  color: #009223;\">환영합니다!</span></b></p><p><b><span style=\"font-size: 24pt;  color: #009223;\">"+ vo.getName() + "님</span></b></p><p><br></p><p>안녕하세요!</p><p>러브웨이 멤버십에 가입해 주셔서 감사합니다.</p>";	
 
 			@Override
@@ -193,40 +197,60 @@ public class UserController {
 		}
 		return "join/step04";
 	}
-	
+
 	/**
 	 * 비밀번호 찾기 화면 이동
 	 */
 	@RequestMapping("/resultPwd.do")
-	public String resultPwd() {
+	public String resultPwd(@RequestParam("tel") String tel, HttpSession seesion) {
 		System.out.println("비밀번호 찾기 화면으로 이동");
+
+		String id = userService.getId(tel);
+		UserVO user = new UserVO();
+		user.setId(id);
+		UserVO vo = userService.getUser(user);
+		System.out.println(vo.toString());
+
+		String pwd = "";
+
 		return "findpwd";
 	}
-	
+
+	/**
+	 * 비밀번호 찾기 기능
+	 */
+	@GetMapping("/findPwd.do")
+	public String findPwd(HttpSession seesion) {
+
+		seesion.setAttribute("findPwd", new String("1"));
+
+		return "join/step02";
+	}
+
 	/**
 	 * 아이디 찾기 화면 이동
 	 */
 	@PostMapping("/resultId.do")
 	public String resultId(@RequestParam("tel") String tel, HttpSession seesion) {
-		
+		System.out.println("아이디 찾기 화면으로 이동");
+
 		String id = userService.getId(tel);
 		seesion.setAttribute("findId", id);
 
-		System.out.println("아이디 찾기 화면으로 이동");
 		return "findid";
 	}
-	
+
 	/**
 	 * 아이디 찾기 기능
 	 */
 	@GetMapping("/findId.do")
 	public String findId(HttpSession seesion) {
-		
+
 		seesion.setAttribute("findId", new String("1"));
-		
+
 		return "join/step02";
 	}
-	
+
 	/**
 	 * 공지사항 페이지 이동
 	 */
@@ -235,7 +259,7 @@ public class UserController {
 		System.out.println("공지사항 으로 이동");
 		return "notice";
 	}
-	
+
 	/**
 	 * 공지 상세 페이지 이동
 	 */
@@ -244,5 +268,5 @@ public class UserController {
 		System.out.println("공지 상세정보로 이동");
 		return "noticein";
 	}
-	
+
 }

@@ -32,7 +32,7 @@ public class SmsController {
 		System.out.println("DB에 해당 번호로 조회한 값 : " + smsService.checkTel(tel));
 		System.out.println("session findId 값 : " + seesion.getAttribute("findId"));
 
-		if(smsService.checkTel(tel) == 1 && seesion.getAttribute("findId") == null) {
+		if(smsService.checkTel(tel) == 1 && seesion.getAttribute("findId") == null && seesion.getAttribute("findPwd") == null) {
 			return "";
 		}
 		

@@ -16,7 +16,6 @@
 				alert("아이디와 비밀번호를 확인해주세요.");
 				return;
 			} else {
-				console.log("눌림 ㅎ");
 				$("#login").submit();
 			}
 		});
@@ -47,11 +46,11 @@
 										<dt>이메일 아이디</dt>
 										<dd>
 											<span class="form_text">
-												<c:if test="${findId == null}"> 
+												<c:if test="${findId == null || findId == '1'}"> 
 													<input class="required-value" id="username" name="id" placeholder="이메일 아이디 입력" type="text">
 												</c:if>
 												
-												<c:if test="${findId != null}"> 
+												<c:if test="${findId != null && findId != '1'}"> 
 													<input class="required-value" id="username" name="id" placeholder="이메일 아이디 입력" type="text" value="${findId}">
 												</c:if>
 											</span>
@@ -76,7 +75,7 @@
 				<div class="signin_link">
 					<ul>
 						<li><a href="findId.do" id="findIdBtn">아이디 찾기</a></li>
-						<li><a href="javascript:void(0);" id="findPwBtn">비밀번호 찾기</a></li>
+						<li><a href="findPwd.do;" id="findPwBtn">비밀번호 찾기</a></li>
 						<li><a href="step01.do">회원가입</a></li>
 					</ul>
 				</div>
