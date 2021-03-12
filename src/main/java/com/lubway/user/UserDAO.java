@@ -24,8 +24,19 @@ public class UserDAO {
 		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 	
+<<<<<<< HEAD
 	public String getId(String tel) {
 		System.out.println("UserDAO - getId() 실행");
 		return sqlSessionTemplate.selectOne("UserDAO.getId", tel);
+=======
+	public void updateUser(UserVO vo) {
+		System.out.println("UserDAO - updateUser() 실행");
+		sqlSessionTemplate.update("UserDAO.updateUser", vo);
+	}
+
+	public void deleteUser(UserVO vo) {
+		System.out.println("UserDAO - deleteUser() 실행");
+		sqlSessionTemplate.delete("UserDAO.deleteUser", vo);
+>>>>>>> feature/myway
 	}
 }
