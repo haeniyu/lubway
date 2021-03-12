@@ -21,7 +21,7 @@ public class UserDAO {
 	
 	public UserVO getUser(UserVO vo) {
 		System.out.println("UserDAO - getUser() 실행");
-		return (UserVO) sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
+		return sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
 	}
 	
 	public String getId(String tel) {
