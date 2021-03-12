@@ -6,7 +6,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>  
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script>
+	체크 -> 체크 된걸 읽고 -> db에서 fix 를 true로 바꿔야 함
+	$(document).ready(function(){
+		$("#btn-icon-split").on("click",function(){
+			
+		});
+	});
+</script>
 <style type="text/css">
 * {
 	list-style: none;
@@ -60,7 +68,7 @@ ul {
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
-	<form action="/lubway/insertDB.bdo" enctype="multipart/form-data">
+	<form action="/lubway/insertDB.bdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
