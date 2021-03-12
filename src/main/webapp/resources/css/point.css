@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+
+.tab02 {
+    width: 1170px;
+    height: 70px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #009223;
+    color: #fff;
+}
+
+.tab02 ul li {
+    display: block;
+    height: 68px;
+    line-height: 68px;
+    position: relative;
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+}

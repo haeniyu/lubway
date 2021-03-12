@@ -8,9 +8,6 @@
 }
 
 /* My Sub Index */
-.mysub_index {
-	
-}
 
 .mysub_index .subTitle_02 {
 	background-color: #f6f6f6;
@@ -116,10 +113,16 @@
 }
 
 .mysub_index .member_active .my_info dd strong {
-	font-family: 'font_sw', 'font_ns';
 	font-size: 44px;
 	font-weight: bold;
 	letter-spacing: -0.05em;
+	color: #fff;
+}
+
+.mysub_index .member_active .my_info dd strong em {
+	font-size: 44px;
+	font-weight: bold;
+	color: #fff;
 }
 
 .mysub_index .member_active .my_info .info.member .name_gender {
@@ -969,9 +972,8 @@
 	padding: 0 5px
 }
 
-.point_status .input_set .info_dl dd .left_date p {
+.point_status .input_set .info_dl dd .left_date p > span {
 	color: #ffffff;
-	font-family: 'font_sw';
 	font-size: 14px;
 	font-weight: bold;
 	text-align: center;
@@ -983,22 +985,6 @@
 
 .point_status .level_copy .level.w_level strong {
 	color: #ff8201;
-}
-
-.point_status .level_copy .level.s_level .icon_level {
-	
-}
-
-.point_status .level_copy .level.s_level strong {
-	
-}
-
-.point_status .level_copy .level.g_level .icon_level {
-	
-}
-
-.point_status .level_copy .level.g_level strong {
-	
 }
 
 .point_status .detail_point {

@@ -40,7 +40,7 @@
 									<strong><em>${user.point }</em>P</strong>
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/mypage/point"><span>포인트 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/lubway/point.do"><span>포인트 관리</span></a>
 						</div>
 					</section>
 					<section class="my_info">
