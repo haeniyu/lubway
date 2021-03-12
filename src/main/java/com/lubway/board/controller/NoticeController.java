@@ -185,8 +185,8 @@ public class NoticeController {
 	@GetMapping("/search.bdo")
 	public String searchPagingList(Model model, NoticeVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range
-			,@RequestParam(defaultValue = "searchKeyword") String searchKeyword) {
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam("searchKeyword") String searchKeyword) {
 		
 		Pagination pagination = new Pagination();
 		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
@@ -196,7 +196,7 @@ public class NoticeController {
 		
 		List<NoticeVO> pageList = noticeService.getSearchPagingList(pagination);
 		
-		model.addAttribute(pagination);
+		model.addAttribute("pagination",pagination);
 		model.addAttribute("noticeList", pageList);
 		return "getNoticeList";
 	}
