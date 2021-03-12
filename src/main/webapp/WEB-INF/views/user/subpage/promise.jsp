@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Promise</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />

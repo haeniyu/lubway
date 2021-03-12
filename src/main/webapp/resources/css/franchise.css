@@ -1,0 +1,62 @@
+@charset "UTF-8";
+
+/* 가맹점 ::: 써브웨이 프렌차이즈 */
+.franchise_wrapper{margin-top:-61px;}
+.franchise_wrapper .summary{font-size:16px; line-height:26px; text-align:center; letter-spacing:-0.045em}
+.franchise_wrapper .store_wrapper{overflow:hidden; margin-top:66px;}
+.franchise_wrapper .store_wrapper >div{float:left; width:50%; height:220px; background-color:#f6f6f6; color:#292929; overflow:hidden; transition-duration:0.3s; position:relative;}
+.franchise_wrapper .store_wrapper >div:after{content:''; position:absolute; left:0; width:100%; top:0; height:100%; z-index:2; opacity:0; transition-duration:0.3s}
+.franchise_wrapper .store_wrapper >div .inner{text-align:center; font-size:30px; margin-top:55px; position:relative; z-index:3;color:#fff;}
+.franchise_wrapper .store_wrapper >div .inner p{margin-bottom:38px;}
+.franchise_wrapper .store_wrapper >div .inner p span{display:inline-block; position:relative; padding-bottom:6px; color: #fff;}
+.franchise_wrapper .store_wrapper >div .inner p span:after{content:''; height:1px; position:absolute; left:0; right:0; bottom:0; transition-duration:0.3s}
+.franchise_wrapper .store_wrapper >div .inner strong{font-weight:bold; font-size:80px; letter-spacing:-0.025em; display:inline-block; margin-right:5px; color:#fff;}
+.franchise_wrapper .store_wrapper .nation .inner{float:right; margin-right:197px;}
+.franchise_wrapper .store_wrapper .nation .inner span:after{background-color:#000}
+.franchise_wrapper .store_wrapper .store .inner{float:left; margin-left:153px;}
+.franchise_wrapper .store_wrapper .store .inner span:after{background-color:#fff}
+
+.franchise_wrapper .store_wrapper >div.hover{color:#fff;}
+.franchise_wrapper .store_wrapper >div.hover .inner p span:after{background-color:#fff;}
+.franchise_wrapper .store_wrapper >div.hover:after{opacity:1;}
+.franchise_wrapper .store_wrapper .nation{background:url(../images/franchise/bg_nation.jpg) 0 0 no-repeat;}
+.franchise_wrapper .store_wrapper .store{background:url(../images/franchise/bg_store.jpg) 0 0 no-repeat;}
+
+.franchise_wrapper .barnd_comp{width:1170px; margin:0 auto 48px;}
+.franchise_wrapper .barnd_comp h3{text-align:center; margin:96px 0 0 0;}
+.franchise_wrapper .barnd_comp >ul{overflow:hidden; margin-left:-30px;}
+.franchise_wrapper .barnd_comp >ul >li{height:460px; float:left; width:570px; position:relative; margin-left:30px;}
+.franchise_wrapper .barnd_comp >ul >li h4{background-color:#ffce32; width:170px; height:150px; padding-top:41px; box-sizing:border-box; text-align:center; line-height:30px; color:#009223; font-size:22px; font-weight:bold; position:absolute; left:0; top:215px; font-family:font_sw;}
+.franchise_wrapper .barnd_comp >ul >li ul{margin:19px 0 0 192px;}
+.franchise_wrapper .barnd_comp >ul >li ul li{font-size:16px; color:#666666; line-height:26px; letter-spacing:-0.055em; text-indent:-12px; margin-left:12px;}
+
+.franchise_process{height:710px; text-align:center; color:#fff; background:url(../images/franchise/bg_franchise_process.jpg) 50% 0 no-repeat;}
+.franchise_process h3{font-size:28px; font-weight:bold; padding-top:95px; letter-spacing:-0.04em;  color: #fff;}
+.franchise_process .summary{font-size:16px; line-height:26px; margin-top:22px;  color: #fff;}
+.franchise_process .step_wrapper{margin-top:65px;}
+.franchise_process .step_wrapper >ol{overflow:hidden; display:inline-block;}
+.franchise_process .step_wrapper >ol >li{float:left; width:200px; padding:0 22px; position:relative;}
+.franchise_process .step_wrapper >ol >li:after{content:''; position:absolute; left:-3px; top:95px; background:url(../images/franchise/icon_arr_r02.png) 0 0 no-repeat; width:6px; height:11px;}
+.franchise_process .step_wrapper >ol >li:first-child:after{display:none;}
+.franchise_process .step_wrapper >ol >li .step{width:192px; height:192px; border:4px solid #009223; border-radius:100px; font-size:22px; line-height:26px; margin:0 auto 16px;}
+.franchise_process .step_wrapper >ol >li .step em{display:block; font-weight:300; font-size:13px; padding-top:67px;}
+.franchise_process .step_wrapper >ol >li .step strong{font-weight:300; letter-spacing:-0.02em;  color: #fff;}
+.franchise_process .step_wrapper >ol >li ul li{line-height:22px; font-size:16px; margin-bottom:4px; letter-spacing:-0.035em;  color: #fff;}
+.franchise_process .step_wrapper >ol >li:nth-child(odd) .step{border-color:#ffc300}
+.franchise_process .step_wrapper >ol >li:nth-child(odd) .step em{color:#ffd800}
+.franchise_process .step_wrapper >ol >li:nth-child(even) .step{border-color:#009223}
+.franchise_process .step_wrapper >ol >li:nth-child(even) .step em{color:#62ce08}
+.franchise_process .step_wrapper .text{text-align:left; width:1170px; margin:0 auto; color:#999999; font-size:13px; padding-top:32px; letter-spacing:-0.04em; position:relative; left:-4px;}
+
+.invertment_expense{margin-top:95px;}
+.invertment_expense .h_title{text-align:center; padding-bottom:7px !important;}
+.invertment_expense .board_list_wrapper .cont_right{font-size:13px; color:#999999; margin-bottom:16px; letter-spacing:-0.03em}
+.invertment_expense .board_list_wrapper table th{text-align:left; padding:0 30px; color:#292929; line-height:22px; font-weight:normal; border-bottom:1px solid #dddddd}
+.invertment_expense .board_list_wrapper table td{padding:0 30px; text-align:left; color:#666; line-height:22px; font-size:16px; letter-spacing:-0.05em}
+.invertment_expense .board_list_wrapper table thead th{border-color:#009223;}
+.invertment_expense .board_list_wrapper table tfoot{background-color:#f6f6f6;}
+.invertment_expense .board_list_wrapper table tfoot th,
+.invertment_expense .board_list_wrapper table tfoot td{font-weight:300; color:#292929;}
+.invertment_expense .board_list_wrapper .notice{color:#999; font-size:13px; line-height:23px; margin:19px 0 50px;}
+.invertment_expense .board_list_wrapper .notice li{margin-bottom:8px; letter-spacing:-0.035em}
+

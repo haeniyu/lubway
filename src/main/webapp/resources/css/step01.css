@@ -157,7 +157,7 @@ em{font-style:normal;}
 .btn.size1 span{font-size:16px; height:40px; line-height:40px;}
 
 .btn.bgc_point{background-color:#009223; color:#fff;}
-.btn.bgc_point span{height:50px; line-height:50px; letter-spacing:-0.03em;}
+.btn.bgc_point span{height:50px; line-height:50px; letter-spacing:-0.03em; color:#fff;}
 .btn.bgc_point:hover{background-color:#00811f;}
 
 /* 2018.02.01 이용방법 버튼 추가 */

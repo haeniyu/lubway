@@ -32,4 +32,13 @@ public class SubPageController {
 		System.out.println("러브웨이 약속 화면으로 이동");
 		return "subpage/promise";
 	}
+	
+	/**
+	 * 프랜차이즈 소개
+	 */
+	@RequestMapping("/franchise.do")
+	public String franchise() {
+		System.out.println("프랜차이즈 소개 화면으로 이동");
+		return "subpage/franchise";
+	}
 }
