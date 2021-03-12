@@ -28,8 +28,8 @@
 						cellspacing="0">
 						<thead>
 							<tr>
-								<th>이름</th>
 								<th>이메일 아이디</th>
+								<th>이름</th>
 								<th>휴대전화</th>
 								<th>SMS 수신</th>
 								<th>Email 수신</th>

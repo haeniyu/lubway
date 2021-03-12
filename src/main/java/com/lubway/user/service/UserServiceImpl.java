@@ -33,13 +33,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public String getId(String tel) {
 		return dao.getId(tel);
-=======
+	}
+		
 	public void deleteUser(UserVO vo) {
 		dao.deleteUser(vo);	
->>>>>>> feature/myway
 	}
 
 }

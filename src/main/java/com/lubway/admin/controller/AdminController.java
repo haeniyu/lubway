@@ -78,4 +78,10 @@ public class AdminController {
 		System.out.println("관리자 공지사항 등록 페이지로 이동");
 		return "getNotice";
 	}
+	
+	@RequestMapping("/getcustomerlist.mdo")
+	public String getCustomerList() {
+		System.out.println("관리자 - 회원 관리 페이지로 이동");
+		return "/manage/customer/getCustomerList";
+	}
 }

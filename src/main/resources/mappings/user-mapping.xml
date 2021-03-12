@@ -23,13 +23,12 @@
 		SELECT * FROM lubuser WHERE id = #{id}
 	</select>
 	
-<<<<<<< HEAD
 	<select id="getId" parameterType="String" resultType="String">
 		SELECT id FROM lubuser WHERE tel = #{tel};
 	</select>
-=======
+
 	<delete id="deleteUser" parameterType="user">
 		DELETE FROM lubuser WHERE id = #{id}
 	</delete>
->>>>>>> feature/myway
+
 </mapper>
