@@ -53,16 +53,13 @@ $(document).ready(function() {
 	$("#modInfo").on("click", function() {
 		
 		var pw = $("#pw").val();
-		console.log("pw : " + pw);
 		var sms = $("#sms_recep").is(":checked");
-		console.log("sms : " + sms);
 		var email = $("#email_recep").is(":checked");
-		console.log("email : " + email);
 		
 		var form = document.createElement("form");
         form.setAttribute("method", "Post");
         
-        form.setAttribute("action", "/lubway/resultMod.do");
+        form.setAttribute("action", "/lubway/resultmod.do");
 
 	    //비밀번호 저장
 	     var passField = document.createElement("input");
