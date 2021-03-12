@@ -13,7 +13,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDAO dao;
 	
 	@Override
-	public String getAdmin(AdminVO vo) {
+	public AdminVO getAdmin(AdminVO vo) {
 		return dao.getAdmin(vo);
 	}
 

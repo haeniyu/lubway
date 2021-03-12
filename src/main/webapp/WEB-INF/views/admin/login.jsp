@@ -11,8 +11,23 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="shortcut icon" href="" type="image/x-icon" />
 
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css?ver=1" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.button.css" />
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#ui_login_btn").on("click", function(){
+			if($("#id").val().trim() == "" || $("#password").val().trim() == "") {
+				alert("아이디와 비밀번호를 확인해주세요.");
+				return;
+			} else {
+				console.log("로그인");
+				$("#login").submit();
+			}
+		});
+	});
+</script>
 </head>
 <body id="login_wrapper">
 	<div class="logo">
@@ -22,7 +37,7 @@
 
 	<div class="login_content">
 		<h3>LUBWAY 관리자 사이트 로그인</h3>
-		<form action="main.mdo">
+		<form action="main.mdo" method="post" id="login">
 			<div class="form-group">
 				<input type="text" class="form-text" placeholder="아이디" id="username" name="id" />
 			</div>

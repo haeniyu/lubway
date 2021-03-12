@@ -6,14 +6,14 @@
 
 	<select id="getAdmin" parameterType="admin" resultType="admin">
 		SELECT
-		adminmember_password
-		FROM adminmember
-		WHERE adminmember_id = #{adminmember_id}
+		password
+		FROM lubadmin
+		WHERE id = #{id}
 	</select>
 	
 	<insert id="insertAdmin" parameterType="admin">
-		INSERT INTO adminmember(adminmember_id, adminmember_password) 
-		VALUES(#{adminmember_id} , #{adminmember_password})
+		INSERT INTO lubadmin(id, password) 
+		VALUES(#{id} , #{password})
 	</insert>
 
 </mapper>

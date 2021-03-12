@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class AdminVO {
-	private int adminmember_no;
-	private String adminmember_id;
-	private String adminmember_password;
+	private int no;
+	private String id;
+	private String password;
 }
