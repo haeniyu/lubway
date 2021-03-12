@@ -62,7 +62,7 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Customer:</h6>
-						<a class="collapse-item" href="adminCustomerManage.html">회원 관리</a>
+						<a class="collapse-item" href="/lubway/getuserlist.mdo">회원 관리</a>
 						<a class="collapse-item" href="buttons.html">쿠폰</a> <a
 							class="collapse-item" href="cards.html">포인트</a>
 					</div>
