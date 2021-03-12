@@ -1,14 +1,18 @@
 package com.lubway.board;
 
+import org.springframework.stereotype.Repository;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 
+@Repository
 public class Pagination {
 	private int listSize=10;
-	private int rangeSize=15;
+	private int rangeSize=10;
 	private int page;
 	private int range;
 	private int listCnt;
@@ -27,8 +31,9 @@ public class Pagination {
 		this.listCnt = listCnt;
 
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(this.listCnt/this.listSize)+1;
-
+		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);
+		
+		
 		//시작 페이지
 		this.startPage = (range-1) * rangeSize + 1 ;
 
@@ -61,8 +66,9 @@ public class Pagination {
 		this.searchKeyword=searchKeyword;
 		
 		//전체 페이지수 
-		this.pageCnt = (int) Math.ceil(listCnt/listSize)+1;
+		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);
 
+		
 		//시작 페이지
 		this.startPage = (range-1) * rangeSize + 1 ;
 
