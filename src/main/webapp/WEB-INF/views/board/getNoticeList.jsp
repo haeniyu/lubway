@@ -19,13 +19,13 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 	//페이지 번호 클릭
-	
+
 	//location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
 	//getNoticeList.bdo?page=1&range=1&searchKeyword=undefined
 	function fn_pagination(page, range, rangeSize, searchKeyword) {
 
 		var url = "${getNoticeList}";
-		
+
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
@@ -58,8 +58,69 @@
 					<div class="table-responsive">
 						<div align="right">
 
-							<input type="submit" class="btn btn-warning btn-icon-split"
+							<input type="submit" class="btn btn-warning btn-icon-split" style="padding: 5px"
 								value="글등록">
+						</div>
+						<div class="my-2"></div>
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr align="center">
+									<th width="10%">NO</th>
+									<th width="70%">Title</th>
+									<th width="20%">Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${noticeList}" var="notice">
+
+									<tr>
+										<td>${notice.no }</td>
+										<td align="left"><a type="hidden"
+											href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
+										<td><fmt:formatDate value="${notice.regDate }"
+												pattern="yyyy-MM-dd" /></td>
+									</tr>
+								</c:forEach>
+
+							</tbody>
+						</table>
+
+						<!-- 검색 시작 -->
+						<div align="right">
+							<form action="/lubway/search.bdo" method="get">
+								<tr>
+									<td><input type="text" name="searchKeyword"
+										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
+										style="margin: 3px; padding: 3px"
+										class="btn btn-warning btn-icon-split" type="submit"
+										value="search" /></td>
+								</tr>
+							</form>
+						</div>
+						<!-- 검색 종료 -->
+						<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
+						<!-- pagination{s} -->
+
+						<div id="paginationBox">
+
+							<ul class="pagination">
+
+
+								<c:forEach begin="${pagination.startPage}"
+									end="${pagination.endPage}" var="idx">
+
+									<li
+										class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+										class="page-link" href="#"
+										onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
+											${idx} </a></li>
+
+								</c:forEach>
+
+
+							</ul>
+
 						</div>
 					</div>
 				</div>
@@ -67,69 +128,6 @@
 			</div>
 		</div>
 	</form>
-	<div class="my-2"></div>
-	<table class="table table-bordered" id="dataTable" width="100%"
-		cellspacing="0">
-		<thead>
-			<tr align="center">
-				<th width="10%">NO</th>
-				<th width="70%">Title</th>
-				<th width="20%">Date</th>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${noticeList}" var="notice">
-
-				<tr>
-					<td>${notice.no }</td>
-					<td align="left"><a type="hidden"
-						href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
-					<td><fmt:formatDate value="${notice.regDate }"
-							pattern="yyyy-MM-dd" /></td>
-				</tr>
-			</c:forEach>
-
-		</tbody>
-	</table>
-
-	<!-- 검색 시작 -->
-	<div align="right">
-		<form
-			action="/lubway/search.bdo"
-			method="get">
-			<tr>
-				<td><input type="text" name="searchKeyword"
-					placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-					style="margin: 3px; padding: 3px"
-					class="btn btn-warning btn-icon-split" type="submit" value="search" />
-				</td>
-			</tr>
-		</form>
-	</div>
-	<!-- 검색 종료 -->
-	<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
-	<!-- pagination{s} -->
-
-	<div id="paginationBox">
-
-		<ul class="pagination">
-
-
-			<c:forEach begin="${pagination.startPage}"
-				end="${pagination.endPage}" var="idx">
-
-				<li
-					class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-					class="page-link" href="#"
-					onClick="fn_pagination('${idx}', '${pagination.range}', '${pagination.rangeSize}')">
-						${idx} </a></li>
-
-			</c:forEach>
-
-
-		</ul>
-
-	</div>
 
 
 

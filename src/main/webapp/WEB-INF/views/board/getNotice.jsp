@@ -4,11 +4,60 @@
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<head>
+<style type="text/css">
+* {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+.wrap {
+	padding: 20px;
+}
+
+.title, .contents {
+	border: 1px solid lightgray;
+	padding: 20px;
+}
+
+.img {
+	border-left: 1px solid lightgray;
+	border-right: 1px solid lightgray;
+	padding: 20px;
+}
+
+.index {
+	width: 150px;
+	display: inline-block;
+}
+
+.index_con {
+	width: 150px;
+	display: inline-block;
+}
+
+.index_text {
+	display: inline-flex;
+	width: 80%;
+	height: 300px;
+}
+
+.fix_notice {
+	margin-bottom: 10px;
+}
+</style>
+</head>
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/updateNotice.bdo" method="post">
-	<input name="no" type="hidden" value="${notice.no }">
+	<form action="/lubway/updateNotice.bdo" enctype="multipart/form-data">
+		<input name="no" type="hidden" value="${notice.no }">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 		<div class="container-fluid">
@@ -22,56 +71,55 @@
 					<h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
 				</div>
 				<div class="card-body">
+					<!-- 전체 frame -->
+					<ul>
+						<!-- 제목 -->
+						<li class="title">
+							<div>
+								<div class="index">제목</div>
+								<input class="title_text" type="text" name="title"
+									style="width: 80%" value="${notice.title}" />
+							</div>
+						</li>
+						<!-- 이미지 업로드 -->
+						<li class="img">
+							<div>
+								<div class="index">이미지</div>
+								<input type="file" name="uploadImg" multiple="multiple" />
+							</div>
+						</li>
+						<!-- 내용 -->
+						<li class="contents">
+							<div class="index">
+								<div class="index_con">내용</div>
+							</div>
+							<div class="index_text">
+								<textarea name="content" rows="15" style="width: 100%">${notice.content}</textarea>
+							</div>
+						</li>
+					</ul>
+					<div align="center">
+						<div class="fix_notice">
+							<input type="checkbox" name="fix" /><span>상단에 고정하기</span>
+						</div>
+						<input style="padding: 5px" class="btn btn-warning btn-icon-split"
+							type="submit" value="수정하기" />
+					</div>
+					<div align="right">
+						<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
+							<span class="text">등록하기</span>
+						</a>&nbsp;&nbsp;&nbsp; <a href="deleteNotice.bdo?no=${notice.no}"
+							class="btn btn-danger btn-icon-split"> <span class="text">삭제하기</span>
+						</a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.bdo"
+							class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
 
-					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
-							<tr>
-								<td>제목</td>
-								<td colspan="2" align="left"><input type="text"
-									name="title" style="width:80%" value="${notice.title}" /></td>
-							</tr>
-							<tr>
-								<td>이미지 첨부</td>
-								<td colspan="2" align="left"><input type="file"
-									name="upload_img" style="width:80%" value="${notice.upload_img }" /> <input
-									style="margin: 5px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="button"
-									value="파일찾기" /></td>
-							</tr>
-							<tr>
-								<td colspan="3">내용</td>
-							</tr>
-							<tr>
-								<td colspan="3" align="left"><textarea style="width:100%"
-										rows="15" name="content">${notice.content}</textarea></td>
-							</tr>
-							<tr>
-								<td colspan="3">
-									<div align="center">
-										<input style="padding: 5px"
-											class="btn btn-warning btn-icon-split" type="submit"
-											value="수정하기">
-									</div>
-								</td>
-							</tr>
-						</table>
+						</a>
 					</div>
 				</div>
 			</div>
+
 		</div>
 	</form>
-	<div align="right">
-		<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
-			<span class="text">등록하기</span>
-		</a>&nbsp;&nbsp;&nbsp;
-		<!-- 삭제할때 href 다시보기 -->
-		<a href="deleteNotice.bdo?no=${notice.no}"
-			class="btn btn-danger btn-icon-split"> <span class="text" >삭제하기</span>
-		</a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.bdo"
-			class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
-		</a>
-	</div>
 
 	<!-- /.container-fluid -->
 

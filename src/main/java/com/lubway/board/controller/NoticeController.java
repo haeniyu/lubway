@@ -5,15 +5,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.lubway.board.NoticeVO;
 import com.lubway.board.Pagination;
@@ -43,7 +46,21 @@ public class NoticeController {
 	// 글 등록 기능
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo) throws IOException, PSQLException {
+		
+		//System.out.println(vo.toString());
+		//System.out.println(uploadImg);
+		
+//		MultipartFile uploadFile = vo.getUploadImg();
+//		if(!uploadFile.isEmpty()) {
+//			String fileName = uploadFile.getOriginalFilename();
+//			uploadFile.transferTo(new File("D:/upload/" + fileName));
+//			
+//			File file = new File(fileName);
+//			String path = file.getAbsolutePath();
+//			System.out.println("파일 경로 : " + path);
+//		}
 
+		
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
 
@@ -190,5 +207,10 @@ public class NoticeController {
 //		
 //		return "getNoticeList";
 //	}
+	
+	@PostMapping("/uploadNotice.bdo")
+	public void uploadNotice(MultipartFile[] uploadFile) {
+		String uploadFolder = "C:\\upload";
+	}
 
 }
