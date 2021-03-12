@@ -44,7 +44,7 @@
 	<!-- quick link 끝 -->
 	<!-- 샌드위치 메뉴 슬라이더 -->
 	<div class="subway_slider_menu_wrap">
-		<h2>Subway's Menu</h2>
+		<h2>Lubway's Menu</h2>
 		<input type="radio" name="tabmenu" id="m_classic" checked> <input
 			type="radio" name="tabmenu" id="m_fresh"> <input type="radio"
 			name="tabmenu" id="m_premium"> <input type="radio"

@@ -54,10 +54,22 @@ public class UserController {
 
 		UserVO user = new UserVO();
 		user.setId(id);
+<<<<<<< HEAD
 		UserVO getUser = userService.getUser(user);
 
 		boolean check = passEncoder.matches(password, getUser.getPassword());
 
+=======
+		int i = userService.idCheck(id);
+		UserVO getUser = null;
+		boolean check = false;
+		if(i>0) {
+			getUser = userService.getUser(user);
+			System.out.println(getUser.toString());
+			
+			check = passEncoder.matches(password, getUser.getPassword());
+		}
+>>>>>>> feature/managingcustomer
 		if(getUser == null || !check) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
@@ -70,6 +82,7 @@ public class UserController {
 			System.out.println("로그인 성공");
 			return "main";
 		}
+		
 	}
 
 	/**

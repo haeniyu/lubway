@@ -16,4 +16,12 @@
 		VALUES(#{id} , #{password})
 	</insert>
 
+	<select id="getUserList" resultType="user">
+		SELECT * FROM lubuser ORDER BY no
+	</select>
+	
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM lubuser WHERE id = #{id}
+	</delete>
+
 </mapper>

@@ -21,6 +21,11 @@ public class UserServiceImpl implements UserService {
 	public void insertUser(UserVO vo) {
 		dao.insertUser(vo);
 	}
+	
+	@Override
+	public void updateUser(UserVO vo) {
+		dao.updateUser(vo);
+	}
 
 	@Override
 	public UserVO getUser(UserVO vo) {
@@ -30,6 +35,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String getId(String tel) {
 		return dao.getId(tel);
+	}
+		
+	public void deleteUser(UserVO vo) {
+		dao.deleteUser(vo);	
 	}
 
 }

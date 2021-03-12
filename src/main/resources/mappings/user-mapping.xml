@@ -6,19 +6,29 @@
 	
 	<select id="idCheck" parameterType="String" resultType="int">
 		SELECT count(id) FROM lubuser
-		WHERE id = #{id};
+		WHERE id = #{id}
 	</select>
 	
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO lubuser(id, password, tel, name, sms_usable, email_usable)
 		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
 	</insert>
+	
+	<update id="updateUser" parameterType="user">
+		UPDATE lubuser SET password=#{password}, sms_usable=#{sms_usable}, email_usable=#{email_usable}
+		WHERE id = #{id}
+	</update>
 
 	<select id="getUser" parameterType="user" resultType="user">
-		SELECT * FROM lubuser WHERE id = #{id};
+		SELECT * FROM lubuser WHERE id = #{id}
 	</select>
 	
 	<select id="getId" parameterType="String" resultType="String">
 		SELECT id FROM lubuser WHERE tel = #{tel};
 	</select>
+
+	<delete id="deleteUser" parameterType="user">
+		DELETE FROM lubuser WHERE id = #{id}
+	</delete>
+
 </mapper>
