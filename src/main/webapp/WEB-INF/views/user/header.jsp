@@ -70,7 +70,13 @@ $(function(){
 							<li><a href="/morningList">아침메뉴</a></li>
 							<li><a href="/sideDrink">스마일 썹</a></li>
 						</ul></li>
-					<li><a href="/lubway/howtouse.do" class="dp1">이용방법</a></li>
+					<li><a href="#none" class="dp1">이용방법</a>
+						<div class="dp2">
+							<ul>
+								<li><a href="/lubway/howtouse.do">러브웨이 이용방법</a></li>
+							</ul>
+						</div></li>
+					</li>
 					<li><a href="#none" class="dp1">새소식</a>
 						<div class="dp2">
 							<ul>
@@ -91,8 +97,8 @@ $(function(){
 					<li><a href="#none" class="dp1">가맹점</a>
 						<div class="dp2">
 							<ul>
-								<li><a href="/franchise">써브웨이 프랜차이즈</a></li>
-								<li><a href="/franchiseFaq">가맹관련 FAQ</a></li>
+								<li><a href="/lubway/franchise.do">써브웨이 프랜차이즈</a></li>
+								<li><a href="//lubway/franchisefaq.do">가맹관련 FAQ</a></li>
 								<li><a href="/franchiseInquiry">가맹신청ㆍ문의</a></li>
 							</ul>
 						</div></li>

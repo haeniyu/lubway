@@ -41,4 +41,13 @@ public class SubPageController {
 		System.out.println("프랜차이즈 소개 화면으로 이동");
 		return "subpage/franchise";
 	}
+	
+	/**
+	 * 프랜차이즈 FAQ
+	 */
+	@RequestMapping("/franchisefaq.do")
+	public String franchisefaq() {
+		System.out.println("프랜차이즈 FAQ 화면으로 이동");
+		return "subpage/franchisefaq";
+	}
 }
