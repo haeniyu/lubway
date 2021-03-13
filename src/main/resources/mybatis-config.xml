@@ -12,10 +12,7 @@
 	<mappers>
 		<mapper resource="mappings/admin-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />
-<<<<<<< HEAD
 		<mapper resource="mappings/sms-mapping.xml" />
-=======
 		<mapper resource="mappings/notice-mapping.xml" />
->>>>>>> feature/paging
 	</mappers>
 </configuration>
