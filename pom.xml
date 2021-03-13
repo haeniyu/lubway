@@ -8,6 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>lubway Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+
 	<dependencies>
 
 		<!-- SPRING -->
@@ -116,25 +117,16 @@
 		</dependency>
 
 		<!-- 파일 업로드 -->
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.imgscalr/imgscalr-lib -->
 		<dependency>
 			<groupId>org.imgscalr</groupId>
 			<artifactId>imgscalr-lib</artifactId>
 			<version>4.2</version>
 		</dependency>
-
-		<!-- AWS S3 
-		<dependency>
-			<groupId>com.amazonaws</groupId>
-			<artifactId>aws-java-sdk-s3</artifactId>
-			<version>1.11.901</version>
-		</dependency>-->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -142,6 +134,15 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- AWS S3 
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>1.11.973</version>
+		</dependency>
+-->
+
 	</dependencies>
 	<build>
 		<plugins>
