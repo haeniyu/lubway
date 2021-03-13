@@ -314,8 +314,12 @@ public class UserController {
 		String mailTo = vo.getId();
 		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
-			String content = "<p>임시 설정된 비밀번호 입니다.</p><p>로그인 후 비밀번호를 재설정 해주시길 바랍니다.</p><br>"
-					+ "<p><b><span style=\"font-size: 24pt;  color: #009223;\">" + vo.getPassword() + "</span></b></p><p><br></p>";	
+			String content = "<p><span style=\"font-size: 10pt; font-family: dotum, sans-serif;\">"
+					+ "임시 설정된 비밀번호 입니다.</span></p><p><span style=\"font-size: 10pt; font-family: dotum, sans-serif;\">"
+					+ "로그인 후 비밀번호를 재설정 해주시길 바랍니다.</span></p><p><span style=\"font-family: dotum, sans-serif;\"><br>"
+					+ "</span></p><p><span style=\"font-family: dotum, sans-serif; font-size: 10pt;\">"
+					+ "변경된 비밀번호 : </span><b style=\"font-family: dotum, sans-serif;\"><span style=\"color: rgb(0, 158, 37); "
+					+ "font-size: 12pt;\">" + vo.getPassword() + "</span></b></p><p><br></p>";	
 
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
