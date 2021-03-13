@@ -1,21 +1,59 @@
 @charset "UTF-8";
 
-
 .tab02 {
-    width: 1170px;
-    height: 70px;
-    margin: 0 auto;
-    position: relative;
-    background-color: #009223;
-    color: #fff;
+	width: 1170px;
+	height: 70px;
+	margin: 0 auto;
+	position: relative;
+	background-color: #009223;
+	color: #fff;
 }
 
 .tab02 ul li {
-    display: block;
-    height: 68px;
-    line-height: 68px;
-    position: relative;
-    font-size: 18px;
-    color: #fff;
-    text-align: center;
+	display: block;
+	height: 68px;
+	line-height: 68px;
+	position: relative;
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
 }
+
+.tab_content {
+	width: 1170px;
+	margin: 0 auto 50px;
+	position: relative;
+}
+
+.usingStep >  img {
+	width: 100%;
+}
+
+
+/* 써브웨이 ::: 써브웨이 약속 */
+.subwray_promise_wrapper{padding-top:127px;}
+.subwray_promise_wrapper .hd{text-align:center; margin-bottom:81px}
+.subwray_promise_wrapper .hd h2{color:#009223; font-weight:bold; font-family:font_sw; font-size:36px;}
+.subwray_promise_wrapper .hd h2 em{color:#62ce08;}
+.subwray_promise_wrapper .hd h2 span{font-size:28px; display:inline-block; vertical-align:top;}
+.subwray_promise_wrapper .hd p{color:#292929; font-size:18px; margin-top:18px;}
+.subwray_promise_wrapper .subwray_promise_content li{padding-bottom:70px; position:relative;}
+.subwray_promise_wrapper .subwray_promise_content li:after{content:''; position:absolute; left:0; width:100%; bottom:0; height:130px;}
+.subwray_promise_wrapper .subwray_promise_content li .wrap{width:1170px; margin:0 auto; padding:60px 0 0; position:relative; overflow:hidden; z-index:3;}
+.subwray_promise_wrapper .subwray_promise_content li .info{position:absolute; top:141px}
+.subwray_promise_wrapper .subwray_promise_content li .info .tit .num{color:#fff; font-family:font_sw; font-weight:bold; font-size:18px; display:block; width:50px; height:50px; padding-top:20px; box-sizing:border-box; position:absolute; left:0; top:-21px; background-color:#009223; text-align:center;}
+.subwray_promise_wrapper .subwray_promise_content li .info .tit .num:after{content:''; width:22px; height:3px; position:absolute; left:50%; margin-left:-11px; top:12px; background-color:#ffce32}
+.subwray_promise_wrapper .subwray_promise_content li .info .tit strong{color:#292929; font-size:28px; font-weight:bold; letter-spacing:-0.04em; text-align:left; display: block; padding-left:69px;}
+.subwray_promise_wrapper .subwray_promise_content li .info p{color:#292929; font-size:16px; line-height:26px; letter-spacing:-0.04em; margin-top:28px;}
+.subwray_promise_wrapper .subwray_promise_content li .eng{color:#fff; font-size:80px; font-family:font_sw; font-weight:bold; position:absolute; bottom:52px; letter-spacing:-0.035em}
+
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(odd){background-color:#f6f6f6}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(odd) .info{left:670px;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(odd) .eng{color:#fff; left:600px;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(odd):after{background-color:#fff;}
+
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(even){background-color:#fff;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(even) .img{float:right;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(even) .info{left:0px;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(even) .eng{color:#f6f6f6; text-align:right; right:600px;}
+.subwray_promise_wrapper .subwray_promise_content li:nth-child(even):after{background-color:#f6f6f6;}

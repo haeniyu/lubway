@@ -29,8 +29,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="main.mdo">
 				<div class="sidebar-brand-icon">
 					<img class="img-profile rounded-circle" src="${path}/resources/images/logo.png">
@@ -78,8 +77,8 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Store:</h6>
-						<a class="collapse-item" href="#">매장 관리</a> <a
-							class="collapse-item" href="#">매장 계정 등록</a>
+						<a class="collapse-item" href="/lubway/getstorelist.mdo">매장 관리</a> 
+						<a class="collapse-item" href="/lubway/insertstore.mdo">매장 계정 등록</a>
 					</div>
 				</div></li>
 
