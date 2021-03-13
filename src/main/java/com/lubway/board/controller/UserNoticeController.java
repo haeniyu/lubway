@@ -1,6 +1,8 @@
 package com.lubway.board.controller;
-
+/*
 import java.util.List;
+
+import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,19 +16,20 @@ import com.lubway.board.UserNoticeVO;
 import com.lubway.board.impl.UserNoticeService;
 
 @Controller
+@Resource(name="UserNoticeService")
 public class UserNoticeController {
 
 	@Autowired
 	private UserNoticeService userNoticeService;
 
-	@RequestMapping("/noticein.do")
+	@RequestMapping("/noticein.bdo")
 	public String noticein(UserNoticeVO vo, Model model) {
 		model.addAttribute("userNotice", userNoticeService.noticein(vo));
 		System.out.println("공지 상세정보로 이동");
 		return "noticein";
 	}
 
-	@RequestMapping("/notice.do") 
+	@RequestMapping("/notice.bdo") 
 	public String notice(UserNoticeVO vo, Model model, 
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) { 
@@ -62,3 +65,5 @@ public class UserNoticeController {
 	}
 
 }
+*/
+
