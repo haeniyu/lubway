@@ -18,4 +18,11 @@ public interface UserService {
 
 	void updatePwd(UserVO vo);
 	
+=======
+	UserVO getUser(UserVO vo);
+	
+	String getId(String tel);
+
+	void deleteUser(UserVO vo);
+>>>>>>> feature/subpage
 }

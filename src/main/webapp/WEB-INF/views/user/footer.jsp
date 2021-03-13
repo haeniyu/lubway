@@ -7,24 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div class="quick_menu">
-		<ul>
-			<li class="qm01"><a href="/franchise">
-					<div class="icon"></div> <strong>프랜차이즈</strong> <span>개설절차/투자비용
-						정보</span>
-			</a></li>
-			<li class="qm02"><a href="/franchiseBranchGuide">
-					<div class="icon"></div> <strong>지사안내</strong> <span>수도권/지방
-						지사정보</span>
-			</a></li>
-			<li class="qm03"><a href="/tvCommercial">
-					<div class="icon"></div> <strong>광고영상</strong> <span>TV광고/동영상</span>
-			</a></li>
-			<li class="qm04"><a href="/qna">
-					<div class="icon"></div> <strong>1:1 문의</strong> <span>개선/문의사항</span>
-			</a></li>
-		</ul>
-	</div>
+
 
 	<!-- footer -->
 	<div id="footer">
