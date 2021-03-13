@@ -90,7 +90,6 @@ em {
 	margin: 0
 }
 
-<<<<<<< HEAD
 #header .top-menu {
 	position: absolute;
 	right: 20px;
@@ -113,13 +112,6 @@ em {
 }
 
 /* --- content --- */
-#content {
-	overflow: hidden;
-	position: relative;
-	z-index: 3;
-	margin-top: 46px;
-=======
-/* --- content --- */
 #content{overflow:hidden; position:relative; z-index:3; margin-top:46px;}
 #content h2.subTitle_02 {
     text-align: center;
@@ -128,7 +120,6 @@ em {
     font-weight: bold;
     letter-spacing: -0.05em;
     padding: 73px 0 50px;
->>>>>>> feature/myway
 }
 
 /* --- form - text --- */

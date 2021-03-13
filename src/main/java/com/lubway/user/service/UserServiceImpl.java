@@ -44,13 +44,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void updatePwd(UserVO vo) {
 		dao.updatePwd(vo);
-=======
-		return dao.getId(tel);	
-	}
-	
-	public void deleteUser(UserVO vo) {
-		dao.deleteUser(vo);	
->>>>>>> feature/subpage
 	}
 
 }

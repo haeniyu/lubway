@@ -29,8 +29,7 @@
 			id="accordionSidebar">
 
 			<!-- Sidebar - Brand -->
-			<a
-				class="sidebar-brand d-flex align-items-center justify-content-center"
+			<a class="sidebar-brand d-flex align-items-center justify-content-center"
 				href="main.mdo">
 				<div class="sidebar-brand-icon">
 					<img class="img-profile rounded-circle" src="${path}/resources/images/logo.png">
