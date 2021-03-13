@@ -17,7 +17,5 @@ public class NoticeVO {
 	private boolean fix;
 	private String searchCondition;
 	private String searchKeyword;
-//	private MultipartFile uploadImg;
 	private String filePath;
-	//private MultipartFile upload_originimg;
 }

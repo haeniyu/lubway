@@ -93,6 +93,9 @@ ul {
 							<div class="index">
 								<div class="index_con">내용</div>
 							</div>
+							<a>
+								<img src="${notice.filePath}">
+							</a>
 							<div class="index_text">
 								<textarea name="content" rows="15" style="width: 100%">${notice.content}</textarea>
 							</div>

@@ -8,7 +8,7 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
-	체크 -> 체크 된걸 읽고 -> db에서 fix 를 true로 바꿔야 함
+//	체크 -> 체크 된걸 읽고 -> db에서 fix 를 true로 바꿔야 함
 	$(document).ready(function(){
 		$("#btn-icon-split").on("click",function(){
 			
@@ -94,7 +94,9 @@ ul {
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-								<input type="file" name="uploadImg" multiple />
+								<!-- 
+								<input type="file" name="file" multiple />
+								 -->
 							</div>
 						</li>
 						<!-- 내용 -->

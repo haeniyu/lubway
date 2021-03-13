@@ -9,7 +9,7 @@
 		<result property="content" column="CONTENT"/>
 		<result property="regDate" column="REGDATE"/>
 		<result property="fix" column="FIX"/>
-		
+		<result property="filePath" column="FILEPATH" />
 	</resultMap>
 	
 	<sql id="page" >
@@ -18,7 +18,7 @@
 	</sql>
 
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO NOTICE_BOARD(TITLE, CONTENT) VALUES(#{title},#{content})
+		INSERT INTO NOTICE_BOARD(TITLE, CONTENT, FILEPATH) VALUES(#{title},#{content},#{filePath})
 	</insert>
 	
 	<update id="updateNotice" parameterType="notice">
