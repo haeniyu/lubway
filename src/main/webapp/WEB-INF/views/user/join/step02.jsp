@@ -92,7 +92,7 @@
 			        document.body.appendChild(form);
 			        form.submit();
 					
-				} else if(false) {
+				} else if(false) {	
 					form.setAttribute("action", "/lubway/resultPwd.do");
 				} else {
 					$("#certForm").submit();

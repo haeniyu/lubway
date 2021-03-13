@@ -219,7 +219,7 @@ public class UserController {
 		UserVO vo = userService.getUser(user);
 		System.out.println(vo.toString());
 
-		String pwd = "";
+//		String pwd = "";
 
 		return "findpwd";
 	}

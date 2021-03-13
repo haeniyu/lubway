@@ -75,7 +75,7 @@
 				<div class="signin_link">
 					<ul>
 						<li><a href="findId.do" id="findIdBtn">아이디 찾기</a></li>
-						<li><a href="findPwd.do;" id="findPwBtn">비밀번호 찾기</a></li>
+						<li><a href="findPwd.do" id="findPwBtn">비밀번호 찾기</a></li>
 						<li><a href="step01.do">회원가입</a></li>
 					</ul>
 				</div>

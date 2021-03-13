@@ -303,7 +303,7 @@ $(document).ready(function() {
 												<span class="form_text" style="width: 155px">
 													<input class="required-value" id="mbrLgnId1" placeholder="이메일 아이디 입력" type="text" />
 												</span>
-												@ 
+												@
 												<span class="form_text" style="width: 155px">
 													<input class="required-value" id="mbrLgnId2" name="at" placeholder="이메일 도메인 입력" type="text" />
 												</span>
