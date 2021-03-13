@@ -92,8 +92,22 @@
 			        document.body.appendChild(form);
 			        form.submit();
 					
-				} else if(false) {	
+				} else if(findPwd != "null") {
+					
+					var tel = $("#phoneNum").val();
+					var form = document.createElement("form");
+			        form.setAttribute("method", "Post");
+			        
 					form.setAttribute("action", "/lubway/resultPwd.do");
+
+			        var hiddenField = document.createElement("input");
+			        hiddenField.setAttribute("type", "hidden");
+			        hiddenField.setAttribute("name", "tel");
+			        hiddenField.setAttribute("value", tel);
+
+			        form.appendChild(hiddenField);
+			        document.body.appendChild(form);
+					form.submit();
 				} else {
 					$("#certForm").submit();
 				}

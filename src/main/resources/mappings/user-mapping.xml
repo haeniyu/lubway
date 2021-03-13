@@ -5,8 +5,7 @@
 <mapper namespace="UserDAO">
 	
 	<select id="idCheck" parameterType="String" resultType="int">
-		SELECT count(id) FROM lubuser
-		WHERE id = #{id}
+		SELECT count(id) FROM lubuser WHERE id = #{id}
 	</select>
 	
 	<insert id="insertUser" parameterType="user">
@@ -18,8 +17,12 @@
 		UPDATE lubuser SET password=#{password}, sms_usable=#{sms_usable}, email_usable=#{email_usable}
 		WHERE id = #{id}
 	</update>
+	
+	<update id="updatePwd" parameterType="user">
+		UPDATE lubuser SET password=#{password} WHERE id=#{id}
+	</update>
 
-	<select id="getUser" parameterType="user" resultType="user">
+	<select id="getUser" parameterType="String" resultType="user">
 		SELECT * FROM lubuser WHERE id = #{id}
 	</select>
 	

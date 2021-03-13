@@ -19,9 +19,9 @@ public class UserDAO {
 		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
 	}
 	
-	public UserVO getUser(UserVO vo) {
+	public UserVO getUser(String id) {
 		System.out.println("UserDAO - getUser() 실행");
-		return sqlSessionTemplate.selectOne("UserDAO.getUser", vo);
+		return sqlSessionTemplate.selectOne("UserDAO.getUser", id);
 	}
 	
 	public String getId(String tel) {
@@ -37,5 +37,10 @@ public class UserDAO {
 	public void deleteUser(UserVO vo) {
 		System.out.println("UserDAO - deleteUser() 실행");
 		sqlSessionTemplate.delete("UserDAO.deleteUser", vo);
+	}
+	
+	public void updatePwd(UserVO vo) {
+		System.out.println("UserDAO - updatePwd() 실행");
+		sqlSessionTemplate.update("UserDAO.updatePwd", vo);
 	}
 }

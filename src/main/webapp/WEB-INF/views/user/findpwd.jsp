@@ -22,7 +22,7 @@
 				<div class="find_box">
 					<div class="result_info suc">
 						<p>
-							가입하신 <span>이메일주소(으)로</span><br />
+							가입하신 <span>${getId} (으)로</span><br />
 							<br />비밀번호 재설정에 필요한 메일이 발송되었습니다.
 						</p>
 						

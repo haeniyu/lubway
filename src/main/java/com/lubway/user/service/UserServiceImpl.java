@@ -28,8 +28,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO getUser(UserVO vo) {
-		return dao.getUser(vo);
+	public UserVO getUser(String id) {
+		return dao.getUser(id);
 	}
 
 	@Override
@@ -39,6 +39,11 @@ public class UserServiceImpl implements UserService {
 		
 	public void deleteUser(UserVO vo) {
 		dao.deleteUser(vo);	
+	}
+
+	@Override
+	public void updatePwd(UserVO vo) {
+		dao.updatePwd(vo);
 	}
 
 }

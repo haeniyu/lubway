@@ -52,14 +52,13 @@ public class UserController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 
-		UserVO user = new UserVO();
-		user.setId(id);
-
 		int i = userService.idCheck(id);
+		
 		UserVO getUser = null;
 		boolean check = false;
+
 		if(i>0) {
-			getUser = userService.getUser(user);
+			getUser = userService.getUser(id);
 			System.out.println(getUser.toString());
 			
 			check = passEncoder.matches(password, getUser.getPassword());
@@ -182,45 +181,32 @@ public class UserController {
 		System.out.println("회원가입 완료 화면으로 이동");
 		session.removeAttribute("sms");
 		session.removeAttribute("email");
+		sendJoinMail(vo);
 
-		String mailTo = vo.getId();
-		MimeMessagePreparator preparator = new MimeMessagePreparator() {
-
-			String content = "<p><b><span style=\"font-size: 24pt;  color: #009223;\">환영합니다!</span></b></p><p><b><span style=\"font-size: 24pt;  color: #009223;\">"+ vo.getName() + "님</span></b></p><p><br></p><p>안녕하세요!</p><p>러브웨이 멤버십에 가입해 주셔서 감사합니다.</p>";	
-
-			@Override
-			public void prepare(MimeMessage mimeMessage) throws Exception {
-				mimeMessage.setFrom(new InternetAddress("lu6way@gmail.com","LUBWAY", "UTF-8")); // 보내는 사람
-				mimeMessage.setSubject("LUBWAY에 가입하신것을 환영합니다.", "UTF-8");
-				mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
-				mimeMessage.setContent(content, "text/html;charset=UTF-8");
-				mimeMessage.setReplyTo(InternetAddress.parse(mailTo));
-			}
-		};
-
-		try {
-			mailSender.send(preparator);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		return "join/step04";
 	}
 
 	/**
-	 * 비밀번호 찾기 화면 이동
+	 * 비밀번호 찾기 화면 이동 - 임의 비밀번호 값 사용자 이메일 전송 / 암호화 후 DB 업데이트
 	 */
 	@RequestMapping("/resultPwd.do")
-	public String resultPwd(@RequestParam("tel") String tel, HttpSession seesion) {
+	public String resultPwd(@RequestParam("tel") String tel, HttpSession seesion, Model model) {
 		System.out.println("비밀번호 찾기 화면으로 이동");
 
-		String id = userService.getId(tel);
-		UserVO user = new UserVO();
-		user.setId(id);
-		UserVO vo = userService.getUser(user);
-		System.out.println(vo.toString());
-
-//		String pwd = "";
-
+		String id = userService.getId(tel);		
+		UserVO vo = userService.getUser(id);
+		
+		String pwd = getTempPassword(8);
+		vo.setPassword(pwd);
+		sendPwdMail(vo);
+		
+		pwd = passEncoder.encode(pwd);
+		vo.setPassword(pwd);
+		
+		userService.updatePwd(vo);
+		
+		model.addAttribute("getId",id);
+		
 		return "findpwd";
 	}
 
@@ -276,5 +262,74 @@ public class UserController {
 		System.out.println("공지 상세정보로 이동");
 		return "noticein";
 	}
+	
+	/**
+	 *  임시 비밀번호 생성 기능
+	 */
+	public String getTempPassword(int length) {
+	    int index = 0;
+	    char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+	    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
+	    'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+	    'w', 'x', 'y', 'z' };
+	 
+	    StringBuffer sb = new StringBuffer();
+	 
+	    for (int i = 0; i < length; i++) {
+	        index = (int) (charArr.length * Math.random());
+	        sb.append(charArr[index]);
+	    }
+	    return sb.toString();
+	}
+	
+	/**
+	 *  회원가입 메일 발송 기능
+	 */
+	public void sendJoinMail(UserVO vo) {
+		String mailTo = vo.getId();
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
 
+			String content = "<p><b><span style=\"font-size: 24pt;  color: #009223;\">환영합니다!</span></b></p><p><b><span style=\"font-size: 24pt;  color: #009223;\">"+ vo.getName() + "님</span></b></p><p><br></p><p>안녕하세요!</p><p>러브웨이 멤버십에 가입해 주셔서 감사합니다.</p>";	
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setFrom(new InternetAddress("lu6way@gmail.com","LUBWAY", "UTF-8")); // 보내는 사람
+				mimeMessage.setSubject("LUBWAY에 가입하신것을 환영합니다.", "UTF-8");
+				mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+				mimeMessage.setContent(content, "text/html;charset=UTF-8");
+				mimeMessage.setReplyTo(InternetAddress.parse(mailTo));
+			}
+		};
+		try {
+			mailSender.send(preparator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 *  비밀번호 찾기 메일 발송 기능
+	 */
+	public void sendPwdMail(UserVO vo) {
+		String mailTo = vo.getId();
+		MimeMessagePreparator preparator = new MimeMessagePreparator() {
+
+			String content = "<p>임시 설정된 비밀번호 입니다.</p><p>로그인 후 비밀번호를 재설정 해주시길 바랍니다.</p><br>"
+					+ "<p><b><span style=\"font-size: 24pt;  color: #009223;\">" + vo.getPassword() + "</span></b></p><p><br></p>";	
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setFrom(new InternetAddress("lu6way@gmail.com","LUBWAY", "UTF-8")); // 보내는 사람
+				mimeMessage.setSubject("LUBWAY " + vo.getName() + "님 계정의 임시 비밀번호입니다.", "UTF-8");
+				mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailTo));
+				mimeMessage.setContent(content, "text/html;charset=UTF-8");
+				mimeMessage.setReplyTo(InternetAddress.parse(mailTo));
+			}
+		};
+		try {
+			mailSender.send(preparator);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
