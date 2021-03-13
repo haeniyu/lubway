@@ -17,7 +17,7 @@
    <!-- sub content s -->
    <div id="content">
       <div class="membership">
-         <h2 class="subTitle">러브웨이 사용방법</h2>
+         <h2 class="subTitle">러브웨이 이용방법</h2>
          <div class="tab02">
             <ul>
                <li class="active" id="mypoint">매장에서 주문하기</li>
