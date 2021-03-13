@@ -20,12 +20,14 @@ import org.springframework.web.multipart.MultipartFile;
 import com.lubway.board.NoticeVO;
 import com.lubway.board.Pagination;
 import com.lubway.board.impl.NoticeService;
+import com.lubway.user.controller.AwsS3;
 
 @Controller
 //@SessionAttributes("board")
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	public AwsS3 awss3 = AwsS3.getInstance();
 
 	// 검색 조건 목록 설정
 	@ModelAttribute("conditionMap")
@@ -45,19 +47,8 @@ public class NoticeController {
 	// 글 등록 기능
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo) throws IOException, PSQLException {
-
-		// System.out.println(vo.toString());
-		// System.out.println(uploadImg);
-
-//		MultipartFile uploadFile = vo.getUploadImg();
-//		if(!uploadFile.isEmpty()) {
-//			String fileName = uploadFile.getOriginalFilename();
-//			uploadFile.transferTo(new File("D:/upload/" + fileName));
-//			
-//			File file = new File(fileName);
-//			String path = file.getAbsolutePath();
-//			System.out.println("파일 경로 : " + path);
-//		}
+		
+		
 
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");

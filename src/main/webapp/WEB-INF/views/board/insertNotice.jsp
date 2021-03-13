@@ -95,34 +95,7 @@ ul {
 							<div>
 								<div class="index">이미지</div>
 								<input type="file" name="uploadImg" multiple />
-								<button id="uploadBtn" class="btn btn-warning btn-icon-split" style="padding: 5px">Upload</button>
 							</div>
-							<script>
-								$(document).ready(function(){
-									$("uploadBtn").on("click", function(e){
-										var formData = new FormData();
-										var inputFile = $("input[name='uploadFile']");
-										var files = inputFiles[0].files;
-										
-										console.log(files);
-										
-										for(var i=0; i<files.length; i++){
-											formData.apoend("uploadFile", files[i]);
-										}
-										
-										$.ajax({
-											url: '/uploadAjaxAction',
-											processData: false,
-											contentType: false,
-											data: formData,
-											type: 'POST'
-											success: function(result){
-												alert("Uploaded");
-											}
-										});
-									});
-								});
-							</script>
 						</li>
 						<!-- 내용 -->
 						<li class="contents">
