@@ -10,6 +10,8 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,17 +51,31 @@ public class NoticeController {
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo, @RequestParam(required = false, value = "file") File file) throws IOException, PSQLException {
 		
-		File fileTest = new File("C:\\Users\\YOON HYUNA\\Desktop\\lubway image\\lubway.png");
-		String key = vo.getTitle() + ".png";
+		// UUID 이용해서 중복된 파일명 없애기
+		String fileName = file.getName(); // 파일 이름 가져오기
+		int Idx = fileName .lastIndexOf(".");  // 인덱스값 지정
+		String saveName = fileName.substring(0, Idx); // 파일 이름만 가져오기
+		String ext = fileName.substring(Idx + 1); // 확장자 구하기
+		String key = "";
 		
-		awss3.upload(fileTest, key);
+		//File fileTest = new File("C:\\Users\\YOON HYUNA\\Desktop\\lubway image\\lubway.png");
+		//String key = saveName + ".png";
 		
-		String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
-		vo.setFilePath(filePath);
-		System.out.println("파일 경로 : " + filePath);
 		
-		noticeService.insertNotice(vo);
-		System.out.println("db등록됨");
+		if(!file.equals("")) {
+			key = saveName + "." + ext;
+			awss3.upload(file, key);
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
+			vo.setFilePath(filePath);
+			System.out.println("파일 경로 : " + filePath);
+			noticeService.insertNotice(vo);
+			System.out.println("db등록됨");
+		}else {
+			vo.setFilePath(null);
+			noticeService.insertNotice(vo);
+			System.out.println("db등록됨");
+		}
+		
 
 		return "redirect:/getNoticeList.bdo";
 	}

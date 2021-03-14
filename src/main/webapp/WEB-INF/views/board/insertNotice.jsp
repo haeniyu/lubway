@@ -94,9 +94,7 @@ ul {
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-								<!-- 
 								<input type="file" name="file" multiple />
-								 -->
 							</div>
 						</li>
 						<!-- 내용 -->
