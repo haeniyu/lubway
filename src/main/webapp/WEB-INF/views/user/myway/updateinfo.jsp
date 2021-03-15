@@ -11,6 +11,20 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	//체크박스 표시 유지
+	$("input[name='sms_usable']").each(function(){
+        var check = ${user.sms_usable};
+        if( check == true ){
+           $(this).attr("checked", true );
+        }
+     }); 
+	
+	$("input[name='email_usable']").each(function(){
+        var check = ${user.email_usable};
+        if( check == true ){
+           $(this).attr("checked", true );
+        }
+     }); 
 	//비밀번호 유효성 검사
 	$("#pw").on("keyup", function() {
 		var check_pass = true;
