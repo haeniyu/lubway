@@ -7,25 +7,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lubway.admin.service.AdminService;
+import com.lubway.admin.service.ManageService;
+import com.lubway.user.UserVO;
+import com.lubway.user.service.UserService;
 
 @Controller
 public class ManageUserController {
 	
 	@Autowired
-	AdminService adminService;
+	ManageService manageService;
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/getuserlist.mdo")
 	public String getUserList(Model model) {
 		System.out.println("관리자 - 회원 관리 페이지로 이동");
-		model.addAttribute("list", adminService.getUserList());
+		model.addAttribute("list", manageService.getUserList());
 		return "manage/customer/getUserList";
 	}
 	
-	@PostMapping("/deleteuser.mdo")
-	public String deleteUser(@RequestParam("id") String id) {
-		System.out.println("ManageUserController - deleteUser() 실행");
-		adminService.deleteUser(id);
+	@PostMapping("/blockuser.mdo")
+	public String blockUser(@RequestParam("id") String id) {
+		System.out.println("ManageUserController - blockUser() 실행");
+		UserVO vo = userService.getUser(id);
+		vo.setStatus(1);	//계정 정지
+		manageService.updateStatus(vo);
+		return "redirect:/getuserlist.mdo";
+	}
+	
+	@PostMapping("/activateuser.mdo")
+	public String activateUser(@RequestParam("id") String id) {
+		System.out.println("ManageUserController - activateUser() 실행");
+		UserVO vo = userService.getUser(id);
+		vo.setStatus(0);	//계정 활성화
+		manageService.updateStatus(vo);
 		return "redirect:/getuserlist.mdo";
 	}
 }

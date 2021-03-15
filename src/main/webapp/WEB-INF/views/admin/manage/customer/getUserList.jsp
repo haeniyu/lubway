@@ -11,15 +11,15 @@
 <script type="text/javascript">
 
 	function deleteRow(r) {
-		var flag = confirm("해당 계정을 탈퇴 처리 하시겠습니까?");
+		var flag = confirm("해당 계정을 정지 처리 하시겠습니까?");
 		if (flag) {
-			alert("해당 계정을 삭제했습니다.");
+			alert("해당 계정을 정지했습니다.");
 			var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
 			var id = document.getElementById("userTable").rows[i].cells[0].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
 			
 			var form = document.createElement("form");
 			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/lubway/deleteuser.mdo");
+			form.setAttribute("action", "/lubway/blockuser.mdo");
 			
 			var idField = document.createElement("input");
 			idField.setAttribute("type", "hidden");
@@ -29,8 +29,30 @@
 			form.appendChild(idField);
 			document.body.appendChild(form);
 			form.submit();	// 컨트롤러로 아이디값 전송
+
+		}
+	}
+	
+	function activateRow(r) {
+		var flag = confirm("해당 계정을 활성화 하시겠습니까?");
+		if (flag) {
+			alert("해당 계정을 활성화했습니다.");
+			var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
+			var id = document.getElementById("userTable").rows[i].cells[0].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
 			
-			document.getElementById("userTable").deleteRow(i);	//화면에서 해당열 삭제
+			var form = document.createElement("form");
+			form.setAttribute("method", "Post");
+			form.setAttribute("action", "/lubway/activateuser.mdo");
+			
+			var idField = document.createElement("input");
+			idField.setAttribute("type", "hidden");
+			idField.setAttribute("name", "id");
+			idField.setAttribute("value", id);
+			
+			form.appendChild(idField);
+			document.body.appendChild(form);
+			form.submit();	// 컨트롤러로 아이디값 전송
+
 		}
 	}
 </script>
@@ -60,7 +82,8 @@
 								<th>휴대전화</th>
 								<th>SMS 수신</th>
 								<th>Email 수신</th>
-								<th>삭제</th>
+								<th>계정 상태</th>
+								<th>계정 상태 변경</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -72,12 +95,25 @@
 								<td>${user.sms_usable }</td>
 								<td>${user.email_usable }</td>
 								<td>
+									<c:if test="${user.status eq 0}">정상</c:if>
+									<c:if test="${user.status eq 1}">정지</c:if>
+								</td>
+								<td>
+									<c:if test="${user.status eq 0}">
 									<a href="javascript:void(0);"
 										class="btn btn-danger btn-icon-split btn-sm" onclick="deleteRow(this)" >
 											<span class="icon text-white-50"> <i class="fas fa-trash"></i>
-										</span> <span class="text">삭제</span>
+										</span> <span class="text">정지</span>
 									</a>
-									</td>
+									</c:if>
+									<c:if test="${user.status eq 1}">
+									<a href="javascript:void(0);"
+										class="btn btn-success btn-icon-split btn-sm" onclick="activateRow(this)" >
+											<span class="icon text-white-50"> <i class="fas fa-info"></i>
+										</span> <span class="text">활성화</span>
+									</a>
+									</c:if>
+								</td>
 							</tr>
 						</c:forEach>
 						</tbody>
