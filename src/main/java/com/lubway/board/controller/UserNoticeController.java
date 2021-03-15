@@ -21,14 +21,8 @@ public class UserNoticeController {
 	@Autowired
 	private NoticeService userNoticeService;
 
-	@RequestMapping("/getNotice.do")
-	public String noticein(NoticeVO vo, Model model) {
-		model.addAttribute("userNotice", userNoticeService.getNotice(vo));
-		System.out.println("공지 상세정보로 이동");
-		return "getNotice";
-	}
 
-	@RequestMapping("/getNoticeList.do") 
+	@RequestMapping("/getUserNoticeList.do") 
 	public String notice(NoticeVO vo, Model model, 
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) { 
@@ -54,13 +48,13 @@ public class UserNoticeController {
 		
 		System.out.println("공지사항 으로 이동"); 
 		
-		return "getNoticeList";
+		return "getUserNoticeList";
 	 }
 	
 	@RequestMapping(value = "/cnt.do", method = RequestMethod.GET)
 	public String getPageListCnt() {
 		System.out.println(userNoticeService.getPageListCnt());
-		return "getNoticeList";
+		return "getUserNoticeList";
 	}
 
 }

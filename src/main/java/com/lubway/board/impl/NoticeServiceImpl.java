@@ -60,9 +60,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getSearchPagingList(pagination);
 		
 	}
-
 	
-	
+	// 사용자 공지사항
+	@Override
+	public NoticeVO getUserNotice(NoticeVO vo) {
+		return noticeDAO.getUserNotice(vo);
+	}
 
+	@Override
+	public List<NoticeVO> getUserNoticeList(NoticeVO vo) {
+		return noticeDAO.getNoticeList(vo);
+	}
 
 }

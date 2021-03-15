@@ -11,11 +11,10 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class NoticeDAO {
 
-	
-
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-
+	
+	// 관리자 공지사항
 	public void insertNotice(NoticeVO vo) {
 		System.out.println("마이바티스로 insertNotice() 기능 처리");
 		sqlSessionTemplate.insert("NoticeDAO.insertNotice", vo);
@@ -58,8 +57,19 @@ public class NoticeDAO {
 	public List<NoticeVO> getSearchPagingList(Pagination pagination){
 		return sqlSessionTemplate.selectList("NoticeDAO.searchPagingList", pagination);
 	}
-
-
+	
+	// 사용자 공지사항
+	public NoticeVO getUserNotice(NoticeVO vo) {
+		System.out.println("getUserNotice() 기능 처리");
+		NoticeVO userNotice = sqlSessionTemplate.selectOne("NoticeDAO.getUserNotice", vo);
+		System.out.println(userNotice.toString());
+		return userNotice;
+	}
+	
+	public List<NoticeVO> getUserNoticeList(NoticeVO vo){
+		System.out.println("getUserNoticeList() 기능처리");
+		return sqlSessionTemplate.selectList("NoticeDAO.getUserNoticeList", vo);
+	}
 
 
 }

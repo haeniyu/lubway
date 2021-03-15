@@ -13,10 +13,10 @@
 	</resultMap>
 
 	<sql id="page">
-
 		select * from notice_board limit #{listSize} offset #{startList}
 	</sql>
-
+	
+	<!-- 관리자 공지사항 글 등록, 수정, 삭제, 상세보기, 목록보기, 페이징 처리 -->
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO
 		NOTICE_BOARD(TITLE, CONTENT, FILEPATH, FIX)
@@ -93,4 +93,18 @@
 		select count(*) from notice_board where TITLE LIKE
 		'%'||#{searchKeyword}||'%';
 	</select>
+	
+	<!-- 사용자 공지사항 목록조회, 상세조회 -->
+	<select id="getUserNotice" parameterType="notice"
+		resultType="notice">
+		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+	</select>
+	
+	<select id="getUserNoticeList" parameterType="notice"
+		resultType="notice">
+		SELECT * FROM NOTICE_BOARD
+		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY NO DESC
+	</select>
+	
 </mapper>

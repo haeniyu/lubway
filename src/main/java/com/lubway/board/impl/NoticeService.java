@@ -7,7 +7,7 @@ import com.lubway.board.Pagination;
 
 public interface NoticeService {
 
-	// CRUD 기능의 메소드 구현
+	// 관리자 CRUD 기능의 메소드 구현
 	// 글 등록
 	void insertNotice(NoticeVO vo);
 
@@ -34,5 +34,10 @@ public interface NoticeService {
 	
 	//검색한 글 페이징 리스트
 	List<NoticeVO> getSearchPagingList(Pagination pagination);
+	
+	// 사용자 공지사항 목록, 상세조회
+	NoticeVO getUserNotice(NoticeVO vo);
+	
+	List<NoticeVO> getUserNoticeList(NoticeVO vo);
 
 }
