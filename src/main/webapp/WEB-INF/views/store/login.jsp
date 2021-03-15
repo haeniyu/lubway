@@ -12,6 +12,20 @@
 
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css?ver=1" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.button.css" />
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#ui_login_btn").on("click", function(){
+			if($("#id").val().trim() == "" || $("#password").val().trim() == "") {
+				alert("아이디와 비밀번호를 확인해주세요.");
+				return;
+			} else {
+				console.log("로그인");
+				$("#login").submit();
+			}
+		});
+	});
+</script>
 </head>
 <body id="login_wrapper">
 	<div class="logo">
@@ -21,9 +35,9 @@
 
 	<div class="login_content">
 		<h3>LUBWAY 매장관리자 사이트 로그인</h3>
-		<form action="main.sdo">
+		<form action="main.sdo" method="post" id="login">
 			<div class="form-group">
-				<input type="text" class="form-text" placeholder="아이디" id="username" name="id" />
+				<input type="text" class="form-text" placeholder="아이디" id="id" name="id" />
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-text" placeholder="비밀번호" id="password" name="password" />

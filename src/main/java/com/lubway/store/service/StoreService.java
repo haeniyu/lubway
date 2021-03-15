@@ -1,5 +1,7 @@
 package com.lubway.store.service;
 
-public interface StoreService {
+import com.lubway.admin.StoreVO;
 
+public interface StoreService {
+	StoreVO getStore(StoreVO vo);
 }

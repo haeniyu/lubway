@@ -8,5 +8,12 @@
 		INSERT INTO lubstore (id, password, area, storename)
 		VALUES(#{id}, #{password}, #{area}, #{storename})
 	</insert>
+	
+	<select id="getStore" parameterType="store" resultType="store">
+		SELECT
+		password
+		FROM lubstore
+		WHERE id = #{id}
+	</select>
 
 </mapper>
