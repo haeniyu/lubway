@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
 <title>매장 등록</title>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
 	$('.timepicker').timepicker({
 	    timeFormat: 'HH:mm',
 	    interval: 30,
@@ -20,28 +21,71 @@ $(document).ready(function(){
 	    scrollbar: true
 	});
 	
-	$("#saveBtn").on("click",function(){
+	function setTime() {
 		var open = $("#open").val();
 		var close = $("#close").val();
-		
+
 		var openField = document.createElement("input");
 		openField.setAttribute("type", "hidden");
 		openField.setAttribute("name", "openTime");
-	    openField.setAttribute("value", open);
-	    
+		openField.setAttribute("value", open);
+
 		var closeField = document.createElement("input");
 		closeField.setAttribute("type", "hidden");
 		closeField.setAttribute("name", "closeTime");
-	    closeField.setAttribute("value", close);
-	    
-	    document.form.appendChild(openField);
-	    document.form.appendChild(closeField);
-	    document.form.submit();
-	    
+		closeField.setAttribute("value", close);
+
+		document.form.appendChild(openField);
+		document.form.appendChild(closeField);
+		document.form.submit();
+	}
+
+	$("#saveBtn").on("click", function() {
+		if ($("#area").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#area").focus();
+			return;
+		} else if ($("#store_tel").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#store_tel").focus();
+			return;
+		} else if ($("#code").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#code").focus();
+			return;
+		} else if ($("#id").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#id").focus();
+			return;
+		} else if ($("#password").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#password").focus();
+			return;
+		} else if ($("#storename").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#storename").focus();
+			return;
+		} else if ($("#close").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#close").focus();
+			return;
+		} else if ($("#open").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#open").focus();
+			return;
+		} else if ($("#parking").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#parking").focus();
+			return;
+		} else if ($("#postcode").val().trim() == '') {
+			alert("모든 정보를 기입해주세요.");
+			$("#postcode").focus();
+			return;
+		}
+		setTime();
 	});
 	
 });
-
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -117,8 +161,7 @@ $(document).ready(function(){
 					<div class="mb-3">
 						<label for="area">지역구</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="area"
-								id="area" required>
+							<input type="text" class="form-control" name="area" id="area" required>
 						</div>
 					</div>
 					<div class="mb-3">

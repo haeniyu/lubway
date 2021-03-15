@@ -15,7 +15,7 @@ function shutdown(r) {
 	if (flag) {
 		alert("해당 매장을 폐점 처리 했습니다.");
 		var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
-		var storename = document.getElementById("storeTable").rows[i].cells[1].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
+		var storename = document.getElementById("storeTable").rows[i].cells[1].innerHTML;	//해당 로우넘버의 매장명이 있는 칼럼 값 저장
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "Post");
@@ -28,7 +28,7 @@ function shutdown(r) {
 		
 		form.appendChild(storenameField);
 		document.body.appendChild(form);
-		form.submit();	// 컨트롤러로 아이디값 전송
+		form.submit();
 	}
 }
 
@@ -36,12 +36,11 @@ function update(r) {
 		alert("해당 매장 계정 비밀번호를 수정하였습니다.");
 		var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
 		var storename = document.getElementById("storeTable").rows[i].cells[1].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
-		var password = document.getElementById("storeTable").rows[i].cells[3].innerHTML;
-		console.log(password);
+		var password = document.getElementById("storeTable").rows[i].cells[3].childNodes[0].value;
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", "/lubway/updatestorepwd.mdo");
+		form.setAttribute("action", "/lubway/updatestore.mdo");
 		
 		var storenameField = document.createElement("input");
 		storenameField.setAttribute("type", "hidden");
@@ -68,12 +67,12 @@ function update(r) {
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">점포 관리</h1>
+		<h1 class="h3 mb-2 text-gray-800">매장 관리</h1>
 
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-primary">점포 목록</h6>
+				<h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -94,7 +93,7 @@ function update(r) {
 								<td>${store.area}</td>
 								<td>${store.storename }</td>
 								<td>${store.id }</td>
-								<td><input type="text" name="password" value="${store.password }"></td>
+								<td><input type="text" name="password" value="${store.password }" required></td>
 								<td>
 									<c:if test="${store.status eq 0 }">운영중</c:if>
 									<c:if test="${store.status eq 1 }">폐점</c:if>
@@ -104,11 +103,13 @@ function update(r) {
 											<span class="icon text-white-50"> <i class="fas fa-check"></i>
 										</span> <span class="text">수정</span>
 									</a>
+									<c:if test="${store.status eq 0 }">
 									<a href="javascript:void(0);"
 										class="btn btn-danger btn-icon-split btn-sm" onclick="shutdown(this)" >
 											<span class="icon text-white-50"> <i class="fas fa-trash"></i>
 										</span> <span class="text">폐점</span>
 									</a>
+									</c:if>
 								</td>
 							</tr>
 						</c:forEach>

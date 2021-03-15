@@ -21,7 +21,7 @@
 	</select>
 	
 	<update id="updateStore" parameterType="store">
-		UPDATE lubstore SET password=#{password} WHERE storename=#{storename}
+		UPDATE lubstore SET password=#{password}, status=#{status} WHERE storename=#{storename}
 	</update>
 
 </mapper>
