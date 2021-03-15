@@ -14,4 +14,9 @@ public class StoreDAO {
 		System.out.println("StoreDAO - getSore() 실행");
 		return sqlSessionTemplate.selectOne("StoreDAO.getStore", vo);
 	}
+	
+	public StoreVO getStoreByStorename(String storename) {
+		System.out.println("StoreDAO - getStoreByStorename() 실행");
+		return sqlSessionTemplate.selectOne("StoreDAO.getStoreByStorename", storename);
+	}
 }

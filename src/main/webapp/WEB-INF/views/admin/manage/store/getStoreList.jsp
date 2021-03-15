@@ -10,29 +10,55 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 
-	function deleteRow(r) {
-		var flag = confirm("해당 계정을 탈퇴 처리 하시겠습니까?");
-		if (flag) {
-			alert("해당 계정을 삭제했습니다.");
-			var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
-			var id = document.getElementById("userTable").rows[i].cells[0].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
-			
-			var form = document.createElement("form");
-			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/lubway/deleteuser.mdo");
-			
-			var idField = document.createElement("input");
-			idField.setAttribute("type", "hidden");
-			idField.setAttribute("name", "id");
-			idField.setAttribute("value", id);
-			
-			form.appendChild(idField);
-			document.body.appendChild(form);
-			form.submit();	// 컨트롤러로 아이디값 전송
-			
-			document.getElementById("userTable").deleteRow(i);	//화면에서 해당열 삭제
-		}
+function shutdown(r) {
+	var flag = confirm("해당 매장을 폐점 처리 하시겠습니까?");
+	if (flag) {
+		alert("해당 매장을 폐점 처리 했습니다.");
+		var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
+		var storename = document.getElementById("storeTable").rows[i].cells[1].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "/lubway/shutdown.mdo");
+		
+		var storenameField = document.createElement("input");
+		storenameField.setAttribute("type", "hidden");
+		storenameField.setAttribute("name", "storename");
+		storenameField.setAttribute("value", storename);
+		
+		form.appendChild(storenameField);
+		document.body.appendChild(form);
+		form.submit();	// 컨트롤러로 아이디값 전송
 	}
+}
+
+function update(r) {
+		alert("해당 매장 계정 비밀번호를 수정하였습니다.");
+		var i = r.parentNode.parentNode.rowIndex;	//버튼이 눌러진 테이블의 로우넘버 저장
+		var storename = document.getElementById("storeTable").rows[i].cells[1].innerHTML;	//해당 로우넘버의 아이디가 있는 칼럼 값 저장
+		var password = document.getElementById("storeTable").rows[i].cells[3].innerHTML;
+		console.log(password);
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "Post");
+		form.setAttribute("action", "/lubway/updatestorepwd.mdo");
+		
+		var storenameField = document.createElement("input");
+		storenameField.setAttribute("type", "hidden");
+		storenameField.setAttribute("name", "storename");
+		storenameField.setAttribute("value", storename);
+		
+		var passwordField = document.createElement("input");
+		passwordField.setAttribute("type", "hidden");
+		passwordField.setAttribute("name", "password");
+		passwordField.setAttribute("value", password);
+		
+		form.appendChild(storenameField);
+		form.appendChild(passwordField);
+		document.body.appendChild(form);
+		form.submit();
+	}
+
 </script>
 </head>
 <body id="page-top">
@@ -51,42 +77,42 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<table class="table table-bordered" id="userTable" width="100%"
-						cellspacing="0">
+					<table class="table table-bordered" id="storeTable" width="100%" cellspacing="0">
 						<thead>
 							<tr>
 								<th>지역구</th>
 								<th>매장명</th>
 								<th>매장 계정</th>
 								<th>비밀번호</th>
-								<th>계정정보</th>
-								<th>상태</th>
+								<th>매장 상태</th>
+								<th>매장 정보 수정</th>
 							</tr>
 						</thead>
 						<tbody>
-						<!--<c:forEach var="store" items="${list }" varStatus="num"> -->
+						<c:forEach var="store" items="${list }" varStatus="num">
 							<tr>
-								<td>매장</td>
-								<td>매장</td>
-								<td>매장</td>
-								<td>매장</td>
+								<td>${store.area}</td>
+								<td>${store.storename }</td>
+								<td>${store.id }</td>
+								<td><input type="text" name="password" value="${store.password }"></td>
+								<td>
+									<c:if test="${store.status eq 0 }">운영중</c:if>
+									<c:if test="${store.status eq 1 }">폐점</c:if>
+								</td>
 								<td><a href="javascript:void(0);"
-										class="btn btn-danger btn-icon-split btn-sm" onclick="#" >
-											<span class="icon text-white-50"> <i class="fas fa-trash"></i>
+										class="btn btn-success btn-icon-split btn-sm" onclick="update(this)" >
+											<span class="icon text-white-50"> <i class="fas fa-check"></i>
 										</span> <span class="text">수정</span>
 									</a>
-									</td>
-								<td>
 									<a href="javascript:void(0);"
-										class="btn btn-danger btn-icon-split btn-sm" onclick="deleteRow(this)" >
+										class="btn btn-danger btn-icon-split btn-sm" onclick="shutdown(this)" >
 											<span class="icon text-white-50"> <i class="fas fa-trash"></i>
 										</span> <span class="text">폐점</span>
 									</a>
-									</td>
+								</td>
 							</tr>
-						<!--</c:forEach>-->
+						</c:forEach>
 						</tbody>
-
 					</table>
 				</div>
 			</div>

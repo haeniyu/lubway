@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.StoreVO;
+import com.lubway.admin.service.AdminService;
 import com.lubway.admin.service.ManageService;
 import com.lubway.store.StoreInfoVO;
 
@@ -20,6 +21,9 @@ public class ManageStoreController {
 	
 	@Autowired
 	private ManageService manageService;
+	
+	@Autowired
+	private AdminService adminService;
 	
 	@RequestMapping("insertstore.mdo")
 	public String insertStoreView() {
@@ -49,7 +53,14 @@ public class ManageStoreController {
 	
 	@RequestMapping("getstorelist.mdo")
 	public String getStoreList(Model model) {
-		//model.addAttribute("list", );
+		model.addAttribute("list", manageService.getStoreList());
+		return "manage/store/getStoreList";
+	}
+	
+	@PostMapping("updatestorepwd.mdo")
+	public String updateStorePwd(@RequestParam("storename") String storename,
+			@RequestParam("password") String password) {
+		//StoreVO vo = 
 		return "manage/store/getStoreList";
 	}
 	

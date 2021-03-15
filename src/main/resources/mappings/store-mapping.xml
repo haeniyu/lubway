@@ -16,4 +16,12 @@
 		WHERE id = #{id}
 	</select>
 
+	<select id="getStoreByStorename" parameterType="String" resultType="store">
+		SELECT * FROM lubstore WHERE storename=#{storename}
+	</select>
+	
+	<update id="updateStore" parameterType="store">
+		UPDATE lubstore SET password=#{password} WHERE storename=#{storename}
+	</update>
+
 </mapper>

@@ -36,7 +36,7 @@ public class ManageDAO {
 	}
 
 	public List<StoreVO> getStoreList() {
-		System.out.println("ManageDAO - getStroeList() 실행");
+		System.out.println("ManageDAO - getStoreList() 실행");
 		return sqlSessionTemplate.selectList("AdminDAO.getStoreList");
 	}
 	

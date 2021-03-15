@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lubway.admin.ManageDAO;
+import com.lubway.admin.StoreDAO;
 import com.lubway.admin.StoreVO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserVO;
@@ -15,6 +16,9 @@ public class ManageServiceImpl implements ManageService {
 	
 	@Autowired
 	private ManageDAO dao; 
+	
+	@Autowired
+	private StoreDAO storedao;
 
 	@Override
 	public void insertStore(StoreVO vo) {
@@ -39,6 +43,11 @@ public class ManageServiceImpl implements ManageService {
 	@Override
 	public List<StoreVO> getStoreList() {
 		return dao.getStoreList();
+	}
+
+	@Override
+	public StoreVO getStoreByStorename(String storename) {
+		return storedao.getStoreByStorename(storename);
 	}
 	
 	

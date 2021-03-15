@@ -29,7 +29,7 @@
 	</update>
 	
 	<select id="getStoreList" resultType="store">
-		SELECT * FROM lubstore ORDER BY area
+		SELECT * FROM lubstore ORDER BY status
 	</select>
 
 </mapper>
