@@ -8,10 +8,9 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
-//	체크 -> 체크 된걸 읽고 -> db에서 fix 를 true로 바꿔야 함
 	$(document).ready(function(){
-		$("#btn-icon-split").on("click",function(){
-			
+		$("#registerBtn").on("click",function(){
+					alert("등록되었습니다.");
 		});
 	});
 </script>
@@ -87,14 +86,14 @@ ul {
 							<div>
 								<div class="index">제목</div>
 								<input class="title_text" type="text" name="title"
-									style="width: 80%" />
+									style="width: 80%" required />
 							</div>
 						</li>
 						<!-- 이미지 업로드 -->
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-								<input type="file" name="file" multiple />
+								<input type="file" name="multipart" />
 							</div>
 						</li>
 						<!-- 내용 -->
@@ -103,7 +102,7 @@ ul {
 								<div class="index_con">내용</div>
 							</div>
 							<div class="index_text">
-								<textarea name="content" rows="15" style="width: 100%"></textarea>
+								<textarea name="content" rows="15" style="width: 100%" required></textarea>
 							</div>
 						</li>
 					</ul>
@@ -112,7 +111,7 @@ ul {
 							<input type="checkbox" name="fix" id="fixCheck" /><span>상단에 고정하기</span>
 						</div>
 						<input style="padding: 5px" class="btn btn-warning btn-icon-split"
-							type="submit" value="등록하기" />
+							type="submit" id="registerBtn" value="등록하기" />
 					</div>
 					<div align="right">
 						<a href="getNoticeList.bdo" class="btn btn-light btn-icon-split">

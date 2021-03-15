@@ -78,7 +78,6 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertNotice.bdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -92,6 +91,7 @@
 				</div>
 
 
+			<form action="/lubway/insertNotice.bdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -124,12 +124,13 @@
 							</tbody>
 						</table>
 
+	</form>
 						<!-- 검색 시작 -->
 						<div align="right">
 							<form action="/lubway/search.bdo" method="get">
 								<tr>
 									<td><input type="text" name="searchKeyword"
-										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
+										placeholder="검색할 제목을 입력해 주세요." style="width: 25%" /> <input
 										style="margin: 3px; padding: 3px"
 										class="btn btn-warning btn-icon-split" type="submit"
 										value="search" /></td>
@@ -167,7 +168,6 @@
 
 			</div>
 		</div>
-	</form>
 
 	<!-- /.container-fluid -->
 

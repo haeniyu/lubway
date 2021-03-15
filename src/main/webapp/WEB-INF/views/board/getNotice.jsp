@@ -5,6 +5,18 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#registerBtn").on("click",function(){
+			alert("수정되었습니다.");
+		});
+		
+		$("#deleteBtn").on("click", function(){
+			alert("삭제되었습니다.");
+		});
+	});
+</script>
 <style type="text/css">
 * {
 	list-style: none;
@@ -56,7 +68,7 @@ ul {
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/updateNotice.bdo" enctype="multipart/form-data">
+	<form action="/lubway/updateNotice.bdo" method="post" enctype="multipart/form-data">
 		<input name="no" type="hidden" value="${notice.no }">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
@@ -77,15 +89,15 @@ ul {
 						<li class="title">
 							<div>
 								<div class="index">제목</div>
-								<input class="title_text" type="text" name="title"
-									style="width: 80%" value="${notice.title}" />
+								<input class="title_text" type="text" name="title" 
+									style="width: 80%" value="${notice.title}" required />
 							</div>
 						</li>
 						<!-- 이미지 업로드 -->
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-								<input type="file" name="uploadImg" multiple="multiple" />
+								<input type="file" name="uploadImg" multiple />
 							</div>
 						</li>
 						<!-- 내용 -->
@@ -93,11 +105,13 @@ ul {
 							<div class="index">
 								<div class="index_con">내용</div>
 							</div>
-							<a>
-								<img src="${notice.filePath}">
-							</a>
+							<c:if test="${notice.filePath != null}">
+								<a>
+									<img src="${notice.filePath}">
+								</a>
+							</c:if>
 							<div class="index_text">
-								<textarea name="content" rows="15" style="width: 100%">${notice.content}</textarea>
+								<textarea name="content" rows="15" style="width: 100%" required >${notice.content}</textarea>
 							</div>
 						</li>
 					</ul>
@@ -111,8 +125,8 @@ ul {
 					<div align="right">
 						<a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
 							<span class="text">등록하기</span>
-						</a>&nbsp;&nbsp;&nbsp; <a href="deleteNotice.bdo?no=${notice.no}"
-							class="btn btn-danger btn-icon-split"> <span class="text">삭제하기</span>
+						</a>&nbsp;&nbsp;&nbsp; 
+						<a href="deleteNotice.bdo?no=${notice.no}" class="btn btn-danger btn-icon-split" id="deleteBtn"><span class="text">삭제하기</span>
 						</a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.bdo"
 							class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
 

@@ -1,7 +1,7 @@
 package com.lubway.board.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +10,6 @@ import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,33 +47,25 @@ public class NoticeController {
 
 	// 글 등록 기능
 	@RequestMapping("/insertDB.bdo")
-	public String insertNotice(NoticeVO vo, @RequestParam(required = false, value = "file") File file) throws IOException, PSQLException {
-		
-		// UUID 이용해서 중복된 파일명 없애기
-		String fileName = file.getName(); // 파일 이름 가져오기
-		int Idx = fileName .lastIndexOf(".");  // 인덱스값 지정
-		String saveName = fileName.substring(0, Idx); // 파일 이름만 가져오기
-		String ext = fileName.substring(Idx + 1); // 확장자 구하기
-		String key = "";
-		
-		//File fileTest = new File("C:\\Users\\YOON HYUNA\\Desktop\\lubway image\\lubway.png");
-		//String key = saveName + ".png";
-		
-		
-		if(!file.equals("")) {
-			key = saveName + "." + ext;
-			awss3.upload(file, key);
-			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
+	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
+
+		System.out.println(multipart.toString());		
+
+		if(!multipart.getOriginalFilename().equals("")) {
+			//aws s3 파일 업로드 처리
+			InputStream is = multipart.getInputStream();
+			String key = multipart.getOriginalFilename();
+			String contentType = multipart.getContentType();
+			long contentLength = multipart.getSize();
+			awss3.upload(is, key, contentType, contentLength);
+			
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key ;
+			
 			vo.setFilePath(filePath);
-			System.out.println("파일 경로 : " + filePath);
-			noticeService.insertNotice(vo);
-			System.out.println("db등록됨");
-		}else {
-			vo.setFilePath(null);
-			noticeService.insertNotice(vo);
-			System.out.println("db등록됨");
 		}
 		
+		noticeService.insertNotice(vo);
+		System.out.println("db등록됨");
 
 		return "redirect:/getNoticeList.bdo";
 	}
@@ -103,19 +93,6 @@ public class NoticeController {
 		return "getNotice";
 	}
 
-	// 글 목록들
-//	@RequestMapping("/getNoticeList.bdo")
-//	public String getNoticeList( NoticeVO vo, Model model) {
-//
-//		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-//		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
-//		
-//		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
-//		model.addAttribute("noticeList", noticeList);
-//		
-//		return "getNoticeList";
-//	}
-
 	// 글목록 요청
 	@GetMapping("/getNoticeList.bdo")
 	public String getNoticeList(NoticeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
@@ -131,11 +108,6 @@ public class NoticeController {
 
 		System.out.println("listCnt : " + listCnt);
 
-		if (vo.getSearchCondition() == null)
-			vo.setSearchCondition("TITLE");
-		if (vo.getSearchKeyword() == null)
-			vo.setSearchKeyword("");
-
 		// Pagination
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
@@ -145,45 +117,8 @@ public class NoticeController {
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);
 
-//		model.addAttribute("noticePageList", pageList);
-//		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
-
 		return "getNoticeList";
 	}
-
-	// 글목록 검색
-//	@GetMapping("/search.bdo")
-//	public String getSearch(NoticeVO vo, Model model, 
-//			@RequestParam(required = false, defaultValue = "1") int page,
-//			@RequestParam(required = false, defaultValue = "1") int range) {
-//		
-//		// NULL check
-//		System.out.println("글 목록 검색 처리");
-//
-//		
-//		// 전체 게시글 개수
-//		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
-//		
-//
-//		System.out.println("page : " + page);
-//		System.out.println("range : " + range);
-//		System.out.println("listCnt : " + listCnt);
-//
-//		System.out.println("검색된 게시글 개수 : " + listCnt);
-//		
-//		// Pagination
-//		Pagination pagination = new Pagination();
-//		pagination.pageInfo(page, range, listCnt);
-//
-//		//List<NoticeVO> pageList = noticeService.getPageList(pagination);
-//
-//		model.addAttribute("pagination", pagination);
-//		
-//		
-//		model.addAttribute("noticeList", searchList);
-//
-//		return "getNoticeList";
-//	}
 
 	@RequestMapping(value = "/cnt.bdo", method = RequestMethod.GET)
 	public String getPageListCnt() {
@@ -201,6 +136,13 @@ public class NoticeController {
 
 		Pagination pagination = new Pagination();
 		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
+		
+
+		if (vo.getSearchCondition() == null)
+			vo.setSearchCondition("TITLE");
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+
 
 		System.out.println(listCnt);
 		pagination.pageInfoList(page, range, listCnt, searchKeyword);
@@ -211,12 +153,6 @@ public class NoticeController {
 		model.addAttribute("noticeList", pageList);
 		return "getNoticeList";
 	}
-
-//	@RequestMapping("/getNoticeList.bdo")
-//	public String getNoticeList(NoticeVO vo) {
-//		
-//		return "getNoticeList";
-//	}
 
 	@PostMapping("/uploadNotice.bdo")
 	public void uploadNotice(MultipartFile[] uploadFile) {
