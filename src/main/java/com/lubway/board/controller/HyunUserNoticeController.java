@@ -16,7 +16,7 @@ import com.lubway.board.impl.NoticeService;
 
 @Controller
 @Resource(name="NoticeService")
-public class UserNoticeController {
+public class HyunUserNoticeController {
 
 	@Autowired
 	private NoticeService userNoticeService;

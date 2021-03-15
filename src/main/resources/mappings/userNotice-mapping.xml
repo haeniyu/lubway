@@ -3,6 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="NoticeDAO">
+
 	<sql id="page" >
 		select * from notice_board limit #{listSize} offset #{startList}
 	</sql>

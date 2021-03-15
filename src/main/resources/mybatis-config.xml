@@ -14,5 +14,6 @@
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/sms-mapping.xml" />
 		<mapper resource="mappings/notice-mapping.xml" />
+		<mapper resource="mappings/userNotice-mapping.xml"/>
 	</mappers>
 </configuration>
