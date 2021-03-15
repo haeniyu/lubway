@@ -5,9 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class StoreDAO {
+public class StoreInfoDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	
 }

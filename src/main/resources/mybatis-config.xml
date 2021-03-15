@@ -8,11 +8,15 @@
 		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"></typeAlias>
 		<typeAlias type="com.lubway.user.UserVO" alias="user"></typeAlias>
 		<typeAlias type="com.lubway.board.NoticeVO" alias="notice"></typeAlias>
+		<typeAlias type="com.lubway.admin.StoreVO" alias="store"/>
+		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/admin-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />
 		<mapper resource="mappings/sms-mapping.xml" />
 		<mapper resource="mappings/notice-mapping.xml" />
+		<mapper resource="mappings/store-mapping.xml" />
+		<mapper resource="mappings/storeInfo-mapping.xml" />
 	</mappers>
 </configuration>
