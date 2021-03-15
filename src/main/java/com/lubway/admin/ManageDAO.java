@@ -34,5 +34,10 @@ public class ManageDAO {
 		System.out.println("ManageDAO - updateStatus() 실행");
 		sqlSessionTemplate.update("AdminDAO.updateStatus", vo);
 	}
+
+	public List<StoreVO> getStoreList() {
+		System.out.println("ManageDAO - getStroeList() 실행");
+		return sqlSessionTemplate.selectList("AdminDAO.getStoreList");
+	}
 	
 }

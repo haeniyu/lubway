@@ -27,5 +27,9 @@
 	<update id="updateStatus" parameterType="user">
 		UPDATE lubuser SET status=#{status} WHERE id=#{id}
 	</update>
+	
+	<select id="getStoreList" resultType="store">
+		SELECT * FROM lubstore ORDER BY area
+	</select>
 
 </mapper>

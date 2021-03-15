@@ -35,6 +35,11 @@ public class ManageServiceImpl implements ManageService {
 	public void updateStatus(UserVO vo) {
 		dao.updateStatus(vo);
 	}
+
+	@Override
+	public List<StoreVO> getStoreList() {
+		return dao.getStoreList();
+	}
 	
 	
 	
