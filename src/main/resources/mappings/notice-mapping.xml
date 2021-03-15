@@ -4,55 +4,93 @@
 
 <mapper namespace="NoticeDAO">
 	<resultMap type="notice" id="noticeResult">
-		<id property="no" column="NO"/>
-		<result property="title" column="TITLE"/>
-		<result property="content" column="CONTENT"/>
-		<result property="regDate" column="REGDATE"/>
-		<result property="fix" column="FIX"/>
+		<id property="no" column="NO" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="regDate" column="REGDATE" />
+		<result property="fix" column="FIX" />
 		<result property="filePath" column="FILEPATH" />
 	</resultMap>
-	
-	<sql id="page" >
-	
+
+	<sql id="page">
+
 		select * from notice_board limit #{listSize} offset #{startList}
 	</sql>
 
 	<insert id="insertNotice" parameterType="notice">
-		INSERT INTO NOTICE_BOARD(TITLE, CONTENT, FILEPATH) VALUES(#{title},#{content},#{filePath})
+		INSERT INTO
+		NOTICE_BOARD(TITLE, CONTENT, FILEPATH, FIX)
+		VALUES(#{title},#{content},#{filePath}, ${fix})
 	</insert>
-	
+
 	<update id="updateNotice" parameterType="notice">
-		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content} WHERE NO=#{no}
+		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=${fix} WHERE
+		NO=#{no}
 	</update>
-	
+
+
 	<delete id="deleteNotice">
-		DELETE FROM NOTICE_BOARD WHERE no=#{no} 
-		
+		DELETE FROM NOTICE_BOARD WHERE no=#{no}
+
 	</delete>
-	
-	<select id="getNotice" parameterType="notice" resultType="notice">
+
+	<select id="getNotice" parameterType="notice"
+		resultType="notice">
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
-	
-	<select id="getNoticeList" parameterType="notice" resultType="notice">
-		SELECT * FROM NOTICE_BOARD 
+
+	<select id="getNoticeList" parameterType="notice"
+		resultType="notice">
+		SELECT * FROM NOTICE_BOARD
 		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY NO DESC
 	</select>
-	
+
 	<select id="pagingList" resultType="notice">
-		select * from notice_board limit #{listSize} offset #{startList}
+		select * from
+		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from notice_board where fix = true order by regdate desc ) as one
+		union all
+		select * from (
+		select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from
+		( select * from notice_board where fix = false order by no asc ) as
+		three
+		order by regdate desc,rownum desc
+		limit ${listSize} offset ${startList}
+		) as two
+
 	</select>
-	
-	<select id="searchPagingList" resultType="notice" >
-		select * from notice_board where TITLE LIKE '%'||#{searchKeyword}||'%' limit #{listSize} offset #{startList}
+
+	<select id="searchPagingList" resultType="notice">
+		select * from
+		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from notice_board where fix = true order by regdate desc ) as one
+		union all
+		select * from (
+		select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from
+		( select * from notice_board where fix = false and title like
+		'%'||#{searchKeyword}||'%' order by no asc) as three
+		order by regdate desc,rownum desc
+		limit ${listSize} offset ${startList}
+		) as two
+
 	</select>
-	
+
+
 	<select id="pagingCnt" resultType="int">
-		select count(*) as listCnt from notice_board
+		select count(*) as listCnt
+		from notice_board
 	</select>
-	
-	<select id="searchTitleCnt" parameterType="String" resultType="int">
-		select count(*) from notice_board where TITLE LIKE '%'||#{searchKeyword}||'%';
+
+	<select id="searchTitleCnt" parameterType="String"
+		resultType="int">
+		select count(*) from notice_board where TITLE LIKE
+		'%'||#{searchKeyword}||'%';
 	</select>
 </mapper>

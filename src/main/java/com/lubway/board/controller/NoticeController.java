@@ -66,6 +66,7 @@ public class NoticeController {
 		
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
+		System.out.println(vo.toString());
 
 		return "redirect:/getNoticeList.bdo";
 	}

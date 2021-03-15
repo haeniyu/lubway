@@ -16,6 +16,16 @@
 			alert("삭제되었습니다.");
 		});
 	});
+	
+	function fix(){
+
+	     $("input[name='fix']").each(function(){
+	        var fix = ${notice.fix};
+	        if( fix == true ){
+	           $(this).attr("checked", true );
+	        }
+	     }); 
+	}
 </script>
 <style type="text/css">
 * {

@@ -18,4 +18,5 @@ public class NoticeVO {
 	private String searchCondition;
 	private String searchKeyword;
 	private String filePath;
+	private int rownum;
 }
