@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.StoreVO;
+import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
 
 @Controller
@@ -34,9 +36,9 @@ public class StoreController {
 		PrintWriter out = response.getWriter();
 		
 		StoreVO store = new StoreVO();
-		System.out.println(store.toString());
 		store.setId(id);
 		StoreVO getStore = storeService.getStore(store);
+		System.out.println(getStore.toString());
 		
 		if(getStore == null) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
@@ -65,6 +67,20 @@ public class StoreController {
 		System.out.println("매장 관리자 로그인 화면 이동");
 		session.invalidate();
 		return "login";
+	}
+	
+	@RequestMapping("/info.sdo")
+	public String info(HttpSession session) {
+		System.out.println("매장 정보 입력 화면 이동");
+		
+		StoreVO vo = (StoreVO) session.getAttribute("store");
+		System.out.println(vo.toString());
+		
+		StoreInfoVO getInfo = storeService.getstoreinfo(vo.getStorename());
+		System.out.println(getInfo.toString());
+		
+		session.setAttribute("storeinfo", getInfo);
+		return "storeinfo";
 	}
 
 }

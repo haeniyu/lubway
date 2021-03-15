@@ -11,7 +11,7 @@
 	
 	<select id="getStore" parameterType="store" resultType="store">
 		SELECT
-		password
+		*
 		FROM lubstore
 		WHERE id = #{id}
 	</select>

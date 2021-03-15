@@ -9,4 +9,11 @@
 		VALUES(#{code},#{storename},#{area},#{zipcode},#{address_load},#{address_detail},#{store_tel},#{parking},#{open},#{close})
 	</insert>
 
+	<select id="getStoreInfo" parameterType="String" resultType="storeInfo">
+		SELECT
+		*
+		FROM storeinfo
+		WHERE storename = #{storename}
+	</select>
+
 </mapper>

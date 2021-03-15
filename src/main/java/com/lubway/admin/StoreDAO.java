@@ -11,7 +11,7 @@ public class StoreDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public StoreVO getStore(StoreVO vo) {
-		System.out.println("StoreDAO - getSore() 실행");
+		System.out.println("StoreDAO - getStore() 실행");
 		return sqlSessionTemplate.selectOne("StoreDAO.getStore", vo);
 	}
 	

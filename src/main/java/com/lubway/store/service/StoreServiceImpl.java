@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.lubway.admin.StoreDAO;
 import com.lubway.admin.StoreVO;
 import com.lubway.store.StoreInfoDAO;
+import com.lubway.store.StoreInfoVO;
 
 @Service
 public class StoreServiceImpl implements StoreService{
@@ -20,5 +21,12 @@ public class StoreServiceImpl implements StoreService{
 	public StoreVO getStore(StoreVO vo) {
 		return dao.getStore(vo);
 	}
+
+	@Override
+	public StoreInfoVO getstoreinfo(String storename) {
+		return infodao.getStoreinfo(storename);
+	}
+	
+
 	
 }
