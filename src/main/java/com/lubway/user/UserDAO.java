@@ -10,7 +10,6 @@ public class UserDAO {
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public int idCheck(String id) {
-		System.out.println("ID 중복 검증");
 		return sqlSessionTemplate.selectOne("UserDAO.idCheck", id);
 	}
 	

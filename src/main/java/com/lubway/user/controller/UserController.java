@@ -125,8 +125,6 @@ public class UserController {
 	 */
 	@PostMapping("/step02.do")
 	public String phoneStep(@RequestParam("sms") boolean sms, @RequestParam("email") boolean email, HttpSession session) {
-		System.out.println(sms);
-		System.out.println(email);
 		System.out.println("휴대폰 인증 화면으로 이동");	
 		session.setAttribute("sms", sms);
 		session.setAttribute("email", email);
@@ -163,7 +161,6 @@ public class UserController {
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id) {
 
-		System.out.println("체크 결과 값 : " + userService.idCheck(id));
 		return String.valueOf(userService.idCheck(id));
 	}
 

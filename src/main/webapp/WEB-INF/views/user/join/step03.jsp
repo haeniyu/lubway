@@ -14,6 +14,7 @@ var id_check = false;
 var name_check = false;
 var check_pass = false;
 var check_subPass = false;
+var login = 0;
 
 var view = {
 	
@@ -82,9 +83,9 @@ var view = {
 	// 이름 검증
 	name_fun : function() {
 		var name = $("#inname").val();
-		var check_name = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/g;
+		var check_name = /^[가-힣]{2,15}$/;
 		
-		if(check_name.test(name) || name == "") {
+		if(!check_name.test(name) || name == "") {
 			$("#idMsg").text("이름이 올바르지 않습니다. (2 ~ 5 글자 허용)").show();
 			$("#idMsg").css("color", "red");
 			name_check = false;
@@ -174,6 +175,8 @@ var view = {
 
 $(document).ready(function() {
 	$("#submitBtn").on("click", function() {
+		if(login == 1) return false;
+		
 		if(!$("#mbrLgnId1").val()) {
 			$("#worng-msg-email").text("이메일 주소를 입력해 주세요.").show();
 	        $("#mbrLgnId1").focus();
@@ -215,6 +218,7 @@ $(document).ready(function() {
 			console.log(check_pass);
 			console.log(check_subPass);
 
+			login = 1;
 			$("#submitBtn").bind('click', false)
 			console.log("모든 검증 완료");
 		}			
@@ -258,6 +262,7 @@ $(document).ready(function() {
 	//이메일 검증
 	$("#mbrLgnId1").on("keyup", view.id_fun);
 	$("#mbrLgnId2").on("keyup", view.id_fun);
+	$("#inname").on("focus", view.id_fun);
 	
 	//이름 유효성 검사
 	$("#inname").on("keyup", view.name_fun);
@@ -322,7 +327,6 @@ $(document).ready(function() {
 											</dd>
 										</dl>
 									</div>
-									<a id="check" href="#">확인</a>
 									<div class="input_set input_name_div">
 										<dl>
 											<dt>
