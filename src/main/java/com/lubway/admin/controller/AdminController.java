@@ -65,16 +65,17 @@ public class AdminController {
 	 * 메인 페이지 이동
 	 */
 	@GetMapping("/main.mdo")
-	public String mainView(HttpSession seesion) {
-		if(seesion.getAttribute("admin") == null) {
+	public String mainView(HttpSession session) {
+		if(session.getAttribute("admin") == null) {
 			return "login";
 		}
 		return "main";
 	}
 	
 	@RequestMapping("/login.mdo")
-	public String login() {
+	public String login(HttpSession session) {
 		System.out.println("관리자 로그인 화면으로 이동");
+		session.invalidate();
 		return "login";
 	}
 	
