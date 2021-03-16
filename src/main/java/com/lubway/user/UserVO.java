@@ -16,4 +16,6 @@ public class UserVO {
 	private boolean sms_usable;
 	private boolean email_usable;
 	private int point;
+	private int status;
 }
+	

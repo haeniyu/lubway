@@ -57,14 +57,15 @@ public class UserController {
 		UserVO getUser = null;
 		boolean check = false;
 
-		if(i>0) {
+		if(i > 0) {
 			getUser = userService.getUser(id);
 			System.out.println(getUser.toString());
 			
 			check = passEncoder.matches(password, getUser.getPassword());
 		}
 
-		if(getUser == null || !check) {
+		if(getUser == null || !check || getUser.getStatus() > 0) {
+			if(getUser.getStatus() > 0) System.out.println("계정 정지 상태");
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
 			out.close();
