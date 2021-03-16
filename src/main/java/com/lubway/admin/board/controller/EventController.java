@@ -70,7 +70,7 @@ public class EventController {
 		String contentFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + contentKey;
 
 		vo.setThumbnail(thumbnailFile);
-		vo.setContentImg(contentFile);
+		vo.setContimg(contentFile);
 
 		return "getEventList";
 	}
