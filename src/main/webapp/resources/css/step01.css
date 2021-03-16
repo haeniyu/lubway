@@ -112,7 +112,7 @@ em{font-style:normal;}
 #container.bg_type01{background-color:#f6f6f6; padding-bottom:130px;}
 #container.bg_type01 .sub_header{background:#f6f6f6; border-bottom:0}
 #container.bg_type01 #content{padding-top:59px;}
-#content{padding-top:0; position:relative; z-index:3;}
+#content{padding-top:0; position:relative; z-index:3; padding-top: 175px;}
 #content h2.subTitle{text-align:center; font-size:40px; color:#292929; font-weight:bold; letter-spacing:-0.07em; padding:50px 0 80px;}
 #content h2.subTitle > span{margin-bottom:-20px;display: block;color: #666;font-weight:normal;font-size:16px;letter-spacing: -0.025em}
 #content h3.h_title{font-size:28px; color:#292929; font-weight:bold; letter-spacing:-0.05em; padding-bottom:38px;}

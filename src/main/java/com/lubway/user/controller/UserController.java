@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -20,9 +23,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
 import com.lubway.user.UserVO;
 import com.lubway.user.service.UserService;
 
@@ -33,10 +38,76 @@ public class UserController {
 	private UserService userService;
 
 	@Autowired
-	JavaMailSender mailSender;
+	private JavaMailSender mailSender;
 
 	@Inject
-	BCryptPasswordEncoder passEncoder;
+	private BCryptPasswordEncoder passEncoder;
+
+	private NaverLoginBO naverLoginBO;
+	private String apiResult = null;
+
+	@Autowired
+	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+		this.naverLoginBO = naverLoginBO;
+	}
+
+	/**
+	 * 네이버 로그인 요청
+	 */
+	@GetMapping("/login.do")
+	public String main(HttpSession session, Model model) {
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
+
+		System.out.println("네이버:" + naverAuthUrl);
+
+		//네이버 
+		model.addAttribute("url", naverAuthUrl);
+
+		return "login";
+	}
+
+	/**
+	 * 네이버 로그인 처리
+	 */
+	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
+		System.out.println("여기는 callback");
+
+		OAuth2AccessToken oauthToken;
+		oauthToken = naverLoginBO.getAccessToken(session, code, state);
+
+		//로그인 사용자 정보를 읽어온다.
+		apiResult = naverLoginBO.getUserProfile(oauthToken);
+		System.out.println(apiResult.toString());
+
+		// 내가 원하는 정보 (이름)만 JSON타입에서 String타입으로 바꿔 가져오기 위한 작업 
+		JSONParser parser = new JSONParser(); 
+		Object obj = null; 
+		
+		try { 
+			obj = parser.parse(apiResult); 
+		} catch (ParseException e) {
+				e.printStackTrace(); 
+		}
+		
+		JSONObject jsonobj = (JSONObject) obj; 
+		JSONObject response = (JSONObject) jsonobj.get("response");
+		
+		String nname = (String) response.get("name");
+		String nemail = (String) response.get("email");
+		String nmobile = (String) response.get("mobile");
+		
+		// 로그인&아웃 하기위한 세션값 주기
+//		session.setAttribute("nname", nname);
+//		session.setAttribute("nemail", nemail);
+//		session.setAttribute("nphone", nphone);
+
+		System.out.println(nname);
+		System.out.println(nemail);
+		System.out.println(nmobile);
+		
+		return "main";
+	}
 
 	/**
 	 * 로그인 처리 후 메인 페이지 이동
@@ -53,19 +124,18 @@ public class UserController {
 		PrintWriter out = response.getWriter();
 
 		int i = userService.idCheck(id);
-		
+
 		UserVO getUser = null;
 		boolean check = false;
 
 		if(i > 0) {
 			getUser = userService.getUser(id);
 			System.out.println(getUser.toString());
-			
+
 			check = passEncoder.matches(password, getUser.getPassword());
 		}
 
 		if(getUser == null || !check || getUser.getStatus() > 0) {
-			if(getUser.getStatus() > 0) System.out.println("계정 정지 상태");
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
 			out.close();
@@ -77,7 +147,7 @@ public class UserController {
 			System.out.println("로그인 성공");
 			return "main";
 		}
-		
+
 	}
 
 	/**
@@ -193,18 +263,18 @@ public class UserController {
 
 		String id = userService.getId(tel);		
 		UserVO vo = userService.getUser(id);
-		
+
 		String pwd = getTempPassword(8);
 		vo.setPassword(pwd);
 		sendPwdMail(vo);
-		
+
 		pwd = passEncoder.encode(pwd);
 		vo.setPassword(pwd);
-		
+
 		userService.updatePwd(vo);
-		
+
 		model.addAttribute("getId",id);
-		
+
 		return "findpwd";
 	}
 
@@ -260,26 +330,26 @@ public class UserController {
 		System.out.println("공지 상세정보로 이동");
 		return "noticein";
 	}
-	
+
 	/**
 	 *  임시 비밀번호 생성 기능
 	 */
 	public String getTempPassword(int length) {
-	    int index = 0;
-	    char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
-	    'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
-	    'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
-	    'w', 'x', 'y', 'z' };
-	 
-	    StringBuffer sb = new StringBuffer();
-	 
-	    for (int i = 0; i < length; i++) {
-	        index = (int) (charArr.length * Math.random());
-	        sb.append(charArr[index]);
-	    }
-	    return sb.toString();
+		int index = 0;
+		char[] charArr = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F',
+				'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a',
+				'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+				'w', 'x', 'y', 'z' };
+
+		StringBuffer sb = new StringBuffer();
+
+		for (int i = 0; i < length; i++) {
+			index = (int) (charArr.length * Math.random());
+			sb.append(charArr[index]);
+		}
+		return sb.toString();
 	}
-	
+
 	/**
 	 *  회원가입 메일 발송 기능
 	 */

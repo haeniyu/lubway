@@ -122,6 +122,12 @@ em {
     padding: 170px 0 70px;
 }
 
+.content {
+    max-width: 1170px;
+    margin: 0 auto;
+    position: relative;
+}
+
 /* --- form - text --- */
 .form-text {
 	width: 400px;

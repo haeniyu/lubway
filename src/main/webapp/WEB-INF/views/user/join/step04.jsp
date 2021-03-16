@@ -25,16 +25,16 @@
 				<div class="step_cont_box">
 					<div class="step04_cont">
 						<h3 class="cont_tit">
-							써브웨이에 가족이 되신 것을<br> 환영합니다.
+							러브웨이에 가족이 되신 것을<br> 환영합니다.
 						</h3>
 						<ul class="order_gobtn">
-							<li class="fast"><a href="login.do"> <strong>FAST-SUB</strong>
+							<li class="fast"><a href="login.do"> <strong>FAST-WAY</strong>
 									<i class="icon"></i>
 									<p class="txt">
 										온라인 주문 후 매장에서<br> 픽업/시식하는 서비스입니다.
 									</p>
 							</a></li>
-							<li class="home"><a href="login.do"> <strong>HOME-SUB</strong>
+							<li class="home"><a href="login.do"> <strong>HOME-WAY</strong>
 									<i class="icon"></i>
 									<p class="txt">
 										온라인 주문 시 배달되는<br> 서비스입니다.

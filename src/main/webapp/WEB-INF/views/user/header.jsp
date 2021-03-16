@@ -21,7 +21,7 @@
 
 <body>
 	<div id="header" style="overflow: hidden; height: 165px;">
-		<div class="content">
+		<div class="headercontent">
 			<h1 class="logo">
 				<a href="main.do">LUBWAY</a>
 			</h1>
@@ -83,8 +83,8 @@
 						<a class="dp1" href="javascript:void(0);">온라인 주문</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/order/view/fast/near/store">FAST-SUB</a></li>
-								<li><a href="/order/view/home/step1">HOME-SUB</a></li>
+								<li><a href="/order/view/fast/near/store">FAST-WAY</a></li>
+								<li><a href="/order/view/home/step1">HOME-WAY</a></li>
 							</ul>
 						</div>
 					</li>

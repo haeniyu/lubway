@@ -13,15 +13,19 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/franchise.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
-$(function() {//faq
+$(function() {
 	$('.faq_wrapper .fre').on('click', function () {
+		var spd = 0.5,
+			eft = Power3.easeOut
 		if ($(this).parent('li').hasClass('open')) {
 			$(this).parent('li').removeClass('open');
+			TweenLite.to($(this).next('.ask'), spd, { ease: eft, height: 0 })
 		} else {
 			$(this).parent('li').addClass('open');
-			$(this).next('.ask').find('.ask_text').innerHeight();
+			var h = $(this).next('.ask').find('.ask_text').innerHeight();
+			TweenLite.to($(this).next('.ask'), spd, { ease: eft, height: h })
 		}
-	});
+	})
 });
 </script>
 </head>
