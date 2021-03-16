@@ -11,9 +11,8 @@
 		<typeAlias type="com.lubway.admin.StoreVO" alias="store"/>
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
-
-
 	</typeAliases>
+	
 	<mappers>
 		<mapper resource="mappings/admin-mapping.xml" />
 		<mapper resource="mappings/user-mapping.xml" />

@@ -9,8 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.lubway.admin.board.Pagination;
 import com.lubway.user.UserPagination;
 
-
-
 @Repository
 public class UserNoticeDAO {
 
@@ -31,7 +29,7 @@ public class UserNoticeDAO {
 	
 	// 사용자 공지사항
 	public UserNoticeVO getUserNotice(UserNoticeVO vo) {
-		return  sqlSessionTemplate.selectOne("UserNoticeDAO.getUserNotice", vo);
+		return sqlSessionTemplate.selectOne("UserNoticeDAO.getUserNotice", vo);
 	}
 	
 	public List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo){

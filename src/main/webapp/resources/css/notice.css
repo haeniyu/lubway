@@ -1,184 +1,7 @@
 @charset "UTF-8";
 
-
-.logo {
-	padding-top: 40px;
-	text-align: center;
-}
-
-.logo>a>img {
-	width: 202px;
-	height: 40px;
-}
-
-/* 로그인 / 회원가입 */
-.login {
-	display: flex;
-	justify-content: flex-end;
-	float: right;
-	margin: -40px 250px 0 0;
-}
-
-.before_sign {
-	margin-right: 20px;
-	margin-top: 6px;
-	font-size: 13px;
-	font-weight: 500;
-	color: #666;
-}
-
-/* 메인 메뉴 */
-nav #gnb {
-	margin-top: 15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: 100%;
-	height: 70px;
-	position: relative;
-	z-index: 30;
-}
-
-
-
-#gnb>ul:hover {
-	overflow: visible;
-}
-
-#gnb:hover {
-	height: 350px;
-	opacity: 1;
-}
-
-
-
-#gnb>ul>li {
-	display: inline-block;
-	position: relative;
-}
-
-.sub_header .sub_loc ul li.active a:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    bottom: 0;
-    background-color: #009223;
-}
-
-.dp1 {
-	flex: 1;
-	font-size: 18px;
-	font-weight: 700;
-	display: block;
-	position: relative;
-	width: 160px;
-	height: 70px;
-	line-height: 70px;
-}
-
-.dp1:after {
-	content: "";
-	position: absolute;
-	left: 50%;
-	bottom: -1px;
-	width: 0;
-	height: 2px;
-	background: #fff;
-	transition: all 0.5s;
-}
-
-#gnb >ul >li a.dp1 {
-    font-size: 18px;
-    color: #292929;
-    font-weight: bold;
-    letter-spacing: -0.04em;
-    position: relative;
-    z-index: 3;
-    padding-top: 20px;
-    display: block;
-}
-
-#gnb >ul >li a.dp1.active, #gnb >ul >li:hover a.dp1 {
-    color: #009223;
-}
-
-#gnb>ul>li:hover>a:after {
-	left: 0;
-	width: 100%;
-}
-
-#gnb>ul ul {
-	position: absolute;
-	width: 100%;
-	height: 230px;
-	padding: 22px 0 0;
-	text-align: center;
-	opacity: 0;
-	transition: all 0.5s;
-}
-
-#gnb>ul:hover ul {
-	opacity: 1;
-}
-
-#gnb>ul ul li {
-	line-height: 39px;
-}
-
-#gnb>ul ul a {
-	position: relative;
-	font-size: 14px;
-	transition: all 0.5s;
-}
-
-#gnb>ul ul a:hover {
-	color: #009223;
-}
-
-#gnb>ul ul a:after {
-	content: "";
-	position: absolute;
-	left: 50%;
-	bottom: -7px;
-	width: 0;
-	height: 2px;
-	background: #009223;
-	transition: all 0.5s;
-}
-
-#gnb>ul ul a:hover:after {
-	left: 0;
-	width: 100%;
-}
-
 #container {
     margin-top: 170px;
-    position: relative;
-}
-
-#header .util_menu {
-    position: absolute;
-    right: 25px;
-    top: 40px;
-}
-
-#header .util_menu ul li {
-    float: left;
-    position: relative;
-}
-
-#header .util_menu ul li ~ li {
-    margin-left: 30px;
-}
-
-#header .util_menu .icon_menu.global_subway {
-    margin-left: 15px;
-}
-
-#header .util_menu ul li {
-    float: right;
     position: relative;
 }
 
@@ -290,10 +113,6 @@ element.style {
     top: 28px;
 }
 
-#gnb >ul >li a.dp1.active, #gnb >ul >li:hover a.dp1 {
-    color: #009223;
-}
-
 div {
     display: block;
 }
@@ -310,11 +129,11 @@ h2 {
 
 #content h2.subTitle {
     text-align: center;
-    font-size: 60px;
+    font-size: 40px;
     color: #292929;
     font-weight: 300;
     letter-spacing: -0.07em;
-    padding: 40px 0 60px;
+    padding: 140px 0 60px;
     
 }
 
@@ -405,7 +224,6 @@ caption {
     background: url(../images/common/icon_notice.png) 0 0 no-repeat;
 }
 
-
 .content {
     max-width: 1170px;
     margin: 0 auto;
@@ -420,13 +238,6 @@ table {
     text-indent: initial;
     border-color: grey;
 }
-
-
-
-
-
-
-
 
 td {
     display: table-cell;
@@ -444,14 +255,6 @@ h2 {
     font-weight: bold;
 }
 
-
-
-
-
-
-
-
-
 .board_list_wrapper {
     position: relative;
     overflow: hidden;
@@ -462,13 +265,6 @@ h2 {
     clear: both;
     border-top: 4px solid #009223;
 }
-
-
-
-
-
-
-
 
 .form_search .btn_search {
     background: url(../images/common/icon_search.png) 50% 50% no-repeat;
@@ -487,10 +283,6 @@ h2 {
     color: #292929;
     font-size: 16px;
 }
-
-
-
-
 
 .board_list_wrapper table td {
     height: 69px;
@@ -534,9 +326,6 @@ a {
     
 }
 
-
-
-
 .pagination {
     text-align: center;
     margin-top: 34px;
@@ -578,147 +367,4 @@ a {
 
 .pagination .arr.next:after {
     background-position: 100% 0;
-}
-
-
-
-#footer {
-	background-color: #292929;
-	color: #666666;
-	padding: 22px 0;
-	position: relative;
-	z-index: 9
-}
-
-#footer:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 59px;
-	width: 100%;
-	height: 1px;
-	background-color: #3b3b3b
-}
-
-#footer .content {
-    max-width: 1170px;
-    margin: 0 auto;
-    position: relative;
-}
-
-#footer .content span {
-    color: #666666;
-}
-
-#footer .content .util_menu {
-	margin-bottom: 25px;
-}
-
-#footer .content .util_menu ul {
-	overflow: hidden;
-}
-
-#footer .content .util_menu ul li {
-	float: left;
-	margin-right: 29px;
-}
-
-#footer .content .util_menu ul li a {
-	color: #666666;
-	display: block;
-	font-size: 14px;
-	letter-spacing: -0.05em
-}
-
-#footer .content .util_menu ul li a strong {
-	color: #bbbbbb
-}
-
-#footer .content .util_menu ul li a.eng {
-	letter-spacing: 0.05em
-}
-
-#footer .content span {
-	position: relative;
-	display: inline-block;
-	margin-top: 19px;
-	font-size: 13px;
-	padding-left: 9px;
-	margin-left: 3px;
-	letter-spacing: -0.01em
-}
-
-#footer .content span:after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 5px;
-	width: 2px;
-	height: 10px;
-	background-color: #666666
-}
-
-#footer .content span.addr {
-	padding-left: 0;
-	margin-left: 0;
-	color: #666666;
-}
-
-#footer .content span.addr:after {
-	display: none;
-}
-
-#footer .content .copyright {
-	font-family: font_sw;
-	font-size: 13px;
-	line-height: 25px;
-	padding-top: 2px;
-	letter-spacing: 0.005em;
-	color: #666666;
-}
-
-#footer .content .sns_area {
-	position: absolute;
-	right: 40px;
-	bottom: 3px;
-	overflow: hidden;
-	text-indent: -9999px;
-	font-size: 0;
-	line-height: 0;
-	width: 50px;
-	height: 50px;
-}
-
-#footer .content .sns_area:after {
-	content: '';
-	width: 50px;
-	height: 50px;
-	display: block;
-	opacity: 0;
-	transition-duration: 0.3s;
-}
-
-#footer .content .sns_area:hover:after {
-	opacity: 1
-}
-
-#footer .content .sns_area.fackbook {
-	background: url("../images/common/icon_sns_facebook.png") 0 0 no-repeat;
-}
-
-#footer .content .sns_area.fackbook:after {
-	background: url("../images/common/icon_sns_facebook.png") 100% 0 no-repeat;
-}
-
-#footer .content .sns_area.fackbook:hover:after {
-	opacity: 1
-}
-
-#footer .content .sns_area.instagram {
-	right: 105px;
-	background: url("../images/common/icon_sns_instar.png") 0 0 no-repeat;
-}
-
-#footer .content .sns_area.instagram:after {
-	background: url("../images/common/icon_sns_instar.png") 100% 0 no-repeat;
 }
