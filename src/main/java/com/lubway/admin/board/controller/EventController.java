@@ -21,7 +21,7 @@ public class EventController {
 	// 글 등록 화면
 	@RequestMapping("/insertEvent.mdo")
 	public String insertEventView(EventVO vo) throws IOException, PSQLException{
-		return "insertEvent";
+		return "board/insertEvent";
 	}
 	
 	// 글 수정 화면
