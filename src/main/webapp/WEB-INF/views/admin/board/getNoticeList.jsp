@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.bdo">
+<c:url var="getNoticeList" value="/lubway/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -26,7 +26,7 @@
 
       var range = range - 1;
 
-      var url = "${pageContext.request.contextPath}/search.bdo";
+      var url = "${pageContext.request.contextPath}/search.mdo";
 
       url = url + "?page=" + page;
 
@@ -39,12 +39,9 @@
    }
 
    //페이지 번호 클릭
-
-   //location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
-   //getNoticeList.bdo?page=1&range=1&searchKeyword=undefined
    function fn_pagination(page, range, rangeSize, searchKeyword, fix) {
       
-      var url = "${pageContext.request.contextPath}/search.bdo";
+      var url = "${pageContext.request.contextPath}/search.mdo";
 
       url = url + "?page=" + page;
 
@@ -66,7 +63,7 @@
 
       var range = parseInt(range) + 1;
 
-      var url = "${pageContext.request.contextPath}/search.bdo";
+      var url = "${pageContext.request.contextPath}/search.mdo";
 
       url = url + "?page=" + page;
 
@@ -98,7 +95,7 @@
 				<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
 			</div>
 
-			<form action="/lubway/insertNotice.bdo" method="post">
+			<form action="/lubway/insertNotice.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -124,7 +121,7 @@
 											<c:when test="${fix eq 'true' }">
 												<td><img src="resources/images/common/icon_notice.png"></td>
 												<td align="left"><a type="hidden"
-													href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
+													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
 												<td><fmt:formatDate value="${notice.regDate }"
 														pattern="yyyy-MM-dd" /></td>
 											</c:when>
@@ -132,7 +129,7 @@
 											<c:otherwise>
 												<td>${notice.rownum}</td>
 												<td align="left"><a type="hidden"
-													href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
+													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
 												<td><fmt:formatDate value="${notice.regDate }"
 														pattern="yyyy-MM-dd" /></td>
 											</c:otherwise>
@@ -145,7 +142,7 @@
 			</form>
 			<!-- 검색 시작 -->
 			<div align="right">
-				<form action="/lubway/search.bdo" method="get">
+				<form action="/lubway/search.mdo" method="get">
 					<tr>
 						<td><input type="text" name="searchKeyword"
 							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input

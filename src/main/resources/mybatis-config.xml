@@ -7,7 +7,7 @@
 	<typeAliases>
 		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"></typeAlias>
 		<typeAlias type="com.lubway.user.UserVO" alias="user"></typeAlias>
-		<typeAlias type="com.lubway.board.NoticeVO" alias="notice"></typeAlias>
+		<typeAlias type="com.lubway.admin.board.NoticeVO" alias="notice"></typeAlias>
 	</typeAliases>
 	<mappers>
 		<mapper resource="mappings/admin-mapping.xml" />

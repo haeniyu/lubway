@@ -1,4 +1,4 @@
-package com.lubway.board;
+package com.lubway.admin.board;
 
 import java.util.Date;
 

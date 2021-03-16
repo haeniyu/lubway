@@ -1,8 +1,8 @@
-package com.lubway.board.impl;
+package com.lubway.admin.board.service;
 
 import java.util.List;
 
-import com.lubway.board.EventVO;
+import com.lubway.admin.board.EventVO;
 
 public interface EventService {
 	// CRUD 기능의 메소드 구현

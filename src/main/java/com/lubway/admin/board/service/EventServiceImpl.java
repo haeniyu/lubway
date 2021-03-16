@@ -1,12 +1,12 @@
-package com.lubway.board.impl;
+package com.lubway.admin.board.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lubway.board.EventDAO;
-import com.lubway.board.EventVO;
+import com.lubway.admin.board.EventDAO;
+import com.lubway.admin.board.EventVO;
 
 @Service
 public class EventServiceImpl implements EventService {

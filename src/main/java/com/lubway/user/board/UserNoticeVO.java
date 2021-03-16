@@ -1,4 +1,4 @@
-package com.lubway.board;
+package com.lubway.user.board;
 
 import java.sql.Timestamp;
 
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class NoticeVO {
+public class UserNoticeVO {
 	private Integer no;
 	private String title;
 	private String content;

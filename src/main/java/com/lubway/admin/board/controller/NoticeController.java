@@ -1,4 +1,4 @@
-package com.lubway.board.controller;
+package com.lubway.admin.board.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lubway.board.NoticeVO;
-import com.lubway.board.Pagination;
-import com.lubway.board.impl.NoticeService;
-import com.lubway.user.controller.AwsS3;
+import com.lubway.admin.AwsS3;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
+import com.lubway.admin.board.service.NoticeService;
 
 @Controller
-//@SessionAttributes("board")
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
@@ -40,13 +39,13 @@ public class NoticeController {
 	}
 
 	// 글 등록 화면
-	@RequestMapping("/insertNotice.bdo")
+	@RequestMapping("/insertNotice.mdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException {
 		return "insertNotice";
 	}
 
 	// 글 등록 기능
-	@RequestMapping("/insertDB.bdo")
+	@RequestMapping("/insertDB.mdo")
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
 		System.out.println(multipart.toString());		
@@ -68,34 +67,34 @@ public class NoticeController {
 		System.out.println("db등록됨");
 		System.out.println(vo.toString());
 
-		return "redirect:/getNoticeList.bdo";
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 수정
-	@RequestMapping("/updateNotice.bdo")
+	@RequestMapping("/updateNotice.mdo")
 	public String updateNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.updateNotice(vo);
 		System.out.println("업데이트 실행됨");
-		return "redirect:/getNoticeList.bdo";
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 삭제
-	@RequestMapping("/deleteNotice.bdo")
+	@RequestMapping("/deleteNotice.mdo")
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
 		System.out.println("삭제 실행됨");
-		return "redirect:/getNoticeList.bdo";
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 상세 조회
-	@RequestMapping("/getNotice.bdo")
+	@RequestMapping("/getNotice.mdo")
 	public String getNotice(NoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "getNotice";
 	}
 
 	// 글목록 요청
-	@GetMapping("/getNoticeList.bdo")
+	@GetMapping("/getNoticeList.mdo")
 	public String getNoticeList(NoticeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
 
@@ -121,7 +120,7 @@ public class NoticeController {
 		return "getNoticeList";
 	}
 
-	@RequestMapping(value = "/cnt.bdo", method = RequestMethod.GET)
+	@RequestMapping(value = "/cnt.mdo", method = RequestMethod.GET)
 	public String getPageListCnt() {
 
 		System.out.println(noticeService.getPageListCnt());
@@ -129,7 +128,7 @@ public class NoticeController {
 		return "getNoticeList";
 	}
 
-	@GetMapping("/search.bdo")
+	@GetMapping("/search.mdo")
 	public String searchPagingList(Model model, NoticeVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
@@ -155,7 +154,7 @@ public class NoticeController {
 		return "getNoticeList";
 	}
 
-	@PostMapping("/uploadNotice.bdo")
+	@PostMapping("/uploadNotice.mdo")
 	public void uploadNotice(MultipartFile[] uploadFile) {
 		String uploadFolder = "C:\\upload";
 	}

@@ -77,7 +77,7 @@ ul {
 <body id="page-top" onload="javascript:fix();">
 
    <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-   <form action="/lubway/updateNotice.bdo" enctype="multipart/form-data">
+   <form action="/lubway/updateNotice.mdo" enctype="multipart/form-data">
       <input name="no" type="hidden" value="${notice.no }">
       <!-- 관리자 버전 화면 만들기  -->
       <!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
@@ -132,11 +132,11 @@ ul {
                      type="submit" value="수정하기" id="registerBtn" />
                </div>
                <div align="right">
-                  <a href="insertNotice.bdo" class="btn btn-warning btn-icon-split">
+                  <a href="insertNotice.mdo" class="btn btn-warning btn-icon-split">
                      <span class="text">등록하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="deleteNotice.bdo?no=${notice.no}"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="deleteNotice.mdo?no=${notice.no}"
                      class="btn btn-danger btn-icon-split" id="deleteBtn"> <span class="text">삭제하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.bdo"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="getNoticeList.mdo"
                      class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
 
                   </a>

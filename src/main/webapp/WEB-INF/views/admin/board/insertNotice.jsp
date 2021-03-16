@@ -76,7 +76,7 @@ ul {
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
-	<form action="/lubway/insertDB.bdo" method="post" enctype="multipart/form-data">
+	<form action="/lubway/insertDB.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -123,7 +123,7 @@ ul {
 							type="submit" id="registerBtn" value="등록하기" />
 					</div>
 					<div align="right">
-						<a href="getNoticeList.bdo" class="btn btn-light btn-icon-split">
+						<a href="getNoticeList.mdo" class="btn btn-light btn-icon-split">
 							<span class="text">목록가기</span>
 						</a>
 					</div>

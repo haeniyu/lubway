@@ -1,9 +1,9 @@
-package com.lubway.board.impl;
+package com.lubway.admin.board.service;
 
 import java.util.List;
 
-import com.lubway.board.NoticeVO;
-import com.lubway.board.Pagination;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
 
 public interface NoticeService {
 
