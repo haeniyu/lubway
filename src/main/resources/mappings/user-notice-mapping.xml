@@ -3,20 +3,27 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="UserNoticeDAO">
+	<resultMap type="usernotice" id="noticeResult">
+		<id property="no" column="NO" />
+		<result property="title" column="TITLE" />
+		<result property="content" column="CONTENT" />
+		<result property="regDate" column="REGDATE" />
+		<result property="fix" column="FIX" />
+		<result property="filePath" column="FILEPATH" />
+	</resultMap>
 
-	<select id="getNotice" parameterType="notice"
-		resultType="notice">
+	<select id="getUserNotice" parameterType="usernotice" resultType="usernotice">
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
 
-	<select id="getNoticeList" parameterType="notice"
-		resultType="notice">
+	<select id="getUserNoticeList" parameterType="usernotice" resultType="usernotice">
 		SELECT * FROM NOTICE_BOARD
 		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY NO DESC
 	</select>
 
-	<select id="pagingList" resultType="notice">
+<!-- 
+	<select id="pagingList" resultType="usernotice">
 		select * from
 		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
 		filepath
@@ -31,10 +38,10 @@
 		order by regdate desc,rownum desc
 		limit ${listSize} offset ${startList}
 		) as two
-
 	</select>
-
-	<select id="searchPagingList" resultType="notice">
+ -->
+ 
+	<select id="searchPagingList" resultType="usernotice">
 		select * from
 		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
 		filepath
@@ -52,18 +59,44 @@
 
 	</select>
 
-
 	<select id="pagingCnt" resultType="int">
 		select count(*) as listCnt
 		from notice_board
 	</select>
 
-	<select id="searchTitleCnt" parameterType="String"
-		resultType="int">
+	<select id="searchTitleCnt" parameterType="String" resultType="int">
 		select count(*) from notice_board where TITLE LIKE
 		'%'||#{searchKeyword}||'%';
 	</select>
 	
+	<select id="getUserPageList" resultType="usernotice">
+		select * from
+		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from notice_board where fix = true order by regdate desc ) as one
+		union all
+		select * from (
+		select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
+		filepath
+		from
+		( select * from notice_board where fix = false and title like
+		'%'||#{searchKeyword}||'%' order by no asc) as three
+		order by regdate desc,rownum desc
+		limit ${listSize} offset ${startList}
+		) as two
+	</select>
+	
+	<select id="prevPage" resultType="usernotice">
+      <![CDATA[select * from notice_board where no in(
+      (select no from notice_board where no < ${notice.no} order by no desc limit 1)
+      )]]>
+   </select>
 
+	<select id="nextPage" resultType="usernotice">
+      <![CDATA[select * from notice_board where no in(
+      (select no from notice_board where no > ${notice.no} order by no limit 1)
+      )]]>
+   </select>
 
+      
 </mapper>

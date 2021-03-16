@@ -102,13 +102,13 @@ ul {
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/views/board/insertNotice.jsp
+
 								<!-- 
 								<input type="file" name="file" multiple />
 								 -->
-=======
+
 								<input type="file" name="multipart" />
->>>>>>> feature/admin/eventpage:src/main/webapp/WEB-INF/views/admin/board/insertNotice.jsp
+
 							</div>
 						</li>
 						<!-- 내용 -->

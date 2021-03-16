@@ -17,5 +17,6 @@ public class UserVO {
 	private boolean email_usable;
 	private int point;
 	private int status;	// 0 : 계정 활성화(default) , 1 : 계정 정지
+	private String searchKeyword;
 }
 	

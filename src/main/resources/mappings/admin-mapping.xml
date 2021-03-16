@@ -32,4 +32,21 @@
 		SELECT * FROM lubstore ORDER BY status
 	</select>
 
+	<select id="getUserListCnt" resultType="int">
+		SELECT count(*) FROM lubuser
+	</select>
+	
+	<select id="getPageList" resultType="user">
+		SELECT * FROM lubuser LIMIT ${listSize} OFFSET ${startList}
+	</select>
+	
+	<select id="getSearchCnt" parameterType="String" resultType="int">
+		SELECT count(*) FROM lubuser WHERE TEL LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<select id="getSearchPagingList" resultType="user">
+		SELECT * FROM lubuser WHERE TEL LIKE '%'||#{searchKeyword}||'%' 
+		LIMIT ${listSize} OFFSET ${startList}
+	</select>
+	
 </mapper>

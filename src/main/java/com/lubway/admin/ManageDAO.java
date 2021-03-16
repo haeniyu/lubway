@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserVO;
 
@@ -43,6 +44,26 @@ public class ManageDAO {
 	public void updateStore(StoreVO vo) {
 		System.out.println("ManageDAO - updateStore() 실행");
 		sqlSessionTemplate.update("StoreDAO.updateStore", vo);
+	}
+
+	public int getUserListCnt() {
+		System.out.println("ManageDAO - getUserListCnt() 실행");
+		return sqlSessionTemplate.selectOne("AdminDAO.getUserListCnt");
+	}
+
+	public List<UserVO> getPageList(Pagination pagination) {
+		System.out.println("ManageDAO - getPageList() 실행");
+		return sqlSessionTemplate.selectList("AdminDAO.getPageList", pagination);
+	}
+
+	public int getSearchCnt(String searchKeyword) {
+		System.out.println("ManageDAO - getSearchCnt() 실행");
+		return sqlSessionTemplate.selectOne("AdminDAO.getSearchCnt", searchKeyword);
+	}
+
+	public List<UserVO> getSearchPagingList(Pagination pagination) {
+		System.out.println("ManageDAO - getSearchPagingList() 실행");
+		return sqlSessionTemplate.selectList("AdminDAO.getSearchPagingList", pagination);
 	}
 	
 }
