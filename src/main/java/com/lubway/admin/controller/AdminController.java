@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -60,9 +61,21 @@ public class AdminController {
 		}
 	}
 	
+	/**
+	 * 메인 페이지 이동
+	 */
+	@GetMapping("/main.mdo")
+	public String mainView(HttpSession session) {
+		if(session.getAttribute("admin") == null) {
+			return "login";
+		}
+		return "main";
+	}
+	
 	@RequestMapping("/login.mdo")
-	public String login() {
+	public String login(HttpSession session) {
 		System.out.println("관리자 로그인 화면으로 이동");
+		session.invalidate();
 		return "login";
 	}
 	
