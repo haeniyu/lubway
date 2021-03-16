@@ -1,8 +1,6 @@
-package com.lubway.board;
+package com.lubway.user.board;
 
 import java.sql.Timestamp;
-
-import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +12,11 @@ import lombok.ToString;
 public class UserNoticeVO {
 	private Integer no;
 	private String title;
-	private String Content;
+	private String content;
 	private Timestamp regDate;
-	private MultipartFile img;
+	private boolean fix;
+	private String searchCondition;
+	private String searchKeyword;
+	private String filePath;
+	private int rownum;
 }

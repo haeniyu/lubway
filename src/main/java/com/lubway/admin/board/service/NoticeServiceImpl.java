@@ -1,13 +1,13 @@
-package com.lubway.board.impl;
+package com.lubway.admin.board.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lubway.board.NoticeDAO;
-import com.lubway.board.NoticeVO;
-import com.lubway.board.Pagination;
+import com.lubway.admin.board.NoticeDAO;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
@@ -60,9 +60,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.getSearchPagingList(pagination);
 		
 	}
-
 	
-	
+	// 사용자 공지사항
+	@Override
+	public NoticeVO getUserNotice(NoticeVO vo) {
+		return noticeDAO.getUserNotice(vo);
+	}
 
+	@Override
+	public List<NoticeVO> getUserNoticeList(NoticeVO vo) {
+		return noticeDAO.getNoticeList(vo);
+	}
 
 }

@@ -1,7 +1,7 @@
-package com.lubway.board.controller;
+package com.lubway.admin.board.controller;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lubway.board.NoticeVO;
-import com.lubway.board.Pagination;
-import com.lubway.board.impl.NoticeService;
-import com.lubway.user.controller.AwsS3;
+import com.lubway.admin.AwsS3;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
+import com.lubway.admin.board.service.NoticeService;
 
 @Controller
-//@SessionAttributes("board")
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
@@ -40,12 +39,13 @@ public class NoticeController {
 	}
 
 	// 글 등록 화면
-	@RequestMapping("/insertNotice.bdo")
+	@RequestMapping("/insertNotice.mdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException {
 		return "insertNotice";
 	}
 
 	// 글 등록 기능
+<<<<<<< HEAD:src/main/java/com/lubway/board/controller/NoticeController.java
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo, @RequestParam(required = false, value = "file") File file) throws IOException, PSQLException {
 		
@@ -60,48 +60,58 @@ public class NoticeController {
 		
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
+=======
+	@RequestMapping("/insertDB.mdo")
+	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
-		return "redirect:/getNoticeList.bdo";
+		System.out.println(multipart.toString());		
+
+		if(!multipart.getOriginalFilename().equals("")) {
+			//aws s3 파일 업로드 처리
+			InputStream is = multipart.getInputStream();
+			String key = multipart.getOriginalFilename();
+			String contentType = multipart.getContentType();
+			long contentLength = multipart.getSize();
+			awss3.upload(is, key, contentType, contentLength);
+			
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key ;
+			
+			vo.setFilePath(filePath);
+		}
+		
+		noticeService.insertNotice(vo);
+		System.out.println("db등록됨");
+		System.out.println(vo.toString());
+>>>>>>> feature/admin/eventpage:src/main/java/com/lubway/admin/board/controller/NoticeController.java
+
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 수정
-	@RequestMapping("/updateNotice.bdo")
+	@RequestMapping("/updateNotice.mdo")
 	public String updateNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.updateNotice(vo);
 		System.out.println("업데이트 실행됨");
-		return "redirect:/getNoticeList.bdo";
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 삭제
-	@RequestMapping("/deleteNotice.bdo")
+	@RequestMapping("/deleteNotice.mdo")
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
 		System.out.println("삭제 실행됨");
-		return "redirect:/getNoticeList.bdo";
+		return "redirect:/getNoticeList.mdo";
 	}
 
 	// 글 상세 조회
-	@RequestMapping("/getNotice.bdo")
+	@RequestMapping("/getNotice.mdo")
 	public String getNotice(NoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "getNotice";
 	}
 
-	// 글 목록들
-//	@RequestMapping("/getNoticeList.bdo")
-//	public String getNoticeList( NoticeVO vo, Model model) {
-//
-//		if(vo.getSearchCondition() == null) vo.setSearchCondition("TITLE");
-//		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
-//		
-//		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
-//		model.addAttribute("noticeList", noticeList);
-//		
-//		return "getNoticeList";
-//	}
-
 	// 글목록 요청
-	@GetMapping("/getNoticeList.bdo")
+	@GetMapping("/getNoticeList.mdo")
 	public String getNoticeList(NoticeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
 
@@ -115,11 +125,6 @@ public class NoticeController {
 
 		System.out.println("listCnt : " + listCnt);
 
-		if (vo.getSearchCondition() == null)
-			vo.setSearchCondition("TITLE");
-		if (vo.getSearchKeyword() == null)
-			vo.setSearchKeyword("");
-
 		// Pagination
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
@@ -129,47 +134,10 @@ public class NoticeController {
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);
 
-//		model.addAttribute("noticePageList", pageList);
-//		List<NoticeVO> noticeList = noticeService.getNoticeList(vo);
-
 		return "getNoticeList";
 	}
 
-	// 글목록 검색
-//	@GetMapping("/search.bdo")
-//	public String getSearch(NoticeVO vo, Model model, 
-//			@RequestParam(required = false, defaultValue = "1") int page,
-//			@RequestParam(required = false, defaultValue = "1") int range) {
-//		
-//		// NULL check
-//		System.out.println("글 목록 검색 처리");
-//
-//		
-//		// 전체 게시글 개수
-//		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
-//		
-//
-//		System.out.println("page : " + page);
-//		System.out.println("range : " + range);
-//		System.out.println("listCnt : " + listCnt);
-//
-//		System.out.println("검색된 게시글 개수 : " + listCnt);
-//		
-//		// Pagination
-//		Pagination pagination = new Pagination();
-//		pagination.pageInfo(page, range, listCnt);
-//
-//		//List<NoticeVO> pageList = noticeService.getPageList(pagination);
-//
-//		model.addAttribute("pagination", pagination);
-//		
-//		
-//		model.addAttribute("noticeList", searchList);
-//
-//		return "getNoticeList";
-//	}
-
-	@RequestMapping(value = "/cnt.bdo", method = RequestMethod.GET)
+	@RequestMapping(value = "/cnt.mdo", method = RequestMethod.GET)
 	public String getPageListCnt() {
 
 		System.out.println(noticeService.getPageListCnt());
@@ -177,7 +145,7 @@ public class NoticeController {
 		return "getNoticeList";
 	}
 
-	@GetMapping("/search.bdo")
+	@GetMapping("/search.mdo")
 	public String searchPagingList(Model model, NoticeVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
@@ -185,6 +153,13 @@ public class NoticeController {
 
 		Pagination pagination = new Pagination();
 		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
+		
+
+		if (vo.getSearchCondition() == null)
+			vo.setSearchCondition("TITLE");
+		if (vo.getSearchKeyword() == null)
+			vo.setSearchKeyword("");
+
 
 		System.out.println(listCnt);
 		pagination.pageInfoList(page, range, listCnt, searchKeyword);
@@ -196,13 +171,7 @@ public class NoticeController {
 		return "getNoticeList";
 	}
 
-//	@RequestMapping("/getNoticeList.bdo")
-//	public String getNoticeList(NoticeVO vo) {
-//		
-//		return "getNoticeList";
-//	}
-
-	@PostMapping("/uploadNotice.bdo")
+	@PostMapping("/uploadNotice.mdo")
 	public void uploadNotice(MultipartFile[] uploadFile) {
 		String uploadFolder = "C:\\upload";
 	}

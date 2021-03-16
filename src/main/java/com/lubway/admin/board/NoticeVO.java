@@ -1,4 +1,4 @@
-package com.lubway.board;
+package com.lubway.admin.board;
 
 import java.sql.Timestamp;
 
@@ -18,4 +18,5 @@ public class NoticeVO {
 	private String searchCondition;
 	private String searchKeyword;
 	private String filePath;
+	private int rownum;
 }

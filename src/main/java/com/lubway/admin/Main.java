@@ -1,4 +1,4 @@
-package com.lubway.user.controller;
+package com.lubway.admin;
 
 import java.io.File;
 

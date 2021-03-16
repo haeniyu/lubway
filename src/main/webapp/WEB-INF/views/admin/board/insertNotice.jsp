@@ -8,12 +8,20 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
-//	체크 -> 체크 된걸 읽고 -> db에서 fix 를 true로 바꿔야 함
 	$(document).ready(function(){
-		$("#btn-icon-split").on("click",function(){
-			
+		$("#registerBtn").on("click",function(){
+					alert("등록되었습니다.");
 		});
 	});
+	function fix(){
+
+	     $("input[name='fix']").each(function(){
+	        var fix = ${notice.fix};
+	        if( fix == true ){
+	           $(this).attr("checked", true );
+	        }
+	     }); 
+	}
 </script>
 <style type="text/css">
 * {
@@ -68,7 +76,7 @@ ul {
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
-	<form action="/lubway/insertDB.bdo" method="post" enctype="multipart/form-data">
+	<form action="/lubway/insertDB.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -87,16 +95,20 @@ ul {
 							<div>
 								<div class="index">제목</div>
 								<input class="title_text" type="text" name="title"
-									style="width: 80%" />
+									style="width: 80%" required />
 							</div>
 						</li>
 						<!-- 이미지 업로드 -->
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
+<<<<<<< HEAD:src/main/webapp/WEB-INF/views/board/insertNotice.jsp
 								<!-- 
 								<input type="file" name="file" multiple />
 								 -->
+=======
+								<input type="file" name="multipart" />
+>>>>>>> feature/admin/eventpage:src/main/webapp/WEB-INF/views/admin/board/insertNotice.jsp
 							</div>
 						</li>
 						<!-- 내용 -->
@@ -105,7 +117,7 @@ ul {
 								<div class="index_con">내용</div>
 							</div>
 							<div class="index_text">
-								<textarea name="content" rows="15" style="width: 100%"></textarea>
+								<textarea name="content" rows="15" style="width: 100%" required></textarea>
 							</div>
 						</li>
 					</ul>
@@ -114,10 +126,10 @@ ul {
 							<input type="checkbox" name="fix" id="fixCheck" /><span>상단에 고정하기</span>
 						</div>
 						<input style="padding: 5px" class="btn btn-warning btn-icon-split"
-							type="submit" value="등록하기" />
+							type="submit" id="registerBtn" value="등록하기" />
 					</div>
 					<div align="right">
-						<a href="getNoticeList.bdo" class="btn btn-light btn-icon-split">
+						<a href="getNoticeList.mdo" class="btn btn-light btn-icon-split">
 							<span class="text">목록가기</span>
 						</a>
 					</div>

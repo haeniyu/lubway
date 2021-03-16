@@ -74,21 +74,26 @@
 		location.href = url;
 	}
 </script>
+<style type="text/css">
+.cell{
+	border: 1px solid lightgray;
+}
+</style>
 </head>
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertNotice.bdo" method="post">
+	<form action="/lubway/insertEvent.bdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
 			<!-- Page Heading -->
-			<h1 class="h3 mb-2 text-gray-800">공지사항</h1>
+			<h1 class="h3 mb-2 text-gray-800">이벤트 관리</h1>
 			<br>
 			<!-- DataTales Example -->
 			<div class="card shadow mb-4">
 				<div class="card-header py-3">
-					<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
+					<h6 class="m-0 font-weight-bold text-warning">Event Board</h6>
 				</div>
 
 
@@ -102,6 +107,7 @@
 						<div class="my-2"></div>
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
+							
 							<thead>
 								<tr align="center">
 									<th width="10%">NO</th>
@@ -109,18 +115,25 @@
 									<th width="20%">Date</th>
 								</tr>
 							</thead>
+								<!--<c:forEach items="${noticeList}" var="notice">-->
 							<tbody>
-								<c:forEach items="${noticeList}" var="notice">
-
 									<tr>
-										<td>${notice.no }</td>
-										<td align="left"><a type="hidden"
-											href="getNotice.bdo?no=${notice.no}">${notice.title }</a></td>
-										<td><fmt:formatDate value="${notice.regDate }"
-												pattern="yyyy-MM-dd" /></td>
+										<td>
+											<div class="cell">
+												<div class="eventTitle">제목이 들어갑니당</div>
+												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
+												<div class="eventDate">이벤트 등록일 들어갑니당</div>
+											</div>
+										</td>
+										<td>
+											<div class="cell">
+												<div class="eventTitle">제목이 들어갑니당</div>
+												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
+												<div class="eventDate">이벤트 등록일 들어갑니당</div>
+											</div>
+										</td>
 									</tr>
-								</c:forEach>
-
+								<!--</c:forEach>-->
 							</tbody>
 						</table>
 

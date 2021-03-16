@@ -1,4 +1,4 @@
-package com.lubway.board;
+package com.lubway.admin.board;
 
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +11,7 @@ import lombok.ToString;
 
 @Repository
 public class Pagination {
+	private int rownum;
 	private int listSize=10;
 	private int rangeSize=10;
 	private int page;
@@ -23,6 +24,7 @@ public class Pagination {
 	private boolean prev;
 	private boolean next;
 	private String searchKeyword;
+	private boolean fix;
 	
 	public void pageInfo(int page, int range, int listCnt) {
 

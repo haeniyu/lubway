@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script type="text/javascript">
-	alert("글 등록이 완료 되었습니다.");
-</script>
 
 </body>
 </html>
