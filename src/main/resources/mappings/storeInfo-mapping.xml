@@ -15,5 +15,11 @@
 		FROM storeinfo
 		WHERE storename = #{storename}
 	</select>
+	
+	<update id="updateStoreInfo" parameterType="storeInfo">
+		UPDATE storeinfo SET open=#{open}, close=#{close}, 
+		morning_usable=#{morning_usable}, fastway_usable=#{fastway_usable}, homeway_usable=#{homeway_usable}
+		WHERE storename = #{storename}
+	</update>
 
 </mapper>

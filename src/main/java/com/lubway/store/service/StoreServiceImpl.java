@@ -26,6 +26,11 @@ public class StoreServiceImpl implements StoreService{
 	public StoreInfoVO getstoreinfo(String storename) {
 		return infodao.getStoreinfo(storename);
 	}
+
+	@Override
+	public void updatestoreinfo(StoreInfoVO vo) {
+		infodao.updateStoreinfo(vo);
+	}
 	
 
 	

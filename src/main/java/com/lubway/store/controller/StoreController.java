@@ -2,6 +2,7 @@ package com.lubway.store.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Time;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,6 +81,30 @@ public class StoreController {
 		System.out.println(getInfo.toString());
 		
 		session.setAttribute("storeinfo", getInfo);
+		return "storeinfo";
+	}
+	
+	@RequestMapping("/update.sdo")
+	public String update(@RequestParam("openTime") String openTime, 
+			@RequestParam("closeTime") String closeTime, @RequestParam("morning_usable") boolean morning, 
+			@RequestParam("fastway_usable") boolean fastway, @RequestParam("homeway_usable") boolean homeway,
+			HttpSession session) {
+		
+		StoreInfoVO store = (StoreInfoVO) session.getAttribute("storeinfo");
+		
+		Time open = Time.valueOf(openTime+":00");
+		Time close = Time.valueOf(closeTime+":00");
+		
+		store.setOpen(open);
+		store.setClose(close);
+		store.setMorning_usable(morning);
+		store.setFastway_usable(fastway);
+		store.setHomeway_usable(homeway);
+		
+		System.out.println("매장정보 수정 : " + store.toString());
+		
+		storeService.updatestoreinfo(store);
+		
 		return "storeinfo";
 	}
 

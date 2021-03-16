@@ -16,4 +16,9 @@ public class StoreInfoDAO {
 		System.out.println("StoreInfoDAO - getSore() 실행");
 		return sqlSessionTemplate.selectOne("StoreInfoDAO.getStoreInfo", storename);
 	}
+	
+	public void updateStoreinfo(StoreInfoVO vo) {
+		System.out.println("StoreInfoDAO - updateStoreInfo() 실행");
+		sqlSessionTemplate.update("StoreInfoDAO.updateStoreInfo", vo);
+	}
 }
