@@ -1,6 +1,6 @@
 package com.lubway.admin.board.controller;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -42,11 +42,11 @@ public class NoticeController {
 	// 글 등록 화면
 	@RequestMapping("/insertNotice.mdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException {
-		return "insertNotice";
+		return "board/insertNotice";
 	}
 
 	// 글 등록 기능
-	@RequestMapping("/insertDB.mdo")
+	@PostMapping("/insertDB.mdo")
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
 		System.out.println(multipart.toString());
@@ -91,7 +91,7 @@ public class NoticeController {
 	@RequestMapping("/getNotice.mdo")
 	public String getNotice(NoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
-		return "getNotice";
+		return "board/getNotice";
 	}
 
 	// 글목록 요청
@@ -118,7 +118,7 @@ public class NoticeController {
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);
 
-		return "getNoticeList";
+		return "board/getNoticeList";
 	}
 
 	@RequestMapping(value = "/cnt.mdo", method = RequestMethod.GET)
@@ -126,7 +126,7 @@ public class NoticeController {
 
 		System.out.println(noticeService.getPageListCnt());
 
-		return "getNoticeList";
+		return "board/getNoticeList";
 	}
 
 	@GetMapping("/search.mdo")
@@ -150,7 +150,7 @@ public class NoticeController {
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);
-		return "getNoticeList";
+		return "board/getNoticeList";
 	}
 
 	@PostMapping("/uploadNotice.mdo")

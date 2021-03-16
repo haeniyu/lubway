@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.bdo">
+<c:url var="getNoticeList" value="/lubway/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -25,7 +25,7 @@
 
 		var range = range - 1;
 
-		var url = "${pageContext.request.contextPath}/search.bdo";
+		var url = "${pageContext.request.contextPath}/search.mdo";
 
 		url = url + "?page=" + page;
 
@@ -38,12 +38,9 @@
 	}
 
 	//페이지 번호 클릭
-
-	//location.href="boardList?nowPage=${paging.nowPage}&cntPerPage="+sel;
-	//getNoticeList.bdo?page=1&range=1&searchKeyword=undefined
 	function fn_pagination(page, range, rangeSize, searchKeyword) {
 
-		var url = "${pageContext.request.contextPath}/search.bdo";
+		var url = "${pageContext.request.contextPath}/search.mdo";
 
 		url = url + "?page=" + page;
 
@@ -63,7 +60,7 @@
 
 		var range = parseInt(range) + 1;
 
-		var url = "${pageContext.request.contextPath}/search.bdo";
+		var url = "${pageContext.request.contextPath}/search.mdo";
 
 		url = url + "?page=" + page;
 
@@ -83,7 +80,7 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertEvent.bdo" method="post">
+	<form action="/lubway/insertEvent.mdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -139,7 +136,7 @@
 
 						<!-- 검색 시작 -->
 						<div align="right">
-							<form action="/lubway/search.bdo" method="get">
+							<form action="/lubway/search.mdo" method="get">
 								<tr>
 									<td><input type="text" name="searchKeyword"
 										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
