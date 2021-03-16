@@ -23,5 +23,13 @@
 	<delete id="deleteUser" parameterType="String">
 		DELETE FROM lubuser WHERE id = #{id}
 	</delete>
+	
+	<update id="updateStatus" parameterType="user">
+		UPDATE lubuser SET status=#{status} WHERE id=#{id}
+	</update>
+	
+	<select id="getStoreList" resultType="store">
+		SELECT * FROM lubstore ORDER BY status
+	</select>
 
 </mapper>

@@ -1,12 +1,8 @@
 package com.lubway.admin;
 
-import java.util.List;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.lubway.user.UserVO;
 
 @Repository
 public class AdminDAO {
@@ -25,13 +21,5 @@ public class AdminDAO {
 		sqlSessionTemplate.insert("AdminDAO.insertAdmin", vo);
 	}
 	
-	public List<UserVO> getUserList(){
-		System.out.println("AdminDAO - getUserList() 실행");
-		return sqlSessionTemplate.selectList("AdminDAO.getUserList");
-	}
 
-	public void deleteUser(String id) {
-		System.out.println("AdminDAO - deleteUser() 실행");
-		sqlSessionTemplate.delete("AdminDAO.deleteUser", id);
-	}
 }

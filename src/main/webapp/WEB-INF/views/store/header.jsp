@@ -84,6 +84,14 @@
 				</a>
 			</li>
 
+			<!-- Nav Item - 메뉴관리 -->
+			<li class="nav-item">
+				<a class="nav-link" href="info.sdo">
+					<i class="fas fa-fw fa-cog"></i>
+					<span>매장 정보 관리</span>
+				</a>
+			</li>
+
 			<!-- Divider -->
 			<hr class="sidebar-divider d-none d-md-block">
 

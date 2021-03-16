@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="StoreInfoDAO">
+
+	<insert id="insertStoreInfo" parameterType="storeInfo">
+		INSERT INTO storeinfo (code, storename, area, zipcode, address_load, address_detail, store_tel, parking, open, close)
+		VALUES(#{code},#{storename},#{area},#{zipcode},#{address_load},#{address_detail},#{store_tel},#{parking},#{open},#{close})
+	</insert>
+
+	<select id="getStoreInfo" parameterType="String" resultType="storeInfo">
+		SELECT
+		*
+		FROM storeinfo
+		WHERE storename = #{storename}
+	</select>
+	
+	<update id="updateStoreInfo" parameterType="storeInfo">
+		UPDATE storeinfo SET open=#{open}, close=#{close}, 
+		morning_usable=#{morning_usable}, fastway_usable=#{fastway_usable}, homeway_usable=#{homeway_usable}
+		WHERE storename = #{storename}
+	</update>
+
+</mapper>

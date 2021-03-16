@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="StoreDAO">
+
+	<insert id="insertStore" parameterType="store">
+		INSERT INTO lubstore (id, password, area, storename)
+		VALUES(#{id}, #{password}, #{area}, #{storename})
+	</insert>
+	
+	<select id="getStore" parameterType="store" resultType="store">
+		SELECT
+		*
+		FROM lubstore
+		WHERE id = #{id}
+	</select>
+
+	<select id="getStoreByStorename" parameterType="String" resultType="store">
+		SELECT * FROM lubstore WHERE storename=#{storename}
+	</select>
+	
+	<update id="updateStore" parameterType="store">
+		UPDATE lubstore SET password=#{password}, status=#{status} WHERE storename=#{storename}
+	</update>
+
+</mapper>
