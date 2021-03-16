@@ -79,17 +79,6 @@ public class AdminController {
 		return "login";
 	}
 	
-	@RequestMapping("/noticeList.mdo")
-	public String getNoticeList() {
-		System.out.println("관리자 공지사항 관리 페이지로 이동");
-		return "getNoticeList";
-	}
-	
-	@RequestMapping("/getNotice.mdo")
-	public String getNotice() {
-		System.out.println("관리자 공지사항 등록 페이지로 이동");
-		return "getNotice";
-	}
 
 	
 }

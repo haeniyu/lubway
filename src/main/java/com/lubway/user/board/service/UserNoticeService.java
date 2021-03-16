@@ -2,7 +2,7 @@ package com.lubway.user.board.service;
 
 import java.util.List;
 
-import com.lubway.user.Pagination;
+import com.lubway.user.UserPagination;
 import com.lubway.user.board.UserNoticeVO;
 
 
@@ -17,7 +17,7 @@ public interface UserNoticeService {
 	List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo);
 	
 	//페이징 리스트
-	List<UserNoticeVO> getUserPageList(Pagination pagination);
+	List<UserNoticeVO> getUserPageList(UserPagination pagination);
 	
 	//페이징처리 개수
 	int getUserPageListCnt();
@@ -26,7 +26,7 @@ public interface UserNoticeService {
 	int getUserSearchTitleCnt(String title);
 	
 	//검색한 글 페이징 리스트
-	List<UserNoticeVO> getUserSearchPagingList(Pagination pagination);
+	List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination);
 	
 	// 사용자 공지사항 목록, 상세조회
 

@@ -8,11 +8,10 @@
 		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"/>
 		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
 
-		<typeAlias type="com.lubway.board.NoticeVO" alias="notice"/>
+		<typeAlias type="com.lubway.admin.board.NoticeVO" alias="notice"/>
 		<typeAlias type="com.lubway.admin.StoreVO" alias="store"/>
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 
-		<typeAlias type="com.lubway.admin.board.NoticeVO" alias="notice"/>
 
 	</typeAliases>
 	<mappers>

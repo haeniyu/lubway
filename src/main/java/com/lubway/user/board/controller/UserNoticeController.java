@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lubway.user.Pagination;
+import com.lubway.user.UserPagination;
 import com.lubway.user.board.UserNoticeVO;
 import com.lubway.user.board.service.UserNoticeService;
 
@@ -63,7 +63,7 @@ public class UserNoticeController {
 		System.out.println("listCnt : " + listCnt);
 
 		// Pagination
-		Pagination pagination = new Pagination();
+		UserPagination pagination = new UserPagination();
 		pagination.pageInfo(page, range, listCnt);
 
 		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
@@ -88,7 +88,7 @@ public class UserNoticeController {
 			@RequestParam(required = false, defaultValue = "1") int range,
 			@RequestParam("searchKeyword") String searchKeyword) {
 
-		Pagination pagination = new Pagination();
+		UserPagination pagination = new UserPagination();
 		int listCnt = noticeService.getUserSearchTitleCnt(vo.getSearchKeyword());
 	
 

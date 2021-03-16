@@ -46,24 +46,6 @@ public class NoticeController {
 	}
 
 	// 글 등록 기능
-
-	@RequestMapping("/insertDB.bdo")
-	public String insertNotice(NoticeVO vo, @RequestParam(required = false, value = "file") File file) throws IOException, PSQLException {
-		
-		File fileTest = new File("C:\\Users\\YOON HYUNA\\Desktop\\lubway image\\lubway.png");
-		String key = vo.getTitle() + ".png";
-		
-		awss3.upload(fileTest, key);
-		
-		String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
-		vo.setFilePath(filePath);
-		System.out.println("파일 경로 : " + filePath);
-		
-		noticeService.insertNotice(vo);
-		System.out.println("db등록됨");
-		
-		return "redirect:/getNoticeList.mdo";
-	}
 	@RequestMapping("/insertDB.mdo")
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 

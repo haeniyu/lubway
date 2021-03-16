@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lubway.user.Pagination;
+import com.lubway.user.UserPagination;
 
 
 
@@ -44,7 +44,7 @@ public class UserNoticeDAO {
 		return sqlSessionTemplate.selectList("UserNoticeDAO.getNoticeList", vo);
 	}
 	
-	public List<UserNoticeVO> getPageList(Pagination pagination){
+	public List<UserNoticeVO> getPageList(UserPagination pagination){
 		return sqlSessionTemplate.selectList("UserNoticeDAO.pagingList", pagination);
 	}
 	
@@ -56,7 +56,7 @@ public class UserNoticeDAO {
 		return sqlSessionTemplate.selectOne("UserNoticeDAO.searchTitleCnt", title);
 	}
 
-	public List<UserNoticeVO> getSearchPagingList(Pagination pagination){
+	public List<UserNoticeVO> getSearchPagingList(UserPagination pagination){
 		return sqlSessionTemplate.selectList("UserNoticeDAO.searchPagingList", pagination);
 	}
 	

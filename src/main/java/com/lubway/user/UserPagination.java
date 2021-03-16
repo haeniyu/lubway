@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 
 @Repository
-public class Pagination {
+public class UserPagination {
 	private int rownum;
 	private int listSize=10;
 	private int rangeSize=10;

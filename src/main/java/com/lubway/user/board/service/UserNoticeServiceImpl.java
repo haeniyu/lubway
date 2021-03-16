@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-import com.lubway.user.Pagination;
+import com.lubway.user.UserPagination;
 import com.lubway.user.board.UserNoticeDAO;
 import com.lubway.user.board.UserNoticeVO;
 
@@ -28,7 +28,7 @@ public class UserNoticeServiceImpl implements UserNoticeService {
 		
 	}
 	
-	public List<UserNoticeVO> getUserPageList(Pagination pagination){
+	public List<UserNoticeVO> getUserPageList(UserPagination pagination){
 		return noticeDAO.getPageList(pagination);
 	}
 	
@@ -44,7 +44,7 @@ public class UserNoticeServiceImpl implements UserNoticeService {
 	}
 
 	@Override
-	public List<UserNoticeVO> getUserSearchPagingList(Pagination pagination) {
+	public List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination) {
 		return noticeDAO.getSearchPagingList(pagination);
 		
 	}
