@@ -63,7 +63,7 @@ li{
 						<li class="img">
 							<div>
 								<div class="index">이벤트 이미지</div>
-								<input type="file" name="multipart" />
+								<input type="file" name="multipart" multiple/>
 							</div>
 						</li>
 						<!-- 기간 -->
