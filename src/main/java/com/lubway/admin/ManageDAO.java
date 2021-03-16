@@ -39,5 +39,10 @@ public class ManageDAO {
 		System.out.println("ManageDAO - getStoreList() 실행");
 		return sqlSessionTemplate.selectList("AdminDAO.getStoreList");
 	}
+
+	public void updateStore(StoreVO vo) {
+		System.out.println("ManageDAO - updateStore() 실행");
+		sqlSessionTemplate.update("StoreDAO.updateStore", vo);
+	}
 	
 }

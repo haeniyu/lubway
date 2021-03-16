@@ -49,6 +49,11 @@ public class ManageServiceImpl implements ManageService {
 	public StoreVO getStoreByStorename(String storename) {
 		return storedao.getStoreByStorename(storename);
 	}
+
+	@Override
+	public void updateStore(StoreVO vo) {
+		dao.updateStore(vo);
+	}
 	
 	
 	

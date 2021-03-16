@@ -13,4 +13,5 @@ public interface ManageService {
 	void updateStatus(UserVO vo);
 	List<StoreVO> getStoreList();
 	StoreVO getStoreByStorename(String storename);
+	void updateStore(StoreVO vo);
 }
