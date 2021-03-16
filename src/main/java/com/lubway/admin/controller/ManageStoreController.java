@@ -14,6 +14,9 @@ import com.lubway.admin.StoreVO;
 import com.lubway.admin.service.ManageService;
 import com.lubway.store.StoreInfoVO;
 
+/** 
+ * 관리자 - 매장관리 컨트롤러 
+ */
 @Controller
 @RequestMapping("/")
 public class ManageStoreController {
@@ -21,11 +24,17 @@ public class ManageStoreController {
 	@Autowired
 	private ManageService manageService;
 	
+	/**
+	 * 매장 등록 페이지 이동 
+	 */
 	@RequestMapping("insertstore.mdo")
 	public String insertStoreView() {
 		return "manage/store/insertStore";
 	}
 	
+	/**
+	 * 매장 등록 기능
+	 */
 	@PostMapping("insertstoreproc.mdo")
 	public String insertStore(StoreVO vo, 
 			@RequestParam("openTime") String openTime, 
@@ -47,12 +56,18 @@ public class ManageStoreController {
 		return "manage/store/insertStore";
 	}
 	
+	/**
+	 * 매장 목록 페이지 이동 
+	 */
 	@RequestMapping("getstorelist.mdo")
 	public String getStoreList(Model model) {
 		model.addAttribute("list", manageService.getStoreList());
 		return "manage/store/getStoreList";
 	}
 	
+	/**
+	 * 매장 계정 비밀번호 수정 기능 
+	 */
 	@PostMapping("updatestore.mdo")
 	public String updateStorePwd(@RequestParam("storename") String storename, @RequestParam("password") String password) {
 		StoreVO vo = manageService.getStoreByStorename(storename);
@@ -61,6 +76,9 @@ public class ManageStoreController {
 		return "redirect:getstorelist.mdo";
 	}
 	
+	/**
+	 * 매장 폐점 처리 기능 
+	 */
 	@PostMapping("shutdown.mdo")
 	public String updateStoreStatus(@RequestParam("storename") String storename) {
 		StoreVO vo = manageService.getStoreByStorename(storename);
