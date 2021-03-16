@@ -75,6 +75,26 @@ public class ManageServiceImpl implements ManageService {
 	public List<UserVO> getSearchPagingList(Pagination pagination) {
 		return dao.getSearchPagingList(pagination);
 	}
+
+	@Override
+	public int getStoreListCnt() {
+		return dao.getStoreListCnt();
+	}
+
+	@Override
+	public List<StoreVO> getStorePageList(Pagination pagination) {
+		return dao.getStorePageList(pagination);
+	}
+
+	@Override
+	public List<StoreVO> getSearchStorePagingList(Pagination pagination) {
+		return dao.getSearchStorePagingList(pagination);
+	}
+
+	@Override
+	public int getSearchStoreCnt(String searchKeyword) {
+		return dao.getSearchStoreCnt(searchKeyword);
+	}
 	
 	
 	

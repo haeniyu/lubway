@@ -2,6 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:url var="getstorelist" value="/lubway/searchstore.mdo">
+	<c:param name="page" value="${pagination.page}" />
+	<c:param name="range" value="${pagination.range}" />
+	<c:param name="rangeSize" value="${pagination.rangeSize}" />
+	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
+</c:url>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,6 +64,40 @@ function update(r) {
 		form.submit();
 	}
 
+	<!--pagination-->
+	//이전 버튼 이벤트
+	function fn_prev(page, range, rangeSize, searchKeyword) {
+		var page = ((range - 2) * rangeSize) + 1;
+		var range = range - 1;
+		var url = "${pageContext.request.contextPath}/searchstore.mdo";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&searchKeyword=" + searchKeyword;
+		location.href = url;
+
+	}
+
+	//페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize, searchKeyword) {
+		var url = "${pageContext.request.contextPath}/searchstore.mdo";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&searchKeyword=" + searchKeyword;
+		location.href = url;
+
+	}
+
+	//다음 버튼 이벤트
+	function fn_next(page, range, rangeSize, searchKeyword) {
+
+		var page = parseInt((range * rangeSize)) + 1;
+		var range = parseInt(range) + 1;
+		var url = "${pageContext.request.contextPath}/searchstore.mdo";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		url = url + "&searchKeyword=" + searchKeyword;
+		location.href = url;
+	}
 </script>
 </head>
 <body id="page-top">
@@ -73,6 +113,18 @@ function update(r) {
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
+				<!-- 검색 시작 -->
+				<div align="right">
+					<form action="/lubway/searchstore.mdo" method="get">
+						<input type="text" name="searchKeyword"
+								placeholder="매장명" style="width:10%" /> <input
+								style="margin:0px 3px; padding:0px 3px"
+								class="btn btn-warning" type="submit"
+								value="search" />
+					</form>
+				</div>
+				<!-- 검색 종료 -->
+				<span>총 ${cnt }건</span>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -118,7 +170,28 @@ function update(r) {
 				</div>
 			</div>
 		</div>
+		<!-- pagination{s} -->
+		<div align="center">
+			<ul class="pagination">
+				<c:if test="${pagination.prev}">
+					<li class="page-item"><a class="page-link" href="#"
+						onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
+				</c:if>
+				<c:forEach begin="${pagination.startPage}"
+					end="${pagination.endPage}" var="idx">
+					<li
+						class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+						class="page-link" href="#"
+						onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">
+							${idx} </a></li>
+				</c:forEach>
 
+				<c:if test="${pagination.next}">
+					<li class="page-item"><a class="page-link" href="#"
+						onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
+				</c:if>
+			</ul>
+		</div>
 	</div>
 	<!-- /.container-fluid -->
 

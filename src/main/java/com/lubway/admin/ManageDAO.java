@@ -65,5 +65,25 @@ public class ManageDAO {
 		System.out.println("ManageDAO - getSearchPagingList() 실행");
 		return sqlSessionTemplate.selectList("AdminDAO.getSearchPagingList", pagination);
 	}
+
+	public int getStoreListCnt() {
+		System.out.println("ManageDAO - getStoreListCnt() 실행");
+		return sqlSessionTemplate.selectOne("AdminDAO.getStoreListCnt");
+	}
+
+	public List<StoreVO> getStorePageList(Pagination pagination) {
+		System.out.println("ManageDAO - getStorePageList() 실행");
+		return sqlSessionTemplate.selectList("AdminDAO.getStorePageList", pagination);
+	}
+
+	public int getSearchStoreCnt(String searchKeyword) {
+		System.out.println("ManageDAO - getSearchStoreCnt() 실행");
+		return sqlSessionTemplate.selectOne("AdminDAO.getSearchStoreCnt", searchKeyword);
+	}
+	
+	public List<StoreVO> getSearchStorePagingList(Pagination pagination) {
+		System.out.println("ManageDAO - getStorePageList() 실행");
+		return sqlSessionTemplate.selectList("AdminDAO.getSearchStorePagingList", pagination);
+	}
 	
 }

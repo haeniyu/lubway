@@ -55,14 +55,11 @@ public class ManageUserController {
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, cnt);
 
-		System.out.println(pagination.getStartList());
-		System.out.println(pagination.getListSize());
 		List<UserVO> pageList = manageService.getPageList(pagination);
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("list", pageList);
-		
-		
+		model.addAttribute("cnt", cnt);
 		return "manage/customer/getUserList";
 	}
 	
@@ -84,7 +81,7 @@ public class ManageUserController {
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("list", pageList);
-		
+		model.addAttribute("cnt", cnt);
 		return "manage/customer/getUserList";
 	}
 	

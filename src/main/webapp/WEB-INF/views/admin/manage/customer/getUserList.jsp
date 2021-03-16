@@ -116,13 +116,14 @@
 				<div align="right">
 					<form action="/lubway/searchuser.mdo" method="get">
 						<input type="text" name="searchKeyword"
-								placeholder="검색할 번호를 입력해 주세요." style="width: 20%" /> <input
+								placeholder="핸드폰 번호" style="width:10%" /> <input
 								style="margin:0px 3px; padding:0px 3px"
-								class="btn btn-warning btn-icon-split" type="submit"
+								class="btn btn-warning" type="submit"
 								value="search" />
 					</form>
 				</div>
 				<!-- 검색 종료 -->
+				<span>총 ${cnt }건</span>
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
@@ -132,7 +133,7 @@
 							<tr>
 								<th>이메일 아이디</th>
 								<th>이름</th>
-								<th>휴대전화</th>
+								<th>핸드폰</th>
 								<th>SMS 수신</th>
 								<th>Email 수신</th>
 								<th>계정 상태</th>
