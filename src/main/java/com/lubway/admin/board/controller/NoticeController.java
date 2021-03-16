@@ -1,5 +1,6 @@
 package com.lubway.admin.board.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
@@ -45,7 +46,7 @@ public class NoticeController {
 	}
 
 	// 글 등록 기능
-<<<<<<< HEAD:src/main/java/com/lubway/board/controller/NoticeController.java
+
 	@RequestMapping("/insertDB.bdo")
 	public String insertNotice(NoticeVO vo, @RequestParam(required = false, value = "file") File file) throws IOException, PSQLException {
 		
@@ -60,29 +61,30 @@ public class NoticeController {
 		
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
-=======
+		
+		return "redirect:/getNoticeList.mdo";
+	}
 	@RequestMapping("/insertDB.mdo")
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
-		System.out.println(multipart.toString());		
+		System.out.println(multipart.toString());
 
-		if(!multipart.getOriginalFilename().equals("")) {
-			//aws s3 파일 업로드 처리
+		if (!multipart.getOriginalFilename().equals("")) {
+			// aws s3 파일 업로드 처리
 			InputStream is = multipart.getInputStream();
 			String key = multipart.getOriginalFilename();
 			String contentType = multipart.getContentType();
 			long contentLength = multipart.getSize();
 			awss3.upload(is, key, contentType, contentLength);
-			
-			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key ;
-			
+
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
+
 			vo.setFilePath(filePath);
 		}
-		
+
 		noticeService.insertNotice(vo);
 		System.out.println("db등록됨");
 		System.out.println(vo.toString());
->>>>>>> feature/admin/eventpage:src/main/java/com/lubway/admin/board/controller/NoticeController.java
 
 		return "redirect:/getNoticeList.mdo";
 	}
@@ -153,13 +155,11 @@ public class NoticeController {
 
 		Pagination pagination = new Pagination();
 		int listCnt = noticeService.getSearchTitleCnt(vo.getSearchKeyword());
-		
 
 		if (vo.getSearchCondition() == null)
 			vo.setSearchCondition("TITLE");
 		if (vo.getSearchKeyword() == null)
 			vo.setSearchKeyword("");
-
 
 		System.out.println(listCnt);
 		pagination.pageInfoList(page, range, listCnt, searchKeyword);
