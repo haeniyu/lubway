@@ -1,22 +1,17 @@
 package com.lubway.user.board.controller;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.lubway.user.UserPagination;
 import com.lubway.user.board.UserNoticeVO;
@@ -25,7 +20,7 @@ import com.lubway.user.board.service.UserNoticeService;
 
 
 @Controller
-//@SessionAttributes("board")
+
 public class UserNoticeController {
 	@Autowired
 	private UserNoticeService noticeService;
@@ -44,12 +39,13 @@ public class UserNoticeController {
 	@RequestMapping("/getUserNotice.do")
 	public String getNotice(UserNoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getUserNotice(vo));
-		return "getUserNotice";
+		return "board/getUserNotice";
 	}
 
 	// 글목록 요청
 	@GetMapping("/getUserNoticeList.do")
-	public String getNoticeList(UserNoticeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
+	public String getNoticeList(UserNoticeVO vo, Model model, 
+			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
 
 		System.out.println("글 목록 요청 처리");
@@ -68,10 +64,10 @@ public class UserNoticeController {
 
 		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
 
-		model.addAttribute("pagination", pagination);
+		model.addAttribute("Userpagination", pagination);
 		model.addAttribute("noticeList", pageList);
 
-		return "getUserNoticeList";
+		return "board/getUserNoticeList";
 	}
 
 	@RequestMapping(value = "/cnt.do", method = RequestMethod.GET)
@@ -79,7 +75,7 @@ public class UserNoticeController {
 
 		System.out.println(noticeService.getUserPageListCnt());
 
-		return "getUserNoticeList";
+		return "board/getUserNoticeList";
 	}
 
 	@GetMapping("/search.do")
@@ -100,7 +96,7 @@ public class UserNoticeController {
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);
-		return "getUserNoticeList";
+		return "board/getUserNoticeList";
 	}
 
 	

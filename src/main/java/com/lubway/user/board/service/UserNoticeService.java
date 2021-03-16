@@ -28,7 +28,7 @@ public interface UserNoticeService {
 	//검색한 글 페이징 리스트
 	List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination);
 	
-	// 사용자 공지사항 목록, 상세조회
+	
 
 
 }

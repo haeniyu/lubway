@@ -46,7 +46,7 @@
 		<div class="board_list_wrapper">
 			<div class="content">
 				<p class="board_total">
-					총<strong itemid="${pagination.list}"></strong>건의 게시글이 있습니다.
+					총<strong itemid="${pagination}">${pageList}</strong>건의 게시글이 있습니다.
 				</p>
 
 				<div class="cont_right">

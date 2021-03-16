@@ -14,40 +14,45 @@ import com.lubway.user.board.UserNoticeVO;
 public class UserNoticeServiceImpl implements UserNoticeService {
 	@Autowired
 	private UserNoticeDAO noticeDAO;
-	
-
 
 	@Override
 	public UserNoticeVO getUserNotice(UserNoticeVO vo) {
-		return noticeDAO.getNotice(vo);
+		
+		return noticeDAO.getUserNotice(vo);
 	}
 
 	@Override
 	public List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo) {
-		return noticeDAO.getNoticeList(vo);
 		
+		return noticeDAO.getUserNoticeList(vo);
 	}
-	
-	public List<UserNoticeVO> getUserPageList(UserPagination pagination){
-		return noticeDAO.getPageList(pagination);
+
+	@Override
+	public List<UserNoticeVO> getUserPageList(UserPagination pagination) {
+		
+		return noticeDAO.getUserPageList(pagination);
 	}
-	
+
 	@Override
 	public int getUserPageListCnt() {
-		return noticeDAO.getPageListCnt();
-
+		
+		return noticeDAO.getUserPageListCnt();
 	}
 
 	@Override
 	public int getUserSearchTitleCnt(String title) {
+		
 		return noticeDAO.getSearchTitleCnt(title);
 	}
 
 	@Override
 	public List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination) {
-		return noticeDAO.getSearchPagingList(pagination);
 		
+		return noticeDAO.getUserSearchPagingList(pagination);
 	}
+	
+
+
 	
 	
 	
