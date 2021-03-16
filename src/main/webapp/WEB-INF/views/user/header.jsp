@@ -21,7 +21,7 @@
 
 <body>
 	<div id="header" style="overflow: hidden; height: 165px;">
-		<div class="content">
+		<div class="headercontent">
 			<h1 class="logo">
 				<a href="main.do">LUBWAY</a>
 			</h1>

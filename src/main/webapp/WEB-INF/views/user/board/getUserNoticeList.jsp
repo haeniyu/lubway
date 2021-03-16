@@ -5,15 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/notice.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/header.css">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/footer.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/notice.css" />
 <title>SUBWAY - 뉴스ㆍ공지사항</title>
 <meta charset="utf-8" />
-
 </head>
 <body>
 
@@ -46,7 +40,7 @@
 		<div class="board_list_wrapper">
 			<div class="content">
 				<p class="board_total">
-					총<strong itemid="${pagination.list}"></strong>건의 게시글이 있습니다.
+					총<strong itemid="${pagination}">${pageList}</strong>건의 게시글이 있습니다.
 				</p>
 
 				<div class="cont_right">
