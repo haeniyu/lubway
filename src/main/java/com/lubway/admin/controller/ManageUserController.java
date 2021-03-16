@@ -1,9 +1,13 @@
 package com.lubway.admin.controller;
 
+import java.io.IOException;
+import java.util.List;
+
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.admin.board.Pagination;
 import com.lubway.admin.service.ManageService;
 import com.lubway.user.UserVO;
 import com.lubway.user.service.UserService;
@@ -39,9 +44,47 @@ public class ManageUserController {
 	 * 회원 관리 페이지 이동 
 	 */
 	@GetMapping("getuserlist.mdo")
-	public String getUserList(Model model) {
+	public String getUserList(Model model, 
+			@RequestParam(required = false, defaultValue = "1") int page, 
+			@RequestParam(required = false, defaultValue = "1") int range) throws PSQLException, IOException {
 		System.out.println("관리자 - 회원 관리 페이지로 이동");
-		model.addAttribute("list", manageService.getUserList());
+		
+		int cnt = manageService.getUserListCnt();
+		
+		// Pagination
+		Pagination pagination = new Pagination();
+		pagination.pageInfo(page, range, cnt);
+
+		System.out.println(pagination.getStartList());
+		System.out.println(pagination.getListSize());
+		List<UserVO> pageList = manageService.getPageList(pagination);
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("list", pageList);
+		
+		
+		return "manage/customer/getUserList";
+	}
+	
+	/**
+	 * 검색 결과 페이지 이동
+	 */
+	@GetMapping("searchuser.mdo")
+	public String searchGetUserList(@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam("searchKeyword") String searchKeyword,
+			Model model, UserVO vo) {
+		
+		Pagination pagination = new Pagination();
+		int cnt = manageService.getSearchCnt(vo.getSearchKeyword());
+		
+		pagination.pageInfoList(page, range, cnt, searchKeyword);
+
+		List<UserVO> pageList = manageService.getSearchPagingList(pagination);
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("list", pageList);
+		
 		return "manage/customer/getUserList";
 	}
 	
