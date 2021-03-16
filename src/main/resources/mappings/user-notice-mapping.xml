@@ -86,6 +86,17 @@
 		) as two
 	</select>
 	
+	<select id="prevPage" resultType="usernotice">
+      <![CDATA[select * from notice_board where no in(
+      (select no from notice_board where no < ${notice.no} order by no desc limit 1)
+      )]]>
+   </select>
 
+	<select id="nextPage" resultType="usernotice">
+      <![CDATA[select * from notice_board where no in(
+      (select no from notice_board where no > ${notice.no} order by no limit 1)
+      )]]>
+   </select>
 
+      
 </mapper>

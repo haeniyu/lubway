@@ -17,14 +17,11 @@ import com.lubway.user.UserPagination;
 import com.lubway.user.board.UserNoticeVO;
 import com.lubway.user.board.service.UserNoticeService;
 
-
-
 @Controller
 
 public class UserNoticeController {
 	@Autowired
 	private UserNoticeService noticeService;
-
 
 	// 검색 조건 목록 설정
 	@ModelAttribute("conditionMap")
@@ -39,12 +36,14 @@ public class UserNoticeController {
 	@RequestMapping("/getUserNotice.do")
 	public String getNotice(UserNoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getUserNotice(vo));
+		model.addAttribute("prev", noticeService.getUserNotice(vo));
+		model.addAttribute("next", noticeService.getUserNotice(vo));
 		return "board/getUserNotice";
 	}
 
 	// 글목록 요청
 	@GetMapping("/getUserNoticeList.do")
-	public String getNoticeList(UserNoticeVO vo, Model model, 
+	public String getNoticeList(UserNoticeVO vo, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
 
@@ -86,8 +85,6 @@ public class UserNoticeController {
 
 		UserPagination pagination = new UserPagination();
 		int listCnt = noticeService.getUserSearchTitleCnt(vo.getSearchKeyword());
-	
-
 
 		System.out.println(listCnt);
 		pagination.pageInfoList(page, range, listCnt, searchKeyword);
@@ -98,7 +95,4 @@ public class UserNoticeController {
 		model.addAttribute("noticeList", pageList);
 		return "board/getUserNoticeList";
 	}
-
-	
-
 }
