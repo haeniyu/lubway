@@ -46,7 +46,7 @@ public class UserPagination {
 		this.startList = (page-1) * listSize;
 
 		//이전 버튼 상태
-		this.prev = range == 1 ? false : true;
+		this.prev = range == 1 ? true : false;
 
 		//다음 버튼 상태
 		this.next = pageCnt > endPage ? true : false;
@@ -55,7 +55,7 @@ public class UserPagination {
 		
 		if (this.endPage > this.pageCnt) {
 			this.endPage = this.pageCnt;
-			this.next = false;
+			this.next = true;
 
 		}
 	}

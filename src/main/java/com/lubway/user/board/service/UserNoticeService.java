@@ -12,7 +12,6 @@ public interface UserNoticeService {
 	UserNoticeVO getUserNotice(UserNoticeVO vo);
 
 	// 글 목록 조회
-	List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo);
 
 	// 페이징 리스트
 	List<UserNoticeVO> getUserPageList(UserPagination pagination);
@@ -26,8 +25,5 @@ public interface UserNoticeService {
 	// 검색한 글 페이징 리스트
 	List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination);
 
-	UserNoticeVO getPrevPage(UserNoticeVO vo);
-
-	UserNoticeVO getNextPage(UserNoticeVO vo);
-
+	List<UserNoticeVO> getRightNoticeList(UserPagination pagination);
 }

@@ -1,36 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
+<c:url var="getNoticeList" value="/lubway/search.do">
+	<c:param name="page" value="${pagination.page}" />
+	<c:param name="range" value="${pagination.range}" />
+	<c:param name="rangeSize" value="${pagination.rangeSize}" />
+	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
+	<c:param name="fix" value="${pagination.fix }" />
+</c:url>
+
 <!DOCTYPE html>
 <html>
+<script>
+	//이전 버튼 이벤트
+
+	function fn_prev(page, range, rangeSize, searchKeyword) {
+
+		var page = ((range - 2) * rangeSize) + 1;
+
+		var range = range - 1;
+
+		var url = "${pageContext.request.contextPath}/search.do";
+
+		url = url + "?page=" + page;
+
+		url = url + "&range=" + range;
+
+		url = url + "&searchKeyword=" + searchKeyword;
+
+		location.href = url;
+
+	}
+
+	//페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize, searchKeyword, fix) {
+
+		var url = "${pageContext.request.contextPath}/search.do";
+
+		url = url + "?page=" + page;
+
+		url = url + "&range=" + range;
+
+		url = url + "&searchKeyword=" + searchKeyword;
+
+		location.href = url;
+
+	}
+
+	//다음 버튼 이벤트
+
+	function fn_next(page, range, rangeSize, searchKeyword) {
+
+		var page = parseInt((range * rangeSize)) + 1;
+
+		var range = parseInt(range) + 1;
+
+		var url = "${pageContext.request.contextPath}/search.do";
+
+		url = url + "?page=" + page;
+
+		url = url + "&range=" + range;
+
+		url = url + "&searchKeyword=" + searchKeyword;
+
+		location.href = url;
+	}
+</script>
+
 <head>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/notice.css" />
+<link rel="stylesheet" type="text/css"
+	href="${path}/resources/css/notice.css" />
 <title>SUBWAY - 뉴스ㆍ공지사항</title>
 <meta charset="utf-8" />
 </head>
 <body>
 
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
-	
+
 	<!-- container s -->
-            <div id="container">
-			<div class="sub_header">
-				<div class="content">
-					<a class="logo" href="/">HOME</a>
-					<!-- sub location -->
-					<div class="sub_loc">
-						<ul>
-							<li><a href="./eventList">이벤트ㆍ프로모션</a></li>
-							<li class="active"><a href="#">뉴스ㆍ공지사항</a></li>
-							<li><a href="./tvCommercial">광고영상</a></li>
-						</ul>
-					</div>
-					<!--// sub location -->
-					<a class="top" href="#none">TOP</a>
+	<div id="container">
+		<div class="sub_header">
+			<div class="content">
+				<a class="logo" href="/">HOME</a>
+				<!-- sub location -->
+				<div class="sub_loc">
+					<ul>
+						<li><a href="./eventList">이벤트ㆍ프로모션</a></li>
+						<li class="active"><a href="#">뉴스ㆍ공지사항</a></li>
+						<li><a href="./tvCommercial">광고영상</a></li>
+					</ul>
 				</div>
+				<!--// sub location -->
+				<a class="top" href="#none">TOP</a>
 			</div>
 		</div>
+	</div>
 
 	<!-- sub content s -->
 	<div id="content">
@@ -40,17 +106,16 @@
 		<div class="board_list_wrapper">
 			<div class="content">
 				<p class="board_total">
-					총<strong itemid="${pagination}">${pageList}</strong>건의 게시글이 있습니다.
+					총<strong itemid="${pagination}">${pagination.listCnt}</strong>건의
+					게시글이 있습니다.
 				</p>
 
 				<div class="cont_right">
 					<div class="form_search">
-						<form id="searchForm" method="GET" name="searchForm"
-							onsubmit="return view.search();">
-							<input name="page" type="hidden" value="1" /> <input
-								name="subject" placeholder="검색어를 입력하세요" type="text" value="" />
-							<a class="btn_search" href="#"
-								onclick="view.search();return false;"></a>
+						<form id="searchform" method="GET" action="/lubway/search.do">
+							<input name="page" type="hidden" value="1" /> 
+							<input name="searchKeyword" placeholder="검색어를 입력하세요" type="text" value="" />
+							<input type="submit" class="btn_search" value="" formaction="/lubway/search.do"/>
 						</form>
 					</div>
 				</div>
@@ -63,168 +128,71 @@
 						<col width="50px" />
 						<col width="120px" />
 					</colgroup>
+					
 					<tbody>
-						<tr class="notice">
-							<!-- 공지사항일경우 notice 클래스 추가 -->
-							<td><div class="icon_notice"></div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(241);return false;">써브웨이와
-										함께하는 JTBC &#39;라이브온&#39;</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.11.16</div></td>
-						</tr>
-						<tr class="notice">
-							<!-- 공지사항일경우 notice 클래스 추가 -->
-							<td><div class="icon_notice"></div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(232);return false;">써브웨이 앱
-										출시 및 앱 사용 불가 매장 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.06.24</div></td>
-						</tr>
-						<tr class="notice">
-							<!-- 공지사항일경우 notice 클래스 추가 -->
-							<td><div class="icon_notice"></div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(220);return false;">써브웨이 그릴드
-										랩 &amp; 파니니 일부 매장 판매 안내 </a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">19.10.10</div></td>
-						</tr>
-						<tr class="notice">
-							<!-- 공지사항일경우 notice 클래스 추가 -->
-							<td><div class="icon_notice"></div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(214);return false;">써브웨이 모바일
-										상품권 이용 안내의 건</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">19.08.20</div></td>
-						</tr>
-						<tr class="notice">
-							<!-- 공지사항일경우 notice 클래스 추가 -->
-							<td><div class="icon_notice"></div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(190);return false;">고객 경험
-										설문조사 프로그램 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">18.07.20</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">145</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(243);return false;">써브웨이
-										고객센터 2021년 설 연휴 휴무 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">21.02.09</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">144</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(242);return false;">2021년 설날
-										당일 매장 영업 안내 </a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">21.02.09</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">143</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(241);return false;">써브웨이와
-										함께하는 JTBC &#39;라이브온&#39;</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.11.16</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">142</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(240);return false;">2020년 추석
-										당일 매장운영 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.09.28</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">141</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(239);return false;">써브웨이
-										고객센터 2020년 추석 연휴 휴무 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.09.28</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">140</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(238);return false;">써브웨이와
-										함께하는 KBS &#39;오!삼광빌라&#39; </a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.09.21</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">139</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(237);return false;">써브웨이와
-										함께하는 tvN &#39;청춘기록&#39;</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.09.07</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">138</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(236);return false;">써브웨이와
-										함께하는 tvN &#39;식스센스&#39;</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.09.07</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">137</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(234);return false;">개인정보
-										처리방침 개정안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.07.01</div></td>
-						</tr>
-						<tr>
-							<td><div class="num">136</div></td>
-							<td><div class="title">
-									<a href="#" onclick="view.view(233);return false;">써브카드 잔액
-										환불 안내</a>
-								</div></td>
-							<td><div></div></td>
-							<td><div class="date">20.07.01</div></td>
-						</tr>
+						<c:forEach items="${UserPageList}" var="pageList">
+								<c:set var="fix" value="${pageList.fix }" />
+								<c:choose>
+								
+									<c:when test="${fix eq 'true' }">
+							<tr class="notice">
+										<td><div>
+												<img src="resources/images/common/icon_notice.png">
+											</div></td>
+										<td><div class="title">
+												<a type="hidden" href="getUserNotice.do?no=${pageList.no}">${pageList.title }</a>
+											</div></td>
+										<td><div></div></td>
+										<td><div class="date"><fmt:formatDate value="${pageList.regDate }"
+												pattern="yyyy-MM-dd" /></div></td>
+												</tr>
+									</c:when>
+									
+									<c:otherwise>
+									<tr>
+										<td><div class="num">${pageList.rownum}</div></td>
+										<td><div class="title">
+												<a type="hidden" href="getUserNotice.do?no=${pageList.no}">${pageList.title }</a>
+											</div></td>
+										<td><div></div></td>
+										<td><div class="date"><fmt:formatDate value="${pageList.regDate }"
+												pattern="yyyy-MM-dd" /></div></td>
+												<tr>
+									</c:otherwise>
+									
+								</c:choose>
+							
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
 
 			<!-- board 페이지 -->
 			<div>
-				<div class="pagination">
+				<div class="pagination" >
+
+				<ul class="UserPagination">
+					<c:if test="${pagination.prev}">
+						<a class="arr prev" href="javascript:void(0);"
+							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+					</c:if>
+					
+
+					<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
+						<li 
+							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+							<a class="page-link" href="#"
+							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+								${idx} </a></li>
+					</c:forEach>
 
 
-					<a class="arr prev" href="javascript:void(0);"></a> <a
-						class="active" href="#">1</a> <a href="#"
-						onclick="paging.page(2);return false;">2</a> <a href="#"
-						onclick="paging.page(3);return false;">3</a> <a href="#"
-						onclick="paging.page(4);return false;">4</a> <a href="#"
-						onclick="paging.page(5);return false;">5</a> <a href="#"
-						onclick="paging.page(6);return false;">6</a> <a href="#"
-						onclick="paging.page(7);return false;">7</a> <a href="#"
-						onclick="paging.page(8);return false;">8</a> <a href="#"
-						onclick="paging.page(9);return false;">9</a> <a href="#"
-						onclick="paging.page(10);return false;">10</a> <a class="arr next"
-						href="javascript:void(0);" onclick="paging.next(15);return false;"></a>
+					<c:if test="${pagination.next}">
+						<li class="page-item"><a class="arr next" href="javascript:void(0);"
+							onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+					</c:if>
+				</ul>
+			
 
 				</div>
 			</div>

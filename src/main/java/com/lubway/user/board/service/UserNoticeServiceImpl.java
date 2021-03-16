@@ -21,12 +21,6 @@ public class UserNoticeServiceImpl implements UserNoticeService {
 	}
 
 	@Override
-	public List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo) {
-
-		return noticeDAO.getUserNoticeList(vo);
-	}
-
-	@Override
 	public List<UserNoticeVO> getUserPageList(UserPagination pagination) {
 
 		return noticeDAO.getUserPageList(pagination);
@@ -51,13 +45,9 @@ public class UserNoticeServiceImpl implements UserNoticeService {
 	}
 
 	@Override
-	public UserNoticeVO getPrevPage(UserNoticeVO vo) {
-		return noticeDAO.getPrevPage(vo);
-	}
+	public List<UserNoticeVO> getRightNoticeList(UserPagination pagination) {
 
-	@Override
-	public UserNoticeVO getNextPage(UserNoticeVO vo) {
-		return noticeDAO.getNextPage(vo);
+		return noticeDAO.getRightNoticeList(pagination);
 	}
 
 }
