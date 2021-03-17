@@ -33,5 +33,10 @@
 	<delete id="deleteUser" parameterType="user">
 		DELETE FROM lubuser WHERE id = #{id}
 	</delete>
+	
+	<insert id="insertInquiry">
+		INSERT INTO franchise(name, tel, email, area, title, content) 
+		VALUES(#{name}, #{tel}, #{email}, #{area} ,#{title}, #{content})
+	</insert>
 
 </mapper>

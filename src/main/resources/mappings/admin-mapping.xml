@@ -37,7 +37,7 @@
 	</select>
 	
 	<select id="getPageList" resultType="user">
-		SELECT * FROM lubuser ORDER BY status LIMIT ${listSize} OFFSET ${startList} 
+		SELECT * FROM lubuser ORDER BY status LIMIT #{listSize} OFFSET #{startList} 
 	</select>
 	
 	<select id="getSearchCnt" parameterType="String" resultType="int">
@@ -47,7 +47,7 @@
 	<select id="getSearchPagingList" resultType="user">
 		SELECT * FROM lubuser WHERE tel LIKE '%'||#{searchKeyword}||'%' 
 		ORDER BY status
-		LIMIT ${listSize} OFFSET ${startList}
+		LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	
 	<select id="getStoreListCnt" resultType="int">
@@ -55,7 +55,7 @@
 	</select>
 	
 	<select id="getStorePageList" resultType="store">
-		SELECT * FROM lubstore ORDER BY status LIMIT ${listSize} OFFSET ${startList}
+		SELECT * FROM lubstore ORDER BY status LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	
 	<select id="getSearchStoreCnt" parameterType="String" resultType="int">
@@ -65,7 +65,7 @@
 	<select id="getSearchStorePagingList" resultType="store">
 		SELECT * FROM lubstore WHERE storename LIKE '%'||#{searchKeyword}||'%' 
 		ORDER BY status
-		LIMIT ${listSize} OFFSET ${startList}
+		LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	
 </mapper>
