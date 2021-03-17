@@ -3,87 +3,53 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="EventDAO">
-	<!-- 
-	<sql id="page">
-		select * from notice_board limit #{listSize} offset #{startList}
-	</sql> -->
-	
+	<resultMap type="event" id="eventResult">
+		<id property="no" column="NO" />
+		<result property="title" column="TITLE" />
+		<result property="thumbnail" column="THUMBNAIL" />
+		<result property="contimg" column="CONTIMG" />
+		<result property="regdate" column="REGDATE" />
+		<result property="enddate" column="ENDDATE" />
+	</resultMap>
 	<!-- 관리자 공지사항 글 등록, 수정, 삭제, 상세보기, 목록보기, 페이징 처리 -->
 	<insert id="insertEvent" parameterType="event">
-		INSERT INTO
-		EVENT_BOARD(TITLE, REGDATE, ENDDATE, THUMBNAIL, CONTIMG)
-		VALUES(#{title},#{regdate},#{enddate}, ${thumbnail}, ${contimg})
+	<![CDATA[
+		INSERT INTO	EVENT_BOARD (TITLE, THUMBNAIL, CONTIMG, REGDATE, ENDDATE)
+		VALUES ( #{title}, #{thumbnail}, #{contimg}, #{regdate}, #{enddate} )
+	]]>
 	</insert>
-
-<!--  
-	<update id="updateNotice" parameterType="notice">
-		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=${fix} WHERE
-		NO=#{no}
+	
+	<update id="updateEvent" parameterType="event">
+		UPDATE EVENT_BOARD SET TITLE=#{title}, THUMBNAIL=#{thumbnail}, CONTIMG=#{contimg}, 
+		REGDATE=#{regdate}, ENDDATE=#{enddate} WHERE NO=#{no}
 	</update>
 
-	<delete id="deleteNotice">
-		DELETE FROM NOTICE_BOARD WHERE no=#{no}
-
+	<delete id="deleteEvent">
+		DELETE FROM EVENT_BOARD WHERE no=#{no}
 	</delete>
-
-	<select id="getNotice" parameterType="notice"
-		resultType="notice">
-		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+	
+	<select id="getEvent" parameterType="event"
+		resultType="event">
+		SELECT * FROM EVENT_BOARD WHERE NO=#{no}
 	</select>
-
-	<select id="getNoticeList" parameterType="notice"
-		resultType="notice">
-		SELECT * FROM NOTICE_BOARD
+	
+	<select id="getEventList" parameterType="event"
+		resultType="event">
+		SELECT * FROM EVENT_BOARD
 		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY NO DESC
 	</select>
 
-	<select id="pagingList" resultType="notice">
-		select * from
-		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
-		filepath
-		from notice_board where fix = true order by regdate desc ) as one
-		union all
-		select * from (
-		select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
-		filepath
-		from
-		( select * from notice_board where fix = false order by no asc ) as
-		three
-		order by regdate desc,rownum desc
-		limit ${listSize} offset ${startList}
-		) as two
-
+	<select id="pagingList" resultType="event">
+		select ROW_NUMBER() OVER() rownum, no, title, regdate, enddate, thumbnail
+		from event_board order by regdate desc, rownum desc
+		limit #{listSize} offset #{startList}
+		
 	</select>
-
-	<select id="searchPagingList" resultType="notice">
-		select * from
-		( select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
-		filepath
-		from notice_board where fix = true order by regdate desc ) as one
-		union all
-		select * from (
-		select ROW_NUMBER() OVER() rownum, no, title, content, regdate, fix,
-		filepath
-		from
-		( select * from notice_board where fix = false and title like
-		'%'||#{searchKeyword}||'%' order by no asc) as three
-		order by regdate desc,rownum desc
-		limit ${listSize} offset ${startList}
-		) as two
-
-	</select>
-
 
 	<select id="pagingCnt" resultType="int">
 		select count(*) as listCnt
-		from notice_board
+		from event_board
 	</select>
-
-	<select id="searchTitleCnt" parameterType="String"
-		resultType="int">
-		select count(*) from notice_board where TITLE LIKE
-		'%'||#{searchKeyword}||'%';
-	</select>
-	-->
+	
 </mapper>

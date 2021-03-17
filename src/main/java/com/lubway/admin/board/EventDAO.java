@@ -36,4 +36,13 @@ public class EventDAO{
 		System.out.println("getEventList() 기능 처리");
 		return sqlSessionTemplate.selectList("EventDAO.getEventList", vo);
 	}
+	
+	public List<EventVO> getEventPageList(Pagination pagination){
+		return sqlSessionTemplate.selectList("EventDAO.pagingList", pagination);
+	}
+	
+	public int getEventPageListCnt() {
+		return sqlSessionTemplate.selectOne("EventDAO.pagingCnt");
+	}
+	
 }

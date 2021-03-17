@@ -4,11 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
+<c:url var="getEventList" value="/lubway/getEventList.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
-	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
+	
 </c:url>
 
 <!DOCTYPE html>
@@ -19,34 +19,34 @@
 <script>
 	//이전 버튼 이벤트
 
-	function fn_prev(page, range, rangeSize, searchKeyword) {
+	function fn_prev(page, range, rangeSize) {
 
 		var page = ((range - 2) * rangeSize) + 1;
 
 		var range = range - 1;
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 
 	}
 
 	//페이지 번호 클릭
-	function fn_pagination(page, range, rangeSize, searchKeyword) {
+	function fn_pagination(page, range, rangeSize ) {
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 
@@ -60,13 +60,13 @@
 
 		var range = parseInt(range) + 1;
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 	}
@@ -80,7 +80,6 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertEvent.mdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -94,6 +93,7 @@
 				</div>
 
 
+	<form action="/lubway/insertEvent.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -107,46 +107,26 @@
 							
 							<thead>
 								<tr align="center">
-									<th width="10%">NO</th>
-									<th width="70%">Title</th>
-									<th width="20%">Date</th>
+									<th width="30%">Title</th>
+									<th width="40%">Thumbnail</th>
+									<th width="15%">StartDate</th>
+									<th width="15%">EndDate</th>
 								</tr>
 							</thead>
-								<!--<c:forEach items="${noticeList}" var="notice">-->
 							<tbody>
+								<c:forEach items="${eventList}" var="event">
 									<tr>
-										<td>
-											<div class="cell">
-												<div class="eventTitle">제목이 들어갑니당</div>
-												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
-												<div class="eventDate">이벤트 등록일 들어갑니당</div>
-											</div>
-										</td>
-										<td>
-											<div class="cell">
-												<div class="eventTitle">제목이 들어갑니당</div>
-												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
-												<div class="eventDate">이벤트 등록일 들어갑니당</div>
-											</div>
-										</td>
+										<td><a type="hidden" href="getEvent.mdo?no=${event.no}">${event.title }</a></td>
+										<td><a type="hideen" href="getEvent.mdo?no=${event.no }"><img src="${event.thumbnail }"></a></td>
+										<td><fmt:formatDate value="${event.regdate }"
+														pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatDate value="${event.enddate }"
+														pattern="yyyy-MM-dd" /></td>
 									</tr>
-								<!--</c:forEach>-->
+								</c:forEach>
 							</tbody>
 						</table>
-
-						<!-- 검색 시작 -->
-						<div align="right">
-							<form action="/lubway/search.mdo" method="get">
-								<tr>
-									<td><input type="text" name="searchKeyword"
-										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-										style="margin: 3px; padding: 3px"
-										class="btn btn-warning btn-icon-split" type="submit"
-										value="search" /></td>
-								</tr>
-							</form>
-						</div>
-						<!-- 검색 종료 -->
+</form>
 						<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 						<!-- pagination{s} -->
 
@@ -154,21 +134,21 @@
 							<ul class="pagination">
 								<c:if test="${pagination.prev}">
 									<li class="page-item"><a class="page-link" href="#"
-										onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
+										onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}')">Prev</a></li>
 								</c:if>
 								<c:forEach begin="${pagination.startPage}"
 									end="${pagination.endPage}" var="idx">
 									<li
 										class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
 										class="page-link" href="#"
-										onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">
+										onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}')">
 											${idx} </a></li>
 								</c:forEach>
 
 
 								<c:if test="${pagination.next}">
 									<li class="page-item"><a class="page-link" href="#"
-										onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
+										onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
 								</c:if>
 							</ul>
 						</div>
@@ -177,7 +157,7 @@
 
 			</div>
 		</div>
-	</form>
+	
 
 	<!-- /.container-fluid -->
 

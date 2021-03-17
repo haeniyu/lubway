@@ -13,6 +13,26 @@
 		$("#registerBtn").on("click",function(){
 					alert("등록되었습니다.");
 		});
+	
+	function setDate() {
+		var start = $("#start").val();
+		var end = $("#end").val();
+
+		var openField = document.createElement("input");
+		openField.setAttribute("type", "hidden");
+		openField.setAttribute("name", "start");
+		openField.setAttribute("value", start);
+
+		var closeField = document.createElement("input");
+		closeField.setAttribute("type", "hidden");
+		closeField.setAttribute("name", "end");
+		closeField.setAttribute("value", end);
+
+		document.form.appendChild(openField);
+		document.form.appendChild(closeField);
+		document.form.submit();
+	}
+	
 	});
 </script>
 <style type="text/css">
@@ -30,7 +50,7 @@ li{
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
-	<form action="/lubway/insertDB.mdo" method="post" enctype="multipart/form-data">
+	<form action="/lubway/eventUpload.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -56,20 +76,20 @@ li{
 						<li class="img">
 							<div>
 								<div class="index">썸네일 이미지</div>
-								<input type="file" name="multipart" />
+								<input type="file" name="thumb" />
 							</div>
 						</li>
 						<!-- 이벤트 이미지 업로드 -->
 						<li class="img">
 							<div>
 								<div class="index">이벤트 이미지</div>
-								<input type="file" name="multipart" multiple/>
+								<input type="file" name="cont"/>
 							</div>
 						</li>
 						<!-- 기간 -->
 						<li class="term">
 							<div class="index">이벤트 기간</div>
-							시작 : <input type="date" name="start"> ~ 종료 : <input type="date" name="end">
+							시작 : <input type="date" name="start" id="start"> ~ 종료 : <input type="date" id="end" name="end">
 						</li>
 					</ul>
 					<div align="center">

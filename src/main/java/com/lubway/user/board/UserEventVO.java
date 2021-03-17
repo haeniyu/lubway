@@ -1,4 +1,4 @@
-package com.lubway.admin.board;
+package com.lubway.user.board;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class EventVO {
+public class UserEventVO {
 	private Integer no;
 	private String title;
 	private Date regdate;
