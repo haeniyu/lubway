@@ -46,4 +46,9 @@ public class UserServiceImpl implements UserService {
 		dao.updatePwd(vo);
 	}
 
+	@Override
+	public int telCheck(String tel) {
+		return dao.telCheck(tel);
+	}
+
 }

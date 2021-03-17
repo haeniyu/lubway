@@ -58,8 +58,6 @@ public class UserController {
 	public String main(HttpSession session, Model model) {
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
-		System.out.println("네이버:" + naverAuthUrl);
-
 		//네이버 
 		model.addAttribute("url", naverAuthUrl);
 
@@ -70,8 +68,7 @@ public class UserController {
 	 * 네이버 로그인 처리
 	 */
 	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session) throws IOException {
-		System.out.println("여기는 callback");
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse servletResponse) throws IOException {
 
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -83,29 +80,55 @@ public class UserController {
 		// 내가 원하는 정보 (이름)만 JSON타입에서 String타입으로 바꿔 가져오기 위한 작업 
 		JSONParser parser = new JSONParser(); 
 		Object obj = null; 
-		
+
 		try { 
 			obj = parser.parse(apiResult); 
 		} catch (ParseException e) {
-				e.printStackTrace(); 
+			e.printStackTrace(); 
 		}
-		
+
 		JSONObject jsonobj = (JSONObject) obj; 
 		JSONObject response = (JSONObject) jsonobj.get("response");
-		
+
 		String nname = (String) response.get("name");
 		String nemail = (String) response.get("email");
 		String nmobile = (String) response.get("mobile");
-		
-		// 로그인&아웃 하기위한 세션값 주기
-//		session.setAttribute("nname", nname);
-//		session.setAttribute("nemail", nemail);
-//		session.setAttribute("nphone", nphone);
 
-		System.out.println(nname);
-		System.out.println(nemail);
-		System.out.println(nmobile);
-		
+		if(userService.idCheck(nemail) == 0) {
+			String mobile = "";
+
+			String[] mobileArray = nmobile.split("-");
+			for(String a : mobileArray) mobile += a;
+
+			if(userService.telCheck(mobile) != 0) {
+				alertView("이미 가입된 휴대폰 번호입니다.", -1, servletResponse);
+				return null;
+			}
+
+			UserVO user = new UserVO();
+			user.setId(nemail);
+			user.setName(nname);
+			user.setTel(mobile);
+
+			userService.insertUser(user);
+
+			session.setAttribute("user", user);
+			session.setAttribute("nuser", new String("1"));
+		} else {
+			UserVO user = userService.getUser(nemail);
+
+			if(user.getStatus() > 0) {
+				alertView("관리자에 의해 정지된 계정입니다.", -1, servletResponse);
+				return null;
+			} else if(user.getPassword() != null) {
+				alertView("이미 가입된 계정이 있습니다.", -1, servletResponse);
+				return null;
+			}
+			
+			session.setAttribute("user", user);
+			session.setAttribute("nuser", new String("1"));
+		}
+
 		return "main";
 	}
 
@@ -113,15 +136,8 @@ public class UserController {
 	 * 로그인 처리 후 메인 페이지 이동
 	 */
 	@PostMapping("/main.do")
-	public String main(@RequestParam("id") String id, 
-			@RequestParam("password") String password, 
-			HttpServletResponse response, 
-			HttpServletRequest request) throws IOException {
-
+	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpServletRequest request) throws IOException {
 		System.out.println("메인 화면으로 이동");
-
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 
 		int i = userService.idCheck(id);
 
@@ -136,9 +152,7 @@ public class UserController {
 		}
 
 		if(getUser == null || !check || getUser.getStatus() > 0) {
-			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
-			out.flush();
-			out.close();
+			alertView("아이디 또는 비밀번호가 틀렸습니다.", -1, response);
 			return null;
 		} else {
 			HttpSession session = request.getSession();
@@ -156,6 +170,7 @@ public class UserController {
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
 		session.removeAttribute("user");
+		session.removeAttribute("nuser");
 		System.out.println("로그아웃 처리");
 		return "main";
 	}
@@ -231,7 +246,6 @@ public class UserController {
 	@GetMapping("/idCheck.do")
 	@ResponseBody
 	public String idCheck(@RequestParam("userId") String id) {
-
 		return String.valueOf(userService.idCheck(id));
 	}
 
@@ -258,11 +272,16 @@ public class UserController {
 	 * 비밀번호 찾기 화면 이동 - 임의 비밀번호 값 사용자 이메일 전송 / 암호화 후 DB 업데이트
 	 */
 	@RequestMapping("/resultPwd.do")
-	public String resultPwd(@RequestParam("tel") String tel, HttpSession seesion, Model model) {
+	public String resultPwd(@RequestParam("tel") String tel, HttpSession seesion, Model model, HttpServletResponse response) throws IOException {
 		System.out.println("비밀번호 찾기 화면으로 이동");
 
 		String id = userService.getId(tel);		
 		UserVO vo = userService.getUser(id);
+
+		if(vo.getPassword() == null) {
+			alertView("소셜 계정입니다. 해당 사이트에 문의해주세요.", -2, response);
+			return null;			
+		}
 
 		String pwd = getTempPassword(8);
 		vo.setPassword(pwd);
@@ -293,10 +312,16 @@ public class UserController {
 	 * 아이디 찾기 화면 이동
 	 */
 	@PostMapping("/resultId.do")
-	public String resultId(@RequestParam("tel") String tel, HttpSession seesion) {
+	public String resultId(@RequestParam("tel") String tel, HttpSession seesion, HttpServletResponse response) throws IOException {
 		System.out.println("아이디 찾기 화면으로 이동");
 
 		String id = userService.getId(tel);
+		UserVO user = userService.getUser(id);
+		if(user.getPassword() == null) {
+			alertView("소셜 계정입니다. 해당 사이트에 문의해주세요.", -2, response);
+			return null;
+		}
+		
 		seesion.setAttribute("findId", id);
 
 		return "findid";
@@ -332,7 +357,7 @@ public class UserController {
 	}
 
 	/**
-	 *  임시 비밀번호 생성 기능
+	 * 임시 비밀번호 생성 기능
 	 */
 	public String getTempPassword(int length) {
 		int index = 0;
@@ -351,7 +376,7 @@ public class UserController {
 	}
 
 	/**
-	 *  회원가입 메일 발송 기능
+	 * 회원가입 메일 발송 기능
 	 */
 	public void sendJoinMail(UserVO vo) {
 		String mailTo = vo.getId();
@@ -376,7 +401,7 @@ public class UserController {
 	}
 
 	/**
-	 *  비밀번호 찾기 메일 발송 기능
+	 * 비밀번호 찾기 메일 발송 기능
 	 */
 	public void sendPwdMail(UserVO vo) {
 		String mailTo = vo.getId();
@@ -403,5 +428,16 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	/**
+	 * alert 경고창
+	 */
+	public void alertView(String message, int returnPage, HttpServletResponse response) throws IOException {
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>alert('" + message + "'); history.go(" + returnPage + "); </script>");
+		out.flush();
+		out.close();	
 	}
 }

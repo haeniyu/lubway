@@ -6,15 +6,22 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class UserDAO {
+	
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 	
 	public int idCheck(String id) {
+		System.out.println("UserDAO - idCheck() 실행");
 		return sqlSessionTemplate.selectOne("UserDAO.idCheck", id);
 	}
 	
+	public int telCheck(String tel) {
+		System.out.println("UserDAO - telCheck() 실행");
+		return sqlSessionTemplate.selectOne("UserDAO.telCheck", tel);
+	}
+	
 	public void insertUser(UserVO vo) {
-		System.out.println("DB에 회원 등록");
+		System.out.println("UserDAO - insertUser() 실행");
 		sqlSessionTemplate.insert("UserDAO.insertUser", vo);
 	}
 	

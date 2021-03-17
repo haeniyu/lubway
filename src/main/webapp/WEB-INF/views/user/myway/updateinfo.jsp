@@ -144,19 +144,21 @@ $(document).ready(function() {
 										<dd>${user.tel }</dd>
 									</dl>
 								</div>
-								<div class="input_set">
-									<dl>
-										<dt>비밀번호</dt>
-										<dd>
-											<div class="pass_num_wrap">
-												<span class="form_text">
-												<input id="pw" name="Changepass" type="password" placeholder="변경할 비밀번호를 입력하세요" />
-												</span>
-												<span class="pw_check miss worng-msg-pw" id="pwdMsg1"></span>
-											</div>
-										</dd>
-									</dl>
-								</div>
+								<c:if test="${user != null && nuser == null}">
+									<div class="input_set">
+										<dl>
+											<dt>비밀번호</dt>
+											<dd>
+												<div class="pass_num_wrap">
+													<span class="form_text">
+													<input id="pw" name="Changepass" type="password" placeholder="변경할 비밀번호를 입력하세요" />
+													</span>
+													<span class="pw_check miss worng-msg-pw" id="pwdMsg1"></span>
+												</div>
+											</dd>
+										</dl>
+									</div>
+								</c:if>
 								<h2>추가 정보 입력</h2>
 								<div class="input_set">
 									<dl>
