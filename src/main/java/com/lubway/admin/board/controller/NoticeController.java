@@ -108,12 +108,14 @@ public class NoticeController {
 		int listCnt = noticeService.getPageListCnt();
 
 		System.out.println("listCnt : " + listCnt);
-
+		
 		// Pagination
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
 
 		List<NoticeVO> pageList = noticeService.getPageList(pagination);
+		
+		
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("noticeList", pageList);

@@ -163,8 +163,9 @@ public class EventController {
 			
 			// Pagination
 			Pagination pagination = new Pagination();
-			pagination.pageInfo(page, range, listCnt);
-			pagination.setListSize(5);
+			pagination.PageInfoEvent(page, range, listCnt);
+			System.out.println(pagination.getListSize());
+			
 			List<EventVO> pageList = eventService.getEventPageList(pagination);
 
 			model.addAttribute("pagination", pagination);

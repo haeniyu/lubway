@@ -4,11 +4,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getEventList" value="/lubway/search.mdo">
+<c:url var="getEventList" value="/lubway/getEventList.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
-	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
+	
 </c:url>
 
 <!DOCTYPE html>
@@ -19,34 +19,34 @@
 <script>
 	//이전 버튼 이벤트
 
-	function fn_prev(page, range, rangeSize, searchKeyword) {
+	function fn_prev(page, range, rangeSize) {
 
 		var page = ((range - 2) * rangeSize) + 1;
 
 		var range = range - 1;
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 
 	}
 
 	//페이지 번호 클릭
-	function fn_pagination(page, range, rangeSize, searchKeyword) {
+	function fn_pagination(page, range, rangeSize ) {
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 
@@ -60,13 +60,13 @@
 
 		var range = parseInt(range) + 1;
 
-		var url = "${pageContext.request.contextPath}/search.mdo";
+		var url = "${pageContext.request.contextPath}/getEventList.mdo";
 
 		url = url + "?page=" + page;
 
 		url = url + "&range=" + range;
 
-		url = url + "&searchKeyword=" + searchKeyword;
+		
 
 		location.href = url;
 	}
@@ -134,21 +134,21 @@
 							<ul class="pagination">
 								<c:if test="${pagination.prev}">
 									<li class="page-item"><a class="page-link" href="#"
-										onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
+										onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}')">Prev</a></li>
 								</c:if>
 								<c:forEach begin="${pagination.startPage}"
 									end="${pagination.endPage}" var="idx">
 									<li
 										class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
 										class="page-link" href="#"
-										onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">
+										onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}')">
 											${idx} </a></li>
 								</c:forEach>
 
 
 								<c:if test="${pagination.next}">
 									<li class="page-item"><a class="page-link" href="#"
-										onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
+										onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
 								</c:if>
 							</ul>
 						</div>
