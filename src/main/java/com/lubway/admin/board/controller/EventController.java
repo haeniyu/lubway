@@ -7,6 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,8 +38,56 @@ public class EventController {
 
 	// 글 수정 화면
 	@RequestMapping("/updateEvent.mdo")
-	public String updateEvent(EventVO vo) throws IOException, PSQLException {
+	public String updateEvent(EventVO vo, HttpSession session, @RequestParam("start") String start, @RequestParam("end") String end) throws IOException, PSQLException, ParseException {
+
+		// 세션 데이터
+		EventVO sessionVO = (EventVO) session.getAttribute("vo");
+		System.out.println("기존 vo : " + sessionVO.toString());
+
+		// 이미지 root url
+		String imageUrl = "https://lubway.s3.ap-northeast-2.amazonaws.com/";
+		
+		// 이벤트 기간 수정 여부
+		if(!start.equals("")) {
+			System.out.println("시작 기간 수정");
+			Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
+			vo.setRegdate(regd);
+		} else {
+			System.out.println("시작 기간 수정 X");
+			vo.setRegdate(sessionVO.getRegdate());
+		}
+
+		if(!end.equals("")) { 
+			System.out.println("종료 기간 수정");
+			Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(end);
+			vo.setEnddate(endd);
+		} else {
+			System.out.println("종료 기간 수정 X");
+			vo.setEnddate(sessionVO.getEnddate());
+		}
+
+		// 이미지 수정 여부
+		if(vo.getThumbnail().equals("")) {
+			System.out.println("썸네일 기존 데이터");
+			vo.setThumbnail(sessionVO.getThumbnail());
+		} else {
+			System.out.println("썸네일 수정");
+			vo.setThumbnail(imageUrl + vo.getThumbnail());			
+		}
+		
+		if(vo.getContimg().equals("")) {
+			System.out.println("내용 이미지 기존 데이터");
+			vo.setContimg(sessionVO.getContimg());
+		} else {
+			System.out.println("내용 이미지 수정");
+			vo.setContimg(imageUrl + vo.getContimg());			
+		}
+
+		System.out.println("수정 데이터 세팅 : " + vo.toString());
+		
 		eventService.updateEvent(vo);
+		session.removeAttribute("vo");
+		
 		System.out.println("이벤트 게시판 수정 실행됨");
 		return "redirect:/getEventList.mdo";
 	}
@@ -52,9 +102,10 @@ public class EventController {
 
 	// 글 상세조회
 	@RequestMapping("/getEvent.mdo")
-	public String getEvent(EventVO vo, Model model) {
+	public String getEvent(EventVO vo, Model model, HttpSession seesion) {
 		model.addAttribute("event", eventService.getEvent(vo));
-		return "getEvent";
+		seesion.setAttribute("vo", eventService.getEvent(vo));
+		return "board/getEvent";
 	}
 
 	// 글 등록기능
@@ -92,7 +143,7 @@ public class EventController {
 		System.out.println(vo.toString());
 		eventService.insertEvent(vo);
 
-		return "board/getEventList";
+		return "redirect:/getEventList.mdo";
 	}
 	
 	// 글목록 요청

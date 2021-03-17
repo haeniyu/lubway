@@ -19,6 +19,20 @@
 	]]>
 	</insert>
 	
+	<update id="updateEvent" parameterType="event">
+		UPDATE EVENT_BOARD SET TITLE=#{title}, THUMBNAIL=#{thumbnail}, CONTIMG=#{contimg}, 
+		REGDATE=#{regdate}, ENDDATE=#{enddate} WHERE NO=#{no}
+	</update>
+
+	<delete id="deleteEvent">
+		DELETE FROM EVENT_BOARD WHERE no=#{no}
+	</delete>
+	
+	<select id="getEvent" parameterType="event"
+		resultType="event">
+		SELECT * FROM EVENT_BOARD WHERE NO=#{no}
+	</select>
+	
 	<select id="getEventList" parameterType="event"
 		resultType="event">
 		SELECT * FROM EVENT_BOARD

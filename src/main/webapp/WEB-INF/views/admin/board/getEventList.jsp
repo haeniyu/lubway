@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
+<c:url var="getEventList" value="/lubway/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -116,8 +116,8 @@
 							<tbody>
 								<c:forEach items="${eventList}" var="event">
 									<tr>
-										<td>${event.title }</td>
-										<td><img src="${event.thumbnail }"></td>
+										<td><a type="hidden" href="getEvent.mdo?no=${event.no}">${event.title }</a></td>
+										<td><a type="hideen" href="getEvent.mdo?no=${event.no }"><img src="${event.thumbnail }"></a></td>
 										<td><fmt:formatDate value="${event.regdate }"
 														pattern="yyyy-MM-dd" /></td>
 										<td><fmt:formatDate value="${event.enddate }"
