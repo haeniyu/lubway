@@ -28,24 +28,16 @@ public class UserNoticeDAO {
 
 	// 사용자 공지사항
 	public UserNoticeVO getUserNotice(UserNoticeVO vo) {
+		System.out.println("DAO 실행");
 		return sqlSessionTemplate.selectOne("UserNoticeDAO.getUserNotice", vo);
-	}
-
-	public List<UserNoticeVO> getUserNoticeList(UserNoticeVO vo) {
-		System.out.println("getUserNoticeList() 기능처리");
-		return sqlSessionTemplate.selectList("UserNoticeDAO.getUserNoticeList", vo);
 	}
 
 	public List<UserNoticeVO> getUserPageList(UserPagination pagination) {
 		return sqlSessionTemplate.selectList("UserNoticeDAO.getUserPageList", pagination);
 	}
 
-	public UserNoticeVO getPrevPage(UserNoticeVO vo) {
-		return sqlSessionTemplate.selectOne("UserNoticeDAO.getPrevPage", vo);
-	}
-
-	public UserNoticeVO getNextPage(UserNoticeVO vo) {
-		return sqlSessionTemplate.selectOne("UserNoticeDAO.getNextPage", vo);
+	public List<UserNoticeVO> getRightNoticeList(UserPagination pagination) {
+		return sqlSessionTemplate.selectList("UserNoticeDAO.getRightNoticeList", pagination);
 	}
 
 }

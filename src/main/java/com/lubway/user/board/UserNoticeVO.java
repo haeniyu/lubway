@@ -19,4 +19,5 @@ public class UserNoticeVO {
 	private String searchKeyword;
 	private String filePath;
 	private int rownum;
+	
 }

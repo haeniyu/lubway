@@ -47,15 +47,15 @@
 				<h2 class="title">${notice.title }</h2>
 				<div class="date"><fmt:formatDate value="${notice.regDate }" pattern="yyyy.MM.dd HH:mm" /></div>
 
-				<div class="news_view_conten">
+				<div class="news_view_content">
 					<!-- <div class="img"><img src="../images/temp/temp_news_view.jpg" /></div> -->
 					<div class="text_wrap">
 					<c:if test="${notice.filePath != null }">
-						<p>
-							<img src="${notice.filePath }" style="width: 800px;"><br>
+						<p class="MsoNormal">
+							<img src="${notice.filePath}" style="width: 800px;"><br>
 						</p>
-						<p>${notice.content }</p>
 					</c:if>
+						<p class="MsoNormal">${notice.content}</p>
 					</div>
 				</div>
 
@@ -64,38 +64,50 @@
 				<!--// 첨부파일 -->
 
 				<div class="btn_list">
-					<a href="getUserNotice.do" onclick="view.list();return false;">목록보기</a>
+					<a href="/lubway/getUserNoticeList.do">목록보기</a>
 				</div>
 
 				<!-- 우측 영역 -->
-				<div class="board_right">
-					<!-- 공지사항 영역 -->
-					<c:forEach items="${noticeList }" var="notice">
-					<c:set var="fix" value="${notice.fix }" />
-					<c:choose>
-					<c:when test="${fix eq 'true' }">
-					<ul class="notice">
-						<li><img src="resources/images/common/icon_notice.png">
-						<a href="getUserNotice.do?no=${notice.no }" type="hidden">${notice.title }</a></li>
-					</ul>
-					</c:when>
-					</c:choose>
-					</c:forEach>
+				
+									<div class=board_right>
+					<c:forEach items="${getRightNoticeList}" var="getRightNoticeList">
+											<ul class="notice">
+								<c:set var="fix" value="${getRightNoticeList.fix }" />
+								<c:choose>
+								
+									<c:when test="${fix eq 'true' }">
+											<div style="font-size:1.1em" align="center">
+												<img align="left" src="resources/images/common/icon_notice.png">
+												<a type="hidden" href="getUserNotice.do?no=${getRightNoticeList.no}">${getRightNoticeList.title }</a>
+											</div>
+											
+											</c:when>
+										
+									
+									<c:otherwise>
+									
+										
+										<div style="font-size:1.1em" align="center">
+												<a type="hidden" href="getUserNotice.do?no=${getRightNoticeList.no}">${rightNoticeList.title }</a>
+											</div>
+										
+												
+									</c:otherwise>
+									</c:choose>
+									</ul>
+									</c:forEach>
+				
 					<!--// 공지사항 영역 -->
 
 					<!-- 이전,다음글 영역 -->
-					<ul class="board_nav">
-						<li class="prev"><a href="getNotice.do?no=${prev.no }">${prev.title }</a></li>
-						<li><strong>${notice.title }</strong></li>
-						<li class="next"><a href="getNotice.do?no=${next.no }">${next.titles }</a></li>
-					</ul>
+					
 					<!--// 이전,다음글 영역 -->
 				</div>
 				<!--// 우측 영역 -->
 			</div>
 		</div>
+		</div>
 		<!--// 뉴스ㆍ공지사항 view e -->
-	</div>
 	<!--// sub content e -->
 	<input id="query" type="hidden" value="page=1&amp;subject=" />
 
