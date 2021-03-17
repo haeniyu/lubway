@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class EventVO {
-	private int no;
+	private Integer no;
 	private String title;
 	private Date regdate;
 	private Date enddate;

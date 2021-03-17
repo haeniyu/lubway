@@ -80,7 +80,6 @@
 <body id="page-top">
 
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertEvent.mdo" method="post">
 		<!-- 관리자 버전 화면 만들기  -->
 		<!-- Begin Page Content -->
 		<div class="container-fluid">
@@ -94,6 +93,7 @@
 				</div>
 
 
+	<form action="/lubway/insertEvent.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -107,33 +107,22 @@
 							
 							<thead>
 								<tr align="center">
-									<th width="10%">NO</th>
-									<th width="70%">Title</th>
+									<th width="30%">Title</th>
+									<th width="50%">Thumbnail</th>
 									<th width="20%">Date</th>
 								</tr>
 							</thead>
-								<!--<c:forEach items="${noticeList}" var="notice">-->
 							<tbody>
+								<!--<c:forEach items="${noticeList}" var="notice">-->
 									<tr>
-										<td>
-											<div class="cell">
-												<div class="eventTitle">제목이 들어갑니당</div>
-												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
-												<div class="eventDate">이벤트 등록일 들어갑니당</div>
-											</div>
-										</td>
-										<td>
-											<div class="cell">
-												<div class="eventTitle">제목이 들어갑니당</div>
-												<div class="eventThumb">썸넬 이미지 들어갑니당</div>
-												<div class="eventDate">이벤트 등록일 들어갑니당</div>
-											</div>
-										</td>
+										<td>title</td>
+										<td><img src="">이미지</td>
+										<td>시작 - 종료</td>
 									</tr>
 								<!--</c:forEach>-->
 							</tbody>
 						</table>
-
+</form>
 						<!-- 검색 시작 -->
 						<div align="right">
 							<form action="/lubway/search.mdo" method="get">
@@ -177,7 +166,7 @@
 
 			</div>
 		</div>
-	</form>
+	
 
 	<!-- /.container-fluid -->
 

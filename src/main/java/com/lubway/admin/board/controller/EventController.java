@@ -2,12 +2,19 @@ package com.lubway.admin.board.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lubway.admin.AwsS3;
@@ -49,21 +56,23 @@ public class EventController {
 		return "getEvent";
 	}
 
-	// 글 목록 요청
-	@RequestMapping("/getEventList.mdo")
-	public String getEventList(EventVO vo, MultipartFile thumbnail, MultipartFile content) throws IOException, PSQLException {
-		System.out.println(thumbnail.toString());
+	// 글 등록기능
+	@RequestMapping("/eventUpload.mdo")
+	public String getEventList(@RequestParam("start") String start, @RequestParam("end") String end, 
+			EventVO vo, MultipartFile thumb, MultipartFile cont) throws IOException, PSQLException, ParseException {
+		System.out.println(thumb.toString());
+		System.out.println(start);
 		
-		InputStream isT = thumbnail.getInputStream();
-		String thumbKey = thumbnail.getOriginalFilename();
-		String contentTypeT = thumbnail.getContentType();
-		long contentLengthT = thumbnail.getSize();
+		InputStream isT = thumb.getInputStream();
+		String thumbKey = thumb.getOriginalFilename();
+		String contentTypeT = thumb.getContentType();
+		long contentLengthT = thumb.getSize();
 		awss3.upload(isT, thumbKey, contentTypeT, contentLengthT);
 
-		InputStream isC = content.getInputStream();
-		String contentKey = content.getOriginalFilename();
-		String contentTypeC = content.getContentType();
-		long contentLengthC = content.getSize();
+		InputStream isC = cont.getInputStream();
+		String contentKey = cont.getOriginalFilename();
+		String contentTypeC = cont.getContentType();
+		long contentLengthC = cont.getSize();
 		awss3.upload(isC, contentKey, contentTypeC, contentLengthC);
 		
 		String thumbnailFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + thumbKey;
@@ -71,7 +80,19 @@ public class EventController {
 
 		vo.setThumbnail(thumbnailFile);
 		vo.setContimg(contentFile);
+		
+		
+		Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
+		Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(end);
+		
+		vo.setRegdate(regd);
+		vo.setEnddate(endd);
+		
+		System.out.println(vo.toString());
+		eventService.insertEvent(vo);
 
-		return "getEventList";
+		return "board/getEventList";
 	}
+	
+	
 }
