@@ -43,6 +43,7 @@ public class UserController {
 	@Inject
 	private BCryptPasswordEncoder passEncoder;
 
+	/** Naver Login */
 	private NaverLoginBO naverLoginBO;
 	private String apiResult = null;
 
@@ -51,18 +52,70 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
+//	/** Google Login */
+//	@Autowired
+//	private GoogleConnectionFactory googleConnectionFactory;
+//
+//	@Autowired
+//	private OAuth2Parameters googleOAuth2Parameters;
+
+
 	/**
-	 * 네이버 로그인 요청
+	 * 로그인 화면 요청 / 소셜 로그인 처리
 	 */
 	@GetMapping("/login.do")
 	public String main(HttpSession session, Model model) {
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
-		//네이버 
+//		// 구글code 발행
+//		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+//		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+//		System.out.println("구글:" + url);
+//		model.addAttribute("google_url", url);
+
+		// 네이버
+		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
 
 		return "login";
 	}
+
+	/**
+	 * 구글 로그인 처리
+	 */
+//	@RequestMapping(value = "/oauth2callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+//	public String googleCallback(Model model, @RequestParam String code, HttpSession seesion, HttpServletResponse response) throws IOException {
+//		System.out.println("여기는 googleCallback");
+//
+//		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+//		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
+//
+//		String accessToken = accessGrant.getAccessToken();
+//		Long expireTime = accessGrant.getExpireTime();
+//
+//		if (expireTime != null && expireTime < System.currentTimeMillis()) {
+//			accessToken = accessGrant.getRefreshToken();
+//			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
+//		}
+//
+//		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
+//		System.out.println(1);
+//
+//		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
+//		System.out.println(2);
+//
+//		PlusOperations plusOperations = google.plusOperations();
+//		Person person = plusOperations.getGoogleProfile();
+//		System.out.println(3);
+//
+//		System.out.println(person.getAccountEmail());
+//		System.out.println(person.getAboutMe());
+//		System.out.println(person.getDisplayName());
+//		System.out.println(person.getEtag());
+//		System.out.println(person.getFamilyName());
+//		System.out.println(person.getGender());
+//
+//		return "main";
+//	}
 
 	/**
 	 * 네이버 로그인 처리
@@ -82,7 +135,7 @@ public class UserController {
 		Object obj = null; 
 
 		try { 
-			obj = parser.parse(apiResult); 
+			obj = parser.parse(apiResult);
 		} catch (ParseException e) {
 			e.printStackTrace(); 
 		}
@@ -124,7 +177,7 @@ public class UserController {
 				alertView("이미 가입된 계정이 있습니다.", -1, servletResponse);
 				return null;
 			}
-			
+
 			session.setAttribute("user", user);
 			session.setAttribute("nuser", new String("1"));
 		}
@@ -321,7 +374,7 @@ public class UserController {
 			alertView("소셜 계정입니다. 해당 사이트에 문의해주세요.", -2, response);
 			return null;
 		}
-		
+
 		seesion.setAttribute("findId", id);
 
 		return "findid";

@@ -136,8 +136,30 @@
 				</div>
 			</c:if>
 
+			<!-- 구글 회원 로그인시 -->
+			<c:if test="${guser != null}">
+				<div class="util_menu">
+					<ul>
+						<li class="icon_menu global_subway">
+							<span class="blind">
+								<img src="${path}/resources/images/google.png" style="width: 25px; height: 25px; padding-top: 4px;" />
+							</span>
+						</li>
+						<li class="before_sign" style="margin-left: 15px"><a href="logout.do">로그아웃</a></li>
+						<li class="before_sign"><a href="myway.do">MY-WAY</a></li>		
+						<li class="icon_menu global_subway">
+							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
+								<span class="blind">
+									<img alt="Global Subway" src="${path}/resources/images/icon_utill_global.png" />
+								</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</c:if>
+			
 			<!-- 비로그인시 -->
-			<c:if test="${user == null && nuser == null}">
+			<c:if test="${user == null && nuser == null && guser == null}">
 				<div class="util_menu">
 					<ul>
 						<li class="before_sign"><a href="login.do">로그인</a></li>
