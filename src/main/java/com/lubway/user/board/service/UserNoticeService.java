@@ -26,4 +26,6 @@ public interface UserNoticeService {
 	List<UserNoticeVO> getUserSearchPagingList(UserPagination pagination);
 
 	List<UserNoticeVO> getRightNoticeList(UserPagination pagination);
+	
+	
 }
