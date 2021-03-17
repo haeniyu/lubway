@@ -10,9 +10,6 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#registerBtn").on("click",function(){
-					alert("등록되었습니다.");
-		});
 	
 	function setDate() {
 		var start = $("#start").val();
@@ -76,20 +73,20 @@ li{
 						<li class="img">
 							<div>
 								<div class="index">썸네일 이미지</div>
-								<input type="file" name="thumb" />
+								<input type="file" name="thumb" required/>
 							</div>
 						</li>
 						<!-- 이벤트 이미지 업로드 -->
 						<li class="img">
 							<div>
 								<div class="index">이벤트 이미지</div>
-								<input type="file" name="cont"/>
+								<input type="file" name="cont"required/>
 							</div>
 						</li>
 						<!-- 기간 -->
 						<li class="term">
 							<div class="index">이벤트 기간</div>
-							시작 : <input type="date" name="start" id="start"> ~ 종료 : <input type="date" id="end" name="end">
+							시작 : <input type="date" name="start" id="start" required> ~ 종료 : <input type="date" id="end" name="end" required>
 						</li>
 					</ul>
 					<div align="center">

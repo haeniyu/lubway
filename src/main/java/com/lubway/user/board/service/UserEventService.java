@@ -11,8 +11,6 @@ public interface UserEventService {
 
 	List<UserEventVO> getEventList(UserEventVO vo);
 
-	List<UserEventVO> getEventPageList(UserPagination pagination);
-
-	int getEventPageListCnt();
+	UserEventVO getNewEvent(UserEventVO vo);
 
 }
