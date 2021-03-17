@@ -29,8 +29,7 @@
 .event_list_wrapper{background-color:#f6f6f6;padding-bottom:130px}
 .event_list_wrapper .tab_wrapper{text-align:center; padding:50px 0 57px;}
 .event_list_wrapper .tab_wrapper ul{overflow:hidden; display:inline-block; border-radius:50px;}
-.event_list_wrapper .tab_wrapper ul li{float:left; background-color:#58006c; position:relative; font-weight: bold; font-size: 24px;
-height:45px; width:300px; line-height:45px; color:#fff;}
+.event_list_wrapper .tab_wrapper ul li{float:left; background-color:#58006c; position:relative; font-weight: bold; font-size: 24px; height:45px; width:300px; line-height:45px; color:#fff;}
 
 .event_list_wrapper .event_list_content ul{margin-left:-30px;}
 .event_list_wrapper .event_list_content ul li{float:left; margin:0 0 30px 30px;}

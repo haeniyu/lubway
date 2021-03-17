@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.wrapper {
+	max-width: 800px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.evn_content_main {
+	margin: 200px auto 0 auto;
+	align-content: center;
+}
+
+.title {
+	color: #292929;
+	font-size: 36px;
+	font-weight: 500;
+	width: 800px;
+	letter-spacing: -0.04em;
+	line-height: 50px;
+}
+
+.date {
+	margin: 29px 0 27px;
+}
+
+.date span {
+	background: url(../images/common/icon_clock.png) 0 0 no-repeat;
+	width: 36px;
+	height: 36px;
+	display: inline-block;
+	vertical-align: middle;
+	position: relative;
+	top: -4px;
+	margin-right: 11px;
+}
+
+.date em {
+	color: #009223;
+	font-size: 22px;
+	font-family: font_sw;
+	font-weight: bold;
+}
+
+.event_view_conten {
+	margin-bottom: 59px;
+	width: 800px;
+}
+
+.event_view_conten .img {
+	width: 800px;
+}
+
+.event_view_conten .img img {
+	width: 100%;
+}
+
+.event_view_conten .text_wrap {
+	font-size: 15px;
+	color: #666666;
+	margin-top: 27px;
+	letter-spacing: -0.04em
+}
+
+.event_view_conten .text_wrap img {
+	max-width: 800px;
+}
+
+.btn_list a {
+	display: block;
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: 500;
+	background-color: #009223;
+	height: 50px;
+	line-height: 50px;
+	text-align: left;
+	border-radius: 50px;
+	text-indent: 70px;
+	letter-spacing: -0.03em;
+	transition-duration: 0.2s;
+	margin-bottom: 50px;
+}

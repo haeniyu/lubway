@@ -21,9 +21,8 @@ public class UserEventController {
 
 	// 글 상세조회
 	@RequestMapping("/getUserEvent.do")
-	public String getEvent(UserEventVO vo, Model model, HttpSession seesion) {
+	public String getEvent(UserEventVO vo, Model model) {
 		model.addAttribute("event", eventService.getEvent(vo));
-		seesion.setAttribute("vo", eventService.getEvent(vo));
 		return "board/getUserEvent";
 	}
 
