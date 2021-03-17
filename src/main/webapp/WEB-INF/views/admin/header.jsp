@@ -98,7 +98,7 @@
 			</a></li>
 
 			<!-- Nav Item - 가맹점 문의 조회 -->
-			<li class="nav-item"><a class="nav-link" href="#">
+			<li class="nav-item"><a class="nav-link" href="/lubway/getInquiryList.mdo">
 					<i class="fas fa-fw fa-table"></i> <span>가맹점 문의 조회</span>
 			</a></li>
 

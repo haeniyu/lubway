@@ -35,4 +35,9 @@ public class FranchiseDAO {
 		return sqlSessionTemplate.selectList("AdminDAO.getSearchFranchiseList", pagination);
 	}
 
+	public UserFranchiseVO getInquiry(UserFranchiseVO vo) {
+		System.out.println("FranchiseDAO - getSearchFranchiseList() 실행");
+		return sqlSessionTemplate.selectOne("AdminDAO.getInquiry", vo);
+	}
+
 }

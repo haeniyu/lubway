@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
 	<!-- footer -->
 	<div id="footer">
 		<div class="content">
@@ -17,7 +15,7 @@
 				<ul>
 					<li><a href="/agreement">이용약관</a></li>
 					<li><a href="/privacy"><strong>개인정보처리방침</strong></a></li>
-					<li><a href="https://store.subway.co.kr/" target="_blank">점주관리자</a></li>
+					<li><a href="/lubway/login.sdo" target="_blank">점주관리자</a></li>
 				</ul>
 			</div>
 			<!--// util menu -->

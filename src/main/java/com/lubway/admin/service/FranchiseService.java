@@ -15,4 +15,6 @@ public interface FranchiseService {
 
 	List<UserFranchiseVO> getSearchFranchiseList(Pagination pagination);
 
+	UserFranchiseVO getInquiry(UserFranchiseVO vo);
+
 }

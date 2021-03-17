@@ -41,11 +41,11 @@
 	</select>
 	
 	<select id="getSearchCnt" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM lubuser WHERE tel LIKE '%'||#{searchKeyword}||'%'
+		SELECT COUNT(*) FROM lubuser WHERE name LIKE '%'||#{searchKeyword}||'%'
 	</select>
 	
 	<select id="getSearchPagingList" resultType="user">
-		SELECT * FROM lubuser WHERE tel LIKE '%'||#{searchKeyword}||'%' 
+		SELECT * FROM lubuser WHERE name LIKE '%'||#{searchKeyword}||'%' 
 		ORDER BY status
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
@@ -59,11 +59,11 @@
 	</select>
 	
 	<select id="getSearchStoreCnt" parameterType="String" resultType="int">
-		SELECT COUNT(*) FROM lubstore WHERE storename LIKE '%'||#{searchKeyword}||'%'
+		SELECT COUNT(*) FROM lubstore WHERE area LIKE '%'||#{searchKeyword}||'%'
 	</select>
 	
 	<select id="getSearchStorePagingList" resultType="store">
-		SELECT * FROM lubstore WHERE storename LIKE '%'||#{searchKeyword}||'%' 
+		SELECT * FROM lubstore WHERE area LIKE '%'||#{searchKeyword}||'%' 
 		ORDER BY status
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
@@ -89,6 +89,10 @@
 		FROM franchise WHERE title LIKE '%'||#{searchKeyword}||'%' 
 		ORDER BY regDate DESC, ROWNUM DESC
 		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+	
+	<select id="getInquiry" resultType="com.lubway.user.UserFranchiseVO">
+		SELECT * FROM franchise WHERE no=#{no}
 	</select>
 	
 </mapper>

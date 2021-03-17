@@ -116,7 +116,7 @@
 				<div align="right">
 					<form action="/lubway/searchuser.mdo" method="get">
 						<input type="text" name="searchKeyword"
-								placeholder="핸드폰 번호" style="width:10%" /> <input
+								placeholder="고객명" style="width:10%" /> <input
 								style="margin:0px 3px; padding:0px 3px"
 								class="btn btn-warning" type="submit"
 								value="search" />

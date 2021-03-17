@@ -45,7 +45,7 @@ public class FranchiseController {
 	}
 	
 	/**
-	 *  
+	 *  가맹 문의글 검색 결과 페이지
 	 */
 	@RequestMapping("franchise/search.mdo")
 	public String searchGetInquiryList(@RequestParam(required = false, defaultValue = "1") int page,
@@ -69,4 +69,14 @@ public class FranchiseController {
 		
 		return "getInquiryList";
 	}
+	
+	/**
+	 * 글 상세 페이지 이동
+	 */
+	@RequestMapping("getInquiry.mdo")
+	public String getInquiry(UserFranchiseVO vo, Model model) {
+		model.addAttribute("inquiry", franchiseService.getInquiry(vo));
+		return "getInquiry";
+	}
+	
 }

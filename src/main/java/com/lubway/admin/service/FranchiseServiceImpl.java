@@ -35,4 +35,9 @@ public class FranchiseServiceImpl implements FranchiseService {
 		return dao.getSearchFranchiseList(pagination);
 	}
 
+	@Override
+	public UserFranchiseVO getInquiry(UserFranchiseVO vo) {
+		return dao.getInquiry(vo);
+	}
+
 }
