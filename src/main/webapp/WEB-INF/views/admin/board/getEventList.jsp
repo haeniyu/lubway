@@ -108,34 +108,25 @@
 							<thead>
 								<tr align="center">
 									<th width="30%">Title</th>
-									<th width="50%">Thumbnail</th>
-									<th width="20%">Date</th>
+									<th width="40%">Thumbnail</th>
+									<th width="15%">StartDate</th>
+									<th width="15%">EndDate</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!--<c:forEach items="${noticeList}" var="notice">-->
+								<c:forEach items="${eventList}" var="event">
 									<tr>
-										<td>title</td>
-										<td><img src="">이미지</td>
-										<td>시작 - 종료</td>
+										<td>${event.title }</td>
+										<td><img src="${event.thumbnail }"></td>
+										<td><fmt:formatDate value="${event.regdate }"
+														pattern="yyyy-MM-dd" /></td>
+										<td><fmt:formatDate value="${event.enddate }"
+														pattern="yyyy-MM-dd" /></td>
 									</tr>
-								<!--</c:forEach>-->
+								</c:forEach>
 							</tbody>
 						</table>
 </form>
-						<!-- 검색 시작 -->
-						<div align="right">
-							<form action="/lubway/search.mdo" method="get">
-								<tr>
-									<td><input type="text" name="searchKeyword"
-										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-										style="margin: 3px; padding: 3px"
-										class="btn btn-warning btn-icon-split" type="submit"
-										value="search" /></td>
-								</tr>
-							</form>
-						</div>
-						<!-- 검색 종료 -->
 						<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 						<!-- pagination{s} -->
 

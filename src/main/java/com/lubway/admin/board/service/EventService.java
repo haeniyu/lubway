@@ -3,6 +3,8 @@ package com.lubway.admin.board.service;
 import java.util.List;
 
 import com.lubway.admin.board.EventVO;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
 
 public interface EventService {
 	// CRUD 기능의 메소드 구현
@@ -20,4 +22,10 @@ public interface EventService {
 
 		// 글 목록 조회
 		List<EventVO> getEventList(EventVO vo);
+	
+		//페이징 리스트
+		List<EventVO> getEventPageList(Pagination pagination);
+		
+		//페이징처리 개수
+		int getEventPageListCnt();
 }

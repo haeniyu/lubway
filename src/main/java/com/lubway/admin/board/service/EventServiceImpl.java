@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lubway.admin.board.EventDAO;
 import com.lubway.admin.board.EventVO;
+import com.lubway.admin.board.Pagination;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -38,5 +39,16 @@ public class EventServiceImpl implements EventService {
 	public List<EventVO> getEventList(EventVO vo) {
 		return eventDAO.getEventList(vo);
 	}
+	
+	public List<EventVO> getEventPageList(Pagination pagination){
+		return eventDAO.getEventPageList(pagination);
+	}
+	
+	@Override
+	public int getEventPageListCnt() {
+		return eventDAO.getEventPageListCnt();
+
+	}
+
 
 }

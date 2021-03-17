@@ -18,4 +18,24 @@
 		VALUES ( #{title}, #{thumbnail}, #{contimg}, #{regdate}, #{enddate} )
 	]]>
 	</insert>
+	
+	<select id="getEventList" parameterType="event"
+		resultType="event">
+		SELECT * FROM EVENT_BOARD
+		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY NO DESC
+	</select>
+
+	<select id="pagingList" resultType="event">
+		select ROW_NUMBER() OVER() rownum, no, title, regdate, enddate, thumbnail
+		from event_board order by regdate desc, rownum desc
+		limit #{listSize} offset #{startList}
+		
+	</select>
+
+	<select id="pagingCnt" resultType="int">
+		select count(*) as listCnt
+		from event_board
+	</select>
+	
 </mapper>
