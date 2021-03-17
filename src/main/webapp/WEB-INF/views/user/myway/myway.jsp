@@ -28,10 +28,19 @@
 							<div class="name_gender">
 								<i class="character female"></i>
 								<p class="name">
-									<strong><em class="multiple_line">${user.name }</em>님</strong>
+									<strong>
+										<em class="multiple_line">${user.name}</em>님
+									</strong>
 								</p>
 							</div>
-							<a class="btn go_view infoBtn" href="/lubway/checkpwd.do" > <span>회원 정보 변경</span></a>
+							<c:if test="${nuser != null}">
+								<a class="btn go_view infoBtn" href="/lubway/updateinfo.do">
+								<span>회원 정보 변경</span></a>
+							</c:if>
+							<c:if test="${user != null && nuser == null}">
+								<a class="btn go_view infoBtn" href="/lubway/checkpwd.do">
+								<span>회원 정보 변경</span></a>
+							</c:if>
 						</div>
 						<div class="info point">
 							<dl>

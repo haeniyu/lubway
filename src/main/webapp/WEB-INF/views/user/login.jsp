@@ -6,10 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="google-signin-client_id" content="848158094091-dmohdudpt9hfq0m0uubdln37dfg2mqbk.apps.googleusercontent.com">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/login.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#loginBtn").on("click", function(){
@@ -21,6 +23,14 @@
 			}
 		});
 	});
+</script>
+<script type="text/javascript">
+function onSignIn(googleUser) {
+	  var profile = googleUser.getBasicProfile();
+	  console.log('ID: ' + profile.getId());
+	  console.log('Name: ' + profile.getName());
+	  console.log('Email: ' + profile.getEmail());
+	}
 </script>
 </head>
 <body>
@@ -72,9 +82,15 @@
 						<a class="btn bgc_point on" href="javascript:void(0);"
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
-					<div id = "naver_id_login">
+					<div id="naver_id_login">
 						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn_white.PNG"/></a>
 					</div>
+					<div class="g-signin2" data-onsuccess="onSignIn"></div>
+					<!-- 
+					<div id="google_id_login">
+						<a href="${google_url}"><img width="230" src="${pageContext.request.contextPath}/resources/images/google_banner.png"/></a>
+					</div>
+					 -->
 				</form>
 				<div class="signin_link">
 					<ul>

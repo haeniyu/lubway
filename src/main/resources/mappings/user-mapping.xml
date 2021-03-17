@@ -8,6 +8,10 @@
 		SELECT count(id) FROM lubuser WHERE id = #{id}
 	</select>
 	
+	<select id="telCheck" parameterType="String" resultType="int">
+		SELECT count(tel) FROM lubuser WHERE tel = #{tel}
+	</select>
+	
 	<insert id="insertUser" parameterType="user">
 		INSERT INTO lubuser(id, password, tel, name, sms_usable, email_usable)
 		VALUES(#{id}, #{password}, #{tel}, #{name}, #{sms_usable}, #{email_usable})
