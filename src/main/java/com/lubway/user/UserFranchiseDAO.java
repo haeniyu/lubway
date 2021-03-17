@@ -5,12 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FranchiseDAO {
+public class UserFranchiseDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public void insertInquiry(FranchiseVO vo) {
+	public void insertInquiry(UserFranchiseVO vo) {
 		sqlSessionTemplate.insert("UserDAO.insertInquiry", vo);
 	}
 }

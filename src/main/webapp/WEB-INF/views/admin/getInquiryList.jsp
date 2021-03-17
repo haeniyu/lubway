@@ -56,10 +56,8 @@
 </script>
 </head>
 <body id="page-top">
+<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 
-	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-
-	<!-- 관리자 버전 화면 만들기  -->
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<!-- Page Heading -->
@@ -68,72 +66,50 @@
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
-				<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
+				<h6 class="m-0 font-weight-bold text-warning">Franchise Inquiry Board</h6>
 			</div>
-
-			<form action="/lubway/insertNotice.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
-						<div align="right">
-
-							<input type="submit" class="btn btn-warning btn-icon-split"
-								style="padding: 5px" value="글등록">
-						</div>
 						<div class="my-2"></div>
-						<table class="table table-bordered" id="dataTable" width="100%"
-							cellspacing="0">
+						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 							<thead>
 								<tr align="center">
-									<th width="10%">NO</th>
-									<th width="70%">Title</th>
-									<th width="20%">Date</th>
+									<th width="5%">NO</th>
+									<th width="50%">Title</th>
+									<th width="30%">Email</th>
+									<th width="35%">Date</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${noticeList}" var="notice">
+								<c:forEach items="${list}" var="inquiry">
 									<tr>
-										<c:set var="fix" value="${notice.fix }" />
-										<c:choose>
-											<c:when test="${fix eq 'true' }">
-												<td><img src="resources/images/common/icon_notice.png"></td>
-												<td align="left"><a type="hidden"
-													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
-												<td><fmt:formatDate value="${notice.regDate }"
-														pattern="yyyy-MM-dd" /></td>
-											</c:when>
-
-											<c:otherwise>
-												<td>${notice.rownum}</td>
-												<td align="left"><a type="hidden"
-													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
-												<td><fmt:formatDate value="${notice.regDate }"
-														pattern="yyyy-MM-dd" /></td>
-											</c:otherwise>
-										</c:choose>
+										<td>${inquiry.rownum}</td>
+										<td align="left"><a type="hidden" href="getInquiry.mdo?no=${inquiry.no}">${inquiry.title }</a></td>
+										<td>${inquiry.email }</td>
+										<td><fmt:formatDate value="${inquiry.regDate }" pattern="yyyy-MM-dd" /></td>
 									</tr>
 								</c:forEach>
 							</tbody>
-
-						</table>
-			</form>
-			<!-- 검색 시작 -->
-			<div align="right">
-				<form action="/lubway/search.mdo" method="get">
-					<tr>
-						<td><input type="text" name="searchKeyword"
-							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-							style="margin: 3px; padding: 3px"
-							class="btn btn-warning btn-icon-split" type="submit"
-							value="search" /></td>
-					</tr>
-				</form>
-			</div>
-			<!-- 검색 종료 -->
+					</table>
+						<!-- 검색 시작 -->
+						<div align="right">
+							<form action="/lubway/franchise/search.mdo" method="get">
+								<tr>
+									<td><input type="text" name="searchKeyword"
+										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
+										style="margin: 3px; padding: 3px"
+										class="btn btn-warning btn-icon-split" type="submit"
+										value="search" /></td>
+								</tr>
+							</form>
+						</div>
+						<!-- 검색 종료 -->
+					</div>
+				</div>
 			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 			<!-- pagination{s} -->
-
 			<div align="center">
-				<ul class="pagination" class="NoticeVO">
+				<ul class="pagination" class="UserFranchiseVO">
 					<c:if test="${pagination.prev}">
 						<li class="page-item"><a class="page-link" href="#"
 							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
@@ -143,11 +119,9 @@
 						<li
 							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
 							class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">
 								${idx} </a></li>
 					</c:forEach>
-
-
 					<c:if test="${pagination.next}">
 						<li class="page-item"><a class="page-link" href="#"
 							onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
@@ -156,12 +130,8 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- /.container-fluid -->
 
-	<!-- End of Main Content -->
-
-	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
-
+<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

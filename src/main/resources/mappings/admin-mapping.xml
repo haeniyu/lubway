@@ -68,4 +68,27 @@
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	
+	<select id="getFranchiseCnt" resultType="int">
+		SELECT COUNT(*) FROM franchise
+	</select>
+	
+	<select id="getFranchiseList" resultType="com.lubway.user.UserFranchiseVO">
+		SELECT ROW_NUMBER()
+		OVER() ROWNUM,*
+		FROM franchise ORDER BY regDate DESC, ROWNUM DESC
+		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+	
+	<select id="getSearchFranchiseCnt" resultType="int">
+		SELECT COUNT(*) FROM franchise WHERE title LIKE '%'||#{searchKeyword}||'%'
+	</select>
+	
+	<select id="getSearchFranchiseList" resultType="com.lubway.user.UserFranchiseVO">
+		SELECT ROW_NUMBER()
+		OVER() ROWNUM,*
+		FROM franchise WHERE title LIKE '%'||#{searchKeyword}||'%' 
+		ORDER BY regDate DESC, ROWNUM DESC
+		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+	
 </mapper>
