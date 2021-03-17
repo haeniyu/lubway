@@ -26,13 +26,8 @@ public class UserEventServiceImpl implements UserEventService {
 	}
 
 	@Override
-	public List<UserEventVO> getEventPageList(UserPagination pagination) {
-		return eventDAO.getEventPageList(pagination);
-	}
-
-	@Override
-	public int getEventPageListCnt() {
-		return eventDAO.getEventPageListCnt();
+	public UserEventVO getNewEvent(UserEventVO vo) {
+		return eventDAO.getNewEvent(vo);
 	}
 
 }

@@ -145,7 +145,7 @@
 				<form action="/lubway/search.mdo" method="get">
 					<tr>
 						<td><input type="text" name="searchKeyword"
-							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> ]
+							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> 
 							<input
 							style="margin: 3px; padding: 3px"
 							class="btn btn-warning btn-icon-split" type="submit"

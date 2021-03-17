@@ -117,7 +117,7 @@
 								<c:forEach items="${eventList}" var="event">
 									<tr>
 										<td><a type="hidden" href="getEvent.mdo?no=${event.no}">${event.title }</a></td>
-										<td><a type="hideen" href="getEvent.mdo?no=${event.no }"><img src="${event.thumbnail }"></a></td>
+										<td><a type="hideen" href="getEvent.mdo?no=${event.no }"><img width="370px" src="${event.thumbnail }"></a></td>
 										<td><fmt:formatDate value="${event.regdate }"
 														pattern="yyyy-MM-dd" /></td>
 										<td><fmt:formatDate value="${event.enddate }"

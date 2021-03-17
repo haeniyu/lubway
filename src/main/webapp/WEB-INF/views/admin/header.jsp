@@ -113,7 +113,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Site:</h6>
 						<a class="collapse-item" href="#">배너</a> <a class="collapse-item"
-							href="#">이벤트</a> <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
+							href="getEventList.mdo">이벤트</a> <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
 					</div>
 				</div></li>
 
