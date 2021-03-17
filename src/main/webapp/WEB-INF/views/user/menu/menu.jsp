@@ -78,11 +78,12 @@
 				<div class="menu_list_wrapper">
 					<!-- 상품 visual -->
 					<div class="visual sandwich">
-						<div class="img01"></div>
+						
 						<h2>Sandwich</h2>
 						<p>
 							전세계 넘버원 브랜드 Subway!<br /> 50년 전통의 세계 최고의 샌드위치를 맛보세요!
 						</p>
+						<div class="img01"></div>
 					</div>
 					<!--// 상품 visual -->
 

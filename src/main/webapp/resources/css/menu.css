@@ -65,13 +65,6 @@ p {
     position: relative;
 }
 
-.menu_list_wrapper .visual.sandwich .img01 {
-    background: url(../images/menu/img_visual_sandwich.jpg) 50% 0 no-repeat;
-    position: absolute;
-    left: 0;
-    width: 100%;
-    height: 380px;
-}
 
 .menu_list_wrapper .visual.sandwich {
     background-color: #e85a1c;
@@ -79,30 +72,90 @@ p {
 }
 
 
-
-element.style {
-    opacity: 1;
-    top: 0px;
+.menu_list_wrapper .visual h2 {
+	opacity:0;
+    font-size: 80px;
+    font-weight: bold;
+    letter-spacing: -0.04em;
+    color: #fff;
+    z-index:9;
+    position:relative;
+    padding-top: 108px;
+    animation-name:sandhhh;
+    animation-duration: 0.6s;
+  	animation-delay: 0.6s;
+  	animation-fill-mode: forwards;
+    
 }
 
-
-.menu_list_wrapper .visual h2 {
-    font-family: font_sw;
-    font-size: 70px;
-    font-weight: bold;
-    color: #fff;
-    padding: 104px 0 21px 0;
-    position: relative;
-    z-index: 9;
+@keyframes sandhhh{
+	0%{
+			top:50px;
+	}
+	100%{
+			top:-70px; opacity:1; 
+	}
 }
 
 .menu_list_wrapper .visual p {
-    font-size: 16px;
+	opacity:0;
+    font-size: 18px;
     line-height: 26px;
     letter-spacing: -0.04em;
     position: relative;
     z-index: 9;
+    color:#fff;  
+    animation-name:sandppp;
+    animation-duration: 0.7s;
+  	animation-delay: 0.7s;
+  	animation-fill-mode: forwards;
 }
+
+@keyframes sandppp {
+  0% {
+  	top:50px;
+  }
+  100% {
+  	
+ 	top:-130px; opacity:1; 
+    
+  }
+}
+
+.menu_list_wrapper .visual.sandwich .img01 {
+	opacity:0;
+    background: url(../images/menu/img_visual_sandwich.jpg) 50% 0 no-repeat;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 380px;
+    top:40px;
+    animation-name:img0111;
+    animation-duration: 0.7s;
+  	animation-delay: 0.7s;
+  	animation-fill-mode:forwards;
+
+}
+
+@keyframes img0111 {
+  0% {
+  	top:50px;
+  }
+  100% {
+  	
+ 	top:0px; opacity:1;
+    
+  }
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,6 +164,7 @@ element.style {
     margin: 0 auto;
     overflow: hidden;
     padding-bottom: 130px;
+    
 }
 
 
@@ -132,6 +186,17 @@ element.style {
     transition: 0.3s;
 }
 
+.menu_list_wrapper .pd_list_wrapper li .label {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    z-index: 3;
+}
+
+.menu_list_wrapper .pd_list_wrapper li .label span.limited_g {
+    background-color: #92d050;
+}
+
 
 
 .menu_list_wrapper .pd_list_wrapper li:after {
@@ -148,6 +213,8 @@ element.style {
 }
 .menu_list_wrapper .pd_list_wrapper li:hover:after {
     opacity: 1;
+    transform:scale(1);
+    transition-delay: 0.1s;
     transition-duration: 0.2s;
 }
 
@@ -161,16 +228,7 @@ element.style {
 }
 
 
-.menu_list_wrapper .pd_list_wrapper li .label {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    z-index: 3;
-}
 
-.menu_list_wrapper .pd_list_wrapper li .label span.limited_g {
-    background-color: #92d050;
-}
 
 .menu_list_wrapper .pd_list_wrapper li .img {
     width: 270px;
@@ -195,17 +253,16 @@ element.style {
     position: relative;
     z-index: 5;
     top: 0;
-    opacity: 1px;
-    transition-duration: 0.3s;
-    transition-delay: 0.3s;
-    
 }
 
-.menu_list_wrapper .pd_list_wrapper li .tit:hover:after {
-	opacity: 0px;
+.menu_list_wrapper .pd_list_wrapper li:hover .tit{
+	opacity:1;
+	color:#fff;
 	transition-duration: 0.3s;
-    transition-delay: 0.3s;
+	transition-delay: 0.3s;
+	margin:-150px 0 10px;
 }
+
 
 .menu_list_wrapper .pd_list_wrapper li .eng {
     color: #666666;
@@ -213,16 +270,19 @@ element.style {
     font-family: font_sw;
     display: block;
     text-align:center;
-    
     margin: 0 0 30px;
     letter-spacing: -0.06em;
     position: relative;
     z-index: 5;
-    top: 0;
-    
+    top: 0; 
 }
 
-
+.menu_list_wrapper .pd_list_wrapper li:hover .eng {
+	opacity: 1px;
+	color:#fff;
+	transition-duration: 0.3s;
+	transition-delay: 0.3s;
+}
 
 .menu_list_wrapper .pd_list_wrapper li .cal {
     color: #ffc300;
@@ -241,6 +301,14 @@ element.style {
     top: 171px;
     opacity: 0;
     z-index: 5;
+}
+
+.menu_list_wrapper .pd_list_wrapper li:hover .summary {
+    opacity: 1;
+    top: 100px;
+    transition-duration: 0.4s;
+	transition-delay: 0.4s;
+
 }
 
 .menu_list_wrapper .pd_list_wrapper li .summary p {
@@ -320,5 +388,7 @@ element.style {
     letter-spacing: -0.05em;
     line-height: 24px;
 }
+
+
 
 
