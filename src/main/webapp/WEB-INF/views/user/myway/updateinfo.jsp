@@ -144,7 +144,7 @@ $(document).ready(function() {
 										<dd>${user.tel }</dd>
 									</dl>
 								</div>
-								<c:if test="${user != null && nuser == null}">
+								<c:if test="${user != null && nuser == null && guser == null}">
 									<div class="input_set">
 										<dl>
 											<dt>비밀번호</dt>
@@ -158,6 +158,9 @@ $(document).ready(function() {
 											</dd>
 										</dl>
 									</div>
+								</c:if>
+								<c:if test="${nuser != null || guser != null}">
+									<input type="hidden" id="pw">
 								</c:if>
 								<h2>추가 정보 입력</h2>
 								<div class="input_set">

@@ -30,6 +30,10 @@
 						alert("이미 가입된 휴대폰 번호입니다.");
 						check = false;
 						return false;
+					} else if(data == 1) {
+						alert("가입된 휴대폰 번호가 없습니다.");
+						check = false;
+						return false;
 					} else {
 						alert("인증번호를 전송하였습니다.");
 						$("#codeNum").val(data);

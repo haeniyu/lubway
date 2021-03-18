@@ -23,7 +23,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,26 +51,11 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
-//	/** Google Login */
-//	@Autowired
-//	private GoogleConnectionFactory googleConnectionFactory;
-//
-//	@Autowired
-//	private OAuth2Parameters googleOAuth2Parameters;
-
-
 	/**
-	 * 로그인 화면 요청 / 소셜 로그인 처리
+	 * 로그인 화면 요청 / 소셜 로그인(네이버) 처리
 	 */
 	@GetMapping("/login.do")
 	public String main(HttpSession session, Model model) {
-
-//		// 구글code 발행
-//		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-//		String url = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
-//		System.out.println("구글:" + url);
-//		model.addAttribute("google_url", url);
-
 		// 네이버
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
@@ -80,47 +64,34 @@ public class UserController {
 	}
 
 	/**
-	 * 구글 로그인 처리
+	 * 구글 로그인
 	 */
-//	@RequestMapping(value = "/oauth2callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-//	public String googleCallback(Model model, @RequestParam String code, HttpSession seesion, HttpServletResponse response) throws IOException {
-//		System.out.println("여기는 googleCallback");
-//
-//		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
-//		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
-//
-//		String accessToken = accessGrant.getAccessToken();
-//		Long expireTime = accessGrant.getExpireTime();
-//
-//		if (expireTime != null && expireTime < System.currentTimeMillis()) {
-//			accessToken = accessGrant.getRefreshToken();
-//			System.out.printf("accessToken is expired. refresh token = {}", accessToken);
-//		}
-//
-//		Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);
-//		System.out.println(1);
-//
-//		Google google = connection == null ? new GoogleTemplate(accessToken) : connection.getApi();
-//		System.out.println(2);
-//
-//		PlusOperations plusOperations = google.plusOperations();
-//		Person person = plusOperations.getGoogleProfile();
-//		System.out.println(3);
-//
-//		System.out.println(person.getAccountEmail());
-//		System.out.println(person.getAboutMe());
-//		System.out.println(person.getDisplayName());
-//		System.out.println(person.getEtag());
-//		System.out.println(person.getFamilyName());
-//		System.out.println(person.getGender());
-//
-//		return "main";
-//	}
-
+	@PostMapping("/google.do")
+	public String googleLogin(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
+		System.out.println(vo.toString());
+		
+		if(userService.idCheck(vo.getId()) == 0) {
+			if(vo.getId() == null) return "login";
+			userService.insertUser(vo);	
+		} else {
+			if(userService.getUser(vo.getId()).getTel() != null || userService.getUser(vo.getId()).getPassword() != null) {
+				alertView("이미 가입된 계정이 있습니다.", -1, response);
+				return null;
+			} else if(userService.getUser(vo.getId()).getStatus() > 0) {
+				alertView("관리자에 의해 정지된 계정입니다.", -1, response);
+				return null;
+			}
+		}
+		
+		session.setAttribute("user", vo);
+		session.setAttribute("guser", new String("1"));
+		return "main";
+	}
+	
 	/**
 	 * 네이버 로그인 처리
 	 */
-	@RequestMapping(value = "/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@GetMapping("/callback.do")
 	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse servletResponse) throws IOException {
 
 		OAuth2AccessToken oauthToken;
@@ -222,8 +193,7 @@ public class UserController {
 	 */
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session) {
-		session.removeAttribute("user");
-		session.removeAttribute("nuser");
+		session.invalidate();
 		System.out.println("로그아웃 처리");
 		return "main";
 	}

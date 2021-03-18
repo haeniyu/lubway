@@ -25,11 +25,41 @@
 	});
 </script>
 <script type="text/javascript">
-function onSignIn(googleUser) {
-	  var profile = googleUser.getBasicProfile();
-	  console.log('ID: ' + profile.getId());
-	  console.log('Name: ' + profile.getName());
-	  console.log('Email: ' + profile.getEmail());
+	var name = null;
+	var email = null;
+
+	function onSignIn(googleUser) {
+		  var profile = googleUser.getBasicProfile();
+		  name = profile.getName();
+		  email = profile.getEmail();
+		  console.log('ID: ' + profile.getId());
+		  console.log('Name: ' + name);
+		  console.log('Email: ' + email);
+	}
+	
+	function googleLogin() {
+		if(name == null || email == null) {
+			return;
+		}
+		var form = document.createElement("form");
+
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "google.do");
+
+		var input_name = document.createElement("input");
+		input_name.setAttribute("type", "hidden");
+		input_name.setAttribute("name", "name");
+		input_name.setAttribute("value", name);
+
+		var input_email = document.createElement("input");
+		input_email.setAttribute("type", "hidden");
+		input_email.setAttribute("name", "id");
+		input_email.setAttribute("value", email);
+
+		form.appendChild(input_name);
+		form.appendChild(input_email);
+		document.body.appendChild(form);
+		form.submit();
 	}
 </script>
 </head>
@@ -85,12 +115,7 @@ function onSignIn(googleUser) {
 					<div id="naver_id_login">
 						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn_white.PNG"/></a>
 					</div>
-					<div class="g-signin2" data-onsuccess="onSignIn"></div>
-					<!-- 
-					<div id="google_id_login">
-						<a href="${google_url}"><img width="230" src="${pageContext.request.contextPath}/resources/images/google_banner.png"/></a>
-					</div>
-					 -->
+					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
 				</form>
 				<div class="signin_link">
 					<ul>
