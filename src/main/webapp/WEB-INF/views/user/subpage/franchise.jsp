@@ -237,6 +237,6 @@
 				</div>
 			</div>
 			<!--// sub content e -->
-			<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

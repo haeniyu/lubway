@@ -50,4 +50,13 @@ public class SubPageController {
 		System.out.println("프랜차이즈 FAQ 화면으로 이동");
 		return "subpage/franchisefaq";
 	}
+	
+	/**
+	 * 광고영상
+	 */
+	@RequestMapping("/video.do")
+	public String video() {
+		System.out.println("광고영상 화면으로 이동");
+		return "subpage/video";
+	}
 }

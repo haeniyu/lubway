@@ -52,9 +52,9 @@
 						<a class="dp1" href="#none">새소식</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/eventList">이벤트ㆍ프로모션</a></li>
-								<li><a href="/newsList">뉴스ㆍ공지사항</a></li>
-								<li><a href="/tvCommercial">광고영상</a></li>
+								<li><a href="/lubway/getUserEventList.do">이벤트ㆍ프로모션</a></li>
+								<li><a href="/lubway/getUserNoticeList.do">뉴스ㆍ공지사항</a></li>
+								<li><a href="/lubway/video.do">광고영상</a></li>
 							</ul>
 						</div>
 					</li>

@@ -23,7 +23,7 @@
 				src="${path}/resources/upload/banner/main_PC_1920x440_20210205043330107.jpg" />
 		</div>
 		<div>
-			<img alt="02.내손안의 작은 써브웨이" src="${path}/resources/upload/banner/benner.png" />
+			<img alt="02.내손안의 작은 러브웨이" src="${path}/resources/upload/banner/benner.png" />
 		</div>
 	</div>
 	<!-- 배너 끝 -->
@@ -36,7 +36,7 @@
 				</a>
 			</div>
 			<div class="franchise">
-				<a href="/franchiseInquiry"> <img alt="franchise"
+				<a href="/lubway/franchiseInquiry.do"> <img alt="franchise"
 					src="${path}/resources/images/main/icon_franchise.png" /> <strong>가맹신청ㆍ문의</strong></a>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 					<a href="/sandwichView?param=cl03"> <img alt="미트볼"
 						src="${path}/resources/images/menu/sandwich_cl03.jpg" /> <strong class="title">미트볼</strong>
 						<p>
-							이탈리안 스타일 비프 미트볼에<br />써브웨이만의 풍부한 토마토 향이 살아있는<br />마리나라소스를 듬뿍
+							이탈리안 스타일 비프 미트볼에<br />러브웨이만의 풍부한 토마토 향이 살아있는<br />마리나라소스를 듬뿍
 						</p>
 					</a>
 				</div>
@@ -124,11 +124,11 @@
 			</div>
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=fl04"> <img alt="써브웨이 클럽"
-						src="${path}/resources/images/menu/sandwich_fl04.jpg" /> <strong class="title">써브웨이
+					<a href="/sandwichView?param=fl04"> <img alt="러브웨이 클럽"
+						src="${path}/resources/images/menu/sandwich_fl04.jpg" /> <strong class="title">러브웨이
 							클럽</strong>
 						<p>
-							명실공히 시그니처 써브!<br />터키, 비프, 포크 햄의 완벽한 앙상블
+							명실공히 시그니처 러브!<br />터키, 비프, 포크 햄의 완벽한 앙상블
 						</p>
 					</a>
 				</div>
@@ -150,7 +150,7 @@
 					<a href="/sandwichView?param=pm10"> <img alt="풀드포크"
 						src="${path}/resources/images/menu/sandwich_pm08.jpg" /> <strong class="title">풀드포크</strong>
 						<p>
-							7시간 저온 훈연한 미국 정통 스타일의<br />리얼 바비큐 풀드포크는 오직 써브웨이에서
+							7시간 저온 훈연한 미국 정통 스타일의<br />리얼 바비큐 풀드포크는 오직 러브웨이에서
 						</p>
 					</a>
 				</div>
@@ -241,21 +241,21 @@
 			<!-- 이용방법 -->
 			<div class="utilization">
 				<p>
-					써브웨이를<br />제대로 즐기는 방법!
+					러브웨이를<br />제대로 즐기는 방법!
 				</p>
 				<a class="btn" href="/utilizationSubway"><span>이용방법</span></a>
 			</div>
 			<!--// 이용방법 -->
 
-			<!-- 써브웨이 역사 -->
+			<!-- 러브웨이 역사 -->
 			<div class="history">
 				<p>
 					50년 역사를 가진<br />No.1 프랜차이즈의 성장기
 				</p>
-				<a class="btn" href="/subwayHistory"><span>써브웨이 역사</span></a> <img
+				<a class="btn" href="/subwayHistory"><span>러브웨이 역사</span></a> <img
 					src="${path}/resources/images/main/img_subway_history.png" />
 			</div>
-			<!--// 써브웨이 역사 -->
+			<!--// 러브웨이 역사 -->
 		</div>
 		<!--// content top -->
 
@@ -266,17 +266,17 @@
 				<div class="hd">
 					<h2>What's New</h2>
 					<p>
-						써브웨이의 다양한 소식을<br /> 빠르게 전달해드립니다.
+						러브웨이의 다양한 소식을<br /> 빠르게 전달해드립니다.
 					</p>
 				</div>
 				<div class="board_list">
 					<ul>
 						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="243">써브웨이 고객센터 2021년 설 연휴 휴무 안내</a></li>
+							data-idx="243">러브웨이 고객센터 2021년 설 연휴 휴무 안내</a></li>
 						<li><a href="#" onclick="view.noticeView(this);return false;"
 							data-idx="242">2021년 설날 당일 매장 영업 안내 </a></li>
 						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="241">써브웨이와 함께하는 JTBC &#39;라이브온&#39;</a></li>
+							data-idx="241">러브웨이와 함께하는 JTBC &#39;라이브온&#39;</a></li>
 					</ul>
 					<a class="more" href="/newsList">more</a>
 				</div>
@@ -306,7 +306,7 @@
 					<div class="icon"></div> <strong>지사안내</strong> <span>수도권/지방
 						지사정보</span>
 			</a></li>
-			<li class="qm03"><a href="/tvCommercial">
+			<li class="qm03"><a href="/lubway/video.do">
 					<div class="icon"></div> <strong>광고영상</strong> <span>TV광고/동영상</span>
 			</a></li>
 			<li class="qm04"><a href="/qna">
