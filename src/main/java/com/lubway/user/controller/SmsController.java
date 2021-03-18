@@ -26,14 +26,16 @@ public class SmsController {
 	
 	@ResponseBody
 	@RequestMapping(method = RequestMethod.POST, value = "/sendSms.do")
-	public String sendSms(@RequestParam("tell") String tel, HttpSession seesion) {
+	public String sendSms(@RequestParam("tell") String tel, HttpSession session) {
 
 		System.out.println("전화번호 : " + tel);
 		System.out.println("DB에 해당 번호로 조회한 값 : " + smsService.checkTel(tel));
-		System.out.println("session findId 값 : " + seesion.getAttribute("findId"));
+		System.out.println("session findId 값 : " + session.getAttribute("findId"));
 
-		if(smsService.checkTel(tel) == 1 && seesion.getAttribute("findId") == null && seesion.getAttribute("findPwd") == null) {
+		if(smsService.checkTel(tel) == 1 && session.getAttribute("findId") == null && session.getAttribute("findPwd") == null) {
 			return "";
+		} else if(smsService.checkTel(tel) == 0 && (session.getAttribute("findId") != null || session.getAttribute("findPwd") != null)) {
+			return "1";
 		}
 		
 		String code = codeGen();

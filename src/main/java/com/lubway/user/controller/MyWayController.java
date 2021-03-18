@@ -68,6 +68,7 @@ public class MyWayController {
 	@RequestMapping("/resultmod.do")
 	public String resultMod(@RequestParam("pw") String pw, @RequestParam("sms_recep") boolean sms, @RequestParam("email_recep") boolean email, HttpSession session) {
 		UserVO user = (UserVO) session.getAttribute("user");
+		System.out.println(user.toString());
 		
 		if(pw != "") {
 			String securityPwd = passEncoder.encode(pw);
@@ -78,7 +79,7 @@ public class MyWayController {
 		user.setEmail_usable(email);
 		
 		userService.updateUser(user);
-		
+		System.out.println(user.toString());
 		System.out.println("정보 변경 완료");
 		return "myway/updateinfo";
 	}

@@ -93,7 +93,7 @@
 			<!-- gnb 끝 -->
 			
 			<!-- 회원 로그인시 -->
-			<c:if test="${user != null && nuser == null}">
+			<c:if test="${user != null && nuser == null && guser == null}">
 				<div class="util_menu">
 					<ul>
 						<li class="icon_menu global_subway">
