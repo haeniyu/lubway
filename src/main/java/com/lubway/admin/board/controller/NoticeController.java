@@ -159,5 +159,19 @@ public class NoticeController {
 	public void uploadNotice(MultipartFile[] uploadFile) {
 		String uploadFolder = "C:\\upload";
 	}
+	
+	@PostMapping("/menuInsert.mdo")
+	public String menuInsert(String select, Model model) {
+		System.out.println(select);
+		if(select.equals("sandwich")) {
+			return select;
+		}
+		model.addAttribute("select", select);
+		return "menu/menu";
+	}
 
+	@GetMapping("/menuInsert.mdo")
+	public String viewInsert() {
+		return "menu/menu";
+	}
 }

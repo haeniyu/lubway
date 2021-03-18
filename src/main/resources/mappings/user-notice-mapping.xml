@@ -35,8 +35,8 @@
 		'%'||#{searchKeyword}||'%' order by no ASC)
 		as three
 		order by regDate DESC,ROWNUM DESC
-		limit ${listSize} offset
-		${startList}
+		limit #{listSize} offset
+		#{startList}
 		) as two
 
 	</select>
@@ -70,8 +70,8 @@
 		fix = false order by no ASC)
 		as three
 		order by regDate DESC,ROWNUM DESC
-		limit ${listSize} offset
-		${startList}
+		limit #{listSize} offset
+		#{startList}
 		) as two
 
 	</select>
@@ -80,7 +80,7 @@
 		select ROW_NUMBER()
 		OVER() ROWNUM,*
 		from notice_board order by regDate DESC,ROWNUM DESC
-		limit ${listSize} offset ${startList}
+		limit #{listSize} offset #{startList}
 	</select>
 
 </mapper>
