@@ -24,15 +24,6 @@
 			<div class="sub_header">
 				<div class="content">
 					<a class="logo" href="/">HOME</a>
-					<!-- sub location -->
-					<div class="sub_loc">
-						<ul>
-							<li><a href="./eventList">이벤트ㆍ프로모션</a></li>
-							<li class="active"><a href="#">뉴스ㆍ공지사항</a></li>
-							<li><a href="./tvCommercial">광고영상</a></li>
-						</ul>
-					</div>
-					<!--// sub location -->
 					<a class="top" href="#none">TOP</a>
 				</div>
 			</div>
@@ -58,50 +49,25 @@
 						<p class="MsoNormal">${notice.content}</p>
 					</div>
 				</div>
-
-				<!-- 첨부파일 -->
-
-				<!--// 첨부파일 -->
-
 				<div class="btn_list">
 					<a href="/lubway/getUserNoticeList.do">목록보기</a>
 				</div>
 
 				<!-- 우측 영역 -->
 				
-									<div class=board_right>
-					<c:forEach items="${getRightNoticeList}" var="getRightNoticeList">
-											<ul class="notice">
-								<c:set var="fix" value="${getRightNoticeList.fix }" />
-								<c:choose>
-								
-									<c:when test="${fix eq 'true' }">
-											<div style="font-size:1.1em" align="center">
-												<img align="left" src="resources/images/common/icon_notice.png">
-												<a type="hidden" href="getUserNotice.do?no=${getRightNoticeList.no}">${getRightNoticeList.title }</a>
-											</div>
-											
-											</c:when>
-										
-									
-									<c:otherwise>
-									
-										
-										<div style="font-size:1.1em" align="center">
-												<a type="hidden" href="getUserNotice.do?no=${getRightNoticeList.no}">${rightNoticeList.title }</a>
-											</div>
-										
-												
-									</c:otherwise>
-									</c:choose>
-									</ul>
-									</c:forEach>
-				
-					<!--// 공지사항 영역 -->
-
-					<!-- 이전,다음글 영역 -->
-					
-					<!--// 이전,다음글 영역 -->
+				<div class=board_right>
+					<ul class="notice">
+						<c:forEach items="${getRightNoticeList}" var="getRightNoticeList">
+							<c:set var="fix" value="${getRightNoticeList.fix }" />
+							<c:choose>
+								<c:when test="${fix eq 'true' }">
+								<li>
+									<a type="hidden" href="getUserNotice.do?no=${getRightNoticeList.no}">${getRightNoticeList.title }</a>
+								</li>
+								</c:when>
+							</c:choose>
+						</c:forEach>
+					</ul>
 				</div>
 				<!--// 우측 영역 -->
 			</div>
