@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -160,18 +162,9 @@ public class NoticeController {
 		String uploadFolder = "C:\\upload";
 	}
 	
-	@PostMapping("/menuInsert.mdo")
-	public String menuInsert(String select, Model model) {
-		System.out.println(select);
-		if(select.equals("sandwich")) {
-			return select;
-		}
-		model.addAttribute("select", select);
+	@GetMapping("/menuInsert.mdo")
+	public String menuInsert() {
 		return "menu/menu";
 	}
 
-	@GetMapping("/menuInsert.mdo")
-	public String viewInsert() {
-		return "menu/menu";
-	}
 }

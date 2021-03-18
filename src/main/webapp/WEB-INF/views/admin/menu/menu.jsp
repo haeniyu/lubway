@@ -61,17 +61,16 @@ $(document).ready(function(){
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#mbrLgnId3").on("change", function() {
-			console.log($(this).val());
-			var select = $(this).val(); 
-			$.ajax({
-				url : '/lubway/menuInsert.mdo?select=' + select,
-				type : 'post',
-				success : function(data) {
-					if(data == 'sandwich') {
-						$("#hyunah").hidden();
-					}
-				}
-			});
+			var select = $(this).val();
+			
+			if(select == "sandwich") {
+				$(".hyunah").hide();
+			}  else {
+				$(".hyunah").show();
+			}
+			
+			
+			
 		});
 	});
 </script>
@@ -122,32 +121,38 @@ $(document).ready(function(){
 						</div>
 					</div>
 					
-					<div class="mb-3" id="hyunah">
-						<label for="parking">15cm/30cm</label>
-						<div class="form-group row">
-							<div class="col-sm-1">
-								<input type="radio" name="parking"
-									id="parking" style="width:20px;height:20px;" value="가능">
-									<label for="가능">15cm</label>
-							</div>
-							<div class="col-sm-1">
-								<input type="radio" name="parking" style="width:20px;height:20px;" value="불가능">
-									<label for="불가능">30cm</label>
+					<div class="hyunah">
+						<div class="mb-3" id="hyunah">
+							<label for="parking">15cm/30cm</label>
+							<div class="form-group row">
+								<div class="col-sm-1">
+									<input type="radio" name="parking"
+										id="parking" style="width:20px;height:20px;" value="가능">
+										<label for="가능">15cm</label>
+								</div>
+								<div class="col-sm-1">
+									<input type="radio" name="parking" style="width:20px;height:20px;" value="불가능">
+										<label for="불가능">30cm</label>
+								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="mb-3" id="hyunah">
-						<label for="storename">15cm 가격</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="storename" id="storename" required>
+					<div class="hyunah">
+						<div class="mb-3" id="hyunah">
+							<label for="storename">15cm 가격</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="storename" id="storename" required>
+							</div>
 						</div>
 					</div>
 					
-					<div class="mb-3" id="hyunah">
-						<label for="storename">30cm 가격</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="storename" id="storename" required>
+					<div class="hyunah">
+						<div class="mb-3" id="hyunah">
+							<label for="storename">30cm 가격</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="storename" id="storename" required>
+							</div>
 						</div>
 					</div>
 
