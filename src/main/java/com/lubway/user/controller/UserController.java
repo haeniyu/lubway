@@ -51,6 +51,8 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
+	/** Kakao Login */
+
 	/**
 	 * 로그인 화면 요청 / 소셜 로그인(네이버) 처리
 	 */
@@ -64,12 +66,34 @@ public class UserController {
 	}
 
 	/**
+	 * 카카오 로그인
+	 */
+	@GetMapping("/kakao.do")
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code, String res) {
+
+		System.out.println("# " + code);
+		System.out.println(res);
+		System.out.println(res.toString());
+		
+		return "main";
+	}
+
+	/**
+	 * 카카오 로그아웃
+	 */
+	@GetMapping("kakao_logout.do")
+	public String kakao_logout(HttpSession session) {
+		session.invalidate();
+		return "main";
+	}
+
+	/**
 	 * 구글 로그인
 	 */
 	@PostMapping("/google.do")
 	public String googleLogin(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
 		System.out.println(vo.toString());
-		
+
 		if(userService.idCheck(vo.getId()) == 0) {
 			if(vo.getId() == null) return "login";
 			userService.insertUser(vo);	
@@ -82,12 +106,12 @@ public class UserController {
 				return null;
 			}
 		}
-		
+
 		session.setAttribute("user", vo);
 		session.setAttribute("guser", new String("1"));
 		return "main";
 	}
-	
+
 	/**
 	 * 네이버 로그인 처리
 	 */

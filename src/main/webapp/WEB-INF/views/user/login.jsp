@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src = "//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#loginBtn").on("click", function(){
@@ -32,9 +33,6 @@
 		  var profile = googleUser.getBasicProfile();
 		  name = profile.getName();
 		  email = profile.getEmail();
-		  console.log('ID: ' + profile.getId());
-		  console.log('Name: ' + name);
-		  console.log('Email: ' + email);
 	}
 	
 	function googleLogin() {
@@ -61,6 +59,13 @@
 		document.body.appendChild(form);
 		form.submit();
 	}
+</script>
+<script type="text/javascript">
+function kakaoLogout() {
+	Kakao.Auth.logout(function(response) {
+		alert(response + 'logout');
+	});
+}
 </script>
 </head>
 <body>
@@ -113,9 +118,41 @@
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
 					<div id="naver_id_login">
-						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn_white.PNG"/></a>
+						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn.png"/></a>
 					</div>
 					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
+					<a id="kakao-login-btn"></a>
+					<a onclick="kakaoLogout();">카카오 로그아웃</a>
+					<!--
+					<a href="http://developers.kakao.com/logout">Logout</a>
+					 -->
+					<script type="text/javascript">
+						Kakao.init('6a3508a8b89b4d0077e04113035fff90'); //아까 카카오개발자홈페이지에서 발급받은 자바스크립트 키를 입력함
+					
+						//카카오 로그인 버튼을 생성합니다. 
+						Kakao.Auth.createLoginButton({ 
+							container: '#kakao-login-btn', 
+							success: function(authObj) { 
+							Kakao.API.request({
+								url: '/v2/user/me',
+								success: function(res) {
+									console.log(res);
+									console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+									console.log(res.kakao_account.email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
+									console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
+									// res.properties.nickname으로도 접근 가능 )
+									console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+									var kakaonickname = res.properties.nickname;    //카카오톡 닉네임을 변수에 저장 (닉네임 값을 다른페이지로 넘겨 출력하기 위해서)
+									//window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/lubway/kakao.do?res="+res);
+									//로그인 결과 페이지로 닉네임 값을 넘겨서 출력시킨다.,
+									}
+								})
+							},
+							fail: function(error) {
+								alert(JSON.stringify(error));
+							}
+						});
+					</script>
 				</form>
 				<div class="signin_link">
 					<ul>
