@@ -25,19 +25,21 @@ public class MyWayController {
 	@Inject
 	BCryptPasswordEncoder passEncoder;
 	
+	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
 	public String myWay() {
 		System.out.println("마이웨이 페이지로 이동");
 		return "myway/myway";
 	}
 	
+	//비밀번호 입력 페이지로 이동
 	@RequestMapping("/checkpwd.do")
 	public String checkPwd() {
 		System.out.println("비밀번호 확인 페이지로 이동");
 		return "myway/checkpwd";
 	}
 	
-	
+	//비밀번호 확인
 	@RequestMapping("/checkpwdproc.do")
 	public String checkPwdProc(@RequestParam("pw") String pw,HttpSession session,HttpServletResponse response) throws IOException {
 		System.out.println("비밀번호 확인");
@@ -58,13 +60,14 @@ public class MyWayController {
 		return "myway/updateinfo";			
 	}
 	
-	
+	//정보변경 페이지로 이동
 	@RequestMapping("/updateinfo.do")
 	public String updateInfo() {
 		System.out.println("정보 변경 입력 페이지로 이동");
 		return "myway/updateinfo";
 	}
 	
+	//정보변경
 	@RequestMapping("/resultmod.do")
 	public String resultMod(@RequestParam("pw") String pw, @RequestParam("sms_recep") boolean sms, @RequestParam("email_recep") boolean email, HttpSession session) {
 		UserVO user = (UserVO) session.getAttribute("user");
@@ -84,11 +87,13 @@ public class MyWayController {
 		return "myway/updateinfo";
 	}
 	
+	//내 포인트 페이지로 이동
 	@RequestMapping("/point.do")
 	public String point() {
 		return "myway/point";
 	}
 	
+	//회원탈퇴
 	@RequestMapping("/withdrawal.do")
 	public String withdrwal(HttpSession session) {
 		System.out.println("컨트롤러 - withdrawal 실행");
@@ -96,5 +101,11 @@ public class MyWayController {
 		userService.deleteUser(vo);
 		session.invalidate();
 		return "main";
+	}
+	
+	//내 쿠폰 페이지로 이동
+	@RequestMapping("/coupon.do")
+	public String coupon() {
+		return "myway/coupon";
 	}
 }
