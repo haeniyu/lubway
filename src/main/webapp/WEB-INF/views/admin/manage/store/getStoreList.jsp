@@ -117,7 +117,7 @@ function update(r) {
 				<div align="right">
 					<form action="/lubway/searchstore.mdo" method="get">
 						<input type="text" name="searchKeyword"
-								placeholder="매장명" style="width:10%" /> <input
+								placeholder="지역구" style="width:10%" /> <input
 								style="margin:0px 3px; padding:0px 3px"
 								class="btn btn-warning" type="submit"
 								value="search" />

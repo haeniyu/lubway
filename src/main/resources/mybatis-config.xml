@@ -6,12 +6,13 @@
 	<properties resource="db.properties" />
 	<typeAliases>
 		<typeAlias type="com.lubway.admin.AdminVO" alias="admin"/>
-		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
 		<typeAlias type="com.lubway.admin.board.NoticeVO" alias="notice"/>
 		<typeAlias type="com.lubway.admin.StoreVO" alias="store"/>
-		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
-		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
 		<typeAlias type="com.lubway.admin.board.EventVO" alias="event"/>
+		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
+		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
+		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
+		<typeAlias type="com.lubway.user.board.UserEventVO" alias="userevent"/>
 	</typeAliases>
 	
 	<mappers>
@@ -23,5 +24,6 @@
 		<mapper resource="mappings/storeInfo-mapping.xml" />
 		<mapper resource="mappings/user-notice-mapping.xml"/>
 		<mapper resource="mappings/event-mapping.xml"/>
+		<mapper resource="mappings/user-event-mapping.xml"/>
 	</mappers>
 </configuration>

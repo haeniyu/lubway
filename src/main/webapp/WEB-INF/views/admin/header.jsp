@@ -98,7 +98,7 @@
 			</a></li>
 
 			<!-- Nav Item - 가맹점 문의 조회 -->
-			<li class="nav-item"><a class="nav-link" href="#">
+			<li class="nav-item"><a class="nav-link" href="/lubway/getInquiryList.mdo">
 					<i class="fas fa-fw fa-table"></i> <span>가맹점 문의 조회</span>
 			</a></li>
 
@@ -113,7 +113,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Site:</h6>
 						<a class="collapse-item" href="#">배너</a> <a class="collapse-item"
-							href="#">이벤트</a> <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
+							href="getEventList.mdo">이벤트</a> <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
 					</div>
 				</div></li>
 

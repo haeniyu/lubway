@@ -1,7 +1,7 @@
 package com.lubway.user.service;
 
-import com.lubway.user.FranchiseVO;
+import com.lubway.user.UserFranchiseVO;
 
 public interface FranchiseService {
-	void insertInquiry(FranchiseVO vo);
+	void insertInquiry(UserFranchiseVO vo);
 }

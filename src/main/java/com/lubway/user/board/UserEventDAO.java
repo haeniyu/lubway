@@ -23,13 +23,11 @@ public class UserEventDAO {
 		System.out.println("getEventList() 기능 처리");
 		return sqlSessionTemplate.selectList("UserEventDAO.getEventList", vo);
 	}
-	
-	public List<UserEventVO> getEventPageList(UserPagination pagination){
-		return sqlSessionTemplate.selectList("UserEventDAO.pagingList", pagination);
-	}
-	
-	public int getEventPageListCnt() {
-		return sqlSessionTemplate.selectOne("UserEventDAO.pagingCnt");
+
+	public UserEventVO getNewEvent(UserEventVO vo) {
+		System.out.println("getNewEvent() 기능 처리");
+		UserEventVO event = sqlSessionTemplate.selectOne("UserEventDAO.getNewEvent", vo);	
+		return event;
 	}
 
 }

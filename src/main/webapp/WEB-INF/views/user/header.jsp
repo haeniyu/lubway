@@ -75,7 +75,7 @@
 							<ul>
 								<li><a href="/lubway/franchise.do">써브웨이 프랜차이즈</a></li>
 								<li><a href="/lubway/franchisefaq.do">가맹관련 FAQ</a></li>
-								<li><a href="/franchiseInquiry">가맹신청ㆍ문의</a></li>
+								<li><a href="/lubway/franchiseInquiry.do">가맹신청ㆍ문의</a></li>
 							</ul>
 						</div>
 					</li>

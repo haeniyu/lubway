@@ -7,13 +7,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lubway.user.FranchiseVO;
+import com.lubway.user.UserFranchiseVO;
 import com.lubway.user.service.FranchiseService;
 
 /** 가맹 신청,문의 컨트롤러 */
 @Controller
 @RequestMapping("/")
-public class FranchiseController {
+public class UserFranchiseController {
 	
 	@Autowired
 	FranchiseService franchiseService;
@@ -29,7 +29,7 @@ public class FranchiseController {
 	
 	//가맹신청,문의글 DB등록
 	@PostMapping("insertInquiry.do")
-	public String insertInquiry(FranchiseVO vo) {
+	public String insertInquiry(UserFranchiseVO vo) {
 		System.out.println("컨트롤러에서 등록 시도");
 		System.out.println(vo.toString());
 		franchiseService.insertInquiry(vo);
