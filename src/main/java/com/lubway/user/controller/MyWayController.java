@@ -2,6 +2,7 @@ package com.lubway.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -10,10 +11,13 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
+import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -21,6 +25,9 @@ public class MyWayController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserCouponService couponService;
 	
 	@Inject
 	BCryptPasswordEncoder passEncoder;
@@ -105,7 +112,14 @@ public class MyWayController {
 	
 	//내 쿠폰 페이지로 이동
 	@RequestMapping("/coupon.do")
-	public String coupon() {
+	public String getCouponList(Model model, UserCouponVO vo) {
+		System.out.println("유저 쿠폰 목록 요청 처리");
+		
+		System.out.println(vo.toString());
+		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
+		
+		model.addAttribute("couponList", couponList);
+		
 		return "myway/coupon";
 	}
 }
