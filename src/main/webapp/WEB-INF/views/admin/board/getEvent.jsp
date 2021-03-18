@@ -63,7 +63,6 @@ $(document).ready(function(){
 						<!-- 제목 -->
 						<li class="title">
 							<div>
-							<a id="test" href="#">ㅋㅋ</a>
 								<div class="index">제목</div>
 								<input class="title_text" value="${event.title }" type="text" name="title"
 									style="width: 80%" required />

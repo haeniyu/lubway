@@ -116,7 +116,7 @@ ul {
                      </div>
                      <c:if test="${notice.filePath  != null}">
                      <a>
-                        <img src="${notice.filePath}">
+                        <img src="${notice.filePath}" width="370px">
                      </a>
                      </c:if>
                      <div class="index_text">
