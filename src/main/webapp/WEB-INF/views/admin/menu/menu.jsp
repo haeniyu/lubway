@@ -7,77 +7,124 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 등록</title>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
-  
-$(document).ready(function(){
-	
-	$("#saveBtn").on("click", function() {
-		if ($("#area").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#area").focus();
-			return;
-		} else if ($("#store_tel").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#store_tel").focus();
-			return;
-		} else if ($("#code").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#code").focus();
-			return;
-		} else if ($("#id").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#id").focus();
-			return;
-		} else if ($("#password").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#password").focus();
-			return;
-		} else if ($("#storename").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#storename").focus();
-			return;
-		} else if ($("#close").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#close").focus();
-			return;
-		} else if ($("#open").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#open").focus();
-			return;
-		} else if ($("#parking").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#parking").focus();
-			return;
-		} else if ($("#postcode").val().trim() == '') {
-			alert("모든 정보를 기입해주세요.");
-			$("#postcode").focus();
-			return;
-		}
-		setTime();
-	});
-});
-</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		var check = "";
 		$("#mbrLgnId3").on("change", function() {
-			var select = $(this).val();
+			var selected = $(this).val();
 			
-			if(select == "sandwich") {
+			if(selected == "sandwich") {
 				$(".cm").show();
 			}  else { 
 				$(".cm").hide();
 			}
-			if(select == "drink"){
+			
+			if(selected == "drink"){
 				$(".form").hide();
 			}else {
 				$(".form").show();
 			}
-			
-			
+			check = selected;
 		});
+	
+	$("#saveBtn").on("click", function() {
+		var select = check;
+		if(select == "sandwich") {
+			if ($("#size").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#size").focus();
+				return;
+			} else if ($("#price15").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price15").focus();
+				return;
+			} else if ($("#price30").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price30").focus();
+				return;
+			} else if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#name").focus();
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#code").focus();
+				return;
+			} else if ($("#ttl").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#ttl").focus();
+				return;
+			} else if ($("#cal").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#cal").focus();
+				return;
+			} else if ($("#fat").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#fat").focus();
+				return;
+			} else if ($("#sod").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#sod").focus();
+				return;
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+		} else if(select == "drink"){
+			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#name").focus();
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#code").focus();
+				return;
+			} else if ($("#price").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price").focus();
+				return;
+			}
+		} else{
+			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#name").focus();
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#code").focus();
+				return;
+			} else if ($("#price").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price").focus();
+				return;
+			} else if ($("#ttl").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#ttl").focus();
+				return;
+			} else if ($("#cal").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#cal").focus();
+				return;
+			} else if ($("#fat").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#fat").focus();
+				return;
+			} else if ($("#sod").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#sod").focus();
+				return;
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+		}
+			
+		//setTime();
 	});
+});
 </script>
 <style type="text/css">
 .addr {
@@ -110,7 +157,7 @@ $(document).ready(function(){
 							<div class="dropdown mb-4">
 								<span class="form_select" style="width: 300px"> <select
 									class="btn btn-primary dropdown-toggle" id="mbrLgnId3"
-									name="domain" style="width: 150px">
+									name="category" style="width: 150px">
 										<option value="sandwich">샌드위치</option>
 										<option value="wrap">랩&파니니</option>
 										<option value="salad">찹샐러드</option>
@@ -125,107 +172,107 @@ $(document).ready(function(){
 
 					<div class="cm">
 						<div class="mb-3" id="hyunah">
-							<label for="parking">15cm/30cm</label>
+							<label for="size">15cm/30cm</label>
 							<div class="form-group row">
 								<div class="col-sm-1">
-									<input type="radio" name="parking" id="parking"
-										style="width: 20px; height: 20px;" value="가능"> <label
-										for="가능">15cm</label>
+									<input type="radio" name="size" id="size"
+										style="width: 20px; height: 20px;" value="15cm"> <label
+										for="15cm">15cm</label>
 								</div>
 								<div class="col-sm-1">
-									<input type="radio" name="parking"
-										style="width: 20px; height: 20px;" value="불가능"> <label
-										for="불가능">30cm</label>
+									<input type="radio" name="size"
+										style="width: 20px; height: 20px;" value="30cm"> <label
+										for="30cm">30cm</label>
 								</div>
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
-							<label for="storename">15cm 가격</label>
+							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename"
-									id="storename" required>
+								<input type="text" class="form-control" name="price15"
+									id="price15" required>
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
-							<label for="storename">30cm 가격</label>
+							<label for="price30">30cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename"
-									id="storename" required>
+								<input type="text" class="form-control" name="price30"
+									id="price30" required>
 							</div>
 						</div>
 					</div>
 
 					
 						<div class="mb-3">
-							<label for="area">제품명</label>
+							<label for="name">제품명</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="area" id="area"
+								<input type="text" class="form-control" name="name" id="name"
 									required>
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
-							<label for="storename">제품 코드</label>
+							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename"
-									id="storename" required>
+								<input type="text" class="form-control" name="code"
+									id="code" required>
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
-							<label for="storename">가격</label>
+							<label for="price">가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename"
-									id="storename" required>
+								<input type="text" class="form-control" name="price"
+									id="price" required>
 							</div>
 						</div>
 					
 
 					<div class="form">
 						<div class="mb-3">
-							<label for="storename">총 중량(g)</label>
+							<label for="ttl">총 중량(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename"
-									id="storename" required>
+								<input type="text" class="form-control" name="ttl"
+									id="ttl" required>
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="code">열량(kcal)</label>
+							<label for="cal">열량(kcal)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="code" id="code"
+								<input type="text" class="form-control" name="cal" id="cal"
 									required>
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="id">당류(g)</label>
+							<label for="sug">당류(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="id" id="id"
+								<input type="text" class="form-control" name="sug" id="sug"
 									required>
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="password">단백질(g)</label>
+							<label for="pro">단백질(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="password"
-									id="password" required>
+								<input type="text" class="form-control" name="pro"
+									id="pro" required>
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="store_tel">포화지방(g)</label>
+							<label for="fat">포화지방(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="store_tel"
-									id="store_tel" required>
+								<input type="text" class="form-control" name="fat"
+									id="fat" required>
 							</div>
 						</div>
 						<div class="mb-3">
-							<label for="store_tel">나트륨(g)</label>
+							<label for="sod">나트륨(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="store_tel"
-									id="store_tel" required>
+								<input type="text" class="form-control" name="sod"
+									id="sod" required>
 							</div>
 						</div>
 					</div>
 
 					<div class="mb-3">
-						<label for="store_tel">이미지</label>
+						<label for="img">이미지</label>
 						<div class="col-sm-3">
 							<input type="file" name="multipart" required />
 						</div>

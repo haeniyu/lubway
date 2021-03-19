@@ -13,6 +13,14 @@
 		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
 		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
 		<typeAlias type="com.lubway.user.board.UserEventVO" alias="userevent"/>
+		<typeAlias type="com.lubway.admin.menu.CookieVO" alias="cookie"/>
+		<typeAlias type="com.lubway.admin.menu.DrinkVO" alias="drink"/>
+		<typeAlias type="com.lubway.admin.menu.MorningVO" alias="morning"/>
+		<typeAlias type="com.lubway.admin.menu.NutrientVO" alias="nutrient"/>
+		<typeAlias type="com.lubway.admin.menu.SaladVO" alias="salad"/>
+		<typeAlias type="com.lubway.admin.menu.SandwichVO" alias="sandwich"/>
+		<typeAlias type="com.lubway.admin.menu.WedgeAndSoupVO" alias="wedgeandsoup"/>
+		<typeAlias type="com.lubway.admin.menu.WrapVO" alias="wrap"/>
 	</typeAliases>
 	
 	<mappers>
@@ -25,5 +33,13 @@
 		<mapper resource="mappings/user-notice-mapping.xml"/>
 		<mapper resource="mappings/event-mapping.xml"/>
 		<mapper resource="mappings/user-event-mapping.xml"/>
+		<mapper resource="mappings/sandwich-mapping.xml"/>
+		<mapper resource="mappings/wrap-mapping.xml"/>
+		<mapper resource="mappings/cookie-mapping.xml"/>
+		<mapper resource="mappings/drink-mapping.xml"/>
+		<mapper resource="mappings/nutrient-mapping.xml"/>
+		<mapper resource="mappings/wedgeandsoup-mapping.xml"/>
+		<mapper resource="mappings/salad-mapping.xml"/>
+		<mapper resource="mappings/morning-mapping.xml"/>
 	</mappers>
 </configuration>
