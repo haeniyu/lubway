@@ -3,5 +3,32 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="SandwichDAO">
-  
+  <resultMap type="sandwich" id="sandwichResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="size" column="size" />
+		<result property="price15" column="price15" />
+		<result property="price30" column="price30" />
+		<result property="category" column="category"/>
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertSandwich" parameterType="sandwich">
+  		insert into sandwich( code, name, size, price15, price30, category, filePath)
+  		values(#{code},#{name}, #{price15}, #{price30}, #{size}, #{category}, #{filePath})
+  	</insert>
+  	<update id="updateSandwich" parameterType="sandwich">
+  		update sandwich set code=#{code}, name=#{name}, 
+  		price15=#{price15} ,price30=#{price30}, size=#{size} category=#{category}
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteSandwich" parameterType="sandwich">
+  		delete from sandwich where no=#{no}
+  	</delete>
+  	<select id="selectSandwich" parameterType="sandwich">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
+  	<select id="selectListSandwich" parameterType="sandwich">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
   </mapper>

@@ -3,5 +3,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="NutrientDAO">
-  
+  	<resultMap type="nutrient" id="nutrientResult">
+  		<id property="no" column="no"/>
+  		<result property="code" column="code"/>
+  		<result property="ttl" column="ttl"/>
+  		<result property="cal" column="cal"/>
+  		<result property="sug" column="sug"/>
+  		<result property="pro" column="pro"/>
+  		<result property="fat" column="fat"/>
+  		<result property="sod" column="sod"/>
+  	</resultMap>
+  	
+  	<insert id="insertNutrient" parameterType="nutrient">
+  		insert into nutrient (code, ttl, cal, sug, pro, fat, sod) values(#{code},#{ttl},#{cal},#{sug},#{pro},#{fat},#{sod})
+  	</insert>
+  	<update id="updateNutrient" parameterType="nutrient">
+  		update nutrient set code=#{code}, ttl=#{ttl}, cal=#{cal}, sug=#{sug}, pro=#{pro}, fat=#{fat}, sod=#{sod} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteNutrient" parameterType="nutrient">
+  		delete from nutrient where no=#{no} 
+  	</delete>
+  	<select id="selectNutrient" parameterType="nutrient">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
+  	<select id="selectListNutrient" parameterType="nutrient">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
   </mapper>

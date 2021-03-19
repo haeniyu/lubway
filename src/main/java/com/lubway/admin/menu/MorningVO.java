@@ -9,6 +9,7 @@ public class MorningVO {
 	private int no;
 	private String code;
 	private String name;
+	private String price;
 	private String category;
 	private String filePath;
 }

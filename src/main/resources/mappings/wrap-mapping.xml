@@ -3,5 +3,29 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="WrapDAO">
-  
+  	<resultMap type="wrap" id="wrapResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="category" column="category"/>
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertWrap" parameterType="wrap">
+  		insert into cookie( code, name, price, category, filePath)
+  		values(#{code},#{name}, #{price}, #{category}, #{filePath})
+  	</insert>
+  	<update id="updateWrap" parameterType="wrap">
+  		update cookie set code=#{code}, name=#{name}, price=#{price}, category=#{category} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteWrap" parameterType="wrap">
+  		delete from cookie where no=#{no}
+  	</delete>
+  	<select id="selectWrap" parameterType="wrap">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
+  	<select id="selectListWrap" parameterType="wrap">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
   </mapper>

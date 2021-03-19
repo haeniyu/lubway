@@ -3,5 +3,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="SaladDAO">
-  
+  	<resultMap type="salad" id="saladResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="price" column="price" />
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertSalad" parameterType="salad">
+  		insert into cookie( code, name, price, filePath)
+  		values(#{code},#{name}, #{price}, #{filePath})
+  	</insert>
+  	<update id="updateSalad" parameterType="salad">
+  		update cookie set code=#{code}, name=#{name}, price=#{price} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteSalad" parameterType="salad">
+  		delete from cookie where no=#{no}
+  	</delete>
+  	<select id="selectSalad" parameterType="salad">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
+  	<select id="selectListSalad" parameterType="salad">
+  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	</select>
   </mapper>

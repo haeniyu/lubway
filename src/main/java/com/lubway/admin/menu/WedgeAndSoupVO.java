@@ -9,6 +9,6 @@ public class WedgeAndSoupVO {
 	private int no;
 	private String code;
 	private String name;
-	private String category;
+	private String price;
 	private String filePath;
 }
