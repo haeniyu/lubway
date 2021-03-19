@@ -76,7 +76,6 @@
 <meta charset="utf-8" />
 </head>
 <body>
-
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
 
 	<!-- container s -->
