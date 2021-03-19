@@ -21,5 +21,9 @@
 		morning_usable=#{morning_usable}, fastway_usable=#{fastway_usable}, homeway_usable=#{homeway_usable}
 		WHERE storename = #{storename}
 	</update>
+	
+	<select id="findStore" resultType="storeInfo">
+		select * from storeinfo
+	</select>
 
 </mapper>
