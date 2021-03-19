@@ -94,7 +94,7 @@ public class ManageUserController {
 		UserVO vo = userService.getUser(id);
 		vo.setStatus(1);
 		manageService.updateStatus(vo);
-		sendBlockMail(vo);
+		if(vo.getId().split("@").length > 1) sendBlockMail(vo);
 		return "redirect:/getuserlist.mdo";
 	}
 	
