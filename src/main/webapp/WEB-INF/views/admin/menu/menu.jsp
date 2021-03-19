@@ -7,7 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>메뉴 등록</title>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
   
 $(document).ready(function(){
@@ -64,18 +65,22 @@ $(document).ready(function(){
 			var select = $(this).val();
 			
 			if(select == "sandwich") {
-				$(".hyunah").hide();
-			}  else {
-				$(".hyunah").show();
+				$(".cm").show();
+			}  else { 
+				$(".cm").hide();
 			}
-			
+			if(select == "drink"){
+				$(".form").hide();
+			}else {
+				$(".form").show();
+			}
 			
 			
 		});
 	});
 </script>
 <style type="text/css">
-.addr{
+.addr {
 	border: 1px solid #D3D4E3;
 	border-radius: 5px;
 	height: 35px;
@@ -93,119 +98,143 @@ $(document).ready(function(){
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">메뉴 등록</h6>
 			</div>
-			<form name="form" id="form" role="form" method="post" action="menuInsert.mdo">
-			<div class="card-body">
-					<div class="mb-3">
-						<label for="area">제품명</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="area" id="area" required>
-						</div>
-					</div>
-					
+			<form name="form" id="form" role="form" method="post"
+				action="menuInsert.mdo">
+				<div class="card-body">
+
+
 					<div class="mb-3">
 						<label for="open">제품 카테고리</label>
 						<div class="col-sm-3">
 							<div class="small mb-1"></div>
 							<div class="dropdown mb-4">
-								<span class="form_select" style="width: 300px">
-                                      <select class="btn btn-primary dropdown-toggle"id="mbrLgnId3" name="domain" style="width: 150px">
-                                         <option value="" id="defaultValue">제품 종류</option>
-                                         <option value="sandwich">샌드위치</option>
-                                         <option value="wrap">랩&파니니</option>
-                                         <option value="salad">찹샐러드</option>
-                                         <option value="morning">아침메뉴</option>
-                                         <option value="smail">스마일 썹</option>
-                                      </select>
-                                </span>												
+								<span class="form_select" style="width: 300px"> <select
+									class="btn btn-primary dropdown-toggle" id="mbrLgnId3"
+									name="domain" style="width: 150px">
+										<option value="sandwich">샌드위치</option>
+										<option value="wrap">랩&파니니</option>
+										<option value="salad">찹샐러드</option>
+										<option value="morning">아침메뉴</option>
+										<option value="smail">스마일 썹</option>
+										<option value="drink">음료</option>
+								</select>
+								</span>
 							</div>
 						</div>
 					</div>
-					
-					<div class="hyunah">
+
+					<div class="cm">
 						<div class="mb-3" id="hyunah">
 							<label for="parking">15cm/30cm</label>
 							<div class="form-group row">
 								<div class="col-sm-1">
-									<input type="radio" name="parking"
-										id="parking" style="width:20px;height:20px;" value="가능">
-										<label for="가능">15cm</label>
+									<input type="radio" name="parking" id="parking"
+										style="width: 20px; height: 20px;" value="가능"> <label
+										for="가능">15cm</label>
 								</div>
 								<div class="col-sm-1">
-									<input type="radio" name="parking" style="width:20px;height:20px;" value="불가능">
-										<label for="불가능">30cm</label>
+									<input type="radio" name="parking"
+										style="width: 20px; height: 20px;" value="불가능"> <label
+										for="불가능">30cm</label>
 								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div class="hyunah">
 						<div class="mb-3" id="hyunah">
 							<label for="storename">15cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename" id="storename" required>
+								<input type="text" class="form-control" name="storename"
+									id="storename" required>
 							</div>
 						</div>
-					</div>
-					
-					<div class="hyunah">
 						<div class="mb-3" id="hyunah">
 							<label for="storename">30cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="storename" id="storename" required>
+								<input type="text" class="form-control" name="storename"
+									id="storename" required>
 							</div>
 						</div>
 					</div>
 
 					
-					<div class="mb-3">
-						<label for="storename">총 중량(g)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="storename" id="storename" required>
+						<div class="mb-3">
+							<label for="area">제품명</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="area" id="area"
+									required>
+							</div>
+						</div>
+						<div class="mb-3" id="hyunah">
+							<label for="storename">제품 코드</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="storename"
+									id="storename" required>
+							</div>
+						</div>
+						<div class="mb-3" id="hyunah">
+							<label for="storename">가격</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="storename"
+									id="storename" required>
+							</div>
+						</div>
+					
+
+					<div class="form">
+						<div class="mb-3">
+							<label for="storename">총 중량(g)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="storename"
+									id="storename" required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="code">열량(kcal)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="code" id="code"
+									required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="id">당류(g)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="id" id="id"
+									required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="password">단백질(g)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="password"
+									id="password" required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="store_tel">포화지방(g)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="store_tel"
+									id="store_tel" required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="store_tel">나트륨(g)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="store_tel"
+									id="store_tel" required>
+							</div>
 						</div>
 					</div>
-					<div class="mb-3">
-						<label for="code">열량(kcal)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="code" id="code" required>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="id">당류(g)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="id" id="id" required>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="password">단백질(g)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="password" id="password" required>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="store_tel">포화지방(g)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="store_tel"
-								id="store_tel" required>
-						</div>
-					</div>
-					<div class="mb-3">
-						<label for="store_tel">나트륨(g)</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="store_tel"
-								id="store_tel" required>
-						</div>
-					</div>
+
 					<div class="mb-3">
 						<label for="store_tel">이미지</label>
 						<div class="col-sm-3">
-							<input type="file" name="multipart" required/>
+							<input type="file" name="multipart" required />
 						</div>
 					</div>
-					
-				<div>
-					<button type="button" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+
+					<div>
+						<button type="button" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+					</div>
 				</div>
-			</div>
 			</form>
 		</div>
 	</div>

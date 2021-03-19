@@ -162,9 +162,6 @@ public class NoticeController {
 		String uploadFolder = "C:\\upload";
 	}
 	
-	@GetMapping("/menuInsert.mdo")
-	public String menuInsert() {
-		return "menu/menu";
-	}
+	
 
 }
