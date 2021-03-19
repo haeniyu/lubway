@@ -31,7 +31,7 @@
 	<div class="quick_link">
 		<div class="quick_link_content">
 			<div class="store">
-				<a href="/storeSearch"> <img alt="map"
+				<a href="/lubway/findStore.do"> <img alt="map"
 					src="${path}/resources/images/main/icon_map.png" /> <strong>매장찾기</strong>
 				</a>
 			</div>

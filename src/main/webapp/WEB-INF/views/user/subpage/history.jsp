@@ -8,10 +8,9 @@
 <meta charset="UTF-8">
 <title>History</title>
 <style type="text/css">
-.content{
+#content{
 	width: 100%;
-	content: "";
-	margin-bottom: -10;
+	padding-top : 150px;
 }
 
 img{

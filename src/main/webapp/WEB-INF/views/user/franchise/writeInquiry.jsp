@@ -43,10 +43,12 @@
 									<th scope="col">연락처<span class="ess"></span></th>
 									<td>${user.tel }<input type="hidden" name="tel" value="${user.tel }"></td>
 								</tr>
-								<tr>
-									<th scope="col">이메일<span class="ess"></span></th>
-									<td>${user.id }<input type="hidden" name="email" value="${user.id }"></td>
-								</tr>
+								<c:if test="${kuser == null}">
+									<tr>
+										<th scope="col">이메일<span class="ess"></span></th>
+											<td>${user.id }<input type="hidden" name="email" value="${user.id }"></td>
+									</tr>
+								</c:if>
 								<tr>
 									<th scope="col">지역<span class="ess"></span></th>
 									<td>

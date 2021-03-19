@@ -124,7 +124,7 @@ $(document).ready(function() {
 		<div id="content">
 			<!-- 내정보관리 > 정보변경 -->
 			<div class="manage_wrapper">
-				<h2 class="subTitle_02">정보변경</h2>
+				<h2 class="subTitle_02" style="padding-top: 30px">정보변경</h2>
 				<div class="manage_cont_box">
 					<section class="form_box">
 						<div class="write_info_wrap">

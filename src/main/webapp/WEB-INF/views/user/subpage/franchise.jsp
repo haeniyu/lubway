@@ -226,7 +226,7 @@
 								</ul>
 
 								<div class="btns_wrapper">
-									<a class="btn bgc_point i_arr" href="/franchiseInquiry" style="width:160px;"><span>가맹신청/문의</span></a>
+									<a class="btn bgc_point i_arr" href="/lubway/franchiseInquiry.do" style="width:160px;"><span>가맹신청/문의</span></a>
 								</div>
 							</div>
 						</div>

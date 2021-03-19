@@ -2,9 +2,9 @@
 
 
 /* 써브웨이 ::: 매장찾기 레이어 */
-.store_search_wrapper{padding-top:60px;}
+.store_search_wrapper{padding-top:125px;}
 .store_search_wrapper .store_map{height:700px; position:relative;}
-.store_search_wrapper .store_search_layer{position:absolute; left:20px; top:80px; z-index:3; width:340px; height:658px; padding:0 29px; background-color:#fff; border:1px solid #dddddd;}
+.store_search_wrapper .store_search_layer{position:absolute; left:20px; top:80px; z-index:3; width:340px; height:658px; padding:0 29px; background-color:#fff; border:1px solid #dddddd; margin-top: 100px;}
 .store_search_wrapper .store_search_layer h2{color:#292929; font-size:28px; font-weight:bold; text-align:center; padding:34px 0 17px 0}
 .store_search_wrapper .store_search_layer .store_search{border:2px solid #dddddd; display:block; height:41px; position:relative}
 .store_search_wrapper .store_search_layer .store_search input{border:0; height:41px; width:223px; text-indent:14px; color:#bbbbbb; font-size:16px;}

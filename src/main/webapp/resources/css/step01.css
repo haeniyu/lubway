@@ -255,7 +255,7 @@ em{font-style:normal;}
 .board_write_wrapper td .file_note{font-size:13px; color:#999999; margin-left:25px;}
 
 /* 문의 ::: 가맹신청문의, 1:1문의 */
-.inquiry_wrapper{background-color:#fff; width:1028px; margin:0 auto; border:1px solid #e8e8e8; padding:0 70px 49px;}
+.inquiry_wrapper{background-color:#fff; width:1028px; margin:0 auto; border:1px solid #e8e8e8; padding:0 70px 49px; margin-top: 150px;}
 .inquiry_wrapper h2.subTitle{padding:72px 0 76px !important;}
 .inquiry_wrapper .board_write_wrapper .agree_info{overflow:hidden; border-bottom:1px solid #e8e8e8; padding:25px 0 13px 0}
 .inquiry_wrapper .board_write_wrapper .agree_info >p{float:left; color:#666666; font-size:16px; font-weight:bold; letter-spacing:-0.03em; text-indent:10px;}

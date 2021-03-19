@@ -7,10 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>매장 찾기</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.common.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.subway.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.subway.css" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

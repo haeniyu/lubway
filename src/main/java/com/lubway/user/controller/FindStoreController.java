@@ -19,7 +19,6 @@ public class FindStoreController {
 	@RequestMapping("/findStore.do")
 	public String findStoreView(Model model) {
 		List<StoreInfoVO> info = findStoreService.findStore();
-		System.out.println(info.toString());
 		model.addAttribute("findStore", info);
 		return "findStore/findStore";
 	}

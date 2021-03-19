@@ -32,7 +32,7 @@
 						<a class="dp1" href="#none">메뉴소개</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/sandwichList">샌드위치</a></li>
+								<li><a href="/lubway/menu.do">샌드위치</a></li>
 								<li><a href="/wrapList">랩ㆍ기타</a></li>
 								<li><a href="/saladList">찹샐러드</a></li>
 								<li><a href="/morningList">아침메뉴</a></li>
@@ -64,8 +64,7 @@
 							<ul>
 								<li><a href="/lubway/history.do">러브웨이 역사</a></li>
 								<li><a href="/lubway/promise.do">러브웨이 약속</a></li>
-								<li style="display: none;"><a href="#">써브웨이 사회공헌</a></li>
-								<li><a href="/storeSearch">매장찾기</a></li>
+								<li><a href="/lubway/findStore.do">매장찾기</a></li>
 							</ul>
 						</div>
 					</li>
