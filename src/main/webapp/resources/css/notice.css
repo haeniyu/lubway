@@ -368,3 +368,6 @@ a {
 .pagination .arr.next:after {
     background-position: 100% 0;
 }
+.page-item{
+   display: inline-block;
+}

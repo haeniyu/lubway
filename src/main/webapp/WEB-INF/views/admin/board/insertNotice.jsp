@@ -102,13 +102,7 @@ ul {
 						<li class="img">
 							<div>
 								<div class="index">이미지</div>
-
-								<!-- 
-								<input type="file" name="file" multiple />
-								 -->
-
 								<input type="file" name="multipart" />
-
 							</div>
 						</li>
 						<!-- 내용 -->

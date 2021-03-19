@@ -1,5 +1,7 @@
 package com.lubway.store;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,5 +22,10 @@ public class StoreInfoDAO {
 	public void updateStoreinfo(StoreInfoVO vo) {
 		System.out.println("StoreInfoDAO - updateStoreInfo() 실행");
 		sqlSessionTemplate.update("StoreInfoDAO.updateStoreInfo", vo);
+	}
+	
+	public List<StoreInfoVO> findStore() {
+		System.out.println("StoreInfoDAO - findStore() 실행");
+		return sqlSessionTemplate.selectList("StoreInfoDAO.findStore");
 	}
 }

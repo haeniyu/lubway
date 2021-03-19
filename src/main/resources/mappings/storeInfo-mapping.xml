@@ -5,8 +5,8 @@
 <mapper namespace="StoreInfoDAO">
 
 	<insert id="insertStoreInfo" parameterType="storeInfo">
-		INSERT INTO storeinfo (code, storename, area, zipcode, address_load, address_detail, store_tel, parking, open, close)
-		VALUES(#{code},#{storename},#{area},#{zipcode},#{address_load},#{address_detail},#{store_tel},#{parking},#{open},#{close})
+		INSERT INTO storeinfo (code, storename, area, zipcode, address_road, address_detail, store_tel, parking, open, close)
+		VALUES(#{code},#{storename},#{area},#{zipcode},#{address_road},#{address_detail},#{store_tel},#{parking},#{open},#{close})
 	</insert>
 
 	<select id="getStoreInfo" parameterType="String" resultType="storeInfo">
@@ -21,5 +21,9 @@
 		morning_usable=#{morning_usable}, fastway_usable=#{fastway_usable}, homeway_usable=#{homeway_usable}
 		WHERE storename = #{storename}
 	</update>
+	
+	<select id="findStore" resultType="storeInfo">
+		select * from storeinfo
+	</select>
 
 </mapper>
