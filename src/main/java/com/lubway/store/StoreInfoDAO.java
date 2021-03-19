@@ -6,8 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lubway.admin.StoreVO;
-
 @Repository
 public class StoreInfoDAO {
 	
@@ -24,8 +22,8 @@ public class StoreInfoDAO {
 		sqlSessionTemplate.update("StoreInfoDAO.updateStoreInfo", vo);
 	}
 	
-	public List<StoreInfoVO> findStore() {
+	public List<StoreInfoVO> findStore(String keyword) {
 		System.out.println("StoreInfoDAO - findStore() 실행");
-		return sqlSessionTemplate.selectList("StoreInfoDAO.findStore");
+		return sqlSessionTemplate.selectList("StoreInfoDAO.findStore", keyword);
 	}
 }

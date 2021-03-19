@@ -22,8 +22,10 @@
 		WHERE storename = #{storename}
 	</update>
 	
-	<select id="findStore" resultType="storeInfo">
-		select * from storeinfo
+	<select id="findStore" parameterType="String" resultType="storeInfo">
+		SELECT * FROM storeinfo
+		WHERE address_road LIKE '%'||#{keyword}||'%'
+		ORDER BY NO DESC
 	</select>
 
 </mapper>

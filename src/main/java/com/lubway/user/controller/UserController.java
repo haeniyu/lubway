@@ -51,8 +51,6 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
-	/** Kakao Login */
-
 	/**
 	 * 로그인 화면 요청 / 소셜 로그인(네이버) 처리
 	 */

@@ -4,7 +4,7 @@
 /* 써브웨이 ::: 매장찾기 레이어 */
 .store_search_wrapper{padding-top:125px;}
 .store_search_wrapper .store_map{height:700px; position:relative;}
-.store_search_wrapper .store_search_layer{position:absolute; left:20px; top:80px; z-index:3; width:340px; height:658px; padding:0 29px; background-color:#fff; border:1px solid #dddddd; margin-top: 100px;}
+.store_search_wrapper .store_search_layer{position:absolute; left:20px; top:80px; z-index:3; width:340px; height:658px; padding:0 29px; background-color:#fff; border:1px solid #dddddd; margin-top: 65px;}
 .store_search_wrapper .store_search_layer h2{color:#292929; font-size:28px; font-weight:bold; text-align:center; padding:34px 0 17px 0}
 .store_search_wrapper .store_search_layer .store_search{border:2px solid #dddddd; display:block; height:41px; position:relative}
 .store_search_wrapper .store_search_layer .store_search input{border:0; height:41px; width:223px; text-indent:14px; color:#bbbbbb; font-size:16px;}
@@ -91,3 +91,11 @@
 .store_detail_wrapper .store_detail_layer dd .service{margin-left:-2px; position:relative; top:2px;}
 .store_detail_wrapper .store_detail_layer dd .service span{display:inline-block; font-size:13px; color:#666; border:1px solid #666; border-radius:30px; height:23px; line-height:23px; padding:0 8px; margin:0 0 8px 2px; letter-spacing:0}
 .store_detail_wrapper .store_map{height:780px;}
+
+/* form ::: search */
+.form_search{border:2px solid #dddddd; height:41px; display:block; vertical-align:middle; position:relative; padding-right:42px}
+.form_search input{border:0; height:41px; width:100%; text-indent:14px; color:#292929; font-size:16px;}
+.form_search input::placeholder{color:#bbbbbb; font-size:16px;font-family:font_ns, sans-serif;}
+.form_search .btn_search{background:url(../images/common/icon_search.png) 50% 50% no-repeat; width:41px; height:41px; position:absolute; right:0; top:0}
+.form_search .btn_search:after{content:''; position:absolute; left:-2px; top:13px; width:2px; height:16px; background-color:#e5e5e5;}
+

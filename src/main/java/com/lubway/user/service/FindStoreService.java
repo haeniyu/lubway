@@ -5,5 +5,5 @@ import java.util.List;
 import com.lubway.store.StoreInfoVO;
 
 public interface FindStoreService {
-	List<StoreInfoVO> findStore();
+	List<StoreInfoVO> findStore(String keyword);
 }

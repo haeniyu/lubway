@@ -15,8 +15,8 @@ public class FindStroeServiceImpl implements FindStoreService {
 	private StoreInfoDAO dao;
 	
 	@Override
-	public List<StoreInfoVO> findStore() {
-		return dao.findStore();
+	public List<StoreInfoVO> findStore(String keyword) {
+		return dao.findStore(keyword);
 	}
 
 }
