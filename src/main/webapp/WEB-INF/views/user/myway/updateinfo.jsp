@@ -135,16 +135,18 @@ $(document).ready(function() {
 										<dt>이름</dt>
 										<dd>${user.name }</dd>
 									</dl>
-									<dl class="info_dl">
-										<dt>이메일 주소</dt>
-										<dd>${user.id }</dd>
-									</dl>
+									<c:if test="${kuser == null}">
+										<dl class="info_dl">
+											<dt>이메일 주소</dt>
+											<dd>${user.id }</dd>
+										</dl>
+									</c:if>
 									<dl class="info_dl">
 										<dt>휴대전화</dt>
 										<dd>${user.tel }</dd>
 									</dl>
 								</div>
-								<c:if test="${user != null && nuser == null && guser == null}">
+								<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
 									<div class="input_set">
 										<dl>
 											<dt>비밀번호</dt>
@@ -159,7 +161,7 @@ $(document).ready(function() {
 										</dl>
 									</div>
 								</c:if>
-								<c:if test="${nuser != null || guser != null}">
+								<c:if test="${nuser != null || guser != null || kuser != null}">
 									<input type="hidden" id="pw">
 								</c:if>
 								<h2>추가 정보 입력</h2>

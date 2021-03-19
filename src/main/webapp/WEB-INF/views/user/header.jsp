@@ -157,7 +157,9 @@
 					</ul>
 				</div>
 			</c:if>
-
+			<!-- 
+			<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080/lubway/kakaoLogout.do">카카오 로그아웃</a>
+			 -->
 			<!-- 카카오 회원 로그인시 -->
 			<c:if test="${kuser != null}">
 				<div class="util_menu">
@@ -167,7 +169,9 @@
 								<img src="${path}/resources/images/kakao.png" style="width: 25px; height: 25px; padding-top: 4px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="logout.do">로그아웃</a></li>
+						<li class="before_sign" style="margin-left: 15px">
+							<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080/lubway/kakaoLogout.do">로그아웃</a>
+						</li>
 						<li class="before_sign"><a href="myway.do">MY-WAY</a></li>		
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">

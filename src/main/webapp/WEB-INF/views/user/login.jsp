@@ -60,13 +60,6 @@
 		form.submit();
 	}
 </script>
-<script type="text/javascript">
-function kakaoLogout() {
-	Kakao.Auth.logout(function(response) {
-		alert(response + 'logout');
-	});
-}
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -122,29 +115,36 @@ function kakaoLogout() {
 					</div>
 					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
 					<a id="kakao-login-btn"></a>
-					<a onclick="kakaoLogout();">카카오 로그아웃</a>
-					<!--
-					<a href="http://developers.kakao.com/logout">Logout</a>
-					 -->
 					<script type="text/javascript">
-						Kakao.init('6a3508a8b89b4d0077e04113035fff90'); //아까 카카오개발자홈페이지에서 발급받은 자바스크립트 키를 입력함
-					
-						//카카오 로그인 버튼을 생성합니다. 
+						Kakao.init('6a3508a8b89b4d0077e04113035fff90');
 						Kakao.Auth.createLoginButton({ 
-							container: '#kakao-login-btn', 
-							success: function(authObj) { 
-							Kakao.API.request({
-								url: '/v2/user/me',
-								success: function(res) {
-									console.log(res);
-									console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
-									console.log(res.kakao_account.email);//<---- 콘솔 로그에 email 정보 출력 (어딨는지 알겠죠?)
-									console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근 
-									// res.properties.nickname으로도 접근 가능 )
-									console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
-									var kakaonickname = res.properties.nickname;    //카카오톡 닉네임을 변수에 저장 (닉네임 값을 다른페이지로 넘겨 출력하기 위해서)
-									//window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/lubway/kakao.do?res="+res);
-									//로그인 결과 페이지로 닉네임 값을 넘겨서 출력시킨다.,
+							container: '#kakao-login-btn',
+							success: function(authObj) {
+								Kakao.API.request({
+									url: '/v2/user/me',
+									success: function(res) {
+										console.log(res);
+										$.ajax({
+											type: "POST",
+											url: "/lubway/kakao.do",
+											data: {
+												id : res.id,
+												email : res.kakao_account.email,
+												name : res.properties.nickname,
+												token : authObj.access_token
+											},
+											success: function(data) {												
+												if(data == "lock") {
+													alert("관리자에 의해 정지된 계정입니다.");
+													return;
+												} else if(data == "success") {
+													location.href = "/lubway/main.do"													
+												}
+											},
+											error: function() {
+												console.log("실패");
+											}
+										});
 									}
 								})
 							},
