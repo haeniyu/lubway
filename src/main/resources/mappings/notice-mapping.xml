@@ -20,11 +20,11 @@
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO
 		NOTICE_BOARD(TITLE, CONTENT, FILEPATH, FIX)
-		VALUES(#{title},#{content},#{filePath}, ${fix})
+		VALUES(#{title},#{content},#{filePath}, #{fix})
 	</insert>
 
 	<update id="updateNotice" parameterType="notice">
-		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=${fix} WHERE
+		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=#{fix} WHERE
 		NO=#{no}
 	</update>
 
@@ -59,7 +59,7 @@
 		( select * from notice_board where fix = false order by no asc ) as
 		three
 		order by regdate desc,rownum desc
-		limit ${listSize} offset ${startList}
+		limit #{listSize} offset #{startList}
 		) as two
 
 	</select>
@@ -77,7 +77,7 @@
 		( select * from notice_board where fix = false and title like
 		'%'||#{searchKeyword}||'%' order by no asc) as three
 		order by regdate desc,rownum desc
-		limit ${listSize} offset ${startList}
+		limit #{listSize} offset #{startList}
 		) as two
 
 	</select>
