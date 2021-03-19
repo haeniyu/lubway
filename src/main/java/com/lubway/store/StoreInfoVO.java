@@ -15,7 +15,7 @@ public class StoreInfoVO {
 	private String storename;
 	private String area;
 	private String zipcode;
-	private String address_load;
+	private String address_road;
 	private String address_detail;
 	private String store_tel;
 	private String parking;
