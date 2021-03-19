@@ -51,16 +51,48 @@ public class UserController {
 		this.naverLoginBO = naverLoginBO;
 	}
 
+	/** Kakao Login */
+
 	/**
 	 * 로그인 화면 요청 / 소셜 로그인(네이버) 처리
 	 */
 	@GetMapping("/login.do")
 	public String main(HttpSession session, Model model) {
-		// 네이버
+
 		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 		model.addAttribute("url", naverAuthUrl);
 
 		return "login";
+	}
+
+	/**
+	 * 카카오 로그인
+	 */
+	@PostMapping("/kakao.do")
+	@ResponseBody
+	public String kakaoLogin(UserVO vo, String email, HttpSession session, HttpServletResponse response) throws IOException {
+
+		System.out.println(vo.getId());
+		System.out.println(vo.getName());
+		System.out.println(email);
+
+		if(userService.idCheck(vo.getId()) == 0) {
+			userService.insertUser(vo);
+		} else {
+			if(userService.getUser(vo.getId()).getStatus() > 0) return "lock";
+		}
+		session.setAttribute("user", vo);
+		session.setAttribute("kuser", new String("1"));
+		return "success";
+	}
+
+	/**
+	 * 카카오 로그아웃
+	 */
+	@GetMapping("kakaoLogout.do")
+	public String kakao_logout(HttpSession session) {
+		session.invalidate();
+		return "main";
 	}
 
 	/**
@@ -69,10 +101,10 @@ public class UserController {
 	@PostMapping("/google.do")
 	public String googleLogin(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
 		System.out.println(vo.toString());
-		
+
 		if(userService.idCheck(vo.getId()) == 0) {
 			if(vo.getId() == null) return "login";
-			userService.insertUser(vo);	
+			userService.insertUser(vo);
 		} else {
 			if(userService.getUser(vo.getId()).getTel() != null || userService.getUser(vo.getId()).getPassword() != null) {
 				alertView("이미 가입된 계정이 있습니다.", -1, response);
@@ -82,12 +114,11 @@ public class UserController {
 				return null;
 			}
 		}
-		
 		session.setAttribute("user", vo);
 		session.setAttribute("guser", new String("1"));
 		return "main";
 	}
-	
+
 	/**
 	 * 네이버 로그인 처리
 	 */
@@ -314,7 +345,6 @@ public class UserController {
 		vo.setPassword(pwd);
 
 		userService.updatePwd(vo);
-
 		model.addAttribute("getId",id);
 
 		return "findpwd";
@@ -325,9 +355,7 @@ public class UserController {
 	 */
 	@GetMapping("/findPwd.do")
 	public String findPwd(HttpSession seesion) {
-
 		seesion.setAttribute("findPwd", new String("1"));
-
 		return "join/step02";
 	}
 
@@ -344,9 +372,7 @@ public class UserController {
 			alertView("소셜 계정입니다. 해당 사이트에 문의해주세요.", -2, response);
 			return null;
 		}
-
 		seesion.setAttribute("findId", id);
-
 		return "findid";
 	}
 
@@ -355,9 +381,7 @@ public class UserController {
 	 */
 	@GetMapping("/findId.do")
 	public String findId(HttpSession seesion) {
-
 		seesion.setAttribute("findId", new String("1"));
-
 		return "join/step02";
 	}
 

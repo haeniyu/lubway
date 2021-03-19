@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script src = "//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#loginBtn").on("click", function(){
@@ -32,9 +33,6 @@
 		  var profile = googleUser.getBasicProfile();
 		  name = profile.getName();
 		  email = profile.getEmail();
-		  console.log('ID: ' + profile.getId());
-		  console.log('Name: ' + name);
-		  console.log('Email: ' + email);
 	}
 	
 	function googleLogin() {
@@ -113,9 +111,48 @@
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
 					<div id="naver_id_login">
-						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn_white.PNG"/></a>
+						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn.png"/></a>
 					</div>
 					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
+					<a id="kakao-login-btn"></a>
+					<script type="text/javascript">
+						Kakao.init('6a3508a8b89b4d0077e04113035fff90');
+						Kakao.Auth.createLoginButton({ 
+							container: '#kakao-login-btn',
+							success: function(authObj) {
+								Kakao.API.request({
+									url: '/v2/user/me',
+									success: function(res) {
+										console.log(res);
+										$.ajax({
+											type: "POST",
+											url: "/lubway/kakao.do",
+											data: {
+												id : res.id,
+												email : res.kakao_account.email,
+												name : res.properties.nickname,
+												token : authObj.access_token
+											},
+											success: function(data) {												
+												if(data == "lock") {
+													alert("관리자에 의해 정지된 계정입니다.");
+													return;
+												} else if(data == "success") {
+													location.href = "/lubway/main.do"													
+												}
+											},
+											error: function() {
+												console.log("실패");
+											}
+										});
+									}
+								})
+							},
+							fail: function(error) {
+								alert(JSON.stringify(error));
+							}
+						});
+					</script>
 				</form>
 				<div class="signin_link">
 					<ul>

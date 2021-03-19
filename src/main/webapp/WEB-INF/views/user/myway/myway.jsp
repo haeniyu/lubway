@@ -33,11 +33,11 @@
 									</strong>
 								</p>
 							</div>
-							<c:if test="${nuser != null || guser != null}">
+							<c:if test="${nuser != null || guser != null || kuser != null}">
 								<a class="btn go_view infoBtn" href="/lubway/updateinfo.do">
 								<span>회원 정보 변경</span></a>
 							</c:if>
-							<c:if test="${user != null && nuser == null && guser == null}">
+							<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
 								<a class="btn go_view infoBtn" href="/lubway/checkpwd.do">
 								<span>회원 정보 변경</span></a>
 							</c:if>
