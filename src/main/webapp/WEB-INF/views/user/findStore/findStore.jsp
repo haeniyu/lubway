@@ -9,6 +9,7 @@
 <title>매장 찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.subway.css" />
+<!-- 
 <script type="text/javascript">
 	function searchStore() {
 		var keyword = $("#keyword").val().trim();
@@ -28,22 +29,17 @@
 		});
 	}
 	
-	function createInfo(data, xpos, ypos) {
+	function createInfo(data) {
 		console.log("ㅋㅋ");
 		$("#uiReslutCont").show();
+		
+		console.log(data);
 		
 		console.log(xpos);
 		console.log(ypos);
 		
 		console.log(xpos[0]);
-		
-//		console.log(xpos.length);
-//		console.log(ypos[0]);
-//		for(var i=0; i<xpos.length; i++)	{
-//			console.log("ㅋㅋ");
-//			console.log(xxpos[i]);
-//			console.log(yypos[i]);
-//		console.log(xy[]);
+
 //		document.getElementById('uiResultCount').innerHTML=data.length;
 //		document.getElementById('uiResultCount').innerHTML=xy[0];
 //		document.getElementById('uiResultCount').innerHTML=;
@@ -51,6 +47,7 @@
 //	}
 	}
 </script>
+ -->
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -134,18 +131,20 @@
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffe7c5af8a7826856c48dec067ac9849&libraries=services"></script>
 				<script>
 						var markers = [];
-						var xpos = [];
-						var ypos = [];
+//						var xpos = [];
+//						var ypos = [];
 				
 						var container = document.getElementById('map');
 						var options = {
 							center : new kakao.maps.LatLng(37.56249087747179, 126.97657325145),
 							level : 3
 						};
-	
+
 						var map = new kakao.maps.Map(container, options);
-							
+	
 						function searchTest(data) {
+							var xpos = [];
+							var ypos = [];
 							for (var i=0; i<markers.length; i++) {
 								markers[i].setMap(null);
 						 	}  
@@ -153,48 +152,74 @@
 							// 주소-좌표 변환 객체를 생성합니다
 							var geocoder = new kakao.maps.services.Geocoder(); 
 							var arr = data;
+							var geocoderCount = 0;
 							
-							// 주소로 좌표를 검색합니다 for문 안에 넣기
-							/*
-							<c:forEach items="${findStore}" var="info">
-								var storeinfo = new Object();
-								storeinfo.address_road = "${info.address_road}";
-								storeinfo.storename = "${info.storename}";
-								arr.push(storeinfo);
-							</c:forEach>
-							*/	
-							
-							for(var i=0; i <arr.length; i++){
-								 
-									var obj = arr[i];
-//									console.log(obj.address_road);
-//									console.log(obj.storename);
-								
-									geocoder.addressSearch(obj.address_road, function(result, status) { 
+							for(var i=0; i<arr.length; i++) {							 
+								var obj = arr[i];
+
+								geocoder.addressSearch(obj.address_road, function(result, status) {
+									geocoderCount++;
+									
 									// 정상적으로 검색이 완료됐으면 
 									if (status === kakao.maps.services.Status.OK) { 
-//										console.log(result[0].y);
 										var markerPosition = new kakao.maps.LatLng(result[0].y,result[0].x);
-										//xy.push(result[0].y);
-//										xpos[i] = result[0].x;
-//										console.log(xpos[i]);
+
 										xpos.push(result[0].x);									
 										ypos.push(result[0].y);
-										
-//										ypos[i] = result[0].y;
-//										console.log(ypos[i]);
-										
+
 									// 결과값으로 받은 위치를 마커를 생성하고 표시합니다 
 										var marker = new kakao.maps.Marker({ 
-										map: map, 
-										position: markerPosition
-									});
-									markers.push(marker);
+											map: map, 
+											position: markerPosition
+										});
+										markers.push(marker);
+										console.log(geocoderCount, arr.length);
+										if(geocoderCount == arr.length) createInfo(data, xpos, ypos);
 									}
 								});
+								}
+//							setTimeout(createInfo(data), 15000);
+//							createInfo(data);
 							}
-							createInfo(data, xpos, ypos);
+
+						function searchStore() {
+							var keyword = $("#keyword").val().trim();
+							console.log(keyword);
+							
+							$.ajax({
+								url : '/lubway/searchStore.do?keyword=' + keyword,
+								type : 'post',
+								success : function(data) {
+									console.log("성공");
+									searchTest(data);
+									console.log("끝");
+								},
+								error : function() {
+									console.log("실패");
+								}
+							});
 						}
+						
+						function createInfo(data, xpos, ypos) {
+//							console.log("ㅋㅋ");
+							$("#uiReslutCont").show();
+							
+//							console.log(data);
+							
+							console.log(xpos);
+							console.log(ypos);
+							
+							console.log(xpos[0]);
+							console.log(ypos[0]);
+//							console.log(markers);
+//							console.log(markers[0]);
+							
+//							document.getElementById('uiResultCount').innerHTML=data.length;
+//							document.getElementById('uiResultCount').innerHTML=xy[0];
+//							var ul = document.getElementById('uiResultList');
+//						}
+						}
+						
 				</script>
 			</div>
 		</div>
