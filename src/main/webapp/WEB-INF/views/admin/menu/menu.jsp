@@ -16,8 +16,11 @@
 			
 			if(selected == "sandwich") {
 				$(".cm").show();
+				$(".price").hide();
+				
 			}  else { 
 				$(".cm").hide();
+				$(".price").show();
 			}
 			
 			if(selected == "drink"){
@@ -33,93 +36,83 @@
 		if(select == "sandwich") {
 			if ($("#size").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#size").focus();
 				return;
 			} else if ($("#price15").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#price15").focus();
 				return;
 			} else if ($("#price30").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#price30").focus();
 				return;
 			} else if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#name").focus();
 				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#code").focus();
 				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#ttl").focus();
 				return;
 			} else if ($("#cal").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#cal").focus();
 				return;
 			} else if ($("#fat").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#fat").focus();
 				return;
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#sod").focus();
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
+			} //else if ($("#img").val().trim() == '') {
+				//alert("모든 정보를 기입해주세요.");
+		//	$("#img").focus();
+			//	return;
+			//}
 		} else if(select == "drink"){
+			$("#price15").remove();
+			$("#price30").remove();
+			$("#cal").remove();
+			$("#pro").remove();
+			$("#sug").remove();
+			$("#sod").remove();
+			$("#ttl").remove();
+			$("#fat").remove();
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#name").focus();
 				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#code").focus();
 				return;
 			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#price").focus();
 				return;
 			}
 		} else{
+			$("#price15").remove();
+			$("#price30").remove();
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#name").focus();
 				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#code").focus();
 				return;
 			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#price").focus();
 				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#ttl").focus();
 				return;
 			} else if ($("#cal").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#cal").focus();
 				return;
 			} else if ($("#fat").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#fat").focus();
 				return;
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				$("#sod").focus();
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
+			} 
+			//else if ($("#img").val().trim() == '') {
+			//	alert("모든 정보를 기입해주세요.");
+			//	$("#img").focus();
+			//	return;
+			//}
 		}
 			
 		//setTime();
@@ -146,7 +139,7 @@
 				<h6 class="m-0 font-weight-bold text-primary">메뉴 등록</h6>
 			</div>
 			<form name="form" id="form" role="form" method="post"
-				action="menuInsert.mdo">
+				action="menuInsert.mdo" enctype="multipart/form-data">
 				<div class="card-body">
 
 
@@ -217,6 +210,7 @@
 									id="code" required>
 							</div>
 						</div>
+						<div class="price">
 						<div class="mb-3" id="hyunah">
 							<label for="price">가격</label>
 							<div class="col-sm-3">
@@ -224,7 +218,7 @@
 									id="price" required>
 							</div>
 						</div>
-					
+					</div>
 
 					<div class="form">
 						<div class="mb-3">
@@ -272,14 +266,16 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="img">이미지</label>
-						<div class="col-sm-3">
-							<input type="file" name="multipart" required />
-						</div>
+						
+                     <div>
+                        <div class="index">이미지</div>
+                        <input type="file" name="uploadImg" multiple/>
+                     </div>
+              
 					</div>
 
 					<div>
-						<button type="button" class="btn btn-sm btn-primary" id="saveBtn">저장</button>
+						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
 					</div>
 				</div>
 			</form>

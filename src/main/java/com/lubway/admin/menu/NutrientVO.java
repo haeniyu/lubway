@@ -2,9 +2,11 @@ package com.lubway.admin.menu;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class NutrientVO {
 	private int no;
 	private String code;
