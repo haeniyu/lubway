@@ -96,11 +96,5 @@ public class UserNoticeController {
 		model.addAttribute("UserPageList", pageList);
 		return "board/getUserNoticeList";
 	}
-	
-	@GetMapping("/menu.do")
-	public String menu() {
-		return "menu/menu";
-	}
-	
 
 }
