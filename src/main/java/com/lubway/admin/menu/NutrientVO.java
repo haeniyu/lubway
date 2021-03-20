@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class NutrientVO {
-	private int no;
+	private Integer no;
 	private String code;
 	private String ttl;
 	private String cal;

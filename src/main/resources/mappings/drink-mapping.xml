@@ -11,15 +11,15 @@
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertDrink" parameterType="drink">
-  		insert into cookie( code, name, price, filePath)
+  		insert into drink( code, name, price, img)
   		values(#{code},#{name}, #{price}, #{filePath})
   	</insert>
   	<update id="updateDrink" parameterType="drink">
-  		update cookie set code=#{code}, name=#{name}, price=#{price} 
+  		update drink set code=#{code}, name=#{name}, price=#{price} 
   		where no=#{no}
   	</update>
   	<delete id="deleteDrink" parameterType="drink">
-  		delete from cookie where no=#{no}
+  		delete from drink where no=#{no}
   	</delete>
   	<select id="selectDrink" parameterType="drink">
   		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}

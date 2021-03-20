@@ -10,30 +10,73 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		$(".price15").hide();
+		$(".price30").hide();
 		var check = "";
 		$("#mbrLgnId3").on("change", function() {
 			var selected = $(this).val();
 			
 			if(selected == "sandwich") {
-				$(".cm").show();
-				$(".price").hide();
-				
-			}  else { 
-				$(".cm").hide();
-				$(".price").show();
-			}
-			
-			if(selected == "drink"){
-				$(".form").hide();
-			}else {
+				$(".size").show();
 				$(".form").show();
+				$(".price").hide();
+				$(".category").hide();
+				
+			}  else if(selected == "drink"){ 
+				
+				$(".form").hide();
+				$(".price").show();
+				$(".category").hide();
+				$(".size").hide();
+			} else if(selected == "wrap"){
+				$(".category").show();
+				$(".size").hide();
+				$(".price").show();
+				$(".form").show();
+			} else if(selected == "morning"){
+				$(".category").show();
+				$(".size").hide();
+				$(".price").show();
+				$(".form").show();
+			} else if(selected == "salad"){
+				$(".category").show();
+				$(".size").hide();
+				$(".price").show();
+				$(".form").show();
+			} else {
+				$(".category").hide();
+				$(".form").show();
+				$(".price").show();
+				$(".size").hide();
 			}
 			check = selected;
 		});
-	
+		
+		$(".size").on("change", function(){
+			
+			$("#size15").on("click", function(){
+				$(".price15").show();
+				$(".price30").hide();
+				
+			});
+			$("#size30").on("click", function(){
+				$(".price30").show();
+				$(".price15").hide();
+				
+			});
+		});
 	$("#saveBtn").on("click", function() {
 		var select = check;
 		if(select == "sandwich") {
+			if($("#size15").is("checked") == true){
+				$("#price30").remove();
+				$("#size30").remove();
+			} else {
+				$("#price15").remove();
+				$("#size15").remove();
+			}
+			
+			$("#category").remove();
 			if ($("#size").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -59,12 +102,17 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} //else if ($("#img").val().trim() == '') {
-				//alert("모든 정보를 기입해주세요.");
-		//	$("#img").focus();
-			//	return;
-			//}
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+			
+			$("#category").append();
 		} else if(select == "drink"){
+			$("#category").remove();
+			$("#size15").remove();
+			$("#size30").remove();
 			$("#price15").remove();
 			$("#price30").remove();
 			$("#cal").remove();
@@ -82,10 +130,144 @@
 			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			}else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
 			}
-		} else{
+			
+			$("#category").append();
+			$("#size15").append();
+			$("#size30").append();
+			$("#price15").append();
+			$("#price30").append();
+			$("#cal").append();
+			$("#pro").append();
+			$("#sug").append();
+			$("#sod").append();
+			$("#ttl").append();
+			$("#fat").append();
+		} else if(select == "wrap"){
+			$("#size15").remove();
+			$("#size30").remove();
 			$("#price15").remove();
 			$("#price30").remove();
+			
+			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#price").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#category").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#ttl").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#cal").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#fat").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#sod").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+			$("#size15").append();
+			$("#size30").append();
+			$("#price15").append();
+			$("#price30").append();
+		} else if (select == "morning"){
+			$("#size15").remove();
+			$("#size30").remove();
+			$("#price15").remove();
+			$("#price30").remove();
+			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#price").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#category").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#ttl").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#cal").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#fat").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#sod").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+			$("#size15").append();
+			$("#size30").append();
+			$("#price15").append();
+			$("#price30").append();
+		} else if (select == "salad"){
+			$("#size15").remove();
+			$("#size30").remove();
+			$("#price15").remove();
+			$("#price30").remove();
+			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#code").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#price").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#category").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#ttl").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#cal").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#fat").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#sod").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+				return;
+			}
+			$("#size15").append();
+			$("#size30").append();
+			$("#price15").append();
+			$("#price30").append();
+		} else {
+			$("#size15").remove();
+			$("#size30").remove();
+			$("#price15").remove();
+			$("#price30").remove();
+			$("#category").remove();
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -107,14 +289,16 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} 
-			//else if ($("#img").val().trim() == '') {
-			//	alert("모든 정보를 기입해주세요.");
-			//	$("#img").focus();
-			//	return;
-			//}
-		}
-			
+			} else if ($("#img").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#img").focus();
+			}
+			$("#size15").append();
+			$("#size30").append();
+			$("#price15").append();
+			$("#price30").append();
+			$("#category").append();
+		}	
 		//setTime();
 	});
 });
@@ -150,12 +334,13 @@
 							<div class="dropdown mb-4">
 								<span class="form_select" style="width: 300px"> <select
 									class="btn btn-primary dropdown-toggle" id="mbrLgnId3"
-									name="category" style="width: 150px">
+									name="select" style="width: 150px">
 										<option value="sandwich">샌드위치</option>
 										<option value="wrap">랩&파니니</option>
 										<option value="salad">찹샐러드</option>
 										<option value="morning">아침메뉴</option>
-										<option value="smail">스마일 썹</option>
+										<option value="cookie">쿠키</option>
+										<option value="was">웻지&스프</option>
 										<option value="drink">음료</option>
 								</select>
 								</span>
@@ -163,22 +348,25 @@
 						</div>
 					</div>
 
-					<div class="cm">
+					<div class="size">
 						<div class="mb-3" id="hyunah">
 							<label for="size">15cm/30cm</label>
 							<div class="form-group row">
+
 								<div class="col-sm-1">
-									<input type="radio" name="size" id="size"
+									<input type="radio" name="size" id="size15"
 										style="width: 20px; height: 20px;" value="15cm"> <label
 										for="15cm">15cm</label>
 								</div>
 								<div class="col-sm-1">
-									<input type="radio" name="size"
+									<input type="radio" name="size" id="size30"
 										style="width: 20px; height: 20px;" value="30cm"> <label
 										for="30cm">30cm</label>
 								</div>
 							</div>
 						</div>
+						</div>
+						<div class="price15">
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
@@ -186,6 +374,8 @@
 									id="price15" required>
 							</div>
 						</div>
+						</div>
+						<div class="price30">
 						<div class="mb-3" id="hyunah">
 							<label for="price30">30cm 가격</label>
 							<div class="col-sm-3">
@@ -219,6 +409,15 @@
 							</div>
 						</div>
 					</div>
+					<div class="category">
+					<div class="mb-3" id="hyunah">
+							<label for="category">카테고리</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="category"
+									id="category" required>
+							</div>
+						</div>
+						</div>
 
 					<div class="form">
 						<div class="mb-3">
@@ -269,7 +468,7 @@
 						
                      <div>
                         <div class="index">이미지</div>
-                        <input type="file" name="uploadImg" multiple/>
+                        <input type="file" name="uploadImg" id="uploadImg" multiple/>
                      </div>
               
 					</div>
