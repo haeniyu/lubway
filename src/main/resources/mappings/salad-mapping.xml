@@ -7,12 +7,13 @@
 		<id property="no" column="NO" />
 		<result property="code" column="code" />
 		<result property="name" column="name" />
+		<result property="category" column="category"/>
 		<result property="price" column="price" />
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertSalad" parameterType="salad">
-  		insert into salad( code, name, price, category, img)
-  		values(#{code},#{name}, #{price},#{category}, #{filePath})
+  		insert into salad( code, name, category, price, img)
+  		values (#{code}, #{name}, #{category}, #{price}, #{filePath})
   	</insert>
   	<update id="updateSalad" parameterType="salad">
   		update salad set code=#{code}, name=#{name}, price=#{price} 
@@ -21,10 +22,10 @@
   	<delete id="deleteSalad" parameterType="salad">
   		delete from salad where no=#{no}
   	</delete>
-  	<select id="selectSalad" parameterType="salad">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectSalad" resultType="salad">
+  		SELECT * FROM salad WHERE NO=#{no}
   	</select>
-  	<select id="selectListSalad" parameterType="salad">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListSalad" resultType="salad">
+  		SELECT * FROM salad WHERE NO=#{no}
   	</select>
   </mapper>

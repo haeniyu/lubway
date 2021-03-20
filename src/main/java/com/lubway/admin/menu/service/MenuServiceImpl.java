@@ -1,13 +1,22 @@
 package com.lubway.admin.menu.service;
 
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
 import com.lubway.admin.menu.CookieDAO;
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkDAO;
 import com.lubway.admin.menu.DrinkVO;
+import com.lubway.admin.menu.MenuPagination;
 import com.lubway.admin.menu.MorningDAO;
 import com.lubway.admin.menu.MorningVO;
 import com.lubway.admin.menu.NutrientDAO;
@@ -86,5 +95,40 @@ public class MenuServiceImpl implements MenuService {
 		nutrientDAO.insertNutrient(nvo);
 		wrapDAO.insertWrap(vo);
 	}
+	@Transactional
+	@Override
+	public List<String> select(CookieVO cvo, MorningVO mvo, SaladVO svo, SandwichVO Svo, WedgeAndSoupVO wasvo,
+			WrapVO wvo, DrinkVO dvo, NutrientVO nvo) {
+			nutrientDAO.getNutrientList(nvo);
+			cookieDAO.getCookieList(cvo);
+			morningDAO.getMorningList(mvo);
+			saladDAO.getSaladList(svo);
+			sandwichDAO.getSandwichList(Svo);
+			wedgeandsoupDAO.getWedgeAndSoupList(wasvo);
+			wrapDAO.getWrapList(wvo);
+			drinkDAO.getDrinkList(dvo);
+			
+		return select(cvo, mvo, svo, Svo, wasvo, wvo, dvo, nvo);
+	}
+	@Transactional
+	@Override
+	public int getPageListCnt() {
+		
+		return getPageListCnt();
+	}
+
+	@Override
+	public int getSearchTitleCnt(String title) {
+		return getSearchTitleCnt(title);
+	}
+
+	@Override
+	public List<String> getSearchPagingList(MenuPagination pagination) {
+		return getSearchPagingList(pagination);
+	}
+
+
+	
+	
 
 }

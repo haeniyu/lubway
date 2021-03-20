@@ -22,10 +22,10 @@
   	<delete id="deleteCookie" parameterType="cookie">
   		delete from cookie where no=#{no}
   	</delete>
-  	<select id="selectCookie" parameterType="cookie">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectCookie" resultType="cookie">
+  		SELECT * FROM cookie WHERE NO=#{no}
   	</select>
-  	<select id="selectListCookie" parameterType="cookie">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListCookie" resultType="cookie">
+  		SELECT * FROM cookie WHERE NO=#{no}
   	</select>
   </mapper>

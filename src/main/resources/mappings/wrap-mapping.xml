@@ -22,10 +22,10 @@
   	<delete id="deleteWrap" parameterType="wrap">
   		delete from wrap where no=#{no}
   	</delete>
-  	<select id="selectWrap" parameterType="wrap">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectWrap" resultType="wrap">
+  		SELECT * FROM wrap WHERE NO=#{no}
   	</select>
-  	<select id="selectListWrap" parameterType="wrap">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListWrap" resultType="wrap">
+  		SELECT * FROM wrap WHERE NO=#{no}
   	</select>
   </mapper>

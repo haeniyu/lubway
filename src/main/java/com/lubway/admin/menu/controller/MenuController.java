@@ -2,16 +2,20 @@ package com.lubway.admin.menu.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lubway.admin.AwsS3;
+import com.lubway.admin.board.NoticeVO;
+import com.lubway.admin.board.Pagination;
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
 import com.lubway.admin.menu.MorningVO;
@@ -42,7 +46,7 @@ public class MenuController {
 		@RequestParam("uploadImg") MultipartFile multipart
 		) throws IOException,PSQLException {
 		
-			// aws s3 파일 업로드 처리
+		// aws s3 파일 업로드 처리
 			InputStream is = multipart.getInputStream();
 			String key = multipart.getOriginalFilename();
 			String contentType = multipart.getContentType();
@@ -75,5 +79,19 @@ public class MenuController {
 			menuservice.drink(dvo);
 		}
 		return "menu/menu";
+	}
+	
+	@GetMapping("/menuList.mdo")
+	public String selectList(Model model,NutrientVO nvo, CookieVO cvo,
+			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, 
+			MorningVO mvo, DrinkVO dvo,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range
+			) throws IOException,PSQLException{
+		
+		
+		
+		return "menu/menuList";
+
 	}
 }

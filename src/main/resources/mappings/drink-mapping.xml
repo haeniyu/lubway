@@ -21,10 +21,10 @@
   	<delete id="deleteDrink" parameterType="drink">
   		delete from drink where no=#{no}
   	</delete>
-  	<select id="selectDrink" parameterType="drink">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectDrink" resultType="drink">
+  		SELECT * FROM drink WHERE NO=#{no}
   	</select>
-  	<select id="selectListDrink" parameterType="drink">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListDrink" resultType="drink">
+  		SELECT * FROM drink WHERE NO=#{no}
   	</select>
   </mapper>

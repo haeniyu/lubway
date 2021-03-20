@@ -22,10 +22,10 @@
   	<delete id="deleteMorning" parameterType="morning">
   		delete from morning where no=#{no}
   	</delete>
-  	<select id="selectMorning" parameterType="morning">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectMorning" resultType="morning">
+  		SELECT * FROM morning WHERE NO=#{no}
   	</select>
-  	<select id="selectListMorning" parameterType="morning">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListMorning" resultType="morning">
+  		SELECT * FROM morning WHERE NO=#{no}
   	</select>
   </mapper>

@@ -23,10 +23,10 @@
   	<delete id="deleteWAS" parameterType="wedgeandsoup">
   		delete from wedgeandsoup where no=#{no}
   	</delete>
-  	<select id="selectWAS" parameterType="wedgeandsoup">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectWAS" resultType="wedgeandsoup">
+  		SELECT * FROM wedgeandsoup WHERE NO=#{no}
   	</select>
-  	<select id="selectListWAS" parameterType="wedgeandsoup">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListWAS" resultType="wedgeandsoup">
+  		SELECT * FROM wedgeandsoup WHERE NO=#{no}
   	</select>
   </mapper>

@@ -25,10 +25,10 @@
   	<delete id="deleteSandwich" parameterType="sandwich">
   		delete from sandwich where no=#{no}
   	</delete>
-  	<select id="selectSandwich" parameterType="sandwich">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectSandwich" resultType="sandwich">
+  		SELECT * FROM sandwich WHERE NO=#{no}
   	</select>
-  	<select id="selectListSandwich" parameterType="sandwich">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListSandwich" resultType="sandwich">
+  		SELECT * FROM sandwich WHERE NO=#{no}
   	</select>
   </mapper>

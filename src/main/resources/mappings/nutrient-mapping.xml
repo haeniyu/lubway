@@ -24,10 +24,10 @@
   	<delete id="deleteNutrient" parameterType="nutrient">
   		delete from nutrient where no=#{no} 
   	</delete>
-  	<select id="selectNutrient" parameterType="nutrient">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectNutrient" resultType="nutrient">
+  		SELECT * FROM nutrient WHERE NO=#{no}
   	</select>
-  	<select id="selectListNutrient" parameterType="nutrient">
-  		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
+  	<select id="selectListNutrient" resultType="nutrient">
+  		SELECT * FROM nutrient WHERE NO=#{no}
   	</select>
   </mapper>
