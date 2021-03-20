@@ -14,7 +14,7 @@
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertSandwich" parameterType="sandwich">
-  		insert into sandwich( code, name, size, price15, price30, category, filePath)
+  		insert into sandwich( code, name, size, price15, price30, category, img)
   		values(#{code},#{name}, #{price15}, #{price30}, #{size}, #{category}, #{filePath})
   	</insert>
   	<update id="updateSandwich" parameterType="sandwich">

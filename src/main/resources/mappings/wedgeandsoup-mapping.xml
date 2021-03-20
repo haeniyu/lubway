@@ -13,15 +13,15 @@
 	
 	
   	<insert id="insertWAS" parameterType="wedgeandsoup">
-  		insert into cookie( code, name, price, filePath)
+  		insert into wedgeandsoup( code, name, price, img)
   		values(#{code},#{name}, #{price}, #{filePath})
   	</insert>
   	<update id="updateWAS" parameterType="wedgeandsoup">
-  		update cookie set code=#{code}, name=#{name}, price=#{price} 
+  		update wedgeandsoup set code=#{code}, name=#{name}, price=#{price} 
   		where no=#{no}
   	</update>
   	<delete id="deleteWAS" parameterType="wedgeandsoup">
-  		delete from cookie where no=#{no}
+  		delete from wedgeandsoup where no=#{no}
   	</delete>
   	<select id="selectWAS" parameterType="wedgeandsoup">
   		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
