@@ -22,14 +22,5 @@ public interface MenuService {
 	void sandwich(NutrientVO nvo, SandwichVO vo);
 	void WAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void wrap(NutrientVO nvo, WrapVO vo);
-	List<String> select(CookieVO cvo, MorningVO mvo, SaladVO svo, SandwichVO Svo, 
-			WedgeAndSoupVO wasvo, WrapVO wvo, DrinkVO dvo,  NutrientVO nvo);
-	//페이징처리 개수
-	int getPageListCnt();
-
-	//검색한 글 목록 개수
-	int getSearchTitleCnt(String title);
 	
-	//검색한 글 페이징 리스트
-	List<String> getSearchPagingList(MenuPagination pagination);
 }

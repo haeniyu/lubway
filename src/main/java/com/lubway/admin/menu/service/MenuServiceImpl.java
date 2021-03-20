@@ -50,7 +50,7 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	WrapDAO wrapDAO;
 	
-	@Transactional
+	@Transactional()
 	@Override
 	public void cookie(NutrientVO nvo, CookieVO vo) {
 		nutrientDAO.insertNutrient(nvo);
@@ -95,37 +95,7 @@ public class MenuServiceImpl implements MenuService {
 		nutrientDAO.insertNutrient(nvo);
 		wrapDAO.insertWrap(vo);
 	}
-	@Transactional
-	@Override
-	public List<String> select(CookieVO cvo, MorningVO mvo, SaladVO svo, SandwichVO Svo, WedgeAndSoupVO wasvo,
-			WrapVO wvo, DrinkVO dvo, NutrientVO nvo) {
-			nutrientDAO.getNutrientList(nvo);
-			cookieDAO.getCookieList(cvo);
-			morningDAO.getMorningList(mvo);
-			saladDAO.getSaladList(svo);
-			sandwichDAO.getSandwichList(Svo);
-			wedgeandsoupDAO.getWedgeAndSoupList(wasvo);
-			wrapDAO.getWrapList(wvo);
-			drinkDAO.getDrinkList(dvo);
-			
-		return select(cvo, mvo, svo, Svo, wasvo, wvo, dvo, nvo);
-	}
-	@Transactional
-	@Override
-	public int getPageListCnt() {
-		
-		return getPageListCnt();
-	}
-
-	@Override
-	public int getSearchTitleCnt(String title) {
-		return getSearchTitleCnt(title);
-	}
-
-	@Override
-	public List<String> getSearchPagingList(MenuPagination pagination) {
-		return getSearchPagingList(pagination);
-	}
+	
 
 
 	
