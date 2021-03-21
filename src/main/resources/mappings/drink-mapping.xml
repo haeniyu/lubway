@@ -9,11 +9,12 @@
 		<result property="name" column="name" />
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
+		<result property="content" column="content" />
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertDrink" parameterType="drink">
-  		insert into drink( code, name,engname price, img)
-  		values(#{code},#{name},#{engname}, #{price}, #{filePath})
+  		insert into drink( code, name,engname, price,content, img)
+  		values(#{code},#{name},#{engname}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateDrink" parameterType="drink">
   		update drink set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 

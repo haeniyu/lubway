@@ -10,11 +10,12 @@
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
 		<result property="category" column="category"/>
+		<result property="content" column="content"/>
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertMorning" parameterType="morning">
-  		insert into morning( code, name,engname, price, category, img)
-  		values(#{code},#{name}, #{price},#{engname}, #{category}, #{filePath})
+  		insert into morning( code, name,engname, price, content, category, img)
+  		values(#{code},#{name}, #{price},#{engname},#{content}, #{category}, #{filePath})
   	</insert>
   	<update id="updateMorning" parameterType="morning">
   		update morning set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category#{category} 

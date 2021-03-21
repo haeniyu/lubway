@@ -9,13 +9,14 @@
 		<result property="name" column="name" />
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
+		<result property="content" column="content" />
 		<result property="filePath" column="filePath" />
 	</resultMap>
 	
 	
   	<insert id="insertWAS" parameterType="wedgeandsoup">
-  		insert into wedgeandsoup( code, name,engname price, img)
-  		values(#{code},#{name},#{engname}, #{price}, #{filePath})
+  		insert into wedgeandsoup( code, name,engname, price,content, img)
+  		values(#{code},#{name},#{engname}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateWAS" parameterType="wedgeandsoup">
   		update wedgeandsoup set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 

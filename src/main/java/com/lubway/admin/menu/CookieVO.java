@@ -13,5 +13,6 @@ public class CookieVO {
 	private String name;
 	private String engname;
 	private String price;
+	private String content;
 	private String filePath;
 }

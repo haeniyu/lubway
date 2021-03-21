@@ -14,5 +14,6 @@ public class WrapVO {
 	private String engname;
 	private String price;
 	private String category;
+	private String content;
 	private String filePath;
 }

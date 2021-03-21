@@ -11,11 +11,12 @@
 		<result property="price15" column="price15" />
 		<result property="price30" column="price30" />
 		<result property="category" column="category"/>
+		<result property="content" column="content"/>
 		<result property="filePath" column="filePath" />
 	</resultMap>
-  	<insert id="insertSandwich" parameterType="sandwich">
-  		insert into sandwich( code, name, engname, price15, price30, category, img)
-  		values(#{code},#{name}, #{price15}, #{price30}, #{engname}, #{category}, #{filePath})
+  	<insert id="insertSandwich"  parameterType="sandwich">
+  		insert into sandwich(code, name, category, price15, price30, img, engname, content)
+  		values(#{code},#{name},#{category},#{price15},#{price30},#{filePath},#{engname},#{content})
   	</insert>
   	<update id="updateSandwich" parameterType="sandwich">
   		update sandwich set code=#{code}, name=#{name},engname=#{engname}, 
