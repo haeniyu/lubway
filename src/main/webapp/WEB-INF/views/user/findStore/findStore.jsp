@@ -132,6 +132,9 @@
 						
 						function createInfo(data, xpos, ypos) {
 							$("#uiReslutCont").show();
+							while(listEl.firstChild){
+		                        listEl.removeChild(listEl.firstChild);
+		                     }
 							
 							for(var i=0; i<data.length; i++) {
 								console.log(data[i]);
@@ -146,65 +149,38 @@
 							//var ul = document.getElementById('uiResultList');
 						}
 						
-						('120', '강남구청역', '서울특별시 강남구 선릉로 653', '', '025450806', '0800', '2300', '37.5148927', '127.0418835', '주말 08:00~22:00')
 						// 검색결과 항목을 Element로 반환하는 함수입니다
-						function getListItem(index, obj, xpos, ypos) {
+		                  function getListItem(index, obj, xpos, ypos) {
 
-						    var el = document.createElement('li');
-						    el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",	" + "'" + obj.address_detail + "'" + ",	" + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",	" + "'" + xpos[0] + "'" + ", " + "'" + ypos[0] + "'" + ")");
-						    
-						    var itemStr = '<div class="info"> <strong>' + obj.storename + '</strong></div>';
+		                      var el = document.createElement('li');
+		                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos[0] + "'" + ", " + "'" + ypos[0] + "'" + ")");
+		                      
+		                      var itemStr = '<div class="info"> <strong>' + obj.storename + '</strong>';
 
-						    if (obj.address_road) {
-						        itemStr += '    <span>' + obj.address_road + '</span>' +
-						                    '   <span>' +  obj.address_detail  + '</span>';
-						    } else {
-						        itemStr += '    <span>' +  obj.address_road  + '</span>'; 
-						    }
-						                 
-						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>' +
-						                '</div>';           
+		                      if (obj.address_road) {
+		                          itemStr += '    <span>' + obj.address_road + '</span>' +
+		                                      '   <span>' +  obj.address_detail  + '</span>';
+		                      } else {
+		                          itemStr += '    <span>' +  obj.address_road  + '</span>'; 
+		                      }
+		                                   
+		                        itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>'
+		                        itemStr += '  <span> 영업시간: ' + obj.open  + '~' + obj.close + '</span>' 
+		                                  '</div>';           
 
-						    el.innerHTML = itemStr;
+		                      el.innerHTML = itemStr;
 
-						    return el;
-						}
+		                      return el;
+		                  }
 						
 						function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm, lat, lng) {
+	
+							var mapCooder = new kakao.maps.LatLng(lng, lat);
+							map.setCenter(mapCooder);
 
-							console.log("나 여기있소");
 							
-							console.log(lat);
-							console.log(lng);
-							
-							/*
-							function setCenter() {
-							    // 이동할 위도 경도 위치를 생성합니다 
-							    var moveLatLon = new kakao.maps.LatLng(lat, lng);
-							    
-							    // 지도 중심을 이동 시킵니다
-							    map.setCenter(moveLatLon);
-							}
-							
-							setCenter(lat, lng);
-
-							*/
-							
-							/*
-							//  마커
-							var marker = new kakao.maps.Marker({ 
-								map : kakao.maps,
-								position : mapCooder
-							});
-							*/
 						}
-/*							
-							var marker = new kakao.maps.Marker({
-							    position: mapCooder,
-							    map: naverMap.map,
-								title: ""
-							});
-*/						
+						
 				</script>
 			</div>
 		</div>
