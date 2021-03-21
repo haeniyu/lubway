@@ -87,6 +87,9 @@
 			} else if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#engname").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -124,6 +127,9 @@
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#engname").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -154,6 +160,9 @@
 			$("#price30").remove();
 			
 			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#engname").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#code").val().trim() == '') {
@@ -194,6 +203,9 @@
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#engname").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -230,6 +242,9 @@
 			$("#price15").remove();
 			$("#price30").remove();
 			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#engname").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#code").val().trim() == '') {
@@ -269,6 +284,9 @@
 			$("#price30").remove();
 			$("#category").remove();
 			if ($("#name").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#engname").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#code").val().trim() == '') {
@@ -390,6 +408,13 @@
 							<label for="name">제품명</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="name" id="name"
+									required>
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="engname">제품명(english)</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" name="engname" id="engname"
 									required>
 							</div>
 						</div>

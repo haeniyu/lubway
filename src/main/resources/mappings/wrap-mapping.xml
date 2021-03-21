@@ -7,16 +7,17 @@
 		<id property="no" column="NO" />
 		<result property="code" column="code" />
 		<result property="name" column="name" />
+		<result property="engname" column="engname" />
 		<result property="price" column="price" />
 		<result property="category" column="category"/>
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertWrap" parameterType="wrap">
-  		insert into wrap( code, name, price, category, img)
-  		values(#{code},#{name}, #{price}, #{category}, #{filePath})
+  		insert into wrap( code, name,engname price, category, img)
+  		values(#{code},#{name},#{engname}, #{price}, #{category}, #{filePath})
   	</insert>
   	<update id="updateWrap" parameterType="wrap">
-  		update wrap set code=#{code}, name=#{name}, price=#{price}, category=#{category} 
+  		update wrap set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category=#{category} 
   		where no=#{no}
   	</update>
   	<delete id="deleteWrap" parameterType="wrap">

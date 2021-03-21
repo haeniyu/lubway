@@ -119,16 +119,18 @@
 									<th width="20%">Category</th>
 									<th width="20%">Menu Code</th>
 									<th width="35%">Menu Name</th>
-									<th width="25%">세개만 들어가기 뭔가 아쉬운데</th>
+									<th width="25%">English Name</th>
 								</tr>
 							</thead>
 							<tbody>
+							
 									<tr>
 										<td>Category</td>
 										<td><a type="hidden" href="#">Menu Code</a></td>
 										<td><a type="hidden" href="#">Menu name</a></td>
 										<td>여기 어떤거 넣을까요?ㅎㅅㅎ</td>
 									</tr>
+									
 							</tbody>
 
 						</table>

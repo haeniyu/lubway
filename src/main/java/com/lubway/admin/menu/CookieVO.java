@@ -11,10 +11,7 @@ public class CookieVO {
 	private Integer no;
 	private String code;
 	private String name;
+	private String engname;
 	private String price;
 	private String filePath;
-	
-	public void CookieInfo(String code, String name, String price, String filePath ) {
-		
-	}
 }

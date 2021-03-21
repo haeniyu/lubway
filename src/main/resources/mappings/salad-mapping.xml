@@ -7,16 +7,17 @@
 		<id property="no" column="NO" />
 		<result property="code" column="code" />
 		<result property="name" column="name" />
+		<result property="engname" column="engname" />
 		<result property="category" column="category"/>
 		<result property="price" column="price" />
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertSalad" parameterType="salad">
-  		insert into salad( code, name, category, price, img)
-  		values (#{code}, #{name}, #{category}, #{price}, #{filePath})
+  		insert into salad( code, name,engname, category, price, img)
+  		values (#{code}, #{name},#{engname}, #{category}, #{price}, #{filePath})
   	</insert>
   	<update id="updateSalad" parameterType="salad">
-  		update salad set code=#{code}, name=#{name}, price=#{price} 
+  		update salad set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
   		where no=#{no}
   	</update>
   	<delete id="deleteSalad" parameterType="salad">

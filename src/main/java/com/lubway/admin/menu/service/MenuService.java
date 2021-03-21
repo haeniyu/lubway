@@ -2,11 +2,8 @@ package com.lubway.admin.menu.service;
 
 import java.util.List;
 
-import com.lubway.admin.board.NoticeVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
-import com.lubway.admin.menu.MenuPagination;
 import com.lubway.admin.menu.MorningVO;
 import com.lubway.admin.menu.NutrientVO;
 import com.lubway.admin.menu.SaladVO;
@@ -22,5 +19,6 @@ public interface MenuService {
 	void sandwich(NutrientVO nvo, SandwichVO vo);
 	void WAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void wrap(NutrientVO nvo, WrapVO vo);
+	List<String> selectAll();
 	
 }

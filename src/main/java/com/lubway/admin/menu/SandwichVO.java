@@ -11,6 +11,7 @@ public class SandwichVO {
 	private Integer no;
 	private String code;
 	private String name;
+	private String engname;
 	private String category;
 	private boolean size;
 	private String price15;

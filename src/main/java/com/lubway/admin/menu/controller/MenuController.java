@@ -83,17 +83,18 @@ public class MenuController {
 		return "menu/menu";
 	}
 	
-//	@GetMapping("/menuList.mdo")
-//	public String selectList(Model model,NutrientVO nvo, CookieVO cvo,
-//			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, 
-//			MorningVO mvo, DrinkVO dvo,
-//			@RequestParam(required = false, defaultValue = "1") int page,
-//			@RequestParam(required = false, defaultValue = "1") int range
-//			) throws IOException,PSQLException{
-//		
-//		
-//		
-//		return "menu/menuList";
-//
-//	}
+	@GetMapping("/menuList.mdo")
+	public String selectList(Model model,NutrientVO nvo, CookieVO cvo,
+			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, 
+			MorningVO mvo, DrinkVO dvo,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range
+			) throws IOException,PSQLException{
+		
+		
+		
+		
+		return "menu/menuList";
+
+	}
 }

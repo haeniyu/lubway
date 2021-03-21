@@ -11,6 +11,7 @@ public class DrinkVO {
 	private Integer no;
 	private String code;
 	private String name;
+	private String engname;
 	private String price;
 	private String filePath;
 }
