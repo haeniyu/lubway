@@ -10,45 +10,47 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$(".allprice").hide();
+		$("#mbrLgnId3").val("sandwich").prop("selected", true);
+		console.log($("#mbrLgnId3").val());
+		$(".price").hide();
 		var check = "";
 		$("#mbrLgnId3").on("change", function() {
 			var selected = $(this).val();
 			console.log(selected);
 			if(selected == "sandwich") {
+				$(".form").show();
+				$(".price").hide();
+				$(".category").show();
 				$(".price15").show();
 				$(".price30").show();
-				$(".form").show();
-				$(".allprice").hide();
-				$(".category").show();
 			}  else if(selected == "drink"){ 
 				$(".form").hide();
-				$(".allprice").show();
+				$(".price").show();
 				$(".category").hide();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "wrap"){
 				$(".category").show();
-				$(".allprice").show();
+				$(".price").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "morning"){
 				$(".category").show();
-				$(".allprice").show();
+				$(".price").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "salad"){
 				$(".category").show();
-				$(".allprice").show();
+				$(".price").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else {
 				$(".category").hide();
 				$(".form").show();
-				$(".allprice").show();
+				$(".price").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			}
@@ -57,79 +59,78 @@
 		
 	$("#saveBtn").on("click", function() {
 		var select = check;
-		if(select == "sandwich") {
-			$("#allprice").remove();
+		
+		console.log($("#mbrLgnId3").val());
+		if($("#mbrLgnId3").val() == "sandwich") {
 			if ($("#price15").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price15").focus();
 				return;
 			} else if ($("#price30").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#price30").focus();
 				return;
 			} else if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#name").focus();
 				return;
 			} else if ($("#engname").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#engname").focus();
 				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#code").focus();
+				return;
+			} else if ($("#category").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#category").focus();
 				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#ttl").focus();
 				return;
 			} else if ($("#cal").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#cal").focus();
+				return;
+			} else if ($("#pro").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#pro").focus();
 				return;
 			} else if ($("#fat").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#fat").focus();
 				return;
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#sod").focus();
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
-			$("#allprice").append();
-		} else if(select == "drink"){
-			$("#category").remove();
-			$("#price15").remove();
-			$("#price30").remove();
-			$("#cal").remove();
-			$("#pro").remove();
-			$("#sug").remove();
-			$("#sod").remove();
-			$("#ttl").remove();
-			$("#fat").remove();
+			} 
+
+		} else if($("#mbrLgnId3").val() == "drink"){
+
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#name").focus();
 				return;
 			} else if ($("#engname").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#engname").focus();
 				return;
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				$("#code").focus();
 				return;
 			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
-				return;
-			}else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
+				$("#price").focus();
 				return;
 			}
 			
-			$("#category").append();
-			$("#price15").append();
-			$("#price30").append();
-			$("#cal").append();
-			$("#pro").append();
-			$("#sug").append();
-			$("#sod").append();
-			$("#ttl").append();
-			$("#fat").append();
-		} else if(select == "wrap"){
-			$("#price15").remove();
-			$("#price30").remove();
+
+		} else if($("#mbrLgnId3").val() == "wrap"){
+
 			
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
@@ -149,6 +150,10 @@
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#pro").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#pro").focus();
+				return;
 			} else if ($("#cal").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -158,16 +163,10 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
-			$("#price15").append();
-			$("#price30").append();
-		} else if (select == "morning"){
-			$("#price15").remove();
-			$("#price30").remove();
+			} 
+
+		} else if ($("#mbrLgnId3").val() == "morning"){
+
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -183,6 +182,10 @@
 			} else if ($("#category").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#pro").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#pro").focus();
+				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -195,16 +198,10 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
-			$("#price15").append();
-			$("#price30").append();
-		} else if (select == "salad"){
-			$("#price15").remove();
-			$("#price30").remove();
+			} 
+
+		} else if ($("#mbrLgnId3").val() == "salad"){
+
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -220,6 +217,10 @@
 			} else if ($("#category").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
+			} else if ($("#pro").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#pro").focus();
+				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -232,17 +233,10 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-				return;
-			}
-			$("#price15").append();
-			$("#price30").append();
+			} 
+
 		} else {
-			$("#price15").remove();
-			$("#price30").remove();
-			$("#category").remove();
+
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
@@ -254,6 +248,10 @@
 				return;
 			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
+				return;
+			} else if ($("#pro").val().trim() == '') {
+				alert("모든 정보를 기입해주세요.");
+				$("#pro").focus();
 				return;
 			} else if ($("#ttl").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
@@ -267,17 +265,19 @@
 			} else if ($("#sod").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-			}
-			$("#price15").append();
-			$("#price30").append();
-			$("#category").append();
+			} 
+
 		}	
+		
+			alert("저장되었습니다.");
+		
+			var select = $("#mbrLgnId3").val();
 		//setTime();
 	});
+	
+	
 });
+
 </script>
 <style type="text/css">
 .addr {
@@ -330,7 +330,7 @@
 							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="price15"
-									id="price15" required>
+									id="price15" >
 							</div>
 						</div>
 						</div>
@@ -339,7 +339,7 @@
 							<label for="price30">30cm 가격</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="price30"
-									id="price30" required>
+									id="price30" >
 							</div>
 						</div>
 					</div>
@@ -349,29 +349,29 @@
 							<label for="name">제품명</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="name" id="name"
-									required>
+									>
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="engname">제품명(english)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="engname" id="engname"
-									required>
+									>
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="code"
-									id="code" required>
+									id="code" >
 							</div>
 						</div>
-						<div class="allprice">
+						<div class="price">
 						<div class="mb-3" id="hyunah">
 							<label for="price">가격</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="price"
-									id="allprice" required>
+									id="price" >
 							</div>
 						</div>
 					</div>
@@ -380,7 +380,7 @@
 							<label for="category">카테고리</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="category"
-									id="category" required>
+									id="category" >
 							</div>
 						</div>
 						</div>
@@ -389,7 +389,7 @@
 							<label for="content">내용</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="content"
-									id="content" required>
+									id="content" >
 							</div>
 						</div>
 						</div>
@@ -399,42 +399,42 @@
 							<label for="ttl">총 중량(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="ttl"
-									id="ttl" required>
+									id="ttl" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="cal">열량(kcal)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="cal" id="cal"
-									required>
+									>
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="sug">당류(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="sug" id="sug"
-									required>
+									>
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="pro">단백질(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="pro"
-									id="pro" required>
+									id="pro" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="fat">포화지방(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="fat"
-									id="fat" required>
+									id="fat" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="sod">나트륨(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="sod"
-									id="sod" required>
+									id="sod">
 							</div>
 						</div>
 					</div>
@@ -449,7 +449,7 @@
 					</div>
 
 					<div>
-						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
+						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" onclick="insert()" >저장</button>
 					</div>
 				</div>
 			</form>

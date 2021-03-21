@@ -28,6 +28,6 @@
   		SELECT * FROM salad WHERE NO=#{no}
   	</select>
   	<select id="selectListSalad" resultType="salad">
-  		SELECT * FROM salad WHERE NO=#{no}
+  		SELECT * FROM salad
   	</select>
   </mapper>

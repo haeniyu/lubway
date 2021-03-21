@@ -28,6 +28,6 @@
   		SELECT * FROM cookie WHERE NO=#{no}
   	</select>
   	<select id="selectListCookie" resultType="cookie">
-  		SELECT * FROM cookie WHERE NO=#{no}
+  		SELECT * FROM cookie
   	</select>
   </mapper>

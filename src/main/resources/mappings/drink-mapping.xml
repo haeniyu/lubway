@@ -27,6 +27,6 @@
   		SELECT * FROM drink WHERE NO=#{no}
   	</select>
   	<select id="selectListDrink" resultType="drink">
-  		SELECT * FROM drink WHERE NO=#{no}
+  		SELECT * FROM drink
   	</select>
   </mapper>

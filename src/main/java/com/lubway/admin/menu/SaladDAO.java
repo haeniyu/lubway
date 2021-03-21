@@ -23,10 +23,10 @@ public class SaladDAO {
 	}
 
 	public SaladVO getSalad(SaladVO vo) {
-		return sqlSessionTemplate.selectOne("SaladDAO.insertSalad",vo);
+		return sqlSessionTemplate.selectOne("SaladDAO.selectSalad",vo);
 	}
 
 	public List<SaladVO> getSaladList(SaladVO vo) {
-		return sqlSessionTemplate.selectList("SaladDAO.insertSalad",vo);
+		return sqlSessionTemplate.selectList("SaladDAO.selectListSalad",vo);
 	}
 }

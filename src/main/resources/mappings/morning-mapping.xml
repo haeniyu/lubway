@@ -28,6 +28,6 @@
   		SELECT * FROM morning WHERE NO=#{no}
   	</select>
   	<select id="selectListMorning" resultType="morning">
-  		SELECT * FROM morning WHERE NO=#{no}
+  		SELECT * FROM morning
   	</select>
   </mapper>

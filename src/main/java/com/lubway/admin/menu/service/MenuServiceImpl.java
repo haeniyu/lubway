@@ -51,32 +51,32 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	WrapDAO wrapDAO;
 	
-	@Transactional()
+
 	@Override
 	public void insertCookie(NutrientVO nvo, CookieVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		cookieDAO.insertCookie(vo);
 	}
 	
-	@Transactional
+
 	@Override
 	public void insertDrink(DrinkVO vo) {
 		drinkDAO.insertDrink(vo);
 	}
-	@Transactional
+
 	@Override
 	public void insertMorning(NutrientVO nvo, MorningVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		morningDAO.insertMorning(vo);
 		
 	}
-	@Transactional
+
 	@Override
 	public void insertSalad(NutrientVO nvo, SaladVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		saladDAO.insertSalad(vo);
 	}
-	@Transactional
+
 	@Override
 	public void insertSandwich(NutrientVO nvo, SandwichVO vo) {
 
@@ -84,13 +84,13 @@ public class MenuServiceImpl implements MenuService {
 		sandwichDAO.insertSandwich(vo);
 		
 	}
-	@Transactional
+
 	@Override
 	public void insertWAS(NutrientVO nvo, WedgeAndSoupVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		wedgeandsoupDAO.insertWedgeAndSoup(vo);
 	}
-	@Transactional
+
 	@Override
 	public void insertWrap(NutrientVO nvo, WrapVO vo) {
 		nutrientDAO.insertNutrient(nvo);

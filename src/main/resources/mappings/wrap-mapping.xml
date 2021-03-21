@@ -28,6 +28,6 @@
   		SELECT * FROM wrap WHERE NO=#{no}
   	</select>
   	<select id="selectListWrap" resultType="wrap">
-  		SELECT * FROM wrap WHERE NO=#{no}
+  		SELECT * FROM wrap
   	</select>
   </mapper>

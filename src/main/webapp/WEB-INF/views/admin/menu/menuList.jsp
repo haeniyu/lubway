@@ -15,36 +15,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-$(document).ready(function() {
-	var check = "";
-	$("#select").on("change", function() {
-		var selected = $("#select").val();
-		if(selected == "sandwich"){
-			
-		}else if(selected == "drink"){
-			
-		}else if(selected == "wrap"){
-			
-		}else if(selected == "was"){
-			
-		}else if(selected == "sandwich"){
-			
-		}else if(selected == "sandwich"){
-			
-		}else if(selected == "sandwich"){
-			
-		}else if(selected == "sandwich"){
-			
-		}
-		
-		
-		});
-	});
-		
-</script>
-<script
+<script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#select1").val("sandwich").prop("selected", true);
+		
+		$("#select1").on("change", function() {
+			var select = $("#select1").val();
+			
+			var url = "${pageContext.request.contextPath}/menuListTab.mdo"
+			if(select == "sandwich"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();	
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "drink"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "wrap"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "was"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "salad"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "morning"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}else if(select == "cookie"){
+				$.ajax({
+					url : 'menuListTab.mdo?select=' + select,
+					type : 'get',
+					data : select,
+				});
+				select = $(this).val();
+				url = url + "?select=" + select;
+				location.href = url;
+			}
+			
+			console.log(select);
+		});
+		
+		
+
+	});
+</script>
 <script>
 	//이전 버튼 이벤트
 
@@ -100,6 +152,7 @@ $(document).ready(function() {
 		location.href = url;
 	}
 </script>
+
 </head>
 <body id="page-top">
 
@@ -116,33 +169,34 @@ $(document).ready(function() {
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Menu List</h6>
 			</div>
-			<div class="mb-3">
-						<label for="open">제품 카테고리</label>
-						<div class="col-sm-3">
-							<div class="small mb-1"></div>
-							<div class="dropdown mb-4">
-								<span class="form_select" style="width: 300px"> <select
-									class="btn btn-primary dropdown-toggle" id="select"
-									name="select" style="width: 150px">
-										<option value="sandwich">샌드위치</option>
-										<option value="wrap">랩&파니니</option>
-										<option value="salad">찹샐러드</option>
-										<option value="morning">아침메뉴</option>
-										<option value="cookie">쿠키</option>
-										<option value="was">웻지&스프</option>
-										<option value="drink">음료</option>
-								</select>
-								</span>
-							</div>
-						</div>
-					</div>
 
-				<div class="card-body">
-					<div class="table-responsive">
-						<!-- 카테고리 선택 s -->
-						
-						<!-- 카테고리 선택 e -->
-			<form action="/lubway/insertMenu.mdo" ><!-- method="post" 넣어줘야 함/ 일단 페이지만 넘어가게 했어요! -->
+			<div class="mb-3">
+				<div class="col-sm-3">
+					<div class="small mb-1"></div>
+					<div class="dropdown mb-4">
+						<span class="form_select" style="width: 300px"> <select
+							class="btn btn-primary dropdown-toggle" id="select1"
+							name="select" style="width: 150px">
+								<option value="sandwich">샌드위치</option>
+								<option value="wrap">랩&파니니</option>
+								<option value="salad">찹샐러드</option>
+								<option value="morning">아침메뉴</option>
+								<option value="cookie">쿠키</option>
+								<option value="was">웻지&스프</option>
+								<option value="drink">음료</option>
+						</select>
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="card-body">
+				<div class="table-responsive">
+					<!-- 카테고리 선택 s -->
+
+					<!-- 카테고리 선택 e -->
+					<form action="/lubway/menu.mdo">
+						<!-- method="post" 넣어줘야 함/ 일단 페이지만 넘어가게 했어요! -->
 						<!-- 메뉴 등록 버튼 -->
 						<div align="right">
 							<input type="submit" class="btn btn-warning btn-icon-split"
@@ -160,111 +214,91 @@ $(document).ready(function() {
 									<th width="25%">English Name</th>
 								</tr>
 							</thead>
-							<c:forEach items="${noticeList}" var="notice">
-									<tr>
-										<c:set var="fix" value="${notice.fix }" />
-										<c:choose>
-											<c:when test="${fix eq 'true' }">
-												<td><img src="resources/images/common/icon_notice.png"></td>
-												<td align="left"><a type="hidden"
-													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
-												<td></td>
-											</c:when>
 
-											<c:otherwise>
-												<td>${notice.rownum}</td>
-												<td align="left"><a type="hidden"
-													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
-												<td><fmt:formatDate value="${notice.regDate }"
-														pattern="yyyy-MM-dd" /></td>
-											</c:otherwise>
-										</c:choose>
+
+							<tbody>
+								<c:forEach items="${List}" var="List" >
+									<tr>
+										<td>${List.name}</td>
+										<td>${List.engname}</td>
+										<td><a type="hidden" href="#">${List.code}</a></td>
+										<td>${List.filePath}</td>
 									</tr>
 								</c:forEach>
-							
-							<tbody>
-							
-									<tr>
-										<td>Category</td>
-										<td>Menu Code</td>
-										<td><a type="hidden" href="#"></a></td>
-										<td></td>
-									</tr>
-									
 							</tbody>
 
 						</table>
-						
-						
-			</form>
+
+
+					</form>
 
 					<div align="right" style="display: inline;">
-							<form action="/lubway/selectCategory.mdo" method="get">
-								<tr>
-									<td><input type="text" name="searchKeyword"
-										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-										style="margin: 3px; padding: 3px"
-										class="btn btn-warning btn-icon-split" type="submit"
-										value="search" /></td>
-								</tr>
-							</form>
-						</div>
+						<form action="/lubway/selectCategory.mdo" method="get">
+							<tr>
+								<td><input type="text" name="searchKeyword"
+									placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
+									style="margin: 3px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="submit"
+									value="search" /></td>
+							</tr>
+						</form>
+					</div>
 
-			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
-			<!-- pagination{s} -->
+					<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
+					<!-- pagination{s} -->
 
-			<div align="center">
-				<ul class="pagination" class="NoticeVO">
-					<c:if test="${pagination.prev}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
-					</c:if>
-					<c:forEach begin="${pagination.startPage}"
-						end="${pagination.endPage}" var="idx">
-						<li
-							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-							class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-								${idx} </a></li>
-					</c:forEach>
+					<div align="center">
+						<ul class="pagination" class="NoticeVO">
+							<c:if test="${pagination.prev}">
+								<li class="page-item"><a class="page-link" href="#"
+									onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
+							</c:if>
+							<c:forEach begin="${pagination.startPage}"
+								end="${pagination.endPage}" var="idx">
+								<li
+									class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+									class="page-link" href="#"
+									onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+										${idx} </a></li>
+							</c:forEach>
 
 
-					<c:if test="${pagination.next}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
-					</c:if>
-				</ul>
+							<c:if test="${pagination.next}">
+								<li class="page-item"><a class="page-link" href="#"
+									onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
+							</c:if>
+						</ul>
+					</div>
+				</div>
 			</div>
-		</div>
-	</div>
 
 
-	<!-- /.container-fluid -->
+			<!-- /.container-fluid -->
 
-	<!-- End of Main Content -->
+			<!-- End of Main Content -->
 
-	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
+			<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 
-	<!-- Bootstrap core JavaScript-->
-	<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+			<!-- Bootstrap core JavaScript-->
+			<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
+			<script
+				src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	<!-- Core plugin JavaScript-->
-	<script
-		src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+			<!-- Core plugin JavaScript-->
+			<script
+				src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-	<!-- Custom scripts for all pages-->
-	<script src="${path}/resources/js/sb-admin-2.js"></script>
+			<!-- Custom scripts for all pages-->
+			<script src="${path}/resources/js/sb-admin-2.js"></script>
 
-	<!-- Page level plugins -->
-	<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
+			<!-- Page level plugins -->
+			<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
 
-	<!-- Page level custom scripts -->
-	<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
-	<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
+			<!-- Page level custom scripts -->
+			<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
+			<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
 
-	<%--  검색기능 , 페이징처리 스크립트  
+			<%--  검색기능 , 페이징처리 스크립트  
    <!-- Page level plugins -->
     <script src="${path}/resources/vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="${path}/resources/vendor/datatables/dataTables.bootstrap4.min.js"></script>
