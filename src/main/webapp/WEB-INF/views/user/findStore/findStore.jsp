@@ -55,38 +55,7 @@
 	<div id="content">
 		<!-- 매장찾기 s -->
 		<div class="store_search_wrapper">
-			<!-- 매장찾기 레이어 s -->
-<!-- 
-			<div class="store_search_layer">
-				<h2>매장찾기</h2>
-				<div class="form_search">
-					<form id="mapFrm" method="POST" name="mapFrm"
-						onsubmit="return shopMap.search()">
-						<input id="keyword" maxlength="30" placeholder="지역 또는 매장명 입력" type="text" value="" /> 
-						<a class="btn_search" href="#" onclick="searchStore();"></a>
-					</form>
-				</div>
-
-				<div class="search_result_cont" id="uiReslutCont"
-					style="display: none;">
-					<p class="search_total">
-						검색 결과 <strong id="uiResultCount">0</strong>건
-					</p>
-
-					<div class="store_list_scroll">
-						<ul id="uiResultList">
-						<c:forEach items="${arr }" var="shop">
-							<li>
-								<span>${shop.storename }</span>							
-							</li>
-						</c:forEach>
-						</ul>
-					</div>
-
-					<div class="pagination" id="ui_pager"></div>
-				</div>
-			</div>
- -->
+		<!-- 매장찾기 레이어 s -->
 		<div class="store_search_layer">
 			<h2 id="name">매장찾기</h2>
 			<!-- 검색 -->
@@ -131,8 +100,8 @@
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ffe7c5af8a7826856c48dec067ac9849&libraries=services"></script>
 				<script>
 						var markers = [];
-//						var xpos = [];
-//						var ypos = [];
+						var listEl = document.getElementById('uiResultList');
+						var fragment = document.createDocumentFragment();
 				
 						var container = document.getElementById('map');
 						var options = {
@@ -153,16 +122,18 @@
 							var geocoder = new kakao.maps.services.Geocoder(); 
 							var arr = data;
 							var geocoderCount = 0;
+							var bounds = new kakao.maps.LatLngBounds();							
 							
 							for(var i=0; i<arr.length; i++) {							 
 								var obj = arr[i];
-
+								
 								geocoder.addressSearch(obj.address_road, function(result, status) {
 									geocoderCount++;
 									
 									// 정상적으로 검색이 완료됐으면 
 									if (status === kakao.maps.services.Status.OK) { 
 										var markerPosition = new kakao.maps.LatLng(result[0].y,result[0].x);
+										bounds.extend(markerPosition);
 
 										xpos.push(result[0].x);									
 										ypos.push(result[0].y);
@@ -175,11 +146,10 @@
 										markers.push(marker);
 										console.log(geocoderCount, arr.length);
 										if(geocoderCount == arr.length) createInfo(data, xpos, ypos);
+										map.setBounds(bounds);
 									}
 								});
 								}
-//							setTimeout(createInfo(data), 15000);
-//							createInfo(data);
 							}
 
 						function searchStore() {
@@ -201,23 +171,40 @@
 						}
 						
 						function createInfo(data, xpos, ypos) {
-//							console.log("ㅋㅋ");
 							$("#uiReslutCont").show();
 							
-//							console.log(data);
+							for(var i=0; i<data.length; i++) {
+								console.log(data[i]);
+								var itemEl = getListItem(i, data[i]);
+								
+								fragment.appendChild(itemEl);
+								listEl.appendChild(fragment);
+								
+							}
 							
-							console.log(xpos);
-							console.log(ypos);
-							
-							console.log(xpos[0]);
-							console.log(ypos[0]);
-//							console.log(markers);
-//							console.log(markers[0]);
-							
-//							document.getElementById('uiResultCount').innerHTML=data.length;
-//							document.getElementById('uiResultCount').innerHTML=xy[0];
-//							var ul = document.getElementById('uiResultList');
-//						}
+							document.getElementById('uiResultCount').innerHTML=data.length;
+							//var ul = document.getElementById('uiResultList');
+						}
+						
+						// 검색결과 항목을 Element로 반환하는 함수입니다
+						function getListItem(index, obj) {
+
+						    var el = document.createElement('li'),
+						    itemStr = '<div class="info"> <strong>' + obj.storename + '</strong></div>';
+
+						    if (obj.address_road) {
+						        itemStr += '    <span>' + obj.address_road + '</span>' +
+						                    '   <span>' +  obj.address_detail  + '</span>';
+						    } else {
+						        itemStr += '    <span>' +  obj.address_road  + '</span>'; 
+						    }
+						                 
+						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>' +
+						                '</div>';           
+
+						    el.innerHTML = itemStr;
+
+						    return el;
 						}
 						
 				</script>
