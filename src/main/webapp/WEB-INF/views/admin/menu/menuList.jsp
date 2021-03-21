@@ -15,6 +15,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+$(document).ready(function() {
+	var check = "";
+	$("#select").on("change", function() {
+		var selected = $("#select").val();
+		if(selected == "sandwich"){
+			
+		}else if(selected == "drink"){
+			
+		}else if(selected == "wrap"){
+			
+		}else if(selected == "was"){
+			
+		}else if(selected == "sandwich"){
+			
+		}else if(selected == "sandwich"){
+			
+		}else if(selected == "sandwich"){
+			
+		}else if(selected == "sandwich"){
+			
+		}
+		
+		
+		});
+	});
+		
+</script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
@@ -88,21 +116,31 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Menu List</h6>
 			</div>
+			<div class="mb-3">
+						<label for="open">제품 카테고리</label>
+						<div class="col-sm-3">
+							<div class="small mb-1"></div>
+							<div class="dropdown mb-4">
+								<span class="form_select" style="width: 300px"> <select
+									class="btn btn-primary dropdown-toggle" id="select"
+									name="select" style="width: 150px">
+										<option value="sandwich">샌드위치</option>
+										<option value="wrap">랩&파니니</option>
+										<option value="salad">찹샐러드</option>
+										<option value="morning">아침메뉴</option>
+										<option value="cookie">쿠키</option>
+										<option value="was">웻지&스프</option>
+										<option value="drink">음료</option>
+								</select>
+								</span>
+							</div>
+						</div>
+					</div>
 
 				<div class="card-body">
 					<div class="table-responsive">
 						<!-- 카테고리 선택 s -->
-						<div align="left" style="display: inline;">
-							<form action="/lubway/selectCategory.mdo" method="get">
-								<tr>
-									<td><input type="text" name="searchKeyword"
-										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-										style="margin: 3px; padding: 3px"
-										class="btn btn-warning btn-icon-split" type="submit"
-										value="search" /></td>
-								</tr>
-							</form>
-						</div>
+						
 						<!-- 카테고리 선택 e -->
 			<form action="/lubway/insertMenu.mdo" ><!-- method="post" 넣어줘야 함/ 일단 페이지만 넘어가게 했어요! -->
 						<!-- 메뉴 등록 버튼 -->
@@ -122,19 +160,55 @@
 									<th width="25%">English Name</th>
 								</tr>
 							</thead>
+							<c:forEach items="${noticeList}" var="notice">
+									<tr>
+										<c:set var="fix" value="${notice.fix }" />
+										<c:choose>
+											<c:when test="${fix eq 'true' }">
+												<td><img src="resources/images/common/icon_notice.png"></td>
+												<td align="left"><a type="hidden"
+													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
+												<td></td>
+											</c:when>
+
+											<c:otherwise>
+												<td>${notice.rownum}</td>
+												<td align="left"><a type="hidden"
+													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
+												<td><fmt:formatDate value="${notice.regDate }"
+														pattern="yyyy-MM-dd" /></td>
+											</c:otherwise>
+										</c:choose>
+									</tr>
+								</c:forEach>
+							
 							<tbody>
 							
 									<tr>
 										<td>Category</td>
-										<td><a type="hidden" href="#">Menu Code</a></td>
-										<td><a type="hidden" href="#">Menu name</a></td>
-										<td>여기 어떤거 넣을까요?ㅎㅅㅎ</td>
+										<td>Menu Code</td>
+										<td><a type="hidden" href="#"></a></td>
+										<td></td>
 									</tr>
 									
 							</tbody>
 
 						</table>
+						
+						
 			</form>
+
+					<div align="right" style="display: inline;">
+							<form action="/lubway/selectCategory.mdo" method="get">
+								<tr>
+									<td><input type="text" name="searchKeyword"
+										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
+										style="margin: 3px; padding: 3px"
+										class="btn btn-warning btn-icon-split" type="submit"
+										value="search" /></td>
+								</tr>
+							</form>
+						</div>
 
 			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 			<!-- pagination{s} -->

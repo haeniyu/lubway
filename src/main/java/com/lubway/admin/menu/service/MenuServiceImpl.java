@@ -1,5 +1,6 @@
 package com.lubway.admin.menu.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -52,32 +53,32 @@ public class MenuServiceImpl implements MenuService {
 	
 	@Transactional()
 	@Override
-	public void cookie(NutrientVO nvo, CookieVO vo) {
+	public void insertCookie(NutrientVO nvo, CookieVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		cookieDAO.insertCookie(vo);
 	}
 	
 	@Transactional
 	@Override
-	public void drink(DrinkVO vo) {
+	public void insertDrink(DrinkVO vo) {
 		drinkDAO.insertDrink(vo);
 	}
 	@Transactional
 	@Override
-	public void morning(NutrientVO nvo, MorningVO vo) {
+	public void insertMorning(NutrientVO nvo, MorningVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		morningDAO.insertMorning(vo);
 		
 	}
 	@Transactional
 	@Override
-	public void salad(NutrientVO nvo, SaladVO vo) {
+	public void insertSalad(NutrientVO nvo, SaladVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		saladDAO.insertSalad(vo);
 	}
 	@Transactional
 	@Override
-	public void sandwich(NutrientVO nvo, SandwichVO vo) {
+	public void insertSandwich(NutrientVO nvo, SandwichVO vo) {
 
 		nutrientDAO.insertNutrient(nvo);
 		sandwichDAO.insertSandwich(vo);
@@ -85,24 +86,60 @@ public class MenuServiceImpl implements MenuService {
 	}
 	@Transactional
 	@Override
-	public void WAS(NutrientVO nvo, WedgeAndSoupVO vo) {
+	public void insertWAS(NutrientVO nvo, WedgeAndSoupVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		wedgeandsoupDAO.insertWedgeAndSoup(vo);
 	}
 	@Transactional
 	@Override
-	public void wrap(NutrientVO nvo, WrapVO vo) {
+	public void insertWrap(NutrientVO nvo, WrapVO vo) {
 		nutrientDAO.insertNutrient(nvo);
 		wrapDAO.insertWrap(vo);
 	}
 
 	@Override
-	public List<String> selectAll(NutrientVO nvo, CookieVO cvo,
-			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, MorningVO mvo, DrinkVO dvo) {
-		
-		return null;
+	public List<SandwichVO> selectSandwichList(SandwichVO vo) {
+		return sandwichDAO.getSandwichList(vo);
 	}
-	
+
+	@Override
+	public List<CookieVO> selectCookieList(CookieVO vo) {
+		return cookieDAO.getCookieList(vo);
+	}
+
+	@Override
+	public List<MorningVO> selectMorningList(MorningVO vo) {
+		return morningDAO.getMorningList(vo);
+	}
+
+	@Override
+	public List<DrinkVO> selectDrinkList(DrinkVO vo) {
+		return drinkDAO.getDrinkList(vo);
+	}
+
+	@Override
+	public List<WedgeAndSoupVO> selectWASList(WedgeAndSoupVO vo) {
+		return wedgeandsoupDAO.getWedgeAndSoupList(vo);
+	}
+
+	@Override
+	public List<SaladVO> selectSaladList(SaladVO vo) {
+		return saladDAO.getSaladList(vo);
+	}
+
+	@Override
+	public List<WrapVO> selectWrapList(WrapVO vo) {
+		return wrapDAO.getWrapList(vo);
+	}
+
+	@Override
+	public void selectNutrient(NutrientVO vo) {
+		nutrientDAO.getNutrient(vo);
+	}
+
+
+
+
 	
 
 	

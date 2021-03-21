@@ -56,46 +56,67 @@ public class MenuController {
 			awss3.upload(is, key, contentType, contentLength);
 
 			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + key;
-			System.out.println(filePath.toString());
+
+			
 		if(select.equals("cookie")){
 			System.out.println(filePath.toString());
 				cvo.setFilePath(filePath);
-				menuservice.cookie(nvo, cvo);
+				menuservice.insertCookie(nvo, cvo);
 		} else if(select.equals("sandwich")) {
 			System.out.println(Svo.toString());
 			Svo.setFilePath(filePath);
-			menuservice.sandwich(nvo, Svo);
+			menuservice.insertSandwich(nvo, Svo);
 		} else if(select.equals("wrap")) {
 			wvo.setFilePath(filePath);
-			menuservice.wrap(nvo, wvo);
+			menuservice.insertWrap(nvo, wvo);
 		}else if(select.equals("was")) {
 			wasvo.setFilePath(filePath);
-			menuservice.WAS(nvo, wasvo);
+			menuservice.insertWAS(nvo, wasvo);
 		}else if(select.equals("salad")) {
 			svo.setFilePath(filePath);
-			menuservice.salad(nvo, svo);
+			menuservice.insertSalad(nvo, svo);
 		}else if(select.equals("morning")) {
 			mvo.setFilePath(filePath);
-			menuservice.morning(nvo, mvo);
+			menuservice.insertMorning(nvo, mvo);
 		}else if(select.equals("drink")) {
 			dvo.setFilePath(filePath);
-			menuservice.drink(dvo);
+			menuservice.insertDrink(dvo);
 		}
 		return "menu/menu";
 	}
 	
-//	@GetMapping("/menuList.mdo")
-//	public String selectList(Model model,NutrientVO nvo, CookieVO cvo,
-//			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, 
-//			MorningVO mvo, DrinkVO dvo,
-//			@RequestParam(required = false, defaultValue = "1") int page,
-//			@RequestParam(required = false, defaultValue = "1") int range
-//			) throws IOException,PSQLException{
-//		
-//		
-//		
-//		
-//		return "menu/menuList";
-//
-//	}
+	@GetMapping("/menuList.mdo")
+	public String selectList(Model model,NutrientVO nvo, CookieVO cvo,
+			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, 
+			MorningVO mvo, DrinkVO dvo,
+			@RequestParam("select") String select
+			) throws IOException,PSQLException{
+		if(select.equals("cookie")){
+//			menuservice.selectCookieList(cvo);
+			model.addAttribute("cookieList",menuservice.selectCookieList(cvo));
+		} else if(select.equals("sandwich")) {
+//			menuservice.selectSandwichList(Svo);
+			model.addAttribute("sandwichList",menuservice.selectSandwichList(Svo));
+		} else if(select.equals("wrap")) {
+//			menuservice.selectWrapList(wvo);
+			model.addAttribute("wrapList",menuservice.selectWrapList(wvo));
+		}else if(select.equals("was")) {
+//			menuservice.selectWASList(wasvo);
+			model.addAttribute("wasList",menuservice.selectWASList(wasvo));
+		}else if(select.equals("salad")) {
+//			menuservice.selectSaladList(svo);
+			model.addAttribute("saladList",menuservice.selectSaladList(svo));
+		}else if(select.equals("morning")) {
+//			menuservice.selectMorningList(mvo);
+			model.addAttribute("morningList",menuservice.selectMorningList(mvo));
+		}else if(select.equals("drink")) {
+//			menuservice.selectDrinkList(dvo);
+			model.addAttribute("drinkList",menuservice.selectDrinkList(dvo));
+		}
+		
+		
+		
+		return "menu/menuList";
+
+	}
 }

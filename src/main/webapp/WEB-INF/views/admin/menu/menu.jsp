@@ -10,17 +10,17 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		
+		$(".allprice").hide();
 		var check = "";
-			$(".allprice").hide();
-		$("#select").on("change", function() {
-			var selected = $("#select").val();
+		$("#mbrLgnId3").on("change", function() {
+			var selected = $(this).val();
+			console.log(selected);
 			if(selected == "sandwich") {
+				$(".price15").show();
+				$(".price30").show();
 				$(".form").show();
 				$(".allprice").hide();
 				$(".category").show();
-				$(".price15").show();
-				$(".price30").show();
 			}  else if(selected == "drink"){ 
 				$(".form").hide();
 				$(".allprice").show();
@@ -45,24 +45,12 @@
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
-			} else if(selected == "cookie"){
-				$(".category").hide();
-				$(".allprice").show();
-				$(".form").show();
-				$(".price15").hide();
-				$(".price30").hide();
-			}else if(selected == "was"){
-				$(".category").hide();
-				$(".allprice").show();
-				$(".form").show();
-				$(".price15").hide();
-				$(".price30").hide();
 			} else {
 				$(".category").hide();
 				$(".form").show();
-				$(".allprice").hide();
-				$(".price15").show();
-				$(".price30").show();
+				$(".allprice").show();
+				$(".price15").hide();
+				$(".price30").hide();
 			}
 			check = selected;
 		});
@@ -121,7 +109,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#allprice").val().trim() == '') {
+			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			}else if ($("#img").val().trim() == '') {
@@ -152,7 +140,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#allprice").val().trim() == '') {
+			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -189,7 +177,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#allprice").val().trim() == '') {
+			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -226,7 +214,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#allprice").val().trim() == '') {
+			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -251,7 +239,7 @@
 			}
 			$("#price15").append();
 			$("#price30").append();
-		} else if(select == "was"){
+		} else {
 			$("#price15").remove();
 			$("#price30").remove();
 			$("#category").remove();
@@ -264,42 +252,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#allprice").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#ttl").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#cal").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#fat").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#sod").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#img").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				$("#img").focus();
-			}
-			$("#price15").append();
-			$("#price30").append();
-			$("#category").append();	
-		} else if(select == "cookie"){
-			$("#price15").remove();
-			$("#price30").remove();
-			$("#category").remove();
-			if ($("#name").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#engname").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#code").val().trim() == '') {
-				alert("모든 정보를 기입해주세요.");
-				return;
-			} else if ($("#allprice").val().trim() == '') {
+			} else if ($("#price").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#ttl").val().trim() == '') {
@@ -321,7 +274,7 @@
 			$("#price15").append();
 			$("#price30").append();
 			$("#category").append();
-		}
+		}	
 		//setTime();
 	});
 });
@@ -356,7 +309,7 @@
 							<div class="small mb-1"></div>
 							<div class="dropdown mb-4">
 								<span class="form_select" style="width: 300px"> <select
-									class="btn btn-primary dropdown-toggle" id="select"
+									class="btn btn-primary dropdown-toggle" id="mbrLgnId3"
 									name="select" style="width: 150px">
 										<option value="sandwich">샌드위치</option>
 										<option value="wrap">랩&파니니</option>
@@ -415,10 +368,10 @@
 						</div>
 						<div class="allprice">
 						<div class="mb-3" id="hyunah">
-							<label for="allprice">가격</label>
+							<label for="price">가격</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="price"
-									id="price" required>
+									id="allprice" required>
 							</div>
 						</div>
 					</div>
