@@ -70,7 +70,7 @@
 	$("#saveBtn").on("click", function() {
 		var select = check;
 		if(select == "sandwich") {
-			$("#price").remove();
+			$("#allprice").remove();
 			if ($("#price15").val().trim() == '') {
 				return;
 			} else if ($("#price30").val().trim() == '') {
@@ -101,7 +101,7 @@
 				$("#img").focus();
 				return;
 			}
-			$("#price").append();
+			$("#allprice").append();
 		} else if(select == "drink"){
 			$("#category").remove();
 			$("#price15").remove();
@@ -121,7 +121,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			}else if ($("#img").val().trim() == '') {
@@ -152,7 +152,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -189,7 +189,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -226,7 +226,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#category").val().trim() == '') {
@@ -264,7 +264,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#ttl").val().trim() == '') {
@@ -299,7 +299,7 @@
 			} else if ($("#code").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
-			} else if ($("#price").val().trim() == '') {
+			} else if ($("#allprice").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} else if ($("#ttl").val().trim() == '') {
@@ -417,8 +417,8 @@
 						<div class="mb-3" id="hyunah">
 							<label for="allprice">가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="allprice"
-									id="allprice" required>
+								<input type="text" class="form-control" name="price"
+									id="price" required>
 							</div>
 						</div>
 					</div>
