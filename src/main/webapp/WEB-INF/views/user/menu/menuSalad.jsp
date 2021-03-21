@@ -41,7 +41,7 @@
 					<div class="sub_loc">
 						<!-- 메뉴소개 -->
 						<ul>
-							<li><a href="/lubway/menu.do">샌드위치</a></li>
+							<li><a href="/lubway/menuSandwich.do">샌드위치</a></li>
 							<li><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
 							<li class="active"><a href="/lubway/menuSalad.do">찹샐러드</a></li>
 							<li><a href="/lubway/menuMorning.do">아침메뉴</a></li>

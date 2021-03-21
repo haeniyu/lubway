@@ -84,7 +84,7 @@ p {
 }
 
 .menu_list_wrapper .visual.sides_drink{
-	background:#07a5e6 url(../images/menu/bg_visual_sides_drink.jpg) 50% no-repeat;
+	background:url(../images/menu/bg_visual_sides_drink.jpg) 50% no-repeat;
 }
 	
 
@@ -166,10 +166,10 @@ p {
 	position:absolute; 
 	left:50%; 
 	margin-left:292px; 
-	bottom:0px; 
+	bottom: 50%; 
 	background:url(../images/menu/img_visual_wrap01.jpg) 0 0 no-repeat; 
 	width:416px; 
-	height:308px; 
+	height:446px; 
 	opacity:0;  animation-name:img0222;
     animation-duration: 0.7s;
   	animation-delay: 0.7s;
@@ -198,7 +198,7 @@ p {
   }
   100% {
   	
- 	top:0px; opacity:1;
+ 	top:-50px; opacity:1;
     
   }
 }
@@ -315,11 +315,11 @@ p {
 .menu_list_wrapper .visual.sides_drink .img01{
 	position:absolute; 
 	left:50%; 
-	margin-left:320px; 
+	margin-left:250px; 
 	bottom:0; 
 	background:url(../images/menu/img_visual_sides_drink01.png) 0 0 no-repeat; 
 	width:840px; 
-	height:250px; 
+	height:500px; 
 	opacity:0;
 	animation-name:img0888;
     animation-duration: 0.7s;
