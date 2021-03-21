@@ -12,42 +12,57 @@
 	$(document).ready(function() {
 		
 		var check = "";
-		$("#mbrLgnId3").on("change", function() {
-			var selected = $(this).val();
+			$(".allprice").hide();
+		$("#select").on("change", function() {
+			var selected = $("#select").val();
 			if(selected == "sandwich") {
 				$(".form").show();
-				$(".price").hide();
+				$(".allprice").hide();
 				$(".category").show();
+				$(".price15").show();
+				$(".price30").show();
 			}  else if(selected == "drink"){ 
 				$(".form").hide();
-				$(".price").show();
+				$(".allprice").show();
 				$(".category").hide();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "wrap"){
 				$(".category").show();
-				$(".price").show();
+				$(".allprice").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "morning"){
 				$(".category").show();
-				$(".price").show();
+				$(".allprice").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else if(selected == "salad"){
 				$(".category").show();
-				$(".price").show();
+				$(".allprice").show();
+				$(".form").show();
+				$(".price15").hide();
+				$(".price30").hide();
+			} else if(selected == "cookie"){
+				$(".category").hide();
+				$(".allprice").show();
+				$(".form").show();
+				$(".price15").hide();
+				$(".price30").hide();
+			}else if(selected == "was"){
+				$(".category").hide();
+				$(".allprice").show();
 				$(".form").show();
 				$(".price15").hide();
 				$(".price30").hide();
 			} else {
 				$(".category").hide();
 				$(".form").show();
-				$(".price").show();
-				$(".price15").hide();
-				$(".price30").hide();
+				$(".allprice").hide();
+				$(".price15").show();
+				$(".price30").show();
 			}
 			check = selected;
 		});
@@ -341,7 +356,7 @@
 							<div class="small mb-1"></div>
 							<div class="dropdown mb-4">
 								<span class="form_select" style="width: 300px"> <select
-									class="btn btn-primary dropdown-toggle" id="mbrLgnId3"
+									class="btn btn-primary dropdown-toggle" id="select"
 									name="select" style="width: 150px">
 										<option value="sandwich">샌드위치</option>
 										<option value="wrap">랩&파니니</option>
@@ -398,12 +413,12 @@
 									id="code" required>
 							</div>
 						</div>
-						<div class="price">
+						<div class="allprice">
 						<div class="mb-3" id="hyunah">
-							<label for="price">가격</label>
+							<label for="allprice">가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price"
-									id="price" required>
+								<input type="text" class="form-control" name="allprice"
+									id="allprice" required>
 							</div>
 						</div>
 					</div>

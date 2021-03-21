@@ -55,7 +55,7 @@ public class MenuController {
 			long contentLength = multipart.getSize();
 			awss3.upload(is, key, contentType, contentLength);
 
-			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + key;
 			System.out.println(filePath.toString());
 		if(select.equals("cookie")){
 			System.out.println(filePath.toString());

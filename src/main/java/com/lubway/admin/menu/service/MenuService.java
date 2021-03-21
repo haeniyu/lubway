@@ -19,6 +19,7 @@ public interface MenuService {
 	void sandwich(NutrientVO nvo, SandwichVO vo);
 	void WAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void wrap(NutrientVO nvo, WrapVO vo);
-	List<String> selectAll();
+	List<String> selectAll(NutrientVO nvo, CookieVO cvo,
+			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, MorningVO mvo, DrinkVO dvo);
 	
 }

@@ -97,7 +97,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<String> selectAll() {
+	public List<String> selectAll(NutrientVO nvo, CookieVO cvo,
+			SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo, MorningVO mvo, DrinkVO dvo) {
 		
 		return null;
 	}
