@@ -71,7 +71,7 @@
 			<div class="search_result_cont" id="uiReslutCont" style="display:none;">
 				<p class="search_total">검색 결과 <strong id="uiResultCount">0</strong>건</p>
 
-				<div class="store_list_scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar">
+				<div class="store_list_scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="overflow-y:auto; overflow-x:hidden; height:450px;">
 					<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: 421px;" tabindex="0">
 						<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
 							<ul id="uiResultList"></ul>
@@ -170,9 +170,15 @@
 							});
 						}
 						
-						function createInfo(data, xpos, ypos) {
+						function createInfo(data, xpos, ypos, pagination) {
 							$("#uiReslutCont").show();
 							
+							//목록에 있던 기존 내역을 삭제합니다.
+							while (listEl.firstChild) {
+								listEl.removeChild(listEl.firstChild);
+							}
+							
+							//목록에 검색 내용을 추가합니다.
 							for(var i=0; i<data.length; i++) {
 								console.log(data[i]);
 								var itemEl = getListItem(i, data[i]);
@@ -183,14 +189,13 @@
 							}
 							
 							document.getElementById('uiResultCount').innerHTML=data.length;
-							//var ul = document.getElementById('uiResultList');
 						}
 						
 						// 검색결과 항목을 Element로 반환하는 함수입니다
 						function getListItem(index, obj) {
 
 						    var el = document.createElement('li'),
-						    itemStr = '<div class="info"> <strong>' + obj.storename + '</strong></div>';
+						    itemStr = '<div class="info"> <strong>' + obj.storename + '</strong>';
 
 						    if (obj.address_road) {
 						        itemStr += '    <span>' + obj.address_road + '</span>' +
@@ -199,7 +204,8 @@
 						        itemStr += '    <span>' +  obj.address_road  + '</span>'; 
 						    }
 						                 
-						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>' +
+						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>';
+						      itemStr += '  <span> 영업시간: ' + obj.open  + ' ~ ' + obj.close + '</span>' +
 						                '</div>';           
 
 						    el.innerHTML = itemStr;
