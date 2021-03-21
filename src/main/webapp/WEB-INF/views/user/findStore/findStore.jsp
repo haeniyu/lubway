@@ -9,45 +9,8 @@
 <title>매장 찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.subway.css" />
-<!-- 
-<script type="text/javascript">
-	function searchStore() {
-		var keyword = $("#keyword").val().trim();
-		console.log(keyword);
-		
-		$.ajax({
-			url : '/lubway/searchStore.do?keyword=' + keyword,
-			type : 'post',
-			success : function(data) {
-				console.log("성공");
-				searchTest(data);
-				console.log("끝");
-			},
-			error : function() {
-				console.log("실패");
-			}
-		});
-	}
-	
-	function createInfo(data) {
-		console.log("ㅋㅋ");
-		$("#uiReslutCont").show();
-		
-		console.log(data);
-		
-		console.log(xpos);
-		console.log(ypos);
-		
-		console.log(xpos[0]);
-
-//		document.getElementById('uiResultCount').innerHTML=data.length;
-//		document.getElementById('uiResultCount').innerHTML=xy[0];
-//		document.getElementById('uiResultCount').innerHTML=;
-//		var ul = document.getElementById('uiResultList');
-//	}
-	}
-</script>
- -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -92,7 +55,6 @@
 				<div class="pagination" id="ui_pager"></div>
 				<!--// board 페이지 -->
 			</div>
-			<!--// 검색결과 -->
 		</div>
 					
 			<!-- 매장지도 s -->
@@ -144,7 +106,7 @@
 											position: markerPosition
 										});
 										markers.push(marker);
-										console.log(geocoderCount, arr.length);
+//										console.log(geocoderCount, arr.length);
 										if(geocoderCount == arr.length) createInfo(data, xpos, ypos);
 										map.setBounds(bounds);
 									}
@@ -160,9 +122,7 @@
 								url : '/lubway/searchStore.do?keyword=' + keyword,
 								type : 'post',
 								success : function(data) {
-									console.log("성공");
 									searchTest(data);
-									console.log("끝");
 								},
 								error : function() {
 									console.log("실패");
@@ -170,18 +130,12 @@
 							});
 						}
 						
-						function createInfo(data, xpos, ypos, pagination) {
+						function createInfo(data, xpos, ypos) {
 							$("#uiReslutCont").show();
 							
-							//목록에 있던 기존 내역을 삭제합니다.
-							while (listEl.firstChild) {
-								listEl.removeChild(listEl.firstChild);
-							}
-							
-							//목록에 검색 내용을 추가합니다.
 							for(var i=0; i<data.length; i++) {
 								console.log(data[i]);
-								var itemEl = getListItem(i, data[i]);
+								var itemEl = getListItem(i, data[i], xpos, ypos);
 								
 								fragment.appendChild(itemEl);
 								listEl.appendChild(fragment);
@@ -189,13 +143,17 @@
 							}
 							
 							document.getElementById('uiResultCount').innerHTML=data.length;
+							//var ul = document.getElementById('uiResultList');
 						}
 						
+						('120', '강남구청역', '서울특별시 강남구 선릉로 653', '', '025450806', '0800', '2300', '37.5148927', '127.0418835', '주말 08:00~22:00')
 						// 검색결과 항목을 Element로 반환하는 함수입니다
-						function getListItem(index, obj) {
+						function getListItem(index, obj, xpos, ypos) {
 
-						    var el = document.createElement('li'),
-						    itemStr = '<div class="info"> <strong>' + obj.storename + '</strong>';
+						    var el = document.createElement('li');
+						    el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",	" + "'" + obj.address_detail + "'" + ",	" + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",	" + "'" + xpos[0] + "'" + ", " + "'" + ypos[0] + "'" + ")");
+						    
+						    var itemStr = '<div class="info"> <strong>' + obj.storename + '</strong></div>';
 
 						    if (obj.address_road) {
 						        itemStr += '    <span>' + obj.address_road + '</span>' +
@@ -204,8 +162,7 @@
 						        itemStr += '    <span>' +  obj.address_road  + '</span>'; 
 						    }
 						                 
-						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>';
-						      itemStr += '  <span> 영업시간: ' + obj.open  + ' ~ ' + obj.close + '</span>' +
+						      itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>' +
 						                '</div>';           
 
 						    el.innerHTML = itemStr;
@@ -213,6 +170,41 @@
 						    return el;
 						}
 						
+						function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm, lat, lng) {
+
+							console.log("나 여기있소");
+							
+							console.log(lat);
+							console.log(lng);
+							
+							/*
+							function setCenter() {
+							    // 이동할 위도 경도 위치를 생성합니다 
+							    var moveLatLon = new kakao.maps.LatLng(lat, lng);
+							    
+							    // 지도 중심을 이동 시킵니다
+							    map.setCenter(moveLatLon);
+							}
+							
+							setCenter(lat, lng);
+
+							*/
+							
+							/*
+							//  마커
+							var marker = new kakao.maps.Marker({ 
+								map : kakao.maps,
+								position : mapCooder
+							});
+							*/
+						}
+/*							
+							var marker = new kakao.maps.Marker({
+							    position: mapCooder,
+							    map: naverMap.map,
+								title: ""
+							});
+*/						
 				</script>
 			</div>
 		</div>

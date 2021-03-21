@@ -19,8 +19,6 @@ public class FindStoreController {
 	
 	@GetMapping("/findStore.do")
 	public String findStoreView() {
-//		List<StoreInfoVO> info = findStoreService.findStore(keyword);
-//		model.addAttribute("findStore", info);
 		return "findStore/findStore";
 	}
 	
