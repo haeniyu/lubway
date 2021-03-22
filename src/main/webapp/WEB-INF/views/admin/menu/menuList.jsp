@@ -208,9 +208,9 @@
 							cellspacing="0">
 							<thead>
 								<tr align="center">
-									<th width="20%">Category</th>
-									<th width="20%">Menu Code</th>
-									<th width="35%">Menu Name</th>
+									<th width="20%">code</th>
+									<th width="20%">eng name</th>
+									<th width="35%">code</th>
 									<th width="25%">English Name</th>
 								</tr>
 							</thead>
@@ -221,8 +221,8 @@
 									<tr>
 										<td>${List.name}</td>
 										<td>${List.engname}</td>
-										<td><a type="hidden" href="#">${List.code}</a></td>
-										<td>${List.filePath}</td>
+										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}">${List.code}</a></td>
+										<td>${List.img}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

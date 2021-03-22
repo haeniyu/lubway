@@ -15,7 +15,7 @@
 	</resultMap>
   	<insert id="insertCookie" parameterType="cookie">
   		insert into cookie(code, name, engname,content, price,img)
-  		values(#{code},#{name}, #{engname},#{price},#{content},#{filePath})
+  		values(#{code},#{name}, #{engname},#{content},#{price},#{filePath})
   	</insert>
   	<update id="updateCookie" parameterType="cookie">
   		update cookie set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 

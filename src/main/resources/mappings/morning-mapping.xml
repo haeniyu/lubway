@@ -15,7 +15,7 @@
 	</resultMap>
   	<insert id="insertMorning" parameterType="morning">
   		insert into morning( code, name,engname, price, content, category, img)
-  		values(#{code},#{name}, #{price},#{engname},#{content}, #{category}, #{filePath})
+  		values(#{code},#{name}, #{engname}, #{price},#{engname},#{content}, #{category}, #{filePath})
   	</insert>
   	<update id="updateMorning" parameterType="morning">
   		update morning set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category#{category} 

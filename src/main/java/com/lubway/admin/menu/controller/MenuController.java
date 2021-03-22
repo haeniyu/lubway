@@ -92,7 +92,7 @@ public class MenuController {
 		return "menu/menuList";
 	}
 
-	@PostMapping("/menuListTab.mdo")
+	@GetMapping("/menuListTab.mdo")
 	public String selectList(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo, @RequestParam("select") String select) {
 		if (select.equals("cookie")) {
@@ -118,5 +118,11 @@ public class MenuController {
 			model.addAttribute("List", menuservice.selectSaladList(svo));
 		}
 		return "menu/menuList";
+	}
+	
+	@PostMapping("/menuDetail.mdo")
+	public String content() {
+		
+		return "menu/menuDetail";
 	}
 }
