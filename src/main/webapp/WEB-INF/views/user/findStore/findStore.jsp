@@ -23,8 +23,8 @@
 			<h2 id="name">매장찾기</h2>
 			<!-- 검색 -->
 			<div class="form_search">
-				<form id="mapFrm" method="POST" name="mapFrm" onsubmit="return shopMap.search()">
-					<input id="keyword" maxlength="30" placeholder="지역 또는 매장명 입력" type="text" value="">
+				<form id="mapFrm" name="mapFrm" action="javascript:searchStore();">
+					<input id="keyword" maxlength="30" placeholder="지역 입력" type="text" value="">
 					<a class="btn_search" href="#" onclick="searchStore();"></a>
 				</form>
 			</div>
@@ -34,26 +34,21 @@
 			<div class="search_result_cont" id="uiReslutCont" style="display:none;">
 				<p class="search_total">검색 결과 <strong id="uiResultCount">0</strong>건</p>
 
-				<div class="store_list_scroll mCustomScrollbar _mCS_1 mCS_no_scrollbar" style="overflow-y:auto; overflow-x:hidden; height:450px;">
-					<div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: 421px;" tabindex="0">
-						<div id="mCSB_1_container" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+				<div style="overflow-y:auto; overflow-x:hidden; height:450px;">
+					<div style="max-height: 421px;" tabindex="0">
+						<div style="position:relative; top:0; left:0;" dir="ltr">
 							<ul id="uiResultList"></ul>
 						</div>
-						<div id="mCSB_1_scrollbar_vertical" class="mCSB_scrollTools mCSB_1_scrollbar mCS-light mCSB_scrollTools_vertical" style="display: none;">
-							<div class="mCSB_draggerContainer">
-								<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; top: 0px;">
-									<div class="mCSB_dragger_bar" style="line-height: 30px;">
+						<div style="display: none;">
+							<div>
+								<div style="position: absolute; min-height: 30px; top: 0px;">
+									<div style="line-height: 30px;">
 									</div>
 								</div>
-							<div class="mCSB_draggerRail"></div>
 							</div>
 						</div>
 					</div>
 				</div>
-
-				<!-- board 페이지 -->
-				<div class="pagination" id="ui_pager"></div>
-				<!--// board 페이지 -->
 			</div>
 		</div>
 					
@@ -68,7 +63,7 @@
 						var container = document.getElementById('map');
 						var options = {
 							center : new kakao.maps.LatLng(37.56249087747179, 126.97657325145),
-							level : 3
+							level : 2
 						};
 
 						var map = new kakao.maps.Map(container, options);
@@ -79,7 +74,6 @@
 							for (var i=0; i<markers.length; i++) {
 								markers[i].setMap(null);
 						 	}  
-							console.log(data);
 							// 주소-좌표 변환 객체를 생성합니다
 							var geocoder = new kakao.maps.services.Geocoder(); 
 							var arr = data;
@@ -106,7 +100,6 @@
 											position: markerPosition
 										});
 										markers.push(marker);
-//										console.log(geocoderCount, arr.length);
 										if(geocoderCount == arr.length) createInfo(data, xpos, ypos);
 										map.setBounds(bounds);
 									}
@@ -114,6 +107,7 @@
 								}
 							}
 
+						// 검색
 						function searchStore() {
 							var keyword = $("#keyword").val().trim();
 							console.log(keyword);
@@ -122,6 +116,15 @@
 								url : '/lubway/searchStore.do?keyword=' + keyword,
 								type : 'post',
 								success : function(data) {
+									//검색결과가 없을 시
+									if(data.length == 0) {
+										// 목록 검색 결과 내역 지우기
+										while(listEl.firstChild){
+					                        listEl.removeChild(listEl.firstChild);
+					                     }
+										document.getElementById('uiResultCount').innerHTML=data.length;
+									}
+									//검색 결과 존재
 									searchTest(data);
 								},
 								error : function() {
@@ -132,28 +135,28 @@
 						
 						function createInfo(data, xpos, ypos) {
 							$("#uiReslutCont").show();
+							
+							// 목록 검색 결과 내역 지우기
 							while(listEl.firstChild){
 		                        listEl.removeChild(listEl.firstChild);
 		                     }
 							
 							for(var i=0; i<data.length; i++) {
-								console.log(data[i]);
-								var itemEl = getListItem(i, data[i], xpos, ypos);
+								var itemEl = getListItem(i, data[i], xpos[i], ypos[i]);
 								
 								fragment.appendChild(itemEl);
 								listEl.appendChild(fragment);
 								
 							}
-							
+							//검색 결과 건수 나타내기
 							document.getElementById('uiResultCount').innerHTML=data.length;
-							//var ul = document.getElementById('uiResultList');
 						}
 						
 						// 검색결과 항목을 Element로 반환하는 함수입니다
 		                  function getListItem(index, obj, xpos, ypos) {
 
 		                      var el = document.createElement('li');
-		                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos[0] + "'" + ", " + "'" + ypos[0] + "'" + ")");
+		                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos + "'" + ", " + "'" + ypos + "'" + ")");
 		                      
 		                      var itemStr = '<div class="info"> <strong>' + obj.storename + '</strong>';
 
@@ -163,7 +166,6 @@
 		                      } else {
 		                          itemStr += '    <span>' +  obj.address_road  + '</span>'; 
 		                      }
-		                                   
 		                        itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>'
 		                        itemStr += '  <span> 영업시간: ' + obj.open  + '~' + obj.close + '</span>' 
 		                                  '</div>';           
@@ -173,13 +175,56 @@
 		                      return el;
 		                  }
 						
+						// 목록 li 클릭시 실행되는 함수
 						function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm, lat, lng) {
-	
-							var mapCooder = new kakao.maps.LatLng(lng, lat);
-							map.setCenter(mapCooder);
-
+							closeOverlay();
 							
+							//지도 좌표 이동
+							var mapCooder = new kakao.maps.LatLng(lng, lat);
+							var marker = new kakao.maps.Marker({
+							    position: mapCooder
+							});
+							map.setCenter(mapCooder);
+							
+							//지도 확대 레벨 설정
+							map.setLevel(2);	
+							
+							//오버레이 내용
+							var content =
+								"<div class='store_map_layer' id='windowInfo'>" +
+								"	<div class='head'>" +
+								"		<strong>" + storeName + "</strong>" +
+								"		<a href='#none' class='btn_close' onclick='closeOverlay();'>닫기</a>" +
+								"	</div>" +
+								"	<div class='info'>" +
+								"		<dl>" +
+								"			<dt>주소</dt>" +
+								"			<dd id='ui_storeInfoLayer_addr'>" + storeAddr1 + 
+								"			</dd>" +
+								"			<dt>연락처</dt>" +
+								"			<dd>" + storeTel + "</dd>" +
+								"			<dt>영업시간</dt>" +
+								"			<dd>"+ openTm + " - " + closeTm +"</dd>" +
+								"		</dl>" +
+								"	</div>" +
+								//"	<div class='foot'>" +
+								//"		<a href='/storeDetail?franchiseNo=" + franchiseNo + "' target='blank'>주문하기</a>" +
+								//"	</div>" +
+								"</div>";
+								
+							//오버레이 띄우기
+							var customOverlay = new kakao.maps.CustomOverlay({
+							    position: marker.getPosition(),
+							    content: content,
+							    map: map
+							});
 						}
+						
+						//오버레이 닫기
+						function closeOverlay() {
+							$("#windowInfo").remove();
+						}
+						
 						
 				</script>
 			</div>

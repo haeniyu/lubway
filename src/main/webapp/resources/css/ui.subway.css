@@ -30,11 +30,11 @@
 .store_search_wrapper .store_search_layer .search_result_cont .pagination .arr.next{margin-left:27px;}
 .store_search_wrapper .store_search_layer .search_result_cont .pagination{position:absolute; left:0; width:100%; bottom:25px}
 
-.store_search_wrapper .store_map .store_map_layer{width:298px; height:243px; border:1px solid #000000; background-color:#fff; position:absolute; left:50%; top:50%; margin:-234px 0 0 -150px; z-index:0}
-.store_search_wrapper .store_map .store_map_layer:after{content:''; position:absolute; left:50%; bottom:-8px; width:12px; height:8px; margin-left:-6px; background:url(../images/subway/icon_arr_d.png) 0 0 no-repeat;}
+.store_search_wrapper .store_map .store_map_layer{width:298px; height:243px; border:1px solid #000000; background-color:#fff; position:absolute; left:50%; top:50%; margin:-290px 0 0 -150px; z-index:0}
+.store_search_wrapper .store_map .store_map_layer:after{content:''; position:absolute; left:50%; bottom:-8px; width:12px; height:8px; margin-left:-6px; background:url(../images/icon_arr_d.png) 0 0 no-repeat;}
 .store_search_wrapper .store_map .store_map_layer .head{background-color:#ffce32; position:relative; height:54px;}
-.store_search_wrapper .store_map .store_map_layer .head strong{color:#292929; font-size:18px; font-weight:300; display:block; padding:17px 0 0 23px; letter-spacing:-0.03em}
-.store_search_wrapper .store_map .store_map_layer .head .btn_close{background:url(../images/common/icon_close01.png) 50% 50% no-repeat; width:54px; height:54px; position:absolute; right:0; top:0; overflow:hidden; text-indent:-9999px; font-size:0; line-height:0}
+.store_search_wrapper .store_map .store_map_layer .head strong{color:#292929; font-size:18px; font-weight:bold; display:block; padding:17px 0 0 23px; letter-spacing:-0.03em}
+.store_search_wrapper .store_map .store_map_layer .head .btn_close{background:url(../images/icon_close01.png) 50% 50% no-repeat; width:54px; height:54px; position:absolute; right:0; top:0; overflow:hidden; text-indent:-9999px; font-size:0; line-height:0}
 .store_search_wrapper .store_map .store_map_layer .info{margin:0 24px; border-bottom:1px solid #dddddd; height:133px}
 .store_search_wrapper .store_map .store_map_layer .info dl{overflow:hidden; padding-top:23px;}
 .store_search_wrapper .store_map .store_map_layer .info dt{color:#292929; font-size:13px; float:left; height:21px; padding-left:2px; position:relative; margin-bottom:4px; letter-spacing:-0.04em}
@@ -42,7 +42,7 @@
 .store_search_wrapper .store_map .store_map_layer .info dd{color:#999999; font-size:13px; line-height:21px; margin:0 0 4px 76px; position:relative; top:-3px; letter-spacing:-0.03em; min-height:21px;}
 .store_search_wrapper .store_map .store_map_layer .foot{text-align: center; padding-top:17px;}
 .store_search_wrapper .store_map .store_map_layer .foot a{display:inline-block; color:#292929; font-size:16px; font-weight:300; letter-spacing:-0.045em;}
-.store_search_wrapper .store_map .store_map_layer .foot a:after{content:''; width:25px; height:25px; background:url(../images/common/icon_more.png) 0 0 no-repeat; display:inline-block; vertical-align:middle; margin-left:10px; position:relative; top:-2px;}
+.store_search_wrapper .store_map .store_map_layer .foot a:after{content:''; width:25px; height:25px; background:url(../images/icon_more.png) 0 0 no-repeat; display:inline-block; vertical-align:middle; margin-left:10px; position:relative; top:-2px;}
 
 
 /* 써브웨이 ::: 매장찾기 - 신규매장안내 */
