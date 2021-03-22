@@ -10,57 +10,49 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	console.log($("#mbrLgnId3").val());
-	$(".price").hide();
-	var check = "";
-	$("#mbrLgnId3").on("change", function() {
-		var selected = $(this).val();
-		console.log(selected);
-		if(selected == "sandwich") {
-			$(".form").show();
-			$(".price").hide();
-			$(".category").show();
-			$(".price15").show();
-			$(".price30").show();
-		}  else if(selected == "drink"){ 
-			$(".form").hide();
-			$(".price").show();
-			$(".category").hide();
-			$(".price15").hide();
-			$(".price30").hide();
-		} else if(selected == "wrap"){
-			$(".category").show();
-			$(".price").show();
-			$(".form").show();
-			$(".price15").hide();
-			$(".price30").hide();
-		} else if(selected == "morning"){
-			$(".category").show();
-			$(".price").show();
-			$(".form").show();
-			$(".price15").hide();
-			$(".price30").hide();
-		} else if(selected == "salad"){
-			$(".category").show();
-			$(".price").show();
-			$(".form").show();
-			$(".price15").hide();
-			$(".price30").hide();
-		} else {
-			$(".category").hide();
-			$(".form").show();
-			$(".price").show();
-			$(".price15").hide();
-			$(".price30").hide();
-		}
-		check = selected;
-	});
-	
-		var select = $("#mbrLgnId3").val();
+	var selected = '${select}';
+	console.log(selected);
+
+	if(selected == "sandwich") {
+		$(".form").show();
+		$(".price").remove();
+		$("#price").remove();
+		$(".category").show();
+		$(".price15").show();
+		$(".price30").show();
+	}  else if(selected == "drink"){ 
+		$(".form").hide();
+		$(".price").show();
+		$(".category").hide();
+		$(".price15").hide();
+		$(".price30").hide();
+	} else if(selected == "wrap"){
+		$(".category").show();
+		$(".price").show();
+		$(".form").show();
+		$(".price15").hide();
+		$(".price30").hide();
+	} else if(selected == "morning"){
+		$(".category").show();
+		$(".price").show();
+		$(".form").show();
+		$(".price15").hide();
+		$(".price30").hide();
+	} else if(selected == "salad"){
+		$(".category").show();
+		$(".price").show();
+		$(".form").show();
+		$(".price15").hide();
+		$(".price30").hide();
+	} else {
+		$(".category").hide();
+		$(".form").show();
+		$(".price").show();
+		$(".price15").hide();
+		$(".price30").hide();
+	}
+
 	//setTime();
-
-
-
 });
 </script>
 <style type="text/css">
@@ -90,8 +82,7 @@ $(document).ready(function() {
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price15"
-									id="price15" >
+								<input type="text" class="form-control" name="price15" id="price15" value="${update.price15}">
 							</div>
 						</div>
 						</div>
@@ -99,8 +90,7 @@ $(document).ready(function() {
 						<div class="mb-3" id="hyunah">
 							<label for="price30">30cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price30"
-									id="price30" >
+								<input type="text" class="form-control" name="price30" id="price30" value="${update.price30}">
 							</div>
 						</div>
 					</div>
@@ -131,8 +121,9 @@ $(document).ready(function() {
 						<div class="mb-3" id="hyunah">
 							<label for="price">가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price"
-									id="price" value="${update.price}">
+								<c:if test="${select != 'sandwich'}">
+									<input type="text" class="form-control" name="price" id="price" value="${update.price}">
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -140,8 +131,7 @@ $(document).ready(function() {
 					<div class="mb-3" id="hyunah">
 							<label for="category">카테고리</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="category"
-									id="category" >
+								<input type="text" class="form-control" name="category" id="category" value="${update.category}">
 							</div>
 						</div>
 						</div>
@@ -181,7 +171,7 @@ $(document).ready(function() {
 							<label for="pro">단백질(g)</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="pro"
-									id="pro" value="${update.pro}">
+									id="pro" value="${nutrient.pro}">
 							</div>
 						</div>
 						<div class="mb-3">

@@ -2,11 +2,7 @@ package com.lubway.admin.menu.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-import org.mybatis.spring.SqlSessionTemplate;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,9 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lubway.admin.AwsS3;
-import com.lubway.admin.board.EventVO;
-import com.lubway.admin.board.NoticeVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
 import com.lubway.admin.menu.MorningVO;
@@ -30,9 +23,7 @@ import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
-import com.lubway.admin.menu.service.CookieService;
 import com.lubway.admin.menu.service.MenuService;
-import com.lubway.admin.menu.service.SandwichService;
 
 @Controller
 public class MenuController {
@@ -85,7 +76,7 @@ public class MenuController {
 			dvo.setFilePath(filePath);
 			menuservice.insertDrink(dvo);
 		}
-		
+
 		rttr.addFlashAttribute("select","select");
 		return "redirect:/menuList.mdo";
 	}
@@ -93,6 +84,7 @@ public class MenuController {
 	@GetMapping("/menuList.mdo")
 	public String sandwichList(Model model, SandwichVO vo) throws IOException, PSQLException {
 		model.addAttribute("List", menuservice.selectSandwichList(vo));
+		model.addAttribute("select", "sandwich");
 		return "menu/menuList";
 	}
 
@@ -115,17 +107,41 @@ public class MenuController {
 		} else if (select.equals("salad")) {
 			model.addAttribute("List", menuservice.selectSaladList(svo));
 		}
-		
+
 		return "menu/menuList";
 	}
-	
+
 	@RequestMapping("/menuDetail.mdo")
 	public String content(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
-			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo ){
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
+
+		System.out.println("select : " + select);
+		model.addAttribute("select", select);
 		
-			model.addAttribute("update",menuservice.selectCookie(cvo));
-			model.addAttribute("nutrient",menuservice.selectNutrient(nvo));
-			System.out.println(menuservice.selectCookie(cvo).toString());
+		switch (select) {
+		case "sandwich" : model.addAttribute("update", menuservice.selectSandwich(Svo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "wrap"     : model.addAttribute("update", menuservice.selectWrap(wvo)); 
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "salad"    : model.addAttribute("update", menuservice.selectSalad(svo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "drink"    : model.addAttribute("update", menuservice.selectDrink(dvo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "morning"  : model.addAttribute("update", menuservice.selectMorning(mvo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "cookie"   : model.addAttribute("update", menuservice.selectCookie(cvo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		case "was"      : model.addAttribute("update", menuservice.selectWAS(wasvo));
+						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  break;
+		default         : break;
+		}
 
 		return "menu/menuDetail";
 	}

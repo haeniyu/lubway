@@ -25,7 +25,7 @@
   		delete from nutrient where no=#{no} 
   	</delete>
   	<select id="selectNutrient" resultType="nutrient">
-  		SELECT * FROM nutrient WHERE NO=#{no}
+  		SELECT * FROM nutrient WHERE code=#{code}
   	</select>
   	<select id="selectListNutrient" resultType="nutrient">
   		SELECT * FROM nutrient

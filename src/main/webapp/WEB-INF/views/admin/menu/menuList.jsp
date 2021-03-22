@@ -20,7 +20,9 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		var selected = '${select}';
-		if(selected != "") $("#select1").val(selected);
+		console.log(selected);
+		
+		if(selected != "") $("#select1").val(selected);			
 		
 		$("#select1").on("change", function() {
 			var select = $("#select1").val();
@@ -167,7 +169,7 @@
 									<tr>
 										<td>${List.name}</td>
 										<td>${List.engname}</td>
-										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}">${List.code}</a></td>
+										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}&select=${select}">${List.code}</a></td>
 										<td><img src="${List.filePath }" width="200px"></td>
 									</tr>
 								</c:forEach>
