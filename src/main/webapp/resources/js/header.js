@@ -4,9 +4,7 @@ $(document).ready(function () {
 		bodyScroll();//body scroll
 	}
 
-	if ($('div').hasClass('store_list')) {
-		$('.store_list ul').mCustomScrollbar();
-	}
+	
 
 	if ($('div').hasClass('scroll_wrap')) {
 		$('.scroll_wrap').mCustomScrollbar({

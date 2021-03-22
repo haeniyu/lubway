@@ -7,8 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findid.css" />
-<script type="text/javascript">
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
