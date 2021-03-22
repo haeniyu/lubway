@@ -3,5 +3,30 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="DrinkDAO">
-  
+  	<resultMap type="drink" id="drinkResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="engname" column="engname" />
+		<result property="price" column="price" />
+		<result property="content" column="content" />
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertDrink" parameterType="drink">
+  		insert into drink( code, name,engname, price,content, img)
+  		values(#{code},#{name},#{engname}, #{price},#{content}, #{filePath})
+  	</insert>
+  	<update id="updateDrink" parameterType="drink">
+  		update drink set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteDrink" parameterType="drink">
+  		delete from drink where no=#{no}
+  	</delete>
+  	<select id="selectDrink" resultType="drink">
+  		SELECT * FROM drink WHERE code=#{code}
+  	</select>
+  	<select id="selectListDrink" resultType="drink">
+  		SELECT * FROM drink
+  	</select>
   </mapper>

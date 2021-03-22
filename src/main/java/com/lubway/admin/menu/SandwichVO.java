@@ -11,9 +11,10 @@ public class SandwichVO {
 	private Integer no;
 	private String code;
 	private String name;
-	private String category;
-	private boolean size;
+	private String engname;
 	private String price15;
 	private String price30;
+	private String category;
+	private String content;
 	private String filePath;
 }

@@ -3,5 +3,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="SandwichDAO">
-  
+  <resultMap type="sandwich" id="sandwichResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="engname" column="engname" />
+		<result property="price15" column="price15" />
+		<result property="price30" column="price30" />
+		<result property="category" column="category"/>
+		<result property="content" column="content"/>
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertSandwich"  parameterType="sandwich">
+  		insert into sandwich(code, name, category, price15, price30, img, engname, content)
+  		values(#{code},#{name},#{category},#{price15},#{price30},#{filePath},#{engname},#{content})
+  	</insert>
+  	<update id="updateSandwich" parameterType="sandwich">
+  		update sandwich set code=#{code}, name=#{name},engname=#{engname}, 
+  		price15=#{price15} ,price30=#{price30}, size=#{size} category=#{category}
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteSandwich" parameterType="sandwich">
+  		delete from sandwich where no=#{no}
+  	</delete>
+  	<select id="selectSandwich" resultType="sandwich">
+  		SELECT * FROM sandwich WHERE code=#{code}
+  	</select>
+  	<select id="selectListSandwich" resultType="sandwich">
+  		SELECT * FROM sandwich 
+  	</select>
   </mapper>

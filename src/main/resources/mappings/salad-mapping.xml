@@ -3,5 +3,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="SaladDAO">
-  
+  	<resultMap type="salad" id="saladResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="engname" column="engname" />
+		<result property="category" column="category"/>
+		<result property="price" column="price" />
+		<result property="content" column="content" />
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertSalad" parameterType="salad">
+  		insert into salad( code, name,engname, category, price,content, img)
+  		values (#{code}, #{name},#{engname}, #{category}, #{price},#{content}, #{filePath})
+  	</insert>
+  	<update id="updateSalad" parameterType="salad">
+  		update salad set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteSalad" parameterType="salad">
+  		delete from salad where no=#{no}
+  	</delete>
+  	<select id="selectSalad" resultType="salad">
+  		SELECT * FROM salad WHERE code=#{code}
+  	</select>
+  	<select id="selectListSalad" resultType="salad">
+  		SELECT * FROM salad
+  	</select>
   </mapper>

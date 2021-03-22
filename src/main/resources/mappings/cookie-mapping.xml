@@ -4,4 +4,30 @@
 
   <mapper namespace="CookieDAO">
   
+  <resultMap type="cookie" id="cookieResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="engname" column="engname" />
+		<result property="price" column="price" />
+		<result property="content" column="content" />
+		<result property="filePath" column="filePath" />
+	</resultMap>
+  	<insert id="insertCookie" parameterType="cookie">
+  		insert into cookie(code, name, engname,content, price,img)
+  		values(#{code},#{name}, #{engname},#{content},#{price},#{filePath})
+  	</insert>
+  	<update id="updateCookie" parameterType="cookie">
+  		update cookie set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
+  		where no=#{no}
+  	</update>
+  	<delete id="deleteCookie" parameterType="cookie">
+  		delete from cookie where no=#{no}
+  	</delete>
+  	<select id="selectCookie" resultType="cookie">
+  		SELECT * FROM cookie WHERE code=#{code}
+  	</select>
+  	<select id="selectListCookie" resultType="cookie">
+  		SELECT * FROM cookie
+  	</select>
   </mapper>
