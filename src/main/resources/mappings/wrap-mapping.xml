@@ -11,14 +11,14 @@
 		<result property="price" column="price" />
 		<result property="category" column="category"/>
 		<result property="content" column="content"/>
-		<result property="filePath" column="filePath" />
+		<result property="filePath" column="filepath" />
 	</resultMap>
   	<insert id="insertWrap" parameterType="wrap">
-  		insert into wrap( code, name,engname, price, category,content, filePath)
+  		insert into wrap( code, name,engname, price, category,content, filepath)
   		values(#{code},#{name},#{engname}, #{price}, #{category},#{content}, #{filePath})
   	</insert>
   	<update id="updateWrap" parameterType="wrap">
-  		update wrap set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category=#{category}, content=#{content}, filePath=#{filePath}
+  		update wrap set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category=#{category}, content=#{content}, filepath=#{filePath}
   		where code=#{code}
   	</update>
   	<delete id="deleteWrap" parameterType="wrap">

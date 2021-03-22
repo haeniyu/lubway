@@ -11,14 +11,14 @@
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
 		<result property="content" column="content" />
-		<result property="filePath" column="filePath" />
+		<result property="filePath" column="filepath" />
 	</resultMap>
   	<insert id="insertCookie" parameterType="cookie">
-  		insert into cookie(code, name, engname, content, price, filePath)
+  		insert into cookie(code, name, engname, content, price, filepath)
   		values(#{code},#{name}, #{engname},#{content},#{price},#{filePath})
   	</insert>
   	<update id="updateCookie" parameterType="cookie">
-  		update cookie set code=#{code}, name=#{name}, engname=#{engname}, content=#{content}, price=#{price}, filePath=#{filePath} 
+  		update cookie set code=#{code}, name=#{name}, engname=#{engname}, content=#{content}, price=#{price}, filepath=#{filePath} 
   		where code=#{code}
   	</update>
   	<delete id="deleteCookie" parameterType="cookie">

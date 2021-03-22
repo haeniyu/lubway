@@ -124,17 +124,7 @@
 
 					</form>
 
-					<div align="right" style="display: inline;">
-						<form action="/lubway/selectCategory.mdo" method="get">
-							<tr>
-								<td><input type="text" name="searchKeyword"
-									placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-									style="margin: 3px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="submit"
-									value="search" /></td>
-							</tr>
-						</form>
-					</div>
+					
 
 					<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 					<!-- pagination{s} -->
