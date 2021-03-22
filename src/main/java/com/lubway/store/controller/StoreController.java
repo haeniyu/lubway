@@ -3,6 +3,8 @@ package com.lubway.store.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -96,6 +98,25 @@ public class StoreController {
 
 		store.setOpen(open);
 		store.setClose(close);
+	public String update(@RequestParam("openTime") String openTime, @RequestParam("closeTime") String closeTime,
+			@RequestParam("morning_usable") boolean morning, @RequestParam("fastway_usable") boolean fastway,
+			@RequestParam("homeway_usable") boolean homeway, HttpSession session) {
+
+		StoreInfoVO store = (StoreInfoVO) session.getAttribute("storeinfo");
+
+		// 이벤트 기간 수정 여부
+		if (!openTime.equals("")) {
+			System.out.println("오픈 시간 수정");
+			Time open = Time.valueOf(openTime + ":00");
+			store.setOpen(open);
+		}
+		
+		if (!closeTime.equals("")) {
+			System.out.println("종료 시간 수정");
+			Time close = Time.valueOf(closeTime + ":00");
+			store.setClose(close);
+		}
+		
 		store.setMorning_usable(morning);
 		store.setFastway_usable(fastway);
 		store.setHomeway_usable(homeway);

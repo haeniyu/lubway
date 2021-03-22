@@ -139,9 +139,9 @@ $(document).ready(function(){
 						<input type="checkbox" id="morning_usable" name="service" value="morning_usable">
 							<label for="morning_usable">아침메뉴</label>&nbsp;&nbsp;&nbsp;
 						<input type="checkbox" id="fastway_usable" name="service" value="fastway_usable">
-							<label for="morning_usable">FASTWAY</label>&nbsp;&nbsp;&nbsp;
+							<label for="fastway_usable">FASTWAY</label>&nbsp;&nbsp;&nbsp;
 						<input type="checkbox" id="homeway_usable" name="service" value="homeway_usable">
-							<label for="morning_usable">HOMEWAY</label>
+							<label for="homeway_usable">HOMEWAY</label>
 						</div>
 					</div>
 					<hr>
