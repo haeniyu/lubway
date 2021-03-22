@@ -69,6 +69,7 @@
 						var map = new kakao.maps.Map(container, options);
 	
 						function searchTest(data) {
+							closeOverlay();
 							var xpos = [];
 							var ypos = [];
 							for (var i=0; i<markers.length; i++) {
@@ -168,10 +169,17 @@
 		                      }
 		                        itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>'
 		                        itemStr += '  <span> 영업시간: ' + obj.open  + '~' + obj.close + '</span>' 
-		                                  '</div>';           
-
+		                                  '</div>';
+		                                  
+		                       var itemStr2 = '<div class="service">';
+		                       if(obj.fastway_usable) itemStr2 += '<span>Fast-Way</span>';
+		                       if(obj.homeway_usable) itemStr2 += '<span>Home-Way</span>';
+		                       if(obj.morning_usable) itemStr2 += '<span>아침메뉴</span>';
+		                       itemStr2 += '</div>';
+										                                  
 		                      el.innerHTML = itemStr;
-
+							  el.innerHTML += itemStr2;
+		                      
 		                      return el;
 		                  }
 						
