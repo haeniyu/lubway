@@ -96,9 +96,10 @@ public class MenuController {
 		return "menu/menuList";
 	}
 
-	@GetMapping("/menuListTab.mdo")
+	@PostMapping("/menuListTab.mdo")
 	public String selectList(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
-			MorningVO mvo, DrinkVO dvo, @RequestParam("select") String select) {
+			MorningVO mvo, DrinkVO dvo, String select) {
+		model.addAttribute("select", select);
 		if (select.equals("cookie")) {
 			model.addAttribute("List", menuservice.selectCookieList(cvo));
 		} else if (select.equals("sandwich")) {

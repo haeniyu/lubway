@@ -19,78 +19,27 @@
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-		$("#select1").val("sandwich").prop("selected", true);
+		var selected = '${select}';
+		if(selected != "") $("#select1").val(selected);
 		
 		$("#select1").on("change", function() {
 			var select = $("#select1").val();
+			console.log(select);
+
+			var form = document.createElement("form");
+
+			form.setAttribute("method", "post");
+			form.setAttribute("action", "menuListTab.mdo");
+
+			var input_select = document.createElement("input");
+			input_select.setAttribute("type", "hidden");
+			input_select.setAttribute("name", "select");
+			input_select.setAttribute("value", select);
+
+			form.appendChild(input_select);
+			document.body.appendChild(form);
+			form.submit();
 			
-			var url = "${pageContext.request.contextPath}/menuListTab.mdo"
-			if(select == "sandwich"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();	
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "drink"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "wrap"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "was"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "salad"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "morning"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}else if(select == "cookie"){
-				$.ajax({
-					url : 'menuListTab.mdo?select=' + select,
-					type : 'get',
-					data : select,
-				});
-				select = $(this).val();
-				url = url + "?select=" + select;
-				location.href = url;
-			}
-			
-			var select = $("#select1").val();
 		});
 
 	});
@@ -172,9 +121,8 @@
 				<div class="col-sm-3">
 					<div class="small mb-1"></div>
 					<div class="dropdown mb-4">
-						<span class="form_select" style="width: 300px"> <select
-							class="btn btn-primary dropdown-toggle" id="select1"
-							name="select" style="width: 150px">
+						<span class="form_select" style="width: 300px">
+						<select class="btn btn-primary dropdown-toggle" id="select1" name="select" style="width: 150px">
 								<option value="sandwich">샌드위치</option>
 								<option value="wrap">랩&파니니</option>
 								<option value="salad">찹샐러드</option>
@@ -220,7 +168,7 @@
 										<td>${List.name}</td>
 										<td>${List.engname}</td>
 										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}">${List.code}</a></td>
-										<td>${List.filePath}</td>
+										<td><img src="${List.filePath }" width="200px"></td>
 									</tr>
 								</c:forEach>
 							</tbody>

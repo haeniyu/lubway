@@ -93,7 +93,7 @@
 			</a></li>
 
 			<!-- Nav Item - 메뉴관리 -->
-			<li class="nav-item"><a class="nav-link" href="#">
+			<li class="nav-item"><a class="nav-link" href="/lubway/menuList.mdo">
 					<i class="fas fa-fw fa-table"></i> <span>메뉴관리</span>
 			</a></li>
 
