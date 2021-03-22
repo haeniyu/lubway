@@ -119,16 +119,18 @@ public class EventController {
 		String thumbKey = thumb.getOriginalFilename();
 		String contentTypeT = thumb.getContentType();
 		long contentLengthT = thumb.getSize();
-		awss3.upload(isT, thumbKey, contentTypeT, contentLengthT);
+		String bucket = "lubway/event";
+		
+		awss3.upload(isT, thumbKey, contentTypeT, contentLengthT, bucket);
 
 		InputStream isC = cont.getInputStream();
 		String contentKey = cont.getOriginalFilename();
 		String contentTypeC = cont.getContentType();
 		long contentLengthC = cont.getSize();
-		awss3.upload(isC, contentKey, contentTypeC, contentLengthC);
+		awss3.upload(isC, contentKey, contentTypeC, contentLengthC, bucket);
 		
-		String thumbnailFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + thumbKey;
-		String contentFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + contentKey;
+		String thumbnailFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/event/" + thumbKey;
+		String contentFile = "https://lubway.s3.ap-northeast-2.amazonaws.com/event/" + contentKey;
 
 		vo.setThumbnail(thumbnailFile);
 		vo.setContimg(contentFile);

@@ -48,7 +48,8 @@ public class MenuController {
 		String key = multipart.getOriginalFilename();
 		String contentType = multipart.getContentType();
 		long contentLength = multipart.getSize();
-		awss3.upload(is, key, contentType, contentLength);
+		String bucket = "lubway/menu";
+		awss3.upload(is, key, contentType, contentLength, bucket);
 
 		String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + key;
 
@@ -121,6 +122,7 @@ public class MenuController {
 		switch (select) {
 		case "sandwich" : model.addAttribute("update", menuservice.selectSandwich(Svo));
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  System.out.println(menuservice.selectSandwich(Svo).getFilePath());
 						  break;
 		case "wrap"     : model.addAttribute("update", menuservice.selectWrap(wvo)); 
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));

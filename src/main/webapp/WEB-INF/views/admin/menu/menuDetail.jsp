@@ -178,6 +178,7 @@ $(document).ready(function() {
                      <div>
                         <div class="index">이미지</div>
                         <input type="file" name="uploadImg" id="uploadImg" multiple/>
+                        <img src="${update.filePath}">
                      </div>
               
 					</div>

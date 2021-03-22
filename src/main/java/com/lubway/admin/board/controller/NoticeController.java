@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
-
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,9 +57,12 @@ public class NoticeController {
 			String key = multipart.getOriginalFilename();
 			String contentType = multipart.getContentType();
 			long contentLength = multipart.getSize();
-			awss3.upload(is, key, contentType, contentLength);
+			
+			String bucket = "lubway/notice";
+			
+			awss3.upload(is, key, contentType, contentLength, bucket);
 
-			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/" + key;
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/notice/" + key;
 
 			vo.setFilePath(filePath);
 		}
