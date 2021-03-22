@@ -1,9 +1,10 @@
-package com.lubway.user.service;
+package com.lubway.user;
 
 import java.util.List;
 
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.MorningVO;
@@ -11,76 +12,61 @@ import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
-import com.lubway.user.UserMenuDAO;
 
-@Service
-public class UserMenuServiceImpl implements UserMenuService {
+@Repository
+public class UserMenuDAO {
 
 	@Autowired
-	private UserMenuDAO userMenuDAO;
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/** 메뉴 페이지(샌드위치) */
-	@Override
 	public List<SandwichVO> getSandwichList() {
-		return userMenuDAO.getSandwichList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSandwichList");
 	}
 	/** 메뉴 페이지(샌드위치 - 칼로리) */
-	@Override
 	public List<String> getSandwichCalList() {
-		return userMenuDAO.getSandwichCalList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSandwichCalList");
 	}
 
 	/** 메뉴 페이지(랩) */
-	@Override
 	public List<WrapVO> getWrapList() {
-		return userMenuDAO.getWrapList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getWrapList");
 	}
 	/** 메뉴 페이지(랩 - 칼로리) */
-	@Override
 	public List<String> getWrapCalList() {
-		return userMenuDAO.getWrapCalList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getWrapCalList");
 	}
-
+	
 	/** 메뉴 페이지(찹샐러드) */
-	@Override
 	public List<SaladVO> getSaladList() {
-		return userMenuDAO.getSaladList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSaladList");
 	}
 	/** 메뉴 페이지(찹샐러드 - 칼로리) */
-	@Override
 	public List<String> getSaladCalList() {
-		return userMenuDAO.getSaladCalList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSaladCalList");
 	}
-	
 	
 	/**	메뉴 페이지(아침메뉴) */
-	@Override
 	public List<MorningVO> getMorningList() {
-		return userMenuDAO.getMorningList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getMorningList");
 	}
 	/**	메뉴 페이지(아침메뉴 - 칼로리) */
-	@Override
 	public List<String> getMorningCalList() {
-		return userMenuDAO.getMorningCalList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getMorningCalList");
 	}
 	
 	/**	메뉴 페이지(스마일 웨이) */
-	@Override
 	public List<CookieVO> getSmileWayCookieList() {
-		return userMenuDAO.getSmileWayCookieList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayCookieList");
 	}
-	@Override
 	public List<WedgeAndSoupVO> getSmileWayWASList() {
-		return userMenuDAO.getSmileWayWASList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayWASList");
 	}
 	/**	메뉴 페이지(스마일 웨이 - 칼로리) */
-	@Override
 	public List<String> getSmileWayCookieCalList() {
-		return userMenuDAO.getSmileWayCookieCalList();
-	}	
-	@Override
-	public List<String> getSmileWayWASCalList() {
-		return userMenuDAO.getSmileWayWASCalList();
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayCookieCalList");
 	}
-
+	public List<String> getSmileWayWASCalList() {
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayWASCalList");
+	}
 }

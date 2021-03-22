@@ -5,32 +5,12 @@
 <head>
 <meta charset="UTF-8">
 <title>LUBWAY - 샌드위치</title>
-		<link rel="stylesheet" href="resources/css/step01.css">
-		<link rel="stylesheet" href="resources/css/menu.css?v=2">
-        <script type="text/javascript" src="resources/js/jquery/jquery-1.12.4.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery-ui-1.12.0.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery.easing.1.3.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery.bxslider.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery.mCustomScrollbar.concat.min.js?v=2021031101"></script>
-        <!-- block ui -->
-        <script type="text/javascript" src="resources/js/jquery/jquery.blockUI.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/TweenMax.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery.cookie.js?v=2021031101"></script>
-        <!--<script type="text/javascript" th:src="'/js/lottie.js?v=' + ${cacheParam}"></script>-->
-        <script type="text/javascript" src="resources/js/ui.common.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/subway.common.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/util/jsrender.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/jquery/jquery.tmpl.min.js?v=2021031101"></script>
-        <script type="text/javascript" src="resources/js/waffle/waffle.utils.js?v=2021031101"></script>
+<link rel="stylesheet" href="resources/css/step01.css">
+<link rel="stylesheet" href="resources/css/menu.css">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<div id="wrap">
-		<!-- inc header s -->
-				<!--// gnb -->
-				<!-- util menu -->
-				<!--// util menu -->
-		<!--// inc header e -->
 		<!-- container s -->
 		<div id="container">
 			<div class="sub_header type01">
@@ -66,21 +46,19 @@
 						<div class="img01"></div>
 					</div>
 					<!--// 상품 visual -->
-					<!-- 상품별 정렬 tab -->
 					<div class="pd_tab"></div>
-					<!--// 상품별 정렬 tab -->
 
 					<!-- 상품목록 -->
 					<div class="pd_list_wrapper">
 						<ul>
-							<c:forEach items="${list}" var="list">
+							<c:forEach var="list" items="${list}" varStatus="status">
 								<li>
 									<div class="img">
 										<img alt="${list.name}" src="${list.filePath}" />
 									</div>
 									<strong class="tit">${list.name}</strong>
 									<span class="eng">${list.engname}</span>
-									<span class="cal">420 kcal</span>
+									<span class="cal">${calList[status.index]} kcal</span>
 									<div class="summary">
 										<p>${list.content}</p>
 									</div>
@@ -88,13 +66,6 @@
 								</li>
 							</c:forEach>
 						</ul>
-						<!-- 영양성분표 -->
-						<div class="btns_list_wrapper" style="display: none;">
-							<a class="btn_list_pop btn bgc_point i_arr" href="/toppingNutritionFacts" link-type="popup" onclick="popup_open(this,900,740); return false;" style="width: 180px;">
-								<span>영양 성분표 보기</span>
-							</a>
-						</div>
-						<!--// 영양성분표 -->
 					</div>
 					<!--// 상품목록 -->
 				</div>
@@ -103,7 +74,6 @@
 			<!--// sub content e -->
 		</div>
 	</div>
-
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
