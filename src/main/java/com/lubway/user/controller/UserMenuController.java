@@ -1,13 +1,23 @@
 package com.lubway.user.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.lubway.user.service.UserMenuService;
 
 @Controller
 public class UserMenuController {
 
+	@Autowired
+	private UserMenuService userMenuService;
+	
 	@GetMapping("/menuSandwich.do")
-	public String menuSandwich() {
+	public String menuSandwich(Model model) {
+		
+		model.addAttribute("list", userMenuService.getSandwichList());
+		
 		return "menu/menuSandwich";
 	}
 	

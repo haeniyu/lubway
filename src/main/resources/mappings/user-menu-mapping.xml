@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="UserMenuDAO">
+  <resultMap type="sandwich" id="sandwichResult">
+		<id property="no" column="NO" />
+		<result property="code" column="code" />
+		<result property="name" column="name" />
+		<result property="engname" column="engname" />
+		<result property="price15" column="price15" />
+		<result property="price30" column="price30" />
+		<result property="category" column="category"/>
+		<result property="content" column="content"/>
+		<result property="filePath" column="filePath" />
+	</resultMap>
+	
+	<select id="getSandwichList" resultType="sandwich">
+		SELECT * FROM sandwich
+	</select>
+	
+	</mapper>
