@@ -20,11 +20,11 @@
   	</insert>
   	<update id="updateSandwich" parameterType="sandwich">
   		update sandwich set code=#{code}, name=#{name},engname=#{engname}, 
-  		price15=#{price15} ,price30=#{price30}, size=#{size} category=#{category}
-  		where no=#{no}
+  		price15=#{price15} ,price30=#{price30}, category=#{category}, content=#{content}, filepath=#{filePath}
+  		where code=#{code}
   	</update>
   	<delete id="deleteSandwich" parameterType="sandwich">
-  		delete from sandwich where no=#{no}
+  		delete from sandwich where code=#{code}
   	</delete>
   	<select id="selectSandwich" resultType="sandwich">
   		SELECT * FROM sandwich WHERE code=#{code}

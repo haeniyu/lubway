@@ -14,15 +14,15 @@
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertWrap" parameterType="wrap">
-  		insert into wrap( code, name,engname, price, category,content, img)
+  		insert into wrap( code, name,engname, price, category,content, filePath)
   		values(#{code},#{name},#{engname}, #{price}, #{category},#{content}, #{filePath})
   	</insert>
   	<update id="updateWrap" parameterType="wrap">
-  		update wrap set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category=#{category} 
-  		where no=#{no}
+  		update wrap set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category=#{category}, content=#{content}, filePath=#{filePath}
+  		where code=#{code}
   	</update>
   	<delete id="deleteWrap" parameterType="wrap">
-  		delete from wrap where no=#{no}
+  		delete from wrap where code=#{code}
   	</delete>
   	<select id="selectWrap" resultType="wrap">
   		SELECT * FROM wrap WHERE code=#{code}

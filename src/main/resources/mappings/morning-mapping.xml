@@ -14,15 +14,15 @@
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertMorning" parameterType="morning">
-  		insert into morning( code, name,engname, price, content, category, img)
-  		values(#{code},#{name}, #{engname}, #{price},#{engname},#{content}, #{category}, #{filePath})
+  		insert into morning( code, name,engname, price, content, category, filePath)
+  		values(#{code},#{name}, #{engname}, #{price}, #{content}, #{category}, #{filePath})
   	</insert>
   	<update id="updateMorning" parameterType="morning">
-  		update morning set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, category#{category} 
-  		where no=#{no}
+  		update morning set code=#{code}, name=#{name}, engname=#{engname}, price=#{price}, category=#{category}, content=#{content},filePath=#{filePath}
+  		where code=#{code}
   	</update>
   	<delete id="deleteMorning" parameterType="morning">
-  		delete from morning where no=#{no}
+  		delete from morning where code=#{code}
   	</delete>
   	<select id="selectMorning" resultType="morning">
   		SELECT * FROM morning WHERE code=#{code}

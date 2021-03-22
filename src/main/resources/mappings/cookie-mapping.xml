@@ -14,15 +14,15 @@
 		<result property="filePath" column="filePath" />
 	</resultMap>
   	<insert id="insertCookie" parameterType="cookie">
-  		insert into cookie(code, name, engname,content, price,img)
+  		insert into cookie(code, name, engname, content, price, filePath)
   		values(#{code},#{name}, #{engname},#{content},#{price},#{filePath})
   	</insert>
   	<update id="updateCookie" parameterType="cookie">
-  		update cookie set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
-  		where no=#{no}
+  		update cookie set code=#{code}, name=#{name}, engname=#{engname}, content=#{content}, price=#{price}, filePath=#{filePath} 
+  		where code=#{code}
   	</update>
   	<delete id="deleteCookie" parameterType="cookie">
-  		delete from cookie where no=#{no}
+  		delete from cookie where code=#{code}
   	</delete>
   	<select id="selectCookie" resultType="cookie">
   		SELECT * FROM cookie WHERE code=#{code}
