@@ -3,8 +3,6 @@ package com.lubway.store.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -86,20 +84,8 @@ public class StoreController {
 	}
 
 	@RequestMapping("/update.sdo")
-	public String update(@RequestParam("openTime") String openTime, 
-			@RequestParam("closeTime") String closeTime, @RequestParam("morning_usable") boolean morning, 
-			@RequestParam("fastway_usable") boolean fastway, @RequestParam("homeway_usable") boolean homeway,
-			HttpSession session) {
-
-		StoreInfoVO store = (StoreInfoVO) session.getAttribute("storeinfo");
-
-		Time open = Time.valueOf(openTime+":00");
-		Time close = Time.valueOf(closeTime+":00");
-
-		store.setOpen(open);
-		store.setClose(close);
-	public String update(@RequestParam("openTime") String openTime, @RequestParam("closeTime") String closeTime,
-			@RequestParam("morning_usable") boolean morning, @RequestParam("fastway_usable") boolean fastway,
+	public String update(@RequestParam("openTime") String openTime, @RequestParam("closeTime") String closeTime, 
+			@RequestParam("morning_usable") boolean morning, @RequestParam("fastway_usable") boolean fastway, 
 			@RequestParam("homeway_usable") boolean homeway, HttpSession session) {
 
 		StoreInfoVO store = (StoreInfoVO) session.getAttribute("storeinfo");
