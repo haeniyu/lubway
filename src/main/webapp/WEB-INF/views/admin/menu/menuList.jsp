@@ -222,7 +222,7 @@
 										<td>${List.name}</td>
 										<td>${List.engname}</td>
 										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}">${List.code}</a></td>
-										<td>${List.img}</td>
+										<td>${List.filePath}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
