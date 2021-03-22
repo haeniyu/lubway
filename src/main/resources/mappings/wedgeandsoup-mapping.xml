@@ -26,7 +26,7 @@
   		delete from wedgeandsoup where no=#{no}
   	</delete>
   	<select id="selectWAS" resultType="wedgeandsoup">
-  		SELECT * FROM wedgeandsoup WHERE NO=#{no}
+  		SELECT * FROM wedgeandsoup WHERE code=#{code}
   	</select>
   	<select id="selectListWAS" resultType="wedgeandsoup">
   		SELECT * FROM wedgeandsoup

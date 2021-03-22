@@ -1,23 +1,14 @@
 package com.lubway.admin.menu.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.lubway.admin.board.NoticeVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.admin.menu.CookieDAO;
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkDAO;
 import com.lubway.admin.menu.DrinkVO;
-import com.lubway.admin.menu.MenuPagination;
 import com.lubway.admin.menu.MorningDAO;
 import com.lubway.admin.menu.MorningVO;
 import com.lubway.admin.menu.NutrientDAO;
@@ -133,9 +124,52 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void selectNutrient(NutrientVO vo) {
-		nutrientDAO.getNutrient(vo);
+	public List<NutrientVO> selectNutrientList(NutrientVO nvo) {
+		return nutrientDAO.getNutrientList(nvo);
 	}
+
+	@Override
+	public SandwichVO selectSandwich(SandwichVO vo) {
+		return sandwichDAO.getSandwich(vo);
+	}
+
+	@Override
+	public CookieVO selectCookie(CookieVO vo) {
+		return cookieDAO.getCookie(vo);
+	}
+
+	@Override
+	public MorningVO selectMorning(MorningVO vo) {
+		return morningDAO.getMorning(vo);
+	}
+
+	@Override
+	public DrinkVO selectDrink(DrinkVO vo) {
+		return drinkDAO.getDrink(vo);
+	}
+
+	@Override
+	public WedgeAndSoupVO selectWAS(WedgeAndSoupVO vo) {
+		return wedgeandsoupDAO.getWedgeAndSoup(vo);
+	}
+
+	@Override
+	public SaladVO selectSalad(SaladVO vo) {
+		return saladDAO.getSalad(vo);
+	}
+
+	@Override
+	public WrapVO selectWrap(WrapVO vo) {
+		return wrapDAO.getWrap(vo);
+	}
+
+
+	@Override
+	public NutrientVO selectNutrient(NutrientVO vo) {
+		
+		return nutrientDAO.getNutrient(vo);
+	}
+
 
 
 

@@ -27,7 +27,7 @@
   		delete from sandwich where no=#{no}
   	</delete>
   	<select id="selectSandwich" resultType="sandwich">
-  		SELECT * FROM sandwich WHERE NO=#{no}
+  		SELECT * FROM sandwich WHERE code=#{code}
   	</select>
   	<select id="selectListSandwich" resultType="sandwich">
   		SELECT * FROM sandwich 

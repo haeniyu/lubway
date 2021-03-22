@@ -25,7 +25,7 @@
   		delete from morning where no=#{no}
   	</delete>
   	<select id="selectMorning" resultType="morning">
-  		SELECT * FROM morning WHERE NO=#{no}
+  		SELECT * FROM morning WHERE code=#{code}
   	</select>
   	<select id="selectListMorning" resultType="morning">
   		SELECT * FROM morning

@@ -90,10 +90,8 @@
 				location.href = url;
 			}
 			
-			console.log(select);
+			var select = $("#select1").val();
 		});
-		
-		
 
 	});
 </script>
@@ -208,10 +206,10 @@
 							cellspacing="0">
 							<thead>
 								<tr align="center">
-									<th width="20%">code</th>
+									<th width="35%">name</th>
 									<th width="20%">eng name</th>
-									<th width="35%">code</th>
-									<th width="25%">English Name</th>
+									<th width="20%">code</th>
+									<th width="25%">file</th>
 								</tr>
 							</thead>
 

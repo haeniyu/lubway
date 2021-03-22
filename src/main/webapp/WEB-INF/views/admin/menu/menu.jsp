@@ -449,7 +449,7 @@
 					</div>
 
 					<div>
-						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" onclick="insert()" >저장</button>
+						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
 					</div>
 				</div>
 			</form>

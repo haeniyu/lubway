@@ -24,7 +24,7 @@
   		delete from drink where no=#{no}
   	</delete>
   	<select id="selectDrink" resultType="drink">
-  		SELECT * FROM drink WHERE NO=#{no}
+  		SELECT * FROM drink WHERE code=#{code}
   	</select>
   	<select id="selectListDrink" resultType="drink">
   		SELECT * FROM drink

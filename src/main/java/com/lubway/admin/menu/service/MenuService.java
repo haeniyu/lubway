@@ -26,8 +26,16 @@ public interface MenuService {
 	List<WedgeAndSoupVO>selectWASList(WedgeAndSoupVO vo);
 	List<SaladVO>selectSaladList(SaladVO vo);
 	List<WrapVO>selectWrapList(WrapVO vo);
-	void selectNutrient(NutrientVO vo);
-
+	List<NutrientVO>selectNutrientList(NutrientVO nvo);
+	SandwichVO selectSandwich(SandwichVO vo);
+	CookieVO selectCookie(CookieVO vo);
+	MorningVO selectMorning(MorningVO vo);
+	DrinkVO selectDrink(DrinkVO vo);
+	WedgeAndSoupVO selectWAS(WedgeAndSoupVO vo);
+	SaladVO selectSalad(SaladVO vo);
+	WrapVO selectWrap(WrapVO vo);
+	NutrientVO selectNutrient(NutrientVO vo);
+	
 	
 
 	
