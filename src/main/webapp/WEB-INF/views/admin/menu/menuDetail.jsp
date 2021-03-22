@@ -14,42 +14,25 @@ $(document).ready(function() {
 	console.log(selected);
 
 	if(selected == "sandwich") {
-		$(".form").show();
 		$(".price").remove();
-		$("#price").remove();
-		$(".category").show();
-		$(".price15").show();
-		$(".price30").show();
 	}  else if(selected == "drink"){ 
-		$(".form").hide();
-		$(".price").show();
-		$(".category").hide();
-		$(".price15").hide();
-		$(".price30").hide();
+		$(".form").remove();
+		$(".category").remove();
+		$(".price15").remove();
+		$(".price30").remove();
 	} else if(selected == "wrap"){
-		$(".category").show();
-		$(".price").show();
-		$(".form").show();
-		$(".price15").hide();
-		$(".price30").hide();
+		$(".price15").remove();
+		$(".price30").remove();
 	} else if(selected == "morning"){
-		$(".category").show();
-		$(".price").show();
-		$(".form").show();
-		$(".price15").hide();
-		$(".price30").hide();
+		$(".price15").remove();
+		$(".price30").remove();
 	} else if(selected == "salad"){
-		$(".category").show();
-		$(".price").show();
-		$(".form").show();
-		$(".price15").hide();
-		$(".price30").hide();
+		$(".price15").remove();
+		$(".price30").remove();
 	} else {
 		$(".category").hide();
-		$(".form").show();
-		$(".price").show();
-		$(".price15").hide();
-		$(".price30").hide();
+		$(".price15").remove();
+		$(".price30").remove();
 	}
 
 	//setTime();
