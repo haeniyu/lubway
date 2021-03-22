@@ -32,11 +32,11 @@
 						<a class="dp1" href="#none">메뉴소개</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/menu.do">샌드위치</a></li>
-								<li><a href="/wrapList">랩ㆍ기타</a></li>
-								<li><a href="/saladList">찹샐러드</a></li>
-								<li><a href="/morningList">아침메뉴</a></li>
-								<li><a href="/sideDrink">스마일 썹</a></li>
+								<li><a href="/lubway/menuSandwich.do">샌드위치</a></li>
+								<li><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
+								<li><a href="/lubway/menuSalad.do">찹샐러드</a></li>
+								<li><a href="/lubway/menuMorning.do">아침메뉴</a></li>
+								<li><a href="/lubway/menuSmileWay.do">스마일 웨이</a></li>
 							</ul>
 						</div>
 					</li>
