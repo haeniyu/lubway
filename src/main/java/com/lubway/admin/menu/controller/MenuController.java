@@ -3,6 +3,7 @@ package com.lubway.admin.menu.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.ibatis.logging.LogException;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -118,7 +119,7 @@ public class MenuController {
 
 		System.out.println("select : " + select);
 		model.addAttribute("select", select);
-		
+		model.addAttribute("code",code);
 		switch (select) {
 		case "sandwich" : model.addAttribute("update", menuservice.selectSandwich(Svo));
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
@@ -146,5 +147,83 @@ public class MenuController {
 		}
 
 		return "menu/menuDetail";
+	}
+	
+	@PostMapping("/menuUpdate.mdo")
+	String update(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code,String select,String filepath) throws PSQLException, LogException{
+		
+		
+		System.out.println();
+		System.out.println();
+		System.out.println(filepath);
+		System.out.println(select);
+		System.out.println(code);
+		System.out.println("들어옴");
+		System.out.println(dvo.toString());
+		System.out.println(menuservice.selectDrink(dvo).toString());
+		menuservice.updateDrink(dvo);
+		switch (select) {
+		case "sandwich" : menuservice.updateSandwich(nvo, Svo);
+						  System.out.println("sandwich: 들어옴");
+						  break;
+		case "wrap"     : menuservice.updateWrap(nvo, wvo);
+						  System.out.println("wrap: 들어옴");
+						  break;
+		case "salad"    : menuservice.updateSalad(nvo, svo);
+						  System.out.println("salad: 들어옴");
+						  break;
+		case "drink"    : menuservice.updateDrink(dvo);
+						  System.out.println("drink: 들어옴");
+						  break;
+		case "morning"  : menuservice.updateMorning(nvo, mvo);
+						  System.out.println("morning: 들어옴");
+						  break;
+		case "cookie"   : menuservice.updateCookie(nvo, cvo);
+						  System.out.println("cookie: 들어옴");
+						  break;
+		case "was"      : menuservice.updateWAS(nvo, wasvo);
+						  System.out.println("was: 들어옴");
+						  break;
+		default         : break;
+		}
+		
+		System.out.println("수정완료");
+		
+		return "menu/menuList";
+	}
+	@PostMapping("/menuDelete.mdo")
+	String delete(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
+		System.out.println(select);
+		System.out.println(code);
+		System.out.println("들어옴");
+		
+		
+		switch (select) { 
+		case "sandwich" : menuservice.deleteSandwich(nvo, Svo);
+						  System.out.println("sandwich: 들어옴");
+						  break;
+		case "wrap"     : menuservice.deleteWrap(nvo, wvo);;
+						  System.out.println("wrap: 들어옴");
+						  break;
+		case "salad"    : menuservice.deleteSalad(nvo, svo);
+						  System.out.println("salad: 들어옴");
+						  break;
+		case "drink"    : menuservice.deleteDrink(dvo);
+						  System.out.println("drink: 들어옴");
+						  break;
+		case "morning"  : menuservice.deleteMorning(nvo, mvo);
+						  System.out.println("morning: 들어옴");
+						  break;
+		case "cookie"   : menuservice.deleteCookie(nvo, cvo);
+						  System.out.println("cookie: 들어옴");
+						  break;
+		case "was"      : menuservice.deleteWAS(nvo, wasvo);
+						  System.out.println("was: 들어옴");
+						  break;
+		default         : break;
+		}
+		return "menu/menuList";
 	}
 }

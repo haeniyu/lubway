@@ -19,10 +19,10 @@
   	</insert>
   	<update id="updateNutrient" parameterType="nutrient">
   		update nutrient set code=#{code}, ttl=#{ttl}, cal=#{cal}, sug=#{sug}, pro=#{pro}, fat=#{fat}, sod=#{sod} 
-  		where no=#{no}
+  		where code=#{code}
   	</update>
   	<delete id="deleteNutrient" parameterType="nutrient">
-  		delete from nutrient where no=#{no} 
+  		delete from nutrient where code=#{code} 
   	</delete>
   	<select id="selectNutrient" resultType="nutrient">
   		SELECT * FROM nutrient WHERE code=#{code}

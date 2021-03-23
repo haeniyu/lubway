@@ -10,16 +10,15 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	var path = '${update.filePath}';
 	var selected = '${select}';
+	var coded = $("#code").val();
 	console.log(selected);
-
+	console.log(coded);
+	console.log(path);
+	
 	if(selected == "sandwich") {
 		$(".price").remove();
-	}  else if(selected == "drink"){ 
-		$(".form").remove();
-		$(".category").remove();
-		$(".price15").remove();
-		$(".price30").remove();
 	} else if(selected == "wrap"){
 		$(".price15").remove();
 		$(".price30").remove();
@@ -29,12 +28,78 @@ $(document).ready(function() {
 	} else if(selected == "salad"){
 		$(".price15").remove();
 		$(".price30").remove();
-	} else {
-		$(".category").hide();
+	} else if(selected == "cookie"){
+		$(".category").remove();
+		$(".price15").remove();
+		$(".price30").remove();
+	} else if(selected == "was"){
+		$(".category").remove();
+		$(".price15").remove();
+		$(".price30").remove();
+	} else if(selected == "drink"){ 
+		$(".form").remove();
+		$(".category").remove();
 		$(".price15").remove();
 		$(".price30").remove();
 	}
+	
+	
+	$("#deleteBtn").click(function(){
+		var select = selected;
+		var code = coded;
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "menuDelete.mdo");
 
+		var input_select = document.createElement("input");
+		input_select.setAttribute("type", "hidden");
+		input_select.setAttribute("name", "select");
+		input_select.setAttribute("value", select);
+		var input_code = document.createElement("input");
+		input_code.setAttribute("type", "hidden");
+		input_code.setAttribute("name", "code");
+		input_code.setAttribute("value", code);
+		form.appendChild(input_select);
+		form.appendChild(input_code);
+		document.body.appendChild(form);
+		form.submit();
+	})
+
+	function btnUpdate(){
+		var select = selected;
+		var code = coded;
+		var filepath = path;
+		console.log(select);
+		console.log(code);
+		console.log(filepath);
+		
+		var form = document.createElement("form");
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "menuUpdate.mdo");
+
+		var input_select = document.createElement("input");
+		input_select.setAttribute("type", "hidden");
+		input_select.setAttribute("name", "select");
+		input_select.setAttribute("value", select);
+		var input_code = document.createElement("input");
+		input_code.setAttribute("type", "hidden");
+		input_code.setAttribute("name", "code");
+		input_code.setAttribute("value", code);
+		var input_file = document.createElement("input");
+		input_code.setAttribute("type", "hidden");
+		input_code.setAttribute("name", "filepath");
+		input_code.setAttribute("value", filepath);
+		form.appendChild(input_select);
+		form.appendChild(input_code);
+		form.appendChild(input_file);
+		document.body.appendChild(form);
+		form.submit();
+	}
+	
+	
+	
+	
 	//setTime();
 });
 </script>
@@ -58,9 +123,10 @@ $(document).ready(function() {
 				<h6 class="m-0 font-weight-bold text-primary">메뉴 정보 수정</h6>
 			</div>
 			<form name="form" id="form" role="form" method="post"
-				action="menuInsert.mdo">
+				action="menuUpdate.mdo?filepath=${update.filePath}" enctype="multipart/form-data">
+				<input type="hidden" name="select" id="select" value="${select}">
 				<div class="card-body">
-				
+				<c:if test="${select == 'sandwich'}">
 						<div class="price15">
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
@@ -77,7 +143,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</div>
-
+				</c:if>
 					
 						<div class="mb-3">
 							<label for="name">제품명</label>
@@ -97,9 +163,10 @@ $(document).ready(function() {
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="code"
-									id="code" value="${update.code}">
+									 id="code" value="${update.code}">
 							</div>
 						</div>
+
 						<div class="price">
 						<div class="mb-3" id="hyunah">
 							<label for="price">가격</label>
@@ -110,11 +177,14 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</div>
+
 					<div class="category">
 					<div class="mb-3" id="hyunah">
 							<label for="category">카테고리</label>
 							<div class="col-sm-3">
+							<c:if test="${select == 'sandwich' || select == 'salad' || select == 'morning' || select == 'wrap'}">
 								<input type="text" class="form-control" name="category" id="category" value="${update.category}">
+							</c:if>
 							</div>
 						</div>
 						</div>
@@ -127,7 +197,7 @@ $(document).ready(function() {
 							</div>
 						</div>
 						</div>
-
+				<c:if test="${select != 'drink'}">
 					<div class="form">
 						<div class="mb-3">
 							<label for="ttl">총 중량(g)</label>
@@ -172,20 +242,20 @@ $(document).ready(function() {
 							</div>
 						</div>
 					</div>
-
+					</c:if>
 					<div class="mb-3">
 						
                      <div>
                         <div class="index">이미지</div>
-                        <input type="file" name="uploadImg" id="uploadImg" multiple/>
+                        	<input type="file" name="uploadImg" id="uploadImg" multiple/>
                         <img src="${update.filePath}">
                      </div>
               
 					</div>
 
 					<div>
-						<button type="button" class="btn btn-sm btn-primary" id="updateBtn">수정</button>
-						<button type="button" class="btn btn-danger btn-icon-split" id="deleteBtn">삭제</button>
+						<button type="submit" class="btn btn-big btn-primary" id="updateBtn" onclick="btnUpdate();">수정</button>
+						<button type="button" class="btn btn-danger btn-primary" id="deleteBtn" onclick="btnDelete();">삭제</button>
 					</div>
 				</form>
 			</div>

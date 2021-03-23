@@ -46,62 +46,6 @@
 
 	});
 </script>
-<script>
-	//이전 버튼 이벤트
-
-	function fn_prev(page, range, rangeSize, searchKeyword) {
-
-		var page = ((range - 2) * rangeSize) + 1;
-
-		var range = range - 1;
-
-		var url = "${pageContext.request.contextPath}/search.mdo";
-
-		url = url + "?page=" + page;
-
-		url = url + "&range=" + range;
-
-		url = url + "&searchKeyword=" + searchKeyword;
-
-		location.href = url;
-
-	}
-
-	//페이지 번호 클릭
-	function fn_pagination(page, range, rangeSize, searchKeyword, fix) {
-
-		var url = "${pageContext.request.contextPath}/search.mdo";
-
-		url = url + "?page=" + page;
-
-		url = url + "&range=" + range;
-
-		url = url + "&searchKeyword=" + searchKeyword;
-
-		location.href = url;
-
-	}
-
-	//다음 버튼 이벤트
-
-	function fn_next(page, range, rangeSize, searchKeyword) {
-
-		var page = parseInt((range * rangeSize)) + 1;
-
-		var range = parseInt(range) + 1;
-
-		var url = "${pageContext.request.contextPath}/search.mdo";
-
-		url = url + "?page=" + page;
-
-		url = url + "&range=" + range;
-
-		url = url + "&searchKeyword=" + searchKeyword;
-
-		location.href = url;
-	}
-</script>
-
 </head>
 <body id="page-top">
 
@@ -180,42 +124,11 @@
 
 					</form>
 
-					<div align="right" style="display: inline;">
-						<form action="/lubway/selectCategory.mdo" method="get">
-							<tr>
-								<td><input type="text" name="searchKeyword"
-									placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input
-									style="margin: 3px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="submit"
-									value="search" /></td>
-							</tr>
-						</form>
-					</div>
+					
 
 					<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 					<!-- pagination{s} -->
-
-					<div align="center">
-						<ul class="pagination" class="NoticeVO">
-							<c:if test="${pagination.prev}">
-								<li class="page-item"><a class="page-link" href="#"
-									onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
-							</c:if>
-							<c:forEach begin="${pagination.startPage}"
-								end="${pagination.endPage}" var="idx">
-								<li
-									class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-									class="page-link" href="#"
-									onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-										${idx} </a></li>
-							</c:forEach>
-
-
-							<c:if test="${pagination.next}">
-								<li class="page-item"><a class="page-link" href="#"
-									onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
-							</c:if>
-						</ul>
+					</div>
 					</div>
 				</div>
 			</div>

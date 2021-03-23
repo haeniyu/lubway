@@ -10,18 +10,18 @@
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
 		<result property="content" column="content" />
-		<result property="filePath" column="filePath" />
+		<result property="filePath" column="filepath" />
 	</resultMap>
   	<insert id="insertDrink" parameterType="drink">
-  		insert into drink( code, name,engname, price,content, img)
+  		insert into drink( code, name,engname, price,content, filepath)
   		values(#{code},#{name},#{engname}, #{price},#{content}, #{filePath})
   	</insert>
-  	<update id="updateDrink" parameterType="drink">
-  		update drink set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
-  		where no=#{no}
+  	<update id="updateDrink" parameterType="drink" >
+  		update drink set code=#{code}, name=#{name},filepath=#{filePath}, price=#{price},engname=#{engname},content=#{content}
+  		where code=#{code}
   	</update>
   	<delete id="deleteDrink" parameterType="drink">
-  		delete from drink where no=#{no}
+  		delete from drink where code=#{code}
   	</delete>
   	<select id="selectDrink" resultType="drink">
   		SELECT * FROM drink WHERE code=#{code}

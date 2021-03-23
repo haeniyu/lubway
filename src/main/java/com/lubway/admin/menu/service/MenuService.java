@@ -35,6 +35,21 @@ public interface MenuService {
 	SaladVO selectSalad(SaladVO vo);
 	WrapVO selectWrap(WrapVO vo);
 	NutrientVO selectNutrient(NutrientVO vo);
+	void updateDrink(DrinkVO vo);
+	void updateMorning(NutrientVO nvo, MorningVO vo);
+	void updateSalad(NutrientVO nvo, SaladVO vo);
+	void updateSandwich(NutrientVO nvo, SandwichVO vo);
+	void updateWAS(NutrientVO nvo, WedgeAndSoupVO vo);
+	void updateWrap(NutrientVO nvo, WrapVO vo);
+	void updateCookie(NutrientVO nvo, CookieVO vo);
+	void deleteDrink(DrinkVO vo);
+	void deleteMorning(NutrientVO nvo, MorningVO vo);
+	void deleteSalad(NutrientVO nvo, SaladVO vo);
+	void deleteSandwich(NutrientVO nvo, SandwichVO vo);
+	void deleteWAS(NutrientVO nvo, WedgeAndSoupVO vo);
+	void deleteWrap(NutrientVO nvo, WrapVO vo);
+	void deleteCookie(NutrientVO nvo, CookieVO vo);
+	
 	
 	
 
