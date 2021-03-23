@@ -13,12 +13,13 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/modal.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.popup.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/TweenMax.js"></script>
+<!-- 
+<script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+ -->
 <script type="text/javascript">
 	function modalView() {
 		console.log("저 모달이에요~");
