@@ -26,4 +26,9 @@ public class StoreInfoDAO {
 		System.out.println("StoreInfoDAO - findStore() 실행");
 		return sqlSessionTemplate.selectList("StoreInfoDAO.findStore", keyword);
 	}
+
+	public List<StoreInfoVO> fastwayStore(String keyword) {
+		System.out.println("StoreInfoDAO - fastwayStore() 실행");
+		return sqlSessionTemplate.selectList("StoreInfoDAO.fastwayStore", keyword);
+	}
 }

@@ -9,7 +9,6 @@
 <title>FAST-WAY > 매장찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.subway.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
 </head>
@@ -42,14 +41,16 @@
 					<div class="form_search">
 					<form id="mapFrm" name="mapFrm" action="javascript:searchStore();">
 						<input autocomplete="off" id="keyword" maxlength="30" placeholder="지역 입력" type="text" />
-						<a class="btn_search" href="javascript:void(0);" id="search" onclick="searchStore();"></a>
+						<a class="btn_search" href="#" onclick="searchStore();"></a>
 					</form>
 					</div>
 					<div class="search_result_cont" id="uiReslutCont" style="display:none;">
-					<p class="search_total">검색 결과 <strong></strong><em id="uiResultCount">0</em>건</p>
-				<div class="store_list">
-					<ul id="uiResultList"></ul>
-				</div>
+						<p class="search_total">검색 결과 <strong></strong><em id="uiResultCount">0</em>건</p>
+						<div style="overflow-y:auto; overflow-x:hidden; height:550px;">
+							<div class="store_list">
+								<ul id="uiResultList"></ul>
+							</div>
+						</div>
 					</div>
 				</fieldset>
 			</div>
@@ -71,7 +72,7 @@
 
 					var map = new kakao.maps.Map(container, options);
 
-					function searchTest(data) {
+					function search(data) {
 						closeOverlay();
 						var xpos = [];
 						var ypos = [];
@@ -86,12 +87,13 @@
 						
 						for(var i=0; i<arr.length; i++) {							 
 							var obj = arr[i];
-							
+
 							geocoder.addressSearch(obj.address_road, function(result, status) {
 								geocoderCount++;
 								
 								// 정상적으로 검색이 완료됐으면 
 								if (status === kakao.maps.services.Status.OK) { 
+									
 									var markerPosition = new kakao.maps.LatLng(result[0].y,result[0].x);
 									bounds.extend(markerPosition);
 
@@ -108,8 +110,9 @@
 									map.setBounds(bounds);
 								}
 							});
-							}
-						}
+							
+						}//end of for
+					}//end of function search
 
 					// 검색
 					function searchStore() {
@@ -117,7 +120,7 @@
 						console.log(keyword);
 						
 						$.ajax({
-							url : '/lubway/searchStore.do?keyword=' + keyword,
+							url : '/lubway/fastway/searchStore.do?keyword=' + keyword,
 							type : 'post',
 							success : function(data) {
 								//검색결과가 없을 시
@@ -129,7 +132,7 @@
 									document.getElementById('uiResultCount').innerHTML=data.length;
 								}
 								//검색 결과 존재
-								searchTest(data);
+								search(data);
 							},
 							error : function() {
 								console.log("실패");
@@ -162,26 +165,13 @@
 	                      var el = document.createElement('li');
 	                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos + "'" + ", " + "'" + ypos + "'" + ")");
 	                      
-	                      var itemStr = '<div class="info"> <strong>' + obj.storename + '</strong>';
-
-	                      if (obj.address_road) {
-	                          itemStr += '    <span>' + obj.address_road + '</span>' +
-	                                      '   <span>' +  obj.address_detail  + '</span>';
-	                      } else {
-	                          itemStr += '    <span>' +  obj.address_road  + '</span>'; 
-	                      }
-	                        itemStr += '  <span> 연락처: ' + obj.store_tel  + '</span>'
-	                        itemStr += '  <span> 영업시간: ' + obj.open  + '~' + obj.close + '</span>' 
-	                                  '</div>';
+	                      var itemStr = '<dl> <dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
+	                     
+	                        itemStr += '    <dd><p>' + obj.address_road + '</p>';
+	                       
+	                        itemStr += '  <p>' + obj.store_tel  + '</p></dd></dl>';
 	                                  
-	                       var itemStr2 = '<div class="service">';
-	                       if(obj.fastway_usable) itemStr2 += '<span>Fast-Way</span>';
-	                       if(obj.homeway_usable) itemStr2 += '<span>Home-Way</span>';
-	                       if(obj.morning_usable) itemStr2 += '<span>아침메뉴</span>';
-	                       itemStr2 += '</div>';
-									                                  
 	                      el.innerHTML = itemStr;
-						  el.innerHTML += itemStr2;
 	                      
 	                      return el;
 	                  }
@@ -219,13 +209,13 @@
 							"		</dl>" +
 							"	</div>" +
 							"	<div class='foot'>" +
-							"		<a href='/storeDetail?franchiseNo=" + franchiseNo + "' target='blank'>주문하기</a>" +
+							"		<a class='btn_order on' href='#" + franchiseNo + "' target='blank'><span>주문하기</span></a>" +
 							"	</div>" +
 							"</div>";
 							
 						//오버레이 띄우기
 						var customOverlay = new kakao.maps.CustomOverlay({
-						    position: marker.getPosition(),
+						    position: mapCooder,
 						    content: content,
 						    map: map
 						});

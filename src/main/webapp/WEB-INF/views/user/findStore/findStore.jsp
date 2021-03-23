@@ -215,9 +215,6 @@
 								"			<dd>"+ openTm + " - " + closeTm +"</dd>" +
 								"		</dl>" +
 								"	</div>" +
-								//"	<div class='foot'>" +
-								//"		<a href='/storeDetail?franchiseNo=" + franchiseNo + "' target='blank'>주문하기</a>" +
-								//"	</div>" +
 								"</div>";
 								
 							//오버레이 띄우기

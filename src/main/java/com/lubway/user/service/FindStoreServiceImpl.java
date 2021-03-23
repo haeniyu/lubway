@@ -9,7 +9,7 @@ import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 
 @Service
-public class FindStroeServiceImpl implements FindStoreService {
+public class FindStoreServiceImpl implements FindStoreService {
 
 	@Autowired
 	private StoreInfoDAO dao;
