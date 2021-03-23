@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.lubway.user.service.UserMenuService;
 
@@ -61,8 +62,9 @@ public class UserMenuController {
 	}
 	
 	/**	메뉴 상세 페이지 */
-	@GetMapping("menuDetail.do")
-	public String menuDetail(Model model, String select) {
+	@PostMapping("menuDetail.do")
+	public String menuDetail(Model model, String select, String code) {
+		System.out.println(code);
 		System.out.println(select);
 		model.addAttribute("select", select);
 		return "menu/menuDetail";

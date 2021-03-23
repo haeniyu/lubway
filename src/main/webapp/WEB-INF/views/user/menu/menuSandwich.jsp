@@ -7,9 +7,23 @@
 <title>LUBWAY - 샌드위치</title>
 <link rel="stylesheet" href="resources/css/step01.css">
 <link rel="stylesheet" href="resources/css/menu.css">
+<script type="text/javascript">
+function menuDetail(code) {
+	var form = document.getElementById('form');
+	
+	var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "code");
+    hiddenField.setAttribute("value", code);
+    form.appendChild(hiddenField);
+	
+	form.submit();
+}
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
+<form action="menuDetail.do" method="post" id="form">
 	<div id="wrap">
 		<!-- container s -->
 		<div id="container">
@@ -39,7 +53,7 @@
 				<div class="menu_list_wrapper">
 					<!-- 상품 visual -->
 					<div class="visual sandwich">
-						<h2>Sandwich${select }</h2>
+						<h2>Sandwich</h2>
 						<p>
 							전세계 넘버원 브랜드 Subway!<br /> 50년 전통의 세계 최고의 샌드위치를 맛보세요!
 						</p>
@@ -62,7 +76,7 @@
 									<div class="summary">
 										<p>${list.content}</p>
 									</div>
-									<a class="btn_view" data-id="pm08" href="/lubway/menuDetail.do?code=${list.code}&select=${select}"></a>
+									<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#"></a>
 								</li>
 							</c:forEach>
 						</ul>
@@ -74,6 +88,8 @@
 			<!--// sub content e -->
 		</div>
 	</div>
+	<input type="hidden" name="select" value="${select}">
+</form>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

@@ -36,11 +36,40 @@
 				<div class="sub_loc">
 					<!-- 메뉴소개 -->
 					<ul>
-						<li class="active"><a href="/lubway/menuSandwich.do">샌드위치</a></li>
-						<li><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
-						<li><a href="/lubway/menuSalad.do">찹샐러드</a></li>
-						<li><a href="/lubway/menuMorning.do">아침메뉴</a></li>
-						<li><a href="/lubway/menuSmileWay.do">스마일 웨이</a></li>
+						<c:if test="${select eq 'menuSandwich.do'}">
+							<li class="active"><a href="/lubway/menuSandwich.do">샌드위치</a></li>
+						</c:if>
+						<c:if test="${select ne 'menuSandwich.do'}">
+							<li><a href="/lubway/menuSandwich.do">샌드위치</a></li>
+						</c:if>
+						
+						<c:if test="${select eq 'menuWrap.do'}">
+							<li class="active"><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
+						</c:if>
+						<c:if test="${select ne 'menuWrap.do'}">
+							<li><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
+						</c:if>
+						
+						<c:if test="${select eq 'menuSalad.do'}">
+							<li class="active"><a href="/lubway/menuSalad.do">찹샐러드</a></li>
+						</c:if>
+						<c:if test="${select ne 'menuSalad.do'}">
+							<li><a href="/lubway/menuSalad.do">찹샐러드</a></li>
+						</c:if>
+						
+						<c:if test="${select eq 'menuMorning.do'}">
+							<li class="active"><a href="/lubway/menuMorning.do">아침메뉴</a></li>
+						</c:if>
+						<c:if test="${select ne 'menuMorning.do'}">
+							<li><a href="/lubway/menuMorning.do">아침메뉴</a></li>
+						</c:if>
+						
+						<c:if test="${select eq 'menuSmileWay.do'}">
+							<li class="active"><a href="/lubway/menuSmileWay.do">스마일 웨이</a></li>
+						</c:if>
+						<c:if test="${select ne 'menuSmileWay.do'}">
+							<li><a href="/lubway/menuSmileWay.do">스마일 웨이</a></li>
+						</c:if>
 					</ul>
 					<!-- 이용방법 -->
 
