@@ -237,7 +237,7 @@
 
 	<div id="popup_wrap" style="display: none;">
 		<h1 class="title">원산지정보</h1>
-		<div class="popup_content" style="overflow-y:auto; overflow-x:hidden; height:450px;">
+		<div class="popup_content" style="overflow-y:auto; overflow-x:hidden; height:630px;">
 			<div class="country_origin_wrapper">
 				<div>
 					<div id="mCSB_1" tabindex="0" style="max-height: none;">
@@ -245,7 +245,7 @@
 							<ul>
 								<li>
 									<div class="icon">
-										<img alt="쇠고기" src="" class="mCS_img_loaded">
+										<img alt="쇠고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin01.png" class="mCS_img_loaded">
 										<span>쇠고기</span>
 									</div>
 									<div class="info">
@@ -259,7 +259,7 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="돼지고기" src="" class="mCS_img_loaded">
+										<img alt="돼지고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin02.png" class="mCS_img_loaded">
 										<span>돼지고기</span>
 									</div>
 									<div class="info">
@@ -275,7 +275,7 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="닭고기" src="" class="mCS_img_loaded">
+										<img alt="닭고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin03.png" class="mCS_img_loaded">
 										<span>닭고기</span>
 									</div>
 									<div class="info">
@@ -287,7 +287,7 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="칠면조고기" src="" class="mCS_img_loaded">
+										<img alt="칠면조고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin04.png" class="mCS_img_loaded">
 										<span>칠면조고기</span>
 									</div>
 									<div class="info">
@@ -299,7 +299,7 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="참치" src="" class="mCS_img_loaded">
+										<img alt="참치" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin06.png" class="mCS_img_loaded">
 										<span>참치</span>
 									</div>
 									<div class="info">
