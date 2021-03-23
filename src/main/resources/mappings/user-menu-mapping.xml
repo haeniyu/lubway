@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="UserMenuDAO">
+	
+	<!-- 샌드위치 전체 불러오기 -->
+	<select id="getSandwichList" resultType="sandwich">
+		SELECT * FROM sandwich ORDER BY no
+	</select>
+	
+	<!-- 샌드위치 cal 불러오기 -->
+	<select id="getSandwichCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM sandwich a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;
+	</select>
+	
+	<!-- 랩 전체 불러오기 -->
+	<select id="getWrapList" resultType="wrap">
+		SELECT * FROM wrap ORDER BY no
+	</select>
+	
+	<!-- 랩 cal 불러오기 -->
+	<select id="getWrapCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM wrap a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;
+	</select>
+	
+	<!-- 찹샐러드 전체 불러오기 -->
+	<select id="getSaladList" resultType="salad">
+		SELECT * FROM salad ORDER BY no
+	</select>
+	
+	<!-- 찹샐러드 cal 불러오기 -->
+	<select id="getSaladCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM salad a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;
+	</select>
+	
+	<!-- 아침메뉴 전체 불러오기 -->
+	<select id="getMorningList" resultType="morning">
+		SELECT * FROM morning ORDER BY no
+	</select>
+	
+	<!-- 아침메뉴 cal 불러오기 -->
+	<select id="getMorningCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM morning a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;
+	</select>
+	
+	<!-- 스마일 웨이 전체 불러오기(쿠키) -->
+	<select id="getSmileWayCookieList" resultType="cookie">
+		SELECT * FROM cookie ORDER BY no
+	</select>
+	
+	<!-- 스마일 웨이 cal 불러오기(쿠키) -->
+	<select id="getSmileWayCookieCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM cookie a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;	
+	</select>
+	
+	<!-- 스마일 웨이 전체 불러오기(웨지 & 수프) -->
+	<select id="getSmileWayWASList" resultType="wedgeandsoup">
+		SELECT * FROM wedgeandsoup ORDER BY no;
+	</select>
+
+	<!-- 스마일 웨이 cal 불러오기(웨지 & 수프) -->
+	<select id="getSmileWayWASCalList" resultType="String">
+		SELECT b.cal, a.no
+		FROM wedgeandsoup a
+		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;	
+	</select>
+	
+	</mapper>
