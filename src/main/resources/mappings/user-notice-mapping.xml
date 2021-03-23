@@ -77,10 +77,9 @@
 	</select>
  
 	<select id="getRightNoticeList" resultType="usernotice">
-		select ROW_NUMBER()
-		OVER() ROWNUM,*
-		from notice_board order by regDate DESC,ROWNUM DESC
-		limit #{listSize} offset #{startList}
+		select
+		ROW_NUMBER() OVER() ROWNUM, no, title, content, regDate, fix, filePath
+		from notice_board where fix = true order by regDate DESC
 	</select>
 
 </mapper>
