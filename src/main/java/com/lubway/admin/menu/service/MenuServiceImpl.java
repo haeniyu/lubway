@@ -89,8 +89,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 //selectList
 	@Override
-	public List<SandwichVO> selectSandwichList(SandwichVO vo) {
-		return sandwichDAO.getSandwichList(vo);
+	public List<SandwichVO> selectSandwichList() {
+		return sandwichDAO.getSandwichList();
 	}
 
 	@Override

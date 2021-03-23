@@ -69,10 +69,8 @@ $(document).ready(function() {
 	function btnUpdate(){
 		var select = selected;
 		var code = coded;
-		var filepath = path;
 		console.log(select);
 		console.log(code);
-		console.log(filepath);
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "post");
@@ -86,13 +84,8 @@ $(document).ready(function() {
 		input_code.setAttribute("type", "hidden");
 		input_code.setAttribute("name", "code");
 		input_code.setAttribute("value", code);
-		var input_file = document.createElement("input");
-		input_code.setAttribute("type", "hidden");
-		input_code.setAttribute("name", "filepath");
-		input_code.setAttribute("value", filepath);
 		form.appendChild(input_select);
 		form.appendChild(input_code);
-		form.appendChild(input_file);
 		document.body.appendChild(form);
 		form.submit();
 	}

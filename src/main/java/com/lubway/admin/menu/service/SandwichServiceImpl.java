@@ -36,8 +36,8 @@ public class SandwichServiceImpl implements SandwichService {
 	}
 
 	@Override
-	public List<SandwichVO> getSandwichList(SandwichVO vo) {
-		return menuDAO.getSandwichList(vo);
+	public List<SandwichVO> getSandwichList() {
+		return menuDAO.getSandwichList();
 	}
 
 }

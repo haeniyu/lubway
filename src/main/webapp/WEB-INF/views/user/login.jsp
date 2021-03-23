@@ -111,7 +111,7 @@
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
 					<div id="naver_id_login">
-						<a href="${url}"><img width="223" src="${pageContext.request.contextPath}/resources/images/naver_Bn.png"/></a>
+						<a href="${url}"><img class="naver"></a>
 					</div>
 					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
 					<a id="kakao-login-btn"></a>

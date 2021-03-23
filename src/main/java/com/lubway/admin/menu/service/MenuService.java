@@ -19,7 +19,7 @@ public interface MenuService {
 	void insertSandwich(NutrientVO nvo, SandwichVO vo);
 	void insertWAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void insertWrap(NutrientVO nvo, WrapVO vo);
-	List<SandwichVO> selectSandwichList(SandwichVO vo);
+	List<SandwichVO> selectSandwichList();
 	List<CookieVO> selectCookieList(CookieVO vo);
 	List<MorningVO>selectMorningList(MorningVO vo);
 	List<DrinkVO>selectDrinkList(DrinkVO vo);
