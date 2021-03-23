@@ -62,7 +62,7 @@
 									<span class="cal">${calList[status.index]} kcal</span>
 									<div class="summary">
 										<p>${list.content}</p>
-									</div> <a class="btn_view" href="/lubway/menuDetail.do?code=${list.code}"></a>
+									</div> <a class="btn_view" href="/lubway/menuDetail.do?code=${list.code}&select=${select}"></a>
 								</li>
 							</c:forEach>
 						</ul>

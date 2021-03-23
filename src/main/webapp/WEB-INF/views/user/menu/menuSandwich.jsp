@@ -39,7 +39,7 @@
 				<div class="menu_list_wrapper">
 					<!-- 상품 visual -->
 					<div class="visual sandwich">
-						<h2>Sandwich</h2>
+						<h2>Sandwich${select }</h2>
 						<p>
 							전세계 넘버원 브랜드 Subway!<br /> 50년 전통의 세계 최고의 샌드위치를 맛보세요!
 						</p>
@@ -62,7 +62,7 @@
 									<div class="summary">
 										<p>${list.content}</p>
 									</div>
-									<a class="btn_view" data-id="pm08" href="/lubway/menuDetail.do?code=${list.code}"></a>
+									<a class="btn_view" data-id="pm08" href="/lubway/menuDetail.do?code=${list.code}&select=${select}"></a>
 								</li>
 							</c:forEach>
 						</ul>

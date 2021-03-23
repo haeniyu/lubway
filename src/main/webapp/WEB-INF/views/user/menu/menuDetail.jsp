@@ -80,35 +80,8 @@
 						<p class="summary">
 							든든한 로스트치킨과<br /> 바삭한 베이컨의 풍미 넘치는 조합!
 						</p>
-
-						<!-- 레시피
-                            <div class="recipe">
-                                <ul>
-                                    <li>
-                                        <div class="img"><img alt="치킨 브레스트" src="../images/menu/img_recipe13.jpg" /></div>
-                                        <p>치킨 브레스트 1장</p>
-                                    </li>
-                                    <li>
-                                        <div class="img"><img alt="치즈" src="../images/menu/img_recipe04.jpg" /></div>
-                                        <p>치즈 2장</p>
-                                    </li>
-                                    <li>
-                                        <div class="rec">추천</div>
-                                        <div class="img"><img alt="스위트 어니언" src="../images/menu/img_recipe_s07.jpg" /></div>
-                                        <p>스위트 어니언</p>
-                                    </li>
-                                    <li>
-                                        <div class="img"><img alt="베이컨" src="../images/menu/img_recipe02.jpg" /></div>
-                                        <p>베이컨 2장</p>
-                                    </li>
-                                </ul>
-                            </div>
-                            // 레시피 -->
 					</div>
 					<!--// 메뉴정보 -->
-
-					<p class="common_caution">* 제품 사진은 이미지컷입니다.</p>
-					<!--공통문구-->
 
 					<!-- 영양성분표 -->
 					<div class="component_chart">
@@ -159,9 +132,9 @@
 					<div class="fresh3_wrapper">
 						<div>
 							<div class="hd">
-								<p>써브웨이만이 가지고 있는 세가지 원칙</p>
+								<p>러브웨이만이 가지고 있는 세가지 원칙</p>
 								<h3>
-									<span>SUBWAY</span> 3 FRESH
+									<span>LUBWAY</span> 3 FRESH
 								</h3>
 							</div>
 							<div class="content">
@@ -215,7 +188,7 @@
 					<!-- 목록보기 -->
 					<div class="btns_list_wrapper">
 						<div class="btn_list">
-							<a href="/lubway/menu.do">목록보기</a>
+							<a href="/lubway/${select}">목록보기</a>
 						</div>
 						<!-- 이부분 수정 필요! -->
 					</div>
