@@ -7,8 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="google-signin-client_id" content="848158094091-dmohdudpt9hfq0m0uubdln37dfg2mqbk.apps.googleusercontent.com">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/login.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/google.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/naver.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -110,11 +111,16 @@
 						<a class="btn bgc_point on" href="javascript:void(0);"
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
-					<div id="naver_id_login">
-						<a href="${url}"><img class="naver"></a>
-					</div>
-					<div class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></div>
+					<div class="btn" align="center">
+					
+					
+						<a id="naver_id_login" href="${url}"><img class="img01" src="${path}/resources/images/naver_Bn.png"></a>
+						
+					
+					<a class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></a>
 					<a id="kakao-login-btn"></a>
+					
+					</div>
 					<script type="text/javascript">
 						Kakao.init('6a3508a8b89b4d0077e04113035fff90');
 						Kakao.Auth.createLoginButton({ 
