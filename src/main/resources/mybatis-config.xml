@@ -47,5 +47,6 @@
 		<mapper resource="mappings/wedgeandsoup-mapping.xml"/>
 		<mapper resource="mappings/salad-mapping.xml"/>
 		<mapper resource="mappings/morning-mapping.xml"/>
+		<mapper resource="mappings/user-menu-mapping.xml"/>
 	</mappers>
 </configuration>

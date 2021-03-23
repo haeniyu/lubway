@@ -1,8 +1,5 @@
 $(document).ready(function () {
 	gnb();//gnb
-	if ($('.sub_header').length > 0) {
-		bodyScroll();//body scroll
-	}
 
 	
 
