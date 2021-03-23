@@ -3,7 +3,9 @@ package com.lubway.user.service;
 import java.util.List;
 
 import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.DrinkVO;
 import com.lubway.admin.menu.MorningVO;
+import com.lubway.admin.menu.NutrientVO;
 import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
@@ -37,4 +39,5 @@ public interface UserMenuService {
 	/**	메뉴 페이지(스마일 웨이 - 칼로리) */
 	List<String> getSmileWayCookieCalList();
 	List<String> getSmileWayWASCalList();
+	
 }

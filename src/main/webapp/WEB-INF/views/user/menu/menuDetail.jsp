@@ -85,29 +85,22 @@
 			<div class="menu_view_wrapper">
 				<!-- 메뉴 header -->
 				<div class="hd">
-					<!-- 20180208 -->
 					<div class="category"></div>
-					<!--// 20180208 -->
-					<h2 class="name">로스트 치킨 베이컨</h2>
-					<p class="eng">Roasted Chiken Bacon</p>
-					<p class="cal">409 Kcal</p>
+					<h2 class="name">${menu.name }</h2>
+					<p class="eng">${menu.engname }</p>
+					<p class="cal">${nutrient.cal }Kcal</p>
 				</div>
 				<!--// 메뉴 header -->
+				
 				<!-- 메뉴 content -->
 				<div class="menu_content">
 					<!-- 메뉴정보 -->
 					<div class="menu_info">
 						<div class="menu_img">
-							<img alt="로스트 치킨 베이컨" src="" />
-						</div>
-						<div class="order">
-							<div class="price">
-								<em>5,900</em>원
-							</div>
-							<a class="btn bgc_point" href="#none" style="width: 180px;"><span>주문하기</span></a>
+							<img src="${menu.filePath }" />
 						</div>
 						<p class="summary">
-							든든한 로스트치킨과<br /> 바삭한 베이컨의 풍미 넘치는 조합!
+							${menu.content }
 						</p>
 					</div>
 					<!--// 메뉴정보 -->
@@ -132,12 +125,12 @@
 									</thead>
 									<tbody>
 										<TR>
-											<td>248</td>
-											<td>409</td>
-											<td>9</td>
-											<td>29 (53%)</td>
-											<td>4 (23%)</td>
-											<td>1030 (52%)</td>
+											<td>${nutrient.ttl }</td>
+											<td>${nutrient.cal }</td>
+											<td>${nutrient.sug }</td>
+											<td>${nutrient.pro}</td>
+											<td>${nutrient.fat}</td>
+											<td>${nutrient.sod}</td>
 
 										</TR>
 									</tbody>

@@ -94,6 +94,20 @@ function menuDetail(code) {
 									<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#"></a>
 								</li>
 							</c:forEach>
+							<li>
+									<div class="img">
+										<img src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/img_drink_01.jpg" />
+									</div>
+									<strong class="tit">탄산음료</strong>
+									<span class="eng">Soda</span>
+							</li>
+							<li>
+									<div class="img">
+										<img src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/img_drink_02.jpg" />
+									</div>
+									<strong class="tit">커피</strong>
+									<span class="eng">Coffee</span>
+							</li>
 						</ul>
 					</div>
 					<!--// 상품목록 -->
