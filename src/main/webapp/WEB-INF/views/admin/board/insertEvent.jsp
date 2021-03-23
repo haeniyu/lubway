@@ -43,13 +43,9 @@ li{
 </style>
 </head>
 <body id="page-top">
-
-	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<!-- 관리자 버전 화면 만들기  -->
-	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
+<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<form action="/lubway/eventUpload.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
-
 			<!-- Page Heading -->
 			<h1 class="h3 mb-2 text-gray-800">이벤트 등록</h1>
 			<br>
@@ -103,29 +99,6 @@ li{
 
 		</div>
 	</form>
-	
-	<!-- End of Main Content -->
-
-	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script
-		src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="${path}/resources/js/sb-admin-2.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
-	<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
-
+<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

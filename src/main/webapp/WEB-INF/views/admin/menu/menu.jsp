@@ -130,7 +130,6 @@
 			
 
 		} else if($("#mbrLgnId3").val() == "wrap"){
-
 			
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");

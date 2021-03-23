@@ -251,7 +251,6 @@
 .mysub_index .member_active .my_active .my_news .title h3 {
 	background: url(../images/common/icon_tit_deco.png) no-repeat 0 0;
 	color: #292929;
-	font-family: 'font_sw';
 	font-size: 30px;
 	font-weight: bold;
 	padding: 18px 0 6px 25px;
@@ -300,7 +299,6 @@
 }
 
 .mysub_index .member_active .my_news .active_info dd strong {
-	font-family: 'font_sw';
 	font-size: 44px;
 	font-weight: bold;
 }
@@ -706,7 +704,6 @@
 
 .manage_wrapper .manage_cont_box .mbs_withdraw .mbs_status .level {
 	font-size: 23px;
-	font-family: font_sw;
 	font-weight: bold;
 }
 
@@ -756,10 +753,6 @@
 	line-height: 26px;
 }
 
-.manage_wrapper .manage_cont_box .mbs_withdraw .mbs_noti .point {
-	font-family: font_sw;
-}
-
 .manage_wrapper .manage_cont_box .mbs_withdraw .mbs_noti.able em {
 	color: #ff8302;
 }
@@ -770,7 +763,6 @@
 
 .manage_wrapper .manage_cont_box .mbs_withdraw .mbs_noti.able strong {
 	color: #ff8302;
-	font-family: 'font_sw';
 }
 
 .manage_wrapper .manage_cont_box .mbs_withdraw .inquiry_notice {
@@ -792,7 +784,6 @@
 	left: 0;
 	top: 0;
 	color: #fff;
-	font-family: font_sw;
 	font-size: 18px;
 	width: 30px;
 	height: 30px;
@@ -864,7 +855,6 @@
 	top: 21px;
 	color: #fff;
 	font-weight: bold;
-	font-family: font_sw;
 	font-size: 18px;
 	width: 30px;
 	height: 30px;
@@ -933,7 +923,6 @@
 }
 
 .point_status .level_copy .level strong {
-	font-family: 'font_sw';
 	font-weight: bold;
 }
 
@@ -1072,7 +1061,6 @@
 
 .point_status .detail_point .div_detail dl dd {
 	color: #222222;
-	font-family: 'font_sw';
 	font-size: 44px;
 	font-weight: bold;
 	letter-spacing: -1.5px;
@@ -1083,7 +1071,6 @@
 	background-color: #bbbbbb;
 	border-radius: 10px;
 	color: #ffffff;
-	font-family: 'font_sw';
 	font-size: 14px;
 	letter-spacing: 0;
 	line-height: 17px;
@@ -1227,7 +1214,6 @@
 
 .coupon_wrapper .coupon_area .coupon_list .list_top p span {
 	color: #009223;
-	font-family: font_sw;
 }
 
 .coupon_wrapper .coupon_area .coupon_list .list_top>span {
@@ -1304,7 +1290,6 @@
 	background-color: #bbb;
 	color: #fff;
 	font-size: 14px;
-	font-family: font_sw;
 	text-align: center;
 	line-height: 17px;
 	letter-spacing: -0.05em;
@@ -1329,7 +1314,6 @@
 	line-height: 19px;
 	font-size: 40px;
 	font-weight: bold;
-	font-family: font_sw;
 	color: #292929;
 	padding-left: 28px;
 	position: relative;
@@ -1339,7 +1323,6 @@
 .coupon_wrapper .coupon_area .coupon_list .coupon .coupon_nm {
 	font-size: 17px;
 	font-weight: bold;
-	font-family: font_sw;
 	color: #292929;
 	position: relative;
 	letter-spacing: -0.05em;
@@ -1356,7 +1339,6 @@
 }
 
 .coupon_area .coupon_list .coupon .d_daypx{
-	font-family: font_sw;
 	font-weight: 600;
 	color: #999;
 	position: relative;
@@ -1384,9 +1366,6 @@
 	letter-spacing: -0.03em;
 }
 
-.coupon_wrapper .coupon_area .coupon_list .coupon .limit span {
-	font-family: font_sw;
-}
 
 .coupon_wrapper .coupon_area .data_none {
 	padding: 110px 0 120px;
@@ -1487,7 +1466,6 @@
 .order_wrapper .order_box .order_list .order_card .order_type {
 	font-weight: bold;
 	letter-spacing: -0.05em;
-	font-family: font_sw;
 }
 
 .order_wrapper .order_box .order_list .order_card .order_type.fast {
@@ -1501,7 +1479,6 @@
 .order_wrapper .order_box .order_list .order_card .order_type span {
 	font-weight: bold;
 	margin-left: 3px;
-	font-family: font_ns;
 	display: inline-block;
 	vertical-align: bottom;
 }
@@ -1519,14 +1496,12 @@
 .order_wrapper .order_box .order_list .order_card .price {
 	color: #31a74d;
 	letter-spacing: -0.05em;
-	font-family: font_sw;
 	display: inline-block;
 	vertical-align: top;
 }
 
 .order_wrapper .order_box .order_list .order_card .price em {
 	font-weight: bold;
-	font-family: font_ns;
 }
 
 .order_wrapper .order_box .order_list .order_card .store {
@@ -1539,7 +1514,6 @@
 
 .order_wrapper .order_box .order_list .order_card .date {
 	font-size: 14px;
-	font-family: font_sw;
 	color: #999;
 	margin-left: 15px;
 	letter-spacing: -0.03em;
@@ -1567,7 +1541,6 @@
 .order_wrapper .order_box .order_list .order_card .num em {
 	font-size: 13px;
 	font-weight: normal;
-	font-family: font_sw;
 	letter-spacing: 0em;
 }
 
@@ -1688,7 +1661,6 @@
 
 .my_order_wrap .payment dt, .my_order_wrap .payment dd {
 	color: #292929;
-	font-family: 'font_sw', 'font_ns';
 	font-weight: bold;
 }
 
