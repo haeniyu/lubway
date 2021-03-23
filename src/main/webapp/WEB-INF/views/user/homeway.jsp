@@ -9,11 +9,16 @@
 <title>HOME-WAY > 매장찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/menu.css?v=2">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/modal.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.popup.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript" src="${path}/resources/js/TweenMax.js"></script>
 <script type="text/javascript">
 	function modalView() {
 		console.log("저 모달이에요~");
@@ -41,7 +46,7 @@
 				<dt>배달주소</dt>
 				<dd>
 					<input onclick="modalView();" id="addr_home" placeholder="배달 받으실 주소를 입력해 주세요" readonly="readonly" type="text" value="">
-					<a href="#popup_wrap_wh" rel="modal:open" id="ord_pop">변경</a>					
+					<a href="#testModal" rel="modal:open" id="ord_pop">변경</a>					
 				</dd>
 			</dl>
 		</fieldset>
@@ -244,42 +249,44 @@
 		</div>
 	</div>
 </div>
-	<!-- 주소 검색 Modal -->
-	<div id="popup_wrap_wh" style="display: none;">
-		<input id="zipCode" type="hidden" value="10483">
-		<div class="delivery_add">
-			<h1 class="title">배달 주소 등록</h1>
-			<div class="popup_content">
-				<div class="address_input">
-					<div class="write_info_wrap">
-						<a class="btn_add bgc_white small i_search addressSearchBtn"
-							href="javascript:void(0);"><span>주소검색</span></a>
-						<div class="input_set">
-							<dl>
-								<dt>기본주소</dt>
-								<dd class="addressSearchBtn">
-									<span class="form_text"> <input id="baseAddr" readonly type="text"></span>
-								</dd>
-								<dt>상세주소</dt>
-								<dd>
-									<span class="form_text"> <input id="dtlAddr" placeholder="상세주소입력" type="text"></span>
-								</dd>
-							</dl>
+<!-- 주소 검색 Modal -->
+<div id="testModal" style="display: none;">
+	<div>
+		<div id="popup_wrap_wh">
+			<input id="zipCode" type="hidden" value="10483">
+			<div class="delivery_add">
+				<h1 class="title">배달 주소 등록</h1>
+				<div class="popup_content">
+					<div class="address_input">
+						<div class="write_info_wrap">
+							<a class="btn_add bgc_white small i_search addressSearchBtn"
+								href="javascript:void(0);"><span>주소검색</span></a>
+							<div class="input_set">
+								<dl>
+									<dt>기본주소</dt>
+									<dd class="addressSearchBtn">
+										<span class="form_text"> <input id="baseAddr" readonly type="text"></span>
+									</dd>
+									<dt>상세주소</dt>
+									<dd>
+										<span class="form_text"> <input id="dtlAddr" placeholder="상세주소입력" type="text"></span>
+									</dd>
+								</dl>
+							</div>
 						</div>
+						<p class="counsel_copy" style="display: none;">배달 받으실 주소를 입력하여 주세요.</p>
 					</div>
-					<p class="counsel_copy" style="display: none;">배달 받으실 주소를 입력하여 주세요.</p>
 				</div>
 			</div>
-		</div>
-		<div class="btn_area">
-			<a class="btn bgc_white exit" href="javascript:void(0);"><span>취소</span></a>
-			<a class="btn bgc_point" href="javascript:void(0);"
-				onclick="view.submit();"><span>확인</span></a>
+			<div class="btn_area">
+				<a class="btn bgc_white exit" href="javascript:void(0);"><span>취소</span></a>
+				<a class="btn bgc_point" href="javascript:void(0);"
+					onclick="view.submit();"><span>확인</span></a>
+			</div>
 		</div>
 	</div>
-
 	<button class="btn_close"></button>
-
+</div>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
