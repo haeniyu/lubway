@@ -75,7 +75,7 @@
 .order .bill_order,
 .order .store_often {width: 1170px; margin: 0 auto;}
 
-.order.home_sub{min-height:663px; padding-bottom: 130px; background: url('../images/order/home_sub/home_bg.jpg') no-repeat 50% 0 #0aa8e7;}
+.order.home_sub{min-height:663px; padding-bottom: 130px; background: url('../images/home_bg.jpg') no-repeat 50% 0 #0aa8e7;}
 .order.group_sub{min-height:663px; padding-bottom: 130px; background: url('../images/order/group/group_bg.jpg') no-repeat 50% 0 #ff8201;}
 
 /* 매장 전화번호 공통 */

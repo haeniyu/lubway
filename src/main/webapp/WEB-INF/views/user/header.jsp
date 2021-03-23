@@ -23,7 +23,7 @@
 	<div id="header" style="overflow: hidden; height: 165px;">
 		<div class="headercontent">
 			<h1 class="logo">
-				<a href="main.do">LUBWAY</a>
+				<a href="/lubway/main.do">LUBWAY</a>
 			</h1>
 			<!-- gnb -->
 			<nav id="gnb">
@@ -82,8 +82,8 @@
 						<a class="dp1" href="javascript:void(0);">온라인 주문</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/order/view/fast/near/store">FAST-WAY</a></li>
-								<li><a href="/order/view/home/step1">HOME-WAY</a></li>
+								<li><a href="/lubway/fastway/step01.do">FAST-WAY</a></li>
+								<li><a href="/lubway/homeway/step01.do">HOME-WAY</a></li>
 							</ul>
 						</div>
 					</li>
@@ -100,7 +100,7 @@
 								<img src="${path}/resources/images/logo.png" style="width: 30px; height: 30px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="logout.do">로그아웃</a></li>
+						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
 						<li class="before_sign"><a href="myway.do">MY-WAY</a></li>
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
@@ -122,7 +122,7 @@
 								<img src="${path}/resources/images/naver.png" style="width: 25px; height: 25px; padding-top: 4px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="logout.do">로그아웃</a></li>
+						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
 						<li class="before_sign"><a href="myway.do">MY-WAY</a></li>		
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
@@ -144,7 +144,7 @@
 								<img src="${path}/resources/images/google.png" style="width: 25px; height: 25px; padding-top: 4px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="logout.do">로그아웃</a></li>
+						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
 						<li class="before_sign"><a href="myway.do">MY-WAY</a></li>		
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
@@ -187,8 +187,8 @@
 			<c:if test="${user == null && nuser == null && guser == null && kuser == null}">
 				<div class="util_menu">
 					<ul>
-						<li class="before_sign"><a href="login.do">로그인</a></li>
-						<li class="before_sign"><a href="step01.do">회원가입</a></li>
+						<li class="before_sign"><a href="/lubway/login.do">로그인</a></li>
+						<li class="before_sign"><a href="/lubway/step01.do">회원가입</a></li>
 		
 						<li class="icon_menu global_subway"><a
 							href="http://www.subway.com/en-us/exploreourworld" target="_blank"

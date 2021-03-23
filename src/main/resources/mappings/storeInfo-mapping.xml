@@ -35,4 +35,11 @@
 		ORDER BY NO DESC
 	</select>
 
+	<select id="homewayStore" parameterType="String" resultType="storeInfo">
+		SELECT * FROM storeinfo
+		WHERE address_road LIKE '%'||#{keyword}||'%'
+		AND homeway_usable = TRUE
+		ORDER BY NO DESC
+	</select>
+
 </mapper>
