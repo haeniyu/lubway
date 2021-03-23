@@ -52,12 +52,12 @@ public class AwsS3 {
 		uploadToS3(new PutObjectRequest(this.bucket, key, file));
 	}
 
-	public void upload(InputStream is, String key, String contentType, long contentLength) {
+	public void upload(InputStream is, String key, String contentType, long contentLength, String bucket) {
 		ObjectMetadata objectMetadata = new ObjectMetadata();
 		objectMetadata.setContentType(contentType);
 		objectMetadata.setContentLength(contentLength);
 
-		uploadToS3(new PutObjectRequest(this.bucket, key, is, objectMetadata));
+		uploadToS3(new PutObjectRequest(bucket, key, is, objectMetadata));
 	}
 
 	// PutObjectRequest는 Aws S3 버킷에 업로드할 객체 메타 데이터와 파일 데이터로 이루어져있다.

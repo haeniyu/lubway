@@ -42,7 +42,7 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	WrapDAO wrapDAO;
 	
-
+// insert
 	@Override
 	public void insertCookie(NutrientVO nvo, CookieVO vo) {
 		nutrientDAO.insertNutrient(nvo);
@@ -87,10 +87,10 @@ public class MenuServiceImpl implements MenuService {
 		nutrientDAO.insertNutrient(nvo);
 		wrapDAO.insertWrap(vo);
 	}
-
+//selectList
 	@Override
-	public List<SandwichVO> selectSandwichList(SandwichVO vo) {
-		return sandwichDAO.getSandwichList(vo);
+	public List<SandwichVO> selectSandwichList() {
+		return sandwichDAO.getSandwichList();
 	}
 
 	@Override
@@ -128,6 +128,7 @@ public class MenuServiceImpl implements MenuService {
 		return nutrientDAO.getNutrientList(nvo);
 	}
 
+	//select
 	@Override
 	public SandwichVO selectSandwich(SandwichVO vo) {
 		return sandwichDAO.getSandwich(vo);
@@ -164,10 +165,112 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 
+	
 	@Override
 	public NutrientVO selectNutrient(NutrientVO vo) {
 		
 		return nutrientDAO.getNutrient(vo);
+	}
+
+	//update
+	@Override
+	public void updateDrink(DrinkVO vo) {
+		drinkDAO.updateDrink(vo);
+	}
+
+
+	@Override
+	public void updateMorning(NutrientVO nvo, MorningVO vo) {
+		nutrientDAO.updateNutrient(nvo);
+		morningDAO.updateMorning(vo);
+	}
+
+
+	@Override
+	public void updateSalad(NutrientVO nvo, SaladVO vo) {
+		nutrientDAO.updateNutrient(nvo);		
+		saladDAO.updateSalad(vo);
+	}
+
+
+	@Override
+	public void updateSandwich(NutrientVO nvo, SandwichVO vo) {
+		nutrientDAO.updateNutrient(nvo);
+		sandwichDAO.updateSandwich(vo);
+	}
+
+
+	@Override
+	public void updateWAS(NutrientVO nvo, WedgeAndSoupVO vo) {
+		nutrientDAO.updateNutrient(nvo);	
+		wedgeandsoupDAO.updateWedgeAndSoup(vo);
+	}
+
+
+	@Override
+	public void updateWrap(NutrientVO nvo, WrapVO vo) {
+		nutrientDAO.updateNutrient(nvo);		
+		wrapDAO.updateWrap(vo);
+	}
+	
+	@Override
+	public void updateCookie(NutrientVO nvo, CookieVO vo) {
+		nutrientDAO.updateNutrient(nvo);
+		cookieDAO.updateCookie(vo);
+	}
+
+
+	//delete
+	@Override
+	public void deleteDrink(DrinkVO vo) {
+
+		drinkDAO.deleteDrink(vo);
+		
+	}
+
+
+	@Override
+	public void deleteMorning(NutrientVO nvo, MorningVO vo) {
+		nutrientDAO.deleteNutrient(nvo);
+		morningDAO.deleteMorning(vo);
+	}
+
+
+	@Override
+	public void deleteSalad(NutrientVO nvo, SaladVO vo) {
+		nutrientDAO.deleteNutrient(nvo);
+		saladDAO.deleteSalad(vo);
+	}
+
+
+	@Override
+	public void deleteSandwich(NutrientVO nvo, SandwichVO vo) {
+		nutrientDAO.deleteNutrient(nvo);	
+		sandwichDAO.deleteSandwich(vo);
+	}
+
+
+	@Override
+	public void deleteWAS(NutrientVO nvo, WedgeAndSoupVO vo) {
+		nutrientDAO.deleteNutrient(nvo);	
+		wedgeandsoupDAO.deleteWedgeAndSoup(vo);
+	}
+
+
+	@Override
+	public void deleteWrap(NutrientVO nvo, WrapVO vo) {
+		nutrientDAO.deleteNutrient(nvo);	
+		wrapDAO.deleteWrap(vo);
+	}
+
+
+	
+
+
+	@Override
+	public void deleteCookie(NutrientVO nvo, CookieVO vo) {
+		nutrientDAO.deleteNutrient(nvo);
+		cookieDAO.deleteCookie(vo);
 	}
 
 

@@ -11,14 +11,14 @@
 		<result property="category" column="category"/>
 		<result property="price" column="price" />
 		<result property="content" column="content" />
-		<result property="filePath" column="filePath" />
+		<result property="filePath" column="filepath" />
 	</resultMap>
   	<insert id="insertSalad" parameterType="salad">
-  		insert into salad( code, name,engname, category, price,content, img)
+  		insert into salad( code, name,engname, category, price,content, filepath)
   		values (#{code}, #{name},#{engname}, #{category}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateSalad" parameterType="salad">
-  		update salad set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
+  		update salad set code=#{code}, name=#{name},engname=#{engname},category=#{category}, price=#{price} content=#{content}, filepath=#{filePath}
   		where no=#{no}
   	</update>
   	<delete id="deleteSalad" parameterType="salad">

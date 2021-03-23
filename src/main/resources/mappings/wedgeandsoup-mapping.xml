@@ -10,20 +10,20 @@
 		<result property="engname" column="engname" />
 		<result property="price" column="price" />
 		<result property="content" column="content" />
-		<result property="filePath" column="filePath" />
+		<result property="filePath" column="filepath" />
 	</resultMap>
 	
 	
   	<insert id="insertWAS" parameterType="wedgeandsoup">
-  		insert into wedgeandsoup( code, name,engname, price,content, img)
+  		insert into wedgeandsoup( code, name,engname, price,content, filepath)
   		values(#{code},#{name},#{engname}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateWAS" parameterType="wedgeandsoup">
-  		update wedgeandsoup set code=#{code}, name=#{name},engname=#{engname}, price=#{price} 
-  		where no=#{no}
+  		update wedgeandsoup set code=#{code}, name=#{name},engname=#{engname}, price=#{price}, content=#{content}, filepath=#{filePath}
+  		where code=#{code}
   	</update>
   	<delete id="deleteWAS" parameterType="wedgeandsoup">
-  		delete from wedgeandsoup where no=#{no}
+  		delete from wedgeandsoup where code=#{code}
   	</delete>
   	<select id="selectWAS" resultType="wedgeandsoup">
   		SELECT * FROM wedgeandsoup WHERE code=#{code}

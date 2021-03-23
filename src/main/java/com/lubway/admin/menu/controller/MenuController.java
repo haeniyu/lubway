@@ -3,6 +3,7 @@ package com.lubway.admin.menu.controller;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.ibatis.logging.LogException;
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,7 +49,8 @@ public class MenuController {
 		String key = multipart.getOriginalFilename();
 		String contentType = multipart.getContentType();
 		long contentLength = multipart.getSize();
-		awss3.upload(is, key, contentType, contentLength);
+		String bucket = "lubway/menu";
+		awss3.upload(is, key, contentType, contentLength, bucket);
 
 		String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + key;
 
@@ -82,8 +84,9 @@ public class MenuController {
 	}
 
 	@GetMapping("/menuList.mdo")
-	public String sandwichList(Model model, SandwichVO vo) throws IOException, PSQLException {
-		model.addAttribute("List", menuservice.selectSandwichList(vo));
+	public String sandwichList(Model model, String select) throws IOException, PSQLException {
+		model.addAttribute("select", select);
+		model.addAttribute("List", menuservice.selectSandwichList());
 		model.addAttribute("select", "sandwich");
 		return "menu/menuList";
 	}
@@ -95,7 +98,7 @@ public class MenuController {
 		if (select.equals("cookie")) {
 			model.addAttribute("List", menuservice.selectCookieList(cvo));
 		} else if (select.equals("sandwich")) {
-			model.addAttribute("List", menuservice.selectSandwichList(Svo));
+			model.addAttribute("List", menuservice.selectSandwichList());
 		} else if (select.equals("wrap")) {
 			model.addAttribute("List", menuservice.selectWrapList(wvo));
 		} else if (select.equals("was")) {
@@ -117,10 +120,11 @@ public class MenuController {
 
 		System.out.println("select : " + select);
 		model.addAttribute("select", select);
-		
+		model.addAttribute("code",code);
 		switch (select) {
 		case "sandwich" : model.addAttribute("update", menuservice.selectSandwich(Svo));
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  System.out.println(menuservice.selectSandwich(Svo).getFilePath());
 						  break;
 		case "wrap"     : model.addAttribute("update", menuservice.selectWrap(wvo)); 
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
@@ -144,5 +148,85 @@ public class MenuController {
 		}
 
 		return "menu/menuDetail";
+	}
+	
+	@PostMapping("/menuUpdate.mdo")
+	String update(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code,String select,String filepath) throws PSQLException, LogException{
+		
+		
+
+		
+
+		//menuservice.updateDrink(dvo);
+		switch (select) {
+		case "sandwich" : if(Svo.getFilePath() == null) Svo.setFilePath(menuservice.selectSandwich(Svo).getFilePath());
+						  menuservice.updateSandwich(nvo, Svo);
+						  System.out.println("sandwich: 들어옴");
+						  break;
+		case "wrap"     : if(wvo.getFilePath() == null) wvo.setFilePath(menuservice.selectWrap(wvo).getFilePath());
+						  menuservice.updateWrap(nvo, wvo);
+						  System.out.println("wrap: 들어옴");
+						  break;
+		case "salad"    :  if(svo.getFilePath() == null) svo.setFilePath(menuservice.selectSalad(svo).getFilePath());
+						  menuservice.updateSalad(nvo, svo);
+						  System.out.println("salad: 들어옴");
+						  break;
+		case "drink"    : if(dvo.getFilePath() == null) dvo.setFilePath(menuservice.selectDrink(dvo).getFilePath());
+						  menuservice.updateDrink(dvo);
+						  System.out.println("drink: 들어옴");
+						  break;
+		case "morning"  : if(mvo.getFilePath() == null) mvo.setFilePath(menuservice.selectMorning(mvo).getFilePath());
+						  menuservice.updateMorning(nvo, mvo);
+						  System.out.println("morning: 들어옴");
+						  break;
+		case "cookie"   :  if(cvo.getFilePath() == null) cvo.setFilePath(menuservice.selectCookie(cvo).getFilePath());
+						  menuservice.updateCookie(nvo, cvo);
+						  System.out.println("cookie: 들어옴");
+						  break;
+		case "was"      :  if(wasvo.getFilePath() == null) wasvo.setFilePath(menuservice.selectWAS(wasvo).getFilePath());
+						  menuservice.updateWAS(nvo, wasvo);
+						  System.out.println("was: 들어옴");
+						  break;
+		default         : break;
+		}
+		
+		System.out.println("수정완료");
+		
+		return "redirect:/menuList.mdo";
+	}
+	@PostMapping("/menuDelete.mdo")
+	String delete(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
+		System.out.println(select);
+		System.out.println(code);
+		System.out.println("들어옴");
+		
+		
+		switch (select) { 
+		case "sandwich" : menuservice.deleteSandwich(nvo, Svo);
+						  System.out.println("sandwich: 들어옴");
+						  break;
+		case "wrap"     : menuservice.deleteWrap(nvo, wvo);;
+						  System.out.println("wrap: 들어옴");
+						  break;
+		case "salad"    : menuservice.deleteSalad(nvo, svo);
+						  System.out.println("salad: 들어옴");
+						  break;
+		case "drink"    : menuservice.deleteDrink(dvo);
+						  System.out.println("drink: 들어옴");
+						  break;
+		case "morning"  : menuservice.deleteMorning(nvo, mvo);
+						  System.out.println("morning: 들어옴");
+						  break;
+		case "cookie"   : menuservice.deleteCookie(nvo, cvo);
+						  System.out.println("cookie: 들어옴");
+						  break;
+		case "was"      : menuservice.deleteWAS(nvo, wasvo);
+						  System.out.println("was: 들어옴");
+						  break;
+		default         : break;
+		}
+		return "redirect:/menuList.mdo";
 	}
 }

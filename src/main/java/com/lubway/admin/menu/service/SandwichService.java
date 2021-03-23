@@ -9,5 +9,5 @@ public interface SandwichService {
 	void updateSandwich(SandwichVO vo);
 	void deleteSandwich(SandwichVO vo);
 	SandwichVO getSandwich(SandwichVO vo);
-	List<SandwichVO> getSandwichList(SandwichVO vo);
+	List<SandwichVO> getSandwichList();
 }

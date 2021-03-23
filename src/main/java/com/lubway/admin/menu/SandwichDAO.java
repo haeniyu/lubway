@@ -27,7 +27,7 @@ public class SandwichDAO {
 		return sqlSessionTemplate.selectOne("SandwichDAO.selectSandwich",vo);
 	}
 
-	public List<SandwichVO> getSandwichList(SandwichVO vo) {
-		return sqlSessionTemplate.selectList("SandwichDAO.selectListSandwich",vo);
+	public List<SandwichVO> getSandwichList() {
+		return sqlSessionTemplate.selectList("SandwichDAO.selectListSandwich");
 	}
 }
