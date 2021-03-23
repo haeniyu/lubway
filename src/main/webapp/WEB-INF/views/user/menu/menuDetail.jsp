@@ -69,8 +69,7 @@
 					<!-- 메뉴정보 -->
 					<div class="menu_info">
 						<div class="menu_img">
-							<img alt="로스트 치킨 베이컨"
-								src="resources/images/menu/sandwich_fl10.png" />
+							<img alt="로스트 치킨 베이컨" src="" />
 						</div>
 						<div class="order">
 							<div class="price">
@@ -149,18 +148,18 @@
 							</ul>
 
 							<div class="btns_wrapper">
-								<a id="popup" class="btn bgc_black size1" style="width: 110px;"
-									href="#popup_wrap" rel="modal:open"><span>원산지 정보</span></a> <a
-									class="btn bgc_black size1" link-type="popup"
-									onclick="popup_open(this,900,740); return false;"
-									style="width: 125px;"><span>알레르기 정보</span></a>
+								<a id="popup" class="btn bgc_black size1" style="width: 110px;" href="#popup_wrap" rel="modal:open">
+									<span>원산지 정보</span>
+								</a>
+								<a class="btn bgc_black size1" link-type="popup" onclick="popup_open(this,900,740); return false;" style="width: 125px;">
+									<span>알레르기 정보</span>
+								</a>
 							</div>
 						</div>
 					</div>
 
 					<!-- 세가지 원칙 -->
 					<div class="fresh3_wrapper">
-						<!-- 세가지 원칙 -->
 						<div>
 							<div class="hd">
 								<p>써브웨이만이 가지고 있는 세가지 원칙</p>
@@ -172,8 +171,7 @@
 								<ol>
 									<li>
 										<div class="img">
-											<img alt="매장에서 직접 구워낸 신선한 빵"
-												src="resources/images/menu/img_fresh3_01.jpg" />
+											<img alt="매장에서 직접 구워낸 신선한 빵" src="resources/images/menu/img_fresh3_01.jpg" />
 										</div>
 										<div class="info">
 											<span class="num">1</span> <strong>매장에서 직접 구워낸<br />신선한
@@ -186,8 +184,7 @@
 									</li>
 									<li>
 										<div class="img">
-											<img alt="매일 배송되는 신선한 야채 제공"
-												src="resources/images/menu/img_fresh3_02.jpg" />
+											<img alt="매일 배송되는 신선한 야채 제공" src="resources/images/menu/img_fresh3_02.jpg" />
 										</div>
 										<div class="info">
 											<span class="num">2</span> <strong>매일 배송되는<br />신선한
@@ -200,8 +197,7 @@
 									</li>
 									<li>
 										<div class="img">
-											<img alt="주문과 동시에 바로 만드는 신선함"
-												src="resources/images/menu/img_fresh3_03.jpg" />
+											<img alt="주문과 동시에 바로 만드는 신선함" src="resources/images/menu/img_fresh3_03.jpg" />
 										</div>
 										<div class="info">
 											<span class="num">3</span> <strong>주문과 동시에<br />바로
@@ -235,10 +231,13 @@
 		<!--// sub content e -->
 	</div>
 
+	</div>
+
 	<!-- 원산지 표시 Modal -->
-	<div id="popup_wrap">
+
+	<div id="popup_wrap" style="display: none;">
 		<h1 class="title">원산지정보</h1>
-		<div class="popup_content">
+		<div class="popup_content" style="overflow-y:auto; overflow-x:hidden; height:450px;">
 			<div class="country_origin_wrapper">
 				<div>
 					<div id="mCSB_1" tabindex="0" style="max-height: none;">
@@ -246,8 +245,8 @@
 							<ul>
 								<li>
 									<div class="icon">
-										<img alt="쇠고기" src="../images/menu/icon_country_origin01.png"
-											class="mCS_img_loaded"> <span>쇠고기</span>
+										<img alt="쇠고기" src="" class="mCS_img_loaded">
+										<span>쇠고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -260,8 +259,8 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="돼지고기" src="../images/menu/icon_country_origin02.png"
-											class="mCS_img_loaded"> <span>돼지고기</span>
+										<img alt="돼지고기" src="" class="mCS_img_loaded">
+										<span>돼지고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -276,8 +275,8 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="닭고기" src="../images/menu/icon_country_origin03.png"
-											class="mCS_img_loaded"> <span>닭고기</span>
+										<img alt="닭고기" src="" class="mCS_img_loaded">
+										<span>닭고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -288,9 +287,8 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="칠면조고기"
-											src="../images/menu/icon_country_origin04.png"
-											class="mCS_img_loaded"> <span>칠면조고기</span>
+										<img alt="칠면조고기" src="" class="mCS_img_loaded">
+										<span>칠면조고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -301,8 +299,8 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="참치" src="../images/menu/icon_country_origin06.png"
-											class="mCS_img_loaded"> <span>참치</span>
+										<img alt="참치" src="" class="mCS_img_loaded">
+										<span>참치</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -315,8 +313,7 @@
 						</div>
 						<div style="display: block;">
 							<div class="mCSB_draggerContainer">
-								<div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
-									style="position: absolute; min-height: 30px; height: 429px; top: 0px; display: block; max-height: 536px;">
+								<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 429px; top: 0px; display: block; max-height: 536px;">
 									<div class="mCSB_dragger_bar" style="line-height: 30px;">
 									</div>
 								</div>
@@ -328,6 +325,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
