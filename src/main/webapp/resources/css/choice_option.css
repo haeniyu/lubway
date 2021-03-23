@@ -77,3 +77,81 @@ div>.th_name_step03{
 .pop {
 	font-weight: 500;
 }
+
+
+.option_display{
+	background-color: #fff;
+	padding: 20px;
+	margin-top: 15px;
+	border-radius: 8px;
+}
+
+.option_display > dl > dt{
+	font-size: 21px;
+	font-weight: bold;
+	color: #009223;
+}
+
+.option_display > dl > dd{
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+#sum{
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffce32;
+}
+
+#sum > span{
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffce32;
+}
+
+.popup_content{
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	margin: 20px 0 15px 0;
+}
+
+.popup_content > ul:not(:last-child){
+	margin-bottom: 15px;
+}
+
+.popup_content > ul > label{
+	font-size: 18px;
+	font-weight: bold;
+	color: #009223;
+}
+
+.popup_content > ul > li > label > strong{
+	font-size: 18px;
+	font-weight: 300px;
+	color: #777;
+}
+
+.popup_content > ul > li > label > em{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.popup_content > ul > li > label > span{
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffce32;
+}
+
+.popup_content > ul > li > label > span > em{
+	font-size: 18px;
+	font-weight: bold;
+	color: #ffce32;
+}
+
+.one{
+	background: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	margin: 15px 0;
+}

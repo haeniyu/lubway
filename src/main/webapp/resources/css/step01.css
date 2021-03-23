@@ -16,44 +16,6 @@ table{border-collapse:collapse;border-spacing:0; width:100%;}
 caption{visibility:hidden; font-size:0; line-height:0; opacity:0; height:0; overflow:hidden;}
 em{font-style:normal;}
 
-/* --- webfont --- */
-@font-face {
-  font-family:font_ns;
-  font-weight:normal;
-  src:local(※);
-	src: url(/font/NotoSansKR-Regular.eot);
-	src: url(/font/NotoSansKR-Regular.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_ns;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/NotoSansKR-Medium.eot);
-	src: url(/font/NotoSansKR-Medium.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_ns;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/NotoSansKR-Bold.eot);
-	src: url(/font/NotoSansKR-Bold.eot?#iefix) format('embedded-opentype'),
-	url(/font/NotoSansKR-Bold.woff) format('woff'),
-	url(/font/NotoSansKR-Bold.ttf) format('truetype');
-}
-@font-face {
-  font-family:font_sw;
-  font-weight:normal;
-  src:local(※);
-	src: url(/font/Subway-SixInch.eot);
-	src: url(/font/Subway-SixInch.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_sw;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/Subway-Footlong.eot);
-	src: url(/font/Subway-Footlong.eot?#iefix) format('embedded-opentype'),
-}
 
 /* footer */
 #footer{background-color:#292929; color:#666666; padding:22px 0; position:relative; z-index:9}
