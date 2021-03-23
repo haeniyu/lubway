@@ -151,9 +151,6 @@
 								<a id="popup" class="btn bgc_black size1" style="width: 110px;" href="#popup_wrap" rel="modal:open">
 									<span>원산지 정보</span>
 								</a>
-								<a class="btn bgc_black size1" link-type="popup" onclick="popup_open(this,900,740); return false;" style="width: 125px;">
-									<span>알레르기 정보</span>
-								</a>
 							</div>
 						</div>
 					</div>
@@ -231,10 +228,7 @@
 		<!--// sub content e -->
 	</div>
 
-	</div>
-
 	<!-- 원산지 표시 Modal -->
-
 	<div id="popup_wrap" style="display: none;">
 		<h1 class="title">원산지정보</h1>
 		<div class="popup_content" style="overflow-y:auto; overflow-x:hidden; height:630px;">
@@ -325,8 +319,6 @@
 			</div>
 		</div>
 	</div>
-
-
 
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
