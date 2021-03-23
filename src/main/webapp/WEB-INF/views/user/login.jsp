@@ -111,16 +111,20 @@
 						<a class="btn bgc_point on" href="javascript:void(0);"
 							id="loginBtn" style="width: 370px;"><span>로그인</span></a>
 					</div>
-					<div class="btn" align="center">
-					
-					
-						<a id="naver_id_login" href="${url}"><img class="img01" src="${path}/resources/images/naver_Bn.png"></a>
-						
-					
-					<a class="g-signin2" data-onsuccess="onSignIn" onclick="googleLogin()"></a>
-					<a id="kakao-login-btn"></a>
-					
+					<div style="width:150px; height:40px;"></div>
+					<div style="width:150px; height:40px;"></div>
+					<div class="btn_naver" style="width:140px; height:32px; float:left; display:block; box-shadow: 2px 2px 2px grey;">
+						<a id="naver_id_login" href="${url}"><img class="img01" width="140px" height="32px" src="${path}/resources/images/naver_Bngreen.png"></a>
 					</div>
+					
+					<div class="btn_google" style="width:140px; height:32px; float:left; display:block; padding-left:11px; padding-right:10px;">
+					<a class="g-signin2" data-onsuccess="onSignIn" style="width:140px; height:32px;"  onclick="googleLogin()"></a>
+					</div>
+					<div class="btn_kakao"style="width:140px; height:33px; float:left; display:block; ">
+						<a id="kakao-login-btn"></a>
+					</div>
+					<div style="width:150px; height:40px;"></div>
+					<div style="width:150px; height:40px;"></div>
 					<script type="text/javascript">
 						Kakao.init('6a3508a8b89b4d0077e04113035fff90');
 						Kakao.Auth.createLoginButton({ 
