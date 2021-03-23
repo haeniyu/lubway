@@ -398,7 +398,7 @@
 #popup_wrap_wh .delivery_add .title {margin-bottom:30px;}
 .delivery_add .address_input .write_info_wrap {position:relative; padding-top:60px;}
 .delivery_add .address_input .write_info_wrap .btn_add {display:block; border: 1px solid #ddd; border-radius: 20px; text-align: center; position:absolute; right:0; top:0; height: 40px; width: 114px; }
-.delivery_add .address_input .write_info_wrap .btn_add span {background: url('../images/order/home_sub/btn_address_search.png') no-repeat 100% 50%; display:inline-block; color: #999; font-weight: bold; line-height: 40px; padding-right: 20px;}
+.delivery_add .address_input .write_info_wrap .btn_add span {background: url('../images/btn_address_search.png') no-repeat 100% 50%; display:inline-block; color: #999; font-weight: bold; line-height: 40px; padding-right: 20px;}
 .delivery_add .address_input .write_info_wrap .input_set dl:after {background-color:#e5e5e5; content:''; display:block; position:absolute; left:0; top:50%; margin-top:-1px; height:1px; width:100%;}
 .delivery_add .address_input .write_info_wrap .input_set dt,
 .delivery_add .address_input .write_info_wrap .input_set dd {float:none; width:100%;}

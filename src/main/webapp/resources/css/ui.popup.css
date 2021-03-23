@@ -2,7 +2,7 @@
 
 html,body{background-color:transparent;}
 #popup_wrap{background-color:#ffc300; padding:0 8px 8px; border-radius:30px; overflow:hidden;}
-#popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:300; letter-spacing:-0.045em; padding:35px 0 29px}
+#popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:bold; letter-spacing:-0.045em; padding:35px 0 29px}
 #popup_wrap .popup_content{background-color:#fff; padding:0 22px; border-radius:0 0 30px 30px;}
 
 /* 원산지정보 */
@@ -17,10 +17,10 @@ html,body{background-color:transparent;}
 #popup_wrap .country_origin_wrapper li{border-top:1px solid #e8e8e8; overflow:hidden; padding:18px 0 18px 30px;}
 #popup_wrap .country_origin_wrapper li:first-child{border-top:0}
 #popup_wrap .country_origin_wrapper .icon{text-align:center; float:left;}
-#popup_wrap .country_origin_wrapper .icon span{display:block; font-size:16px; color:#009223; font-weight:300; margin-top:8px;}
+#popup_wrap .country_origin_wrapper .icon span{display:block; font-size:16px; color:#009223; font-weight:bold; margin-top:8px;}
 #popup_wrap .country_origin_wrapper .info{margin:18px 0 0 130px;}
 #popup_wrap .country_origin_wrapper .info dl{overflow:hidden;}
-#popup_wrap .country_origin_wrapper .info dl dt{float:left; color:#292929; font-size:16px; font-weight:300; padding-bottom:7px; letter-spacing:-0.03em; padding-right:2px;}
+#popup_wrap .country_origin_wrapper .info dl dt{float:left; color:#292929; font-size:16px; font-weight:bold; padding-bottom:7px; letter-spacing:-0.03em; padding-right:2px;}
 #popup_wrap .country_origin_wrapper .info dl dd{ padding-bottom:7px; letter-spacing:-0.03em;}
 
 
@@ -73,7 +73,7 @@ html,body{background-color:transparent;}
 *****************************************************************************************************************************************************************************************************/
 #popup_wrap {border-radius:20px; padding:0;}
 #popup_wrap_wh{background-color:#fff; padding:40px 50px; border-radius:30px; overflow:hidden; width: 100%; box-sizing: border-box;}
-#popup_wrap_wh h1.title{font-size:30px; color:#009223; font-weight:300; text-align:center; letter-spacing:-0.05em;line-height: 30px;padding-bottom: 30px;position: relative; margin-bottom: 50px;}
+#popup_wrap_wh h1.title{font-size:30px; color:#009223; font-weight:bold; text-align:center; letter-spacing:-0.05em;line-height: 30px;padding-bottom: 30px;position: relative; margin-bottom: 50px;}
 #popup_wrap_wh h1.title:after {content: ''; position: absolute;bottom: 0;left: 0;width: 100%;height: 5px;background-color: #009223}
 
 #popup_wrap .popup_content{border-radius:0;}
@@ -81,7 +81,7 @@ html,body{background-color:transparent;}
 /* 팝업 2019 :: 회원가입여부 확인 결과 팝업 */
 #popup_wrap_wh .join_status_cont .popup_content .notify { position:relative; padding:40px 45px 36px; text-align:center; background:#f6f6f6;}
 #popup_wrap_wh .join_status_cont .popup_content .notify:before { content:''; display:inline-block; margin-bottom:25px; width:68px; height:68px; background:url(../images/common/icon_notice02.png) no-repeat;}
-#popup_wrap_wh .join_status_cont .popup_content .notify p { font-size:20px; line-height:36px; font-weight:300; color:#666666}
+#popup_wrap_wh .join_status_cont .popup_content .notify p { font-size:20px; line-height:36px; font-weight:bold; color:#666666}
 #popup_wrap_wh .join_status_cont .popup_content .btn_area { margin-top:70px;}
 #popup_wrap_wh .join_status_cont .popup_content .join_possible .txt { font-size:20px; text-align:center; color:#666666;}
 #popup_wrap_wh .join_status_cont .popup_content .join_possible .mbs_info { margin-top:37px; padding:30px 0; text-align:center; background:#f6f6f6;}
@@ -102,8 +102,8 @@ html,body{background-color:transparent;}
 /* My-sub > 즐겨찾는 매장 팝업 */
 .store .title{text-align: left; padding-bottom: 30px;position: relative; margin-bottom: 50px;}
 .store .title:after {content: ''; position: absolute;bottom: 0;left: 0;width: 100%;height: 5px;background-color: #009223}
-.store .title h1 {font-size:30px; color:#009223; font-weight:300; letter-spacing:-0.05em; line-height: 30px; vertical-align: middle; display: inline-block;}
-.store .state {font-size: 13px; font-weight: 300; color: #fff; letter-spacing: -0.05em; display: inline-block; border-radius: 15px; background-color: #009223; padding: 4px 10px 6px;vertical-align: middle;position: relative; margin-right: 10px;}
+.store .title h1 {font-size:30px; color:#009223; font-weight:bold; letter-spacing:-0.05em; line-height: 30px; vertical-align: middle; display: inline-block;}
+.store .state {font-size: 13px; font-weight: bold; color: #fff; letter-spacing: -0.05em; display: inline-block; border-radius: 15px; background-color: #009223; padding: 4px 10px 6px;vertical-align: middle;position: relative; margin-right: 10px;}
 .store .bookmark {float: right; font-size: 0; width: 22px; height: 22px;background: url(../images/mypage/icon_bookmark.png)no-repeat; margin: 4px 0;}
 .store .store_info {margin-top: 10px; min-height: 25px; overflow: hidden;}
 .store .store_info:first-child {margin-top: 0}
@@ -130,7 +130,7 @@ html,body{background-color:transparent;}
 /* My-sub > 쿠폰 팝업 */
 .coupon {padding: 48px 0;}
 .coupon .popup_content {text-align: center;}
-.coupon .popup_content p {font-size: 20px; font-weight: 300; color: #666; letter-spacing: -0.07em;}
+.coupon .popup_content p {font-size: 20px; font-weight: bold; color: #666; letter-spacing: -0.07em;}
 .coupon .popup_content .btn_area {margin-top: 50px;}
 
 /* 팝업 2019 :: 비밀번호 변경 팝업 */
