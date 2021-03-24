@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -9,8 +10,11 @@
 <script src="${path}/resources/js/order.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/modal.css" />
 <link rel="stylesheet" href="${path}/resources/css/choice_option.css" />
-<!--  -->
 <script type="text/javascript">
+
+
+/******************STEP01********************/
+
 	function endSauce() {
 		console.log("=== checkSauce ===");
 		var checkCount = $("input:checkbox[name=sauce]:checked").length;
@@ -110,24 +114,46 @@
 			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택해 주세요.");
 		});
 		
-		/******************STEP02********************/
-	      /*****************토핑 추가 선택*****************/
-	      var selected = "";
-	      var arr = new Array();
-	      $("input:checkbox[name=topping]").click(function(){
-	         
-	         if($(this).is(":checked") == true) {
-	            arr.push($(this).val());
-	         } else {
-	            for(var i=0; i<arr.length; i++) {
-	               if($(this).val() == arr[i]) arr.splice(i, 1);
-	            }
-	         }
-	         
-	         console.log(arr);
-	         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 제품을 추가 선택해 주세요");
-	         
-	      }); //end of topping
+		
+		
+		
+/******************STEP02********************/
+		
+		//토핑 추가 선택
+      	var arr = new Array();		//선택된 토핑을 담을 배열
+      	var ttl = 0;				//총 가격
+      
+      $("input:checkbox[name=topping]").click(function(){
+         var temp = $(this).val();
+         var tempArr = temp.split(",");
+         var cost = parseInt(tempArr[1]);
+         
+         if($(this).is(":checked") == true) {//체크 시
+            arr.push(tempArr[0]);
+            ttl += cost;
+         } else {//체크 해제 시
+            for(var i=0; i<arr.length; i++) {
+               if(tempArr[0] == arr[i]) arr.splice(i, 1);
+            }
+            ttl -= cost;
+         }
+         
+         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 제품을 추가 선택해 주세요");
+         $('#sum').text(ttl);
+         
+      }); //end of topping
+      
+      
+		//미트 추가
+      $("input:radio[name=meat]").click(function(){
+         var temp = $(this).val();
+         var tempArr = temp.split(",");
+         var cost = parseInt(tempArr[1]);
+         
+         $('#meatText').text(tempArr[0]);
+         $('#sum2').text(cost);
+         
+      }); //end of meat
 	      
 	});
 </script>
@@ -263,15 +289,15 @@
 					<dl>
 						<dt>추가 선택 (다중 선택 가능)</dt>
 						<dd id="toppingText">원하는 추가 선택 제품을 선택하여 주세요</dd>
-						<dd id="sum">+<span>0</span>원</dd>
+						<dd >+<span id="sum">0</span>원</dd>
 					</dl>
 				</div>
 				<div class="popup_content topping">
 					<ul>
 						<c:forEach items="${toppingList }" var="topping">
 							<li><label class="form_circle">
-							<input name="topping" type="checkbox" value="${topping.name }">
-							<em>${topping.name }</em><span>+<em>${topping.price }</em>&nbsp;원</span>
+							<input name="topping" type="checkbox" value="${topping.name }, ${topping.price}"><em>${topping.name }</em>
+							<span>+<em>${topping.price }</em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
 					</ul>
@@ -285,16 +311,16 @@
 				<div class="option_display">
 					<dl>
 						<dt>미트 추가</dt>
-						<dd id="meat">미트 추가를 선택 해 주세요</dd>
-						<dd id="sum"><span>0</span>원</dd>
+						<dd id="meatText">미트 추가를 선택 해 주세요</dd>
+						<dd><span id="sum2">0</span>원</dd>
 					</dl>
 				</div>
 				<div class="popup_content meat">
 					<ul>
 						<c:forEach items="${meatList }" var="meat">
 							<li><label class="form_circle">
-							<input name="meat" type="radio" value="${meat.name }">
-							<em>${meat.name }</em><span>+<em>${meat.price }</em>&nbsp;원</span>
+							<input name="meat" type="radio" value="${meat.name }, ${meat.price}"><em>${meat.name }</em>
+							<span>+<em>${meat.price }</em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
 					</ul>
