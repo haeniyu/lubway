@@ -18,6 +18,8 @@
 <script type="text/javascript" src="${path}/resources/js/TweenMax.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+	var sigungu = "";
+
     function execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -31,12 +33,10 @@
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
-                	console.log(data);
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
                     addr = data.jibunAddress;
-                    console.log(data);
                 }
-                console.log(data);
+                
                 // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
                 if(data.userSelectedType === 'R'){
                     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
@@ -59,6 +59,10 @@
                    // document.getElementById("extraAddress").value = '';
                 }
 
+                console.log(data);
+                console.log(data.sigungu);
+                sigungu = data.sigungu;
+                
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('zipCode').value = data.zonecode;
                 document.getElementById("baseAddr").value = addr;
@@ -67,6 +71,50 @@
             }
         }).open();
     }
+    
+    function searchInfo() {
+    	console.log("=== searchInfo ===");
+
+    	$("#basicAddr").val($("#baseAddr").val());
+    	$("#detailAddr").val($("#dtlAddr").val());
+    	
+    	var basic = $("#basicAddr").val();
+    	var detail = $("#detailAddr").val();
+    	var fullAddr = basic + " " + detail;
+    	
+    	$("#fullAddr").val(fullAddr);
+    	
+    	console.log("기본 주소 : " + basic);
+    	console.log("상세 주소 : " + detail);
+  		console.log("전체 주소 : " + fullAddr)
+    	
+    	$("#addr_home").val(fullAddr);
+    	
+//    	console.log("sigungu : " + sigungu);
+    	var splitAddr = sigungu.split(" ");
+//    	console.log("splitAddr : " + splitAddr);
+    	
+    	var resultAddr = "";
+    	if(splitAddr.length == 1) resultAddr = splitAddr[0];
+    	else resultAddr = splitAddr[1];
+    	
+//    	console.log("resultAddr : " + resultAddr);
+    	
+    	$("#keyword").val(resultAddr);
+    	console.log("keyword : " + $("#keyword").val());
+    	
+    	$("#close").get(0).click();
+    	
+    	searchStore();
+    }
+
+    function orderStart(data) {
+    	console.log("data : " + data);
+    	$("#franchiseNo").val(data);
+    	$("#orderForm").submit();
+
+    }
+
 </script>
 <script type="text/javascript">
 	function modalView() {
@@ -99,24 +147,26 @@
 			</dl>
 		</fieldset>
 		<div class="store_search">
-				<h3>매장찾기</h3>
+				<h3 style="margin-bottom: 10px">매장찾기</h3>
 				<fieldset>
 					<legend>매장 검색</legend>
-					<div class="form_search">
-					<form id="mapFrm" name="mapFrm" action="javascript:searchStore();">
-						<input autocomplete="off" id="keyword" maxlength="30" placeholder="지역 입력" type="text" />
-						<a class="btn_search" href="#" onclick="searchStore();"></a>
-					</form>
+					<div class="form_search" style="display: none;">
+						<form id="mapFrm" name="mapFrm" action="javascript:searchStore();">
+							<input autocomplete="off" id="keyword" maxlength="30" placeholder="지역 입력" type="text" />
+							<a class="btn_search" href="#" onclick="searchStore();"></a>
+						</form>
 					</div>
 					<div class="search_result_cont" id="uiReslutCont" style="display:none;">
-						<p class="search_total">검색 결과 <strong></strong><em id="uiResultCount">0</em>건</p>
-						<div style="overflow-y:auto; overflow-x:hidden; height:550px;">
-							<div class="store_list">
-								<ul id="uiResultList"></ul>
-							</div>
-						</div>
+						<p class="search_total" style="padding-top: 14px; padding-bottom: 18px;">검색 결과 <strong></strong>
+							<em id="uiResultCount">0</em>건
+						</p>
 					</div>
 				</fieldset>
+				<div style="overflow-y:auto; overflow-x:hidden; height:550px;">
+					<div class="store_list">
+						<ul id="uiResultList"></ul>
+					</div>
+				</div>
 			</div>
 		
 		<!-- map api area w1170 h819 -->
@@ -224,21 +274,22 @@
 					}
 					
 					// 검색결과 항목을 Element로 반환하는 함수입니다
-	                  function getListItem(index, obj, xpos, ypos) {
+					function getListItem(index, obj, xpos, ypos) {
 
-	                      var el = document.createElement('li');
-	                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos + "'" + ", " + "'" + ypos + "'" + ")");
+						var el = document.createElement('li');
+						el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos + "'" + ", " + "'" + ypos + "'" + ")");
 	                      
-	                      var itemStr = '<dl> <dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
-	                     
-	                        itemStr += '    <dd><p>' + obj.address_road + '</p>';
-	                       
-	                        itemStr += '  <p>' + obj.store_tel  + '</p></dd></dl>';
+						var itemStr = '<dl><dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
+						itemStr += '<dd class="delivery time"><p>예상 배달 소요시간</p><span>40분</span></dd>';
+						itemStr += '<dd class="delivery"><p>최소 주문 금액</p><span>13,000원</span></dd>';
+						itemStr += '<dd class="delivery"><p>배달비</p><span>3,900원</span></dd>';
+						itemStr += '<dd><p>' + obj.address_road + '</p>';
+						itemStr += '<p>' + obj.store_tel  + '</p></dd></dl>';
 	                                  
-	                      el.innerHTML = itemStr;
+						el.innerHTML = itemStr;
 	                      
-	                      return el;
-	                  }
+						return el;
+					}
 					
 					// 목록 li 클릭시 실행되는 함수
 					function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm, lat, lng) {
@@ -270,12 +321,14 @@
 							"			<dd>" + storeTel + "</dd>" +
 							"			<dt>영업시간</dt>" +
 							"			<dd>"+ openTm + " - " + closeTm +"</dd>" +
+							"			<dt>최소주문금액</dt><dd>13,000원</dd>" +
+							"			<dt>배달비</dt><dd>3,900원</dd>" +
 							"		</dl>" +
 							"	</div>" +
 							"	<div class='foot'>" +
-							"		<a class='btn_order on' href='#" + franchiseNo + "' target='blank'><span>주문하기</span></a>" +
-							"	</div>" +
-							"</div>";
+							"		<a class='btn_order on' onclick=javascript:orderStart(";
+							content += "'" + franchiseNo + "'";
+							content += "); target='blank'><span>주문하기</span></a>" +"	</div>" +"</div>";
 							
 						//오버레이 띄우기
 						var customOverlay = new kakao.maps.CustomOverlay({
@@ -314,7 +367,7 @@
 								<dl>
 									<dt>기본주소</dt>
 									<dd class="addressSearchBtn">
-										<span class="form_text"> <input id="baseAddr" readonly type="text" onclick="execDaumPostcode()"></span>
+										<span class="form_text"> <input id="baseAddr" placeholder="주소검색" readonly type="text" onclick="execDaumPostcode()"></span>
 									</dd>
 									<dt>상세주소</dt>
 									<dd>
@@ -328,13 +381,21 @@
 				</div>
 			</div>
 			<div class="btn_area">
-				<a class="btn bgc_white exit" href="javascript:void(0);" rel="modal:close" style="width:130px;"><span>취소</span></a>
-				<a class="btn bgc_point" href="javascript:void(0);" style="width:130px;"><span>확인</span></a>
+				<a class="btn bgc_white exit" id="close" href="javascript:void(0);" rel="modal:close" style="width:130px;"><span>취소</span></a>
+				<a class="btn bgc_point" href="javascript:void(0);" onclick="searchInfo()" style="width:130px;"><span>확인</span></a>
 			</div>
 		</div>
 	</div>
 	<button class="btn_close"></button>
 </div>
+<!-- 주문하기 -->
+<form action="orderStart.do" method="post" id="orderForm" style="display: none;">
+	<input type="hidden" name="whatWay" value="Home-Way">
+	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
+	<input type="hidden" id="basicAddr" name="basicAddr" value="">
+	<input type="hidden" id="detailAddr" name="detailAddr" value="">
+	<input type="hidden" id="fullAddr" name="fullAddr" value="">
+</form>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

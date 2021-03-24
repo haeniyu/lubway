@@ -30,7 +30,7 @@ public class HomewayController {
 	@PostMapping("searchStore.do")
 	@ResponseBody
 	public StoreInfoVO[] homewayStore(String keyword) {
-		
+	
 		List<StoreInfoVO> info = homewayService.homewayStore(keyword);
 		
 		StoreInfoVO[] arr = new StoreInfoVO[info.size()];
@@ -40,6 +40,20 @@ public class HomewayController {
 		}
 		
 		return arr;
+	}
+
+	/** 주소 값 확인용 */
+	@PostMapping("orderStart.do")
+	public String order(String fullAddr, String basicAddr, String detailAddr, String whatWay, String franchiseNo) {
+		
+		System.out.println("기본 주소 : " + basicAddr);
+		System.out.println("상세 주소 : " + detailAddr);
+		System.out.println("전체 주소 : " + fullAddr);
+		
+		System.out.println("주문 방식 : " + whatWay);
+		System.out.println("no : " + franchiseNo);
+		
+		return "main";
 	}
 	
 }

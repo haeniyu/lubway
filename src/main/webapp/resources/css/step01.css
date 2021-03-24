@@ -37,8 +37,6 @@ em{font-style:normal;}
   src:local(※);
 	src: url(/font/NotoSansKR-Bold.eot);
 	src: url(/font/NotoSansKR-Bold.eot?#iefix) format('embedded-opentype'),
-	url(/font/NotoSansKR-Bold.woff) format('woff'),
-	url(/font/NotoSansKR-Bold.ttf) format('truetype');
 }
 @font-face {
   font-family:font_sw;
