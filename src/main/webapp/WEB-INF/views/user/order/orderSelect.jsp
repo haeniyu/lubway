@@ -292,9 +292,33 @@
 			</div>
 
 			<div id="select_set" class="modal">
-				<p>세트</p>
-				<a href="#" rel="modal:close"></a>
+				<div class="option_display">
+					<dl>
+						<dt>세트 선택</dt>
+						<dd id="select_set">쿠키 세트</dd>
+					</dl>
+				</div>
+				<div class="popup_content set_menu">
+					<ul>
+						<li>
+						<select name="select_set">
+							<option value="cookie">쿠키 세트</option>
+							<option value="wedge">웨지 세트</option>
+						</select>
+						</li>
+					</ul>
+				</div>
 			</div>
+			<c:if test="">
+				<div class="popup_content cookie">
+					<ul>
+						<li><label class="form_circle" for="15cm">
+						<input name="length" type="radio" checked="checked" id="15cm" value="15cm">
+						<em>15cm</em>
+						</label></li>
+					</ul>
+				</div>
+			</c:if>
 			<div class="wrap_pop">
 				<a class="pop" href="#select_set" rel="modal:open">세트</a>
 			</div>
