@@ -30,7 +30,7 @@ public class NoticeController {
 	private NoticeService noticeService;
 	public AwsS3 awss3 = AwsS3.getInstance();
 
-	// 검색 조건 목록 설정
+	/** 검색 조건 목록 설정 */
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new HashMap<String, String>();
@@ -39,20 +39,20 @@ public class NoticeController {
 		return conditionMap;
 	}
 
-	// 글 등록 화면
+	/** 글 등록 화면 */
 	@RequestMapping("/insertNotice.mdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException {
 		return "board/insertNotice";
 	}
 
-	// 글 등록 기능
+	/** 글 등록 기능 */
 	@PostMapping("/insertDB.mdo")
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
 		System.out.println(multipart.toString());
 
 		if (!multipart.getOriginalFilename().equals("")) {
-			// aws s3 파일 업로드 처리
+			// aws s3 파일 업로드 처리 */
 			InputStream is = multipart.getInputStream();
 			String key = multipart.getOriginalFilename();
 			String contentType = multipart.getContentType();
@@ -74,7 +74,7 @@ public class NoticeController {
 		return "redirect:/getNoticeList.mdo";
 	}
 
-	// 글 수정
+	/** 글 수정 */
 	@RequestMapping("/updateNotice.mdo")
 	public String updateNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.updateNotice(vo);
@@ -82,7 +82,7 @@ public class NoticeController {
 		return "redirect:/getNoticeList.mdo";
 	}
 
-	// 글 삭제
+	/** 글 삭제 */
 	@RequestMapping("/deleteNotice.mdo")
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
 		noticeService.deleteNotice(vo);
@@ -90,14 +90,14 @@ public class NoticeController {
 		return "redirect:/getNoticeList.mdo";
 	}
 
-	// 글 상세 조회
+	/** 글 상세 조회 */
 	@RequestMapping("/getNotice.mdo")
 	public String getNotice(NoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
 		return "board/getNotice";
 	}
 
-	// 글목록 요청
+	/** 글목록 요청 */
 	@GetMapping("/getNoticeList.mdo")
 	public String getNoticeList(NoticeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
@@ -107,12 +107,12 @@ public class NoticeController {
 		System.out.println("page : " + page);
 		System.out.println("range : " + range);
 
-		// 전체 게시글 개수
+		/** 전체 게시글 개수 */
 		int listCnt = noticeService.getPageListCnt();
 
 		System.out.println("listCnt : " + listCnt);
 		
-		// Pagination
+		/** Pagination */
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
 
@@ -134,6 +134,7 @@ public class NoticeController {
 		return "board/getNoticeList";
 	}
 
+	/** 검색기능 */
 	@GetMapping("/search.mdo")
 	public String searchPagingList(Model model, NoticeVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -157,12 +158,5 @@ public class NoticeController {
 		model.addAttribute("noticeList", pageList);
 		return "board/getNoticeList";
 	}
-
-	@PostMapping("/uploadNotice.mdo")
-	public void uploadNotice(MultipartFile[] uploadFile) {
-		String uploadFolder = "C:\\upload";
-	}
-	
-	
 
 }

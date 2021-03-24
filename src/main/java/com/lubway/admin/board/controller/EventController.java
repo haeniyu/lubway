@@ -30,24 +30,24 @@ public class EventController {
 	private EventService eventService;
 	public AwsS3 awss3 = AwsS3.getInstance();
 
-	// 글 등록 화면
+	/** 글 등록 화면 */
 	@RequestMapping("/insertEvent.mdo")
 	public String insertEventView(EventVO vo) throws IOException, PSQLException {
 		return "board/insertEvent";
 	}
 
-	// 글 수정 화면
+	/** 글 수정 화면 */
 	@RequestMapping("/updateEvent.mdo")
 	public String updateEvent(EventVO vo, HttpSession session, @RequestParam("start") String start, @RequestParam("end") String end) throws IOException, PSQLException, ParseException {
 
-		// 세션 데이터
+		/** 세션 데이터 */
 		EventVO sessionVO = (EventVO) session.getAttribute("vo");
 		System.out.println("기존 vo : " + sessionVO.toString());
 
-		// 이미지 root url
+		/** 이미지 root url */
 		String imageUrl = "https://lubway.s3.ap-northeast-2.amazonaws.com/";
 		
-		// 이벤트 기간 수정 여부
+		/** 이벤트 기간 수정 여부 */
 		if(!start.equals("")) {
 			System.out.println("시작 기간 수정");
 			Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
@@ -66,7 +66,7 @@ public class EventController {
 			vo.setEnddate(sessionVO.getEnddate());
 		}
 
-		// 이미지 수정 여부
+		/** 이미지 수정 여부 */
 		if(vo.getThumbnail().equals("")) {
 			System.out.println("썸네일 기존 데이터");
 			vo.setThumbnail(sessionVO.getThumbnail());
@@ -92,7 +92,7 @@ public class EventController {
 		return "redirect:/getEventList.mdo";
 	}
 
-	// 글 삭제 화면
+	/** 글 삭제 화면 */
 	@RequestMapping("/deleteEvent.mdo")
 	public String deleteEvent(EventVO vo) throws IOException, PSQLException {
 		eventService.deleteEvent(vo);
@@ -100,7 +100,7 @@ public class EventController {
 		return "redirect:/getEventList.mdo";
 	}
 
-	// 글 상세조회
+	/** 글 상세조회 */
 	@RequestMapping("/getEvent.mdo")
 	public String getEvent(EventVO vo, Model model, HttpSession seesion) {
 		model.addAttribute("event", eventService.getEvent(vo));
@@ -108,19 +108,20 @@ public class EventController {
 		return "board/getEvent";
 	}
 
-	// 글 등록기능
+	/** 글 등록기능 */
 	@RequestMapping("/eventUpload.mdo")
 	public String getEventList(@RequestParam("start") String start, @RequestParam("end") String end, 
 			EventVO vo, MultipartFile thumb, MultipartFile cont) throws IOException, PSQLException, ParseException {
 		System.out.println(thumb.toString());
 		System.out.println(start);
 		
+		/** 파일 업로드 (thumbnail, contentImg) */
 		InputStream isT = thumb.getInputStream();
 		String thumbKey = thumb.getOriginalFilename();
 		String contentTypeT = thumb.getContentType();
 		long contentLengthT = thumb.getSize();
+		/** 경로 지정 */
 		String bucket = "lubway/event";
-		
 		awss3.upload(isT, thumbKey, contentTypeT, contentLengthT, bucket);
 
 		InputStream isC = cont.getInputStream();
@@ -135,7 +136,7 @@ public class EventController {
 		vo.setThumbnail(thumbnailFile);
 		vo.setContimg(contentFile);
 		
-		
+		/** 날짜 형식 지정 - String -> Date 형변환 */
 		Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
 		Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(end);
 		
@@ -148,7 +149,7 @@ public class EventController {
 		return "redirect:/getEventList.mdo";
 	}
 	
-	// 글목록 요청
+	/** 글목록 요청 */
 		@GetMapping("/getEventList.mdo")
 		public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 				@RequestParam(required = false, defaultValue = "1") int range) {
@@ -158,12 +159,12 @@ public class EventController {
 			System.out.println("page : " + page);
 			System.out.println("range : " + range);
 
-			// 전체 게시글 개수
+			/** 전체 게시글 개수 */
 			int listCnt = eventService.getEventPageListCnt();
 
 			System.out.println("listCnt : " + listCnt);
 			
-			// Pagination
+			/** Pagination */
 			Pagination pagination = new Pagination();
 			pagination.PageInfoEvent(page, range, listCnt);
 			System.out.println(pagination.getListSize());

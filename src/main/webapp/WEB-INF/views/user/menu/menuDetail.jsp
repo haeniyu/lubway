@@ -14,15 +14,6 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <script type="text/javascript" src="resources/js/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="resources/js/TweenMax.js"></script>
-
-<!--<script type="text/javascript" th:src="'/js/lottie.js?v=' + ${cacheParam}"></script>-->
-<!--   <script type="text/javascript" src="/js/ui.common.js?v=2021031802"></script>
-        <script type="text/javascript" src="/js/subway.common.js?v=2021031802"></script>
-        <script type="text/javascript" src="/js/waffle/waffle.utils.js?v=2021031802"></script>
--->
-        <!-- 
-	<link href="" rel="shortcut icon" type="image/x-icon">
- -->
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -72,13 +63,11 @@
 						</c:if>
 					</ul>
 					<!-- 이용방법 -->
-
 				</div>
 				<!--// sub location -->
 				<a class="top" href="#none">TOP</a>
 			</div>
 		</div>
-
 		<!-- sub content s -->
 		<div id="content">
 			<!-- 메뉴소개 s -->

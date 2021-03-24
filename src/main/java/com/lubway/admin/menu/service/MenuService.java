@@ -12,13 +12,17 @@ import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
 
 public interface MenuService {
-	public void insertCookie(NutrientVO nvo ,CookieVO vo);
+	
+	/** 관리자 메뉴 insert */
+	void insertCookie(NutrientVO nvo ,CookieVO vo);
 	void insertDrink(DrinkVO vo);
 	void insertMorning(NutrientVO nvo, MorningVO vo);
 	void insertSalad(NutrientVO nvo, SaladVO vo);
 	void insertSandwich(NutrientVO nvo, SandwichVO vo);
 	void insertWAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void insertWrap(NutrientVO nvo, WrapVO vo);
+	
+	/** 관리자 메뉴 List */
 	List<SandwichVO> selectSandwichList();
 	List<CookieVO> selectCookieList(CookieVO vo);
 	List<MorningVO>selectMorningList(MorningVO vo);
@@ -27,6 +31,8 @@ public interface MenuService {
 	List<SaladVO>selectSaladList(SaladVO vo);
 	List<WrapVO>selectWrapList(WrapVO vo);
 	List<NutrientVO>selectNutrientList(NutrientVO nvo);
+	
+	/** 관리자 메뉴 select */
 	SandwichVO selectSandwich(SandwichVO vo);
 	CookieVO selectCookie(CookieVO vo);
 	MorningVO selectMorning(MorningVO vo);
@@ -35,6 +41,8 @@ public interface MenuService {
 	SaladVO selectSalad(SaladVO vo);
 	WrapVO selectWrap(WrapVO vo);
 	NutrientVO selectNutrient(NutrientVO vo);
+	
+	/** 관리자 메뉴 update */
 	void updateDrink(DrinkVO vo);
 	void updateMorning(NutrientVO nvo, MorningVO vo);
 	void updateSalad(NutrientVO nvo, SaladVO vo);
@@ -42,6 +50,8 @@ public interface MenuService {
 	void updateWAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void updateWrap(NutrientVO nvo, WrapVO vo);
 	void updateCookie(NutrientVO nvo, CookieVO vo);
+	
+	/** 관리자 메뉴 delete */
 	void deleteDrink(DrinkVO vo);
 	void deleteMorning(NutrientVO nvo, MorningVO vo);
 	void deleteSalad(NutrientVO nvo, SaladVO vo);
@@ -49,9 +59,4 @@ public interface MenuService {
 	void deleteWAS(NutrientVO nvo, WedgeAndSoupVO vo);
 	void deleteWrap(NutrientVO nvo, WrapVO vo);
 	void deleteCookie(NutrientVO nvo, CookieVO vo);
-	
-	
-	
-
-	
 }

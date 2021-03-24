@@ -89,11 +89,6 @@ $(document).ready(function() {
 		document.body.appendChild(form);
 		form.submit();
 	}
-	
-	
-	
-	
-	//setTime();
 });
 </script>
 <style type="text/css">
@@ -137,26 +132,22 @@ $(document).ready(function() {
 						</div>
 					</div>
 				</c:if>
-					
 						<div class="mb-3">
 							<label for="name">제품명</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="name" id="name"
-									value="${update.name}">
+								<input type="text" class="form-control" name="name" id="name" value="${update.name}">
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="engname">제품명(english)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="engname" id="engname"
-									value="${update.engname}">
+								<input type="text" class="form-control" name="engname" id="engname" value="${update.engname}">
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="code"
-									 id="code" value="${update.code}">
+								<input type="text" class="form-control" name="code" id="code" value="${update.code}">
 							</div>
 						</div>
 

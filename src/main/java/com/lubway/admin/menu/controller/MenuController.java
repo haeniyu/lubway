@@ -34,26 +34,31 @@ public class MenuController {
 
 	public AwsS3 awss3 = AwsS3.getInstance();
 
+	/** 관리자 메뉴 등록 페이지 */
 	@GetMapping("/menu.mdo")
 	public String menu() {
 		return "menu/menu";
 	}
 
+	/** 관리자 메뉴 등록 */
 	@PostMapping("/menuInsert.mdo")
 	public String insertMenu(NutrientVO nvo, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo,
 			SaladVO svo, MorningVO mvo, DrinkVO dvo, @RequestParam("select") String select,
 			@RequestParam("uploadImg") MultipartFile multipart, RedirectAttributes rttr) throws IOException, PSQLException {
 
-		// aws s3 파일 업로드 처리
+		/** aws s3 파일 업로드 처리 */
 		InputStream is = multipart.getInputStream();
 		String key = multipart.getOriginalFilename();
 		String contentType = multipart.getContentType();
 		long contentLength = multipart.getSize();
+		
+		/** 파일 업로드 경로 지정 */
 		String bucket = "lubway/menu";
 		awss3.upload(is, key, contentType, contentLength, bucket);
 
 		String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + key;
 
+		/** select 비교해서 DB에 넣기 */
 		if (select.equals("cookie")) {
 			System.out.println(filePath.toString());
 			cvo.setFilePath(filePath);
@@ -83,6 +88,7 @@ public class MenuController {
 		return "redirect:/menuList.mdo";
 	}
 
+	/** 관리자 메뉴 목록 default-sandwich */
 	@GetMapping("/menuList.mdo")
 	public String sandwichList(Model model, String select) throws IOException, PSQLException {
 		model.addAttribute("select", select);
@@ -91,6 +97,7 @@ public class MenuController {
 		return "menu/menuList";
 	}
 
+	/** select-메뉴별 리스트 보여주기 */
 	@PostMapping("/menuListTab.mdo")
 	public String selectList(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo, String select) {
@@ -113,7 +120,8 @@ public class MenuController {
 
 		return "menu/menuList";
 	}
-
+	
+	/** 관리자 메뉴 상세 페이지 */
 	@RequestMapping("/menuDetail.mdo")
 	public String content(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
@@ -150,15 +158,11 @@ public class MenuController {
 		return "menu/menuDetail";
 	}
 	
+	/** 관리자 메뉴 수정 */
 	@PostMapping("/menuUpdate.mdo")
 	String update(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code,String select,String filepath) throws PSQLException, LogException{
-		
-		
 
-		
-
-		//menuservice.updateDrink(dvo);
 		switch (select) {
 		case "sandwich" : if(Svo.getFilePath() == null) Svo.setFilePath(menuservice.selectSandwich(Svo).getFilePath());
 						  menuservice.updateSandwich(nvo, Svo);
@@ -195,13 +199,14 @@ public class MenuController {
 		
 		return "redirect:/menuList.mdo";
 	}
+	
+	/** 관리자 메뉴 삭제 */
 	@PostMapping("/menuDelete.mdo")
 	String delete(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
 		System.out.println(select);
 		System.out.println(code);
 		System.out.println("들어옴");
-		
 		
 		switch (select) { 
 		case "sandwich" : menuservice.deleteSandwich(nvo, Svo);

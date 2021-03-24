@@ -42,7 +42,7 @@ public class UserNoticeController {
 
 		List<UserNoticeVO> rightNoticeList = noticeService.getRightNoticeList(pagination);
 
-		// 오른쪽 공지사항 5개 고정 나머지 2~3개 보여야함 (미해결)
+		// 오른쪽 공지사항 5개 고정 나머지 2~3개 보여야함
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("notice", noticeService.getUserNotice(vo));

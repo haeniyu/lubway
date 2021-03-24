@@ -265,16 +265,10 @@
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} 
-
 		}	
-		
 			alert("저장되었습니다.");
-		
 			var select = $("#mbrLgnId3").val();
-		//setTime();
 	});
-	
-	
 });
 
 </script>
@@ -290,7 +284,6 @@
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
-
 		<!-- Page Heading -->
 		<h1 class="h3 mb-2 text-gray-800">메뉴 정보 입력</h1>
 		<div class="card shadow mb-4">
@@ -300,8 +293,6 @@
 			<form name="form" id="form" role="form" method="post"
 				action="menuInsert.mdo" enctype="multipart/form-data">
 				<div class="card-body">
-
-
 					<div class="mb-3">
 						<label for="open">제품 카테고리</label>
 						<div class="col-sm-3">
@@ -322,8 +313,6 @@
 							</div>
 						</div>
 					</div>
-
-					
 						<div class="price15">
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
@@ -342,35 +331,29 @@
 							</div>
 						</div>
 					</div>
-
-					
 						<div class="mb-3">
 							<label for="name">제품명</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="name" id="name"
-									>
+								<input type="text" class="form-control" name="name" id="name">
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="engname">제품명(english)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="engname" id="engname"
-									>
+								<input type="text" class="form-control" name="engname" id="engname">
 							</div>
 						</div>
 						<div class="mb-3" id="hyunah">
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="code"
-									id="code" >
+								<input type="text" class="form-control" name="code" id="code" >
 							</div>
 						</div>
 						<div class="price">
 						<div class="mb-3" id="hyunah">
 							<label for="price">가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price"
-									id="price" >
+								<input type="text" class="form-control" name="price" id="price" >
 							</div>
 						</div>
 					</div>
@@ -378,8 +361,7 @@
 					<div class="mb-3" id="hyunah">
 							<label for="category">카테고리</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="category"
-									id="category" >
+								<input type="text" class="form-control" name="category" id="category" >
 							</div>
 						</div>
 						</div>
@@ -387,66 +369,54 @@
 					<div class="mb-3" id="hyunah">
 							<label for="content">내용</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="content"
-									id="content" >
+								<input type="text" class="form-control" name="content" id="content" >
 							</div>
 						</div>
 						</div>
-
 					<div class="form">
 						<div class="mb-3">
 							<label for="ttl">총 중량(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="ttl"
-									id="ttl" >
+								<input type="text" class="form-control" name="ttl" id="ttl" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="cal">열량(kcal)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="cal" id="cal"
-									>
+								<input type="text" class="form-control" name="cal" id="cal">
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="sug">당류(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="sug" id="sug"
-									>
+								<input type="text" class="form-control" name="sug" id="sug">
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="pro">단백질(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="pro"
-									id="pro" >
+								<input type="text" class="form-control" name="pro" id="pro" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="fat">포화지방(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="fat"
-									id="fat" >
+								<input type="text" class="form-control" name="fat" id="fat" >
 							</div>
 						</div>
 						<div class="mb-3">
 							<label for="sod">나트륨(g)</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="sod"
-									id="sod">
+								<input type="text" class="form-control" name="sod" id="sod">
 							</div>
 						</div>
 					</div>
-
 					<div class="mb-3">
-						
                      <div>
                         <div class="index">이미지</div>
                         <input type="file" name="uploadImg" id="uploadImg" multiple/>
                      </div>
-              
 					</div>
-
 					<div>
 						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
 					</div>

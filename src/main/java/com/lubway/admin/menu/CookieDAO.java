@@ -13,7 +13,6 @@ public class CookieDAO {
 
 	public void insertCookie(CookieVO vo) {
 		sqlSessionTemplate.insert("CookieDAO.insertCookie",vo);
-		
 	}
 
 	public void updateCookie(CookieVO vo) {

@@ -106,8 +106,6 @@
 									<th width="25%">file</th>
 								</tr>
 							</thead>
-
-
 							<tbody>
 								<c:forEach items="${List}" var="List" >
 									<tr>
@@ -118,27 +116,14 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-
 						</table>
-
-
 					</form>
-
-					
-
-					<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
-					<!-- pagination{s} -->
 					</div>
 					</div>
 				</div>
 			</div>
-
-
 			<!-- /.container-fluid -->
-
 			<!-- End of Main Content -->
-
-			<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
-
+<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>
