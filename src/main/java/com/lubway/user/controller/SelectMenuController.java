@@ -17,9 +17,12 @@ public class SelectMenuController {
 	/** 메뉴 선택 페이지 */
 	@GetMapping("step02.do")
 	public String menuSelect() {
-		
-		
 		return "step02";
 	}
 
+	/** 메뉴 선택 페이지 */
+	@GetMapping("fastwaystep02.do")
+	public String menustep02() {
+		return "fastwaystep02";
+	}
 }
