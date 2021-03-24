@@ -151,10 +151,12 @@
 					<ul>
 						<li><label class="form_circle" for="15cm">
 						<input name="length" type="radio" checked="checked" id="15cm" value="15cm">
+						<span class="icon"></span>
 						<em>15cm</em>
 						</label></li>
 						<li><label class="form_circle" for="30cm">
 						<input name="length" type="radio" id="30cm" value="30cm">
+						<span class="icon"></span>
 						<em>30cm</em>
 						</label></li>
 					</ul>
@@ -176,6 +178,7 @@
 						<c:forEach items="${breadList}" var="bread">
 							<li><label class="form_circle">
 							<input name="bread" type="radio" value="${bread.name }">
+							<span class="icon"></span>
 							<em>${bread.name }</em>
 							</label></li>
 						</c:forEach>
@@ -198,6 +201,7 @@
 						<c:forEach items="${cheeseList }" var="cheese">
 							<li><label class="form_circle">
 							<input name="cheese" type="radio" value="${cheese.name }">
+							<span class="icon"></span>
 							<em>${cheese.name }</em>
 							</label></li>
 						</c:forEach>
@@ -220,6 +224,7 @@
 						<c:forEach items="${vegeList }" var="vege">
 							<li><label class="form_circle">
 							<input name="vegetable" type="checkbox" value="${vege.name }">
+							<span class="icon"></span>
 							<em>${vege.name }</em>
 							</label></li>
 						</c:forEach>
@@ -242,6 +247,7 @@
 						<c:forEach items="${sauceList }" var="sauce">
 							<li><label class="form_circle">
 							<input name="sauce" type="checkbox" value="${sauce.name }">
+							<span class="icon"></span>
 							<strong>${sauce.sub }</strong><em>${sauce.name }</em>
 							</label></li>
 						</c:forEach>
@@ -271,6 +277,7 @@
 						<c:forEach items="${toppingList }" var="topping">
 							<li><label class="form_circle">
 							<input name="topping" type="checkbox" value="${topping.name }">
+							<span class="icon"></span>
 							<em>${topping.name }</em><span>+<em>${topping.price }</em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
@@ -294,6 +301,7 @@
 						<c:forEach items="${meatList }" var="meat">
 							<li><label class="form_circle">
 							<input name="meat" type="radio" value="${meat.name }">
+							<span class="icon"></span>
 							<em>${meat.name }</em><span>+<em>${meat.price }</em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
@@ -320,36 +328,37 @@
 				<div class="option_display">
 					<dl>
 						<dt>세트 선택</dt>
-						<dd id="select_set">쿠키 세트</dd>
 					</dl>
 				</div>
 				<div class="popup_content set_menu">
 					<ul>
-						<li>
-						<select name="select_set">
-							<option value="cookie">쿠키 세트</option>
-							<option value="wedge">웨지 세트</option>
-						</select>
-						</li>
-					</ul>
-				</div>
-			</div>
-			<c:if test="">
-				<div class="popup_content cookie">
-					<ul>
-						<li><label class="form_circle" for="15cm">
-						<input name="length" type="radio" checked="checked" id="15cm" value="15cm">
-						<em>15cm</em>
+						<li><label class="form_circle">
+						<input name="select_set" type="radio" checked="checked" value="쿠키 세트">
+						<span class="icon"></span>
+						<em>쿠키 세트</em>
+						</label></li>
+						<li><label class="form_circle">
+						<input name="select_set" type="radio" value="웨지 세트">
+						<span class="icon"></span>
+						<em>웨지 세트</em>
 						</label></li>
 					</ul>
 				</div>
-			</c:if>
+				<div class="popup_content">
+					<ul>
+						<li><label class="form_circle">
+						<input name="select_set" type="radio" checked="checked" value="쿠키 세트">
+						<span class="icon"></span>
+						<em>쿠키 세트</em>
+						</label></li>
+					</ul>
+				</div>
+			</div>
 			<div class="wrap_pop">
 				<a class="pop" href="#select_set" rel="modal:open">세트</a>
 			</div>
 
 		</div>
 	</div>
-
 </body>
 </html>
