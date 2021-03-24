@@ -2,6 +2,8 @@ package com.lubway.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +24,9 @@ public class HomewayController {
 	
 	/** 홈웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
 	@GetMapping("step01.do")
-	public String homewayView() {
+	public String homewayView(HttpSession session) {
+		if(session.getAttribute("user")==null)
+			return "login";
 		return "homeway";
 	}
 	

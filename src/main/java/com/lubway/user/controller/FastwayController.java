@@ -2,8 +2,11 @@ package com.lubway.user.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +23,10 @@ public class FastwayController {
 	FastwayService fastwayService;
 	
 	/** 패스트웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
-	@RequestMapping("step01.do")
-	public String fastwayView() {
+	@GetMapping("step01.do")
+	public String fastwayView(HttpSession session) {
+		if(session.getAttribute("user")==null)
+			return "login";
 		return "fastway";
 	}
 	
