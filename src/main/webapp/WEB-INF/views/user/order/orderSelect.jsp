@@ -109,6 +109,26 @@
 			// 선택 토핑
 			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
 		});
+		
+		/******************STEP02********************/
+	      /*****************토핑 추가 선택*****************/
+	      var selected = "";
+	      var arr = new Array();
+	      $("input:checkbox[name=topping]").click(function(){
+	         
+	         if($(this).is(":checked") == true) {
+	            arr.push($(this).val());
+	         } else {
+	            for(var i=0; i<arr.length; i++) {
+	               if($(this).val() == arr[i]) arr.splice(i, 1);
+	            }
+	         }
+	         
+	         console.log(arr);
+	         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 추가 선택 제품을 선택하여 주세요");
+	         
+	      }); //end of topping
+	      
 	});
 </script>
 <script type="text/javascript">
@@ -314,7 +334,7 @@
 				<div class="option_display">
 					<dl>
 						<dt>추가 선택 (다중 선택 가능)</dt>
-						<dd id="topping">원하는 추가 선택 제품을 선택하여 주세요</dd>
+						<dd id="toppingText">원하는 추가 선택 제품을 선택하여 주세요</dd>
 						<dd id="sum">+<span>0</span>원</dd>
 					</dl>
 				</div>
