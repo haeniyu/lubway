@@ -16,6 +16,7 @@ table{border-collapse:collapse;border-spacing:0; width:100%;}
 caption{visibility:hidden; font-size:0; line-height:0; opacity:0; height:0; overflow:hidden;}
 em{font-style:normal;}
 
+<<<<<<< HEAD
 /* --- webfont --- */
 @font-face {
   font-family:font_ns;
@@ -52,6 +53,8 @@ em{font-style:normal;}
 	src: url(/font/Subway-Footlong.eot);
 	src: url(/font/Subway-Footlong.eot?#iefix) format('embedded-opentype'),
 }
+=======
+>>>>>>> feature/choice
 
 /* footer */
 #footer{background-color:#292929; color:#666666; padding:22px 0; position:relative; z-index:9}
