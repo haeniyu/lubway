@@ -40,7 +40,7 @@ public class SelectMenuController {
 	@GetMapping("/fastwaystep02.do")
 	public String menustep02(Model model, String select) {
 		model.addAttribute("select", select);
-		model.addAttribute("list", userMenuService.getSandwichList());
+		model.addAttribute("update", userMenuService.getSandwichList());
 		model.addAttribute("calList", userMenuService.getSandwichCalList());
 		return "fastwaystep02";
 	}

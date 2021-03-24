@@ -17,46 +17,32 @@
 		console.log(select);
 		
           //When page loads...
-         
           $("ul.select li:first").addClass("active").show(); //Activate first tab
           $(".order_con:first").show(); //Show first tab content
-              
-
+          
           //On Click Event
           $("ul.select li").click(function() {
-              
         	  $("ul.select li").removeClass("active"); //Remove any "active" class
               $(this).addClass("active"); //Add "active" class to selected tab
-              
-              
-              
-              
-              
-              
-           	  
-              
+              update();
               return false;
           });
-              
               function update(){
             	  var select = $("#sand").val();
             	  $.ajax({
-        				url : '/lubway/fastway/fastwaystep02.do?select=' + select,
+        				url : '/lubway/fastway/step02Tab.do?select=' + select,
         				type : 'post',
-        				success : function() {
+        				success : function(data) {
         					alert("성공");
-        					$("#itemListMst").load(window.location.href + "#itemListMst");
-        				},
-        				error : function() {
-        					alert("인증에 실패하였습니다.");
         					
+        				},
+        				error : function(data) {
+        					alert("인증에 실패하였습니다.");
         				}
         		});
               }
           
-          function menuDetail(code){
-        	  var code = $(this).val();
-          }
+ 
 
       });
 </script>
@@ -77,10 +63,10 @@
 					</div>
 					<div class="tab02">
 						<ul class="select" id="select" >
-							<li class="" ><a href="step02Tab.do?select=" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
-							<li ><a href="step02Tab.do" >찹샐러드<input type="hidden" value="salad"></a></li>
-							<li ><a href="step02Tab.do" >사이드ㆍ음료<input type="hidden" value="side"></a></li>
-							<li ><a href="step02Tab.do" >랩ㆍ기타<input type="hidden" value="wrap"></a></li>
+							<li class="" ><a href="step02Tab.do" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
+							<li ><a href="step02Tab.do" onclick="update();" >찹샐러드<input id="sand" type="hidden" value="salad"></a></li>
+							<li ><a href="step02Tab.do" onclick="update();">사이드ㆍ음료<input id="sand" type="hidden" value="side"></a></li>
+							<li ><a href="step02Tab.do" onclick="update();">랩ㆍ기타<input id="sand" type="hidden" value="wrap"></a></li>
 						</ul>
 					</div>
 					
@@ -88,14 +74,14 @@
 					<div class="order_con" id="itemListMst">
 					<div class="pd_list_wrapper" id="list_wrapper">
 						<ul>
-							<c:forEach var="list" items="${list}" varStatus="status">
+							<c:forEach var="update" items="${update}" varStatus="status">
 								<li>
-								<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#" style="display:block;">
+								<a onclick="javascript:menuDetail('${update.code}');" class="btn_view" href="#" style="display:block;">
 								<div class="img">
-								<img alt="${list.name}" src="${list.filePath}" />
+								<img alt="${update.name}" src="${update.filePath}" />
 								</div> 
-								<strong class="tit">${list.name}</strong>
-								<span class="eng">${list.engname}</span> <span class="cal">${calList[status.index]} kcal</span> 
+								<strong class="tit">${update.name}</strong>
+								<span class="eng">${update.engname}</span> <span class="cal">${calList[status.index]} kcal</span> 
 								</a>
 								</li>
 							</c:forEach>
