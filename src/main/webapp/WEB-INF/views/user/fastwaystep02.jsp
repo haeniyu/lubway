@@ -6,6 +6,7 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+
 <head>
 <meta charset="UTF-8">
 <title>fastway/Step02</title>
@@ -23,11 +24,10 @@
 
           //On Click Event
           $("ul.select li").click(function() {
-        	  var select = $("#sand").val();
               
         	  $("ul.select li").removeClass("active"); //Remove any "active" class
               $(this).addClass("active"); //Add "active" class to selected tab
-              update();
+              
               
               
               
@@ -63,10 +63,12 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
-	<form action="">
-    <div class="content">
-            <!-- container s -->
-        <div id="container">
+
+	<div class="content">
+		<!-- container s -->
+		<div id="container">
+			<div id="content" class="order  fast_sub">
+				<!-- fast_sub / home_sub -->
 				<!-- index -->
 				<div class="menu_list">
 					<div class="order_title">
@@ -75,7 +77,7 @@
 					</div>
 					<div class="tab02">
 						<ul class="select" id="select" >
-							<li class="" ><a href="step02Tab.do" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
+							<li class="" ><a href="step02Tab.do?select=" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
 							<li ><a href="step02Tab.do" >찹샐러드<input type="hidden" value="salad"></a></li>
 							<li ><a href="step02Tab.do" >사이드ㆍ음료<input type="hidden" value="side"></a></li>
 							<li ><a href="step02Tab.do" >랩ㆍ기타<input type="hidden" value="wrap"></a></li>
@@ -83,13 +85,10 @@
 					</div>
 					
 					<!-- 컨텐츠 리스트 -->
-					
 					<div class="order_con" id="itemListMst">
-						<div class="pd_list_wrapper">
-						
+					<div class="pd_list_wrapper" id="list_wrapper">
 						<ul>
 							<c:forEach var="list" items="${list}" varStatus="status">
-							
 								<li>
 								<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#" style="display:block;">
 								<div class="img">
@@ -103,21 +102,14 @@
 						</ul>
 					</div>
 					</div>
-					 
 				</div>
 				<!--// index -->
 			</div>
 			<!--// sub content e -->
 			<!-- 메뉴리스트 -->
 		</div>
-
-		</div>
-			<input type="hidden" name="select" value="${select}">
-	</form>	
-		
-		
-<%@ include file="/WEB-INF/views/user/footer.jsp"%>
-
+	</div>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 
 </body>
 </html>
