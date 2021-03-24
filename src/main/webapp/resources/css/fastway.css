@@ -577,3 +577,49 @@ legend{display:block;overflow:hidden;position:absolute;top:-1000em;left:0;width:
 .coupon_info .btn_area a{width: 130px;}
 
 .tab02{width:1170px;height:70px;margin:50px auto 0px auto;position:relative;z-index:10;box-shadow: 7px 7px 20px 0px rgb(0 0 0 / 10%);}
+
+.order_con .pd_list_wrapper {
+    width: 1170px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 130px;
+    
+}
+
+.order_con .pd_list_wrapper ul {
+    overflow: hidden;
+    margin: -30px 0 0 -30px;
+}
+
+.order_con .pd_list_wrapper li {
+    width: 370px;
+    height: 330px;
+    background-color: #fff;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    margin: 30px 0 0 30px;
+    transition: 0.3s;
+}
+
+.order_con .pd_list_wrapper li .img {
+    width: 270px;
+    height: 189px;
+    margin: 20px auto 0;
+    position: relative;
+    z-index: 1;
+}
+
+.order_con .pd_list_wrapper li .img img {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+

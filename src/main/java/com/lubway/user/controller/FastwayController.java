@@ -25,8 +25,7 @@ public class FastwayController {
 	/** 패스트웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
 	@GetMapping("step01.do")
 	public String fastwayView(HttpSession session) {
-		if(session.getAttribute("user")==null)
-			return "login";
+//		if(session.getAttribute("user")==null) return "login";
 		return "fastway";
 	}
 	

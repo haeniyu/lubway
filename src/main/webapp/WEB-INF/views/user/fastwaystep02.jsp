@@ -10,56 +10,98 @@
 <head>
 <meta charset="UTF-8">
 <title>fastway/Step02</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+      $(document).ready(function() {
+		var select = $("#sand").val();
+		console.log(select);
+		
+          //When page loads...
+         
+          $("ul.select li:first").addClass("active").show(); //Activate first tab
+          $(".order_con:first").show(); //Show first tab content
+              
 
+          //On Click Event
+          $("ul.select li").click(function() {
+        	  var select = $("#sand").val();
+              
+        	  $("ul.select li").removeClass("active"); //Remove any "active" class
+              $(this).addClass("active"); //Add "active" class to selected tab
+              update();
+              
+              
+              
+              
+              
+           	  
+              
+              return false;
+          });
+              
+              function update(){
+            	  var select = $("#sand").val();
+            	  $.ajax({
+        				url : '/lubway/fastway/fastwaystep02.do?select=' + select,
+        				type : 'post',
+        				success : function() {
+        					alert("성공");
+        					$("#itemListMst").load(window.location.href + "#itemListMst");
+        				},
+        				error : function() {
+        					alert("인증에 실패하였습니다.");
+        					
+        				}
+        		});
+              }
+          
+          function menuDetail(code){
+        	  var code = $(this).val();
+          }
+
+      });
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
-    <div class="content">
-            <!-- container s -->
-        <div id="container">
-			<div id="content" class="order  fast_sub"> <!-- fast_sub / home_sub -->
+
+	<div class="content">
+		<!-- container s -->
+		<div id="container">
+			<div id="content" class="order  fast_sub">
+				<!-- fast_sub / home_sub -->
 				<!-- index -->
 				<div class="menu_list">
 					<div class="order_title">
 						<h3>Fast-Sub</h3>
-						<p>
-							온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.
-							
-						</p>
+						<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
 					</div>
 					<div class="tab02">
-						<ul>
-							<li class="active">
-								<a href="#"  >찹샐러드</a>
-							</li>
-							<li>
-								<a href="#" >샌드위치</a>
-							</li>
-							<li>
-								<a href="#"  >사이드ㆍ음료</a>
-							</li>
-							<li>
-								<a href="#"  >랩ㆍ기타</a>
-							</li>
+						<ul class="select" id="select" >
+							<li class="" ><a href="step02Tab.do" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
+							<li ><a href="step02Tab.do" >찹샐러드<input type="hidden" value="salad"></a></li>
+							<li ><a href="step02Tab.do" >사이드ㆍ음료<input type="hidden" value="side"></a></li>
+							<li ><a href="step02Tab.do" >랩ㆍ기타<input type="hidden" value="wrap"></a></li>
 						</ul>
 					</div>
+					
 					<!-- 컨텐츠 리스트 -->
 					<div class="order_con" id="itemListMst">
+					<div class="pd_list_wrapper" id="list_wrapper">
 						<ul>
 							<c:forEach var="list" items="${list}" varStatus="status">
 								<li>
-									<div class="img">
-										<img alt="${list.name}" src="${list.filePath}" />
-									</div>
-									
-									<strong class="tit">${list.name}</strong>
-									<span class="eng">${list.engname}</span>
-									<span class="cal">${calList[status.index]} kcal</span>
-									
-									<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#"></a>
+								<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#" style="display:block;">
+								<div class="img">
+								<img alt="${list.name}" src="${list.filePath}" />
+								</div> 
+								<strong class="tit">${list.name}</strong>
+								<span class="eng">${list.engname}</span> <span class="cal">${calList[status.index]} kcal</span> 
+								</a>
 								</li>
 							</c:forEach>
-						</ul>					
+						</ul>
+					</div>
 					</div>
 				</div>
 				<!--// index -->
@@ -67,8 +109,8 @@
 			<!--// sub content e -->
 			<!-- 메뉴리스트 -->
 		</div>
-		</div>
-<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	</div>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 
 </body>
 </html>
