@@ -13,8 +13,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
       $(document).ready(function() {
-		var selected = $("#sand").val();
-		console.log(selected);
+    	  
+	
 		
           //When page loads...
           $("ul.select li:first").addClass("active").show(); //Activate first tab
@@ -24,16 +24,41 @@
           $("ul.select li").click(function() {
 	          $("ul.select li").removeClass("active"); //Remove any "active" class
 	          $(this).addClass("active"); //Add "active" class to selected tab
+	          
+	          var select = $("#sand").val();
+	          if($(".active").find("#sand").val() == "sandwich"){
+        		 select = $("#sand").val();
+        		 console.log(select);
+        	  }else if($(".active").find("#salad").val() == "salad"){
+        		  select = $("#salad").val();
+        		  console.log(select);
+        		  
+        	  }else if($(".active").find("#side").val() == "side"){
+        		  select = $("#side").val();
+        		  console.log(select);
+        		  
+        	  }else if($(".active").find("#wrap").val() == "wrap"){
+        		  select = $("#wrap").val();
+        		  console.log(select);
+        	  }
+	         
+        	 
+	          
+        	  
+      			
+        	  
             
-              update();
+              
               return false;
           });
               function update(){
-            	  var select = selected;
             	  $.ajax({
         				url : '/lubway/fastway/step02Tab.do?select=' + select,
         				type : 'post',
         				success : function(data) {
+        					alert("성공.");
+        					console.log(data);
+        					
         				},
         				error : function(data) {
         					alert("인증에 실패하였습니다.");
@@ -60,10 +85,10 @@
 					</div>
 					<div class="tab02">
 						<ul class="select" id="select" >
-							<li class="" ><a href="step02Tab.do" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
-							<li ><a href="step02Tab.do" onclick="update();" >찹샐러드<input id="sand" type="hidden" value="salad"></a></li>
-							<li ><a href="step02Tab.do" onclick="update();">사이드ㆍ음료<input id="sand" type="hidden" value="side"></a></li>
-							<li ><a href="step02Tab.do" onclick="update();">랩ㆍ기타<input id="sand" type="hidden" value="wrap"></a></li>
+							<li class=""><a href="step02Tab.do" onclick="">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
+							<li ><a href="step02Tab.do" onclick="">찹샐러드<input id="salad" type="hidden" value="salad"></a></li>
+							<li ><a href="step02Tab.do" onclick="">사이드ㆍ음료<input id="side" type="hidden" value="side"></a></li>
+							<li ><a href="step02Tab.do" onclick="">랩ㆍ기타<input id="wrap" type="hidden" value="wrap"></a></li>
 						</ul>
 					</div>
 					

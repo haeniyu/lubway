@@ -1,11 +1,14 @@
 package com.lubway.user.controller;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
@@ -45,12 +48,13 @@ public class SelectMenuController {
 		return "fastwaystep02";
 	}
 	
+	@ResponseBody
 	@PostMapping("step02Tab.do")
 	public String step02Tab(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
-			MorningVO mvo, DrinkVO dvo, NutrientVO nvo, String select, String code) {
+			MorningVO mvo, DrinkVO dvo, NutrientVO nvo, String select, String code ) {
 		
 		System.out.println(select);
-		
+
 		switch (select) {
 		
 		case "sandwich" : model.addAttribute("update", menuservice.selectSandwich(Svo));
