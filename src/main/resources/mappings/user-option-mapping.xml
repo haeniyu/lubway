@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="UserOptionDAO">
+
+	<select id="getBreadList" resultType="bread">
+		SELECT * FROM bread
+	</select>
+
+	<select id="getCheeseList" resultType="cheese">
+		SELECT * FROM cheese
+	</select>
+
+	<select id="getMeatAddList" resultType="meat">
+		SELECT * FROM meat_add
+	</select>
+
+	<select id="getSauceList" resultType="sauce">
+		SELECT * FROM sauce
+	</select>
+
+	<select id="getToppingAddList" resultType="topping">
+		SELECT * FROM topping_add
+	</select>
+
+	<select id="getVegetableList" resultType="vege">
+		SELECT * FROM vegetable
+	</select>
+
+</mapper>

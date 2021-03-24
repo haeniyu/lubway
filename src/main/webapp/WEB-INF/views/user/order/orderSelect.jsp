@@ -64,21 +64,21 @@
 		});
 		
 		//야채선택
-		var selectTotalText = "";
-		var itemArr = new Array();
-		$("input:checkbox[name=sauce]").click(function() {
-			var selectTarget = $("[name=sauce]:checked");
+		var selectVegeText = "";
+		var vegeArr = new Array();
+		$("input:checkbox[name=vegetable]").click(function() {
+			var selectTarget = $("[name=vegetable]:checked");
 
 			if($(this).is(":checked") == true) {
-				itemArr.push($(this).val());
+				vegeArr.push($(this).val());
 			} else {
-				for(var i=0; i<itemArr.length; i++) {
-					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
+				for(var i=0; i<vegeArr.length; i++) {
+					if($(this).val() == vegeArr[i]) vegeArr.splice(i, 1);
 				}
 			}
-			console.log(itemArr);
+			console.log(vegeArr);
 			// 선택 토핑
-			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
+			$('#vegeText').text(vegeArr.length > 0 ? vegeArr.join(",") : "야채를 선택해 주세요.");
 		});
 		
 		//소스 선택
@@ -107,7 +107,7 @@
 			console.log(itemArr);
 						
 			// 선택 토핑
-			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
+			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택해 주세요.");
 		});
 		
 		/******************STEP02********************/
@@ -125,7 +125,7 @@
 	         }
 	         
 	         console.log(arr);
-	         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 추가 선택 제품을 선택하여 주세요");
+	         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 제품을 추가 선택해 주세요");
 	         
 	      }); //end of topping
 	      
@@ -168,35 +168,17 @@
 				<div class="option_display">
 					<dl>
 						<dt>빵 선택</dt>
-						<dd id="breadText">화이트</dd>
+						<dd id="breadText">빵을 선택해 주세요</dd>
 					</dl>
 				</div>
 				<div class="popup_content bread">
 					<ul>
-						<li><label class="form_circle" for="b1">
-						<input name="bread" type="radio" checked="checked" id="b1" value="화이트">
-						<em>화이트</em>
-						</label></li>
-						<li><label class="form_circle" for="b2">
-						<input name="bread" type="radio" id="b2" value="파마산 오레가노">
-						<em>파마산 오레가노</em>
-						</label></li>
-						<li><label class="form_circle" for="b3">
-						<input name="bread" type="radio" id="b3" value="위트">
-						<em>위트</em>
-						</label></li>
-						<li><label class="form_circle" for="b4">
-						<input name="bread" type="radio" id="b4" value="허니오트">
-						<em>허니오트</em>
-						</label></li>
-						<li><label class="form_circle" for="b5">
-						<input name="bread" type="radio" id="b5" value="하티">
-						<em>하티</em>
-						</label></li>
-						<li><label class="form_circle" for="b6">
-						<input name="bread" type="radio" id="b6" value="플랫브레드">
-						<em>플랫브레드</em>
-						</label></li>
+						<c:forEach items="${breadList}" var="bread">
+							<li><label class="form_circle">
+							<input name="bread" type="radio" value="${bread.name }">
+							<em>${bread.name }</em>
+							</label></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -208,23 +190,17 @@
 				<div class="option_display">
 					<dl>
 						<dt>치즈 선택</dt>
-						<dd id="cheeseText">아메리칸치즈</dd>
+						<dd id="cheeseText">치즈를 선택해 주세요</dd>
 					</dl>
 				</div>
 				<div class="popup_content cheese">
 					<ul>
-						<li><label class="form_circle" for="cheese1">
-						<input name="cheese" type="radio" checked="checked" id="cheese1" value="아메리칸 치즈">
-						<em>아메리칸 치즈</em>
-						</label></li>
-						<li><label class="form_circle" for="cheese2">
-						<input name="cheese" type="radio" id="cheese2" value="슈레드 치즈">
-						<em>슈레드 치즈</em>
-						</label></li>
-						<li><label class="form_circle" for="cheese3">
-						<input name="cheese" type="radio" id="cheese3" value="모차렐라 치즈">
-						<em>모차렐라 치즈</em>
-						</label></li>
+						<c:forEach items="${cheeseList }" var="cheese">
+							<li><label class="form_circle">
+							<input name="cheese" type="radio" value="${cheese.name }">
+							<em>${cheese.name }</em>
+							</label></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -241,42 +217,12 @@
 				</div>
 				<div class="popup_content vegetable">
 					<ul>
-						<label>생야채</label>
-						<li><label class="form_circle" for="vege1">
-						<input name="vegetable" type="checkbox" id="vege1" value="vege1">
-						<em>양상추</em>
-						</label></li>
-						<li><label class="form_circle" for="vege2">
-						<input name="vegetable" type="checkbox" id="vege2" value="vege2">
-						<em>토마토</em>
-						</label></li>
-						<li><label class="form_circle" for="vege3">
-						<input name="vegetable" type="checkbox" id="vege3" value="vege3">
-						<em>오이</em>
-						</label></li>
-						<li><label class="form_circle" for="vege4">
-						<input name="vegetable" type="checkbox" id="vege4" value="vege4">
-						<em>피망</em>
-						</label></li>
-						<li><label class="form_circle" for="vege5">
-						<input name="vegetable" type="checkbox" id="vege5" value="vege5">
-						<em>양파</em>
-						</label></li>
-					</ul>
-					<ul>
-						<label>절임류</label>
-						<li><label class="form_circle" for="vege6">
-						<input name="vegetable" type="checkbox" id="vege6" value="vege6">
-						<em>피클</em>
-						</label></li>
-						<li><label class="form_circle" for="vege7">
-						<input name="vegetable" type="checkbox" id="vege7" value="vege7">
-						<em>올리브</em>
-						</label></li>
-						<li><label class="form_circle" for="vege8">
-						<input name="vegetable" type="checkbox" id="vege8" value="vege8">
-						<em>할라피뇨</em>
-						</label></li>
+						<c:forEach items="${vegeList }" var="vege">
+							<li><label class="form_circle">
+							<input name="vegetable" type="checkbox" value="${vege.name }">
+							<em>${vege.name }</em>
+							</label></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -293,30 +239,12 @@
 				</div>
 				<div class="popup_content sauce">
 					<ul>
-						<li><label class="form_circle" for="sauce1">
-						<input name="sauce" type="checkbox" id="sauce1" value="머스타드">
-						<strong>알싸한</strong><em>머스타드</em>
-						</label></li>
-						<li><label class="form_circle" for="sauce2">
-						<input name="sauce" type="checkbox" id="sauce2" value="레드와인식초">
-						<strong>과일향</strong><em>레드와인식초</em>
-						</label></li>
-						<li><label class="form_circle" for="sauce3">
-						<input name="sauce" type="checkbox" id="sauce3" value="스위트 어니언">
-						<strong>달콤한</strong><em>스위트 어니언</em>
-						</label></li>
-						<li><label class="form_circle" for="sauce4">
-						<input name="sauce" type="checkbox" id="sauce4" value="허니 머스타드">
-						<strong>새콤달콤한</strong><em>허니 머스타드</em>
-						</label></li>
-						<li><label class="form_circle" for="sauce5">
-						<input name="sauce" type="checkbox" id="sauce5" value="스위트 칠리">
-						<strong>매콤달콤한</strong><em>스위트 칠리</em>
-						</label></li>
-						<li><label class="form_circle" for="sauce6">
-						<input name="sauce" type="checkbox" id="sauce6" value="스모크 바비큐">
-						<strong>스모크 향</strong><em>스모크 바비큐</em>
-						</label></li>
+						<c:forEach items="${sauceList }" var="sauce">
+							<li><label class="form_circle">
+							<input name="sauce" type="checkbox" value="${sauce.name }">
+							<strong>${sauce.sub }</strong><em>${sauce.name }</em>
+							</label></li>
+						</c:forEach>
 					</ul>
 					<a href="#" onclick="endSauce()">다음</a>
 				</div>
@@ -340,26 +268,12 @@
 				</div>
 				<div class="popup_content topping">
 					<ul>
-						<li><label class="form_circle" for="topping1">
-						<input name="topping" type="checkbox" id="topping1" value="topping1">
-						<em>에그마요</em><span><em>+1,600</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="topping2">
-						<input name="topping" type="checkbox" id="topping2" value="topping2">
-						<em>페퍼로니</em><span><em>+900</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="topping3">
-						<input name="topping" type="checkbox" id="topping3" value="topping3">
-						<em>베이컨</em><span><em>+900</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="topping4">
-						<input name="topping" type="checkbox" id="topping4" value="topping4">
-						<em>아보카도</em><span><em>+1,300</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="topping5">
-						<input name="topping" type="checkbox" id="topping5" value="topping5">
-						<em>오믈렛</em><span><em>+1,200</em>&nbsp;원</span>
-						</label></li>
+						<c:forEach items="${toppingList }" var="topping">
+							<li><label class="form_circle">
+							<input name="topping" type="checkbox" value="${topping.name }">
+							<em>${topping.name }</em><span>+<em>${topping.price }</em>&nbsp;원</span>
+							</label></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>
@@ -377,26 +291,12 @@
 				</div>
 				<div class="popup_content meat">
 					<ul>
-						<li><label class="form_circle" for="meat1">
-						<input name="meat" type="radio" id="meat1" value="meat1">
-						<em>로스트 치킨</em><span><em>+1,800</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="meat2">
-						<input name="meat" type="radio" id="meat2" value="meat2">
-						<em>클럽</em><span><em>+1,800</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="meat3">
-						<input name="meat" type="radio" id="meat3" value="meat3">
-						<em>터키</em><span><em>+1,800</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="meat4">
-						<input name="meat" type="radio" id="meat4" value="meat4">
-						<em>비엠티</em><span><em>+1,800</em>&nbsp;원</span>
-						</label></li>
-						<li><label class="form_circle" for="meat5">
-						<input name="meat" type="radio" id="meat5" value="meat5">
-						<em>비엘티</em><span><em>+1,800</em>&nbsp;원</span>
-						</label></li>
+						<c:forEach items="${meatList }" var="meat">
+							<li><label class="form_circle">
+							<input name="meat" type="radio" value="${meat.name }">
+							<em>${meat.name }</em><span>+<em>${meat.price }</em>&nbsp;원</span>
+							</label></li>
+						</c:forEach>
 					</ul>
 				</div>
 			</div>

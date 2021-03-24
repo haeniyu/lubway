@@ -10,13 +10,6 @@
 		<typeAlias type="com.lubway.admin.StoreVO" alias="store"/>
 		<typeAlias type="com.lubway.admin.board.EventVO" alias="event"/>
 		<typeAlias type="com.lubway.admin.CouponVO" alias="coupon"/>
-		
-		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
-		
-		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
-		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
-		<typeAlias type="com.lubway.user.board.UserEventVO" alias="userevent"/>
-		<typeAlias type="com.lubway.user.UserCouponVO" alias="usercoupon"/>
 		<typeAlias type="com.lubway.admin.menu.CookieVO" alias="cookie"/>
 		<typeAlias type="com.lubway.admin.menu.DrinkVO" alias="drink"/>
 		<typeAlias type="com.lubway.admin.menu.MorningVO" alias="morning"/>
@@ -25,6 +18,20 @@
 		<typeAlias type="com.lubway.admin.menu.SandwichVO" alias="sandwich"/>
 		<typeAlias type="com.lubway.admin.menu.WedgeAndSoupVO" alias="wedgeandsoup"/>
 		<typeAlias type="com.lubway.admin.menu.WrapVO" alias="wrap"/>
+		
+		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
+		
+		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
+		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>
+		<typeAlias type="com.lubway.user.board.UserEventVO" alias="userevent"/>
+		<typeAlias type="com.lubway.user.UserCouponVO" alias="usercoupon"/>
+		<typeAlias type="com.lubway.user.menu.BreadVO" alias="bread"/>
+		<typeAlias type="com.lubway.user.menu.CheeseVO" alias="cheese"/>
+		<typeAlias type="com.lubway.user.menu.MeatAddVO" alias="meat"/>
+		<typeAlias type="com.lubway.user.menu.SauceVO" alias="sauce"/>
+		<typeAlias type="com.lubway.user.menu.ToppingAddVO" alias="topping"/>
+		<typeAlias type="com.lubway.user.menu.VegetableVO" alias="vege"/>
+		
 	</typeAliases>
 	
 	<mappers>
@@ -48,5 +55,6 @@
 		<mapper resource="mappings/salad-mapping.xml"/>
 		<mapper resource="mappings/morning-mapping.xml"/>
 		<mapper resource="mappings/user-menu-mapping.xml"/>
+		<mapper resource="mappings/user-option-mapping.xml"/>
 	</mappers>
 </configuration>
