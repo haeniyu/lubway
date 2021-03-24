@@ -387,11 +387,11 @@
 				</div>
 				<div class="popup_content cookie">
 					<ul>
-					<c:forEach items="${cookieList }" var="cookie">
+					<c:forEach items="${cookieList }" var="coo">
 						<li><label class="form_circle">
-						<input name="cookie" type="radio" value="${cookie.name }">
+						<input name="cookie" type="radio" value="${coo.name }">
 						<span class="icon"></span>
-						<em>${cookie.name }</em>
+						<em>${coo.name }</em>
 						</label></li>
 					</c:forEach>
 					</ul>
