@@ -7,9 +7,23 @@
 <title>LUBWAY - 찹샐러드</title>
 <link rel="stylesheet" href="resources/css/step01.css">
 <link rel="stylesheet" href="resources/css/menu.css">
+<script type="text/javascript">
+function menuDetail(code) {
+	var form = document.getElementById('form');
+	
+	var hiddenField = document.createElement("input");
+    hiddenField.setAttribute("type", "hidden");
+    hiddenField.setAttribute("name", "code");
+    hiddenField.setAttribute("value", code);
+    form.appendChild(hiddenField);
+	
+	form.submit();
+}
+</script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
+<form action="menuDetail.do" method="post" id="form">
 	<div id="wrap">
 		<!-- container s -->
 		<div id="container">
@@ -62,7 +76,8 @@
 									<span class="cal">${calList[status.index]} kcal</span>
 									<div class="summary">
 										<p>${list.content}</p>
-									</div> <a class="btn_view" href="/lubway/menuDetail.do?code=${list.code}"></a>
+									</div>
+									<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#"></a>
 								</li>
 							</c:forEach>
 						</ul>
@@ -74,6 +89,8 @@
 			<!--// sub content e -->
 		</div>
 	</div>
-	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	<input type="hidden" name="select" value="${select}">
+</form>
+<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
