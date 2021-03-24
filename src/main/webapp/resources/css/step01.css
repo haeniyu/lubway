@@ -16,46 +16,6 @@ table{border-collapse:collapse;border-spacing:0; width:100%;}
 caption{visibility:hidden; font-size:0; line-height:0; opacity:0; height:0; overflow:hidden;}
 em{font-style:normal;}
 
-<<<<<<< HEAD
-/* --- webfont --- */
-@font-face {
-  font-family:font_ns;
-  font-weight:normal;
-  src:local(※);
-	src: url(/font/NotoSansKR-Regular.eot);
-	src: url(/font/NotoSansKR-Regular.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_ns;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/NotoSansKR-Medium.eot);
-	src: url(/font/NotoSansKR-Medium.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_ns;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/NotoSansKR-Bold.eot);
-	src: url(/font/NotoSansKR-Bold.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_sw;
-  font-weight:normal;
-  src:local(※);
-	src: url(/font/Subway-SixInch.eot);
-	src: url(/font/Subway-SixInch.eot?#iefix) format('embedded-opentype'),
-}
-@font-face {
-  font-family:font_sw;
-  font-weight:bold;
-  src:local(※);
-	src: url(/font/Subway-Footlong.eot);
-	src: url(/font/Subway-Footlong.eot?#iefix) format('embedded-opentype'),
-}
-=======
->>>>>>> feature/choice
-
 /* footer */
 #footer{background-color:#292929; color:#666666; padding:22px 0; position:relative; z-index:9}
 #footer:after{content:''; position:absolute; left:0; top:59px; width:100%; height:1px; background-color:#3b3b3b}
@@ -69,7 +29,7 @@ em{font-style:normal;}
 #footer .content span:after{content:''; position:absolute; left:0; top:5px; width:2px; height:10px; background-color:#666666}
 #footer .content span.addr{padding-left:0; margin-left:0}
 #footer .content span.addr:after{display:none;}
-#footer .content .copyright{font-family:font_sw; font-size:13px; line-height:25px; padding-top:2px; letter-spacing:0.005em}
+#footer .content .copyright{font-size:13px; line-height:25px; padding-top:2px; letter-spacing:0.005em}
 #footer .content .sns_area {position:absolute; right:40px; bottom:3px; overflow:hidden; text-indent:-9999px; font-size:0; line-height:0; width:50px; height:50px;}
 #footer .content .sns_area:after{content:''; width:50px; height:50px; display:block; opacity:0; transition-duration:0.3s;}
 #footer .content .sns_area:hover:after{opacity:1}
@@ -83,7 +43,7 @@ em{font-style:normal;}
 /* container */
 .sub_header{position:absolute; left:0; width:100%; top:0; border-bottom:1px solid #e5e5e5; height:59px; background-color:#fff; z-index:5}
 .sub_header .logo{position:absolute; left:0; top:0px; height:60px; width:110px; overflow:hidden; text-indent:-9999px; font-size:0; line-height:0; opacity:0}
-.sub_header .top{position:absolute; right:0; top:0px; height:32px; padding-top:28px; font-family:font_sw; font-weight:bold; color:#bbbbbb; font-size:13px; opacity:0;}
+.sub_header .top{position:absolute; right:0; top:0px; height:32px; padding-top:28px; font-weight:bold; color:#bbbbbb; font-size:13px; opacity:0;}
 .sub_header .top:after{content:''; width:12px; height:15px; background:url(../images/common/icon_arr_top.png) 50% 0 no-repeat; display:block; position:absolute; left:0; width:100%; top:18px}
 .sub_header .sub_loc{text-align:center;}
 .sub_header .sub_loc ul{overflow:hidden; display:inline-block;}
@@ -180,7 +140,7 @@ em{font-style:normal;}
 
 /* form ::: textarea */
 .form_textarea{background-color:#f8f8f8; display:inline-block;}
-.form_textarea textarea{background-color:transparent; width:100%; border:0;font-family:font_ns;font-size:16px;}
+.form_textarea textarea{background-color:transparent; width:100%; border:0;font-size:16px;}
 .form_textarea textarea::placeholder{color:#bbbbbb; padding:15px;}
 .form_textarea textarea:-ms-input-placeholder{color:#bbbbbb}
 
@@ -199,7 +159,7 @@ em{font-style:normal;}
 /* form ::: search */
 .form_search{border:2px solid #dddddd; height:41px; display:block; vertical-align:middle; position:relative; padding-right:42px}
 .form_search input{border:0; height:41px; width:100%; text-indent:14px; color:#292929; font-size:16px;}
-.form_search input::placeholder{color:#bbbbbb; font-size:16px;font-family:font_ns, sans-serif;}
+.form_search input::placeholder{color:#bbbbbb; font-size:16px;}
 .form_search .btn_search{background:url(../images/common/icon_search.png) 50% 50% no-repeat; width:41px; height:41px; position:absolute; right:0; top:0}
 .form_search .btn_search:after{content:''; position:absolute; left:-2px; top:13px; width:2px; height:16px; background-color:#e5e5e5;}
 
@@ -213,7 +173,7 @@ em{font-style:normal;}
 /* 페이지 */
 .pagination{text-align:center; margin-top:34px;}
 .pagination strong,
-.pagination a{font-family:font_sw; font-weight:bold; font-size:18px; padding:0 3px; margin:0 10px; display:inline-block; color:#bbbbbb;}
+.pagination a{font-weight:bold; font-size:18px; padding:0 3px; margin:0 10px; display:inline-block; color:#bbbbbb;}
 .pagination a.active{display:inline-block; color:#009223}
 .pagination .arr{display:inline-block;}
 .pagination .arr:after{content:''; display:block; width:8px; height:12px; background:url(../images/common/icon_page_arr.png) no-repeat;}
@@ -236,14 +196,14 @@ em{font-style:normal;}
 .board_list_wrapper table th.hide{font-size:0; display:table-cell;}
 .board_list_wrapper table td{height:69px; border-bottom:1px solid #dddddd; text-align:center; color:#292929; font-size:16px;}
 .board_list_wrapper table td .title{text-align:left; letter-spacing:-0.04em}
-.board_list_wrapper table td .date{color:#bbbbbb; font-family:font_sw;}
+.board_list_wrapper table td .date{color:#bbbbbb;}
 .board_list_wrapper table td .icon_file{display:inline-block; width:20px; height:20px; background:url(../images/common/icon_file.png) 0 0 no-repeat;}
 .board_list_wrapper table td .icon_notice{display:inline-block; width:20px; height:14px; background:url(../images/common/icon_notice.png) 0 0 no-repeat;}
-.board_list_wrapper table td .num{color:#ffc300; font-family:font_sw; font-weight:bold;}
+.board_list_wrapper table td .num{color:#ffc300; font-weight:bold;}
 .board_list_wrapper table td .service span{display:inline-block; font-size:13px; color:#bbb; border:1px solid #bbb; border-radius:30px; height:23px; line-height:23px; padding:0 8px;}
 .board_list_wrapper table td .service span.on{font-weight:bold; color:#666; border-color:#666}
-.board_list_wrapper table td .tel{color:#bbbbbb; font-family:font_sw;}
-.board_list_wrapper table td .coming{color:#009223; font-family:font_sw; font-size:13px; font-weight:bold; background-color:#ffce32; height:25px; line-height:22px; width:110px; margin:0 auto; text-align:center; border-radius:15px}
+.board_list_wrapper table td .tel{color:#bbbbbb;}
+.board_list_wrapper table td .coming{color:#009223; font-size:13px; font-weight:bold; background-color:#ffce32; height:25px; line-height:22px; width:110px; margin:0 auto; text-align:center; border-radius:15px}
 .board_list_wrapper table tr.notice td{background-color:#f8f8f8}
 .board_list_wrapper table tr.notice td .title a{color:#009223; font-weight:bold;}
 
@@ -311,11 +271,11 @@ em{font-style:normal;}
 .faq_wrapper .faq_contet li{border-bottom:1px solid #dddddd; background-color:#fff;}
 .faq_wrapper .fre{cursor:pointer; position:relative; padding:20px 100px 25px;}
 .faq_wrapper .fre:after{content:''; background:url(../images/common/icon_faq.png) 0 0 no-repeat; width:20px; height:20px; position:absolute; right:40px; top:50%; margin-top:-10px;}
-.faq_wrapper .fre .q{position:absolute; left:35px; top:50%; margin-top:-15px; color:#fff; font-weight:bold; font-family:font_sw; font-size:18px; width:30px; height:30px; padding-top:1px; box-sizing:border-box; background-color:#009223; text-align:center; border-radius:15px;}
+.faq_wrapper .fre .q{position:absolute; left:35px; top:50%; margin-top:-15px; color:#fff; font-weight:bold; font-size:18px; width:30px; height:30px; padding-top:1px; box-sizing:border-box; background-color:#009223; text-align:center; border-radius:15px;}
 .faq_wrapper .fre strong{display:block; color:#292929; line-height:26px; font-size:16px; font-weight:normal;}
 .faq_wrapper .ask{position:relative; padding:0 100px; overflow:hidden; height:0px;}
 .faq_wrapper .ask .ask_text{position:relative; padding:18px 0 22px; border-top:1px solid #dddddd; color:#666666; line-height:26px; font-size:16px; opacity:0;}
-.faq_wrapper .ask .a{position:absolute; left:35px; top:21px; color:#fff; font-weight:bold; font-family:font_sw; font-size:18px; width:30px; height:30px; padding-top:1px; box-sizing:border-box; background-color:#ffc300; text-align:center; border-radius:15px;}
+.faq_wrapper .ask .a{position:absolute; left:35px; top:21px; color:#fff; font-weight:bold; font-size:18px; width:30px; height:30px; padding-top:1px; box-sizing:border-box; background-color:#ffc300; text-align:center; border-radius:15px;}
 
 .faq_wrapper .faq_contet li,
 .faq_wrapper .fre:after,
@@ -351,7 +311,7 @@ a{cursor:pointer;}
 address {font-style:normal;}
 
 /* date picker */
-#ui-datepicker-div {background-color:#ffffff; display:none; border:1px solid #e5e5e5; border-radius:5px; box-sizing:border-box; font-family:'font_sw', 'font_ns'; padding:0 10px 10px 10px; min-height:290px; width:290px; z-index:10 !important;}
+#ui-datepicker-div {background-color:#ffffff; display:none; border:1px solid #e5e5e5; border-radius:5px; box-sizing:border-box; padding:0 10px 10px 10px; min-height:290px; width:290px; z-index:10 !important;}
 /* #ui-datepicker-div {display:block !important; position:absolute !important; top: 2497px !important; left: 916.094px !important;} */
 
 .ui-datepicker-header {position:relative; box-sizing:border-box; text-align:center; height:60px;}
@@ -428,7 +388,7 @@ address {font-style:normal;}
 .btn_more_wrap .btn_list_more {margin-top:0;}
 
 /* Font Family */
-.font_sw {font-family:'font_sw'; font-weight:bold !important;}
+.font_sw { font-weight:bold !important;}
 
 /* subTitle ::2019 */
 #content h2.subTitle_02{text-align:center; font-size:40px; color:#292929; font-weight:bold; letter-spacing:-0.05em; padding:170px 0 70px;}
@@ -482,7 +442,7 @@ address {font-style:normal;}
 .write_info_wrap .input_set .btn_input_in .in_form_btn {display:inline-block; cursor:pointer; position:relative; height:35px;}
 .write_info_wrap .input_set .btn_input_in button.in_form_btn {background:none; border:none;}
 .write_info_wrap .input_set .btn_input_in .in_form_btn span,
-.write_info_wrap .input_set .btn_input_in button.in_form_btn span {color:#009223; font-size:16px; letter-spacing:-0.05em; line-height:35px; font-family:font_ns, sans-serif}
+.write_info_wrap .input_set .btn_input_in button.in_form_btn span {color:#009223; font-size:16px; letter-spacing:-0.05em; line-height:35px;}
 .write_info_wrap .input_set .form_radio.square {float:right;line-height:0;font-size:0;}
 
 .write_info_wrap .input_set .form_radio.square {float:none;}
@@ -517,7 +477,7 @@ address {font-style:normal;}
 .form_radio.square label input:checked + .shape {background-color:#009223; color:#fff;}
 
 /* 금액선택, 직접입력 */
-.form_radio.square label .shape.won {color:#292929; font-family:'font_sw'; font-size:18px; letter-spacing:-0.05em; line-height:29px; padding-right:15px !important; padding-left:15px !important; min-width:120px; width:auto;}
+.form_radio.square label .shape.won {color:#292929;font-size:18px; letter-spacing:-0.05em; line-height:29px; padding-right:15px !important; padding-left:15px !important; min-width:120px; width:auto;}
 .form_radio.square label .shape.won:before {background-image:url(../images/common/icon_won_choice.png); background-repeat:no-repeat; background-size:32px auto; content:''; display:inline-block; vertical-align:middle; margin-right:5px; height:14px; width:16px;}
 .form_radio.square label input:checked + .shape.won:before {background-position:-16px 0;}
 
@@ -585,7 +545,7 @@ address {font-style:normal;}
 .data_none p:before {content:'';position:absolute;top:0;left:50%;margin-left:-20px;background:url(../images/common/icon_exc_sm.png)no-repeat;width:40px; height:40px;}
 
 /* 포인트 style */
-.txt_point {font-family:'font_sw'; font-size:16px; font-weight:bold;}
+.txt_point { font-size:16px; font-weight:bold;}
 .txt_point:before {vertical-align:2px;}
 .txt_point.minus {color:#ff4b06;}
 .txt_point.minus:before {content:'-';}
@@ -621,8 +581,8 @@ address {font-style:normal;}
 .mycard_total {overflow:hidden;}
 .mycard_total .name_edit {overflow:hidden;}
 .mycard_total .name_edit .form_text {background-color:#ffffff;}
-.mycard_total .name_edit .form_text input {color:#999999; font-family:'font_sw'; font-size:20px; letter-spacing:-0.05em;}
-.mycard_total .txt_price {color:#292929; font-family:'font_sw'; font-size:40px; font-weight:bold;}
+.mycard_total .name_edit .form_text input {color:#999999; font-size:20px; letter-spacing:-0.05em;}
+.mycard_total .txt_price {color:#292929; font-size:40px; font-weight:bold;}
 .mycard_total .txt_price:before {background:url(../images/common/icon_won_bk_28x17.png) no-repeat 0 0; display:inline-block; content:''; line-height:0; position:relative; top:-3px; margin-right:8px; height:17px; width:28px;}
 
 /* bullet list */
