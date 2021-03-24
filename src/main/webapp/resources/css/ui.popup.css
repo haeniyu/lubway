@@ -1,15 +1,10 @@
 @charset "utf-8";
 
 html,body{background-color:transparent;}
-<<<<<<< HEAD
-#popup_wrap{background-color:#ffc300; padding:0 8px 8px; border-radius:30px; overflow:hidden;}
-#popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:bold; letter-spacing:-0.045em; padding:35px 0 29px}
-#popup_wrap .popup_content{background-color:#fff; padding:0 22px; border-radius:0 0 30px 30px;}
-=======
+
 #popup_wrap{background-color:#ffc300; padding:0 15px 8px; border-radius:50px; overflow:hidden; }
 #popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:300; letter-spacing:-0.045em; padding:35px 0 29px}
 #popup_wrap .popup_content{height:590px; background-color:#fff; padding:0 22px; border-radius:30px;}
->>>>>>> feature/modal
 
 /* 원산지정보 */
 #popup_wrap .country_origin_wrapper{padding:22px 0 32px;}
