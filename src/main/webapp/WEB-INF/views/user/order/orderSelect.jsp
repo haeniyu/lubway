@@ -9,6 +9,74 @@
 <script src="${path}/resources/js/order.js"></script>
 <link rel="stylesheet" href="${path}/resources/css/modal.css" />
 <link rel="stylesheet" href="${path}/resources/css/choice_option.css" />
+<!--  -->
+<script type="text/javascript">
+	function endSauce() {
+		console.log("=== checkSauce ===");
+		var checkCount = $("input:checkbox[name=sauce]:checked").length;
+		console.log("선택된 소스 개수 : " + checkCount);
+		console.log("=== checkSauce ===");
+		
+		if(checkCount == 0) alert("소스/시즈닝을 선택하여 주세요.");
+
+		$("#sauceText").val();
+		
+	}
+	
+	$(document).ready(function() {
+		var selectTotalText = "";
+		var itemArr = new Array();
+		$("input:checkbox[name=sauce]").click(function() {
+			var selectTarget = $("[name=sauce]:checked");
+
+			console.log("선택 소스 개수 : " + selectTarget.length);
+			
+			// 소스 선택갯수 벨리데이션
+			if(selectTarget.length > 3) {
+				alert("소스/시즈닝은 3개까지 선택가능합니다.");
+				$(this).prop("checked", false);
+				return;
+			}
+			
+			if($(this).is(":checked") == true) {
+				itemArr.push($(this).val());
+			} else {
+				for(var i=0; i<itemArr.length; i++) {
+					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
+				}
+			}
+			
+			
+			
+			console.log(itemArr);
+
+			/*
+			$("input:checkbox[name=sauce]:checked").each(function(e) {
+				itemArr.push($(this).val());
+				for(var i=0; i<itemArr.length-1; i++) {
+					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
+				}				
+			});
+			*/
+						
+			// 선택 토핑
+			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
+
+			/*
+			console.log("선택 소스 : " + $(this).val());
+	
+			selectText = $(this).val();
+			selectTotalText += selectText + ", ";
+
+			console.log("선택 소스 텍스트 : " + selectTotalText);
+			
+			$("#sauceText").text(selectTotalText);
+			*/
+		});
+	});
+</script>
+<script type="text/javascript">
+</script>
 </head>
 <body>
 	<div class="choice_option">
@@ -164,36 +232,37 @@
 				<div class="option_display">
 					<dl>
 						<dt>소스/시즈닝 선택</dt>
-						<dd id="sauce">소스/시즈닝을 선택 해 주세요</dd>
+						<dd id="sauceText" >소스/시즈닝을 선택 해 주세요</dd>
 					</dl>
 				</div>
 				<div class="popup_content sauce">
 					<ul>
 						<li><label class="form_circle" for="sauce1">
-						<input name="sauce" type="checkbox" id="sauce1" value="sauce1">
+						<input name="sauce" type="checkbox" id="sauce1" value="머스타드">
 						<strong>알싸한</strong><em>머스타드</em>
 						</label></li>
 						<li><label class="form_circle" for="sauce2">
-						<input name="sauce" type="checkbox" id="sauce2" value="sauce2">
+						<input name="sauce" type="checkbox" id="sauce2" value="레드와인식초">
 						<strong>과일향</strong><em>레드와인식초</em>
 						</label></li>
 						<li><label class="form_circle" for="sauce3">
-						<input name="sauce" type="checkbox" id="sauce3" value="sauce3">
+						<input name="sauce" type="checkbox" id="sauce3" value="스위트 어니언">
 						<strong>달콤한</strong><em>스위트 어니언</em>
 						</label></li>
 						<li><label class="form_circle" for="sauce4">
-						<input name="sauce" type="checkbox" id="sauce4" value="sauce4">
+						<input name="sauce" type="checkbox" id="sauce4" value="허니 머스타드">
 						<strong>새콤달콤한</strong><em>허니 머스타드</em>
 						</label></li>
 						<li><label class="form_circle" for="sauce5">
-						<input name="sauce" type="checkbox" id="sauce5" value="sauce5">
+						<input name="sauce" type="checkbox" id="sauce5" value="스위트 칠리">
 						<strong>매콤달콤한</strong><em>스위트 칠리</em>
 						</label></li>
 						<li><label class="form_circle" for="sauce6">
-						<input name="sauce" type="checkbox" id="sauce6" value="sauce6">
+						<input name="sauce" type="checkbox" id="sauce6" value="스모크 바비큐">
 						<strong>스모크 향</strong><em>스모크 바비큐</em>
 						</label></li>
 					</ul>
+					<a href="#" onclick="endSauce()">다음</a>
 				</div>
 			</div>
 			<div class="wrap_pop">
