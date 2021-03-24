@@ -76,15 +76,7 @@
 				</div>
 			</li>
 
-			<!-- Nav Item - 메뉴관리 -->
-			<li class="nav-item">
-				<a class="nav-link" href="tables.sdo">
-					<i class="fas fa-fw fa-cog"></i>
-					<span>메뉴관리</span>
-				</a>
-			</li>
-
-			<!-- Nav Item - 메뉴관리 -->
+			<!-- Nav Item - 매장 정보 관리 -->
 			<li class="nav-item">
 				<a class="nav-link" href="info.sdo">
 					<i class="fas fa-fw fa-cog"></i>
@@ -142,11 +134,6 @@
 
 						<!-- Nav Item - Alerts -->
 						<li class="nav-item dropdown no-arrow mx-1">
-							<a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<i class="fas fa-bell fa-fw"></i>
-								<!-- Counter - Alerts -->
-								<span class="badge badge-danger badge-counter">3+</span>
-							</a>
 							<!-- Dropdown - Alerts -->
 							<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
 								<h6 class="dropdown-header">Alerts Center</h6>
@@ -192,17 +179,12 @@
 						<!-- Nav Item - User Information -->
 						<li class="nav-item dropdown no-arrow">
 							<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<span class="mr-2 d-none d-lg-inline text-gray-600 small"> 매장 관리자 계정 </span>
+								<span class="mr-2 d-none d-lg-inline text-gray-600 small">${store.storename}지점</span>
 								<i class="fas fa-fw fa-user"></i>
 							</a>
 							<!-- Dropdown - User Information -->
 							<div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-								<a class="dropdown-item" href="#">
-									<i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> 
-									Profile
-								</a>
-								<div class="dropdown-divider"></div>
-									<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+								<a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
 									<i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 									Logout
 								</a>
@@ -210,5 +192,21 @@
 						</li>
 					</ul>
 				</nav>
+	<!-- Bootstrap core JavaScript-->
+	<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
+	<script src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="${path}/resources/js/sb-admin-2.min.js"></script>
+
+	<!-- Page level plugins -->
+	<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
+
+	<!-- Page level custom scripts -->
+	<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
+	<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
 </body>
 </html>

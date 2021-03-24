@@ -24,7 +24,7 @@
 					<li class="active" id="mypoint">포인트 현황</li>
 				</ul>
 			</div>
-			<section class="tab_content">
+			<section class="tab_content" style="background-color:white;">
 				<div class="point_status">
 					<div class="level_copy">
 						<h3>
