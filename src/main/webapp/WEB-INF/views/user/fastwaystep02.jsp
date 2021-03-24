@@ -6,27 +6,6 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		$(".pd_list_wrapper").hide();
-		$("ul.list_menu li:first").addClass("active").show();
-		$(".pd_list_wrapper:first").show();
-		
-		$("ul.list_menu li").click(function(){
-			$("ul.list_menu li").removeClass("active");
-			$("this").addClass("active");
-			$(".pd_list_wrapper").hide();
-			
-			var activeTab = $(this).find("a").attr("href");
-			$(activeTab).fadeIn();
-			return false;
-		});
-
-	});
-
-
-</script>
 <head>
 <meta charset="UTF-8">
 <title>fastway/Step02</title>
