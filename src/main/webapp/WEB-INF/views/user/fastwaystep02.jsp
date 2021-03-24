@@ -13,8 +13,8 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
       $(document).ready(function() {
-		var select = $("#sand").val();
-		console.log(select);
+		var selected = $("#sand").val();
+		console.log(selected);
 		
           //When page loads...
           $("ul.select li:first").addClass("active").show(); //Activate first tab
@@ -22,27 +22,24 @@
           
           //On Click Event
           $("ul.select li").click(function() {
-        	  $("ul.select li").removeClass("active"); //Remove any "active" class
-              $(this).addClass("active"); //Add "active" class to selected tab
+	          $("ul.select li").removeClass("active"); //Remove any "active" class
+	          $(this).addClass("active"); //Add "active" class to selected tab
+            
               update();
               return false;
           });
               function update(){
-            	  var select = $("#sand").val();
+            	  var select = selected;
             	  $.ajax({
         				url : '/lubway/fastway/step02Tab.do?select=' + select,
         				type : 'post',
         				success : function(data) {
-        					alert("성공");
-        					
         				},
         				error : function(data) {
         					alert("인증에 실패하였습니다.");
         				}
         		});
               }
-          
- 
 
       });
 </script>
