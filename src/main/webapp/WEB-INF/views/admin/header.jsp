@@ -42,7 +42,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="main.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+				href="/lubway/main.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -62,8 +62,8 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Customer:</h6>
 						<a class="collapse-item" href="/lubway/getuserlist.mdo">회원 관리</a>
-						<a class="collapse-item" href="buttons.html">쿠폰</a> <a
-							class="collapse-item" href="cards.html">포인트</a>
+						<a class="collapse-item" href="/lubway/getCouponList.mdo">쿠폰</a> 
+						<a class="collapse-item" href="#">포인트</a>
 					</div>
 				</div></li>
 

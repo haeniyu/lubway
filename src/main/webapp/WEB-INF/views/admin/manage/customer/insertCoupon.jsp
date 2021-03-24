@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이벤트 페이지 등록</title>
+<title>회원관리 > 쿠폰</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 	$(document).ready(function(){
@@ -43,9 +43,7 @@ li{
 </style>
 </head>
 <body id="page-top">
-
-	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
+<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 	<form action="/lubway/insertedCoupon.mdo" method="post">
 		<div class="container-fluid">
 
@@ -85,15 +83,15 @@ li{
 						<li class="type">
 							<div>
 								<div class="index">쿠폰 사용처 [HOME/FAST]</div>
-								<input type="radio"" name="type" id="home" value="home" required/> HOME&nbsp;&nbsp;
-								<input type="radio"" name="type" id="fast" value="fast" required/> FAST&nbsp;&nbsp;
-								<input type="radio"" name="type" id="all" value="all" required/> ALL
+								<input type="radio" name="type" id="home" value="home" required/> HOME&nbsp;&nbsp;
+								<input type="radio" name="type" id="fast" value="fast" required/> FAST&nbsp;&nbsp;
+								<input type="radio" name="type" id="all" value="all" required/> ALL
 							</div>
 						</li>
 						<!-- 기간 -->
 						<li class="term">
 							<div class="index">쿠폰 사용 기간</div>
-							시작 : <input type="date"" name="start" id="start" required> ~ 종료 : <input type="date" id="end" name="end" required>
+							시작 : <input type="date" name="start" id="start" required> ~ 종료 : <input type="date" id="end" name="end" required>
 						</li>
 					</ul>
 					<div align="center">
@@ -107,32 +105,9 @@ li{
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</form>
-	
 	<!-- End of Main Content -->
-
-	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="${path}/resources/vendor/jquery/jquery.min.js"></script>
-	<script
-		src="${path}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script
-		src="${path}/resources/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="${path}/resources/js/sb-admin-2.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="${path}/resources/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="${path}/resources/js/demo/chart-area-demo.js"></script>
-	<script src="${path}/resources/js/demo/chart-pie-demo.js"></script>
-
+<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

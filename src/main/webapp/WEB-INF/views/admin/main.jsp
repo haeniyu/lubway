@@ -5,8 +5,7 @@
 <!DOCTYPE html>
 <html>
 <body id="page-top">
-
-	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
+<%@ include file="/WEB-INF/views/admin/header.jsp"%>
 
 	<!-- 관리자 버전 화면 만들기  -->
 	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
@@ -151,7 +150,6 @@
 		</div>
 	</div><!-- End of container-fluid -->
 
-	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
-
+<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>
