@@ -1,5 +1,38 @@
 @charset "UTF-8";
 
 .g-sign{
-	padding-top: 10px;
+	padding-top: 0px;
 }
+#kakao-login-btn{
+	height: 33px;
+	
+}
+
+.btn_kakao a:active{
+	position: relative; 
+	top:2px
+}
+
+.btn_naver a:hover{
+	content: url(../images/naver_Bn.png);
+	width: 140px;
+    height: 32px;
+}
+
+.btn_naver a:hover:active{
+    box-shadow: 4px 4px 4px grey;
+    position: relative; 
+    top:2px;
+}
+
+.btn_google a:active{
+	box-shadow: 4px 4px 4px grey;
+    position: relative; 
+    top:2px;
+}
+
+
+
+
+
+
