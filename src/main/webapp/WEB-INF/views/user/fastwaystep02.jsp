@@ -84,20 +84,10 @@
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
-<<<<<<< HEAD
-
-	<div class="content">
-		<!-- container s -->
-		<div id="container">
-			<div id="content" class="order  fast_sub">
-				<!-- fast_sub / home_sub -->
-=======
 	<form action="">
     <div class="content">
             <!-- container s -->
         <div id="container">
-			<div id="content" class="order  fast_sub"> <!-- fast_sub / home_sub -->
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 				<!-- index -->
 				<div class="menu_list">
 					<div class="order_title">
@@ -105,37 +95,23 @@
 						<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
 					</div>
 					<div class="tab02">
-<<<<<<< HEAD
 						<ul class="select" id="select" >
 							<li class="" ><a href="step02Tab.do" onclick="update();">샌드위치<input id="sand" type="hidden" value="sandwich"></a></li>
 							<li ><a href="step02Tab.do" >찹샐러드<input type="hidden" value="salad"></a></li>
 							<li ><a href="step02Tab.do" >사이드ㆍ음료<input type="hidden" value="side"></a></li>
 							<li ><a href="step02Tab.do" >랩ㆍ기타<input type="hidden" value="wrap"></a></li>
-=======
-						<ul class="list_menu">
-
-							<li><a href="#">샌드위치</a></li>
-							<li><a href="#">랩ㆍ기타</a></li>
-							<li><a href="#">찹샐러드</a></li>
-							<li><a href="#">사이드ㆍ음료</a></li>
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 						</ul>
 					</div>
 					
 					<!-- 컨텐츠 리스트 -->
 					
 					<div class="order_con" id="itemListMst">
-<<<<<<< HEAD
-					<div class="pd_list_wrapper" id="list_wrapper">
-=======
 						<div class="pd_list_wrapper">
 						
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 						<ul>
 							<c:forEach var="list" items="${list}" varStatus="status">
 							
 								<li>
-<<<<<<< HEAD
 								<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#" style="display:block;">
 								<div class="img">
 								<img alt="${list.name}" src="${list.filePath}" />
@@ -147,20 +123,6 @@
 							</c:forEach>
 						</ul>
 					</div>
-=======
-									<a onclick="javascript:menuDetail('${list.code}');" class="btn_view" href="#" style="display:block;">
-									<div class="img">
-										<img alt="${list.name}" src="${list.filePath}" />
-									</div>
-									<strong class="tit">${list.name}</strong>
-									<span class="eng">${list.engname}</span>
-									<span class="cal">${calList[status.index]} kcal</span>
-									</a>
-								</li>
-							</c:forEach>
-						</ul>
-					</div>	
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 					</div>
 					 
 				</div>
@@ -169,10 +131,6 @@
 			<!--// sub content e -->
 			<!-- 메뉴리스트 -->
 		</div>
-<<<<<<< HEAD
-	</div>
-	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
-=======
 
 		</div>
 			<input type="hidden" name="select" value="${select}">
@@ -180,7 +138,6 @@
 		
 		
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 
 
 </body>

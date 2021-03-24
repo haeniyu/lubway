@@ -45,7 +45,6 @@ public class SelectMenuController {
 		return "fastwaystep02";
 	}
 	
-<<<<<<< HEAD
 	@PostMapping("step02Tab.do")
 	public String step02Tab(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
 			MorningVO mvo, DrinkVO dvo, NutrientVO nvo, String select, String code) {
@@ -80,46 +79,4 @@ public class SelectMenuController {
 		
 		return "fastwaystep02";
 	}
-	
-=======
-	/** 메뉴 상세 페이지 */
-	@PostMapping("menuDetail.do")
-	public String menuDetail(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
-			MorningVO mvo, DrinkVO dvo, NutrientVO nvo, String select, String code) {
-		System.out.println(code);
-		System.out.println(select);
-		model.addAttribute("select", select);
-		model.addAttribute("code", code);
-		model.addAttribute("nutrient", menuService.selectNutrient(nvo));
-
-		switch (select) {
-		case "menuSandwich.do":
-			model.addAttribute("menu", menuService.selectSandwich(Svo));
-			System.out.println(menuService.selectSandwich(Svo).getFilePath());
-			break;
-		case "menuWrap.do":
-			model.addAttribute("menu", menuService.selectWrap(wvo));
-			break;
-		case "menuSalad.do":
-			model.addAttribute("menu", menuService.selectSalad(svo));
-			break;
-		case "menuMorning.do":
-			model.addAttribute("menu", menuService.selectMorning(mvo));
-			break;
-		case "menuSmileWay.do":
-			char cod = code.charAt(6);
-			System.out.println(cod);
-			if (cod == 'C') {
-				model.addAttribute("menu", menuService.selectCookie(cvo));
-			} else if (cod == 'W') {
-				model.addAttribute("menu", menuService.selectWAS(wasvo));
-			}
-			break;
-		default:
-			break;
-		}
-		return "menu/menuDetail";
-	}
-
->>>>>>> 2c97ff9794195b5626cc97f4fba17033931b31af
 }
