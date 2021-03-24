@@ -24,6 +24,64 @@
 	}
 	
 	$(document).ready(function() {
+		//길이 선택에 따라 lengthText 값이 바뀌게 한다
+		$("input:radio[name=length]").click(function(){
+			var length = document.getElementsByName('length');
+			var lengthChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+			for(var i=0; i<length.length; i++) {
+			    if(length[i].checked) {
+			    	lengthChoice = length[i].value;
+			    }
+			}
+			console.log(lengthChoice);
+			$("#lengthText").text(lengthChoice);
+		});
+		
+		//빵 선택에 따라 breadText 값이 바뀌게 한다
+		$("input:radio[name=bread]").click(function(){
+			var bread = document.getElementsByName('bread');
+			var breadChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+			console.log(breadChoice);
+			for(var i=0; i<bread.length; i++) {
+			    if(bread[i].checked) {
+			    	breadChoice = bread[i].value;
+			    }
+			}
+			$("#breadText").text(breadChoice);
+		});
+		
+		//치즈 선택에 따라 cheeseText 값이 바뀌게 한다
+		$("input:radio[name=cheese]").click(function(){
+			var cheese = document.getElementsByName('cheese');
+			var cheeseChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+			console.log(cheeseChoice);
+			for(var i=0; i<cheese.length; i++) {
+			    if(cheese[i].checked) {
+			    	cheeseChoice = cheese[i].value;
+			    }
+			}
+			$("#cheeseText").text(cheeseChoice);
+		});
+		
+		//야채선택
+		var selectTotalText = "";
+		var itemArr = new Array();
+		$("input:checkbox[name=sauce]").click(function() {
+			var selectTarget = $("[name=sauce]:checked");
+
+			if($(this).is(":checked") == true) {
+				itemArr.push($(this).val());
+			} else {
+				for(var i=0; i<itemArr.length; i++) {
+					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
+				}
+			}
+			console.log(itemArr);
+			// 선택 토핑
+			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
+		});
+		
+		//소스 선택
 		var selectTotalText = "";
 		var itemArr = new Array();
 		$("input:checkbox[name=sauce]").click(function() {
@@ -46,32 +104,10 @@
 				}
 			}
 			
-			
-			
 			console.log(itemArr);
-
-			/*
-			$("input:checkbox[name=sauce]:checked").each(function(e) {
-				itemArr.push($(this).val());
-				for(var i=0; i<itemArr.length-1; i++) {
-					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
-				}				
-			});
-			*/
 						
 			// 선택 토핑
 			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택하여 주세요.");
-
-			/*
-			console.log("선택 소스 : " + $(this).val());
-	
-			selectText = $(this).val();
-			selectTotalText += selectText + ", ";
-
-			console.log("선택 소스 텍스트 : " + selectTotalText);
-			
-			$("#sauceText").text(selectTotalText);
-			*/
 		});
 	});
 </script>
@@ -88,7 +124,7 @@
 				<div class="option_display">
 					<dl>
 						<dt>빵 길이 선택</dt>
-						<dd id="length">15cm</dd>
+						<dd id="lengthText">15cm</dd>
 					</dl>
 				</div>
 				<div class="popup_content length">
@@ -112,33 +148,33 @@
 				<div class="option_display">
 					<dl>
 						<dt>빵 선택</dt>
-						<dd id="bread">화이트</dd>
+						<dd id="breadText">화이트</dd>
 					</dl>
 				</div>
 				<div class="popup_content bread">
 					<ul>
 						<li><label class="form_circle" for="b1">
-						<input name="bread" type="radio" checked="checked" id="b1" value="b1">
+						<input name="bread" type="radio" checked="checked" id="b1" value="화이트">
 						<em>화이트</em>
 						</label></li>
 						<li><label class="form_circle" for="b2">
-						<input name="bread" type="radio" id="b2" value="b2">
+						<input name="bread" type="radio" id="b2" value="파마산 오레가노">
 						<em>파마산 오레가노</em>
 						</label></li>
 						<li><label class="form_circle" for="b3">
-						<input name="bread" type="radio" id="b3" value="b3">
+						<input name="bread" type="radio" id="b3" value="위트">
 						<em>위트</em>
 						</label></li>
 						<li><label class="form_circle" for="b4">
-						<input name="bread" type="radio" id="b4" value="b4">
+						<input name="bread" type="radio" id="b4" value="허니오트">
 						<em>허니오트</em>
 						</label></li>
 						<li><label class="form_circle" for="b5">
-						<input name="bread" type="radio" id="b5" value="b5">
+						<input name="bread" type="radio" id="b5" value="하티">
 						<em>하티</em>
 						</label></li>
 						<li><label class="form_circle" for="b6">
-						<input name="bread" type="radio" id="b6" value="b6">
+						<input name="bread" type="radio" id="b6" value="플랫브레드">
 						<em>플랫브레드</em>
 						</label></li>
 					</ul>
@@ -152,22 +188,22 @@
 				<div class="option_display">
 					<dl>
 						<dt>치즈 선택</dt>
-						<dd id="cheese">아메리칸치즈</dd>
+						<dd id="cheeseText">아메리칸치즈</dd>
 					</dl>
 				</div>
 				<div class="popup_content cheese">
 					<ul>
 						<li><label class="form_circle" for="cheese1">
-						<input name="cheese" type="radio" checked="checked" id="cheese1" value="cheese1">
-						<em>아메리칸치즈</em>
+						<input name="cheese" type="radio" checked="checked" id="cheese1" value="아메리칸 치즈">
+						<em>아메리칸 치즈</em>
 						</label></li>
 						<li><label class="form_circle" for="cheese2">
-						<input name="cheese" type="radio" id="cheese2" value="cheese2">
-						<em>슈레드치즈</em>
+						<input name="cheese" type="radio" id="cheese2" value="슈레드 치즈">
+						<em>슈레드 치즈</em>
 						</label></li>
 						<li><label class="form_circle" for="cheese3">
-						<input name="cheese" type="radio" id="cheese3" value="cheese3">
-						<em>모차렐라치즈</em>
+						<input name="cheese" type="radio" id="cheese3" value="모차렐라 치즈">
+						<em>모차렐라 치즈</em>
 						</label></li>
 					</ul>
 				</div>
@@ -180,45 +216,45 @@
 				<div class="option_display">
 					<dl>
 						<dt>야채 선택 (다중 선택)</dt>
-						<dd id="vegetable">원하는 야채를 선택하여 주세요.</dd>
+						<dd id="vegeText">원하는 야채를 선택하여 주세요.</dd>
 					</dl>
 				</div>
 				<div class="popup_content vegetable">
 					<ul>
 						<label>생야채</label>
-						<li><label class="form_circle" for="vegi1">
-						<input name="cheese" type="checkbox" id="vegi1" value="vegi1">
+						<li><label class="form_circle" for="vege1">
+						<input name="vegetable" type="checkbox" id="vege1" value="vege1">
 						<em>양상추</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi2">
-						<input name="cheese" type="checkbox" id="vegi2" value="vegi2">
+						<li><label class="form_circle" for="vege2">
+						<input name="vegetable" type="checkbox" id="vege2" value="vege2">
 						<em>토마토</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi3">
-						<input name="cheese" type="checkbox" id="vegi3" value="vegi3">
+						<li><label class="form_circle" for="vege3">
+						<input name="vegetable" type="checkbox" id="vege3" value="vege3">
 						<em>오이</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi4">
-						<input name="cheese" type="checkbox" id="vegi4" value="vegi4">
+						<li><label class="form_circle" for="vege4">
+						<input name="vegetable" type="checkbox" id="vege4" value="vege4">
 						<em>피망</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi5">
-						<input name="cheese" type="checkbox" id="vegi5" value="vegi5">
+						<li><label class="form_circle" for="vege5">
+						<input name="vegetable" type="checkbox" id="vege5" value="vege5">
 						<em>양파</em>
 						</label></li>
 					</ul>
 					<ul>
 						<label>절임류</label>
-						<li><label class="form_circle" for="vegi1">
-						<input name="cheese" type="checkbox" id="vegi1" value="vegi1">
+						<li><label class="form_circle" for="vege6">
+						<input name="vegetable" type="checkbox" id="vege6" value="vege6">
 						<em>피클</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi2">
-						<input name="cheese" type="checkbox" id="vegi2" value="vegi2">
+						<li><label class="form_circle" for="vege7">
+						<input name="vegetable" type="checkbox" id="vege7" value="vege7">
 						<em>올리브</em>
 						</label></li>
-						<li><label class="form_circle" for="vegi3">
-						<input name="cheese" type="checkbox" id="vegi3" value="vegi3">
+						<li><label class="form_circle" for="vege8">
+						<input name="vegetable" type="checkbox" id="vege8" value="vege8">
 						<em>할라피뇨</em>
 						</label></li>
 					</ul>

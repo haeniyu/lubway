@@ -10,6 +10,10 @@
 	font-family: "Noto Sans KR", sans-serif;
 }
 
+.choice_option{
+	width: 780px;
+}
+
 .step01 {
 	position: relative;
 	float: left;
@@ -19,7 +23,6 @@
 }
 
 div>.th_name_step01 {
-	display: flex;
 	background-color: #009223;
 	width: 200px;
 	height: 50px;
@@ -32,7 +35,6 @@ div>.th_name_step01 {
 }
 
 div>.th_name_step02{
-	display: flex;
 	width: 200px;
 	height: 50px;
 	line-height: 50px;
@@ -45,7 +47,6 @@ div>.th_name_step02{
 }
 
 div>.th_name_step03{
-	display: flex;
 	width: 200px;
 	height: 50px;
 	line-height: 50px;
