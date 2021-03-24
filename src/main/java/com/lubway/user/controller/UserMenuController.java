@@ -15,10 +15,6 @@ import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
 import com.lubway.admin.menu.service.MenuService;
-import com.lubway.admin.menu.service.MorningService;
-import com.lubway.admin.menu.service.SaladService;
-import com.lubway.admin.menu.service.SandwichService;
-import com.lubway.admin.menu.service.WrapService;
 import com.lubway.user.service.UserMenuService;
 
 @Controller
@@ -85,29 +81,24 @@ public class UserMenuController {
 		System.out.println(select);
 		model.addAttribute("select", select);
 		model.addAttribute("code", code);
+		model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 		switch (select) {
 		case "menuSandwich.do" : model.addAttribute("menu", menuService.selectSandwich(Svo));
-						  model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 						  System.out.println(menuService.selectSandwich(Svo).getFilePath());
 						  break;
 		case "menuWrap.do"     : model.addAttribute("menu", menuService.selectWrap(wvo)); 
-						  model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 						  break;
 		case "menuSalad.do"    : model.addAttribute("menu", menuService.selectSalad(svo));
-						  model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 						  break;
 		case "menuMorning.do"    : model.addAttribute("menu", menuService.selectMorning(mvo));
-						  model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 						  break;
-		case "menuSmileWay.do"  : int cod = Integer.parseInt(code.substring(4,6));
+		case "menuSmileWay.do"  : char cod = code.charAt(6);
 									System.out.println(cod);
-									if(cod < 7){ 
+									if(cod == 'C'){ 
 									model.addAttribute("menu", menuService.selectCookie(cvo));
-									}else if(cod > 6) {
-									System.out.println("cp");
+									}else if(cod == 'W') {
 									model.addAttribute("menu", menuService.selectWAS(wasvo));
 									}
-						  model.addAttribute("nutrient", menuService.selectNutrient(nvo));
 						  break;
 		default         : break;
 		}
