@@ -154,6 +154,21 @@
          $('#sum2').text(cost);
          
       }); //end of meat
+      
+	////////////step03 세트 선택//////////////
+	//길이 선택에 따라 lengthText 값이 바뀌게 한다
+		$(".wedge").hide();
+		$("input:radio[name=select_set]").click(function(){
+			var temp = $(this).val();
+			console.log(temp);
+			if(temp == "cookie") {
+				$(".cookie").show();
+				$(".wedge").hide();
+			}else{
+				$(".wedge").show();
+				$(".cookie").hide();
+			}
+		});
 	      
 	});
 </script>
@@ -302,14 +317,9 @@
 					<ul>
 						<c:forEach items="${toppingList }" var="topping">
 							<li><label class="form_circle">
-<<<<<<< HEAD
-							<input name="topping" type="checkbox" value="${topping.name }">
-							<span class="icon"></span>
-							<em>${topping.name }</em><span>+<em>${topping.price }</em>&nbsp;원</span>
-=======
-							<input name="topping" type="checkbox" value="${topping.name }, ${topping.price}"><em>${topping.name }</em>
-							<span>+<em>${topping.price }</em>&nbsp;원</span>
->>>>>>> 2a04efdddff88b6ed1145ddcc5992940516910b4
+							<input name="topping" type="checkbox" value="${topping.name }, ${topping.price}">
+							<span class="icon"></span><em>${topping.name }</em>
+							<span>+<em><fmt:formatNumber value="${topping.price }" pattern="#,###" /></em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
 					</ul>
@@ -324,21 +334,16 @@
 					<dl>
 						<dt>미트 추가</dt>
 						<dd id="meatText">미트 추가를 선택 해 주세요</dd>
-						<dd><span id="sum2">0</span>원</dd>
+						<dd>+<span id="sum2">0</span>원</dd>
 					</dl>
 				</div>
 				<div class="popup_content meat">
 					<ul>
 						<c:forEach items="${meatList }" var="meat">
 							<li><label class="form_circle">
-<<<<<<< HEAD
-							<input name="meat" type="radio" value="${meat.name }">
-							<span class="icon"></span>
-							<em>${meat.name }</em><span>+<em>${meat.price }</em>&nbsp;원</span>
-=======
-							<input name="meat" type="radio" value="${meat.name }, ${meat.price}"><em>${meat.name }</em>
-							<span>+<em>${meat.price }</em>&nbsp;원</span>
->>>>>>> 2a04efdddff88b6ed1145ddcc5992940516910b4
+							<input name="meat" type="radio" value="${meat.name }, ${meat.price}">
+							<span class="icon"></span><em>${meat.name }</em>
+							<span>+<em><fmt:formatNumber value="${meat.price }" pattern="#,###" /></em>&nbsp;원</span>
 							</label></li>
 						</c:forEach>
 					</ul>
@@ -369,23 +374,50 @@
 				<div class="popup_content set_menu">
 					<ul>
 						<li><label class="form_circle">
-						<input name="select_set" type="radio" checked="checked" value="쿠키 세트">
+						<input name="select_set" type="radio" checked="checked" value="cookie">
 						<span class="icon"></span>
 						<em>쿠키 세트</em>
 						</label></li>
 						<li><label class="form_circle">
-						<input name="select_set" type="radio" value="웨지 세트">
+						<input name="select_set" type="radio" value="wedge">
 						<span class="icon"></span>
-						<em>웨지 세트</em>
+						<em>웨지/스프 세트</em>
 						</label></li>
 					</ul>
 				</div>
-				<div class="popup_content">
+				<div class="popup_content cookie">
+					<ul>
+					<c:forEach items="${cookieList }" var="cookie">
+						<li><label class="form_circle">
+						<input name="cookie" type="radio" value="${cookie.name }">
+						<span class="icon"></span>
+						<em>${cookie.name }</em>
+						</label></li>
+					</c:forEach>
+					</ul>
+				</div>
+				<div class="popup_content wedge">
+					<ul>
+					<c:forEach items="${wedgeList }" var="wedge">
+						<li><label class="form_circle">
+						<input name="wedge" type="radio" value="${wedge.name }">
+						<span class="icon"></span>
+						<em>${wedge.name }</em>
+						</label></li>
+					</c:forEach>
+					</ul>
+				</div>
+				<div class="popup_content drink">
 					<ul>
 						<li><label class="form_circle">
-						<input name="select_set" type="radio" checked="checked" value="쿠키 세트">
+						<input name="drink" type="radio" checked="checked" value="탄산음료 16oz">
 						<span class="icon"></span>
-						<em>쿠키 세트</em>
+						<em>탄산음료 16oz</em>
+						</label></li>
+						<li><label class="form_circle">
+						<input name="drink" type="radio" value="탄산음료 22oz ">
+						<span class="icon"></span>
+						<em>탄산음료 22oz</em>
 						</label></li>
 					</ul>
 				</div>

@@ -2,6 +2,8 @@ package com.lubway.user.menu.service;
 
 import java.util.List;
 
+import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.user.menu.BreadVO;
 import com.lubway.user.menu.CheeseVO;
 import com.lubway.user.menu.MeatAddVO;
@@ -16,4 +18,6 @@ public interface UserOptionService {
 	List<SauceVO> getSauceList();
 	List<ToppingAddVO> getToppingAddList();
 	List<VegetableVO> getVegetableList();
+	List<CookieVO> getCookieList();
+	List<WedgeAndSoupVO> getWedgeList();
 }

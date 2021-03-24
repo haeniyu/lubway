@@ -27,5 +27,13 @@
 	<select id="getVegetableList" resultType="vege">
 		SELECT * FROM vegetable
 	</select>
+	
+	<select id="getCookieList" resultType="cookie">
+		SELECT * FROM cookie
+	</select>
+	
+	<select id="getWedgeList" resultType="wedgeandsoup">
+		SELECT * FROM wedgeandsoup
+	</select>
 
 </mapper>

@@ -6,6 +6,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.WedgeAndSoupVO;
+
 @Repository
 public class UserOptionDAO {
 	@Autowired
@@ -39,5 +42,15 @@ public class UserOptionDAO {
 	public List<VegetableVO> getVegetableList() {
 		System.out.println("UserOptionDAO - getVegetableList 실행");
 		return sqlSessionTemplate.selectList("UserOptionDAO.getVegetableList");
+	}
+
+	public List<CookieVO> getCookieList() {
+		System.out.println("UserOptionDAO - getCookieList 실행");
+		return sqlSessionTemplate.selectList("UserOptionDAO.getCookieList");
+	}
+	
+	public List<WedgeAndSoupVO> getWedgeList() {
+		System.out.println("UserOptionDAO - getWedgeList 실행");
+		return sqlSessionTemplate.selectList("UserOptionDAO.getWedgeList");
 	}
 }

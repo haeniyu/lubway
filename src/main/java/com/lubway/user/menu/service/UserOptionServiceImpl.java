@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.user.menu.BreadVO;
 import com.lubway.user.menu.CheeseVO;
 import com.lubway.user.menu.MeatAddVO;
@@ -47,6 +49,16 @@ public class UserOptionServiceImpl implements UserOptionService {
 	@Override
 	public List<VegetableVO> getVegetableList() {
 		return dao.getVegetableList();
+	}
+
+	@Override
+	public List<CookieVO> getCookieList() {
+		return dao.getCookieList();
+	}
+	
+	@Override
+	public List<WedgeAndSoupVO> getWedgeList() {
+		return dao.getWedgeList();
 	}
 
 }
