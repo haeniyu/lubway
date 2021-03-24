@@ -66,11 +66,10 @@
 							<dl>
 								<dt>쿠폰</dt>
 								<dd>
-									<!--<strong th:text="${member.couponCount}"></strong>개-->
 									<strong>0</strong>개
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/mypage/coupon"><span>쿠폰 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/lubway/coupon.do"><span>쿠폰 관리</span></a>
 						</div>
 					</section>
 				</section>
