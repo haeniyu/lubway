@@ -1,20 +1,11 @@
 @charset "UTF-8";
-/* 초기화 */
-* {
-	border-collapse: collapse;
-	margin: 0px;
-	padding: 0px;
-	text-decoration: none;
-	color: black;
-	list-style: none;
-	font-family: "Noto Sans KR", sans-serif;
-}
 
 .choice_option {
 	width: 780px;
+	z-index: 10;
 }
 
-.icon {
+input + .icon {
 	width: 26px;
 	height: 26px;
 	border: 2px solid #dddddd;
@@ -30,7 +21,7 @@ ul input[type="radio"]:checked+.icon:before {
 	width: 24px;
 }
 
-ul input[type="checkbox"] {
+ul input[type="checkbox"], ul input[type="radio"] {
 	height: 0;
 	opacity: 0;
 	width: 0;

@@ -29,13 +29,7 @@ public class OrderController {
 		model.addAttribute("cookieList", service.getCookieList());
 		model.addAttribute("wedgeList", service.getWedgeList());
 		
-		return "order/orderDetail";
+		return "order/orderSelect";
 	}
-	
-	@RequestMapping("order03.do")
-	public String order03() {
-		return "order/orderDetail";
-	}
-	
 	
 }

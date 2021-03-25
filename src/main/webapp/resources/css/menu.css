@@ -4,9 +4,12 @@ html, body, button, dl, dt, dd, div, form, fieldset, legend, h1, h2, h3, h4, h5,
     margin: 0;
     padding: 0;
     line-height: 120%;
+    list-style: none;
 }
 
-
+a{text-decoration:none; color:#333;}
+img{vertical-align:top; border:0}
+table{border-collapse:collapse;border-spacing:0; width:100%;}
 
 body {
     font-size: 16px;
@@ -667,6 +670,22 @@ p {
 .menu_view_wrapper  .btns_list_wrapper .btn_list{margin:0 auto;}
 
 
+/** 주문 step03 CSS */
+.board_list_wrapper table{clear:both; border-top:4px solid #009223;}
+.board_list_wrapper table th{color:#009223; font-size:16px; font-weight:bold; height:69px; border-bottom:1px solid #009223; text-align:center;}
+.board_list_wrapper table td{height:69px; border-bottom:1px solid #dddddd; text-align:center; color:#292929; font-size:16px;}
 
+.btns_wrapper .btn{margin:0 4px;}
+.btn{font-size:18px; font-weight:bold; text-align:center; display:inline-block; vertical-align:middle; border-radius:30px; transition-duration:0.2s}
+.btn.bgc_black{background-color:#444;}
+.btn.bgc_black span{height:50px; line-height:50px; color:#fff;}
+.btn.size1 span{font-size:16px; height:40px; line-height:40px;}
 
-
+.btn_list{width:170px; position:relative; margin:0 auto}
+.btn_list:before,
+.btn_list:after,
+.btn_list a:after{content:''; position:absolute; left:36px; width:20px; height:4px; background-color:#ffce32;}
+.btn_list:before{top:16px}
+.btn_list:after{top:30px;}
+.btn_list a:after{top:23px;}
+.btn_list a{display:block; color:#ffffff; font-size:18px; font-weight:bold; background-color:#009223; height:50px; line-height:50px; text-align:left; border-radius:50px; text-indent:70px; letter-spacing:-0.03em; transition-duration:0.2s}
