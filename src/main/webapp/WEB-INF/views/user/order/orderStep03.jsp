@@ -132,10 +132,51 @@
 	
 	// ========= 추가 선택 항목 기능 처리 =========
 	
-	// 추가 선택
+	// 토핑 추가 선택
 	function endAddSelect() {
-		console.log("=== addSelect ===");
+		console.log("=== addToppingSelect ===");
 		
+		var topping = $("#toppingText").text();
+		
+		var object = $('<object id="selectTopping">' + topping + ', </object>')
+		
+		$("#selectTopping").remove();
+		$(object).prependTo("#selectStep02");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 미트 추가 선택
+	function endAddMeatSelect() {
+		console.log("=== addMeatSelect ===");
+		
+		var meat = $("#meatText").text();
+		
+		var object = $('<object id="selectMeat">' + meat + ', </object>')
+		
+		$("#selectMeat").remove();
+		$(object).insertAfter("#selectTopping");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 치즈 추가 선택
+	function endAddCheeseSelect() {
+		console.log("=== addCheeseSelect ===");
+		if(!checkCheese) {
+			alert("치즈를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var add_cheese = $("#addCheeseText").text();
+		
+		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
+		
+		$("#selectCheese").remove();
+		$(object).appendTo("#selectStep02");
+		
+		$("#closeLength").get(0).click();
 	}
 		
 /******************STEP01********************/
@@ -252,7 +293,7 @@
          }
          
          $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
-         $('#sum').text(ttl);
+         $('#sum').text("+ " + ttl + "원");
          
       }); //end of topping
       
@@ -264,15 +305,27 @@
          var cost = parseInt(tempArr[1]);
          
          $('#meatText').text(tempArr[0]);
-         $('#sum2').text(cost);
+         $('#sum2').text("+ " + cost + "원");
          
       }); //end of meat
+      
+		//치즈 추가
+      $("input:radio[name=add_cheese]").click(function(){
+         var temp = $(this).val();
+         var tempArr = temp.split(",");
+         var cost = parseInt(tempArr[1]);
+         
+         $('#addCheeseText').text(tempArr[0]);
+         $('#sum3').text("+ " + cost + "원");
+         
+      }); //end of add_cheese
       
 	////////////step03 세트 선택//////////////
 	//길이 선택에 따라 lengthText 값이 바뀌게 한다
 		$(".wedge").hide();
 		$("input:radio[name=select_set]").click(function(){
 			var temp = $(this).val();
+			var selectSet;
 			console.log(temp);
 			if(temp == "cookie") {
 				$(".cookie").show();
@@ -281,6 +334,7 @@
 				$(".wedge").show();
 				$(".cookie").hide();
 			}
+			
 		});
 	      
 	});
@@ -489,7 +543,7 @@
 							</div>
 							<p id="selectStep01"></p>
 
-
+							<!----------------------------------- 02 추가선택 영역 ----------------------------------------->
 							<div class="step01">
 								<div class="th_name_step02">
 									<strong>STEP 02</strong>&nbsp;&nbsp;추가 선택
@@ -500,7 +554,7 @@
 											<dt>추가 선택 (다중 선택 가능)</dt>
 											<dd id="toppingText">원하는 추가 선택 제품을 선택하여 주세요</dd>
 											<dd>
-												+<span id="sum">0</span>원
+												<span id="sum">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -529,7 +583,7 @@
 											<dt>미트 추가</dt>
 											<dd id="meatText">미트 추가를 선택 해 주세요</dd>
 											<dd>
-												<span id="sum2">+0원</span>
+												<span id="sum2">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -558,7 +612,7 @@
 											<dt>치즈 추가</dt>
 											<dd id="addCheeseText">치즈 추가를 선택 해 주세요</dd>
 											<dd>
-												+<span id="sum3">0</span>원
+												<span id="sum3">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -580,7 +634,9 @@
 								<div class="wrap_pop">
 									<a class="pop" href="#add_cheese" rel="modal:open">치즈 추가</a>
 								</div>
+							<p id="selectStep02"></p>
 
+							<!----------------------------------- 03 세트선택 영역 ----------------------------------------->
 							</div>
 							<div class="step01">
 								<div class="th_name_step03">
@@ -599,6 +655,7 @@
 									<div class="option_display">
 										<dl>
 											<dt>세트 선택</dt>
+											<dd id="setText">세트 선택</dd>
 										</dl>
 									</div>
 									<div class="popup_content set_menu">
