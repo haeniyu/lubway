@@ -302,7 +302,7 @@
 					<!-- 메뉴 header -->
 					<div class="hd">
 						<div class="category"></div>
-						<h2 class="name">${menu.name }</h2>
+						<h2 class="title_name">${menu.name }</h2>
 						<p class="eng">${menu.engname }</p>
 						<p class="cal">${nutrient.cal }Kcal</p>
 					</div>
@@ -550,6 +550,35 @@
 								</div>
 								<div class="wrap_pop">
 									<a class="pop" href="#meat" rel="modal:open">미트 추가</a>
+								</div>
+
+								<div id="add_cheese" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>치즈 추가</dt>
+											<dd id="addCheeseText">치즈 추가를 선택 해 주세요</dd>
+											<dd>
+												+<span id="sum3">0</span>원
+											</dd>
+										</dl>
+									</div>
+									<div class="popup_content add_cheese">
+										<ul>
+											<c:forEach items="${cheeseList }" var="chee">
+												<li><label class="form_circle"> <input
+														name="add_cheese" type="radio"
+														value="${chee.name }, ${chee.price}"> <span
+														class="icon"></span><em>${chee.name }</em> <span>+<em><fmt:formatNumber
+																	value="${chee.price }" pattern="#,###" /></em>&nbsp;원
+													</span>
+												</label></li>
+											</c:forEach>
+										</ul>
+										<input class="choice_btn" type="button" value="선택" onclick="endAddCheeseSelect();">
+									</div>
+								</div>
+								<div class="wrap_pop">
+									<a class="pop" href="#add_cheese" rel="modal:open">치즈 추가</a>
 								</div>
 
 							</div>
