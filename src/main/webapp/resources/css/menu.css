@@ -671,6 +671,7 @@ p {
 
 
 /** 주문 step03 CSS */
+
 .board_list_wrapper table{clear:both; border-top:4px solid #009223;}
 .board_list_wrapper table th{color:#009223; font-size:16px; font-weight:bold; height:69px; border-bottom:1px solid #009223; text-align:center;}
 .board_list_wrapper table td{height:69px; border-bottom:1px solid #dddddd; text-align:center; color:#292929; font-size:16px;}

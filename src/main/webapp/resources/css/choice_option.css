@@ -1,8 +1,15 @@
 @charset "UTF-8";
 
+
+.list_wrapper{
+	background-color:#f6f6f6;
+	padding-top: 10px;
+}
+
+
 .choice_option {
 	width: 780px;
-	z-index: 10;
+	margin: 0 auto;
 }
 
 input + .icon {
@@ -42,14 +49,6 @@ ul input[type="checkbox"]:checked+.icon:before {
 	left: 4px;
 	top: 0;
 	transition-duration: 0.2s
-}
-
-.step01 {
-	position: relative;
-	float: left;
-	width: 750px;
-	min-height: 120px;
-	box-sizing: border-box;
 }
 
 div>.th_name_step01 {
