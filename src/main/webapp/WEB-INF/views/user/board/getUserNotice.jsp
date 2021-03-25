@@ -45,7 +45,7 @@
 								<img src="${notice.filePath}" style="width: 800px;"><br>
 							</p>
 						</c:if>
-						<p class="MsoNormal">${notice.content}</p>
+						<p class="MsoNormal"><pre>${notice.content}</pre></p>
 					</div>
 				</div>
 				<div class="btn_list">

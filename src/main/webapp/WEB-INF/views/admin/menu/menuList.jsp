@@ -62,30 +62,27 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Menu List</h6>
 			</div>
-
-			<div class="mb-3">
-				<div class="col-sm-3">
-					<div class="small mb-1"></div>
-					<div class="dropdown mb-4">
-						<span class="form_select" style="width: 300px">
-						<select class="btn btn-primary dropdown-toggle" id="select1" name="select" style="width: 150px">
-								<option value="sandwich">샌드위치</option>
-								<option value="wrap">랩&파니니</option>
-								<option value="salad">찹샐러드</option>
-								<option value="morning">아침메뉴</option>
-								<option value="cookie">쿠키</option>
-								<option value="was">웻지&스프</option>
-								<option value="drink">음료</option>
-						</select>
-						</span>
-					</div>
-				</div>
-			</div>
-
 			<div class="card-body">
 				<div class="table-responsive">
 					<!-- 카테고리 선택 s -->
-
+					<div class="mb-3">
+						<div class="col-sm-3">
+							<div class="small mb-1"></div>
+							<div class="dropdown mb-4">
+								<span class="form_select" style="width: 300px">
+								<select class="btn btn-primary dropdown-toggle" id="select1" name="select" style="width: 150px">
+										<option value="sandwich">샌드위치</option>
+										<option value="wrap">랩&파니니</option>
+										<option value="salad">찹샐러드</option>
+										<option value="morning">아침메뉴</option>
+										<option value="cookie">쿠키</option>
+										<option value="was">웨지&스프</option>
+										<option value="drink">음료</option>
+								</select>
+								</span>
+							</div>
+						</div>
+					</div>
 					<!-- 카테고리 선택 e -->
 					<form action="/lubway/menu.mdo">
 						<!-- method="post" 넣어줘야 함/ 일단 페이지만 넘어가게 했어요! -->
@@ -100,10 +97,10 @@
 							cellspacing="0">
 							<thead>
 								<tr align="center">
-									<th width="35%">name</th>
+									<th width="25%">name</th>
 									<th width="20%">eng name</th>
 									<th width="20%">code</th>
-									<th width="25%">file</th>
+									<th width="35%">file</th>
 								</tr>
 							</thead>
 							<tbody>

@@ -124,7 +124,7 @@ $(document).ready(function() {
 						</div>
 						</div>
 						<div class="price30">
-						<div class="mb-3" id="hyunah">
+						<div class="mb-3">
 							<label for="price30">30cm 가격</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="price30" id="price30" value="${update.price30}">
@@ -144,7 +144,7 @@ $(document).ready(function() {
 								<input type="text" class="form-control" name="engname" id="engname" value="${update.engname}">
 							</div>
 						</div>
-						<div class="mb-3" id="hyunah">
+						<div class="mb-3">
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="code" id="code" value="${update.code}">
@@ -152,7 +152,7 @@ $(document).ready(function() {
 						</div>
 
 						<div class="price">
-						<div class="mb-3" id="hyunah">
+						<div class="mb-3">
 							<label for="price">가격</label>
 							<div class="col-sm-3">
 								<c:if test="${select != 'sandwich'}">
@@ -163,7 +163,7 @@ $(document).ready(function() {
 					</div>
 
 					<div class="category">
-					<div class="mb-3" id="hyunah">
+					<div class="mb-3">
 							<label for="category">카테고리</label>
 							<div class="col-sm-3">
 							<c:if test="${select == 'sandwich' || select == 'salad' || select == 'morning' || select == 'wrap'}">
@@ -173,7 +173,7 @@ $(document).ready(function() {
 						</div>
 						</div>
 						<div class="content">
-					<div class="mb-3" id="hyunah">
+					<div class="mb-3">
 							<label for="content">내용</label>
 							<div class="col-sm-3">
 								<input type="text" class="form-control" name="content"
@@ -232,7 +232,7 @@ $(document).ready(function() {
                      <div>
                         <div class="index">이미지</div>
                         	<input type="file" name="uploadImg" id="uploadImg" multiple/>
-                        <img src="${update.filePath}">
+                        <img src="${update.filePath}" style="width: 370px">
                      </div>
               
 					</div>
