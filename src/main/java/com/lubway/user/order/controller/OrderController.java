@@ -1,4 +1,4 @@
-package com.lubway.user.controller;
+package com.lubway.user.order.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,32 +15,34 @@ import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
+import com.lubway.user.menu.service.UserOptionService;
 import com.lubway.user.service.UserMenuService;
 
 @Controller
-public class SelectMenuController {
-
+public class OrderController {
+	
+	@Autowired
+	private UserOptionService service;
+	
 	@Autowired
 	private UserMenuService userMenuService;
 
-
 	/** 메뉴 선택 페이지 */
-	@GetMapping("/orderStep02.do")
-	public String menustep02(Model model,  String franchiseNo ,String whatWay) {
+	@PostMapping("/orderStep02.do")
+	public String orderStep02(Model model, String franchiseNo ,String whatWay,String fullAddr) {
 		System.out.println("orderStep02 - 페이지 이동");
+		System.out.println("OrderController - franchiseNo : " + franchiseNo);
+		System.out.println("OrderController - whatWay : " + whatWay);
+		System.out.println("OrderController - fullAddr : " + fullAddr);
 		
-		
-		model.getAttribute(whatWay);
-		model.getAttribute(franchiseNo);
-		System.out.println(franchiseNo);
-		System.out.println(whatWay);
 		model.addAttribute("whatWay",whatWay);
 		model.addAttribute("franchiseNo",franchiseNo);
+		model.addAttribute("fullAddr", fullAddr);
 		
-		return "orderStep02";
+		return "order/orderStep02";
 	}
 
-	/** Ajax */
+	/** 메뉴 페이지에서 탭 눌렀을 때 카테고리 바꾸는 Ajax */
 	@PostMapping("/changeCategory.do")
 	@ResponseBody
 	public List<Object> changeCategory(String select) {
@@ -98,22 +99,35 @@ public class SelectMenuController {
 		return totalList;
 		
 	}
-		@PostMapping("orderStep02Detail.do")
-		public String orderStep02Detail(Model model, String franchiseNo, 
-				String whatWay, String data) {
-			System.out.println(data);
-			System.out.println(franchiseNo);
-			System.out.println(whatWay);
-			
-			
-			model.addAttribute("franchiseNo", franchiseNo);
-			model.addAttribute("whatWay", whatWay);
-			model.addAttribute("data",data);
-			return "redirect:/fastway/step01.do";
-		}
+	
+	/** 메뉴 상세 페이지 */
+	@PostMapping("orderStep03.do")
+	public String orderStep03(Model model,String franchiseNo,String whatWay,String code,String selected) {
 		
+		System.out.println("orderStep03 - 페이지 이동");
+		System.out.println("orderStep03 - franchiseNo : " + franchiseNo);
+		System.out.println("orderStep03 - whatWay : " + whatWay);
+		System.out.println("orderStep03 - code : " + code);
+		System.out.println("orderStep03 - selected : " + selected);
 		
+		model.addAttribute("breadList", service.getBreadList());
+		model.addAttribute("cheeseList", service.getCheeseList());
+		model.addAttribute("meatList", service.getMeatAddList());
+		model.addAttribute("sauceList", service.getSauceList());
+		model.addAttribute("toppingList", service.getToppingAddList());
+		model.addAttribute("vegeList", service.getVegetableList());
+		
+		model.addAttribute("cookieList", service.getCookieList());
+		model.addAttribute("wedgeList", service.getWedgeList());
+		
+		return "order/orderStep03";
+	}
 	
-	
-	
+	/** 주문 확인, 결제하기  페이지 */
+	@PostMapping("/orderStep04.do")
+	public String orderStep04() {
+		System.out.println("주문 및 결제하기 페이지로 이동");
+		return "order/orderStep04";
+	}
+
 }

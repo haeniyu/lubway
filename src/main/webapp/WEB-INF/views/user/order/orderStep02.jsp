@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <head>
 <meta charset="UTF-8">
-<title>fastway/Step02</title>
+<title>주문하기 > Step02</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 
@@ -111,6 +111,7 @@
 	function selectDetail(data,whatWay,franchiseNo) {
 		console.log("=== [function] selectDetail ===");
 		
+		$("#selected").val(select);
 		// data는 선택된 메뉴의 code값임
 		console.log("선택 메뉴 종류 : " + select);
 		console.log("선택 메뉴 code : " + data);
@@ -123,7 +124,7 @@
 	function selectSide(data, whatWay, franchiseNo) {
 		console.log("=== [function] selectSide ===");
 		
-		
+		$("#selected").val(select);
 		// data는 선택된 메뉴의 code값임
 		console.log("선택 메뉴 종류 : " + select);
 		console.log("선택 메뉴 code : " + data);
@@ -137,7 +138,7 @@
 	<div class="content">
 		<!-- container s -->
 		<div id="container">
-			<div id="content" class="order  fast_sub">
+			<div id="content" class="order fast_sub">
 				<!-- fast_sub / home_sub -->
 				<!-- index -->
 				<div class="menu_list">
@@ -169,7 +170,8 @@
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 	<!-- 주문 상세 페이지 이동 -->
-	<form action="orderStep02Detail.do" method="post" id="orderForm" style="display: none;">
+	<form action="orderStep03.do" method="post" id="orderForm" style="display: none;">
+		<input type="hidden" id="selected" name="selected" value="">
 		<input type="hidden" id="code" name="code" value="">
 		<input type="hidden" name="whatWay" value="${whatWay}">
 		<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">

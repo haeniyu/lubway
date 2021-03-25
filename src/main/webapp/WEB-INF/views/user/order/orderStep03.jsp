@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>주문하기 > Step03</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min. js"></script>
 <script src="${path}/resources/js/order.js"></script>
@@ -180,6 +181,7 @@
 </script>
 </head>
 <body>
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
 <div id="content" class="order fast_sub">
 	<div class="order_title">
 		<h3>Fast-Way</h3>
@@ -516,7 +518,8 @@
 					<!-- 목록보기 -->
 					<div class="btns_list_wrapper" style="width:1170px;">
 						<div class="btn_list">
-							<a href="/lubway/${select}">목록보기</a>
+							<a href="#" onclick="history.go(-1); return false;">목록보기</a>
+							<a href="/lubway/orderStep04.do">주문하기</a>
 						</div>
 					</div>
 					<!--// 목록보기 -->
@@ -615,5 +618,6 @@
 			</div>
 		</div>
 	</div>
+<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

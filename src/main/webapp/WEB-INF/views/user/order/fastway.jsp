@@ -241,7 +241,7 @@ function orderStart(franchiseNo) {
 	</div>
 </div>
 <!-- 주문하기-->
-<form action="orderStart.do" method="post" id="orderForm" style="display: none;">
+<form action="/lubway/orderStep02.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" name="whatWay" value="Fast-Way">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
 </form> 

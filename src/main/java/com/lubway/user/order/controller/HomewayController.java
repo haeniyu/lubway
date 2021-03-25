@@ -1,8 +1,6 @@
-package com.lubway.user.controller;
+package com.lubway.user.order.controller;
 
 import java.util.List;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,10 +22,8 @@ public class HomewayController {
 	
 	/** 홈웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
 	@GetMapping("step01.do")
-	public String homewayView(HttpSession session) {
-		if(session.getAttribute("user")==null)
-			return "login";
-		return "homeway";
+	public String homewayView() {
+		return "order/homeway";
 	}
 	
 	/** 홈웨이가 가능한 매장 리스트 추출하여 배열로 리턴 */
@@ -44,20 +40,6 @@ public class HomewayController {
 		}
 		
 		return arr;
-	}
-
-	/** 주소 값 확인용 */
-	@PostMapping("orderStart.do")
-	public String order(String fullAddr, String basicAddr, String detailAddr, String whatWay, String franchiseNo) {
-		
-		System.out.println("기본 주소 : " + basicAddr);
-		System.out.println("상세 주소 : " + detailAddr);
-		System.out.println("전체 주소 : " + fullAddr);
-		
-		System.out.println("주문 방식 : " + whatWay);
-		System.out.println("no : " + franchiseNo);
-		
-		return "main";
 	}
 	
 }

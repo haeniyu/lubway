@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <head>
 <meta charset="UTF-8">
-<title>fastway/Step04</title>
+<title>주문하기 > Step04</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
