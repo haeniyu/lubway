@@ -108,22 +108,27 @@
 	}//end insertInfo function
 	
 	// 메뉴 선택시 실행되는 함수
-	function selectDetail(data) {
+	function selectDetail(data,whatWay,franchiseNo) {
 		console.log("=== [function] selectDetail ===");
 		
 		// data는 선택된 메뉴의 code값임
 		console.log("선택 메뉴 종류 : " + select);
 		console.log("선택 메뉴 code : " + data);
+		$("#code").val(data);
+		$("#orderForm").submit();
+		
 	}//end selectDetail function
 	
 	// 사이드 메뉴 선택시 실행되는 함수 ( 쿠키제외 - 추가적으로 처리해야 함 )
-	function selectSide(data) {
+	function selectSide(data, whatWay, franchiseNo) {
 		console.log("=== [function] selectSide ===");
+		
 		
 		// data는 선택된 메뉴의 code값임
 		console.log("선택 메뉴 종류 : " + select);
 		console.log("선택 메뉴 code : " + data);
-
+		$("#code").val(data);
+		$("#orderForm").submit();
 	}//end selectSide function
 </script>
 </head>
@@ -164,9 +169,10 @@
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 	<!-- 주문 상세 페이지 이동 -->
-	<form action="orderStep03.do" method="post" id="orderForm" style="display: none;">
-		<input type="hidden" id="" name="" value="">
-		<input type="hidden" id="" name="" value="">
-	</form>
+	<form action="orderStep02Detail.do" method="post" id="orderForm" style="display: none;">
+		<input type="hidden" id="code" name="code" value="">
+		<input type="hidden" name="whatWay" value="${whatWay}">
+		<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
+	</form> 
 </body>
 </html>
