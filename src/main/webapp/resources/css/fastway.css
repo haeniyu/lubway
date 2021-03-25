@@ -140,8 +140,8 @@
 .order .store_map .pagination .next{margin-left: 18px;}
 
 /* 메뉴 리스트  */
-.order .menu_list .tab02 ul li:first-child a{font-size: 0;}
-.order .menu_list .tab02 ul li:first-child a:after{content: ''; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; background: url('../images/order/fast_sub/icon_list_bookmark.png') no-repeat 0 0;}
+
+.order .menu_list .tab02 ul li:first-child a:after{position: relative; left: 50%; top: 50%; width: 44px; height: 44px; }
 
 .order .menu_list .order_con {background-color: #fff; margin:0 auto; padding-top:30px; padding-bottom:30px; width:1170px;}
 .order .menu_list .list{overflow: hidden; margin-left:-30px;}
@@ -577,3 +577,65 @@ legend{display:block;overflow:hidden;position:absolute;top:-1000em;left:0;width:
 .coupon_info .btn_area a{width: 130px;}
 
 .tab02{width:1170px;height:70px;margin:50px auto 0px auto;position:relative;z-index:10;box-shadow: 7px 7px 20px 0px rgb(0 0 0 / 10%);}
+
+.order_con .pd_list_wrapper {
+    width: 1170px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 130px;
+    
+}
+
+.order_con .pd_list_wrapper ul {
+    overflow: hidden;
+    margin: -30px 0 0 -30px;
+}
+
+.order_con .pd_list_wrapper li {
+    width: 370px;
+    height: 330px;
+    background-color: #fff;
+    float: left;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    margin: 30px 0 0 30px;
+    transition: 0.3s;
+}
+
+.order_con .pd_list_wrapper li .img {
+    width: 270px;
+    height: 189px;
+    margin: 20px auto 0;
+    position: relative;
+    z-index: 1;
+}
+
+.order_con .pd_list_wrapper li .img img {
+    width: 100%;
+    height: 100%;
+}
+
+.order .menu_list .order_con {background-color: #fff; margin:0 auto; padding-top:30px; padding-bottom:30px; width:1170px;}
+.order .menu_list .list{overflow: hidden; margin-left:-30px;}
+.order .menu_list .list li{/*background-color:#ccc;*/ float: left; margin-top:30px; margin-left:30px; height:330px; width:370px;}
+.order .menu_list .list li a{/*background-color:#999;*/ position: relative; display: block; box-sizing: border-box; padding-top:20px; height:100%;}
+.order .menu_list .list li a img{display: block; width: 270px; height: 189px; margin: 0 auto; transition-duration:0.2s;}
+.order .menu_list .list li a:hover img {transform:scale(1.1);}
+.order .menu_list .list li a p{text-align: center;}
+.order .menu_list .pd_list_wrapper .mainname {display: block; padding: 0px 0 0px 0; color: #292929; font-size: 22px; font-weight: bold;}
+.order .menu_list .pd_list_wrapper > ul > li .kcal > em {display:block; color:#ffc300;  font-size:18px;font-weight: bold;} /*2020-08-14*/
+.order .menu_list .pd_list_wrapper > ul > li .eng_name {display:inline-block;font-size:16px; letter-spacing:0; color:#666; font-weight:normal;  text-align:center;padding:0px 0 0px;} /*2020-08-14*/
+.order .menu_list .list .label {position:absolute; left:0; top:0; width:70px;}
+.order .menu_list .list .label span {display:block; color:#fff; font-size:13px; font-weight:bold; line-height:30px; text-align:center; height:30px;}
+.order .menu_list .list .label span.new {background-color:#ffc300;}
+.order .menu_list .list .label span.season {background-color:#9631a8;}
+.order .menu_list .list .label span.recommend {background-color:#ff4b06;}
+
+
+
+
+
+
+
+

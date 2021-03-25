@@ -32,4 +32,10 @@ public class OrderController {
 		return "order/orderSelect";
 	}
 	
+	@GetMapping("/orderPage.do")
+	public String orderPage() {
+		System.out.println("주문 및 결제하기 페이지로 이동");
+		return "/order/orderPage";
+	}
+
 }

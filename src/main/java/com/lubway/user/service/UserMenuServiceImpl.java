@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.DrinkVO;
 import com.lubway.admin.menu.MorningVO;
 import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
@@ -72,6 +73,10 @@ public class UserMenuServiceImpl implements UserMenuService {
 	@Override
 	public List<WedgeAndSoupVO> getSmileWayWASList() {
 		return userMenuDAO.getSmileWayWASList();
+	}
+	@Override
+	public List<DrinkVO> getSmileWayDrinkList() {
+		return userMenuDAO.getSmileWayDrinkList();
 	}
 	/**	메뉴 페이지(스마일 웨이 - 칼로리) */
 	@Override

@@ -82,8 +82,22 @@
 						<a class="dp1" href="javascript:void(0);">온라인 주문</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/fastway/step01.do">FAST-WAY</a></li>
-								<li><a href="/lubway/homeway/step01.do">HOME-WAY</a></li>
+								<li>
+									<c:if test="${user == null}">
+										<a href="/lubway/login.do">FAST-WAY</a>
+									</c:if>
+									<c:if test="${user != null}">
+										<a href="/lubway/fastway/step01.do">FAST-WAY</a>
+									</c:if>
+								</li>
+								<li>
+									<c:if test="${user == null}">
+										<a href="/lubway/login.do">HOME-WAY</a>
+									</c:if>
+									<c:if test="${user != null}">
+										<a href="/lubway/homeway/step01.do">HOME-WAY</a>
+									</c:if>	
+								</li>
 							</ul>
 						</div>
 					</li>

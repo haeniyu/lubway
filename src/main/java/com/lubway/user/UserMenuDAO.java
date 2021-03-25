@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lubway.admin.menu.CookieVO;
+import com.lubway.admin.menu.DrinkVO;
 import com.lubway.admin.menu.MorningVO;
 import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
@@ -61,6 +62,9 @@ public class UserMenuDAO {
 	}
 	public List<WedgeAndSoupVO> getSmileWayWASList() {
 		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayWASList");
+	}
+	public List<DrinkVO> getSmileWayDrinkList() {
+		return sqlSessionTemplate.selectList("UserMenuDAO.getSmileWayDrinkList");
 	}
 	/**	메뉴 페이지(스마일 웨이 - 칼로리) */
 	public List<String> getSmileWayCookieCalList() {
