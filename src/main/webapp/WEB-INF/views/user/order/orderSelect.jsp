@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="${path}/resources/css/choice_option.css" />
 <link rel="stylesheet" href="${path}/resources/css/menu.css?v=2">
 <link rel="stylesheet" href="${path}/resources/css/ui.popup.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript">
 
 
@@ -179,20 +180,26 @@
 </script>
 </head>
 <body>
-<div id="content">
+<div id="content" class="order fast_sub">
+	<div class="order_title">
+		<h3>Fast-Way</h3>
+		<p>
+		온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.
+		</p>
+	</div>
 			<!-- 메뉴소개 s -->
-			<div class="menu_view_wrapper">
-				<!-- 메뉴 header -->
-				<div class="hd">
-					<div class="category"></div>
-					<h2 class="name">${menu.name }</h2>
-					<p class="eng">${menu.engname }</p>
-					<p class="cal">${nutrient.cal }Kcal</p>
-				</div>
-				<!--// 메뉴 header -->
-				
+			<div class="menu_view_wrapper" style="padding-left: 180px;">
 				<!-- 메뉴 content -->
-				<div class="menu_content">
+				<div class="menu_content" style="width:1170px; background-color: white;">
+					<!-- 메뉴 header -->
+					<div class="hd">
+						<div class="category"></div>
+						<h2 class="name">${menu.name }</h2>
+						<p class="eng">${menu.engname }</p>
+						<p class="cal">${nutrient.cal }Kcal</p>
+					</div>
+					<!--// 메뉴 header -->
+				
 					<!-- 메뉴정보 -->
 					<div class="menu_info">
 						<div class="menu_img">
@@ -206,7 +213,7 @@
 
 					<!-- 영양성분표 -->
 					<div class="component_chart">
-						<div class="content">
+						<div class="content" style="width:1000px;">
 							<h3>영양성분표</h3>
 							<!-- 로스트 치킨 베이컨 -->
 							<div class="board_list_wrapper">
@@ -507,7 +514,7 @@
 			</div>
 				<!--// 메뉴 content -->
 					<!-- 목록보기 -->
-					<div class="btns_list_wrapper">
+					<div class="btns_list_wrapper" style="width:1170px;">
 						<div class="btn_list">
 							<a href="/lubway/${select}">목록보기</a>
 						</div>
