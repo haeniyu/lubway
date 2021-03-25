@@ -27,8 +27,17 @@ public class SelectMenuController {
 
 	/** 메뉴 선택 페이지 */
 	@GetMapping("/orderStep02.do")
-	public String menustep02(Model model) {
+	public String menustep02(Model model,  String franchiseNo ,String whatWay) {
 		System.out.println("orderStep02 - 페이지 이동");
+		
+		
+		model.getAttribute(whatWay);
+		model.getAttribute(franchiseNo);
+		System.out.println(franchiseNo);
+		System.out.println(whatWay);
+		model.addAttribute("whatWay",whatWay);
+		model.addAttribute("franchiseNo",franchiseNo);
+		
 		return "orderStep02";
 	}
 
@@ -87,5 +96,24 @@ public class SelectMenuController {
 						  return totalList;
 		}
 		return totalList;
+		
 	}
+		@PostMapping("orderStep02Detail.do")
+		public String orderStep02Detail(Model model, String franchiseNo, 
+				String whatWay, String data) {
+			System.out.println(data);
+			System.out.println(franchiseNo);
+			System.out.println(whatWay);
+			
+			
+			model.addAttribute("franchiseNo", franchiseNo);
+			model.addAttribute("whatWay", whatWay);
+			model.addAttribute("data",data);
+			return "redirect:/fastway/step01.do";
+		}
+		
+		
+	
+	
+	
 }

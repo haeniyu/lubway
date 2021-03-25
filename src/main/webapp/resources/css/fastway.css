@@ -623,11 +623,11 @@ legend{display:block;overflow:hidden;position:absolute;top:-1000em;left:0;width:
 .order .menu_list .list li a img{display: block; width: 270px; height: 189px; margin: 0 auto; transition-duration:0.2s;}
 .order .menu_list .list li a:hover img {transform:scale(1.1);}
 .order .menu_list .list li a p{text-align: center;}
-.order .menu_list .pd_list_wrapper .mainname {display: block; padding: 13px 0 7px 0; color: #292929; font-size: 22px; font-weight: bold;}
-.order .menu_list .pd_list_wrapper > ul > li .kcal > em {display:block; color:#ffc300; font-family:'font_sw'; font-size:18px;font-weight: bold;} /*2020-08-14*/
-.order .menu_list .pd_list_wrapper > ul > li .eng_name {display:inline-block;font-size:16px; letter-spacing:0; color:#666; font-weight:normal;  text-align:center;padding:2px 0 14px;} /*2020-08-14*/
+.order .menu_list .pd_list_wrapper .mainname {display: block; padding: 0px 0 0px 0; color: #292929; font-size: 22px; font-weight: bold;}
+.order .menu_list .pd_list_wrapper > ul > li .kcal > em {display:block; color:#ffc300;  font-size:18px;font-weight: bold;} /*2020-08-14*/
+.order .menu_list .pd_list_wrapper > ul > li .eng_name {display:inline-block;font-size:16px; letter-spacing:0; color:#666; font-weight:normal;  text-align:center;padding:0px 0 0px;} /*2020-08-14*/
 .order .menu_list .list .label {position:absolute; left:0; top:0; width:70px;}
-.order .menu_list .list .label span {display:block; color:#fff; font-family:'font_sw', 'font_ns'; font-size:13px; font-weight:bold; line-height:30px; text-align:center; height:30px;}
+.order .menu_list .list .label span {display:block; color:#fff; font-size:13px; font-weight:bold; line-height:30px; text-align:center; height:30px;}
 .order .menu_list .list .label span.new {background-color:#ffc300;}
 .order .menu_list .list .label span.season {background-color:#9631a8;}
 .order .menu_list .list .label span.recommend {background-color:#ff4b06;}
