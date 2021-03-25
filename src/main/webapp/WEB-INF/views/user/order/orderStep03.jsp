@@ -487,6 +487,7 @@
 							<div class="wrap_pop">
 								<a class="pop" href="#sauce" rel="modal:open">소스/시즈닝 선택</a>
 							</div>
+							<p id="selectStep01"></p>
 
 
 							<div class="step01">
@@ -730,6 +731,7 @@
 			</div>
 		</div>
 	</div>
+	<a id="closeLength" rel="modal:close"></a>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
