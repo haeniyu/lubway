@@ -389,7 +389,7 @@
 												class="icon"></span> <em>30cm</em>
 										</label></li>
 									</ul>
-									<input type="button" value="선택" onclick="endSize();">
+									<input class="choice_btn" type="button" value="선택" onclick="endSize();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -412,7 +412,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
-									<input type="button" value="선택" onclick="endBread();">
+									<input class="choice_btn" type="button" value="선택" onclick="endBread();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -435,7 +435,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
-									<input type="button" value="선택" onclick="endCheese();">
+									<input class="choice_btn" type="button" value="선택" onclick="endCheese();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -458,7 +458,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
-									<input type="button" value="선택" onclick="endVegetable();">
+									<input class="choice_btn" type="button" value="선택" onclick="endVegetable();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -481,7 +481,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
-									<input type="button" value="선택" onclick="endSauce();">
+									<input class="choice_btn" type="button" value="선택" onclick="endSauce();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -516,7 +516,7 @@
 												</label></li>
 											</c:forEach>
 										</ul>
-										<input type="button" value="선택" onclick="endAddSelect();">
+										<input class="choice_btn" type="button" value="선택" onclick="endAddSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
@@ -545,7 +545,7 @@
 												</label></li>
 											</c:forEach>
 										</ul>
-										<input type="button" value="선택" onclick="endAddMeatSelect();">
+										<input class="choice_btn" type="button" value="선택" onclick="endAddMeatSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
@@ -628,15 +628,17 @@
 				</div>
 			</div>
 				<!--// 메뉴 content -->
-					<!-- 목록보기 -->
-					<div class="btns_list_wrapper" style="width:1170px;">
-						<div class="btn_list">
-							<a href="#" onclick="history.go(-1); return false;">목록보기</a>
-							<a href="/lubway/orderStep04.do">주문하기</a>
-						</div>
-					</div>
-					<!--// 목록보기 -->
+			<!-- 목록보기 -->
+			<div class="btns_list_wrapper" style="width: 1170px;">
+				<div class="btn_list">
+					<a href="#" onclick="history.go(-1); return false;">목록보기</a>
+				</div>
 			</div>
+			<div class="order_btn">
+				<a class="cart" href="#">장바구니</a>
+				<a class="bill" href="/lubway/orderStep04.do">주문하기</a>
+			</div>
+		</div>
 			<!--// 메뉴소개 e -->
 		</div>
 	
