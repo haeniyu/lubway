@@ -529,7 +529,7 @@
 											<dt>미트 추가</dt>
 											<dd id="meatText">미트 추가를 선택 해 주세요</dd>
 											<dd>
-												+<span id="sum2">0</span>원
+												<span id="sum2">+0원</span>
 											</dd>
 										</dl>
 									</div>

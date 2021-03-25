@@ -7,14 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
+import com.lubway.admin.menu.NutrientVO;
 import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
+import com.lubway.admin.menu.service.MenuService;
 import com.lubway.user.menu.service.UserOptionService;
 import com.lubway.user.service.UserMenuService;
 
@@ -26,6 +29,9 @@ public class OrderController {
 	
 	@Autowired
 	private UserMenuService userMenuService;
+	
+	@Autowired
+	private MenuService menuService;
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
@@ -100,9 +106,14 @@ public class OrderController {
 		
 	}
 	
-	/** 메뉴 상세 페이지 */
+	/** 메뉴 상세 페이지 
+	 *  hideNum : 1 - 다 가리기 , 2 - 영양성분표만 보여주기, 3 - 세트만 보여주기
+	 * */
 	@PostMapping("orderStep03.do")
-	public String orderStep03(Model model,String franchiseNo,String whatWay,String code,String selected) {
+	public String orderStep03(Model model,
+			String franchiseNo,String whatWay,String code,String selected,
+			CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, 
+			SaladVO svo, DrinkVO dvo, NutrientVO nvo) {
 		
 		System.out.println("orderStep03 - 페이지 이동");
 		System.out.println("orderStep03 - franchiseNo : " + franchiseNo);
@@ -110,21 +121,53 @@ public class OrderController {
 		System.out.println("orderStep03 - code : " + code);
 		System.out.println("orderStep03 - selected : " + selected);
 		
+		//영양성분표 설정
+		model.addAttribute("nutrient", menuService.selectNutrient(nvo));
+		
+		switch (selected) {
+		case "sandwich":	// 다 있어 - hideNum 해당 안됨
+			model.addAttribute("menu", menuService.selectSandwich(Svo));
+			break;
+		case "wrap":	//세트만 있어 - 3
+			model.addAttribute("menu", menuService.selectWrap(wvo));
+			model.addAttribute("hideNum", 3);
+			break;
+		case "salad":	//빵이랑 빵 길이 빼고 다 있어 - 페이지 따로 분리 예정...
+			model.addAttribute("menu", menuService.selectSalad(svo));
+			break;
+		case "side":	//쿠키,웻지&스프,드링크 -> 다 가리고 성분표 있어 - 2
+			if(code.length() > 6) {
+				char cod = code.charAt(6);
+				System.out.println(cod);
+				if (cod == 'C') {
+					model.addAttribute("menu", menuService.selectCookie(cvo));
+				} else if (cod == 'W') {
+					model.addAttribute("menu", menuService.selectWAS(wasvo));
+				}
+				model.addAttribute("hideNum", 2);
+			}else {
+				model.addAttribute("menu", menuService.selectDrink(dvo));
+				model.addAttribute("hideNum", 1); // 다 가리기 - 1
+			}
+			break;
+		}
+		
+		//모달 선택에 필요한 요소 설정
 		model.addAttribute("breadList", service.getBreadList());
 		model.addAttribute("cheeseList", service.getCheeseList());
 		model.addAttribute("meatList", service.getMeatAddList());
 		model.addAttribute("sauceList", service.getSauceList());
 		model.addAttribute("toppingList", service.getToppingAddList());
 		model.addAttribute("vegeList", service.getVegetableList());
-		
 		model.addAttribute("cookieList", service.getCookieList());
 		model.addAttribute("wedgeList", service.getWedgeList());
 		
 		return "order/orderStep03";
 	}
 	
+	
 	/** 주문 확인, 결제하기  페이지 */
-	@PostMapping("/orderStep04.do")
+	@RequestMapping("/orderStep04.do")
 	public String orderStep04() {
 		System.out.println("주문 및 결제하기 페이지로 이동");
 		return "order/orderStep04";
