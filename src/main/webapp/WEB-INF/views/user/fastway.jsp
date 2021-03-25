@@ -11,6 +11,12 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript">
+function orderStart(franchiseNo) {
+	$("#franchiseNo").val(franchiseNo);
+	$("#orderForm").submit();
+}
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -209,7 +215,7 @@
 							"		</dl>" +
 							"	</div>" +
 							"	<div class='foot'>" +
-							"		<a class='btn_order on' href='#" + franchiseNo + "' target='blank'><span>주문하기</span></a>" +
+							"		<a class='btn_order on' href='javascript:;' onclick='orderStart(" + franchiseNo + ")'><span>주문하기</span></a></form>" +
 							"	</div>" +
 							"</div>";
 							
@@ -230,12 +236,15 @@
 				</div>
 			</div>
 		<!--// map api area -->
-		
-			
 		</div>
 		</div>
 	</div>
 </div>
+<!-- 주문하기-->
+<form action="orderStart.do" method="post" id="orderForm" style="display: none;">
+	<input type="hidden" name="whatWay" value="Fast-Way">
+	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
+</form> 
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
