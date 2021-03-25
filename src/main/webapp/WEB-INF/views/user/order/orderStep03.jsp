@@ -17,20 +17,128 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript">
 
+	// 필수 선택 항목 선택 여부
+	var checkSize = false;
+	var checkBread = false;
+	var checkCheese = false;
+	var checkVegetable = false;
+	var checkSauce = false;
 
-/******************STEP01********************/
-
-	function endSauce() {
-		console.log("=== checkSauce ===");
-		var checkCount = $("input:checkbox[name=sauce]:checked").length;
-		console.log("선택된 소스 개수 : " + checkCount);
-		console.log("=== checkSauce ===");
+	// ========= 필수 선택 항목 기능 처리 =========
 		
-		if(checkCount == 0) alert("소스/시즈닝을 선택하여 주세요.");
+	// 사이즈 선택
+	function endSize() {
+		var size = $("#lengthText").text();
+		var object = $('<object id="selectSize">' + size + ', </object>')
 
-		$("#sauceText").val();
+		$("#selectSize").remove();
+		$(object).prependTo("#selectStep01");
+		
+		checkSize = true;
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 빵 선택
+	function endBread() {
+		if(!checkSize) {
+			alert("사이즈를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var bread = $("#breadText").text();
+		if(bread == "빵을 선택해 주세요") {
+			alert("빵은 필수 선택입니다.");
+			return;
+		}
+		var object = $('<object id="selectBread">' + bread + ', </object>')
+
+		$("#selectBread").remove();
+		$(object).insertAfter("#selectSize");
+		
+		checkBread = true;
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 치즈 선택
+	function endCheese() {
+		if(!checkBread) {
+			alert("빵을 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var cheese = $("#cheeseText").text();
+		if(cheese == "치즈를 선택해 주세요") {
+			cheese = "치즈 제외";
+		}
+		var object = $('<object id="selectCheese">' + cheese + ', </object>')
+
+		$("#selectCheese").remove();
+		$(object).insertAfter("#selectBread");
+		
+		checkCheese = true;
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 야채 선택
+	function endVegetable() {
+		if(!checkCheese) {
+			alert("치즈를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var vegetable = $("#vegeText").text();
+		if(vegetable.split(",").length == 8) {
+			vegetable = "야채 모두 선택";
+		} else if(vegetable == "야채를 선택해 주세요.") {
+			vegetable = "야채 제외";
+		}
+		var object = $('<object id="selectVegetable">' + vegetable + ', </object>')
+
+		$("#selectVegetable").remove();
+		$(object).insertAfter("#selectCheese");
+		
+		checkVegetable = true;
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 소스 선택
+	function endSauce() {
+		if(!checkVegetable) {
+			alert("야채를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var sauce = $("#sauceText").text();
+		if(sauce == "소스/시즈닝을 선택해 주세요.") {
+			sauce = "소스 제외";
+		}
+		var object = $('<object id="selectSauce">' + sauce + '</object>')
+
+		checkSauce = true;
+		
+		$("#selectSauce").remove();
+		$(object).appendTo("#selectStep01");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// ========= 추가 선택 항목 기능 처리 =========
+	
+	// 추가 선택
+	function endAddSelect() {
+		console.log("=== addSelect ===");
 		
 	}
+		
+/******************STEP01********************/
 	
 	$(document).ready(function() {
 		//길이 선택에 따라 lengthText 값이 바뀌게 한다
@@ -87,7 +195,7 @@
 			}
 			console.log(vegeArr);
 			// 선택 토핑
-			$('#vegeText').text(vegeArr.length > 0 ? vegeArr.join(",") : "야채를 선택해 주세요.");
+			$('#vegeText').text(vegeArr.length > 0 ? vegeArr.join(", ") : "야채를 선택해 주세요.");
 		});
 		
 		//소스 선택
@@ -116,7 +224,7 @@
 			console.log(itemArr);
 						
 			// 선택 토핑
-			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(",") : "소스/시즈닝을 선택해 주세요.");
+			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(", ") : "소스/시즈닝을 선택해 주세요.");
 		});
 		
 		
@@ -143,7 +251,7 @@
             ttl -= cost;
          }
          
-         $('#toppingText').text(arr.length > 0 ? arr.join(",") : "원하는 제품을 추가 선택해 주세요");
+         $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
          $('#sum').text(ttl);
          
       }); //end of topping
@@ -176,8 +284,6 @@
 		});
 	      
 	});
-</script>
-<script type="text/javascript">
 </script>
 </head>
 <body>
@@ -283,6 +389,7 @@
 												class="icon"></span> <em>30cm</em>
 										</label></li>
 									</ul>
+									<input type="button" value="선택" onclick="endSize();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -305,6 +412,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
+									<input type="button" value="선택" onclick="endBread();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -327,6 +435,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
+									<input type="button" value="선택" onclick="endCheese();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -337,7 +446,7 @@
 								<div class="option_display">
 									<dl>
 										<dt>야채 선택 (다중 선택)</dt>
-										<dd id="vegeText">원하는 야채를 선택하여 주세요.</dd>
+										<dd id="vegeText">야채를 선택해 주세요.</dd>
 									</dl>
 								</div>
 								<div class="popup_content vegetable">
@@ -349,6 +458,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
+									<input type="button" value="선택" onclick="endVegetable();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -359,7 +469,7 @@
 								<div class="option_display">
 									<dl>
 										<dt>소스/시즈닝 선택</dt>
-										<dd id="sauceText">소스/시즈닝을 선택 해 주세요</dd>
+										<dd id="sauceText">소스/시즈닝을 선택해 주세요.</dd>
 									</dl>
 								</div>
 								<div class="popup_content sauce">
@@ -371,7 +481,7 @@
 											</label></li>
 										</c:forEach>
 									</ul>
-									<a href="#" onclick="endSauce()">다음</a>
+									<input type="button" value="선택" onclick="endSauce();">
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -405,6 +515,7 @@
 												</label></li>
 											</c:forEach>
 										</ul>
+										<input type="button" value="선택" onclick="endAddSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
@@ -433,6 +544,7 @@
 												</label></li>
 											</c:forEach>
 										</ul>
+										<input type="button" value="선택" onclick="endAddMeatSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
