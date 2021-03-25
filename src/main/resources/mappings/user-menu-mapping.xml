@@ -76,4 +76,9 @@
 		LEFT OUTER JOIN nutrient b on a.code = b.code ORDER BY no;	
 	</select>
 	
+	<!-- 스마일 웨이 전체 불러오기(음료) -->
+	<select id="getSmileWayDrinkList" resultType="drink">
+		SELECT * FROM drink ORDER BY no;
+	</select>
+	
 	</mapper>
