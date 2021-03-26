@@ -6,21 +6,9 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/orderstep04.css" />
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
-<script type="text/javascript">
-	$(document).ready(function(){
-		if(whatway == "fastway"){
-			$(".fast").show();
-			$(".home").hide();
-		}else if(whatway == "home"){
-			$(".home").show();
-			$(".fast").hide();
-		}
-	});
-</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -33,185 +21,186 @@
 				<div class="bill_order">
 					<div class="order_title">
 						<h3>Fast-Sub</h3>
-						<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						<p class="step04p">온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
 					</div>
 					<div class="order_con">
 						<!-- 결제폼 -->
 						<section class="form_box">
-							<!-- fastway 픽업매장 -->
+							<!-- 픽업매장 -->
 							<h2>픽업매장</h2>
-							<!-- homeway 배달 정보 -->
-							
+						<section class="form_box">
+							<!-- 픽업매장 -->
+							<h2>배달정보</h2>	
 							<div class="write_info_wrap stroe_order">
-								<div class="input_set fast">
-									<!-- fastway 픽업 매장 주소 -->
-									<dl class="info_dl fast">
+								<div class="input_set">
+									<!-- 패스트써브 -->
+									<dl class="info_dl">
 										<dt>종로삼일대로</dt>
 										<dd>서울특별시 종로구 삼일대로 391</dd>
 									</dl>
-									<!-- homeway 배달 갈 주소 / 배달 할 매장
-									<dl class="info_dl home">
-										<dt>주소</dt>
-										<dd>서울 종로구 북촌로 31-4 1호</dd>
-									</dl>
-									 -->
-								</div>
-								<!-- 
-								<div class="input_set home">
 									<dl class="info_dl">
-										<dt>배달 매장</dt>
-										<dd id="deliveryStore">종로</dd>
+										<dt>주소</dt>
+										<dd>서울특별시 종로구 삼일대로 391</dd>
+									</dl>
+									<!-- 홈써브 -->
+								</div>
+								<div class="input_set">
+									<dl class="a_order">
+										<dt>방문포장/매장식사</dt>
+										<dd>
+											<div class="choice_wrap">
+												<!-- radio -->
+												<label class="form_circle" for="r2"> <input
+													checked="checked" id="r2" name="paveFg" type="radio"
+													value="Y" /> <span class="icon"></span> <em>방문포장</em>
+												</label> <label class="form_circle" for="r1"> <input id="r1"
+													name="paveFg" type="radio" value="N" /> <span class="icon"></span>
+													<em>매장식사</em>
+												</label>
+												<!--// radio -->
+											</div>
+										</dd>
 									</dl>
 								</div>
-								 -->
-							</div>
-							<!-- fastway 매장 식사여부 선택 -->
-							<div class="input_set fast">
-								<dl class="a_order">
-									<dt>방문포장/매장식사</dt>
-									<dd>
-										<div class="choice_wrap">
-											<!-- radio -->
-											<label class="form_circle" for="r2"> <input
-												checked="checked" id="r2" name="paveFg" type="radio"
-												value="Y" /> <span class="icon"></span> <em>방문포장</em>
-											</label> <label class="form_circle" for="r1"> <input id="r1"
-												name="paveFg" type="radio" value="N" /> <span class="icon"></span>
-												<em>매장식사</em>
-											</label>
-										</div>
-									</dd>
-								</dl>
-							</div>
-							<!-- fast/home 공통으로 들어감 -->
-							<div class="input_set">
-								<dl class="">
-									<dt>전화번호</dt>
-									<dd>
-										<span class="form_text"> <input maxlength="11"
-											name="ordHp" placeholder="전화번호를 입력하세요" type="text"
-											value="01036582924" />
-										</span>
-									</dd>
-								</dl>
-							</div>
-							<div class="input_set">
-								<dl class="">
-									<dt>주문시, 요청사항</dt>
-									<dd>
-										<span class="form_text"> <input maxlength="50"
-											name="ordMemoContent" placeholder="주문시 요청사항을 입력하세요"
-											type="text" />
-										</span>
-									</dd>
-								</dl>
-							</div>
-							<!-- homeway 배달 요청사항 -->
-							<div class="input_set home">
-								<dl>
-									<dt>배달시, 요청사항</dt>
-									<dd>
-										<span class="form_text">
-											<input maxlength="50" name="ordAddMemoContent" placeholder="배달시 요청사항을 입력하세요" type="text" />
-										</span>
-									</dd>
-								</dl>
-							</div>
-							<!-- fast/home 공통으로 들어감 -->
-							<div class="input_set">
-								<dl class="a_order">
-									<dt>일회용품</dt>
-									<dd>
-										<div class="choice_wrap">
-											<label class="form_checkbox dispos"> 
-												<input name="disposableFg" type="checkbox" value="Y" /> 
-												<span class="icon"></span>
-												<p>일회용품(스푼, 포크 등)을 사용하지 않겠습니다.</p>
-											</label>
-										</div>
-									</dd>
-								</dl>
-							</div>
-						</div>
-						<!--// 픽업매장 -->
-
-						<!-- 할인방법 -->
-						<h2>할인 방법 선택</h2>
-						<div class="write_info_wrap">
-							<!-- 2019-12-13 #232 쿠폰 사용 폼 추가 -->
-							<input name="voucher" type="hidden" /> <input id="voucherAmt"
-								type="hidden" /> <input name="couponItemCode" type="hidden" />
-							<input name="couponItemIndex" type="hidden" /> <input
-								id="couponAmt" name="couponAmt" type="hidden" />
-							<div class="input_set">
-								<dl>
-									<dt>쿠폰 사용</dt>
-									<dd>
-										<div class="form_select" style="width: 670px;">
-											<select name="couponCode">
-												<option value="">보유하신 쿠폰이 없습니다.</option>
-											</select>
-										</div>
-										<div class="btn_input_in">
-											<a class="in_form_btn" href="javascript:void(0);"
-												id="couponApply"><span>쿠폰 사용</span></a>
-										</div>
-									</dd>
-								</dl>
-							</div>
-							<div class="input_set">
-								<dl>
-									<dt>포인트 사용</dt>
-									<dd>
-										<div class="use_point">
-											<span class="form_text bdr_text"> 
-												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="0" />
+								<div class="input_set">
+									<dl class="a_order">
+										<dt>배달 매장</dt>
+										<dd>
+											상수역
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="">
+										<dt>전화번호</dt>
+										<dd>
+											<span class="form_text"> <input maxlength="11"
+												name="ordHp" placeholder="전화번호를 입력하세요" type="text"
+												value="01036582924" />
 											</span>
-											<p>
-												<span>보유 포인트 :</span> 
-												<strong id="usablePoint" data-point="0">0</strong>
-											</p>
-										</div>
-										<div class="btn_input_in">
-											<a class="in_form_btn" href="javascript:void(0);" id="useAllPoint">
-												<span>모두 사용</span>
-											</a>
-										</div>
-									</dd>
-								</dl>
-								<p class="counsel_copy">프로모션 상품은 타 할인 행사 및 쿠폰으로 중복 할인되지 않습니다.</p>
-							</div>
-						</div>
-						<!--// 할인방법 -->
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="">
+										<dt>주문시, 요청사항</dt>
+										<dd>
+											<span class="form_text"> <input maxlength="50"
+												name="ordMemoContent" placeholder="주문시 요청사항을 입력하세요"
+												type="text" />
+											</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="a_order">
+										<dt>배달시,요청사항</dt>
+										<dd>
+											<span class="form_text"> <input maxlength="50"
+												name="ordMemoContent" placeholder="배달시 요청사항을 입력하세요"
+												type="text" />
+											</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
 
-						<!-- 결제수단 -->
-						<h2>결제 수단 선택</h2>
-						<div class="write_info_wrap">
-							<div class="input_set">
-								<dl>
-									<dt>신용카드 결제</dt>
-									<dd>
-										<div class="form_radio square">
-											<label> 
-												<input checked="checked" id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
-												<span class="shape">신용카드</span>
-											</label> 
-											<label> 
-												<input id="etc" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO" /> 
-												<span class="shape">
-													<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>
+									<dl class="a_order">
+										<dt>일회용품</dt>
+										<dd>
+											<div class="choice_wrap">
+												<label class="form_checkbox dispos"> 
+													<input name="disposableFg" type="checkbox" value="Y" /> 
+													<span class="icon"></span>
+													<p>일회용품(스푼, 포크 등)을 사용하지 않겠습니다.</p>
+												</label>
+											</div>
+										</dd>
+									</dl>
+								</div>
+							</div>
+							<!--// 픽업매장 -->
+
+							<!-- 할인방법 -->
+							<h2>할인 방법 선택</h2>
+							<div class="write_info_wrap">
+								<!-- 2019-12-13 #232 쿠폰 사용 폼 추가 -->
+								<input name="voucher" type="hidden" /> <input id="voucherAmt"
+									type="hidden" /> <input name="couponItemCode" type="hidden" />
+								<input name="couponItemIndex" type="hidden" /> <input
+									id="couponAmt" name="couponAmt" type="hidden" />
+								<div class="input_set">
+									<dl>
+										<dt>쿠폰 사용</dt>
+										<dd>
+											<div class="form_select" style="width: 670px;">
+												<select name="couponCode">
+													<option value="">보유하신 쿠폰이 없습니다.</option>
+												</select>
+											</div>
+											<div class="btn_input_in">
+												<a class="in_form_btn" href="javascript:void(0);"
+													id="couponApply"><span>쿠폰 사용</span></a>
+											</div>
+										</dd>
+									</dl>
+								</div>
+								<!--// 2019-12-13 #232 쿠폰 사용 폼 추가 -->
+								<div class="input_set">
+									<dl>
+										<dt>포인트 사용</dt>
+										<dd>
+											<div class="use_point">
+												<span class="form_text bdr_text"> <input
+													id="pointAmt" name="pointAmt" placeholder="사용금액 입력"
+													type="text" value="0" />
 												</span>
-											</label>
-										</div>
-									</dd>
-								</dl>
+												<p>
+													<span>보유 포인트 :</span> <strong id="usablePoint"
+														data-point="0">0</strong>
+												</p>
+											</div>
+											<div class="btn_input_in">
+												<a class="in_form_btn" href="javascript:void(0);"
+													id="useAllPoint"><span>모두 사용</span></a>
+											</div>
+										</dd>
+									</dl>
+									<p class="counsel_copy">프로모션 상품은 타 할인 행사 및 쿠폰으로 중복 할인되지
+										않습니다.</p>
+								</div>
 							</div>
-						</div>
-						<!--// 결제수단 -->
-					</section>
-					<!--// 결제폼 -->
+							<!--// 할인방법 -->
 
-					<!-- 주문내역 -->
+							<!-- 결제수단 -->
+							<h2>결제 수단 선택</h2>
+							<div class="write_info_wrap">
+								<div class="input_set">
+									<dl>
+										<dt>신용카드 결제</dt>
+										<dd>
+											<div class="form_radio square">
+												<label> 
+													<input checked="checked" id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
+													<span class="shape">신용카드</span>
+												</label> 
+												<label> 
+													<input id="etc" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO" /> 
+													<span class="shape">
+														<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>
+													</span>
+												</label>
+											</div>
+										</dd>
+									</dl>
+								</div>
+							</div>
+							<!--// 결제수단 -->
+						</section>
+						</section>
+						<!--// 결제폼 -->
+
+						<!-- 주문내역 -->
 					<div class="board_list_wrapper">
 						<h2>주문내역</h2>
 						<div class="content">
@@ -236,15 +225,31 @@
 														<!-- 치즈 -->
 														<th:object>아메리칸치즈, </th:object>
 														<!-- 야채 -->
-														<th:object>양상추, </th:object>
-														<th:object>피망, </th:object>
-														<th:object>양파, </th:object>
-														<th:object>피클, </th:object>
-														<th:object>올리브, </th:object>
+														
+															<th:object>양상추, </th:object>
+														
+														
+															<th:object>피망, </th:object>
+														
+														
+															<th:object>양파, </th:object>
+														
+														
+															<th:object>피클, </th:object>
+														
+														
+															<th:object>올리브, </th:object>
+														
 														<!-- 소스 -->
-														<th:object>레드와인식초, </th:object>
-														<th:object>스모크 바비큐, </th:object>
-														<th:object>홀스래디쉬</th:object>
+														
+															<th:object>레드와인식초, </th:object>
+														
+														
+															<th:object>스모크 바비큐, </th:object>
+														
+														
+															<th:object>홀스래디쉬</th:object>
+														
 													</p>
 												</div>
 											</td>
@@ -255,12 +260,16 @@
 												<div class="sum">
 													<span>
 														<strong class="price" data-price="22,200">22,200</strong>
+														
 														<em>원</em>
 													</span>
+													
 														<a data-target="arrow" href="javascript:void(0);">상세 주문 내역 열고 닫기</a>
+													
 												</div>
 											</td>
 										</tr>
+
 										<!-- 더블치즈 -->
 										<tr>
 											<td>
@@ -281,6 +290,7 @@
 												</div>
 											</td>
 										</tr>
+
 										<!-- 더블업 -->
 										<tr>
 											<td>
@@ -301,6 +311,7 @@
 												</div>
 											</td>
 										</tr>
+
 										<!-- 엑스트라 -->
 										<tr>
 											<td>
@@ -340,16 +351,19 @@
 												</div>
 											</td>
 										</tr>
+
 										<!-- 세트추가 -->
 										<tr>
 											<td>
 												<div class="name">
 													<strong>세트추가</strong>
 													<p>
-														<th:object>라즈베리 치즈케익 쿠키</th:object>
-														<th:object>, </th:object>
-														<th:object>탄산음료 22oz</th:object>
-														<th:object></th:object>
+															<th:object>라즈베리 치즈케익 쿠키</th:object>
+															<th:object>, </th:object>
+														
+														
+															<th:object>탄산음료 22oz</th:object>
+															<th:object></th:object>
 													</p>
 												</div>
 											</td>
@@ -372,7 +386,7 @@
 					</div>
 					<!--// 주문내역 -->
 
-					<!-- 결제금액 -->
+						<!-- 결제금액 -->
 					<div class="amount">
 						<input id="totalOrdAmt" type="hidden" value="22200" />
 						<input id="ordAmt" type="hidden" value="22200" />
@@ -433,6 +447,6 @@
 		</div>
 	</div>
 	</div>
-<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
