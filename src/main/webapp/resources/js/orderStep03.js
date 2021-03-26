@@ -173,12 +173,13 @@
 			$("#closeLength").get(0).click();
 	}
 	
-	
+		
 /******************STEP01********************/
 	
 	$(document).ready(function() {
 		
 		hideDiv();
+		savedefault();
 		
 	/******************수량 조절 , 결제 금액 ********************/
 	var qtyText = $("#ordQty").val();
@@ -379,7 +380,7 @@
 		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		$("#finalAmt").text(finalcost);
       }); //end of add_cheese
-      
+	
 /******************STEP03********************/
 		$(".wedge").hide();
 		var setcost = 0; //세트 추가 가격
@@ -499,10 +500,14 @@
 				$("#finalAmt").text(num2);
 					
 				$("#closeLength").get(0).click();
-			}
+			});
 				
 		});
-		
+				
+	function savelast(){
+		var step02 = sum;
+	}
+	
 	$("#qtyAdd").click(function() {
 		console.log("수량 더하기!!!");
 		qty++;
@@ -536,6 +541,5 @@
 			$("#finalAmt").text(num2);
 		}
 	});
-		
 	
 	});
