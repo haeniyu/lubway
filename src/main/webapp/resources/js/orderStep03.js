@@ -195,40 +195,6 @@
 	var cost = parseInt(ep);
 	var sum = cost;
 	console.log(cost);
-	
-	$("#qtyAdd").click(function() {
-		console.log("수량 더하기!!!");
-		qty++;
-		console.log(qty);
-		var num = qty.toString();
-		$("#ordQty").val(num);
-		
-		sum += cost;
-		
-		console.log(sum);
-		
-		var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		console.log(num2);
-		$("#finalAmt").text(num2);
-		
-	});
-	
-	$("#qtySub").click(function() {
-		console.log("수량 빼기!!!");
-		if(qty > 1){
-			qty--;
-			console.log(qty);
-			var num = qty.toString();
-			$("#ordQty").val(num);
-			
-			sum-=cost;
-			console.log(sum);
-			
-			var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			console.log(num2);
-			$("#finalAmt").text(num2);
-		}
-	});
 		
 		//길이 선택에 따라 lengthText 값이 바뀌게 한다
 		$("input:radio[name=length]").click(function(){
@@ -238,6 +204,21 @@
 			    if(length[i].checked) {
 			    	lengthChoice = length[i].value;
 			    }
+
+				if(lengthChoice == "30cm"){
+					var brd = document.getElementById('price30').value;
+					console.log(brd);
+					var brdcost = parseInt(brd);
+					cost+=brdcost;
+					sum = cost;
+				}else if(lengthChoice == "15cm"){
+					cost = parseInt(ep);
+					sum = cost;
+				}
+					
+					var num2 = cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+					console.log(num2);
+					$("#finalAmt").text(num2);
 			}
 			console.log(lengthChoice);
 			$("#lengthText").text(lengthChoice);
@@ -326,17 +307,18 @@
       $("input:checkbox[name=topping]").click(function(){
          var temp = $(this).val();
          var tempArr = temp.split(",");
-         var cost = parseInt(tempArr[1]);
+         var topcost = parseInt(tempArr[1]);
+			console.log(topcost);
          
          if($(this).is(":checked") == true) {//체크 시
             arr.push(tempArr[0]);
-            ttl += cost;
+            ttl += topcost;
 			sum += ttl;
          } else {//체크 해제 시
             for(var i=0; i<arr.length; i++) {
                if(tempArr[0] == arr[i]) arr.splice(i, 1);
             }
-            ttl -= cost;
+            ttl -= topcost;
 			sum -= ttl;
          }
          
@@ -353,7 +335,7 @@
       $("input:checkbox[name=meat]").click(function(){
          var temp = $(this).val();
          var tempArr = temp.split(",");
-         var cost = parseInt(tempArr[1]);
+         var metcost = parseInt(tempArr[1]);
 
 			var selectTarget = $("[name=meat]:checked");
 			// 미트추가 선택갯수 벨리데이션
@@ -364,11 +346,11 @@
 			}
          
          if($(this).is(":checked") == true) {//체크 시
-			sum += cost;
+			sum += metcost;
 			$('#meatText').text(tempArr[0]);
-        	 $('#sum2').text("+ " + cost + "원");
+        	 $('#sum2').text("+ " + metcost + "원");
          } else {//체크 해제 시
-			sum -= cost;
+			sum -= metcost;
 			
 			$('#meatText').text("미트 추가를 선택 해 주세요");
         	 $('#sum2').text("+ " + 0 + "원");
@@ -406,37 +388,114 @@
 		$("input:radio[name=select_set]").click(function(){
 			var temp = $(this).val();
 			console.log(temp);
-			if(temp == "cookie") {
+			if(temp == "cookie") { //쿠키 세트 선택
 				$(".cookie").show();
 				$(".wedge").hide();
-			}else{
+				
+				$('#setText').text("");
+				var object = $('<object id="subselect">쿠키 세트, </object>');
+				$("#subselect").remove();
+				$(object).prependTo("#setText");
+				
+				//쿠키 선택에 따라 setText 값이 추가되게 한다
+				$("input:radio[name=cookie]").click(function(){
+					var cookie = document.getElementsByName('cookie');
+					var cookieChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+					console.log(cookieChoice);
+					for(var i=0; i<cookie.length; i++) {
+						   if(cookie[i].checked) {
+						   	cookieChoice = cookie[i].value;
+						   }
+					}
+					
+					var object2 = $('<object id="selection">' + cookieChoice + ', </object>');
+					$("#selection").remove();
+					$(object2).insertAfter("#subselect");
+				});
+				
+			}else{ //웨지 세트 선택
 				$(".wedge").show();
 				$(".cookie").hide();
+				
+				$('#setText').text("");
+				var object = $('<object id="subselect">웨지/스프 세트, </object>');
+				$("#subselect").remove();
+				$(object).prependTo("#setText");
+				
+				//웨지/스프 선택에 따라 setText 값이 추가되게 한다
+				$("input:radio[name=wedge]").click(function(){
+					var wedge = document.getElementsByName('wedge');
+					var wedgeChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+					console.log(wedgeChoice);
+					for(var i=0; i<wedge.length; i++) {
+						   if(wedge[i].checked) {
+						   	wedgeChoice = wedge[i].value;
+						   }
+					}
+					
+					var object2 = $('<object id="selection">' + wedgeChoice + ', </object>');
+					$("#selection").remove();
+					$(object2).insertAfter("#subselect");
+				});
+				
 			}
+			
+			$("input:radio[name=drink]").click(function(){
+				var drink = document.getElementsByName('drink');
+				var drinkChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
+				console.log(drinkChoice);
+				for(var i=0; i<drink.length; i++) {
+					if(drink[i].checked) {
+				   	drinkChoice = drink[i].value;
+				   }
+				}
+				
+				var objectend = $('<object id="selectdrink">' + drinkChoice + '</object>');
+				$("#selectdrink").remove();
+				$(objectend).appendTo("#setText");
+				
+				
+				
+				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				console.log(num2);
+				$("#finalAmt").text(num2);
+			});
 			
 		});
 		
-
-	
-	console.log("잘 왓니....");
-	console.log(ttl);
-	if(ttl > 0){
-		sum += ttl;
+	$("#qtyAdd").click(function() {
+		console.log("수량 더하기!!!");
+		qty++;
+		console.log(qty);
+		var num = qty.toString();
+		$("#ordQty").val(num);
+		
+		sum += cost;
+		
 		console.log(sum);
-	}
+		
+		var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		console.log(num2);
+		$("#finalAmt").text(num2);
+		
+	});
 	
-	if(meatcost > 0){
-		sum += meatcost;
-		console.log(sum);
-	}
-	
-	if(cheesecost > 0){
-		sum += cheesecost;
-		console.log(sum);
-	}
-		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		console.log(finalcost);
-		$("#finalAmt").text(finalcost);
+	$("#qtySub").click(function() {
+		console.log("수량 빼기!!!");
+		if(qty > 1){
+			qty--;
+			console.log(qty);
+			var num = qty.toString();
+			$("#ordQty").val(num);
+			
+			sum-=cost;
+			console.log(sum);
+			
+			var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			console.log(num2);
+			$("#finalAmt").text(num2);
+		}
+	});
 		
 	
 	});

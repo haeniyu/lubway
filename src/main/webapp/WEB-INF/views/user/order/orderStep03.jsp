@@ -144,9 +144,12 @@ function hideDiv() {
 													name="length" type="radio" checked="checked" id="15cm"
 													value="15cm"> <span class="icon"></span> <em>15cm</em>
 											</label></li>
-											<li><label class="form_circle" for="30cm"> <input
-													name="length" type="radio" id="30cm" value="30cm">
-													<span class="icon"></span> <em>30cm</em>
+											<li><label class="form_circle" for="30cm">
+											<c:if test="${hideNum eq 5 }">
+												<input type="hidden" value="${menu.price30 }" id="price30">
+											</c:if>
+											<input name="length" type="radio" id="30cm" value="30cm">
+											<span class="icon"></span> <em>30cm</em>
 											</label></li>
 										</ul>
 										<input class="choice_btn" type="button" value="선택"
@@ -340,11 +343,11 @@ function hideDiv() {
 									<div class="popup_content add_cheese">
 										<ul>
 											<c:forEach items="${cheeseList }" var="chee">
-												<li><label class="form_circle"> <input
-														name="add_cheese" type="checkbox"
-														value="${chee.name }, ${chee.price}"> <span
-														class="icon"></span><em>${chee.name }</em> <span>+<em><fmt:formatNumber
-																	value="${chee.price }" pattern="#,###" /></em>&nbsp;원
+												<li><label class="form_circle">
+												<input name="add_cheese" type="checkbox" value="${chee.name }, ${chee.price}">
+												<span class="icon"> </span>
+												<em>${chee.name }</em>
+												<span>+<em><fmt:formatNumber value="${chee.price }" pattern="#,###" /></em>&nbsp;원
 													</span>
 												</label></li>
 											</c:forEach>
@@ -377,19 +380,24 @@ function hideDiv() {
 									<div class="option_display">
 										<dl>
 											<dt>세트 선택</dt>
-											<dd id="setText">세트 선택</dd>
+											<dd id="setText"></dd>
+											<dd>
+												<span id="sum4">+ 0원</span>
+											</dd>
 										</dl>
 									</div>
 									<div class="popup_content set_menu">
 										<ul>
 											<li><label class="form_circle"> <input
 													name="select_set" type="radio" checked="checked"
-													value="cookie"> <span class="icon"></span> <em>쿠키
-														세트</em>
+													value="cookie"> <span class="icon"></span>
+												<em>쿠키 세트</em><span> +<em><fmt:formatNumber value="1900" pattern="#,###" /></em>&nbsp;원
+													</span>
 											</label></li>
 											<li><label class="form_circle"> <input
 													name="select_set" type="radio" value="wedge"> <span
-													class="icon"></span> <em>웨지/스프 세트</em>
+													class="icon"></span> <em>웨지/스프 세트</em><span> +<em><fmt:formatNumber value="2400" pattern="#,###" /></em>&nbsp;원
+													</span>
 											</label></li>
 										</ul>
 									</div>
@@ -421,8 +429,9 @@ function hideDiv() {
 														16oz</em>
 											</label></li>
 											<li><label class="form_circle"> <input
-													name="drink" type="radio" value="탄산음료 22oz "> <span
-													class="icon"></span> <em>탄산음료 22oz</em>
+													name="drink" type="radio" value="탄산음료 22oz"> <span
+													class="icon"></span> <em>탄산음료 22oz</em><span> +<em><fmt:formatNumber value="200" pattern="#,###" /></em>&nbsp;원
+													</span>
 											</label></li>
 										</ul>
 									</div>
