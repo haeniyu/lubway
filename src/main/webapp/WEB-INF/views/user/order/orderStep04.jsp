@@ -21,18 +21,25 @@
 				<div class="bill_order">
 					<div class="order_title">
 						<h3>Fast-Sub</h3>
-						<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						<p class="step04p">온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
 					</div>
 					<div class="order_con">
 						<!-- 결제폼 -->
 						<section class="form_box">
 							<!-- 픽업매장 -->
 							<h2>픽업매장</h2>
+						<section class="form_box">
+							<!-- 픽업매장 -->
+							<h2>배달정보</h2>	
 							<div class="write_info_wrap stroe_order">
 								<div class="input_set">
 									<!-- 패스트써브 -->
 									<dl class="info_dl">
 										<dt>종로삼일대로</dt>
+										<dd>서울특별시 종로구 삼일대로 391</dd>
+									</dl>
+									<dl class="info_dl">
+										<dt>주소</dt>
 										<dd>서울특별시 종로구 삼일대로 391</dd>
 									</dl>
 									<!-- 홈써브 -->
@@ -56,6 +63,14 @@
 									</dl>
 								</div>
 								<div class="input_set">
+									<dl class="a_order">
+										<dt>배달 매장</dt>
+										<dd>
+											상수역
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
 									<dl class="">
 										<dt>전화번호</dt>
 										<dd>
@@ -72,6 +87,17 @@
 										<dd>
 											<span class="form_text"> <input maxlength="50"
 												name="ordMemoContent" placeholder="주문시 요청사항을 입력하세요"
+												type="text" />
+											</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="a_order">
+										<dt>배달시,요청사항</dt>
+										<dd>
+											<span class="form_text"> <input maxlength="50"
+												name="ordMemoContent" placeholder="배달시 요청사항을 입력하세요"
 												type="text" />
 											</span>
 										</dd>
@@ -170,6 +196,7 @@
 								</div>
 							</div>
 							<!--// 결제수단 -->
+						</section>
 						</section>
 						<!--// 결제폼 -->
 
