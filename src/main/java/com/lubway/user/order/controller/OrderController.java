@@ -107,7 +107,7 @@ public class OrderController {
 	}
 	
 	/** 메뉴 상세 페이지 
-	 *  hideNum : 1 - 다 가리기 , 2 - 영양성분표만 보여주기, 3 - 세트만 보여주기
+	 *  hideNum : 1 - 다 가리기 , 2 - 영양성분표만 보여주기, 3 - 영양성분표&세트만 보여주기 , 4 - 빵이랑 빵 길이만 가리기
 	 * */
 	@PostMapping("orderStep03.do")
 	public String orderStep03(Model model,
@@ -128,12 +128,13 @@ public class OrderController {
 		case "sandwich":	// 다 있어 - hideNum 해당 안됨
 			model.addAttribute("menu", menuService.selectSandwich(Svo));
 			break;
-		case "wrap":	//세트만 있어 - 3
+		case "wrap":	//영양성분표&세트만 있어 - 3
 			model.addAttribute("menu", menuService.selectWrap(wvo));
 			model.addAttribute("hideNum", 3);
 			break;
-		case "salad":	//빵이랑 빵 길이 빼고 다 있어 - 페이지 따로 분리 예정...
+		case "salad":	//빵이랑 빵 길이 빼고 다 있어 
 			model.addAttribute("menu", menuService.selectSalad(svo));
+			model.addAttribute("hideNum", 4);
 			break;
 		case "side":	//쿠키,웻지&스프,드링크 -> 다 가리고 성분표 있어 - 2
 			if(code.length() > 6) {
