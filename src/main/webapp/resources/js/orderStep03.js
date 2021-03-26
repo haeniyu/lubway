@@ -382,17 +382,12 @@
          
 		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		$("#finalAmt").text(finalcost);
-<<<<<<< HEAD
-      }); //end of add_cheese
-	
-=======
-     
+		
 		sumUntilStep2 = sum;
 		console.log("치즈 추가 sumUntilStep2 : " , sumUntilStep2);
 		 }); //end of add_cheese
 
       
->>>>>>> afb157e6fabfb6cdac3e8d8037d4554da4b8c137
 /******************STEP03********************/
 		$(".wedge").hide();
 		var setcost = 0; //세트 추가 가격
@@ -513,16 +508,6 @@
 				$("#finalAmt").text(num2);
 					
 				$("#closeLength").get(0).click();
-<<<<<<< HEAD
-			});
-				
-		});
-				
-	function savelast(){
-		var step02 = sum;
-	}
-	
-=======
 				
 			});
 			
@@ -541,7 +526,6 @@
 		});// end of 단품 선택
 		
 		
->>>>>>> afb157e6fabfb6cdac3e8d8037d4554da4b8c137
 	$("#qtyAdd").click(function() {
 		console.log("수량 더하기!!!");
 		qty++;
@@ -574,12 +558,6 @@
 			console.log(num2);
 			$("#finalAmt").text(num2);
 		}
-<<<<<<< HEAD
-	});
-	
-	});
-=======
 	});//end of 수량빼기
 		
 });//end of document.ready
->>>>>>> afb157e6fabfb6cdac3e8d8037d4554da4b8c137
