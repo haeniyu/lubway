@@ -1,20 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
-
-<link rel="stylesheet" type="text/css"href="${path}/resources/css/cart.css" />
-<link rel="stylesheet" type="text/css"href="${path}/resources/css/ui.common.css" />
-<link rel="stylesheet" type="text/css"href="${path}/resources/css/cartt.css" />
-	
-
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/cart.css" />
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>장바구니</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	//When page loads...
+	$("ul.select li:first").addClass("active").show(); //Activate first tab
+	$(".data_none:first").show(); //Show first tab content
+	
+	//On Click Event
+	$("ul.select li").click(function() {
+		select = $(this).attr("id");
+		
+		$("ul.select li").removeClass("active"); //Remove any "active" class
+		$(this).addClass("active"); //Add "active" class to selected tab
+		
+	});//end click function
+});
+</script>
 </head>
 <body>
-	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
 
+	<!-- container s -->
 	<div id="container">
 		<!-- sub content s -->
 		<div class="cart fast_sub" id="content">
@@ -22,12 +39,13 @@
 			<h2 class="subTitle_02">장바구니</h2>
 			<div class="tab02">
 				<ul>
-					<li class="swiper-slide "><a href="/cart/fastsub">FAST-SUB</a></li>
-					<li class="swiper-slide active"><a href="/cart/homesub">HOME-SUB</a></li>
+					<li class="swiper-slide "><a href="/lubway/basketfast.do">FAST-SUB</a></li>
+					<li class="swiper-slide active"><a href="/lubway/baskethome.do">HOME-SUB</a></li>
 				</ul>
 			</div>
 			<!-- 장바구니 목록 있을때 -->
 			
+				<div class="cart_header wh_box">
 				
 					<dl>
 						<dt>배달주소</dt>
@@ -80,7 +98,9 @@
 									<span>원</span>
 								</strong>
 							</div>
-							<img onError="" alt="D로스트 치킨 아보카도 (15cm)" src="" />
+							<!-- 
+							<img onError="this.src=''" alt="D로스트 치킨 아보카도 (15cm)" src="" />
+							 -->
 						</div>
 						
 						
@@ -153,7 +173,7 @@
 					<dl>
 						<dt>최종 결제 금액</dt>
 						<dd>
-							<strong id="totalPrice">0</strong>
+							<strong id="totalPrice">00</strong>
 							<span>원</span>
 						</dd>
 					</dl>
@@ -180,6 +200,7 @@
 		</div>
 		<!--// sub content e -->
 	</div>
-	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+
+<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>
