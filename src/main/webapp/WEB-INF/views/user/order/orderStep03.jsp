@@ -130,17 +130,110 @@
 		$("#closeLength").get(0).click();
 	}
 	
-	// ========= 추가 선택 항목 기능 처리 =========
-	
-	// 추가 선택
-	function endAddSelect() {
-		console.log("=== addSelect ===");
+	// 샐러드 선택 항목 기능 처리
+	// 치즈 선택
+	function saladOnly() {
+		var cheese = $("#cheeseText").text();
+		if(cheese == "치즈를 선택해 주세요") {
+			cheese = "치즈 제외";
+		}
+		var object = $('<object id="selectCheese">' + cheese + ', </object>')
+
+		$("#selectCheese").remove();
+		$(object).prependTo("#selectStep01");
 		
+		checkCheese = true;
+		
+		$("#closeLength").get(0).click();
 	}
+	
+	
+	
+	// ========= 추가 선택 항목 기능 처리 =========
+	// 토핑 추가 선택
+	function endAddSelect() {
+		console.log("=== addToppingSelect ===");
 		
+		var topping = $("#toppingText").text();
+		
+		var object = $('<object id="selectTopping">' + topping + ', </object>')
+		
+		$("#selectTopping").remove();
+		$(object).prependTo("#selectStep02");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 미트 추가 선택
+	function endAddMeatSelect() {
+		console.log("=== addMeatSelect ===");
+		
+		var meat = $("#meatText").text();
+		
+		var object = $('<object id="selectMeat">' + meat + ', </object>')
+		
+		$("#selectMeat").remove();
+		$(object).insertAfter("#selectTopping");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	// 치즈 추가 선택
+	function endAddCheeseSelect() {
+		console.log("=== addCheeseSelect ===");
+		if(!checkCheese) {
+			alert("치즈를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
+		
+		var add_cheese = $("#addCheeseText").text();
+		
+		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
+		
+		$("#selectCheese").remove();
+		$(object).appendTo("#selectStep02");
+		
+		$("#closeLength").get(0).click();
+	}
+	
+	
+	//메뉴에 따른 선택 항목 노출 설정
+	function hideDiv() {
+		console.log("가릴거야!!!");
+		var protocol = '${hideNum}';
+		console.log("hideNum : " + protocol);
+		switch(protocol){
+		case "4" :
+			console.log("4번입니다~");
+			$("#breadSize").hide();
+			$("#breadType").hide();
+			break;
+		case "3" :
+			console.log("3번입니다~");
+			$(".required").hide();
+			$(".extra").hide();
+			$("#strong").text("STEP 01");
+			break;
+		case "2" :
+			console.log("2번입니다~");
+			$(".list_wrapper").hide();
+			break;
+		case "1" :
+			console.log("1번입니다~");
+			$("#component_chart").hide();
+			$(".list_wrapper").hide();
+			$(".cal").hide();
+			break;
+		}
+	}
+	
 /******************STEP01********************/
 	
 	$(document).ready(function() {
+		
+		hideDiv();
+		
 		//길이 선택에 따라 lengthText 값이 바뀌게 한다
 		$("input:radio[name=length]").click(function(){
 			var length = document.getElementsByName('length');
@@ -252,7 +345,7 @@
          }
          
          $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
-         $('#sum').text(ttl);
+         $('#sum').text("+ " + ttl + "원");
          
       }); //end of topping
       
@@ -264,15 +357,26 @@
          var cost = parseInt(tempArr[1]);
          
          $('#meatText').text(tempArr[0]);
-         $('#sum2').text(cost);
+         $('#sum2').text("+ " + cost + "원");
          
       }); //end of meat
       
+		//치즈 추가
+      $("input:radio[name=add_cheese]").click(function(){
+         var temp = $(this).val();
+         var tempArr = temp.split(",");
+         var cost = parseInt(tempArr[1]);
+         
+         $('#addCheeseText').text(tempArr[0]);
+         $('#sum3').text("+ " + cost + "원");
+         
+      }); //end of add_cheese
+      
 	////////////step03 세트 선택//////////////
-	//길이 선택에 따라 lengthText 값이 바뀌게 한다
 		$(".wedge").hide();
 		$("input:radio[name=select_set]").click(function(){
 			var temp = $(this).val();
+			var selectSet;
 			console.log(temp);
 			if(temp == "cookie") {
 				$(".cookie").show();
@@ -281,6 +385,7 @@
 				$(".wedge").show();
 				$(".cookie").hide();
 			}
+			
 		});
 	      
 	});
@@ -288,7 +393,7 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-<div id="content" class="order fast_sub">
+<div id="content" class="order fast_sub" style="padding-top:175px">
 	<div class="order_title">
 		<h3>Fast-Way</h3>
 		<p>
@@ -320,7 +425,7 @@
 					<!--// 메뉴정보 -->
 
 					<!-- 영양성분표 -->
-					<div class="component_chart">
+					<div class="component_chart" id="component_chart">
 						<div class="content" style="width:1000px;">
 							<h3>영양성분표</h3>
 							<!-- 로스트 치킨 베이컨 -->
@@ -368,6 +473,7 @@
 				<div class="list_wrapper">
 					<div class="content">
 						<div class="choice_option">
+						<div class="step01 required">
 							<div class="th_name_step01">
 								<strong>STEP 01</strong>&nbsp;&nbsp;필수 선택 *
 							</div>
@@ -392,7 +498,7 @@
 									<input class="choice_btn" type="button" value="선택" onclick="endSize();">
 								</div>
 							</div>
-							<div class="wrap_pop">
+							<div class="wrap_pop" id="breadSize">
 								<a class="pop" href="#length" rel="modal:open">길이 선택</a>
 							</div>
 
@@ -415,7 +521,7 @@
 									<input class="choice_btn" type="button" value="선택" onclick="endBread();">
 								</div>
 							</div>
-							<div class="wrap_pop">
+							<div class="wrap_pop" id="breadType">
 								<a class="pop" href="#bread" rel="modal:open">빵 선택</a>
 							</div>
 
@@ -435,7 +541,12 @@
 											</label></li>
 										</c:forEach>
 									</ul>
+									<c:if test="${hideNum eq 4 }">
+									<input class="choice_btn" type="button" value="선택" onclick="saladOnly();">
+									</c:if>
+									<c:if test="${hideNum ne 4 }">
 									<input class="choice_btn" type="button" value="선택" onclick="endCheese();">
+									</c:if>
 								</div>
 							</div>
 							<div class="wrap_pop">
@@ -488,9 +599,10 @@
 								<a class="pop" href="#sauce" rel="modal:open">소스/시즈닝 선택</a>
 							</div>
 							<p id="selectStep01"></p>
+							</div> <!-- end of step01 -->
 
-
-							<div class="step01">
+							<!----------------------------------- 02 추가선택 영역 ----------------------------------------->
+							<div class="step01 extra">
 								<div class="th_name_step02">
 									<strong>STEP 02</strong>&nbsp;&nbsp;추가 선택
 								</div>
@@ -500,7 +612,7 @@
 											<dt>추가 선택 (다중 선택 가능)</dt>
 											<dd id="toppingText">원하는 추가 선택 제품을 선택하여 주세요</dd>
 											<dd>
-												+<span id="sum">0</span>원
+												<span id="sum">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -529,7 +641,7 @@
 											<dt>미트 추가</dt>
 											<dd id="meatText">미트 추가를 선택 해 주세요</dd>
 											<dd>
-												<span id="sum2">+0원</span>
+												<span id="sum2">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -558,7 +670,7 @@
 											<dt>치즈 추가</dt>
 											<dd id="addCheeseText">치즈 추가를 선택 해 주세요</dd>
 											<dd>
-												+<span id="sum3">0</span>원
+												<span id="sum3">+ 0원</span>
 											</dd>
 										</dl>
 									</div>
@@ -580,11 +692,13 @@
 								<div class="wrap_pop">
 									<a class="pop" href="#add_cheese" rel="modal:open">치즈 추가</a>
 								</div>
+							<p id="selectStep02"></p>
 
+							<!----------------------------------- 03 세트선택 영역 ----------------------------------------->
 							</div>
 							<div class="step01">
 								<div class="th_name_step03">
-									<strong>STEP 03</strong>&nbsp;&nbsp;상품 선택
+									<strong id="strong">STEP 03</strong>&nbsp;&nbsp;상품 선택
 								</div>
 								<div id="select_one" class="modal">
 									<div class="one">
@@ -599,6 +713,7 @@
 									<div class="option_display">
 										<dl>
 											<dt>세트 선택</dt>
+											<dd id="setText">세트 선택</dd>
 										</dl>
 									</div>
 									<div class="popup_content set_menu">

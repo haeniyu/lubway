@@ -191,7 +191,7 @@ div>.th_name_step03 {
 	color: #fff;
 }
 
-#selectStep01 {
+p[id^=selectStep] {
 	padding-bottom: 15px;
 	margin-top: 0px;
 }
