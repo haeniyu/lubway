@@ -196,7 +196,7 @@ p[id^=selectStep] {
 	margin-top: 0px;
 }
 
-.choice_btn {
+.choice_btn, .choice_set_btn {
 	width: 120px;
 	display: block;
 	color: #009223;

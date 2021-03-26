@@ -298,7 +298,7 @@
       	var arr = new Array();		//선택된 토핑을 담을 배열
 		var sumUntilStep2 = sum;	//스텝2까지의 가격 저장***
       
-      $("input:checkbox[name=topping]").click(function(){
+		$("input:checkbox[name=topping]").click(function(){
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var topcost = parseInt(tempArr[1]);
@@ -307,7 +307,7 @@
          if($(this).is(":checked") == true) {//체크 시
             arr.push(tempArr[0]);
             ttl += topcost;
-			sum += ttl;
+			sum += topcost;
          } else {//체크 해제 시
             for(var i=0; i<arr.length; i++) {
                if(tempArr[0] == arr[i]) {
@@ -393,7 +393,7 @@
 /******************STEP03********************/
 		$(".wedge").hide();
 		var setcost = 0; //세트 추가 가격
-		var checkset = 0; // 0 - 체크안함, 1 - 쿠키세트, 2 - 웨지세트, 3-쿠키+음료22, 4-웨지+음료22
+		var checkset = 0; // 0 - 체크안함, 1 - 쿠키세트, 2 - 웨지세트
 		var drinkCost = 0;	//16oz 기준 기본 음료 코스트 (무료)
 		$("input:radio[name=select_set]").click(function(){
 			sum = sumUntilStep2; //스텝2까지의 가격으로 초기화
@@ -405,6 +405,12 @@
 				if(setcost > 0){
 					sum -= setcost;
 					setcost = 0;
+				}
+				
+				if(checkset > 0){
+					checkset = 0;
+					$("input:radio[name='drink']").removeAttr("checked");
+					$("input:radio[name='wedge']").removeAttr("checked");
 				}
 				
 				$(".cookie").show();
@@ -431,15 +437,21 @@
 					var object2 = $('<object id="selection">' + cookieChoice + ', </object>');
 					$("#selection").remove();
 					$(object2).insertAfter("#subselect");
+					checkset = 1;
 				});
 				
-				checkset = 1;
 				setcost = cost;
 				
 			}else{ //웨지 세트 선택
 				if(setcost > 0){
 					sum -= setcost;
 					setcost = 0;
+				}
+				
+				if(checkset > 0){
+					checkset = 0;
+					$("input:radio[name='drink']").removeAttr("checked");
+					$("input:radio[name='cookie']").removeAttr("checked");
 				}
 				
 				$(".wedge").show();
@@ -466,9 +478,9 @@
 					var object2 = $('<object id="selection">' + wedgeChoice + ', </object>');
 					$("#selection").remove();
 					$(object2).insertAfter("#subselect");
+					checkset = 2;
 				});
 				
-				checkset = 2;
 				setcost = cost;
 			}//end of else
 		
@@ -497,6 +509,9 @@
 					$(objectend).appendTo("#setText");
 					
 					$('#sum4').text("+ " + setcost + "원");
+				}else{
+					alert("쿠키 또는 웨지/스프를 선택해주세요.");
+					 $(this).prop('checked', false);
 				}
 			});
 					
