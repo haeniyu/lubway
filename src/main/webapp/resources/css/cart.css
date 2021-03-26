@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+#container .cart{background-color: #f6f6f6; padding-bottom:130px;}
+.cart .cart_header {margin-bottom:20px;}
+.cart .cart_header.wh_box{padding: 0;}
+.cart .cart_header dl{background-color: #58006c; overflow: hidden;}
+.cart .cart_header dl dt{float: left; width: 110px; color: #fff; font-size: 20px; font-weight: bold; line-height: 70px; text-align: right;}
+.cart .cart_header dl dd{float: left; width: 1060px; padding-left: 17px; box-sizing: border-box;}
+.cart .cart_header dl dd strong{float: left; color: #ffc300; font-size: 20px; font-weight: bold; line-height: 70px;}
+.cart .cart_header dl dd a{float: right; color: #fff; width: 125px; margin-top: 19px; border-left: 2px solid #fff; text-align: center; line-height: 32px;}
+.cart .cart_header .all_select{height: 100px; overflow: hidden;}
+.cart .cart_header .all_select label{float: left; margin: 36px 0 0 100px; color: #292929; font-size: 24px; font-weight: bold;}
+.cart .cart_header .all_select label .icon{margin-right: 5px;}
+.cart .cart_header .all_select a{float: right; width: 170px; margin: 26px 100px 0 0;}
+.cart .cart_header .txt_last_14day{ border-bottom: 1px solid #eee; padding: 20px 0;text-align: center;}
+.cart .cart_header .txt_last_14day::before{content: "!"; display: inline-block; margin-right: 5px; border: 1px solid #666; width: 15px; height: 15px; border-radius: 15px; font-size: 12px; line-height: 15px; vertical-align: middle;}
+
+.cart .cart_list{overflow:hidden; margin-bottom:20px;}
+.cart .cart_list li ~ li {margin-top:20px;}
+.cart .cart_list .wh_box{padding-top: 30px;}
+.cart .cart_list .order_info{padding-bottom: 22px; border-bottom: 1px solid #e5e5e5; overflow: hidden;}
+.cart .cart_list .order_info .menu_info{float: left; padding-top:50px; width: 622px;}
+.cart .cart_list .order_info .menu_info label{color: #292929; font-size: 30px; font-weight: bold;}
+.cart .cart_list .order_info .menu_info p{padding: 16px 0 36px 47px; color: #999; line-height: 23px;}
+.cart .cart_list .order_info .menu_info > strong{display: block; padding-left: 47px; height: 40px; color: #009223; overflow: hidden;}
+.cart .cart_list .order_info .menu_info > strong em{float: left; font-size: 40px; font-family: font_sw; font-weight: bold;}
+.cart .cart_list .order_info .menu_info > strong span{float: left; padding: 6px 0 0 3px; font-size: 24px; font-weight: bold;}
+.cart .cart_list .order_info img{float: right; width: 348px; }
+.cart .cart_list .detail_list{padding-top: 35px; border-bottom: 1px solid #e5e5e5; overflow: hidden;}
+.cart .cart_list .detail_list dt{clear: left; float: left; margin-bottom: 45px;}
+.cart .cart_list .detail_list dt em{float: left; margin: 0 14px 0 52px; width: 45px; height: 25px; border: 1px solid #ddd; border-radius: 12px; color: #bbb; font-size: 13px; text-align: center; line-height: 25px;}
+.cart .cart_list .detail_list dt span{float: left; font-size: 18px; line-height: 25px;}
+.cart .cart_list .detail_list dd{float: right; margin-bottom: 45px;}
+.cart .cart_list .detail_list dd strong{color: #292929; font-size: 24px; font-family: font_sw; font-weight: bold; vertical-align: top;}
+.cart .cart_list .detail_list dd span{display: inline-block; padding-top: 3px; color: #292929; font-weight: 300; vertical-align: top;}
+.cart .cart_list .total{padding-top: 40px; overflow: hidden;}
+.cart .cart_list .total .count{float: left;}
+.cart .cart_list .total .count dt{float: left; padding: 3px 23px 0 0; font-size: 24px; font-weight: bold;}
+.cart .cart_list .total .count dd{float: left;}
+.cart .cart_list .total .count dd a{float: left; display: block; width: 37px; height: 37px; background: url('../images/order/fast_sub/btn_minus.png') no-repeat 0 0; font-size: 0;}
+.cart .cart_list .total .count dd a.plus{background-image: url('../images/order/fast_sub/btn_plus.png');}
+.cart .cart_list .total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-family: font_sw; font-weight: bold; text-align: center; vertical-align: top;}
+.cart .cart_list .total .total_sum{float: right;}
+.cart .cart_list .total .total_sum dt{float: left; margin: 4px 30px 0 0; color: #292929; font-size: 22px; font-weight: 300;}
+.cart .cart_list .total .total_sum dd{float: left;}
+.cart .cart_list .total .total_sum dd strong{color: #ff8300; font-size: 40px; font-family: font_sw; vertical-align: top;}
+.cart .cart_list .total .total_sum dd span{display: inline-block; padding-top: 10px; color: #ff8300; font-size: 22px; font-weight: 300; vertical-align: top;}
+.cart .cart_list .total .not_allowed{float: left;}
+.cart .cart_list .total .not_allowed span{display:inline-block; color:#ff8200; padding: 3px 0 0 23px; font-size: 24px; font-weight: bold; line-height: 120%;}
+.cart .cart_list .out_prod {display:none;}
+
+.cart .cart_list .sold_out {}
+.cart .cart_list .sold_out .detail_list {display:none;}
+.cart .cart_list .sold_out .total {display:none;}
+.cart .cart_list .sold_out .menu_info .form_checkbox {color:#999999;}
+.cart .cart_list .sold_out .order_info .menu_info > strong {color:#999999;}
+.cart .cart_list .sold_out .out_prod {display:block; overflow:hidden; padding-top:48px;}
+.cart .cart_list .sold_out .out_prod dt,
+.cart .cart_list .sold_out .out_prod dd {float:left; font-size:22px; font-weight:300; line-height:1.1em;}
+.cart .cart_list .sold_out .out_prod dt {color:#ff8300;}
+.cart .cart_list .sold_out .out_prod dd {color:#999999; margin-left:10px;}
+.cart .cart_list .sold_out .out_prod dd span ~ span::before {display:inline-block; content:','; margin-right:4px; margin-left:-6px;}
+
+.cart .final_payment.wh_box{padding: 40px 100px;}
+.cart .final_payment{overflow: hidden;}
+.cart .final_payment dl{float: left; padding-top: 8px;}
+.cart .final_payment dl dt{float: left; margin-right: 16px;  color: #292929; font-size: 24px; font-weight: bold;}
+.cart .final_payment dl dd{float: left;}
+.cart .final_payment dl dd strong{color: #009223; font-size: 40px; font-family: font_sw; font-weight: bold; vertical-align: top;}
+.cart .final_payment dl dd span{display: inline-block; padding-top: 7px; color: #009223; font-size: 24px; font-weight: 300; vertical-align: top;}
+.cart .final_payment .btn_area{float: right;}
+.cart .final_payment .btn_area a{width: 170px;}
+
+#content h2.subTitle_02 {
+    text-align: center;
+    font-size: 40px;
+    color: #292929;
+    font-weight: bold;
+    letter-spacing: -0.05em;
+    padding: 73px 0 50px;
+}
