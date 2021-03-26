@@ -435,8 +435,7 @@ function hideDiv() {
 													</span>
 											</label></li>
 										</ul>
-										<input class="choice_btn" type="button" value="선택"
-											onclick="endSetSelect();">
+										<input class="choice_set_btn" type="button" value="선택" onclick="endSetSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
