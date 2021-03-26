@@ -188,6 +188,48 @@
 		
 		hideDiv();
 		
+	/******************수량 조절 , 결제 금액 ********************/
+	var qtyText = $("#ordQty").val();
+	var qty = parseInt(qtyText);
+	var ep = $("#eachPrice").val();
+	var cost = parseInt(ep);
+	var sum = cost;
+	console.log(cost);
+	
+	$("#qtyAdd").click(function() {
+		console.log("수량 더하기!!!");
+		qty++;
+		console.log(qty);
+		var num = qty.toString();
+		$("#ordQty").val(num);
+		
+		sum += cost;
+		
+		console.log(sum);
+		
+		var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		console.log(num2);
+		$("#finalAmt").text(num2);
+		
+	});
+	
+	$("#qtySub").click(function() {
+		console.log("수량 빼기!!!");
+		if(qty > 1){
+			qty--;
+			console.log(qty);
+			var num = qty.toString();
+			$("#ordQty").val(num);
+			
+			sum-=cost;
+			console.log(sum);
+			
+			var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			console.log(num2);
+			$("#finalAmt").text(num2);
+		}
+	});
+		
 		//길이 선택에 따라 lengthText 값이 바뀌게 한다
 		$("input:radio[name=length]").click(function(){
 			var length = document.getElementsByName('length');
@@ -289,39 +331,74 @@
          if($(this).is(":checked") == true) {//체크 시
             arr.push(tempArr[0]);
             ttl += cost;
+			sum += ttl;
          } else {//체크 해제 시
             for(var i=0; i<arr.length; i++) {
                if(tempArr[0] == arr[i]) arr.splice(i, 1);
             }
             ttl -= cost;
+			sum -= ttl;
          }
          
          $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
          $('#sum').text("+ " + ttl + "원");
+
+		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		$("#finalAmt").text(finalcost);
          
       }); //end of topping
-      
+
       
 		//미트 추가
-      $("input:radio[name=meat]").click(function(){
+      $("input:checkbox[name=meat]").click(function(){
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var cost = parseInt(tempArr[1]);
+
+			var selectTarget = $("[name=meat]:checked");
+			// 미트추가 선택갯수 벨리데이션
+			if(selectTarget.length > 1) {
+				alert("미트 추가는 1개만 선택가능합니다.");
+				$(this).prop("checked", false);
+				return;
+			}
          
-         $('#meatText').text(tempArr[0]);
-         $('#sum2').text("+ " + cost + "원");
+         if($(this).is(":checked") == true) {//체크 시
+			sum += cost;
+			$('#meatText').text(tempArr[0]);
+        	 $('#sum2').text("+ " + cost + "원");
+         } else {//체크 해제 시
+			sum -= cost;
+			
+			$('#meatText').text("미트 추가를 선택 해 주세요");
+        	 $('#sum2').text("+ " + 0 + "원");
+         }
+
          
+         
+		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		$("#finalAmt").text(finalcost);
       }); //end of meat
       
 		//치즈 추가
-      $("input:radio[name=add_cheese]").click(function(){
+      $("input:checkbox[name=add_cheese]").click(function(){
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var cost = parseInt(tempArr[1]);
          
-         $('#addCheeseText').text(tempArr[0]);
-         $('#sum3').text("+ " + cost + "원");
+         if($(this).is(":checked") == true) {//체크 시
+			sum += cost;
+			$('#addCheeseText').text(tempArr[0]);
+        	 $('#sum3').text("+ " + cost + "원");
+         } else {//체크 해제 시
+			sum -= cost;
+			
+			$('#addCheeseText').text("치즈 추가를 선택 해 주세요");
+        	 $('#sum3').text("+ " + 0 + "원");
+         }
          
+		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		$("#finalAmt").text(finalcost);
       }); //end of add_cheese
       
 /******************STEP03********************/
@@ -339,35 +416,27 @@
 			
 		});
 		
-/******************수량 조절 , 결제 금액 ********************/
-	var qtyText = $("#ordQty").val();
-	var qty = parseInt(qtyText);
-	var ep = $("#eachPrice").val();
-	var cost = parseInt(ep);
-	console.log(cost);
-	
-	$("#qtyAdd").click(function() {
-		console.log("수량 더하기!!!");
-		qty++;
-		console.log(qty);
-		var num = qty.toString();
-		$("#ordQty").val(num);
-		
-		cost+=cost;
-		console.log(cost);
-		var num2 = cost.toString();
-		$("#finalAmt").val(num2);
-		
-	});
-	
-	$("#qtySub").click(function() {
-		console.log("수량 빼기!!!");
-		if(qty > 1){
-			qty--;
-			console.log(qty);
-			var num = qty.toString();
-			$("#ordQty").val(num);
-		}
-	});
 
+	
+	console.log("잘 왓니....");
+	console.log(ttl);
+	if(ttl > 0){
+		sum += ttl;
+		console.log(sum);
+	}
+	
+	if(meatcost > 0){
+		sum += meatcost;
+		console.log(sum);
+	}
+	
+	if(cheesecost > 0){
+		sum += cheesecost;
+		console.log(sum);
+	}
+		var finalcost = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		console.log(finalcost);
+		$("#finalAmt").text(finalcost);
+		
+	
 	});

@@ -311,7 +311,7 @@ function hideDiv() {
 										<ul>
 											<c:forEach items="${meatList }" var="meat">
 												<li><label class="form_circle"> <input
-														name="meat" type="radio"
+														name="meat" type="checkbox"
 														value="${meat.name }, ${meat.price}"> <span
 														class="icon"></span><em>${meat.name }</em> <span>+<em><fmt:formatNumber
 																	value="${meat.price }" pattern="#,###" /></em>&nbsp;원
@@ -341,7 +341,7 @@ function hideDiv() {
 										<ul>
 											<c:forEach items="${cheeseList }" var="chee">
 												<li><label class="form_circle"> <input
-														name="add_cheese" type="radio"
+														name="add_cheese" type="checkbox"
 														value="${chee.name }, ${chee.price}"> <span
 														class="icon"></span><em>${chee.name }</em> <span>+<em><fmt:formatNumber
 																	value="${chee.price }" pattern="#,###" /></em>&nbsp;원
@@ -448,9 +448,7 @@ function hideDiv() {
 						<dt>최종 결제 금액</dt>
 						<dd>
 							<input id="eachPrice" type="hidden" value="${menu.price }" />
-							<strong id="finalAmt">
-							<fmt:formatNumber value="" type='currency' />
-							</strong>
+							<strong id="finalAmt"> <fmt:formatNumber value="${menu.price }" pattern="#,###" /> </strong>
 							<span>원</span>
 						</dd>
 					</dl>
