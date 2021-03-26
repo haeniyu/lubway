@@ -9,6 +9,15 @@
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	$('.arrow').on('click', function () {
+		$(".addMenu").addClass("on").show();
+		
+	})
+});
+</script>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -33,17 +42,18 @@
 							<h2>배달정보</h2>	
 							<div class="write_info_wrap stroe_order">
 								<div class="input_set">
-									<!-- 패스트써브 -->
+									<!-- fastway 픽업 매장 주소 -->
 									<dl class="info_dl">
 										<dt>종로삼일대로</dt>
 										<dd>서울특별시 종로구 삼일대로 391</dd>
 									</dl>
+									<!-- homeway 배달 받을 주소 -->
 									<dl class="info_dl">
 										<dt>주소</dt>
 										<dd>서울특별시 종로구 삼일대로 391</dd>
 									</dl>
-									<!-- 홈써브 -->
 								</div>
+								<!-- fastway 매장식사 / 픽업 여부 선택 -->
 								<div class="input_set">
 									<dl class="a_order">
 										<dt>방문포장/매장식사</dt>
@@ -62,6 +72,7 @@
 										</dd>
 									</dl>
 								</div>
+								<!-- homeway 주문한 매장 -->
 								<div class="input_set">
 									<dl class="a_order">
 										<dt>배달 매장</dt>
@@ -70,6 +81,7 @@
 										</dd>
 									</dl>
 								</div>
+								<!-- fast/home 공통 부분 -->
 								<div class="input_set">
 									<dl class="">
 										<dt>전화번호</dt>
@@ -92,6 +104,7 @@
 										</dd>
 									</dl>
 								</div>
+								<!-- homeway 배달시 요청사항 -->
 								<div class="input_set">
 									<dl class="a_order">
 										<dt>배달시,요청사항</dt>
@@ -103,8 +116,8 @@
 										</dd>
 									</dl>
 								</div>
+								<!-- fast/home 공통 부분 -->
 								<div class="input_set">
-
 									<dl class="a_order">
 										<dt>일회용품</dt>
 										<dd>
@@ -124,7 +137,7 @@
 							<!-- 할인방법 -->
 							<h2>할인 방법 선택</h2>
 							<div class="write_info_wrap">
-								<!-- 2019-12-13 #232 쿠폰 사용 폼 추가 -->
+								<!-- 쿠폰 사용 -->
 								<input name="voucher" type="hidden" /> <input id="voucherAmt"
 									type="hidden" /> <input name="couponItemCode" type="hidden" />
 								<input name="couponItemIndex" type="hidden" /> <input
@@ -145,29 +158,28 @@
 										</dd>
 									</dl>
 								</div>
-								<!--// 2019-12-13 #232 쿠폰 사용 폼 추가 -->
+								<!-- 포인트 사용 -->
 								<div class="input_set">
 									<dl>
 										<dt>포인트 사용</dt>
 										<dd>
 											<div class="use_point">
-												<span class="form_text bdr_text"> <input
-													id="pointAmt" name="pointAmt" placeholder="사용금액 입력"
-													type="text" value="0" />
+												<span class="form_text bdr_text"> 
+												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="0" />
 												</span>
 												<p>
-													<span>보유 포인트 :</span> <strong id="usablePoint"
-														data-point="0">0</strong>
+													<span>보유 포인트 :</span> 
+													<strong id="usablePoint" data-point="0">0</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">
-												<a class="in_form_btn" href="javascript:void(0);"
-													id="useAllPoint"><span>모두 사용</span></a>
+												<a class="in_form_btn" href="javascript:void(0);" id="useAllPoint">
+												<span>모두 사용</span>
+												</a>
 											</div>
 										</dd>
 									</dl>
-									<p class="counsel_copy">프로모션 상품은 타 할인 행사 및 쿠폰으로 중복 할인되지
-										않습니다.</p>
+									<p class="counsel_copy">프로모션 상품은 타 할인 행사 및 쿠폰으로 중복 할인되지 않습니다.</p>
 								</div>
 							</div>
 							<!--// 할인방법 -->
@@ -203,187 +215,68 @@
 						<!-- 주문내역 -->
 					<div class="board_list_wrapper">
 						<h2>주문내역</h2>
+						<hr class="Tborder">
 						<div class="content">
-							<!-- 1세트 -->
-								<table class="history_table">
-									<caption>주문내역 테이블</caption>
-									<colgroup>
-										<col width="*" />
-										<col width="90px" />
-										<col width="130px" />
-									</colgroup>
-									<tbody>
-										<tr data-item-code="00035" data-item-index="0">
-											<td>
-												<div class="name" data-target="mainItem">
-													<strong>로스트 치킨</strong>
-													<p>
-														<!-- 빵길이 -->
-														<th:object>30cm, </th:object>
-														<!-- 빵종류 -->
-														<th:object>파마산 오레가노(토스팅), </th:object>
-														<!-- 치즈 -->
-														<th:object>아메리칸치즈, </th:object>
-														<!-- 야채 -->
-														
-															<th:object>양상추, </th:object>
-														
-														
-															<th:object>피망, </th:object>
-														
-														
-															<th:object>양파, </th:object>
-														
-														
-															<th:object>피클, </th:object>
-														
-														
-															<th:object>올리브, </th:object>
-														
-														<!-- 소스 -->
-														
-															<th:object>레드와인식초, </th:object>
-														
-														
-															<th:object>스모크 바비큐, </th:object>
-														
-														
-															<th:object>홀스래디쉬</th:object>
-														
-													</p>
-												</div>
-											</td>
-											<td>
-												<div class="count"><strong class="qty" data-qty="1">1</strong>개</div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong class="price" data-price="22,200">22,200</strong>
-														
-														<em>원</em>
-													</span>
-													
-														<a data-target="arrow" href="javascript:void(0);">상세 주문 내역 열고 닫기</a>
-													
-												</div>
-											</td>
-										</tr>
-
-										<!-- 더블치즈 -->
-										<tr>
-											<td>
-												<div class="name">
-													<strong>모차렐라치즈</strong>
-												</div>
-											</td>
-											<td>
-												<div class="count"></div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong>1,800</strong>
-														
-														<em>원</em>
-													</span>
-												</div>
-											</td>
-										</tr>
-
-										<!-- 더블업 -->
-										<tr>
-											<td>
-												<div class="name">
-													<strong>미트볼</strong>
-												</div>
-											</td>
-											<td>
-												<div class="count"></div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong>3,600</strong>
-														
-														<em>원</em>
-													</span>
-												</div>
-											</td>
-										</tr>
-
-										<!-- 엑스트라 -->
-										<tr>
-											<td>
-												<div class="name">
-													<strong>페퍼로니</strong>
-												</div>
-											</td>
-											<td>
-												<div class="count"></div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong>1,800</strong>
-														
-														<em>원</em>
-													</span>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="name">
-													<strong>오믈렛</strong>
-												</div>
-											</td>
-											<td>
-												<div class="count"></div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong>2,400</strong>
-														
-														<em>원</em>
-													</span>
-												</div>
-											</td>
-										</tr>
-
-										<!-- 세트추가 -->
-										<tr>
-											<td>
-												<div class="name">
-													<strong>세트추가</strong>
-													<p>
-															<th:object>라즈베리 치즈케익 쿠키</th:object>
-															<th:object>, </th:object>
-														
-														
-															<th:object>탄산음료 22oz</th:object>
-															<th:object></th:object>
-													</p>
-												</div>
-											</td>
-											<td>
-												<div class="count"></div>
-											</td>
-											<td>
-												<div class="sum">
-													<span>
-														<strong>2,100</strong>
-														<em>원</em>
-													</span>
-												</div>
-											</td>
-										</tr>
-									</tbody>
-								</table>
+							<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
+							<div class="history_table">
+								<!-- 선택한 메뉴 -->
+								<div class="name" data-target="mainItem">
+									<!-- 선택한 메뉴 이름 -->
+									<strong>로스트 치킨</strong>
+									<p>
+									<!-- 선택한 메뉴들 받는 부분 -->
+										<!-- 빵길이 -->
+										30cm, 
+										<!-- 빵종류 -->
+										파마산 오레가노(토스팅), 
+										<!-- 치즈 -->
+										아메리칸치즈, 
+										<!-- 야채 -->
+										양상추, 
+										<!-- 소스 -->
+										레드와인식초
+									</p>
+								</div>
+								<div class="count">
+									<strong class="qty" data-qty="1">1</strong>개
+								</div>
+								<div class="sum">
+									<span>
+										<strong class="price" data-price="22,200">22,200</strong><em>원</em>
+									</span>
+									<!-- 추가 선택 메뉴 있을경우 생김 -->
+									<a class="arrow"></a>
+								</div>
+								<!-- 추가 선택 메뉴 있을경우 보임-->
+								<div class="addMenu">
+									<div class="addname">
+										<strong>모차렐라치즈</strong>
+									</div>
+									<div class="addcount"></div>
+									<div class="addsum">
+										<span>
+											<strong>1,800</strong><em>원</em>
+										</span>
+									</div>
+									<!-- 세트 추가했을 경우 보임 -->
+									<div class="setname">
+										<strong>세트추가</strong>
+										<p>
+											초코칩 쿠키,탄산음료 16oz
+										</p>
+									</div>
+									<div class="setcount"></div>
+									<div class="setsum">
+										<span>
+											<strong>1,900</strong><em>원</em>
+										</span>
+									</div>
+								</div>
+							</div>
 							<!--// 1세트 -->
 						</div>
-					</div>
+						
+					</div>	
 					<!--// 주문내역 -->
 
 						<!-- 결제금액 -->
@@ -425,11 +318,9 @@
 								</dt>
 								<dd>
 									<ul>
-										<!-- 2019-12-13 #205 결제동의 문구 클래스 추가 -->
 										<li class="counsel_copy">주문할 메뉴와 가격, 매장정보를 명확히 확인하였으며 결제 진행에 동의합니다.</li>
 										<li class="counsel_copy">제조시간은 매장상황에 따라 상이할 수 있습니다.</li>
 										<li class="counsel_copy on">주문 후 제조가 시작되면 주문을 취소할 수 없습니다.</li>
-										<!--// 2019-12-13 #205 결제동의 문구 클래스 추가 -->
 									</ul>
 								</dd>
 							</dl>
