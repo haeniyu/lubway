@@ -88,7 +88,7 @@
 .order .store_map .order_map {margin:0 auto; width:1170px;}
 .order .order_title{text-align: center;}
 .order .order_title h3{padding: 64px 0 25px 0; color: #fff; font-size: 70px;font-family:'font_sw', 'font_ns'; font-weight: bold;}
-.order .order_title p{color: #fff; font-size: 16px;}
+.order .order_title p{color: #fff; font-size: 16px; padding-bottom: 50px;}
 .order .order_step{margin-top: 58px; text-align: center; font-size: 0;}
 .order .order_step li{position: relative; display: inline-block; width: 70px; height: 106px; margin-right: 20px; padding-right: 65px; color: #fff; vertical-align: top;}
 .order .order_step li:after{content: ''; position: absolute; right: 0; top: 45px; width: 45px; height: 5px; background: url('../images/order/fast_sub/step_bg_off.png') no-repeat 0 0;}
@@ -253,25 +253,25 @@
 .menu_view .menu_select li.step03 dl dt{background: url('../images/order/fast_sub/menu_view_bg03.png') no-repeat 22px 6px #9631a8;}
 .menu_view .menu_select li.step03 dl dd{border-radius: 0 0 46px 0;}
 
-.menu_view .menu_total{padding-bottom: 40px; border-bottom: 1px solid #e8e8e8;}
-.menu_view .menu_total:after {content: ""; display:inline-block;clear: both; zoom:1;}
-.menu_view .menu_total dl dt,
-.menu_view .menu_total dl dd{float: left;}
-.menu_view .menu_total .count{float: left;}
-.menu_view .menu_total .count dt{padding: 3px 23px 0 0; font-size: 24px; font-weight: bold;}
-.menu_view .menu_total .count dd{}
-.menu_view .menu_total .count dd a{float: left; display: block; width: 37px; height: 37px; background: url('../images/order/fast_sub/btn_minus.png') no-repeat 0 0; font-size: 0;}
-.menu_view .menu_total .count dd a.plus{background-image: url('../images/order/fast_sub/btn_plus.png');}
-.menu_view .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-family: font_sw; font-weight: bold; text-align: center; vertical-align: top;}
-.menu_view .menu_total .total_won{float: right;}
-.menu_view .menu_total .total_won dt{margin-right: 17px; color: #292929; font-size: 24px; font-weight: bold;}
-.menu_view .menu_total .total_won dd strong{float: left; color: #009223; font-size: 40px; font-family: font_sw; font-weight: bold;}
-.menu_view .menu_total .total_won dd span{float: left; padding: 7px 0 0 5px; color: #009223; font-size: 24px; font-weight: bold;}
-.menu_view .btn_area{padding: 40px 0 100px 0;}
-.menu_view .btn_area .btn_side{width: 250px;}
-.menu_view .btn_area .btn_side span{padding-right: 30px; background: url('../images/order/fast_sub/btn_side_bg.png') no-repeat 100% 50%;}
-.menu_view .btn_area .btn_cart,
-.menu_view .btn_area .btn_order{width: 170px;}
+.menu_view_wrapper .menu_total{padding:30px 80px; background-color: #f6f6f6;}
+.menu_view_wrapper .menu_total:after {content: ""; display:inline-block;clear: both; zoom:1;}
+.menu_view_wrapper .menu_total dl dt,
+.menu_view_wrapper .menu_total dl dd{float: left;}
+.menu_view_wrapper .menu_total .count{float: left;}
+.menu_view_wrapper .menu_total .count dt{padding: 3px 23px 0 0; font-size: 24px; font-weight: bold;}
+.menu_view_wrapper .menu_total .count dd{}
+.menu_view_wrapper .menu_total .count dd a{float: left; display: block; width: 37px; height: 37px; background: url('../images/order/btn_minus.png') no-repeat 0 0; font-size: 0;}
+.menu_view_wrapper .menu_total .count dd a.plus{background-image: url('../images/order/btn_plus.png');}
+.menu_view_wrapper .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-family: font_sw; font-weight: bold; text-align: center; vertical-align: top; background-color: #f6f6f6;}
+.menu_view_wrapper .menu_total .total_won{float: right;}
+.menu_view_wrapper .menu_total .total_won dt{margin-right: 17px; color: #292929; font-size: 24px; font-weight: bold;}
+.menu_view_wrapper .menu_total .total_won dd strong{float: left; color: #009223; font-size: 40px; font-family: font_sw; font-weight: bold;}
+.menu_view_wrapper .menu_total .total_won dd span{float: left; padding: 7px 0 0 5px; color: #009223; font-size: 24px; font-weight: bold;}
+.menu_view_wrapper .btn_area{padding: 40px 0 100px 0;}
+.menu_view_wrapper .btn_area .btn_side{width: 250px;}
+.menu_view_wrapper .btn_area .btn_side span{padding-right: 30px; background: url('../images/order/fast_sub/btn_side_bg.png') no-repeat 100% 50%;}
+.menu_view_wrapper .btn_area .btn_cart,
+.menu_view_wrapper .btn_area .btn_order{width: 170px;}
 
 /* 주문하기 */
 .bill_order .order_con{padding:86px 100px 100px 100px;}

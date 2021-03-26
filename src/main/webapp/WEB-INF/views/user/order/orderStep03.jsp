@@ -16,590 +16,251 @@
 <link rel="stylesheet" href="${path}/resources/css/ui.popup.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript">
-
-	// 필수 선택 항목 선택 여부
-	var checkSize = false;
-	var checkBread = false;
-	var checkCheese = false;
-	var checkVegetable = false;
-	var checkSauce = false;
-
-	// ========= 필수 선택 항목 기능 처리 =========
-		
-	// 사이즈 선택
-	function endSize() {
-		var size = $("#lengthText").text();
-		var object = $('<object id="selectSize">' + size + ', </object>')
-
-		$("#selectSize").remove();
-		$(object).prependTo("#selectStep01");
-		
-		checkSize = true;
-		
-		$("#closeLength").get(0).click();
+//메뉴에 따른 선택 항목 노출 설정
+function hideDiv() {
+	console.log("가릴거야!!!");
+	var protocol = '${hideNum}';
+	console.log("hideNum : " + protocol);
+	switch(protocol){
+	case "4" :
+		console.log("4번입니다~");
+		$("#breadSize").hide();
+		$("#breadType").hide();
+		break;
+	case "3" :
+		console.log("3번입니다~");
+		$(".required").hide();
+		$(".extra").hide();
+		$("#strong").text("STEP 01");
+		break;
+	case "2" :
+		console.log("2번입니다~");
+		$(".list_wrapper").hide();
+		break;
+	case "1" :
+		console.log("1번입니다~");
+		$("#component_chart").hide();
+		$(".list_wrapper").hide();
+		$(".cal").hide();
+		break;
 	}
-	
-	// 빵 선택
-	function endBread() {
-		if(!checkSize) {
-			alert("사이즈를 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
-		var bread = $("#breadText").text();
-		if(bread == "빵을 선택해 주세요") {
-			alert("빵은 필수 선택입니다.");
-			return;
-		}
-		var object = $('<object id="selectBread">' + bread + ', </object>')
-
-		$("#selectBread").remove();
-		$(object).insertAfter("#selectSize");
-		
-		checkBread = true;
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 치즈 선택
-	function endCheese() {
-		if(!checkBread) {
-			alert("빵을 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
-		var cheese = $("#cheeseText").text();
-		if(cheese == "치즈를 선택해 주세요") {
-			cheese = "치즈 제외";
-		}
-		var object = $('<object id="selectCheese">' + cheese + ', </object>')
-
-		$("#selectCheese").remove();
-		$(object).insertAfter("#selectBread");
-		
-		checkCheese = true;
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 야채 선택
-	function endVegetable() {
-		if(!checkCheese) {
-			alert("치즈를 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
-		var vegetable = $("#vegeText").text();
-		if(vegetable.split(",").length == 8) {
-			vegetable = "야채 모두 선택";
-		} else if(vegetable == "야채를 선택해 주세요.") {
-			vegetable = "야채 제외";
-		}
-		var object = $('<object id="selectVegetable">' + vegetable + ', </object>')
-
-		$("#selectVegetable").remove();
-		$(object).insertAfter("#selectCheese");
-		
-		checkVegetable = true;
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 소스 선택
-	function endSauce() {
-		if(!checkVegetable) {
-			alert("야채를 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
-		var sauce = $("#sauceText").text();
-		if(sauce == "소스/시즈닝을 선택해 주세요.") {
-			sauce = "소스 제외";
-		}
-		var object = $('<object id="selectSauce">' + sauce + '</object>')
-
-		checkSauce = true;
-		
-		$("#selectSauce").remove();
-		$(object).appendTo("#selectStep01");
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 샐러드 선택 항목 기능 처리
-	// 치즈 선택
-	function saladOnly() {
-		var cheese = $("#cheeseText").text();
-		if(cheese == "치즈를 선택해 주세요") {
-			cheese = "치즈 제외";
-		}
-		var object = $('<object id="selectCheese">' + cheese + ', </object>')
-
-		$("#selectCheese").remove();
-		$(object).prependTo("#selectStep01");
-		
-		checkCheese = true;
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	
-	
-	// ========= 추가 선택 항목 기능 처리 =========
-	// 토핑 추가 선택
-	function endAddSelect() {
-		console.log("=== addToppingSelect ===");
-		
-		var topping = $("#toppingText").text();
-		
-		var object = $('<object id="selectTopping">' + topping + ', </object>')
-		
-		$("#selectTopping").remove();
-		$(object).prependTo("#selectStep02");
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 미트 추가 선택
-	function endAddMeatSelect() {
-		console.log("=== addMeatSelect ===");
-		
-		var meat = $("#meatText").text();
-		
-		var object = $('<object id="selectMeat">' + meat + ', </object>')
-		
-		$("#selectMeat").remove();
-		$(object).insertAfter("#selectTopping");
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	// 치즈 추가 선택
-	function endAddCheeseSelect() {
-		console.log("=== addCheeseSelect ===");
-		if(!checkCheese) {
-			alert("치즈를 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
-		var add_cheese = $("#addCheeseText").text();
-		
-		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
-		
-		$("#selectCheese").remove();
-		$(object).appendTo("#selectStep02");
-		
-		$("#closeLength").get(0).click();
-	}
-	
-	
-	//메뉴에 따른 선택 항목 노출 설정
-	function hideDiv() {
-		console.log("가릴거야!!!");
-		var protocol = '${hideNum}';
-		console.log("hideNum : " + protocol);
-		switch(protocol){
-		case "4" :
-			console.log("4번입니다~");
-			$("#breadSize").hide();
-			$("#breadType").hide();
-			break;
-		case "3" :
-			console.log("3번입니다~");
-			$(".required").hide();
-			$(".extra").hide();
-			$("#strong").text("STEP 01");
-			break;
-		case "2" :
-			console.log("2번입니다~");
-			$(".list_wrapper").hide();
-			break;
-		case "1" :
-			console.log("1번입니다~");
-			$("#component_chart").hide();
-			$(".list_wrapper").hide();
-			$(".cal").hide();
-			break;
-		}
-	}
-	
-/******************STEP01********************/
-	
-	$(document).ready(function() {
-		
-		hideDiv();
-		
-		//길이 선택에 따라 lengthText 값이 바뀌게 한다
-		$("input:radio[name=length]").click(function(){
-			var length = document.getElementsByName('length');
-			var lengthChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-			for(var i=0; i<length.length; i++) {
-			    if(length[i].checked) {
-			    	lengthChoice = length[i].value;
-			    }
-			}
-			console.log(lengthChoice);
-			$("#lengthText").text(lengthChoice);
-		});
-		
-		//빵 선택에 따라 breadText 값이 바뀌게 한다
-		$("input:radio[name=bread]").click(function(){
-			var bread = document.getElementsByName('bread');
-			var breadChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-			console.log(breadChoice);
-			for(var i=0; i<bread.length; i++) {
-			    if(bread[i].checked) {
-			    	breadChoice = bread[i].value;
-			    }
-			}
-			$("#breadText").text(breadChoice);
-		});
-		
-		//치즈 선택에 따라 cheeseText 값이 바뀌게 한다
-		$("input:radio[name=cheese]").click(function(){
-			var cheese = document.getElementsByName('cheese');
-			var cheeseChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-			console.log(cheeseChoice);
-			for(var i=0; i<cheese.length; i++) {
-			    if(cheese[i].checked) {
-			    	cheeseChoice = cheese[i].value;
-			    }
-			}
-			$("#cheeseText").text(cheeseChoice);
-		});
-		
-		//야채선택
-		var selectVegeText = "";
-		var vegeArr = new Array();
-		$("input:checkbox[name=vegetable]").click(function() {
-			var selectTarget = $("[name=vegetable]:checked");
-
-			if($(this).is(":checked") == true) {
-				vegeArr.push($(this).val());
-			} else {
-				for(var i=0; i<vegeArr.length; i++) {
-					if($(this).val() == vegeArr[i]) vegeArr.splice(i, 1);
-				}
-			}
-			console.log(vegeArr);
-			// 선택 토핑
-			$('#vegeText').text(vegeArr.length > 0 ? vegeArr.join(", ") : "야채를 선택해 주세요.");
-		});
-		
-		//소스 선택
-		var selectTotalText = "";
-		var itemArr = new Array();
-		$("input:checkbox[name=sauce]").click(function() {
-			var selectTarget = $("[name=sauce]:checked");
-
-			console.log("선택 소스 개수 : " + selectTarget.length);
-			
-			// 소스 선택갯수 벨리데이션
-			if(selectTarget.length > 3) {
-				alert("소스/시즈닝은 3개까지 선택가능합니다.");
-				$(this).prop("checked", false);
-				return;
-			}
-			
-			if($(this).is(":checked") == true) {
-				itemArr.push($(this).val());
-			} else {
-				for(var i=0; i<itemArr.length; i++) {
-					if($(this).val() == itemArr[i]) itemArr.splice(i, 1);
-				}
-			}
-			
-			console.log(itemArr);
-						
-			// 선택 토핑
-			$('#sauceText').text(itemArr.length > 0 ? itemArr.join(", ") : "소스/시즈닝을 선택해 주세요.");
-		});
-		
-		
-		
-		
-/******************STEP02********************/
-		
-		//토핑 추가 선택
-      	var arr = new Array();		//선택된 토핑을 담을 배열
-      	var ttl = 0;				//총 가격
-      
-      $("input:checkbox[name=topping]").click(function(){
-         var temp = $(this).val();
-         var tempArr = temp.split(",");
-         var cost = parseInt(tempArr[1]);
-         
-         if($(this).is(":checked") == true) {//체크 시
-            arr.push(tempArr[0]);
-            ttl += cost;
-         } else {//체크 해제 시
-            for(var i=0; i<arr.length; i++) {
-               if(tempArr[0] == arr[i]) arr.splice(i, 1);
-            }
-            ttl -= cost;
-         }
-         
-         $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
-         $('#sum').text("+ " + ttl + "원");
-         
-      }); //end of topping
-      
-      
-		//미트 추가
-      $("input:radio[name=meat]").click(function(){
-         var temp = $(this).val();
-         var tempArr = temp.split(",");
-         var cost = parseInt(tempArr[1]);
-         
-         $('#meatText').text(tempArr[0]);
-         $('#sum2').text("+ " + cost + "원");
-         
-      }); //end of meat
-      
-		//치즈 추가
-      $("input:radio[name=add_cheese]").click(function(){
-         var temp = $(this).val();
-         var tempArr = temp.split(",");
-         var cost = parseInt(tempArr[1]);
-         
-         $('#addCheeseText').text(tempArr[0]);
-         $('#sum3').text("+ " + cost + "원");
-         
-      }); //end of add_cheese
-      
-	////////////step03 세트 선택//////////////
-		$(".wedge").hide();
-		$("input:radio[name=select_set]").click(function(){
-			var temp = $(this).val();
-			var selectSet;
-			console.log(temp);
-			if(temp == "cookie") {
-				$(".cookie").show();
-				$(".wedge").hide();
-			}else{
-				$(".wedge").show();
-				$(".cookie").hide();
-			}
-			
-		});
-	      
-	});
+}
 </script>
+<script src="${path}/resources/js/orderStep03.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-<div id="content" class="order fast_sub" style="padding-top:175px">
-	<div class="order_title">
-		<h3>Fast-Way</h3>
-		<p>
-		온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.
-		</p>
-	</div>
-			<!-- 메뉴소개 s -->
-			<div class="menu_view_wrapper" style="padding-left: 180px;">
-				<!-- 메뉴 content -->
-				<div class="menu_content" style="width:1170px; background-color: white;">
-					<!-- 메뉴 header -->
-					<div class="hd">
-						<div class="category"></div>
-						<h2 class="title_name">${menu.name }</h2>
-						<p class="eng">${menu.engname }</p>
-						<p class="cal">${nutrient.cal }Kcal</p>
+	<div id="content" class="order fast_sub" style="padding-top: 175px">
+		<div class="order_title">
+			<h3>Fast-Way</h3>
+			<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+		</div>
+		<!-- 메뉴소개 s -->
+		<div class="menu_view_wrapper" style="padding-left: 180px; padding-top:0px;">
+			<!-- 메뉴 content -->
+			<div class="menu_content"
+				style="width: 1170px; background-color: white;">
+				<!-- 메뉴 header -->
+				<div class="hd">
+					<div class="category"></div>
+					<h2 class="title_name">${menu.name }</h2>
+					<p class="eng">${menu.engname }</p>
+					<p class="cal">${nutrient.cal }Kcal</p>
+				</div>
+				<!--// 메뉴 header -->
+
+				<!-- 메뉴정보 -->
+				<div class="menu_info">
+					<div class="menu_img">
+						<img src="${menu.filePath }" />
 					</div>
-					<!--// 메뉴 header -->
-				
-					<!-- 메뉴정보 -->
-					<div class="menu_info">
-						<div class="menu_img">
-							<img src="${menu.filePath }" />
+					<p class="summary">${menu.content }</p>
+				</div>
+				<!--// 메뉴정보 -->
+
+				<!-- 영양성분표 -->
+				<div class="component_chart" id="component_chart">
+					<div class="content" style="width: 1000px;">
+						<h3>영양성분표</h3>
+						<!-- 로스트 치킨 베이컨 -->
+						<div class="board_list_wrapper">
+							<table>
+								<thead>
+									<TR>
+										<th scope="col">중량(g)</th>
+										<th scope="col">열량(kcal)</th>
+										<th scope="col">당류(g)</th>
+										<th scope="col">단백질(g)</th>
+										<th scope="col">포화지방(g)</th>
+										<th scope="col">나트륨(mg)</th>
+
+									</TR>
+								</thead>
+								<tbody>
+									<TR>
+										<td>${nutrient.ttl }</td>
+										<td>${nutrient.cal }</td>
+										<td>${nutrient.sug }</td>
+										<td>${nutrient.pro}</td>
+										<td>${nutrient.fat}</td>
+										<td>${nutrient.sod}</td>
+
+									</TR>
+								</tbody>
+							</table>
 						</div>
-						<p class="summary">
-							${menu.content }
-						</p>
-					</div>
-					<!--// 메뉴정보 -->
+						<ul class="notice">
+							<li>※ 기본야채 5종(양상추, 토마토, 양파, 피망, 오이) 및 제품에 따른 미트류 포함, 치즈 및 소스
+								제외, 15cm 위트 브레드 기준</li>
+							<li>※ 괄호 안 %는 1일 영양소 기준치에 대한 비율</li>
+						</ul>
 
-					<!-- 영양성분표 -->
-					<div class="component_chart" id="component_chart">
-						<div class="content" style="width:1000px;">
-							<h3>영양성분표</h3>
-							<!-- 로스트 치킨 베이컨 -->
-							<div class="board_list_wrapper">
-								<table>
-									<thead>
-										<TR>
-											<th scope="col">중량(g)</th>
-											<th scope="col">열량(kcal)</th>
-											<th scope="col">당류(g)</th>
-											<th scope="col">단백질(g)</th>
-											<th scope="col">포화지방(g)</th>
-											<th scope="col">나트륨(mg)</th>
-
-										</TR>
-									</thead>
-									<tbody>
-										<TR>
-											<td>${nutrient.ttl }</td>
-											<td>${nutrient.cal }</td>
-											<td>${nutrient.sug }</td>
-											<td>${nutrient.pro}</td>
-											<td>${nutrient.fat}</td>
-											<td>${nutrient.sod}</td>
-
-										</TR>
-									</tbody>
-								</table>
-							</div>
-							<ul class="notice">
-								<li>※ 기본야채 5종(양상추, 토마토, 양파, 피망, 오이) 및 제품에 따른 미트류 포함, 치즈 및
-									소스 제외, 15cm 위트 브레드 기준</li>
-								<li>※ 괄호 안 %는 1일 영양소 기준치에 대한 비율</li>
-							</ul>
-
-							<div class="btns_wrapper">
-								<a id="popup" class="btn bgc_black size1" style="width: 110px;" href="#popup_wrap" rel="modal:open">
-									<span>원산지 정보</span>
-								</a>
-							</div>
+						<div class="btns_wrapper">
+							<a id="popup" class="btn bgc_black size1" style="width: 110px;"
+								href="#popup_wrap" rel="modal:open"> <span>원산지 정보</span>
+							</a>
 						</div>
 					</div>
-					
-					<!-- 상세 선택 메뉴 -->
+				</div>
+
+				<!-- 상세 선택 메뉴 -->
 				<div class="list_wrapper">
 					<div class="content">
 						<div class="choice_option">
-						<div class="step01 required">
-							<div class="th_name_step01">
-								<strong>STEP 01</strong>&nbsp;&nbsp;필수 선택 *
-							</div>
-							<div id="length" class="modal">
-								<div class="option_display">
-									<dl>
-										<dt>빵 길이 선택</dt>
-										<dd id="lengthText">15cm</dd>
-									</dl>
+							<div class="step01 required">
+								<div class="th_name_step01">
+									<strong>STEP 01</strong>&nbsp;&nbsp;필수 선택 *
 								</div>
-								<div class="popup_content length">
-									<ul>
-										<li><label class="form_circle" for="15cm"> <input
-												name="length" type="radio" checked="checked" id="15cm"
-												value="15cm"> <span class="icon"></span> <em>15cm</em>
-										</label></li>
-										<li><label class="form_circle" for="30cm"> <input
-												name="length" type="radio" id="30cm" value="30cm"> <span
-												class="icon"></span> <em>30cm</em>
-										</label></li>
-									</ul>
-									<input class="choice_btn" type="button" value="선택" onclick="endSize();">
-								</div>
-							</div>
-							<div class="wrap_pop" id="breadSize">
-								<a class="pop" href="#length" rel="modal:open">길이 선택</a>
-							</div>
-
-							<div id="bread" class="modal">
-								<div class="option_display">
-									<dl>
-										<dt>빵 선택</dt>
-										<dd id="breadText">빵을 선택해 주세요</dd>
-									</dl>
-								</div>
-								<div class="popup_content bread">
-									<ul>
-										<c:forEach items="${breadList}" var="bread">
-											<li><label class="form_circle"> <input
-													name="bread" type="radio" value="${bread.name }"> <span
-													class="icon"></span> <em>${bread.name }</em>
+								<div id="length" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>빵 길이 선택</dt>
+											<dd id="lengthText">15cm</dd>
+										</dl>
+									</div>
+									<div class="popup_content length">
+										<ul>
+											<li><label class="form_circle" for="15cm"> <input
+													name="length" type="radio" checked="checked" id="15cm"
+													value="15cm"> <span class="icon"></span> <em>15cm</em>
 											</label></li>
-										</c:forEach>
-									</ul>
-									<input class="choice_btn" type="button" value="선택" onclick="endBread();">
-								</div>
-							</div>
-							<div class="wrap_pop" id="breadType">
-								<a class="pop" href="#bread" rel="modal:open">빵 선택</a>
-							</div>
-
-							<div id="cheese" class="modal">
-								<div class="option_display">
-									<dl>
-										<dt>치즈 선택</dt>
-										<dd id="cheeseText">치즈를 선택해 주세요</dd>
-									</dl>
-								</div>
-								<div class="popup_content cheese">
-									<ul>
-										<c:forEach items="${cheeseList }" var="cheese">
-											<li><label class="form_circle"> <input
-													name="cheese" type="radio" value="${cheese.name }">
-													<span class="icon"></span> <em>${cheese.name }</em>
+											<li><label class="form_circle" for="30cm"> <input
+													name="length" type="radio" id="30cm" value="30cm">
+													<span class="icon"></span> <em>30cm</em>
 											</label></li>
-										</c:forEach>
-									</ul>
-									<c:if test="${hideNum eq 4 }">
-									<input class="choice_btn" type="button" value="선택" onclick="saladOnly();">
-									</c:if>
-									<c:if test="${hideNum ne 4 }">
-									<input class="choice_btn" type="button" value="선택" onclick="endCheese();">
-									</c:if>
+										</ul>
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endSize();">
+									</div>
 								</div>
-							</div>
-							<div class="wrap_pop">
-								<a class="pop" href="#cheese" rel="modal:open">치즈 선택</a>
-							</div>
+								<div class="wrap_pop" id="breadSize">
+									<a class="pop" href="#length" rel="modal:open">길이 선택</a>
+								</div>
 
-							<div id="vegetable" class="modal">
-								<div class="option_display">
-									<dl>
-										<dt>야채 선택 (다중 선택)</dt>
-										<dd id="vegeText">야채를 선택해 주세요.</dd>
-									</dl>
+								<div id="bread" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>빵 선택</dt>
+											<dd id="breadText">빵을 선택해 주세요</dd>
+										</dl>
+									</div>
+									<div class="popup_content bread">
+										<ul>
+											<c:forEach items="${breadList}" var="bread">
+												<li><label class="form_circle"> <input
+														name="bread" type="radio" value="${bread.name }">
+														<span class="icon"></span> <em>${bread.name }</em>
+												</label></li>
+											</c:forEach>
+										</ul>
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endBread();">
+									</div>
 								</div>
-								<div class="popup_content vegetable">
-									<ul>
-										<c:forEach items="${vegeList }" var="vege">
-											<li><label class="form_circle"> <input
-													name="vegetable" type="checkbox" value="${vege.name }">
-													<span class="icon"></span> <em>${vege.name }</em>
-											</label></li>
-										</c:forEach>
-									</ul>
-									<input class="choice_btn" type="button" value="선택" onclick="endVegetable();">
+								<div class="wrap_pop" id="breadType">
+									<a class="pop" href="#bread" rel="modal:open">빵 선택</a>
 								</div>
-							</div>
-							<div class="wrap_pop">
-								<a class="pop" href="#vegetable" rel="modal:open">야채 선택</a>
-							</div>
 
-							<div id="sauce" class="modal">
-								<div class="option_display">
-									<dl>
-										<dt>소스/시즈닝 선택</dt>
-										<dd id="sauceText">소스/시즈닝을 선택해 주세요.</dd>
-									</dl>
+								<div id="cheese" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>치즈 선택</dt>
+											<dd id="cheeseText">치즈를 선택해 주세요</dd>
+										</dl>
+									</div>
+									<div class="popup_content cheese">
+										<ul>
+											<c:forEach items="${cheeseList }" var="cheese">
+												<li><label class="form_circle"> <input
+														name="cheese" type="radio" value="${cheese.name }">
+														<span class="icon"></span> <em>${cheese.name }</em>
+												</label></li>
+											</c:forEach>
+										</ul>
+										<c:if test="${hideNum eq 4 }">
+											<input class="choice_btn" type="button" value="선택"
+												onclick="saladOnly();">
+										</c:if>
+										<c:if test="${hideNum ne 4 }">
+											<input class="choice_btn" type="button" value="선택"
+												onclick="endCheese();">
+										</c:if>
+									</div>
 								</div>
-								<div class="popup_content sauce">
-									<ul>
-										<c:forEach items="${sauceList }" var="sauce">
-											<li><label class="form_circle"> <input
-													name="sauce" type="checkbox" value="${sauce.name }">
-													<span class="icon"></span> <strong>${sauce.sub }</strong><em>${sauce.name }</em>
-											</label></li>
-										</c:forEach>
-									</ul>
-									<input class="choice_btn" type="button" value="선택" onclick="endSauce();">
+								<div class="wrap_pop">
+									<a class="pop" href="#cheese" rel="modal:open">치즈 선택</a>
 								</div>
+
+								<div id="vegetable" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>야채 선택 (다중 선택)</dt>
+											<dd id="vegeText">야채를 선택해 주세요.</dd>
+										</dl>
+									</div>
+									<div class="popup_content vegetable">
+										<ul>
+											<c:forEach items="${vegeList }" var="vege">
+												<li><label class="form_circle"> <input
+														name="vegetable" type="checkbox" value="${vege.name }">
+														<span class="icon"></span> <em>${vege.name }</em>
+												</label></li>
+											</c:forEach>
+										</ul>
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endVegetable();">
+									</div>
+								</div>
+								<div class="wrap_pop">
+									<a class="pop" href="#vegetable" rel="modal:open">야채 선택</a>
+								</div>
+
+								<div id="sauce" class="modal">
+									<div class="option_display">
+										<dl>
+											<dt>소스/시즈닝 선택</dt>
+											<dd id="sauceText">소스/시즈닝을 선택해 주세요.</dd>
+										</dl>
+									</div>
+									<div class="popup_content sauce">
+										<ul>
+											<c:forEach items="${sauceList }" var="sauce">
+												<li><label class="form_circle"> <input
+														name="sauce" type="checkbox" value="${sauce.name }">
+														<span class="icon"></span> <strong>${sauce.sub }</strong><em>${sauce.name }</em>
+												</label></li>
+											</c:forEach>
+										</ul>
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endSauce();">
+									</div>
+								</div>
+								<div class="wrap_pop">
+									<a class="pop" href="#sauce" rel="modal:open">소스/시즈닝 선택</a>
+								</div>
+								<p id="selectStep01"></p>
 							</div>
-							<div class="wrap_pop">
-								<a class="pop" href="#sauce" rel="modal:open">소스/시즈닝 선택</a>
-							</div>
-							<p id="selectStep01"></p>
-							</div> <!-- end of step01 -->
+							<!-- end of step01 -->
 
 							<!----------------------------------- 02 추가선택 영역 ----------------------------------------->
 							<div class="step01 extra">
@@ -628,7 +289,8 @@
 												</label></li>
 											</c:forEach>
 										</ul>
-										<input class="choice_btn" type="button" value="선택" onclick="endAddSelect();">
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endAddSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
@@ -657,7 +319,8 @@
 												</label></li>
 											</c:forEach>
 										</ul>
-										<input class="choice_btn" type="button" value="선택" onclick="endAddMeatSelect();">
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endAddMeatSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
@@ -686,16 +349,17 @@
 												</label></li>
 											</c:forEach>
 										</ul>
-										<input class="choice_btn" type="button" value="선택" onclick="endAddCheeseSelect();">
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endAddCheeseSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
 									<a class="pop" href="#add_cheese" rel="modal:open">치즈 추가</a>
 								</div>
-							<p id="selectStep02"></p>
+								<p id="selectStep02"></p>
+							</div>
 
 							<!----------------------------------- 03 세트선택 영역 ----------------------------------------->
-							</div>
 							<div class="step01">
 								<div class="th_name_step03">
 									<strong id="strong">STEP 03</strong>&nbsp;&nbsp;상품 선택
@@ -770,8 +434,27 @@
 						</div>
 					</div>
 				</div>
+				<!-- 수량 및 결제 금액  -->
+				<div class="menu_total">
+					<input name="eachPrice" type="hidden" value="9600" />
+					<dl class="count">
+						<dt>수량</dt>
+						<dd>
+							<a class="minus" href="javascript:;" id="qtySub">수량 빼기</a>
+							<input id="ordQty" onfocus="this.blur();" type="text" value="1" />
+							<a class="plus" href="javascript:;" id="qtyAdd">수량 더하기</a>
+						</dd>
+					</dl>
+					<dl class="total_won">
+						<dt>최종 결제 금액</dt>
+						<dd>
+							<strong id="finalAmt"><fmt:formatNumber value="" pattern="#,###" /></strong>
+							<span>원</span>
+						</dd>
+					</dl>
+				</div>
 			</div>
-				<!--// 메뉴 content -->
+			<!--// 메뉴 content -->
 			<!-- 목록보기 -->
 			<div class="btns_list_wrapper" style="width: 1170px;">
 				<div class="btn_list">
@@ -779,26 +462,29 @@
 				</div>
 			</div>
 			<div class="order_btn">
-				<a class="cart" href="#">장바구니</a>
-				<a class="bill" href="/lubway/orderStep04.do">주문하기</a>
+				<a class="cart" href="#">장바구니</a> <a class="bill"
+					href="/lubway/orderStep04.do">주문하기</a>
 			</div>
 		</div>
-			<!--// 메뉴소개 e -->
-		</div>
-	
+		<!--// 메뉴소개 e -->
+	</div>
+
 	<!-- 원산지 표시 Modal -->
 	<div id="popup_wrap" style="display: none;">
 		<h1 class="title">원산지정보</h1>
-		<div class="popup_content" style="overflow-y:auto; overflow-x:hidden; height:630px;">
+		<div class="popup_content"
+			style="overflow-y: auto; overflow-x: hidden; height: 630px;">
 			<div class="country_origin_wrapper">
 				<div>
 					<div id="mCSB_1" tabindex="0" style="max-height: none;">
-						<div id="mCSB_1_container" class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+						<div id="mCSB_1_container" class="mCSB_container"
+							style="position: relative; top: 0px; left: 0px;" dir="ltr">
 							<ul>
 								<li>
 									<div class="icon">
-										<img alt="쇠고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin01.png" class="mCS_img_loaded">
-										<span>쇠고기</span>
+										<img alt="쇠고기"
+											src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin01.png"
+											class="mCS_img_loaded"> <span>쇠고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -811,8 +497,9 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="돼지고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin02.png" class="mCS_img_loaded">
-										<span>돼지고기</span>
+										<img alt="돼지고기"
+											src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin02.png"
+											class="mCS_img_loaded"> <span>돼지고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -827,8 +514,9 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="닭고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin03.png" class="mCS_img_loaded">
-										<span>닭고기</span>
+										<img alt="닭고기"
+											src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin03.png"
+											class="mCS_img_loaded"> <span>닭고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -839,8 +527,9 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="칠면조고기" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin04.png" class="mCS_img_loaded">
-										<span>칠면조고기</span>
+										<img alt="칠면조고기"
+											src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin04.png"
+											class="mCS_img_loaded"> <span>칠면조고기</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -851,8 +540,9 @@
 								</li>
 								<li>
 									<div class="icon">
-										<img alt="참치" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin06.png" class="mCS_img_loaded">
-										<span>참치</span>
+										<img alt="참치"
+											src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_country_origin06.png"
+											class="mCS_img_loaded"> <span>참치</span>
 									</div>
 									<div class="info">
 										<dl>
@@ -865,7 +555,8 @@
 						</div>
 						<div style="display: block;">
 							<div class="mCSB_draggerContainer">
-								<div id="mCSB_1_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 30px; height: 429px; top: 0px; display: block; max-height: 536px;">
+								<div id="mCSB_1_dragger_vertical" class="mCSB_dragger"
+									style="position: absolute; min-height: 30px; height: 429px; top: 0px; display: block; max-height: 536px;">
 									<div class="mCSB_dragger_bar" style="line-height: 30px;">
 									</div>
 								</div>
