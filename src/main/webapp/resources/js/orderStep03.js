@@ -163,24 +163,16 @@
 	// 치즈 추가 선택
 	function endAddCheeseSelect() {
 		console.log("=== addCheeseSelect ===");
-		if(!checkCheese) {
-			alert("치즈를 선택해주세요.");
-			$("#closeLength").get(0).click();
-			return;
-		}
-		
 		var add_cheese = $("#addCheeseText").text();
-		
-		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
-		
-		$("#selectCheese").remove();
-		$(object).appendTo("#selectStep02");
-		
-		$("#closeLength").get(0).click();
+			
+			var object = $('<object id="selectCheese">' + add_cheese + '</object>')
+			
+			$("#selectCheese").remove();
+			$(object).appendTo("#selectStep02");
+			
+			$("#closeLength").get(0).click();
 	}
 	
-	
-
 	
 /******************STEP01********************/
 	
@@ -191,9 +183,9 @@
 	/******************수량 조절 , 결제 금액 ********************/
 	var qtyText = $("#ordQty").val();
 	var qty = parseInt(qtyText);
-	var ep = $("#eachPrice").val();
+	var ep = $("#eachPrice").val(); //현재메뉴 단품 가격
 	var cost = parseInt(ep);
-	var sum = cost;
+	var sum = cost; //추가되는 금액
 	console.log(cost);
 		
 		//길이 선택에 따라 lengthText 값이 바뀌게 한다
@@ -210,10 +202,8 @@
 					console.log(brd);
 					var brdcost = parseInt(brd);
 					cost+=brdcost;
-					sum = cost;
 				}else if(lengthChoice == "15cm"){
 					cost = parseInt(ep);
-					sum = cost;
 				}
 					
 					var num2 = cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -316,10 +306,12 @@
 			sum += ttl;
          } else {//체크 해제 시
             for(var i=0; i<arr.length; i++) {
-               if(tempArr[0] == arr[i]) arr.splice(i, 1);
+               if(tempArr[0] == arr[i]) {
+					arr.splice(i, 1);
+					ttl -= topcost;
+					sum -= topcost;
+				}
             }
-            ttl -= topcost;
-			sum -= ttl;
          }
          
          $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
@@ -364,6 +356,11 @@
       
 		//치즈 추가
       $("input:checkbox[name=add_cheese]").click(function(){
+		if(!checkCheese) {
+			alert("치즈를 선택해주세요.");
+			$("#closeLength").get(0).click();
+			return;
+		}
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var cost = parseInt(tempArr[1]);
@@ -385,10 +382,19 @@
       
 /******************STEP03********************/
 		$(".wedge").hide();
+		var setcost = 0; //세트 추가 가격
+		var checkset = 0; // 0 - 체크안함, 1 - 쿠키세트, 2 - 웨지세트, 3-쿠키+음료22, 4-웨지+음료22
 		$("input:radio[name=select_set]").click(function(){
 			var temp = $(this).val();
-			console.log(temp);
-			if(temp == "cookie") { //쿠키 세트 선택
+         	var tempArr = temp.split(",");
+         	var cost = parseInt(tempArr[1]);
+
+			if(tempArr[0] == "cookie") { //쿠키 세트 선택
+				if(setcost > 0){
+					sum -= setcost;
+					setcost = 0;
+				}
+				
 				$(".cookie").show();
 				$(".wedge").hide();
 				
@@ -396,6 +402,8 @@
 				var object = $('<object id="subselect">쿠키 세트, </object>');
 				$("#subselect").remove();
 				$(object).prependTo("#setText");
+				
+				$('#sum4').text("+ " + cost + "원");
 				
 				//쿠키 선택에 따라 setText 값이 추가되게 한다
 				$("input:radio[name=cookie]").click(function(){
@@ -413,7 +421,15 @@
 					$(object2).insertAfter("#subselect");
 				});
 				
+				checkset = 1;
+				setcost = cost;
+				
 			}else{ //웨지 세트 선택
+				if(setcost > 0){
+					sum -= setcost;
+					setcost = 0;
+				}
+				
 				$(".wedge").show();
 				$(".cookie").hide();
 				
@@ -421,6 +437,8 @@
 				var object = $('<object id="subselect">웨지/스프 세트, </object>');
 				$("#subselect").remove();
 				$(object).prependTo("#setText");
+				
+				$('#sum4').text("+ " + cost + "원");
 				
 				//웨지/스프 선택에 따라 setText 값이 추가되게 한다
 				$("input:radio[name=wedge]").click(function(){
@@ -438,29 +456,51 @@
 					$(object2).insertAfter("#subselect");
 				});
 				
+				checkset = 2;
+				setcost = cost;
 			}
 			
 			$("input:radio[name=drink]").click(function(){
 				var drink = document.getElementsByName('drink');
 				var drinkChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-				console.log(drinkChoice);
-				for(var i=0; i<drink.length; i++) {
-					if(drink[i].checked) {
-				   	drinkChoice = drink[i].value;
-				   }
+				
+				if(checkset != 0){
+					for(var i=0; i<drink.length; i++) {
+						if(drink[i].checked) {
+					   	drinkChoice = drink[i].value;
+						console.log(drinkChoice);
+							if(drinkChoice == "탄산음료 22oz"){
+								setcost += 200;
+								if(checkset == 1){checkset = 3;}
+								else{checkset = 4;}
+							}else{
+								if(checkset >2){
+									setcost -= 200;
+									if(checkset == 3){checkset = 1;}
+									else{checkset = 2;}
+								}
+							}
+					   }
+					}
+				
+					var objectend = $('<object id="selectdrink">' + drinkChoice + '</object>');
+					$("#selectdrink").remove();
+					$(objectend).appendTo("#setText");
+				
+					$('#sum4').text("+ " + setcost + "원");
 				}
+			});
 				
-				var objectend = $('<object id="selectdrink">' + drinkChoice + '</object>');
-				$("#selectdrink").remove();
-				$(objectend).appendTo("#setText");
-				
-				
-				
+			$(".choice_set_btn").click(function(){
+				sum += setcost;
+			
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				console.log(num2);
 				$("#finalAmt").text(num2);
-			});
-			
+					
+				$("#closeLength").get(0).click();
+			}
+				
 		});
 		
 	$("#qtyAdd").click(function() {

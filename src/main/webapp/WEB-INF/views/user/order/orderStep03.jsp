@@ -361,6 +361,7 @@ function hideDiv() {
 								</div>
 								<p id="selectStep02"></p>
 							</div>
+							<!-- end of step02 -->
 
 							<!----------------------------------- 03 세트선택 영역 ----------------------------------------->
 							<div class="step01">
@@ -389,13 +390,13 @@ function hideDiv() {
 									<div class="popup_content set_menu">
 										<ul>
 											<li><label class="form_circle"> <input
-													name="select_set" type="radio" checked="checked"
-													value="cookie"> <span class="icon"></span>
+													name="select_set" type="radio"
+													value="cookie, 1900"> <span class="icon"></span>
 												<em>쿠키 세트</em><span> +<em><fmt:formatNumber value="1900" pattern="#,###" /></em>&nbsp;원
 													</span>
 											</label></li>
 											<li><label class="form_circle"> <input
-													name="select_set" type="radio" value="wedge"> <span
+													name="select_set" type="radio" value="wedge, 2400"> <span
 													class="icon"></span> <em>웨지/스프 세트</em><span> +<em><fmt:formatNumber value="2400" pattern="#,###" /></em>&nbsp;원
 													</span>
 											</label></li>
@@ -424,7 +425,7 @@ function hideDiv() {
 									<div class="popup_content drink">
 										<ul>
 											<li><label class="form_circle"> <input
-													name="drink" type="radio" checked="checked"
+													name="drink" type="radio"
 													value="탄산음료 16oz"> <span class="icon"></span> <em>탄산음료
 														16oz</em>
 											</label></li>
@@ -434,12 +435,17 @@ function hideDiv() {
 													</span>
 											</label></li>
 										</ul>
+										<input class="choice_btn" type="button" value="선택"
+											onclick="endSetSelect();">
 									</div>
 								</div>
 								<div class="wrap_pop">
 									<a class="pop" href="#select_set" rel="modal:open">세트</a>
 								</div>
 							</div>
+							<!-- end of step03 -->
+							
+							
 						</div>
 					</div>
 				</div>
