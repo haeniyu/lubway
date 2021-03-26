@@ -186,10 +186,15 @@
 	var ep = $("#eachPrice").val(); //현재메뉴 단품 가격
 	var cost = parseInt(ep);
 	var sum = cost; //추가되는 금액
+	var brdcost = 0; //빵 길이에 따른 가격 설정을 위한 변수. 기본15cm 기준 (무료)
+	var ttl = 0;	//총 가격
 	console.log(cost);
 		
-		//길이 선택에 따라 lengthText 값이 바뀌게 한다
+		//길이 선택 시 모든 사항이 초기화 되고 빵 가격이 적용된다.
 		$("input:radio[name=length]").click(function(){
+			
+			clearAll();
+			
 			var length = document.getElementsByName('length');
 			var lengthChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
 			for(var i=0; i<length.length; i++) {
@@ -200,15 +205,14 @@
 				if(lengthChoice == "30cm"){
 					var brd = document.getElementById('price30').value;
 					console.log(brd);
-					var brdcost = parseInt(brd);
-					cost+=brdcost;
-				}else if(lengthChoice == "15cm"){
-					cost = parseInt(ep);
+					brdcost = parseInt(brd);
+				}else{
+					brdcost = 0;
 				}
-					
-					var num2 = cost.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-					console.log(num2);
-					$("#finalAmt").text(num2);
+				sum = cost + brdcost;				
+				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+				console.log(num2);
+				$("#finalAmt").text(num2);
 			}
 			console.log(lengthChoice);
 			$("#lengthText").text(lengthChoice);
@@ -292,7 +296,6 @@
 		
 		//토핑 추가 선택
       	var arr = new Array();		//선택된 토핑을 담을 배열
-      	var ttl = 0;				//총 가격
 		var sumUntilStep2 = sum;	//스텝2까지의 가격 저장***
       
       $("input:checkbox[name=topping]").click(function(){
@@ -558,5 +561,16 @@
 			$("#finalAmt").text(num2);
 		}
 	});//end of 수량빼기
-		
+	
+	//모든 것을 처음 상태로 되돌리는 메서드 - 진행중...
+	function clearAll(){
+		cost = parseInt(ep);
+		sum = cost; 
+		ttl = 0;
+		drinkCost = 0;
+		setcost = 0;
+		$("input:checkbox[name=topping]").prop("checked", false);
+		$("#selectStep02").text("");
+	}
+	
 });//end of document.ready
