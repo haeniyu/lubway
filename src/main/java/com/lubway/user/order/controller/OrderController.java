@@ -107,7 +107,7 @@ public class OrderController {
 	}
 	
 	/** 메뉴 상세 페이지 
-	 *  hideNum : 1 - 다 가리기 , 2 - 영양성분표만 보여주기, 3 - 영양성분표&세트만 보여주기 , 4 - 빵이랑 빵 길이만 가리기
+	 *  hideNum : 1 - 다 가리기 , 2 - 영양성분표만 보여주기, 3 - 영양성분표&세트만 보여주기 , 4 - 빵이랑 빵 길이만 가리기, 5 - 샌드위치 빵길이 30
 	 * */
 	@PostMapping("orderStep03.do")
 	public String orderStep03(Model model,
@@ -127,6 +127,7 @@ public class OrderController {
 		switch (selected) {
 		case "sandwich":	// 다 있어 - hideNum 해당 안됨
 			model.addAttribute("menu", menuService.selectSandwich(Svo));
+			model.addAttribute("hideNum", 5);
 			break;
 		case "wrap":	//영양성분표&세트만 있어 - 3
 			model.addAttribute("menu", menuService.selectWrap(wvo));

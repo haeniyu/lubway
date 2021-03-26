@@ -131,7 +131,7 @@ div>.th_name_step03 {
 	margin-top: 10px;
 }
 
-#sum, #sum2, #sum3 {
+span[id^=sum]{
 	font-size: 18px;
 	font-weight: bold;
 	color: #ffce32;
