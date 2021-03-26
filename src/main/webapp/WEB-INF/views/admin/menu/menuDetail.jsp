@@ -119,7 +119,7 @@ $(document).ready(function() {
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price15" id="price15" value="${update.price15}">
+								<input type="text" class="form-control" name="price" id="price15" value="${update.price}">
 							</div>
 						</div>
 						</div>

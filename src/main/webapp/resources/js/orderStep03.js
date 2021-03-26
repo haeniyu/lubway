@@ -342,8 +342,9 @@
 /******************수량 조절 , 결제 금액 ********************/
 	var qtyText = $("#ordQty").val();
 	var qty = parseInt(qtyText);
-	console.log(qtyText);
-	console.log(qty);
+	var ep = $("#eachPrice").val();
+	var cost = parseInt(ep);
+	console.log(cost);
 	
 	$("#qtyAdd").click(function() {
 		console.log("수량 더하기!!!");
@@ -351,6 +352,12 @@
 		console.log(qty);
 		var num = qty.toString();
 		$("#ordQty").val(num);
+		
+		cost+=cost;
+		console.log(cost);
+		var num2 = cost.toString();
+		$("#finalAmt").val(num2);
+		
 	});
 	
 	$("#qtySub").click(function() {

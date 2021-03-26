@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lubway.admin.menu.SaladVO;
 import com.lubway.admin.menu.SaladDAO;
 import com.lubway.admin.menu.SaladVO;
 
@@ -14,8 +13,6 @@ public class SaladServiceImpl implements SaladService {
 
 	@Autowired
 	SaladDAO menuDAO;
-	
-	
 	
 	@Override
 	public void insertSalad(SaladVO vo) {

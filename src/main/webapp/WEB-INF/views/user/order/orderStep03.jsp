@@ -436,7 +436,6 @@ function hideDiv() {
 				</div>
 				<!-- 수량 및 결제 금액  -->
 				<div class="menu_total">
-					<input name="eachPrice" type="hidden" value="9600" />
 					<dl class="count">
 						<dt>수량</dt>
 						<dd>
@@ -448,7 +447,10 @@ function hideDiv() {
 					<dl class="total_won">
 						<dt>최종 결제 금액</dt>
 						<dd>
-							<strong id="finalAmt"><fmt:formatNumber value="" pattern="#,###" /></strong>
+							<input id="eachPrice" type="hidden" value="${menu.price }" />
+							<strong id="finalAmt">
+							<fmt:formatNumber value="" type='currency' />
+							</strong>
 							<span>원</span>
 						</dd>
 					</dl>
