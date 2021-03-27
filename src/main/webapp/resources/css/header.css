@@ -36,7 +36,7 @@
 #gnb >ul >li a.dp1,
 #gnb .dp2 ul li a{ transition-duration:0.2s}
 
-#header .util_menu {position:absolute; right:300px; top:40px;}
+#header .util_menu {position:absolute; right:200px; top:40px;}
 #header .util_menu ul li {float:left; position:relative;}
 #header .util_menu ul li ~ li {margin-left:30px;}
 #header .util_menu ul li a {display:block; color:#666666; font-size:13px; font-weight:normal; line-height:30px; height:30px;}

@@ -13,18 +13,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	//When page loads...
-	$("ul.select li:first").addClass("active").show(); //Activate first tab
-	$(".data_none:first").show(); //Show first tab content
 	
-	//On Click Event
-	$("ul.select li").click(function() {
-		select = $(this).attr("id");
-		
-		$("ul.select li").removeClass("active"); //Remove any "active" class
-		$(this).addClass("active"); //Add "active" class to selected tab
-		
-	});//end click function
 });
 </script>
 </head>
@@ -76,7 +65,6 @@ $(document).ready(function(){
 									<th:object>D로스트 치킨 아보카도 (15cm)</th:object>
 								</label>
 								<p>
-									
 										<!-- 빵길이 -->
 										<th:object>15cm, </th:object>
 										<!-- 빵종류 -->
@@ -84,14 +72,9 @@ $(document).ready(function(){
 										<!-- 치즈 -->
 										<th:object>치즈 제외, </th:object>
 										<!-- 야채 -->
-										
 											<th:object>토마토, </th:object>
-										
 										<!-- 소스 -->
-										
 											<th:object>스위트 칠리</th:object>
-										
-									
 								</p>
 								<strong>
 									<em>7,200</em>
@@ -102,10 +85,7 @@ $(document).ready(function(){
 							<img onError="this.src=''" alt="D로스트 치킨 아보카도 (15cm)" src="" />
 							 -->
 						</div>
-						
-						
 							<dl class="detail_list">
-								
 									<dt>
 										<em>추가</em>
 										<span>오믈렛</span>
@@ -114,38 +94,16 @@ $(document).ready(function(){
 										<strong>1,200</strong>
 										<span>원</span>
 									</dd>
-								
-								
-								
-								
-								
-									
-									
-
 									<dt>
 										<em>추가</em>
 										<span class="sideText">
-											
-												
-											
-											
-												
-													더블 초코칩 쿠키 / 
-												
-											
-											
-												
-													스프라이트 / 
-												
-											
+													더블 초코칩 쿠키/스프라이트 / 
 										</span>
 									</dt>
 									<dd>
 										<strong>2,200</strong>
 										<span>원</span>
 									</dd>
-								
-								
 							</dl>
 							<div class="total">
 								<dl class="count">
@@ -194,7 +152,9 @@ $(document).ready(function(){
 			
 
 			<!-- 장바구니 목록 없을때 -->
-			
+			<div class="data_none wh_box">
+				<p>장바구니가 비어있습니다.</p>
+			</div>
 
 			<!--// index -->
 		</div>
