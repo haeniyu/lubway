@@ -14,15 +14,23 @@
 	height: 68px;
 	line-height: 68px;
 	position: relative;
-	font-size: 18px;
+	font-size: 24px;
 	color: #fff;
+	font-weight: 500;
 	text-align: center;
+}
+
+.tab02 ul li span {
+	font-size: 24px;
+	color: #fff;
+	font-weight: 500;
 }
 
 .tab_content {
 	width: 1170px;
 	margin: 0 auto 50px;
 	position: relative;
+	padding: 50px 0 80px;
 }
 
 .usingStep >  img {
@@ -56,3 +64,25 @@
 .subwray_promise_wrapper .subwray_promise_content li:nth-child(even) .info{left:0px;}
 .subwray_promise_wrapper .subwray_promise_content li:nth-child(even) .eng{color:#f6f6f6; text-align:right; right:600px;}
 .subwray_promise_wrapper .subwray_promise_content li:nth-child(even):after{background-color:#f6f6f6;}
+
+
+
+/***************************  쿠폰   ****************************/
+
+.coupon_status {
+    background-color: #ffffff;
+    overflow: hidden;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+
+th{
+	line-height: 40px;
+	background-color: #E5E5E5;
+}
+
+td{
+	line-height: 40px;
+	border-bottom: 1px solid #989898;
+}
