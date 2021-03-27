@@ -12,9 +12,17 @@
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
-	$('.arrow').on('click', function () {
-		$(".addMenu").addClass("on").show();
-		
+	$('.history_table .selectMenu').on('click', function () {
+		var spd = 0.5,
+			eft = Power3.easeOut
+		if ($(this).parent('li').hasClass('on')) {
+			$(this).parent('li').removeClass('on');
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: 0 })
+		} else {
+			$(this).parent('li').addClass('on');
+			var h = $(this).next('.addMenu').find('ul').innerHeight();
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: h })
+		}
 	})
 });
 </script>
@@ -29,7 +37,7 @@ $(function() {
 				<!-- 주문하기 -->
 				<div class="bill_order">
 					<div class="order_title">
-						<h3>Fast-Sub</h3>
+						<h3>Fast-Way</h3>
 						<p class="step04p">온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
 					</div>
 					<div class="order_con">
@@ -138,10 +146,11 @@ $(function() {
 							<h2>할인 방법 선택</h2>
 							<div class="write_info_wrap">
 								<!-- 쿠폰 사용 -->
-								<input name="voucher" type="hidden" /> <input id="voucherAmt"
-									type="hidden" /> <input name="couponItemCode" type="hidden" />
-								<input name="couponItemIndex" type="hidden" /> <input
-									id="couponAmt" name="couponAmt" type="hidden" />
+								<input name="voucher" type="hidden" /> 
+								<input id="voucherAmt" type="hidden" /> 
+								<input name="couponItemCode" type="hidden" />
+								<input name="couponItemIndex" type="hidden" /> 
+								<input id="couponAmt" name="couponAmt" type="hidden" />
 								<div class="input_set">
 									<dl>
 										<dt>쿠폰 사용</dt>
@@ -152,8 +161,7 @@ $(function() {
 												</select>
 											</div>
 											<div class="btn_input_in">
-												<a class="in_form_btn" href="javascript:void(0);"
-													id="couponApply"><span>쿠폰 사용</span></a>
+												<a class="in_form_btn" href="javascript:void(0);" id="couponApply"><span>쿠폰 사용</span></a>
 											</div>
 										</dd>
 									</dl>
@@ -169,7 +177,7 @@ $(function() {
 												</span>
 												<p>
 													<span>보유 포인트 :</span> 
-													<strong id="usablePoint" data-point="0">0</strong>
+													<strong id="usablePoint" data-point="0">${user.point }</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">
@@ -220,58 +228,70 @@ $(function() {
 							<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
 							<div class="history_table">
 								<!-- 선택한 메뉴 -->
-								<div class="name" data-target="mainItem">
-									<!-- 선택한 메뉴 이름 -->
-									<strong>로스트 치킨</strong>
-									<p>
-									<!-- 선택한 메뉴들 받는 부분 -->
-										<!-- 빵길이 -->
-										30cm, 
-										<!-- 빵종류 -->
-										파마산 오레가노(토스팅), 
-										<!-- 치즈 -->
-										아메리칸치즈, 
-										<!-- 야채 -->
-										양상추, 
-										<!-- 소스 -->
-										레드와인식초
-									</p>
-								</div>
-								<div class="count">
-									<strong class="qty" data-qty="1">1</strong>개
-								</div>
-								<div class="sum">
-									<span>
-										<strong class="price" data-price="22,200">22,200</strong><em>원</em>
-									</span>
-									<!-- 추가 선택 메뉴 있을경우 생김 -->
-									<a class="arrow"></a>
-								</div>
-								<!-- 추가 선택 메뉴 있을경우 보임-->
-								<div class="addMenu">
-									<div class="addname">
-										<strong>모차렐라치즈</strong>
-									</div>
-									<div class="addcount"></div>
-									<div class="addsum">
-										<span>
-											<strong>1,800</strong><em>원</em>
-										</span>
-									</div>
-									<!-- 세트 추가했을 경우 보임 -->
-									<div class="setname">
-										<strong>세트추가</strong>
-										<p>
-											초코칩 쿠키,탄산음료 16oz
-										</p>
-									</div>
-									<div class="setcount"></div>
-									<div class="setsum">
-										<span>
-											<strong>1,900</strong><em>원</em>
-										</span>
-									</div>
-								</div>
+								<ul>
+									<li>
+										<div class="selectMenu">
+											<div class="name" data-target="mainItem">
+												<!-- 선택한 메뉴 이름 -->
+												<strong>로스트 치킨</strong>
+												<p>
+												<!-- 선택한 메뉴들 받는 부분 -->
+													<!-- 빵길이 -->
+													30cm, 
+													<!-- 빵종류 -->
+													파마산 오레가노(토스팅), 
+													<!-- 치즈 -->
+													아메리칸치즈, 
+													<!-- 야채 -->
+													양상추, 
+													<!-- 소스 -->
+													레드와인식초
+												</p>
+											</div>
+											<div class="count">
+												<strong class="qty" data-qty="1">1</strong>개
+											</div>
+											<div class="sum">
+												<span>
+													<strong class="price" data-price="22,200">22,200</strong><em>원</em>
+												</span>
+												<!-- 추가 선택 메뉴 있을경우 생김 -->
+												<a class="arrow"></a>
+											</div>
+										</div>
+										<!-- 추가 선택 메뉴 있을경우 보임-->
+										<div class="addMenu">
+											<ul>
+												<li>
+													<div class="addname">
+														<strong>모차렐라치즈</strong>
+													</div>
+													<div class="addcount"></div>
+													<div class="addsum">
+														<span>
+															<strong>1,800</strong><em>원</em>
+														</span>
+													</div>
+												</li>
+												<!-- 세트 추가했을 경우 보임 -->
+												<li>
+													<div class="setname">
+														<strong>세트추가</strong>
+														<p>
+															초코칩 쿠키,탄산음료 16oz
+														</p>
+													</div>
+													<div class="setcount"></div>
+													<div class="setsum">
+														<span>
+															<strong>1,900</strong><em>원</em>
+														</span>
+													</div>
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
 							</div>
 							<!--// 1세트 -->
 						</div>

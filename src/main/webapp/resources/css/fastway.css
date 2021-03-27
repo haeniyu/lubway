@@ -11,7 +11,7 @@
 .order_index .index_list li.home_sub{width: 33.4%; background: url('../images/order/index_bg02.png') no-repeat 50% 92px #09a8e0; background-size: 225px 339px;}
 .order_index .index_list li.group{width: 33.3%; background: url('../images/order/index_bg03.png') no-repeat 50% 141px #ff8300; background-size: 571px 359px;}
 .order_index .index_list li.fast_sub h3,
-.order_index .index_list li.home_sub h3{padding: 479px 0 29px 0; color: #fff; font-family: font_sw; font-weight: bold; font-size: 62px;}
+.order_index .index_list li.home_sub h3{padding: 479px 0 29px 0; color: #fff; font-weight: bold; font-size: 62px;}
 .order_index .index_list li.group h3{padding: 490px 0 29px 0; color: #fff; font-size: 56px; font-weight: bold;}
 .order_index .index_list li.home_sub span{background-color: #ffc300;}
 
@@ -59,7 +59,7 @@
 .check_address .order_con fieldset dl dt{clear: left; float: left; width: 145px; padding-left: 26px; font-weight: bold; box-sizing: border-box; line-height: 80px;}
 .check_address .order_con fieldset dl dd{float: left; width: 823px;}
 .check_address .order_con fieldset dl dd input{float: left;}
-.check_address .order_con fieldset dl dd.zip input[type=text]{margin-top: 30px; padding-left: 21px; border: 0; color: #ffc300; font-family: font_sw;}
+.check_address .order_con fieldset dl dd.zip input[type=text]{margin-top: 30px; padding-left: 21px; border: 0; color: #ffc300;}
 .check_address .order_con fieldset dl dd button{float: right; width: 130px; margin-top: 25px; background: none; border-left: 2px solid #e8e8e8; color: #009223; text-align: center; line-height: 32px;}
 .check_address .order_con fieldset dl .detail{border-top: 1px solid #e5e5e5;}
 .check_address .order_con fieldset dl dd.detail{}
@@ -87,7 +87,7 @@
 .order .store_map{position: relative;}
 .order .store_map .order_map {margin:0 auto; width:1170px;}
 .order .order_title{text-align: center;}
-.order .order_title h3{padding: 64px 0 25px 0; color: #fff; font-size: 70px;font-family:'font_sw', 'font_ns'; font-weight: bold;}
+.order .order_title h3{padding: 64px 0 25px 0; color: #fff; font-size: 70px; font-weight: bold;}
 .order .order_title p{color: #fff; font-size: 16px; padding-bottom: 50px;}
 .order .order_step{margin-top: 58px; text-align: center; font-size: 0;}
 .order .order_step li{position: relative; display: inline-block; width: 70px; height: 106px; margin-right: 20px; padding-right: 65px; color: #fff; vertical-align: top;}
@@ -97,7 +97,7 @@
 .group_sub.order .order_step li:after{display: none;}/* 단체주문일때 스텝 디자인 변경 */
 .order .order_step li.step_payment:after{display: none;}
 .order .order_step li.on{padding-left: 102px; font-size: 24px; font-weight: bold; text-align: left;}
-.order .order_step li.on strong{display: block; padding-top: 15px; color: #ffc300; font-size: 16px; font-family: font_sw; font-weight: bold;}
+.order .order_step li.on strong{display: block; padding-top: 15px; color: #ffc300; font-size: 16px; font-weight: bold;}
 .order .order_step li.step_address{background: url('../images/order/fast_sub/step00_off_bg.png') no-repeat 0 12px;}
 .order .order_step li.step_address.on{width: 164px; height: 170px; padding-right: 16px; background: url('../images/order/fast_sub/step00_on_bg.png') no-repeat 0 0;}
 .order .order_step li.step_shop{background: url('../images/order/fast_sub/step01_off_bg.png') no-repeat 0 12px;}
@@ -132,7 +132,7 @@
 .order .store_list ul li dl dt em.on{background: #009223; border-color: #009223; color: #fff;}
 .order .store_list ul li dl dd{position: relative; margin-top: 14px;}
 .order .store_list ul li dl dd p{width: 260px; color: #999; line-height: 23px;}
-.order .store_list ul li dl dd span{position: absolute; right: 0; bottom: 3px; color: #bbb; font-family: font_sw;}
+.order .store_list ul li dl dd span{position: absolute; right: 0; bottom: 3px; color: #bbb;}
 .order .mCSB_scrollTools .mCSB_draggerRail{background: #fff;}
 .order .mCSB_scrollTools .mCSB_dragger .mCSB_dragger_bar{ background-color: #eee; }
 .order .store_map .pagination{margin-top: 22px;}
@@ -152,9 +152,9 @@
 .order .menu_list .list li a p{text-align: center;}
 .order .menu_list .list li a p > strong{display: block; padding: 13px 0 7px 0; color: #292929; font-size: 22px; font-weight: bold;}
 .order .menu_list .list .kcal {display:block; color:#ffc300; font-family:'font_sw'; font-size:18px;font-weight: bold;} /*2020-08-14*/
-.order .menu_list .list .eng_name {display:inline-block;font-size:16px; letter-spacing:0; color:#666; font-weight:normal; font-family:'font_sw'; text-align:center;padding:2px 0 14px;} /*2020-08-14*/
+.order .menu_list .list .eng_name {display:inline-block;font-size:16px; letter-spacing:0; color:#666; font-weight:normal; text-align:center;padding:2px 0 14px;} /*2020-08-14*/
 .order .menu_list .list .label {position:absolute; left:0; top:0; width:70px;}
-.order .menu_list .list .label span {display:block; color:#fff; font-family:'font_sw', 'font_ns'; font-size:13px; font-weight:bold; line-height:30px; text-align:center; height:30px;}
+.order .menu_list .list .label span {display:block; color:#fff; font-size:13px; font-weight:bold; line-height:30px; text-align:center; height:30px;}
 .order .menu_list .list .label span.new {background-color:#ffc300;}
 .order .menu_list .list .label span.season {background-color:#9631a8;}
 .order .menu_list .list .label span.recommend {background-color:#ff4b06;}
@@ -211,7 +211,7 @@
 .menu_view .nutrition_list{}
 .menu_view .nutrition_list h4{padding: 29px 0 28px 0; font-size: 26px; font-weight: bold;}
 .menu_view .nutrition_list .board_list_wrapper{padding-bottom: 0;}
-.menu_view .nutrition_list .board_list_wrapper .nutrition_table td div{color: #666; font-family: font_sw;}
+.menu_view .nutrition_list .board_list_wrapper .nutrition_table td div{color: #666;}
 .menu_view .nutrition_list .table_info{overflow: hidden;}
 .menu_view .nutrition_list .table_info .table_desc{float: left; padding-top: 18px;}
 .menu_view .nutrition_list .table_info .table_desc li{padding-bottom: 7px; color: #999; font-size: 13px;}
@@ -225,7 +225,7 @@
 .menu_view .menu_select > li{margin-bottom: 12px;}
 .menu_view .menu_select li dl{background-repeat:repeat-y; background-position:0 0; overflow: hidden; position:relative;}
 .menu_view .menu_select li dl dt{float: left; width: 220px; min-height: 120px; padding-left: 101px; color: #fff; font-size: 24px; font-weight: bold; box-sizing: border-box; letter-spacing: -0.7px;}
-.menu_view .menu_select li dl dt strong{display: block; padding: 27px 0 2px 0; color: #ffce32; font-size: 18px; font-family: font_sw; font-weight: bold;}
+.menu_view .menu_select li dl dt strong{display: block; padding: 27px 0 2px 0; color: #ffce32; font-size: 18px; font-weight: bold;}
 .menu_view .menu_select li dl dd{position: relative; float: left; width: 750px; min-height: 120px; border: 1px solid #e5e5e5; border-width: 1px 1px 1px 0; box-sizing: border-box; padding:38px;}
 .menu_view .menu_select li dl dd ul{overflow: hidden; /*padding: 42px 0 0 54px;*/}
 .menu_view .menu_select li dl dd ul li{float: left; /*margin-right: 10px;*/}
@@ -262,10 +262,10 @@
 .menu_view_wrapper .menu_total .count dd{}
 .menu_view_wrapper .menu_total .count dd a{float: left; display: block; width: 37px; height: 37px; background: url('../images/order/btn_minus.png') no-repeat 0 0; font-size: 0;}
 .menu_view_wrapper .menu_total .count dd a.plus{background-image: url('../images/order/btn_plus.png');}
-.menu_view_wrapper .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-family: font_sw; font-weight: bold; text-align: center; vertical-align: top; background-color: #f6f6f6;}
+.menu_view_wrapper .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-weight: bold; text-align: center; vertical-align: top; background-color: #f6f6f6;}
 .menu_view_wrapper .menu_total .total_won{float: right;}
 .menu_view_wrapper .menu_total .total_won dt{margin-right: 17px; color: #292929; font-size: 24px; font-weight: bold;}
-.menu_view_wrapper .menu_total .total_won dd strong{float: left; color: #009223; font-size: 40px; font-family: font_sw; font-weight: bold;}
+.menu_view_wrapper .menu_total .total_won dd strong{float: left; color: #009223; font-size: 40px; font-weight: bold;}
 .menu_view_wrapper .menu_total .total_won dd span{float: left; padding: 7px 0 0 5px; color: #009223; font-size: 24px; font-weight: bold;}
 .menu_view_wrapper .btn_area{padding: 40px 0 100px 0;}
 .menu_view_wrapper .btn_area .btn_side{width: 250px;}
@@ -285,11 +285,11 @@
 .bill_order .write_info_wrap .input_set .info_dl dd {float:left; box-sizing:border-box; /*text-indent:20px;*/ padding-top:8px; padding-left:20px;}
 
 .bill_order .write_info_wrap .form_select {border:2px solid #dddddd;}
-.bill_order .write_info_wrap .input_set .bdr_text input {font-family:'font_sw', 'font_ns'; box-sizing:border-box; line-height:1.1em; letter-spacing:0; padding-top:6px; padding-bottom:11px;}
+.bill_order .write_info_wrap .input_set .bdr_text input {box-sizing:border-box; line-height:1.1em; letter-spacing:0; padding-top:6px; padding-bottom:11px;}
 
 .bill_order .write_info_wrap .input_set .card_img {background:url(../images/order/bill_sale_bg.png) no-repeat 0 0; display:block; margin-left:15px; height:36px; width:52px;}
 .bill_order .write_info_wrap .input_set .card_total {overflow:hidden; margin-bottom:10px;}
-.bill_order .write_info_wrap .input_set .card_total p {display:inline-block; font-family:'font_sw'; font-size:20px; letter-spacing:-0.05em;}
+.bill_order .write_info_wrap .input_set .card_total p {display:inline-block; font-size:20px; letter-spacing:-0.05em;}
 .bill_order .write_info_wrap .input_set .card_total .name {color:#999999;  font-weight:normal;}
 .bill_order .write_info_wrap .input_set .card_total .name::after {color:#dddddd; content:' /';}
 .bill_order .write_info_wrap .input_set .card_total .price {color:#292929; font-weight:bold;}
@@ -303,15 +303,16 @@
 
 .bill_order .write_info_wrap .input_set .use_point {overflow:hidden;}
 .bill_order .write_info_wrap .input_set .use_point .form_text {float:left; position:relative; padding-right:40px; width:290px;}
-.bill_order .write_info_wrap .input_set .use_point .form_text::after {content:'P'; display:block; font-family:'font_sw', 'font_ns'; font-size:20px; position:absolute; right:20px; top:5px;}
+.bill_order .write_info_wrap .input_set .use_point .form_text::after {content:'P'; display:block; font-size:20px; position:absolute; right:20px; top:5px;}
 .bill_order .write_info_wrap .input_set .use_point.use_card .form_text::after {content:'원'; font-size:17px;}
 .bill_order .write_info_wrap .input_set .use_point .form_text input {text-align:right; text-indent:0;}
 .bill_order .write_info_wrap .input_set .use_point p {float:left; margin-left:20px; padding-top:5px;}
 .bill_order .write_info_wrap .input_set .use_point p::before {background-color:#292929; content:''; display:inline-block; vertical-align:7px; height:2px; width:2px;}
-.bill_order .write_info_wrap .input_set .use_point p strong {color:#292929; font-family:'font_sw'; font-size:20px; letter-spacing:-0.05em;}
+.bill_order .write_info_wrap .input_set .use_point p strong {color:#292929; font-size:20px; letter-spacing:-0.05em;}
 .bill_order .write_info_wrap .input_set .use_point p strong::after {content:'P';}
 .bill_order .write_info_wrap .input_set .use_point.use_card p strong::after {content:'원';}
 
+.board_list_wrapper .Tborder {background: #009223; height: 3px;}
 .bill_order .board_list_wrapper{border-bottom:1px solid #009223; padding-bottom: 0;}
 .bill_order .board_list_wrapper h2 {font-size:26px; font-weight:bold; margin-bottom:26px; letter-spacing:-0.05em;}
 .bill_order .board_list_wrapper .content table:first-child{border-top-width: 4px;}
@@ -327,15 +328,24 @@
 .bill_order .history_table tr:last-child td{border-bottom-color: #009223;}
 .bill_order .board_list_wrapper table td {border-bottom:none;}
 .bill_order .board_list_wrapper table tr ~ tr td {border-top:1px solid #ddd;}
-.bill_order .history_table td{}
-.bill_order .history_table td .name{padding: 22px 0 22px 29px; text-align: left;}
-.bill_order .history_table td .name strong{color: #292929; font-weight: bold;}
-.bill_order .history_table td .name p{margin-top: 9px; color: #999; font-size: 14px; line-height: 22px;}
-.bill_order .history_table td .count{color: #999;}
-.bill_order .history_table td .count strong{color: #999; font-family: font_sw; font-weight: normal;}
-.bill_order .history_table td .sum strong{color: #292929; font-family: font_sw; font-weight: bold;}
-.bill_order .history_table td .sum a{float: right; width: 22px; height: 22px; background: url('../images/order/fast_sub/bill_list_btn.png') no-repeat 0 50%; font-size: 0; transform:rotate(180deg);}
-.bill_order .history_table.on td .sum a {transform:rotate(0deg);}
+.bill_order .history_table .addMenu{display: none;}
+.bill_order .history_table .on .addMenu{display: block;}
+.bill_order .history_table .name{padding: 22px 0 22px 29px; text-align: left; float: left; width: 660px;}
+.bill_order .history_table .addname{padding: 22px 0 22px 29px; text-align: left; float: left; width: 660px;}
+.bill_order .history_table .setname{padding: 22px 0 22px 29px; text-align: left; float: left; width: 660px;}
+.bill_order .history_table .name strong{color: #292929; font-weight: bold;}
+.bill_order .history_table .name p{margin-top: 9px; color: #999; font-size: 14px; line-height: 22px;}
+.bill_order .history_table .setname p{margin-top: 9px; color: #999; font-size: 14px; line-height: 22px;}
+.bill_order .history_table .count{color: #999; float: left; width: 90px; padding: 36px 0 36px 29px;}
+.bill_order .history_table .addcount{color: #999; float: left; width: 90px; padding: 22px 0 22px 29px;}
+.bill_order .history_table .setcount{color: #999; float: left; width: 90px; padding: 36px 0 36px 29px;}
+.bill_order .history_table .count strong{color: #999; font-weight: normal;}
+.bill_order .history_table .sum {float: left; width: 130px; padding: 36px 0 36px 29px;}
+.bill_order .history_table .addsum {float: left; width: 130px; padding: 22px 0 22px 29px;}
+.bill_order .history_table .setsum {float: left; width: 130px; padding: 36px 0 36px 29px;}
+.bill_order .history_table .sum strong{color: #292929; font-weight: bold;}
+.bill_order .history_table .sum .arrow{float: right; width: 22px; height: 22px; background: url('https://lubway.s3.ap-northeast-2.amazonaws.com/bill_list_btn.png') no-repeat 0 50%; font-size: 0; transform:rotate(180deg);}
+.bill_order .history_table .on .sum .arrow  {transform:rotate(0deg); display: block;}
 /* .bill_order .history_table td .sum a.on{transform: rotate(180deg);} */
 
 .bill_order .amount{overflow:hidden; margin-top:54px;}

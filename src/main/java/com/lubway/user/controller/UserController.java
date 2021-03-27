@@ -384,24 +384,6 @@ public class UserController {
 	}
 
 	/**
-	 * 공지사항 페이지 이동
-	 */
-	@RequestMapping("/notice.do")
-	public String notice() {
-		System.out.println("공지사항 으로 이동");
-		return "notice";
-	}
-
-	/**
-	 * 공지 상세 페이지 이동
-	 */
-	@RequestMapping("/noticein.do")
-	public String noticein(){
-		System.out.println("공지 상세정보로 이동");
-		return "noticein";
-	}
-
-	/**
 	 * 임시 비밀번호 생성 기능
 	 */
 	public String getTempPassword(int length) {
