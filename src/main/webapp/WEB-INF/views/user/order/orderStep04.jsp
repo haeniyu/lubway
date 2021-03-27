@@ -177,7 +177,7 @@ $(function() {
 												</span>
 												<p>
 													<span>보유 포인트 :</span> 
-													<strong id="usablePoint" data-point="0">${user.point }</strong>
+													<strong id="usablePoint" data-point="0">${userInfo.point }</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">

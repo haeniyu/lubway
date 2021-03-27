@@ -50,5 +50,10 @@ public class UserServiceImpl implements UserService {
 	public int telCheck(String tel) {
 		return dao.telCheck(tel);
 	}
+	
+	@Override
+	public UserVO getUserInfo(UserVO vo) {
+		return dao.getUserInfo(vo);
+	}
 
 }

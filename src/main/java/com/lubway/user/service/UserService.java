@@ -27,5 +27,7 @@ public interface UserService {
 
 	/**	유저 비밀번호 변경 */	
 	void updatePwd(UserVO vo);
+	
+	UserVO getUserInfo(UserVO vo);
 
 }
