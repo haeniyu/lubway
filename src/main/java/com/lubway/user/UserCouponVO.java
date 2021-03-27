@@ -17,4 +17,5 @@ public class UserCouponVO {
 	private Integer discount; // 할인율
 	private Date regdate; //쿠폰 시작일
 	private Date enddate; //쿠폰 만기일
+	private String id; // 로그인 한 사용자 id
 }

@@ -15,8 +15,11 @@
 
 	<select id="getUserCouponList" parameterType="usercoupon"
 		resultType="usercoupon">
-		SELECT * FROM COUPON
-		ORDER BY ENDDATE DESC
+		<![CDATA[
+		select code, name, type, regdate, enddate, discount from coupon 
+		where code not in(select code from use_coupon where id=#{id}) and enddate >= now()
+		ORDER BY REGDATE DESC
+		]]>
 	</select>
 
 </mapper>

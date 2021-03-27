@@ -115,9 +115,10 @@ public class MyWayController {
 	
 	//내 쿠폰 페이지로 이동
 	@RequestMapping("/coupon.do")
-	public String getCouponList(Model model, UserCouponVO vo) {
+	public String getCouponList(Model model, UserCouponVO vo, HttpSession session) {
 		System.out.println("유저 쿠폰 목록 요청 처리");
-		
+		UserVO userVo = (UserVO) session.getAttribute("userInfo");
+		vo.setId(userVo.getId());
 		System.out.println(vo.toString());
 		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
 		
