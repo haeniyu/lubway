@@ -75,11 +75,8 @@
     function searchInfo() {
     	console.log("=== searchInfo ===");
 
-    	$("#basicAddr").val($("#baseAddr").val());
-    	$("#detailAddr").val($("#dtlAddr").val());
-    	
-    	var basic = $("#basicAddr").val();
-    	var detail = $("#detailAddr").val();
+    	var basic = $("#baseAddr").val();
+    	var detail = $("#dtlAddr").val();
     	var fullAddr = basic + " " + detail;
     	
     	$("#fullAddr").val(fullAddr);
@@ -184,47 +181,47 @@
 						level : 2
 					};
 
+					//지도 생성
 					var map = new kakao.maps.Map(container, options);
+					//주소-좌표간 변환 서비스 객체를 생성
+					var geocoder = new kakao.maps.services.Geocoder(); 
 
+					//검색 시작
 					function search(data) {
 						closeOverlay();
-						var xpos = [];
-						var ypos = [];
+						
+						//마커 초기화
 						for (var i=0; i<markers.length; i++) {
 							markers[i].setMap(null);
 					 	}  
-						// 주소-좌표 변환 객체를 생성합니다
-						var geocoder = new kakao.maps.services.Geocoder(); 
+						
 						var arr = data;
 						var geocoderCount = 0;
 						var bounds = new kakao.maps.LatLngBounds();							
 						
-						for(var i=0; i<arr.length; i++) {							 
+						//컨트롤러에서 전달받은 배열을 이용하여 storeInfoVO에 관한 지도 표시
+						for(var i=0; i<arr.length; i++) {
 							var obj = arr[i];
-
+							
 							geocoder.addressSearch(obj.address_road, function(result, status) {
 								geocoderCount++;
 								
 								// 정상적으로 검색이 완료됐으면 
 								if (status === kakao.maps.services.Status.OK) { 
-									
 									var markerPosition = new kakao.maps.LatLng(result[0].y,result[0].x);
 									bounds.extend(markerPosition);
-
-									xpos.push(result[0].x);									
-									ypos.push(result[0].y);
-
+									
 								// 결과값으로 받은 위치를 마커를 생성하고 표시합니다 
+									if(geocoderCount == arr.length) createInfo(data);	//검색결과로 매장정보 설정
 									var marker = new kakao.maps.Marker({ 
 										map: map, 
-										position: markerPosition
+										position: markerPosition,
 									});
-									markers.push(marker);
-									if(geocoderCount == arr.length) createInfo(data, xpos, ypos);
+								
+									markers.push(marker); 
 									map.setBounds(bounds);
 								}
-							});
-							
+							});//end of addressSearch()
 						}//end of for
 					}//end of function search
 
@@ -254,19 +251,19 @@
 						});
 					}
 					
-					function createInfo(data, xpos, ypos) {
+					function createInfo(data) {
 						$("#uiReslutCont").show();
 						
 						// 목록 검색 결과 내역 지우기
-						while(listEl.firstChild){
-	                        listEl.removeChild(listEl.firstChild);
+						while(listEl.hasChildNodes()){
+	                        listEl.removeChild(listEl.lastChild);
 	                     }
 						
 						for(var i=0; i<data.length; i++) {
-							var itemEl = getListItem(i, data[i], xpos[i], ypos[i]);
+							var itemEl = getListItem(i, data[i]);	//li
 							
-							fragment.appendChild(itemEl);
-							listEl.appendChild(fragment);
+							fragment.appendChild(itemEl);//li
+							listEl.appendChild(fragment);//ul
 							
 						}
 						//검색 결과 건수 나타내기
@@ -274,10 +271,10 @@
 					}
 					
 					// 검색결과 항목을 Element로 반환하는 함수입니다
-					function getListItem(index, obj, xpos, ypos) {
+	                  function getListItem(index, obj) {
 
-						var el = document.createElement('li');
-						el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ",   " + "'" + xpos + "'" + ", " + "'" + ypos + "'" + ")");
+                        var el = document.createElement('li');
+                        el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ")");
 	                      
 						var itemStr = '<dl><dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
 						itemStr += '<dd class="delivery time"><p>예상 배달 소요시간</p><span>40분</span></dd>';
@@ -292,15 +289,27 @@
 					}
 					
 					// 목록 li 클릭시 실행되는 함수
-					function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm, lat, lng) {
+					function showStoreInfoLayer(franchiseNo, storeName, storeAddr1, storeAddr2, storeTel, openTm, closeTm) {
 						closeOverlay();
 						
-						//지도 좌표 이동
-						var mapCooder = new kakao.maps.LatLng(lng, lat);
-						var marker = new kakao.maps.Marker({
-						    position: mapCooder
-						});
-						map.setCenter(mapCooder);
+						//해당 매장 주소로 좌표 검색 후 마커와 오버레이 표시하기
+						geocoder.addressSearch(storeAddr1, function(result, status) {
+							if (status === kakao.maps.services.Status.OK) { 
+								var mapCooder = new kakao.maps.LatLng(result[0].y,result[0].x);
+								var marker = new kakao.maps.Marker({
+								    position: mapCooder
+								});
+								
+								map.setCenter(mapCooder);
+								
+								//오버레이 띄우기
+								var customOverlay = new kakao.maps.CustomOverlay({
+								    position: mapCooder,
+								    content: content,
+								    map: map
+								});
+							}//end of if
+						});//end of function
 						
 						//지도 확대 레벨 설정
 						map.setLevel(2);	
@@ -330,12 +339,6 @@
 							content += "'" + franchiseNo + "'";
 							content += "); target='blank'><span>주문하기</span></a>" +"	</div>" +"</div>";
 							
-						//오버레이 띄우기
-						var customOverlay = new kakao.maps.CustomOverlay({
-						    position: mapCooder,
-						    content: content,
-						    map: map
-						});
 					}
 					
 					//오버레이 닫기
