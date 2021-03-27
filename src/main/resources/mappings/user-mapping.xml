@@ -26,7 +26,7 @@
 		UPDATE lubuser SET password=#{password} WHERE id=#{id}
 	</update>
 
-	<select id="getUser" parameterType="String" resultType="user">
+	<select id="getUser" parameterType="user" resultType="user">
 		SELECT * FROM lubuser WHERE id = #{id}
 	</select>
 	
@@ -42,4 +42,10 @@
 		INSERT INTO franchise(name, tel, email, area, title, content) 
 		VALUES(#{name}, #{tel}, #{email}, #{area} ,#{title}, #{content})
 	</insert>
+	
+	<select id="getUserInfo" parameterType="user" resultType="user">
+		SELECT * FROM lubuser WHERE id = #{id}
+	</select>
+	
+	
 </mapper>

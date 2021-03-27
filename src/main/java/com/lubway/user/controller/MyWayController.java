@@ -34,8 +34,11 @@ public class MyWayController {
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
-	public String myWay() {
+	public String myWay(HttpSession session) {
 		System.out.println("마이웨이 페이지로 이동");
+		UserVO vo = (UserVO) session.getAttribute("user");
+		UserVO getinfo = userService.getUserInfo(vo);
+		session.setAttribute("userInfo", getinfo);
 		return "myway/myway";
 	}
 	

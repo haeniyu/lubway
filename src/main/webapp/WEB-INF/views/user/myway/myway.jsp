@@ -46,7 +46,7 @@
 							<dl>
 								<dt>멤버십 포인트</dt>
 								<dd>
-									<strong><em>${user.point }</em>P</strong>
+									<strong><em>${userInfo.point }</em>P</strong>
 								</dd>
 							</dl>
 							<a class="btn go_view whiteBtn" href="/lubway/point.do"><span>포인트 관리</span></a>
