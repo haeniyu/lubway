@@ -135,7 +135,11 @@
 	// 토핑 추가 선택
 	function endAddSelect() {
 		var topping = $("#toppingText").text();
-		if(topping == "원하는 제품을 추가 선택해 주세요") topping = "";
+		if(topping == "원하는 제품을 추가 선택해 주세요") {
+			$("#selectTopping").remove();
+			$("#closeLength").get(0).click();
+			return;
+		}
 		
 		var object = $('<object id="selectTopping">' + topping + ', </object>')
 		
@@ -148,7 +152,11 @@
 	// 미트 추가 선택
 	function endAddMeatSelect() {
 		var meat = $("#meatText").text();
-		if(meat == "미트 추가를 선택해 주세요") meat = "";
+		if(meat == "미트 추가를 선택해 주세요") {
+			$("#selectMeat").remove();
+			$("#closeLength").get(0).click();
+			return;
+		}
 		
 		var object = $('<object id="selectMeat">' + meat + ', </object>')
 		
@@ -161,7 +169,11 @@
 	// 치즈 추가 선택
 	function endAddCheeseSelect() {
 		var add_cheese = $("#addCheeseText").text();
-		if(add_cheese == "치즈 추가를 선택해 주세요") add_cheese="";
+		if(add_cheese == "치즈 추가를 선택해 주세요") {
+			$("#selectCheese").remove();
+			$("#closeLength").get(0).click();
+			return;
+		}
 			
 		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
 		
@@ -209,6 +221,9 @@
 				}
 				sum = cost + brdcost;		//15cm기준 가격 + 빵길이 추가가격		
 				sumUntilStep1 = sum;		// Step1 필수선택까지의 가격 정보 저장
+				console.log(sumUntilStep1);
+				sumUntilStep2 = sumUntilStep1;
+				console.log(sumUntilStep2);				
 				
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				$("#finalAmt").text(num2);
@@ -294,7 +309,7 @@
 		
 		//토핑 추가 선택
       	var arr = new Array();		//선택된 토핑을 담을 배열
-		var sumUntilStep2 = sum;	//스텝2까지의 가격 저장***
+		var sumUntilStep2;	//스텝2까지의 가격 저장***
       
 		$("input:checkbox[name=topping]").click(function(){
          var temp = $(this).val();
@@ -517,7 +532,6 @@
 			$(".choice_set_btn").click(function(){
 				sum = sumUntilStep2;
 				sum += setcost;
-				sum += brdcost;
 				
 				var object = $('<object id="showSet">' + $("#setText").text() + '</object>');
 				$("#showSet").remove();
@@ -596,7 +610,7 @@
 		$("#sum3").text("+ 0원");
 		$("#setText").text("");
 		$("#sum4").text("+ 0원");
-		$("#ordQty").val(1);
+		$("#ordQty").val("1");
 		
 		$("input:checkbox[name=topping]").prop("checked", false);
 		$("input:checkbox[name=meat]").prop("checked", false);

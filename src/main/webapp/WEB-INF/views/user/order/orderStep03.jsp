@@ -275,7 +275,7 @@ function hideDiv() {
 									<div class="option_display">
 										<dl>
 											<dt>추가 선택 (다중 선택 가능)</dt>
-											<dd id="toppingText">원하는 추가 선택 제품을 선택하여 주세요</dd>
+											<dd id="toppingText">원하는 제품을 추가 선택해 주세요</dd>
 											<dd>
 												<span id="sum">+ 0원</span>
 											</dd>
@@ -335,7 +335,7 @@ function hideDiv() {
 									<div class="option_display">
 										<dl>
 											<dt>치즈 추가</dt>
-											<dd id="addCheeseText">치즈 추가를 선택 해 주세요</dd>
+											<dd id="addCheeseText">치즈 추가를 선택해 주세요</dd>
 											<dd>
 												<span id="sum3">+ 0원</span>
 											</dd>
