@@ -157,7 +157,14 @@ $(function() {
 										<dd>
 											<div class="form_select" style="width: 670px;">
 												<select name="couponCode">
-													<option value="">보유하신 쿠폰이 없습니다.</option>
+													<c:if test="${couponList == null}">
+														<option value="">보유하신 쿠폰이 없습니다.</option>
+													</c:if>
+													<c:if test="">
+														<c:forEach items="${couponList }" var="coupon">
+															<option>${coupon.name } (${coupon.regdate} ~ ${coupon.enddate})</option>
+														</c:forEach>
+													</c:if>
 												</select>
 											</div>
 											<div class="btn_input_in">

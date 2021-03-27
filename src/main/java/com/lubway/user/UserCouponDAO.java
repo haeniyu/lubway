@@ -16,4 +16,14 @@ public class UserCouponDAO {
 		System.out.println("getUserCouponList() 기능 처리");
 		return sqlSessionTemplate.selectList("UserCouponDAO.getUserCouponList", vo);
 	}
+	
+	public int getCouponTotal() {
+		System.out.println("getCouponTotal() 기능 처리");
+		return sqlSessionTemplate.selectOne("UserCouponDAO.getCouponTotal");
+	}
+	
+	public int getUseCouponTotal() {
+		System.out.println("getUseCouponTotal() 기능처리");
+		return sqlSessionTemplate.selectOne("UserCouponDAO.getUseCouponTotal");
+	}
 }

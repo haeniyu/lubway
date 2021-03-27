@@ -7,5 +7,9 @@ import com.lubway.user.UserCouponVO;
 public interface UserCouponService {
 
 	List<UserCouponVO> getUserCouponList(UserCouponVO vo);
+	
+	int getCouponTotal();
+	
+	int getUseCouponTotal();
 
 }
