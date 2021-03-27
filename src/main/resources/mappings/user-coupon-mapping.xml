@@ -22,12 +22,12 @@
 		]]>
 	</select>
 
-	<select id="getCouponTotal">
+	<select id="getCouponTotal" resultType="int">
 		select count(*) from coupon
 	</select>
 	
-	<select id="getUseCouponTotal">
-		select select count(*) from use_coupon where id=#{id}
+	<select id="getUseCouponTotal" resultType="int">
+		select count(*) from use_coupon where id=#{id}
 	</select>
 	
 </mapper>

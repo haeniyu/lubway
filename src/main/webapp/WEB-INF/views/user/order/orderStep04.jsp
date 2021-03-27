@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -46,7 +47,7 @@ $(function() {
 							<!-- 픽업매장 -->
 							<h2>픽업매장</h2>
 						<section class="form_box">
-							<!-- 픽업매장 -->
+							<!-- 배달매장 -->
 							<h2>배달정보</h2>	
 							<div class="write_info_wrap stroe_order">
 								<div class="input_set">
@@ -112,7 +113,7 @@ $(function() {
 										</dd>
 									</dl>
 								</div>
-								<!-- homeway 배달시 요청사항 -->
+								<!-- homeway 배달시 요청사항
 								<div class="input_set">
 									<dl class="a_order">
 										<dt>배달시,요청사항</dt>
@@ -124,7 +125,7 @@ $(function() {
 										</dd>
 									</dl>
 								</div>
-								<!-- fast/home 공통 부분 -->
+								<!-- fast/home 공통 부분 
 								<div class="input_set">
 									<dl class="a_order">
 										<dt>일회용품</dt>
@@ -138,9 +139,9 @@ $(function() {
 											</div>
 										</dd>
 									</dl>
-								</div>
+								</div>-->
 							</div>
-							<!--// 픽업매장 -->
+							<!--// 매장 정보 및 배달정보 -->
 
 							<!-- 할인방법 -->
 							<h2>할인 방법 선택</h2>
@@ -157,12 +158,14 @@ $(function() {
 										<dd>
 											<div class="form_select" style="width: 670px;">
 												<select name="couponCode">
-													<c:if test="${couponList == null}">
+													<c:if test="${couponTotal == useCouponTotal}">
 														<option value="">보유하신 쿠폰이 없습니다.</option>
 													</c:if>
-													<c:if test="">
+													<c:if test="${couponTotal != useCouponTotal}">
 														<c:forEach items="${couponList }" var="coupon">
-															<option>${coupon.name } (${coupon.regdate} ~ ${coupon.enddate})</option>
+															<option>${coupon.name } ( <fmt:formatDate value="${coupon.regdate }"
+														pattern="yyyy - MM - dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
+														pattern="yyyy - MM - dd" /> )</option>
 														</c:forEach>
 													</c:if>
 												</select>

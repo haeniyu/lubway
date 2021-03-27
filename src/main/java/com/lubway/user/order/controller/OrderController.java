@@ -3,6 +3,8 @@ package com.lubway.user.order.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +20,13 @@ import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
 import com.lubway.admin.menu.service.MenuService;
+import com.lubway.admin.service.CouponService;
+import com.lubway.user.UserCouponVO;
+import com.lubway.user.UserVO;
 import com.lubway.user.menu.service.UserOptionService;
+import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
+import com.lubway.user.service.UserService;
 
 @Controller
 public class OrderController {
@@ -32,6 +39,12 @@ public class OrderController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private UserCouponService couponService;
+	
+	@Autowired
+	private UserService userService;
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
@@ -170,8 +183,22 @@ public class OrderController {
 	
 	/** 주문 확인, 결제하기  페이지 */
 	@RequestMapping("/orderStep04.do")
-	public String orderStep04() {
+	public String orderStep04(Model model, UserCouponVO vo, HttpSession session) {
 		System.out.println("주문 및 결제하기 페이지로 이동");
+		// 쿠폰 받아오기
+		UserVO userVO = (UserVO) session.getAttribute("user");
+		UserVO getInfo = userService.getUserInfo(userVO);
+		session.setAttribute("userInfo", getInfo);
+		vo.setId(userVO.getId());
+		
+		int couponTotal = couponService.getCouponTotal();
+		int useCouponTotal = couponService.getUseCouponTotal();
+		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
+		
+		model.addAttribute("couponList", couponList);
+		model.addAttribute("couponTotal", couponTotal);
+		model.addAttribute("useCouponTotal", useCouponTotal);
+		
 		return "order/orderStep04";
 	}
 
