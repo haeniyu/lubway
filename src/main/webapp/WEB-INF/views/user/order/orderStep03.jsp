@@ -59,7 +59,7 @@ function hideDiv() {
 		<div class="menu_view_wrapper" style="padding-left: 180px; padding-top:0px;">
 			<!-- 메뉴 content -->
 			<div class="menu_content"
-				style="width: 1170px; background-color: white;">
+				style="width: 85%; background-color: white;">
 				<!-- 메뉴 header -->
 				<div class="hd">
 					<div class="category"></div>
@@ -79,8 +79,8 @@ function hideDiv() {
 				<!--// 메뉴정보 -->
 
 				<!-- 영양성분표 -->
-				<div class="component_chart" id="component_chart">
-					<div class="content" style="width: 1000px;">
+				<div class="component_chart" id="component_chart" style="background-color:white">
+					<div class="content" style="width: 85%;">
 						<h3>영양성분표</h3>
 						<!-- 로스트 치킨 베이컨 -->
 						<div class="board_list_wrapper">
@@ -124,7 +124,7 @@ function hideDiv() {
 				</div>
 
 				<!-- 상세 선택 메뉴 -->
-				<div class="list_wrapper">
+				<div class="list_wrapper" style="background-color:white">
 					<div class="content">
 						<div class="choice_option">
 							<div class="step01 required">
@@ -151,6 +151,7 @@ function hideDiv() {
 											<input name="length" type="radio" id="30cm" value="30cm">
 											<span class="icon"></span> <em>30cm</em>
 											</label></li>
+											<label style="color:#FF8300">빵 길이 선택 변경시 모든 추가 선택이 초기화 됩니다.</label>
 										</ul>
 										<input class="choice_btn" type="button" value="선택"
 											onclick="endSize();">
@@ -435,12 +436,13 @@ function hideDiv() {
 													</span>
 											</label></li>
 										</ul>
-										<input class="choice_set_btn" type="button" value="선택" onclick="endSetSelect();">
+										<input class="choice_set_btn" type="button" value="선택">
 									</div>
 								</div>
 								<div class="wrap_pop">
 									<a class="pop" href="#select_set" rel="modal:open">세트</a>
 								</div>
+								<p id="selectStep03"></p>
 							</div>
 							<!-- end of step03 -->
 							
@@ -449,7 +451,7 @@ function hideDiv() {
 					</div>
 				</div>
 				<!-- 수량 및 결제 금액  -->
-				<div class="menu_total">
+				<div class="menu_total" style="background-color:white">
 					<dl class="count">
 						<dt>수량</dt>
 						<dd>
@@ -470,7 +472,7 @@ function hideDiv() {
 			</div>
 			<!--// 메뉴 content -->
 			<!-- 목록보기 -->
-			<div class="btns_list_wrapper" style="width: 1170px;">
+			<div class="btns_list_wrapper" style="width: 85%; background-color:white">
 				<div class="btn_list">
 					<a href="#" onclick="history.go(-1); return false;">목록보기</a>
 				</div>

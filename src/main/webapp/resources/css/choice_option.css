@@ -6,7 +6,7 @@
 }
 
 .choice_option {
-	width: 1000px;
+	width: 85%;
 	margin: 0 auto;
 }
 
@@ -196,7 +196,7 @@ p[id^=selectStep] {
 	margin-top: 0px;
 }
 
-.choice_btn {
+.choice_btn, .choice_set_btn {
 	width: 120px;
 	display: block;
 	color: #009223;
@@ -213,11 +213,11 @@ p[id^=selectStep] {
 .menu_view_wrapper .order_btn {
 	display: flex;
 	justify-content: center;
-	width: 1170px;
-	background-color: #f6f6f6;
+	width: 85%;
+	background-color: #fff;
 	padding-bottom: 50px;
 	margin-top: -2em;
-	border-top: 2px solid #E5E5E5;
+	border-top: 2px solid #f6f6f6;
 }
 
 .cart {
@@ -226,7 +226,6 @@ p[id^=selectStep] {
 	color: #009223;
 	font-size: 18px;
 	font-weight: bold;
-	background-color: #ffffff;
 	border: 2px solid #009223;
 	height: 46px;
 	line-height: 46px;
