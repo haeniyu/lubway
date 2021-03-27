@@ -19,4 +19,16 @@ public class UserCouponServiceImpl implements UserCouponService {
 		return couponDAO.getUserCouponList(vo);
 	}
 
+	@Override
+	public int getCouponTotal() {
+		return couponDAO.getCouponTotal();
+	}
+
+	@Override
+	public int getUseCouponTotal() {
+		return couponDAO.getUseCouponTotal();				
+	}
+	
+	
+
 }
