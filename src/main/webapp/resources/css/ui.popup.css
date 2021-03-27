@@ -3,7 +3,7 @@
 html,body{background-color:transparent;}
 
 #popup_wrap{background-color:#ffc300; padding:0 15px 8px; border-radius:50px; overflow:hidden; }
-#popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:300; letter-spacing:-0.045em; padding:35px 0 29px}
+#popup_wrap h1.title{font-size:30px; text-align:center; color:#292929; font-weight:600; letter-spacing:-0.045em; padding:35px 0 29px}
 #popup_wrap .popup_content{height:590px; background-color:#fff; padding:0 22px; border-radius:30px;}
 
 /* 원산지정보 */
