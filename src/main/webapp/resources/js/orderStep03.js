@@ -134,9 +134,8 @@
 	// ========= 추가 선택 항목 기능 처리 =========
 	// 토핑 추가 선택
 	function endAddSelect() {
-		console.log("=== addToppingSelect ===");
-		
 		var topping = $("#toppingText").text();
+		if(topping == "원하는 제품을 추가 선택해 주세요") topping = "";
 		
 		var object = $('<object id="selectTopping">' + topping + ', </object>')
 		
@@ -148,9 +147,8 @@
 	
 	// 미트 추가 선택
 	function endAddMeatSelect() {
-		console.log("=== addMeatSelect ===");
-		
 		var meat = $("#meatText").text();
+		if(meat == "미트 추가를 선택해 주세요") meat = "";
 		
 		var object = $('<object id="selectMeat">' + meat + ', </object>')
 		
@@ -162,15 +160,15 @@
 	
 	// 치즈 추가 선택
 	function endAddCheeseSelect() {
-		console.log("=== addCheeseSelect ===");
 		var add_cheese = $("#addCheeseText").text();
+		if(add_cheese == "치즈 추가를 선택해 주세요") add_cheese="";
 			
-			var object = $('<object id="selectCheese">' + add_cheese + '</object>')
-			
-			$("#selectCheese").remove();
-			$(object).appendTo("#selectStep02");
-			
-			$("#closeLength").get(0).click();
+		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
+		
+		$("#selectCheese").remove();
+		$(object).appendTo("#selectStep02");
+		
+		$("#closeLength").get(0).click();
 	}
 	
 	
@@ -187,8 +185,9 @@
 	var cost = parseInt(ep);
 	var sum = cost; //추가되는 금액
 	var brdcost = 0; //빵 길이에 따른 가격 설정을 위한 변수. 기본15cm 기준 (무료)
-	var ttl = 0;	//총 가격
-	console.log(cost);
+	var ttl = 0;	//토핑의 총 가격
+	var sumUntilStep1 = 0;
+
 		
 		//길이 선택 시 모든 사항이 초기화 되고 빵 가격이 적용된다.
 		$("input:radio[name=length]").click(function(){
@@ -204,19 +203,20 @@
 
 				if(lengthChoice == "30cm"){
 					var brd = document.getElementById('price30').value;
-					console.log(brd);
 					brdcost = parseInt(brd);
 				}else{
 					brdcost = 0;
 				}
-				sum = cost + brdcost;				
+				sum = cost + brdcost;		//15cm기준 가격 + 빵길이 추가가격		
+				sumUntilStep1 = sum;		// Step1 필수선택까지의 가격 정보 저장
+				
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				console.log(num2);
 				$("#finalAmt").text(num2);
 			}
 			console.log(lengthChoice);
 			$("#lengthText").text(lengthChoice);
 		});
+		
 		
 		//빵 선택에 따라 breadText 값이 바뀌게 한다
 		$("input:radio[name=bread]").click(function(){
@@ -245,7 +245,6 @@
 		});
 		
 		//야채선택
-		var selectVegeText = "";
 		var vegeArr = new Array();
 		$("input:checkbox[name=vegetable]").click(function() {
 			var selectTarget = $("[name=vegetable]:checked");
@@ -263,7 +262,6 @@
 		});
 		
 		//소스 선택
-		var selectTotalText = "";
 		var itemArr = new Array();
 		$("input:checkbox[name=sauce]").click(function() {
 			var selectTarget = $("[name=sauce]:checked");
@@ -302,7 +300,6 @@
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var topcost = parseInt(tempArr[1]);
-			console.log(topcost);
          
          if($(this).is(":checked") == true) {//체크 시
             arr.push(tempArr[0]);
@@ -349,7 +346,7 @@
          } else {//체크 해제 시
 			sum -= metcost;
 			
-			$('#meatText').text("미트 추가를 선택 해 주세요");
+			$('#meatText').text("미트 추가를 선택해 주세요");
         	 $('#sum2').text("+ " + 0 + "원");
          }
          
@@ -358,8 +355,9 @@
 		
 		sumUntilStep2 = sum;
 		console.log("미트 추가 sumUntilStep2 : " , sumUntilStep2);
-      		}); //end of meat
+      	}); //end of meat
       
+
 		//치즈 추가
       $("input:checkbox[name=add_cheese]").click(function(){
 		if(!checkCheese) {
@@ -378,7 +376,7 @@
          } else {//체크 해제 시
 			sum -= cost;
 			
-			$('#addCheeseText').text("치즈 추가를 선택 해 주세요");
+			$('#addCheeseText').text("치즈 추가를 선택해 주세요");
         	 $('#sum3').text("+ " + 0 + "원");
          }
          
@@ -387,7 +385,7 @@
      
 		sumUntilStep2 = sum;
 		console.log("치즈 추가 sumUntilStep2 : " , sumUntilStep2);
-		 }); //end of add_cheese
+		}); //end of add_cheese
 
       
 /******************STEP03********************/
@@ -520,9 +518,12 @@
 				sum = sumUntilStep2;
 				sum += setcost;
 				sum += brdcost;
-			
+				
+				var object = $('<object id="showSet">' + $("#setText").text() + '</object>');
+				$("#showSet").remove();
+				$(object).prependTo("#selectStep03");
+				
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-				console.log(num2);
 				$("#finalAmt").text(num2);
 					
 				$("#closeLength").get(0).click();
@@ -532,20 +533,21 @@
 		});// end of radio[name=select_set] 세트 선택******
 		
 		
+	//단품 선택
+	$("#select_one").click(function(){
+		sum = sumUntilStep2; //스텝2까지의 가격으로 초기화
+		var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		$("#finalAmt").text(num2);
 		
-		//단품 선택
-		$("#select_one").click(function(){
-			sum = sumUntilStep2; //스텝2까지의 가격으로 초기화
-			var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			console.log(num2);
-			$("#finalAmt").text(num2);
-				
-			$("#closeLength").get(0).click();
-		});// end of 단품 선택
-		
+		$("#showSet").remove();
+			
+		$("#closeLength").get(0).click();
+	});// end of 단품 선택
+	
+	
+	
+	//수량 조절
 	$("#qtyAdd").click(function() {
-		
-		console.log("수량 더하기!!!");
 		qty++;
 		console.log(qty);
 		var num = qty.toString();
@@ -557,13 +559,11 @@
 		console.log(sum);
 		
 		var num2 = showprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		console.log(num2);
 		$("#finalAmt").text(num2);
 		
 	});//end of 수량더하기
 	
 	$("#qtySub").click(function() {
-		console.log("수량 빼기!!!");
 		if(qty > 1){
 			qty--;
 			console.log(qty);
@@ -576,12 +576,11 @@
 			console.log(sum);
 			
 			var num2 = showprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-			console.log(num2);
 			$("#finalAmt").text(num2);
 		}
 	});//end of 수량빼기
 	
-	//모든 것을 처음 상태로 되돌리는 메서드 - 진행중...
+	//모든 것을 처음 상태로 되돌리는 메서드
 	function clearAll(){
 		cost = parseInt(ep);
 		sum = cost; 
@@ -589,7 +588,7 @@
 		drinkCost = 0;
 		setcost = 0;
 		
-		$("#toppingText").text("원하는 제품을 추가 선택해 주세요.");
+		$("#toppingText").text("원하는 제품을 추가 선택해 주세요");
 		$("#sum").text("+ 0원");
 		$("#meatText").text("미트 추가를 선택해 주세요");
 		$("#sum2").text("+ 0원");
@@ -597,6 +596,7 @@
 		$("#sum3").text("+ 0원");
 		$("#setText").text("");
 		$("#sum4").text("+ 0원");
+		$("#ordQty").val(1);
 		
 		$("input:checkbox[name=topping]").prop("checked", false);
 		$("input:checkbox[name=meat]").prop("checked", false);
