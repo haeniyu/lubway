@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick-theme.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
