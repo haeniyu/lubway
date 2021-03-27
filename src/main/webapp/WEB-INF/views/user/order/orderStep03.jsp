@@ -151,6 +151,7 @@ function hideDiv() {
 											<input name="length" type="radio" id="30cm" value="30cm">
 											<span class="icon"></span> <em>30cm</em>
 											</label></li>
+											<label style="color:#FF8300">빵 길이 선택 변경시 모든 추가 선택이 초기화 됩니다.</label>
 										</ul>
 										<input class="choice_btn" type="button" value="선택"
 											onclick="endSize();">

@@ -519,6 +519,7 @@
 			$(".choice_set_btn").click(function(){
 				sum = sumUntilStep2;
 				sum += setcost;
+				sum += brdcost;
 			
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				console.log(num2);
@@ -542,19 +543,20 @@
 			$("#closeLength").get(0).click();
 		});// end of 단품 선택
 		
-		
 	$("#qtyAdd").click(function() {
+		
 		console.log("수량 더하기!!!");
 		qty++;
 		console.log(qty);
 		var num = qty.toString();
 		$("#ordQty").val(num);
 		
-		sum += cost;
+		var showprice = 0;
+		showprice = sum * qty;
 		
 		console.log(sum);
 		
-		var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		var num2 = showprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 		console.log(num2);
 		$("#finalAmt").text(num2);
 		
@@ -568,10 +570,12 @@
 			var num = qty.toString();
 			$("#ordQty").val(num);
 			
-			sum-=cost;
+			var showprice = 0;
+			showprice = sum * qty;
+			
 			console.log(sum);
 			
-			var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			var num2 = showprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			console.log(num2);
 			$("#finalAmt").text(num2);
 		}
@@ -584,8 +588,26 @@
 		ttl = 0;
 		drinkCost = 0;
 		setcost = 0;
+		
+		$("#toppingText").text("원하는 제품을 추가 선택해 주세요.");
+		$("#sum").text("+ 0원");
+		$("#meatText").text("미트 추가를 선택해 주세요");
+		$("#sum2").text("+ 0원");
+		$("#addCheeseText").text("치즈 추가를 선택해 주세요");
+		$("#sum3").text("+ 0원");
+		$("#setText").text("");
+		$("#sum4").text("+ 0원");
+		
 		$("input:checkbox[name=topping]").prop("checked", false);
+		$("input:checkbox[name=meat]").prop("checked", false);
+		$("input:checkbox[name=add_cheese]").prop("checked", false);
 		$("#selectStep02").text("");
+		
+		$("input:radio[name=select_set]").removeAttr("checked");
+		$("input:radio[name=cookie]").removeAttr("checked");
+		$("input:radio[name=wedge]").removeAttr("checked");
+		$("input:radio[name=drink]").removeAttr("checked");
+		
 	}
 	
 });//end of document.ready
