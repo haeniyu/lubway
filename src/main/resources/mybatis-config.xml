@@ -31,6 +31,7 @@
 		<typeAlias type="com.lubway.user.menu.SauceVO" alias="sauce"/>
 		<typeAlias type="com.lubway.user.menu.ToppingAddVO" alias="topping"/>
 		<typeAlias type="com.lubway.user.menu.VegetableVO" alias="vege"/>
+		<typeAlias type="com.lubway.user.order.BasketVO" alias="basket" />
 		
 	</typeAliases>
 	
@@ -56,5 +57,6 @@
 		<mapper resource="mappings/morning-mapping.xml"/>
 		<mapper resource="mappings/user-menu-mapping.xml"/>
 		<mapper resource="mappings/user-option-mapping.xml"/>
+		<mapper resource="mappings/basket-mapping.xml"/>
 	</mappers>
 </configuration>
