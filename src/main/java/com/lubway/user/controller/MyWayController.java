@@ -34,16 +34,15 @@ public class MyWayController {
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
-	public String myWay(HttpSession session, Model model) {
-		// 사용자별 정보 가져오기
+	public String myWay(HttpSession session, Model model, UserCouponVO vo) {
+		// 쿠폰 조회할 사용자 아이디 세팅
 		System.out.println("마이웨이 페이지로 이동");
-		UserVO vo = (UserVO) session.getAttribute("user");
-		UserVO getinfo = userService.getUserInfo(vo);
-		session.setAttribute("userInfo", getinfo);
+		UserVO userVo = (UserVO) session.getAttribute("user");
+		vo.setId(userVo.getId());
 		
 		// 남은 쿠폰 개수 보여주기
-		int countUseCoupon = couponService.countUseCoupon();
-		
+		int countUseCoupon = couponService.countUseCoupon(vo);
+
 		model.addAttribute("countCoupon", countUseCoupon);
 		
 		return "myway/myway";
@@ -124,9 +123,9 @@ public class MyWayController {
 	@RequestMapping("/coupon.do")
 	public String getCouponList(Model model, UserCouponVO vo, HttpSession session) {
 		System.out.println("유저 쿠폰 목록 요청 처리");
-		UserVO userVo = (UserVO) session.getAttribute("userInfo");
+		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
-		System.out.println(vo.toString());
+		
 		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
 		
 		model.addAttribute("couponList", couponList);

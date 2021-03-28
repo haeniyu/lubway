@@ -49,10 +49,4 @@ public class UserDAO {
 		System.out.println("UserDAO - updatePwd() 실행");
 		sqlSessionTemplate.update("UserDAO.updatePwd", vo);
 	}
-	
-	public UserVO getUserInfo(UserVO vo) {
-		System.out.println("UserDAO - getUserInfo() 실행");
-		return sqlSessionTemplate.selectOne("UserDAO.getUserInfo", vo);		
-	}
-	
 }
