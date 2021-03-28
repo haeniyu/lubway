@@ -29,6 +29,11 @@ public class UserCouponServiceImpl implements UserCouponService {
 		return couponDAO.getUseCouponTotal();				
 	}
 	
+	@Override
+	public int countUseCoupon() {
+		return couponDAO.countUseCoupon();
+	}
+	
 	
 
 }

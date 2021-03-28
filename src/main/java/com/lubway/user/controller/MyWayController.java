@@ -34,11 +34,18 @@ public class MyWayController {
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
-	public String myWay(HttpSession session) {
+	public String myWay(HttpSession session, Model model) {
+		// 사용자별 정보 가져오기
 		System.out.println("마이웨이 페이지로 이동");
 		UserVO vo = (UserVO) session.getAttribute("user");
 		UserVO getinfo = userService.getUserInfo(vo);
 		session.setAttribute("userInfo", getinfo);
+		
+		// 남은 쿠폰 개수 보여주기
+		int countUseCoupon = couponService.countUseCoupon();
+		
+		model.addAttribute("countCoupon", countUseCoupon);
+		
 		return "myway/myway";
 	}
 	

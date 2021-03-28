@@ -18,6 +18,7 @@ public class UserCouponVO {
 	private Date regdate; //쿠폰 시작일
 	private Date enddate; //쿠폰 만기일
 	private String id; // 로그인 한 사용자 id
-	private int couponTotal;
-	private int useCouponTotal;
+	private int couponTotal; // 관리자가 뿌려준 쿠폰의 총 개수
+	private int useCouponTotal; // 사용한 쿠폰의 총 개수
+	private int countCoupon; // 남아있는 쿠폰의 개수
 }

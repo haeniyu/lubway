@@ -185,7 +185,7 @@ public class OrderController {
 	@RequestMapping("/orderStep04.do")
 	public String orderStep04(Model model, UserCouponVO vo, HttpSession session) {
 		System.out.println("주문 및 결제하기 페이지로 이동");
-		// 쿠폰 받아오기
+		// 사용 가능한 쿠폰 리스트 띄우기
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		UserVO getInfo = userService.getUserInfo(userVO);
 		session.setAttribute("userInfo", getInfo);

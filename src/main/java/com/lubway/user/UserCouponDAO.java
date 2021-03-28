@@ -26,4 +26,9 @@ public class UserCouponDAO {
 		System.out.println("getUseCouponTotal() 기능처리");
 		return sqlSessionTemplate.selectOne("UserCouponDAO.getUseCouponTotal");
 	}
+	
+	public int countUseCoupon() {
+		System.out.println("countUseCoupon() 기능처리");
+		return sqlSessionTemplate.selectOne("UserCouponDAO.countUseCoupon");
+	}
 }

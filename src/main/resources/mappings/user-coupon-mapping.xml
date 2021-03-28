@@ -30,4 +30,11 @@
 		select count(*) from use_coupon where id=#{id}
 	</select>
 	
+	<select id="countUseCoupon" resultType="int">
+		<![CDATA[
+		select count(*) from 
+		(select code, enddate from coupon where code not in(select code from use_coupon where id=#{id}) and enddate >= now() ) as useCount
+		]]>
+	</select>
+	
 </mapper>

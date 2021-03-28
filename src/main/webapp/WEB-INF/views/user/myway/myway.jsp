@@ -66,7 +66,7 @@
 							<dl>
 								<dt>쿠폰</dt>
 								<dd>
-									<strong>0</strong>개
+									<strong>${countCoupon}</strong>개
 								</dd>
 							</dl>
 							<a class="btn go_view whiteBtn" href="/lubway/coupon.do"><span>쿠폰 관리</span></a>
