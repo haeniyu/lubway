@@ -20,10 +20,8 @@ import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
 import com.lubway.admin.menu.service.MenuService;
-import com.lubway.admin.service.CouponService;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
-import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
@@ -134,6 +132,10 @@ public class OrderController {
 		System.out.println("orderStep03 - whatWay : " + whatWay);
 		System.out.println("orderStep03 - code : " + code);
 		System.out.println("orderStep03 - selected : " + selected);
+		
+		model.addAttribute("franchiseNo", franchiseNo);
+		model.addAttribute("whatWay", whatWay);
+		model.addAttribute("code", code);
 		
 		//영양성분표 설정
 		model.addAttribute("nutrient", menuService.selectNutrient(nvo));

@@ -1,4 +1,10 @@
-
+	//주문하기 페이지로 이동
+	function gotoStep04() {
+		var totalPrice = $("#finalAmt").text();
+		$("#totalPrice").text(totalPrice);
+		$("#orderForm").submit();
+	}
+	
 	// 필수 선택 항목 선택 여부
 	var checkSize = false;
 	var checkBread = false;

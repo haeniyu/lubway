@@ -18,7 +18,6 @@
 <script type="text/javascript">
 //메뉴에 따른 선택 항목 노출 설정
 function hideDiv() {
-	console.log("가릴거야!!!");
 	var protocol = '${hideNum}';
 	console.log("hideNum : " + protocol);
 	switch(protocol){
@@ -305,7 +304,7 @@ function hideDiv() {
 									<div class="option_display">
 										<dl>
 											<dt>미트 추가</dt>
-											<dd id="meatText">미트 추가를 선택 해 주세요</dd>
+											<dd id="meatText">미트 추가를 선택해 주세요</dd>
 											<dd>
 												<span id="sum2">+ 0원</span>
 											</dd>
@@ -479,7 +478,7 @@ function hideDiv() {
 			</div>
 			<div class="order_btn">
 				<a class="cart" href="#">장바구니</a> <a class="bill"
-					href="/lubway/orderStep04.do">주문하기</a>
+					href="javascript:;" onclick="gotoStep04();">주문하기</a>
 			</div>
 		</div>
 		<!--// 메뉴소개 e -->
@@ -586,5 +585,12 @@ function hideDiv() {
 	</div>
 	<a id="closeLength" rel="modal:close"></a>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
+<!-- 주문 확인 결제 페이지 이동 -->
+<form action="orderStep04.do" method="post" id="orderForm" style="display: none;">
+	<input type="hidden" id="code" name="code" value="${code}">
+	<input type="hidden" name="whatWay" value="${whatWay}">
+	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
+	<input type="hidden" id="totalPrice" name="totalPrice" value="">
+</form> 
 </body>
 </html>
