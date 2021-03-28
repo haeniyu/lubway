@@ -35,7 +35,8 @@ $(function() {
 		console.log("temp:" + temp);
 		pay = temp;
 	})
-	
+	var lastcost = $('#totalPayAmtNavi').text();
+	console.log(lastcost);
 	$("#startOrder").click(function (){
 		if(pay == "PAY_METHOD.PAYCOKAKAO"){
 			IMP.init('imp80143812');
@@ -43,11 +44,11 @@ $(function() {
 			    pg : 'kakaopay',
 			    pay_method : 'card',
 			    merchant_uid : 'merchant_' + new Date().getTime(),
-			    name : '주문명:결제테스트',
-			    amount : 100,
-			    buyer_email : 'orbital0m0@gmail.com',
-			    buyer_name : '구매자이름',
-			    buyer_tel : '010-7704-3129'
+			    name : 'LUBWAY 결제 시스템',
+			    amount : lastcost,
+			    buyer_email : '${user.id}',
+			    buyer_name : '${user.name}',
+			    buyer_tel : '${user.tel}'
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
@@ -230,7 +231,7 @@ $(function() {
 												</span>
 												<p>
 													<span>보유 포인트 :</span> 
-													<strong id="usablePoint">${userInfo.point }</strong>
+													<strong id="usablePoint">${user.point }</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">
