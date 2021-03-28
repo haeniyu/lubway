@@ -286,9 +286,9 @@ function hideDiv() {
 											<c:forEach items="${toppingList }" var="topping">
 												<li><label class="form_circle"> <input
 														name="topping" type="checkbox"
-														value="${topping.name }, ${topping.price}"> <span
+														value="${topping.name }, ${topping.topping_price}"> <span
 														class="icon"></span><em>${topping.name }</em> <span>+<em><fmt:formatNumber
-																	value="${topping.price }" pattern="#,###" /></em>&nbsp;원
+																	value="${topping.topping_price }" pattern="#,###" /></em>&nbsp;원
 													</span>
 												</label></li>
 											</c:forEach>
@@ -316,9 +316,9 @@ function hideDiv() {
 											<c:forEach items="${meatList }" var="meat">
 												<li><label class="form_circle"> <input
 														name="meat" type="checkbox"
-														value="${meat.name }, ${meat.price}"> <span
+														value="${meat.name }, ${meat.meat_price}"> <span
 														class="icon"></span><em>${meat.name }</em> <span>+<em><fmt:formatNumber
-																	value="${meat.price }" pattern="#,###" /></em>&nbsp;원
+																	value="${meat.meat_price }" pattern="#,###" /></em>&nbsp;원
 													</span>
 												</label></li>
 											</c:forEach>
@@ -345,10 +345,10 @@ function hideDiv() {
 										<ul>
 											<c:forEach items="${cheeseList }" var="chee">
 												<li><label class="form_circle">
-												<input name="add_cheese" type="checkbox" value="${chee.name }, ${chee.price}">
+												<input name="add_cheese" type="checkbox" value="${chee.name }, ${chee.cheese_price}">
 												<span class="icon"> </span>
 												<em>${chee.name }</em>
-												<span>+<em><fmt:formatNumber value="${chee.price }" pattern="#,###" /></em>&nbsp;원
+												<span>+<em><fmt:formatNumber value="${chee.cheese_price }" pattern="#,###" /></em>&nbsp;원
 													</span>
 												</label></li>
 											</c:forEach>

@@ -13,5 +13,5 @@ public class CheeseVO {
 	private String name;
 	private String filepath;
 	private Boolean extra;
-	private int price;
+	private int cheese_price;
 }

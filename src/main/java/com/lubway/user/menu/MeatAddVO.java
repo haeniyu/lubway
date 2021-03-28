@@ -13,5 +13,5 @@ public class MeatAddVO {
 	private String name;
 	private String filepath;
 	private Boolean extra;
-	private int price;
+	private int meat_price;
 }
