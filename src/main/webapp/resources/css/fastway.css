@@ -262,7 +262,7 @@
 .menu_view_wrapper .menu_total .count dd{}
 .menu_view_wrapper .menu_total .count dd a{float: left; display: block; width: 37px; height: 37px; background: url('../images/order/btn_minus.png') no-repeat 0 0; font-size: 0;}
 .menu_view_wrapper .menu_total .count dd a.plus{background-image: url('../images/order/btn_plus.png');}
-.menu_view_wrapper .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-weight: bold; text-align: center; vertical-align: top; background-color: #f6f6f6;}
+.menu_view_wrapper .menu_total .count dd input{float: left; width: 40px; height: 37px; margin: -4px 13px 0 13px; border: 0; color: #292929; font-size: 32px; font-weight: bold; text-align: center; vertical-align: top; }
 .menu_view_wrapper .menu_total .total_won{float: right;}
 .menu_view_wrapper .menu_total .total_won dt{margin-right: 17px; color: #292929; font-size: 24px; font-weight: bold;}
 .menu_view_wrapper .menu_total .total_won dd strong{float: left; color: #009223; font-size: 40px; font-weight: bold;}
