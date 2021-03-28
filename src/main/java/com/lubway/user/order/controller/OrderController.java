@@ -186,8 +186,13 @@ public class OrderController {
 	
 	/** 주문 확인, 결제하기  페이지 */
 	@RequestMapping("/orderStep04.do")
-	public String orderStep04(Model model, UserCouponVO vo, HttpSession session) {
+	public String orderStep04(Model model, UserCouponVO vo, HttpSession session,
+			String step01Text, String step02Text, String step03Text,
+			String eachPrice, String ordQty, String totalPrice,
+			String franchiseNo, String whatWay, String code) {
+		
 		System.out.println("주문 및 결제하기 페이지로 이동");
+		
 		// 사용 가능한 쿠폰 리스트 띄우기
 		UserVO userVO = (UserVO) session.getAttribute("user");
 		UserVO getInfo = userService.getUserInfo(userVO);
@@ -201,6 +206,18 @@ public class OrderController {
 		model.addAttribute("couponList", couponList);
 		model.addAttribute("couponTotal", couponTotal);
 		model.addAttribute("useCouponTotal", useCouponTotal);
+		
+		//step03에서 받은 주문정보 설정
+		model.addAttribute("step01Text", step01Text);
+		model.addAttribute("step02Text", step02Text);
+		model.addAttribute("step03Text", step03Text);
+		model.addAttribute("eachPrice", eachPrice);
+		model.addAttribute("ordQty", ordQty);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("franchiseNo", franchiseNo);
+		model.addAttribute("whatWay", whatWay);
+		model.addAttribute("code", code);
+		System.out.println("step01Text : " + step01Text);
 		
 		return "order/orderStep04";
 	}

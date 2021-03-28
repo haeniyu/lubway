@@ -1,7 +1,22 @@
 	//주문하기 페이지로 이동
 	function gotoStep04() {
+		if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
+			alert("필수 선택을 선택해주세요.");
+			return;
+		}
 		var totalPrice = $("#finalAmt").text();
-		$("#totalPrice").text(totalPrice);
+		$("#totalPrice").val(totalPrice);
+		
+		var step01Text = $("#selectStep01").text();
+		var step02Text = $("#selectStep02").text();
+		var step03Text = $("#selectStep03").text();
+		$("#step01Text").val(step01Text);
+		$("#step02Text").val(step02Text);
+		$("#step03Text").val(step03Text);
+		
+		$("#orderForm").append($("#eachPrice"));	//빵 길이 추가 가격 포함
+		$("#orderForm").append($("#ordQty"));		//수량
+		
 		$("#orderForm").submit();
 	}
 	
@@ -230,7 +245,7 @@
 				console.log(sumUntilStep1);
 				sumUntilStep2 = sumUntilStep1;
 				console.log(sumUntilStep2);				
-				
+				$("#eachPrice").val(sumUntilStep1);
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				$("#finalAmt").text(num2);
 			}
