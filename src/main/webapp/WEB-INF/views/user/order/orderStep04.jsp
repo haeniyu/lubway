@@ -58,8 +58,8 @@ $(function() {
 									<!-- fastway 픽업 매장 주소 -->
 									<c:if test="${whatWay eq 'Fast-Way' }">
 										<dl class="info_dl">
-											<dt>종로삼일대로</dt>
-											<dd>서울특별시 종로구 삼일대로 391</dd>
+											<dt>${store.storename}</dt>
+											<dd>${store.address_road }</dd>
 										</dl>
 									</c:if>
 									<!-- homeway 배달 받을 주소 -->
@@ -109,7 +109,7 @@ $(function() {
 										<dd>
 											<span class="form_text"> <input maxlength="11"
 												name="ordHp" placeholder="전화번호를 입력하세요" type="text"
-												value="01036582924" />
+												value="${user.tel }" />
 											</span>
 										</dd>
 									</dl>
@@ -129,7 +129,7 @@ $(function() {
 							<!--// 매장 정보 및 배달정보 -->
 
 							<!-- 할인방법 -->
-							<h2>할인 방법 선택</h2>
+							<h2 style="margin-top:70px">할인 방법 선택</h2>
 							<div class="write_info_wrap">
 								<!-- 쿠폰 사용 -->
 								<input name="voucher" type="hidden" /> 
@@ -168,11 +168,11 @@ $(function() {
 										<dd>
 											<div class="use_point">
 												<span class="form_text bdr_text"> 
-												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="0" />
+												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="" />
 												</span>
 												<p>
 													<span>보유 포인트 :</span> 
-													<strong id="usablePoint" data-point="0">${userInfo.point }</strong>
+													<strong id="usablePoint">${userInfo.point }</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">
@@ -229,26 +229,14 @@ $(function() {
 											<div class="name" data-target="mainItem">
 												<!-- 선택한 메뉴 이름 -->
 												<strong>로스트 치킨</strong>
-												<p>
-												<!-- 선택한 메뉴들 받는 부분 -->
-													<!-- 빵길이 -->
-													30cm, 
-													<!-- 빵종류 -->
-													파마산 오레가노(토스팅), 
-													<!-- 치즈 -->
-													아메리칸치즈, 
-													<!-- 야채 -->
-													양상추, 
-													<!-- 소스 -->
-													레드와인식초
-												</p>
+												<p>${step01Text}</p>
 											</div>
 											<div class="count">
-												<strong class="qty" data-qty="1">1</strong>개
+												<strong class="qty">${quantity }</strong>개
 											</div>
 											<div class="sum">
 												<span>
-													<strong class="price" data-price="22,200">22,200</strong><em>원</em>
+													<strong class="price">${totalPrice}</strong><em>원</em>
 												</span>
 												<!-- 추가 선택 메뉴 있을경우 생김 -->
 												<a class="arrow"></a>
@@ -273,7 +261,7 @@ $(function() {
 													<div class="setname">
 														<strong>세트추가</strong>
 														<p>
-															초코칩 쿠키,탄산음료 16oz
+															${step03Text }
 														</p>
 													</div>
 													<div class="setcount"></div>
@@ -296,19 +284,19 @@ $(function() {
 
 						<!-- 결제금액 -->
 					<div class="amount">
-						<input id="totalOrdAmt" type="hidden" value="22200" />
+						<!-- <input id="totalOrdAmt" type="hidden" value="22200" />
 						<input id="ordAmt" type="hidden" value="22200" />
 						<input id="delvAmt" type="hidden" value="" />
 						<input name="totalPayAmt" type="hidden" value="22200" />
 						
 						<input id="orderType" type="hidden" value="ORD_TYPE.FAST_SUB" />
-						<input id="ordSheetNo" type="hidden" value="1106733" />
+						<input id="ordSheetNo" type="hidden" value="1106733" /> -->
 						<h2>총 결제 금액</h2>
 						
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong id="orderTotal">22,200</strong>
+								<strong id="orderTotal">${totalPrice}</strong>
 								원
 							</dd>
 						</dl>
@@ -321,7 +309,7 @@ $(function() {
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
-							<dd><strong id="totalPayAmtNavi">22,200</strong><span>원</span></dd>
+							<dd><strong id="totalPayAmtNavi">${totalPrice}</strong><span>원</span></dd>
 						</dl>
 						<div class="payment_agree">
 							<dl>
@@ -351,7 +339,6 @@ $(function() {
 			</div>
 			<!--// sub content -->
 		</div>
-	</div>
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>

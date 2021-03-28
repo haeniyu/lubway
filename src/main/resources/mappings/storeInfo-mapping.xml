@@ -41,5 +41,9 @@
 		AND homeway_usable = TRUE
 		ORDER BY NO DESC
 	</select>
+	
+	<select id="getStoreInfoByNo" resultType="storeInfo" parameterType="int">
+		SELECT * FROM storeinfo WHERE no=#{no}
+	</select>
 
 </mapper>

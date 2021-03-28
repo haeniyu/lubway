@@ -36,4 +36,9 @@ public class StoreInfoDAO {
 		System.out.println("StoreInfoDAO - homewayStore() 실행");
 		return sqlSessionTemplate.selectList("StoreInfoDAO.homewayStore", keyword);
 	}
+
+	public StoreInfoVO getStoreInfoByNo(int no) {
+		System.out.println("StoreInfoDAO - getStoreInfoByNo() 실행");
+		return sqlSessionTemplate.selectOne("StoreInfoDAO.getStoreInfoByNo", no);
+	}
 }

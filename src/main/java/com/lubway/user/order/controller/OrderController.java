@@ -20,9 +20,11 @@ import com.lubway.admin.menu.SandwichVO;
 import com.lubway.admin.menu.WedgeAndSoupVO;
 import com.lubway.admin.menu.WrapVO;
 import com.lubway.admin.menu.service.MenuService;
+import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.menu.service.UserOptionService;
+import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
 import com.lubway.user.service.UserService;
@@ -44,6 +46,9 @@ public class OrderController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
@@ -188,7 +193,7 @@ public class OrderController {
 	@RequestMapping("/orderStep04.do")
 	public String orderStep04(Model model, UserCouponVO vo, HttpSession session,
 			String step01Text, String step02Text, String step03Text,
-			String eachPrice, String ordQty, String totalPrice,
+			String eachCost, String quantity, String totalPrice,
 			String franchiseNo, String whatWay, String code) {
 		
 		System.out.println("주문 및 결제하기 페이지로 이동");
@@ -207,17 +212,20 @@ public class OrderController {
 		model.addAttribute("couponTotal", couponTotal);
 		model.addAttribute("useCouponTotal", useCouponTotal);
 		
+		
+		StoreInfoVO store = orderService.getStoreInfoByNo(franchiseNo);
+		System.out.println(store.toString());
+		
 		//step03에서 받은 주문정보 설정
+		model.addAttribute("store", store);
 		model.addAttribute("step01Text", step01Text);
 		model.addAttribute("step02Text", step02Text);
 		model.addAttribute("step03Text", step03Text);
-		model.addAttribute("eachPrice", eachPrice);
-		model.addAttribute("ordQty", ordQty);
+		model.addAttribute("eachCost", eachCost);
+		model.addAttribute("quantity", quantity);
 		model.addAttribute("totalPrice", totalPrice);
-		model.addAttribute("franchiseNo", franchiseNo);
 		model.addAttribute("whatWay", whatWay);
 		model.addAttribute("code", code);
-		System.out.println("step01Text : " + step01Text);
 		
 		return "order/orderStep04";
 	}

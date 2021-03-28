@@ -594,6 +594,8 @@ function hideDiv() {
 	<input type="hidden" id="step01Text" name="step01Text" value="">
 	<input type="hidden" id="step02Text" name="step02Text" value="">
 	<input type="hidden" id="step03Text" name="step03Text" value="">
+	<input type="hidden" id="quantity" name="quantity" value="">
+	<input type="hidden" id="eachCost" name="eachCost" value="">
 </form> 
 </body>
 </html>

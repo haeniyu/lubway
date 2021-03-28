@@ -14,8 +14,10 @@
 		$("#step02Text").val(step02Text);
 		$("#step03Text").val(step03Text);
 		
-		$("#orderForm").append($("#eachPrice"));	//빵 길이 추가 가격 포함
-		$("#orderForm").append($("#ordQty"));		//수량
+		var quantity = $("#ordQty").val(); //수량
+		$("#quantity").val(quantity);
+		var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
+		$("#eachCost").val(eachCost);
 		
 		$("#orderForm").submit();
 	}
