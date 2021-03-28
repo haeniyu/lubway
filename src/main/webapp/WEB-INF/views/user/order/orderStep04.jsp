@@ -28,11 +28,16 @@ $(function() {
 		}
 	})
 });
-$(document).ready(function() {
-	$("input:radio[name=payment]").click(function (){
+$(function() {
+	var pay = "";
+	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
-		
-		if(temp == "PAY_METHOD.PAYCOKAKAO"){
+		console.log("temp:" + temp);
+		pay = temp;
+	})
+	
+	$("#startOrder").click(function (){
+		if(pay == "PAY_METHOD.PAYCOKAKAO"){
 			IMP.init('imp80143812');
 			IMP.request_pay({
 			    pg : 'kakaopay',
@@ -266,11 +271,15 @@ $(document).ready(function() {
 										<dd>
 											<div class="form_radio square">
 												<label> 
-													<input checked="checked" id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
+													<input checked="checked" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
+													<span class="shape">현금</span>
+												</label> 
+												<label> 
+													<input id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
 													<span class="shape">신용카드</span>
 												</label> 
 												<label> 
-													<input id="etc" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
+													<input id="kakao" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
 													<span class="shape">
 														<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>
 													</span>
