@@ -70,7 +70,7 @@ public class BasketController {
 		model.addAttribute("basket", basketList);
 //		model.addAttribute("price", priceList);
 		
-		return "order/test";
+		return "order/baskethome";
 	}
 
 }

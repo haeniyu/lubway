@@ -11,30 +11,45 @@
 <script type="text/javascript">
 var min = 1;
 var max = "10";
+var count = "";
+var qty = "";
+var basket = "";
 $(document).ready(function(){
+	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
+			count = i;
+			qty = $("#qty"+count).val();
+			basket = $(".eachTotalPrice"+count).attr('id');
+			basket = Number(basket) * Number(qty);
+			$(".eachTotalPrice"+count).text(basket);
+	}
 	//수량 변경
 	$(".plus").click("click",function(){
-		var count = $(this).attr('id');
-		var qty = $("#qty"+count).val()*1;
+		count = $(this).attr('id');
+		qty = $("#qty"+count).val()*1;
+		basket = $(".eachTotalPrice"+count).attr('id');
 		qty += 1;
 		if(qty>max){
 			alert("최대수량은 10개 입니다.");
 			qty -= 1;
 			return;
 		}
+		basket = Number(basket) * Number(qty);
+		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 	});
 	$(".minus").click("click",function(){
-		var count = $(this).attr('id');
-		var qty = $("#qty"+count).val()*1;
+		count = $(this).attr('id');
+		qty = $("#qty"+count).val()*1;
+		basket = $(".eachTotalPrice"+count).attr('id');
 		qty -= 1;
 		if(qty<min){
 			qty += 1;
 			return;
 		}	
+		basket = Number(basket) * Number(qty);
+		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 	});
-	
 });
 </script>
 <head>
@@ -90,15 +105,21 @@ $(document).ready(function(){
 								<label class="form_checkbox">
 									<input data-target="each" type="checkbox" />
 									<span class="icon"></span>
-									<th:object>D로스트 치킨 아보카도 (15cm)</th:object>
+									<th:object>${basket.menu_name}</th:object>
 								</label>
+								<c:if test="${basket.menu_type ne '사이드'}">
 								<p>
 										<c:if test="${basket.menu_type eq '샌드위치'}">
 										<!-- 빵길이 -->
-										<th:object></th:object>
-										</c:if>
+											<c:if test="${basket.size eq 'false'}">
+												<th:object>15cm</th:object>
+											</c:if>
+											<c:if test="${basket.size eq 'true'}">
+												<th:object>30cm</th:object>
+											</c:if>
 										<!-- 빵종류 -->
 										<th:object>${basket.bread}</th:object>
+										</c:if>
 										<!-- 치즈 -->
 										<th:object>${basket.cheese}</th:object>
 										<!-- 야채 -->
@@ -106,44 +127,73 @@ $(document).ready(function(){
 										<!-- 소스 -->
 										<th:object>${basket.sauce}</th:object>
 								</p>
+								</c:if>
 								<strong>
 									<em>${basket.single_price}</em>
 									<span>원</span>
 								</strong>
 							</div>
-							<img src="${basket.menu_filepath}">
+							<img alt="${basket.menu_name}" src="${basket.menu_filepath}">
 							<!-- 
 							<img onError="this.src=''" alt="D로스트 치킨 아보카도 (15cm)" src="" />
 							 -->
 						</div>
-							<dl class="detail_list">
-									<dt>
-										<em>추가</em>
-										<span>오믈렛</span>
-									</dt>
-									<dd>
-										<strong>1,200</strong>
-										<span>원</span>
-									</dd>
-									
-									<dt>
-										<em>추가</em>
-										<span class="sideText">
+						<c:if test="${basket.meat ne null or basket.topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
+								<dl class="detail_list">
+									<c:if test="${basket.meat ne null}">
+											<dt>
+												<em>추가</em>
+												<span>${basket.meat}</span>
+											</dt>
+											<dd>
+												<strong>${price[status.index].meat_price}</strong>
+												<span>원</span>
+											</dd>
+										</c:if>
+
+										<c:if test="${basket.topping ne null}">
+											<dt>
+												<em>추가</em>
+												<span>${basket.topping}</span>
+											</dt>
+											<dd>
+												<strong>${price[status.index].topping_price}</strong>
+												<span>원</span>
+											</dd>
+										</c:if>
+										
+										<c:if test="${basket.add_cheese ne null}">
+											<dt>
+												<em>추가</em>
+												<span>${basket.add_cheese}</span>
+											</dt>
+											<dd>
+												<strong>${price[status.index].cheese_price}</strong>
+												<span>원</span>
+											</dd>
+										</c:if>
+										
+										<c:if test="${basket.add_cheese ne null}">										
+											<dt>
+												<em>추가</em>
+												<span class="sideText">
 													더블 초코칩 쿠키/스프라이트 / 
-										</span>
-									</dt>
-									<dd>
-										<strong>2,200</strong>
-										<span>원</span>
-									</dd>
-							</dl>
+												</span>
+											</dt>
+											<dd>
+												<strong>${basket.set_price}</strong>
+												<span>원</span>
+											</dd>
+										</c:if>
+									</dl>
+									</c:if>
 							<div class="total">
 								<dl class="count">
 									<dt>수량</dt>
 									<dd>
-										<input name="eachPrice" type="hidden" value="10600" />
+										<input name="eachPrice" type="hidden" value="" />
 										<a class="minus" id="${stat.count }" href="javascript:void(0);">수량 빼기</a>
-										<input class="qty" id="qty${stat.count }" name="qty" type="text" value="1" readonly/>
+										<input class="qty" id="qty${stat.count }" name="${stat.count}" type="text" value="${basket.quantity}" readonly/>
 										<a class="plus" id="${stat.count }" href="javascript:void(0);">수량 더하기</a>
 									</dd>
 								</dl>
@@ -151,7 +201,7 @@ $(document).ready(function(){
 								<dl class="total_sum">
 									<dt>총 주문금액</dt>
 									<dd>
-										<strong class="eachTotalPrice">${basket.total_price}</strong>
+										<strong class="eachTotalPrice${stat.count}" id="${basket.total_price}">${basket.total_price}</strong>
 										<span>원</span>
 									</dd>
 								</dl>
