@@ -45,51 +45,63 @@ $(function() {
 						<!-- 결제폼 -->
 						<section class="form_box">
 							<!-- 픽업매장 -->
-							<h2>픽업매장</h2>
+							<c:if test="${whatWay eq 'Fast-Way' }">
+								<h2>픽업매장</h2>
+							</c:if>
 						<section class="form_box">
 							<!-- 배달매장 -->
-							<h2>배달정보</h2>	
+							<c:if test="${whatWay eq 'Home-Way' }">
+								<h2>배달정보</h2>	
+							</c:if>
 							<div class="write_info_wrap stroe_order">
 								<div class="input_set">
 									<!-- fastway 픽업 매장 주소 -->
-									<dl class="info_dl">
-										<dt>종로삼일대로</dt>
-										<dd>서울특별시 종로구 삼일대로 391</dd>
-									</dl>
+									<c:if test="${whatWay eq 'Fast-Way' }">
+										<dl class="info_dl">
+											<dt>종로삼일대로</dt>
+											<dd>서울특별시 종로구 삼일대로 391</dd>
+										</dl>
+									</c:if>
 									<!-- homeway 배달 받을 주소 -->
-									<dl class="info_dl">
-										<dt>주소</dt>
-										<dd>서울특별시 종로구 삼일대로 391</dd>
-									</dl>
+									<c:if test="${whatWay eq 'Home-Way' }">
+										<dl class="info_dl">
+											<dt>주소</dt>
+											<dd>서울특별시 종로구 삼일대로 391</dd>
+										</dl>
+									</c:if>
 								</div>
 								<!-- fastway 매장식사 / 픽업 여부 선택 -->
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>방문포장/매장식사</dt>
-										<dd>
-											<div class="choice_wrap">
-												<!-- radio -->
-												<label class="form_circle" for="r2"> <input
-													checked="checked" id="r2" name="paveFg" type="radio"
-													value="Y" /> <span class="icon"></span> <em>방문포장</em>
-												</label> <label class="form_circle" for="r1"> <input id="r1"
-													name="paveFg" type="radio" value="N" /> <span class="icon"></span>
-													<em>매장식사</em>
-												</label>
-												<!--// radio -->
-											</div>
-										</dd>
-									</dl>
-								</div>
+								<c:if test="${whatWay eq 'Fast-Way' }">
+									<div class="input_set">
+										<dl class="a_order">
+											<dt>방문포장/매장식사</dt>
+											<dd>
+												<div class="choice_wrap">
+													<!-- radio -->
+													<label class="form_circle" for="r2"> <input
+														checked="checked" id="r2" name="paveFg" type="radio"
+														value="Y" /> <span class="icon"></span> <em>방문포장</em>
+													</label> <label class="form_circle" for="r1"> <input id="r1"
+														name="paveFg" type="radio" value="N" /> <span class="icon"></span>
+														<em>매장식사</em>
+													</label>
+													<!--// radio -->
+												</div>
+											</dd>
+										</dl>
+									</div>
+								</c:if>
 								<!-- homeway 주문한 매장 -->
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>배달 매장</dt>
-										<dd>
-											상수역
-										</dd>
-									</dl>
-								</div>
+								<c:if test="${whatWay eq 'Home-Way' }">
+									<div class="input_set">
+										<dl class="a_order">
+											<dt>배달 매장</dt>
+											<dd>
+												상수역
+											</dd>
+										</dl>
+									</div>
+								</c:if>
 								<!-- fast/home 공통 부분 -->
 								<div class="input_set">
 									<dl class="">
@@ -113,33 +125,6 @@ $(function() {
 										</dd>
 									</dl>
 								</div>
-								<!-- homeway 배달시 요청사항
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>배달시,요청사항</dt>
-										<dd>
-											<span class="form_text"> <input maxlength="50"
-												name="ordMemoContent" placeholder="배달시 요청사항을 입력하세요"
-												type="text" />
-											</span>
-										</dd>
-									</dl>
-								</div>
-								<!-- fast/home 공통 부분 
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>일회용품</dt>
-										<dd>
-											<div class="choice_wrap">
-												<label class="form_checkbox dispos"> 
-													<input name="disposableFg" type="checkbox" value="Y" /> 
-													<span class="icon"></span>
-													<p>일회용품(스푼, 포크 등)을 사용하지 않겠습니다.</p>
-												</label>
-											</div>
-										</dd>
-									</dl>
-								</div>-->
 							</div>
 							<!--// 매장 정보 및 배달정보 -->
 
@@ -163,9 +148,9 @@ $(function() {
 													</c:if>
 													<c:if test="${couponTotal != useCouponTotal}">
 														<c:forEach items="${couponList }" var="coupon">
-															<option>${coupon.name } ( <fmt:formatDate value="${coupon.regdate }"
-														pattern="yyyy - MM - dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
-														pattern="yyyy - MM - dd" /> )</option>
+															<option>${coupon.name } ${coupon.discount }% ( <fmt:formatDate value="${coupon.regdate }"
+														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
+														pattern="yyyy-MM-dd" /> )</option>
 														</c:forEach>
 													</c:if>
 												</select>
