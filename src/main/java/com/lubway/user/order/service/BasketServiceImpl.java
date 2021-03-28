@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.lubway.user.order.BasketDAO;
 import com.lubway.user.order.BasketVO;
+import com.lubway.user.order.PriceVO;
 
 @Service
 public class BasketServiceImpl implements BasketService {
@@ -17,6 +18,11 @@ public class BasketServiceImpl implements BasketService {
 	@Override
 	public List<BasketVO> getBasket(BasketVO vo) {
 		return basketDAO.getBasket(vo);
+	}
+
+	@Override
+	public List<PriceVO> getPrice(BasketVO vo) {
+		return basketDAO.getPrice(vo);
 	}
 
 }

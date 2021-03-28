@@ -15,4 +15,8 @@ public class BasketDAO {
 	public List<BasketVO> getBasket(BasketVO vo) {
 		return sqlSessionTemplate.selectList("BasketDAO.getBasket", vo);
 	}
+
+	public List<PriceVO> getPrice(BasketVO vo) {
+		return sqlSessionTemplate.selectList("BasketDAO.getPrice", vo);
+	}
 }
