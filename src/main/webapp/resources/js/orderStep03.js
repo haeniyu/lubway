@@ -223,6 +223,8 @@
 	var ttl = 0;	//토핑의 총 가격
 	var sumUntilStep1 = 0;
 
+	var sumUntilStep1 = ep;
+	console.log("step1 가격 (시작) :" + sumUntilStep1);
 		
 		//길이 선택 시 모든 사항이 초기화 되고 빵 가격이 적용된다.
 		$("input:radio[name=length]").click(function(){
@@ -245,9 +247,15 @@
 				sum = cost + brdcost;		//15cm기준 가격 + 빵길이 추가가격		
 				sumUntilStep1 = sum;		// Step1 필수선택까지의 가격 정보 저장
 				console.log(sumUntilStep1);
+				console.log("step1 가격 (길이 선택시) :" + sumUntilStep1);
 				sumUntilStep2 = sumUntilStep1;
+<<<<<<< HEAD
 				console.log(sumUntilStep2);				
 				$("#eachPrice").val(sumUntilStep1);
+=======
+				console.log("step2 가격 (길이 선택시) :" + sumUntilStep2);		
+				
+>>>>>>> feature/import
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				$("#finalAmt").text(num2);
 			}
@@ -332,7 +340,8 @@
 		
 		//토핑 추가 선택
       	var arr = new Array();		//선택된 토핑을 담을 배열
-		var sumUntilStep2;	//스텝2까지의 가격 저장***
+		var sumUntilStep2 = sumUntilStep1;	//스텝2까지의 가격 저장***
+		console.log("step2 가격 :" + sumUntilStep2);
       
 		$("input:checkbox[name=topping]").click(function(){
          var temp = $(this).val();
@@ -406,6 +415,14 @@
          var temp = $(this).val();
          var tempArr = temp.split(",");
          var cost = parseInt(tempArr[1]);
+
+		var selectTarget = $("[name=add_cheese]:checked");
+			// 미트추가 선택갯수 벨리데이션
+			if(selectTarget.length > 1) {
+				alert("치즈 추가는 1개만 선택가능합니다.");
+				$(this).prop("checked", false);
+				return;
+			}
          
          if($(this).is(":checked") == true) {//체크 시
 			sum += cost;
@@ -432,6 +449,7 @@
 		var checkset = 0; // 0 - 체크안함, 1 - 쿠키세트, 2 - 웨지세트
 		var drinkCost = 0;	//16oz 기준 기본 음료 코스트 (무료)
 		$("input:radio[name=select_set]").click(function(){
+			
 			sum = sumUntilStep2; //스텝2까지의 가격으로 초기화
 			var temp = $(this).val();
          	var tempArr = temp.split(",");
