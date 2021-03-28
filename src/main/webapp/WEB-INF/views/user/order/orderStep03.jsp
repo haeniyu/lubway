@@ -141,7 +141,7 @@ function hideDiv() {
 									<div class="popup_content length">
 										<ul>
 											<li><label class="form_circle" for="15cm"> <input
-													name="length" type="radio" checked="checked" id="15cm"
+													name="length" type="radio" id="15cm"
 													value="15cm"> <span class="icon"></span> <em>15cm</em>
 											</label></li>
 											<li><label class="form_circle" for="30cm">
