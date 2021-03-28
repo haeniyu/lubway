@@ -47,9 +47,7 @@ $(function() {
 			    amount : 100,
 			    buyer_email : 'orbital0m0@gmail.com',
 			    buyer_name : '구매자이름',
-			    buyer_tel : '010-7704-3129',
-			    buyer_addr : '서울특별시 강남구 삼성동',
-			    buyer_postcode : '123-456'
+			    buyer_tel : '010-7704-3129'
 			}, function(rsp) {
 			    if ( rsp.success ) {
 			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기

@@ -246,16 +246,9 @@
 				}
 				sum = cost + brdcost;		//15cm기준 가격 + 빵길이 추가가격		
 				sumUntilStep1 = sum;		// Step1 필수선택까지의 가격 정보 저장
-				console.log(sumUntilStep1);
-				console.log("step1 가격 (길이 선택시) :" + sumUntilStep1);
 				sumUntilStep2 = sumUntilStep1;
-<<<<<<< HEAD
-				console.log(sumUntilStep2);				
 				$("#eachPrice").val(sumUntilStep1);
-=======
-				console.log("step2 가격 (길이 선택시) :" + sumUntilStep2);		
 				
->>>>>>> feature/import
 				var num2 = sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 				$("#finalAmt").text(num2);
 			}
@@ -417,7 +410,7 @@
          var cost = parseInt(tempArr[1]);
 
 		var selectTarget = $("[name=add_cheese]:checked");
-			// 미트추가 선택갯수 벨리데이션
+			// 치즈 추가 선택갯수 벨리데이션
 			if(selectTarget.length > 1) {
 				alert("치즈 추가는 1개만 선택가능합니다.");
 				$(this).prop("checked", false);
