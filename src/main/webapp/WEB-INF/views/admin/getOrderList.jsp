@@ -114,26 +114,26 @@
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
-								<tr align="center">
-									<th>주문 코드</th>
-									<th>아이디</th>
-									<th>이름</th>
-									<th>주문 시간</th>
-									<th>도착 예정 시간</th>
-									<th>주소</th>
-									<th>연락처</th>
-									<th>주문 메뉴</th>
-									<th>주문 상세</th>
-									<th>총 금액</th>
-									<th>수령 방법</th>
-									<th>결제 수단</th>
-									<th>주문 매장</th>
-									<th>요청 사항</th>
+								<tr align="center" style="font-size: 14px">
+									<th width="5%">주문 코드</th>
+									<th width="5%">아이디</th>
+									<th width="5%">이름</th>
+									<th width="10%">주문 시간</th>
+									<th width="10%">도착 예정 시간</th>
+									<th width="10%">주소</th>
+									<th width="5%">연락처</th>
+									<th width="5%">주문 메뉴</th>
+									<th width="15%">주문 상세</th>
+									<th width="5%">총 금액</th>
+									<th width="5%">수령 방법</th>
+									<th width="5%">결제 수단</th>
+									<th width="5%">주문 매장</th>
+									<th width="10%">요청 사항</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${orderList}" var="list">
-									<tr>
+									<tr style="font-size: 14px">
 										<td>${list.code }</td>
 										<td>${list.id }</td>
 										<td>${list.name }</td>
