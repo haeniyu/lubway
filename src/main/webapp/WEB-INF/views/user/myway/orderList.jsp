@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -41,16 +41,14 @@
 					<div class="order_list">
 						<div class="order_listTit">
 							<h3>주문내역 전체보기</h3>
-							<a class="refresh" href="#none"><span class="blind">새로고침</span></a>
 						</div>
 						<ul>
 							<!-- 1세트 -->
 							<li>
 								<div class="order_card">
-									<a href="/mypage/order/fast/view?ordIdx=1015157"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
-										
+									<a href="/lubway/orderListDetail.do"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
 										<p class="order_type fast">
-											<th:object>FAST-SUB</th:object>
+											FAST-SUB
 											<span>픽업완료</span>
 										</p>
 										<div class="order_menu">

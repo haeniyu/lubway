@@ -7,10 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.common.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript">
+$(function() {
+	$('.history_table .selectMenu').on('click', function () {
+		var spd = 0.5,
+			eft = Power3.easeOut
+		if ($(this).parent('li').hasClass('on')) {
+			$(this).parent('li').removeClass('on');
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: 0 })
+		} else {
+			$(this).parent('li').addClass('on');
+			var h = $(this).next('.addMenu').find('ul').innerHeight();
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: h })
+		}
+	})
+});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -25,7 +42,7 @@
 			<!-- FAST-SUB 주문내역상세 -->
 			<div class="bill_order">
 				<div class="order_con">
-					<div class="order_number fast_sub">
+					<div class="order_number fast_sub"> <!-- fast/home 에 따라 색 달라짐 -->
 						<dl>
 							<dt>주문번호 :</dt>
 							<dd>ORD20210308173004584278</dd>
@@ -61,6 +78,7 @@
 					<!-- 주문내역 -->
 					<section class="form_box">
 						<h3>주문내역</h3>
+						<hr class="Tborder">
 						<div class="board_list_wrapper">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
