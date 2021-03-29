@@ -14,6 +14,7 @@ var max = "10";
 var count = "";
 var qty = "";
 var basket = "";
+var totalPrice = 0;
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
 			count = i;
@@ -21,7 +22,10 @@ $(document).ready(function(){
 			basket = $(".eachTotalPrice"+count).attr('id');
 			basket = Number(basket) * Number(qty);
 			$(".eachTotalPrice"+count).text(basket);
+			totalPrice += basket;
+			$("#totalPrice").text(totalPrice);
 	}
+	
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
@@ -33,9 +37,12 @@ $(document).ready(function(){
 			qty -= 1;
 			return;
 		}
+		var add = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice += add;
+		$("#totalPrice").text(totalPrice);		
 	});
 	$(".minus").click("click",function(){
 		count = $(this).attr('id');
@@ -45,10 +52,13 @@ $(document).ready(function(){
 		if(qty<min){
 			qty += 1;
 			return;
-		}	
+		}
+		var minus = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice -= minus;
+		$("#totalPrice").text(totalPrice);		
 	});
 });
 </script>
