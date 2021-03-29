@@ -33,6 +33,7 @@
 		<typeAlias type="com.lubway.user.menu.VegetableVO" alias="vege"/>
 		<typeAlias type="com.lubway.user.order.BasketVO" alias="basket" />
 		<typeAlias type="com.lubway.user.order.PriceVO" alias="price" />
+		<typeAlias type="com.lubway.user.order.OrderVO" alias="order" />
 		
 	</typeAliases>
 	
@@ -59,5 +60,6 @@
 		<mapper resource="mappings/user-menu-mapping.xml"/>
 		<mapper resource="mappings/user-option-mapping.xml"/>
 		<mapper resource="mappings/basket-mapping.xml"/>
+		<mapper resource="mappings/order-mapping.xml"/>
 	</mappers>
 </configuration>
