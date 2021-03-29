@@ -12,7 +12,6 @@
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
 	$('.history_table .selectMenu').on('click', function () {
@@ -156,7 +155,7 @@ $(function() {
 										<dl class="a_order">
 											<dt>배달 매장</dt>
 											<dd>
-												상수역
+												${store.storename }
 											</dd>
 										</dl>
 									</div>
@@ -191,11 +190,6 @@ $(function() {
 							<h2 style="margin-top:70px">할인 방법 선택</h2>
 							<div class="write_info_wrap">
 								<!-- 쿠폰 사용 -->
-								<input name="voucher" type="hidden" /> 
-								<input id="voucherAmt" type="hidden" /> 
-								<input name="couponItemCode" type="hidden" />
-								<input name="couponItemIndex" type="hidden" /> 
-								<input id="couponAmt" name="couponAmt" type="hidden" />
 								<div class="input_set">
 									<dl>
 										<dt>쿠폰 사용</dt>
@@ -279,81 +273,102 @@ $(function() {
 						<!--// 결제폼 -->
 
 						<!-- 주문내역 -->
-					<div class="board_list_wrapper">
-						<h2>주문내역</h2>
-						<hr class="Tborder">
-						<div class="content">
-							<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
-							<div class="history_table">
-								<!-- 선택한 메뉴 -->
-								<ul>
-									<li>
-										<div class="selectMenu">
-											<div class="name" data-target="mainItem">
-												<!-- 선택한 메뉴 이름 -->
-												<strong>로스트 치킨</strong>
-												<p>${step01Text}</p>
+						<div class="board_list_wrapper">
+							<h2>주문내역</h2>
+							<hr class="Tborder">
+							<div class="content">
+								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
+								<div class="history_table">
+									<!-- 선택한 메뉴 -->
+									<ul>
+										<li>
+											<div class="selectMenu">
+												<div class="name" data-target="mainItem">
+													<!-- 선택한 메뉴 이름 -->
+													<strong>${menuName }</strong>
+													<p>${step01Text}</p>
+												</div>
+												<div class="count">
+													<strong class="qty">${quantity }</strong>개
+												</div>
+												<div class="sum">
+													<span> <strong class="price">${totalPrice}</strong><em>원</em>
+													</span>
+													<!-- 추가 선택 메뉴 있을경우 생김 -->
+													<c:if test="${step02Text.length() gt 0  || step03Text.length() gt 0}">
+													<a class="arrow"></a>
+													</c:if>
+												</div>
+											</div> <!-- 추가 선택 메뉴 있을경우 보임-->
+											<div class="addMenu">
+												<ul>
+													<c:if test="${step02Text.length() gt 0 }">
+														<c:forEach items="${toppingList }" var="topping">
+															<li>
+																<div class="addname">
+																	<strong>${topping.name }</strong>
+																</div>
+																<div class="addcount"></div>
+																<div class="addsum">
+																	<span> <strong>${topping.topping_price }</strong><em>원</em>
+																	</span>
+																</div>
+															</li>
+														</c:forEach>
+													</c:if>
+													<!-- 미트 추가 시  -->
+													<c:if test="${meatAdd.length() gt 0 }">
+														<li>
+															<div class="addname">
+																<strong>${meatAdd }</strong>
+															</div>
+															<div class="addcount"></div>
+															<div class="addsum">
+																<span> <strong>1,800</strong><em>원</em>
+																</span>
+															</div>
+														</li>
+													</c:if>
+													<!-- 치즈 추가 시 -->
+													<c:if test="${cheeseAdd.length() gt 0 }">
+														<li>
+															<div class="addname">
+																<strong>${cheeseAdd }</strong>
+															</div>
+															<div class="addcount"></div>
+															<div class="addsum">
+																<span> <strong>900</strong><em>원</em>
+																</span>
+															</div>
+														</li>
+													</c:if>
+
+													<!-- 세트 추가 시 -->
+													<c:if test="${step03Text.length() gt 0 }">
+														<li>
+															<div class="setname">
+																<strong>세트추가</strong>
+																<p>${step03Text }</p>
+															</div>
+															<div class="setcount"></div>
+															<div class="setsum">
+																<span> <strong>${setAdd }</strong><em>원</em>
+																</span>
+															</div>
+														</li>
+													</c:if>
+												</ul>
 											</div>
-											<div class="count">
-												<strong class="qty">${quantity }</strong>개
-											</div>
-											<div class="sum">
-												<span>
-													<strong class="price">${totalPrice}</strong><em>원</em>
-												</span>
-												<!-- 추가 선택 메뉴 있을경우 생김 -->
-												<a class="arrow"></a>
-											</div>
-										</div>
-										<!-- 추가 선택 메뉴 있을경우 보임-->
-										<div class="addMenu">
-											<ul>
-												<li>
-													<div class="addname">
-														<strong>모차렐라치즈</strong>
-													</div>
-													<div class="addcount"></div>
-													<div class="addsum">
-														<span>
-															<strong>1,800</strong><em>원</em>
-														</span>
-													</div>
-												</li>
-												<!-- 세트 추가했을 경우 보임 -->
-												<li>
-													<div class="setname">
-														<strong>세트추가</strong>
-														<p>
-															${step03Text }
-														</p>
-													</div>
-													<div class="setcount"></div>
-													<div class="setsum">
-														<span>
-															<strong>1,900</strong><em>원</em>
-														</span>
-													</div>
-												</li>
-											</ul>
-										</div>
-									</li>
-								</ul>
+										</li>
+									</ul>
+								</div>
+								<!--// 1세트 -->
 							</div>
-							<!--// 1세트 -->
 						</div>
-						
-					</div>	
-					<!--// 주문내역 -->
+						<!--// 주문내역 -->
 
 						<!-- 결제금액 -->
 					<div class="amount">
-						<!-- <input id="totalOrdAmt" type="hidden" value="22200" />
-						<input id="ordAmt" type="hidden" value="22200" />
-						<input id="delvAmt" type="hidden" value="" />
-						<input name="totalPayAmt" type="hidden" value="22200" />
-						
-						<input id="orderType" type="hidden" value="ORD_TYPE.FAST_SUB" />
-						<input id="ordSheetNo" type="hidden" value="1106733" /> -->
 						<h2>총 결제 금액</h2>
 						
 						<dl class="order_sum">
