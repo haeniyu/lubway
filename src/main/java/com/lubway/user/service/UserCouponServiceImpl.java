@@ -30,8 +30,8 @@ public class UserCouponServiceImpl implements UserCouponService {
 	}
 	
 	@Override
-	public int countUseCoupon() {
-		return couponDAO.countUseCoupon();
+	public int countUseCoupon(UserCouponVO vo) {
+		return couponDAO.countUseCoupon(vo);
 	}
 	
 	

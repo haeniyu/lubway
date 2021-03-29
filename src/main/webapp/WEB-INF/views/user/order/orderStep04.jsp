@@ -7,6 +7,8 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
@@ -25,6 +27,63 @@ $(function() {
 			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: h })
 		}
 	})
+});
+$(function() {
+	var pay = "";
+	$("input:radio[name=payment]").click(function(){
+		var temp = $(this).val();
+		console.log("temp:" + temp);
+		pay = temp;
+	})
+	var lastcost = $('#totalPayAmtNavi').text();
+	console.log(lastcost);
+	$("#startOrder").click(function (){
+		if(pay == "PAY_METHOD.PAYCOKAKAO"){
+			IMP.init('imp80143812');
+			IMP.request_pay({
+			    pg : 'kakaopay',
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(),
+			    name : 'LUBWAY 결제 시스템',
+			    amount : lastcost,
+			    buyer_email : '${user.id}',
+			    buyer_name : '${user.name}',
+			    buyer_tel : '${user.tel}'
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+			    	jQuery.ajax({
+			    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+			    		type: 'POST',
+			    		dataType: 'json',
+			    		data: {
+				    		imp_uid : rsp.imp_uid
+				    		//기타 필요한 데이터가 있으면 추가 전달
+			    		}
+			    	}).done(function(data) {
+			    		//[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+			    		if ( everythings_fine ) {
+			    			var msg = '결제가 완료되었습니다.';
+			    			msg += '\n고유ID : ' + rsp.imp_uid;
+			    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+			    			msg += '\결제 금액 : ' + rsp.paid_amount;
+			    			msg += '카드 승인번호 : ' + rsp.apply_num;
+			    			
+			    			alert(msg);
+			    		} else {
+			    			//[3] 아직 제대로 결제가 되지 않았습니다.
+			    			//[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+			    		}
+			    	});
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        msg += '에러내용 : ' + rsp.error_msg;
+			        
+			        alert(msg);
+			    }
+			});
+		}
+	});
 });
 </script>
 </head>
@@ -45,51 +104,63 @@ $(function() {
 						<!-- 결제폼 -->
 						<section class="form_box">
 							<!-- 픽업매장 -->
-							<h2>픽업매장</h2>
+							<c:if test="${whatWay eq 'Fast-Way' }">
+								<h2>픽업매장</h2>
+							</c:if>
 						<section class="form_box">
 							<!-- 배달매장 -->
-							<h2>배달정보</h2>	
+							<c:if test="${whatWay eq 'Home-Way' }">
+								<h2>배달정보</h2>	
+							</c:if>
 							<div class="write_info_wrap stroe_order">
 								<div class="input_set">
 									<!-- fastway 픽업 매장 주소 -->
-									<dl class="info_dl">
-										<dt>종로삼일대로</dt>
-										<dd>서울특별시 종로구 삼일대로 391</dd>
-									</dl>
+									<c:if test="${whatWay eq 'Fast-Way' }">
+										<dl class="info_dl">
+											<dt>${store.storename}</dt>
+											<dd>${store.address_road }</dd>
+										</dl>
+									</c:if>
 									<!-- homeway 배달 받을 주소 -->
-									<dl class="info_dl">
-										<dt>주소</dt>
-										<dd>서울특별시 종로구 삼일대로 391</dd>
-									</dl>
+									<c:if test="${whatWay eq 'Home-Way' }">
+										<dl class="info_dl">
+											<dt>주소</dt>
+											<dd>서울특별시 종로구 삼일대로 391</dd>
+										</dl>
+									</c:if>
 								</div>
 								<!-- fastway 매장식사 / 픽업 여부 선택 -->
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>방문포장/매장식사</dt>
-										<dd>
-											<div class="choice_wrap">
-												<!-- radio -->
-												<label class="form_circle" for="r2"> <input
-													checked="checked" id="r2" name="paveFg" type="radio"
-													value="Y" /> <span class="icon"></span> <em>방문포장</em>
-												</label> <label class="form_circle" for="r1"> <input id="r1"
-													name="paveFg" type="radio" value="N" /> <span class="icon"></span>
-													<em>매장식사</em>
-												</label>
-												<!--// radio -->
-											</div>
-										</dd>
-									</dl>
-								</div>
+								<c:if test="${whatWay eq 'Fast-Way' }">
+									<div class="input_set">
+										<dl class="a_order">
+											<dt>방문포장/매장식사</dt>
+											<dd>
+												<div class="choice_wrap">
+													<!-- radio -->
+													<label class="form_circle" for="r2"> <input
+														checked="checked" id="r2" name="paveFg" type="radio"
+														value="Y" /> <span class="icon"></span> <em>방문포장</em>
+													</label> <label class="form_circle" for="r1"> <input id="r1"
+														name="paveFg" type="radio" value="N" /> <span class="icon"></span>
+														<em>매장식사</em>
+													</label>
+													<!--// radio -->
+												</div>
+											</dd>
+										</dl>
+									</div>
+								</c:if>
 								<!-- homeway 주문한 매장 -->
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>배달 매장</dt>
-										<dd>
-											상수역
-										</dd>
-									</dl>
-								</div>
+								<c:if test="${whatWay eq 'Home-Way' }">
+									<div class="input_set">
+										<dl class="a_order">
+											<dt>배달 매장</dt>
+											<dd>
+												상수역
+											</dd>
+										</dl>
+									</div>
+								</c:if>
 								<!-- fast/home 공통 부분 -->
 								<div class="input_set">
 									<dl class="">
@@ -97,7 +168,7 @@ $(function() {
 										<dd>
 											<span class="form_text"> <input maxlength="11"
 												name="ordHp" placeholder="전화번호를 입력하세요" type="text"
-												value="01036582924" />
+												value="${user.tel }" />
 											</span>
 										</dd>
 									</dl>
@@ -113,38 +184,11 @@ $(function() {
 										</dd>
 									</dl>
 								</div>
-								<!-- homeway 배달시 요청사항
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>배달시,요청사항</dt>
-										<dd>
-											<span class="form_text"> <input maxlength="50"
-												name="ordMemoContent" placeholder="배달시 요청사항을 입력하세요"
-												type="text" />
-											</span>
-										</dd>
-									</dl>
-								</div>
-								<!-- fast/home 공통 부분 
-								<div class="input_set">
-									<dl class="a_order">
-										<dt>일회용품</dt>
-										<dd>
-											<div class="choice_wrap">
-												<label class="form_checkbox dispos"> 
-													<input name="disposableFg" type="checkbox" value="Y" /> 
-													<span class="icon"></span>
-													<p>일회용품(스푼, 포크 등)을 사용하지 않겠습니다.</p>
-												</label>
-											</div>
-										</dd>
-									</dl>
-								</div>-->
 							</div>
 							<!--// 매장 정보 및 배달정보 -->
 
 							<!-- 할인방법 -->
-							<h2>할인 방법 선택</h2>
+							<h2 style="margin-top:70px">할인 방법 선택</h2>
 							<div class="write_info_wrap">
 								<!-- 쿠폰 사용 -->
 								<input name="voucher" type="hidden" /> 
@@ -163,9 +207,9 @@ $(function() {
 													</c:if>
 													<c:if test="${couponTotal != useCouponTotal}">
 														<c:forEach items="${couponList }" var="coupon">
-															<option>${coupon.name } ( <fmt:formatDate value="${coupon.regdate }"
-														pattern="yyyy - MM - dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
-														pattern="yyyy - MM - dd" /> )</option>
+															<option>${coupon.name } ${coupon.discount }% ( <fmt:formatDate value="${coupon.regdate }"
+														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
+														pattern="yyyy-MM-dd" /> )</option>
 														</c:forEach>
 													</c:if>
 												</select>
@@ -183,11 +227,11 @@ $(function() {
 										<dd>
 											<div class="use_point">
 												<span class="form_text bdr_text"> 
-												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="0" />
+												<input id="pointAmt" name="pointAmt" placeholder="사용금액 입력" type="text" value="" />
 												</span>
 												<p>
 													<span>보유 포인트 :</span> 
-													<strong id="usablePoint" data-point="0">${userInfo.point }</strong>
+													<strong id="usablePoint">${user.point }</strong>
 												</p>
 											</div>
 											<div class="btn_input_in">
@@ -211,11 +255,15 @@ $(function() {
 										<dd>
 											<div class="form_radio square">
 												<label> 
-													<input checked="checked" id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
+													<input checked="checked" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
+													<span class="shape">현금</span>
+												</label> 
+												<label> 
+													<input id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
 													<span class="shape">신용카드</span>
 												</label> 
 												<label> 
-													<input id="etc" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO" /> 
+													<input id="kakao" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
 													<span class="shape">
 														<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>
 													</span>
@@ -244,26 +292,14 @@ $(function() {
 											<div class="name" data-target="mainItem">
 												<!-- 선택한 메뉴 이름 -->
 												<strong>로스트 치킨</strong>
-												<p>
-												<!-- 선택한 메뉴들 받는 부분 -->
-													<!-- 빵길이 -->
-													30cm, 
-													<!-- 빵종류 -->
-													파마산 오레가노(토스팅), 
-													<!-- 치즈 -->
-													아메리칸치즈, 
-													<!-- 야채 -->
-													양상추, 
-													<!-- 소스 -->
-													레드와인식초
-												</p>
+												<p>${step01Text}</p>
 											</div>
 											<div class="count">
-												<strong class="qty" data-qty="1">1</strong>개
+												<strong class="qty">${quantity }</strong>개
 											</div>
 											<div class="sum">
 												<span>
-													<strong class="price" data-price="22,200">22,200</strong><em>원</em>
+													<strong class="price">${totalPrice}</strong><em>원</em>
 												</span>
 												<!-- 추가 선택 메뉴 있을경우 생김 -->
 												<a class="arrow"></a>
@@ -288,7 +324,7 @@ $(function() {
 													<div class="setname">
 														<strong>세트추가</strong>
 														<p>
-															초코칩 쿠키,탄산음료 16oz
+															${step03Text }
 														</p>
 													</div>
 													<div class="setcount"></div>
@@ -311,19 +347,19 @@ $(function() {
 
 						<!-- 결제금액 -->
 					<div class="amount">
-						<input id="totalOrdAmt" type="hidden" value="22200" />
+						<!-- <input id="totalOrdAmt" type="hidden" value="22200" />
 						<input id="ordAmt" type="hidden" value="22200" />
 						<input id="delvAmt" type="hidden" value="" />
 						<input name="totalPayAmt" type="hidden" value="22200" />
 						
 						<input id="orderType" type="hidden" value="ORD_TYPE.FAST_SUB" />
-						<input id="ordSheetNo" type="hidden" value="1106733" />
+						<input id="ordSheetNo" type="hidden" value="1106733" /> -->
 						<h2>총 결제 금액</h2>
 						
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong id="orderTotal">22,200</strong>
+								<strong id="orderTotal">${totalPrice}</strong>
 								원
 							</dd>
 						</dl>
@@ -336,7 +372,7 @@ $(function() {
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
-							<dd><strong id="totalPayAmtNavi">22,200</strong><span>원</span></dd>
+							<dd><strong id="totalPayAmtNavi">${totalPrice}</strong><span>원</span></dd>
 						</dl>
 						<div class="payment_agree">
 							<dl>
@@ -366,7 +402,6 @@ $(function() {
 			</div>
 			<!--// sub content -->
 		</div>
-	</div>
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>

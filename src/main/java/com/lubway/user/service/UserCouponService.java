@@ -12,6 +12,6 @@ public interface UserCouponService {
 	
 	int getUseCouponTotal();
 	
-	int countUseCoupon();
+	int countUseCoupon(UserCouponVO vo);
 
 }

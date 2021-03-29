@@ -39,7 +39,7 @@
 									<dt>보유 포인트</dt>
 									<dd>
 										<p class="txt_point">
-											<span>${userInfo.point }</span>P
+											<span>${user.point }</span>P
 										</p>
 									</dd>
 								</dl>

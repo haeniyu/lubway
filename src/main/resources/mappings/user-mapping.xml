@@ -43,9 +43,4 @@
 		VALUES(#{name}, #{tel}, #{email}, #{area} ,#{title}, #{content})
 	</insert>
 	
-	<select id="getUserInfo" parameterType="user" resultType="user">
-		SELECT * FROM lubuser WHERE id = #{id}
-	</select>
-	
-	
 </mapper>

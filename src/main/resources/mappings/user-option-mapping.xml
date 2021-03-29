@@ -35,5 +35,9 @@
 	<select id="getWedgeList" resultType="wedgeandsoup">
 		SELECT * FROM wedgeandsoup
 	</select>
+	
+	<select id="getToppingByName" parameterType="String" resultType="topping">
+		SELECT * FROM topping_add WHERE name=#{t}
+	</select>
 
 </mapper>
