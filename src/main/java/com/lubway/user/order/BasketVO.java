@@ -29,5 +29,6 @@ public class BasketVO {
 	private String menu_filepath;
 	private String menu_type;
 	private String tel;
+	private String order_type;
 	
 }

@@ -116,6 +116,7 @@
 						</li>
 						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
 						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>
+						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -138,6 +139,7 @@
 						</li>
 						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
 						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>		
+						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -159,7 +161,8 @@
 							</span>
 						</li>
 						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>		
+						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>
+						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>		
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -185,7 +188,8 @@
 						<li class="before_sign" style="margin-left: 15px">
 							<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080/lubway/kakaoLogout.do">로그아웃</a>
 						</li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>		
+						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>	
+						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>	
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -203,7 +207,6 @@
 					<ul>
 						<li class="before_sign"><a href="/lubway/login.do">로그인</a></li>
 						<li class="before_sign"><a href="/lubway/step01.do">회원가입</a></li>
-		
 						<li class="icon_menu global_subway"><a
 							href="http://www.subway.com/en-us/exploreourworld" target="_blank"
 							title="Global Subway"><span class="blind"><img

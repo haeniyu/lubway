@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BasketDAO">
+	
+	<select id="getBasket" parameterType="basket" resultType="basket">
+		SELECT * FROM basket WHERE tel=#{tel} AND order_type=#{order_type} ORDER BY no
+	</select>
+
+	<select id="getPrice" parameterType="basket" resultType="price">
+		select b.meat_price, c.topping_price, d.cheese_price
+		from basket a
+		left outer join meat_add b on a.meat = b.name
+		left outer join topping_add c on a.topping = c.name
+		left outer join cheese d on a.add_cheese = d.name
+		where a.tel = #{tel} and a.order_type = #{order_type}
+		order by a.no
+	</select>
+	
+</mapper>
