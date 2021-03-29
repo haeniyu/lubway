@@ -4,8 +4,36 @@
 
 <mapper namespace="OrderDAO">
 
-	<select id="getOrderList" parameterType="order">
-		SELECT * FROM order_list
+	<select id="getOrderList" parameterType="order" resultType="order">
+		SELECT code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
+		FROM ORDER_LIST
+		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY ordertime DESC, code DESC
 	</select>
 	
+	<select id="pagingList" resultType="order">
+		select code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
+		FROM ORDER_LIST ORDER BY ordertime DESC, code DESC
+		limit #{listSize} offset #{startList}
+	</select>
+
+	<select id="searchPagingList" resultType="order">
+	select code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
+		FROM ORDER_LIST
+		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY ordertime DESC, code DESC
+		limit #{listSize} offset #{startList}
+	</select>
+
+
+	<select id="pagingCnt" resultType="int">
+		select count(*) as listCnt
+		from order_list
+	</select>
+
+	<select id="searchTitleCnt" parameterType="String"
+		resultType="int">
+		select count(*) from order_list where menuname LIKE
+		'%'||#{searchKeyword}||'%';
+	</select>
 </mapper>

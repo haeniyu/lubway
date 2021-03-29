@@ -83,7 +83,7 @@
 				</div></li>
 
 			<!-- Nav Item - 주문조회  -->
-			<li class="nav-item"><a class="nav-link" href="#">
+			<li class="nav-item"><a class="nav-link" href="/lubway/getOrderList.mdo">
 					<i class="fas fa-fw fa-chart-area"></i> <span>주문조회</span>
 			</a></li>
 

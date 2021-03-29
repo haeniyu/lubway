@@ -87,18 +87,30 @@
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<!-- Page Heading -->
-		<h1 class="h3 mb-2 text-gray-800">주문내역</h1>
+		<h1 class="h3 mb-2 text-gray-800">주문 조회</h1>
 		<br>
 		<!-- DataTales Example -->
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
 			</div>
-
 			<form action="/lubway/insertNotice.mdo" method="post">
 				<div class="card-body">
+					<!-- 검색 시작 -->
+					<div align="right">
+						<form action="/lubway/search.mdo" method="get">
+							<tr>
+								<td><input type="text" name="searchKeyword"
+									placeholder="검색할 제품을 입력해 주세요." style="width: 20%" /> 
+									<input
+									style="margin: 3px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="submit"
+									value="search" /></td>
+							</tr>
+						</form>
+					</div>
+					<!-- 검색 종료 -->
 					<div class="table-responsive">
-						<div class="my-2"></div>
 						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
@@ -110,39 +122,41 @@
 									<th>도착 예정 시간</th>
 									<th>주소</th>
 									<th>연락처</th>
-									<th>주문 매장</th>
 									<th>주문 메뉴</th>
 									<th>주문 상세</th>
 									<th>총 금액</th>
 									<th>수령 방법</th>
 									<th>결제 수단</th>
+									<th>주문 매장</th>
 									<th>요청 사항</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${orderList}" var="list">
 									<tr>
-										
+										<td>${list.code }</td>
+										<td>${list.id }</td>
+										<td>${list.name }</td>
+										<td><fmt:formatDate type="both" value="${list.ordertime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><fmt:formatDate type="both" value="${list.deliverytime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td>${list.address }</td>
+										<td>${list.tel }</td>
+										<td>${list.menuname }</td>
+										<td>${list.menu }</td>
+										<td>${list.totalprice  }</td>
+										<td>${list.receive }</td>
+										<td>${list.payment_list }</td>
+										<td>${list.storename }</td>
+										<td>${list.request }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 
 						</table>
 			</form>
-			<!-- 검색 시작 -->
-			<div align="right">
-				<form action="/lubway/search.mdo" method="get">
-					<tr>
-						<td><input type="text" name="searchKeyword"
-							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> 
-							<input
-							style="margin: 3px; padding: 3px"
-							class="btn btn-warning btn-icon-split" type="submit"
-							value="search" /></td>
-					</tr>
-				</form>
-			</div>
-			<!-- 검색 종료 -->
+			
 			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 			<!-- pagination{s} -->
 

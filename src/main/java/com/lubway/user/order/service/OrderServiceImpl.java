@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
@@ -38,6 +39,26 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderVO> getOrderList(OrderVO vo) {
 		return orderDao.getOrderList(vo);
+	}
+
+	@Override
+	public List<OrderVO> getPageList(Pagination pagination) {
+		return orderDao.getPageList(pagination);
+	}
+
+	@Override
+	public int getPageListCnt() {
+		return orderDao.getPageListCnt();
+	}
+
+	@Override
+	public int getSearchTitleCnt(String title) {
+		return orderDao.getSearchTitleCnt(title);
+	}
+
+	@Override
+	public List<OrderVO> getSearchPagingList(Pagination pagination) {
+		return orderDao.getSearchPagingList(pagination);
 	}
 
 }
