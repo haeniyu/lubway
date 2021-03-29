@@ -30,5 +30,8 @@ public class BasketVO {
 	private String menu_type;
 	private String tel;
 	private String order_type;
+	private int store_no;
+	private String user_address;
+	private String set_name;
 	
 }

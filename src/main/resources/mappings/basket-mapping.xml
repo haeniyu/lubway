@@ -8,14 +8,16 @@
 		SELECT * FROM basket WHERE tel=#{tel} AND order_type=#{order_type} ORDER BY no
 	</select>
 
-	<select id="getPrice" parameterType="basket" resultType="price">
-		select b.meat_price, c.topping_price, d.cheese_price
+	<select id="getPrice" parameterType="basket" resultType="String">
+		select  b.topping_price
 		from basket a
-		left outer join meat_add b on a.meat = b.name
-		left outer join topping_add c on a.topping = c.name
-		left outer join cheese d on a.add_cheese = d.name
+		left outer join topping_add b on a.topping = b.name
 		where a.tel = #{tel} and a.order_type = #{order_type}
 		order by a.no
 	</select>
+	<select id="getStoreInfo" parameterType="int" resultType="storeInfo">
+		select * from StoreInfo where no=#{no}
+	</select>
+	
 	
 </mapper>

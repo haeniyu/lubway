@@ -14,6 +14,7 @@ var max = "10";
 var count = "";
 var qty = "";
 var basket = "";
+var totalPrice = 0;
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
 			count = i;
@@ -21,7 +22,10 @@ $(document).ready(function(){
 			basket = $(".eachTotalPrice"+count).attr('id');
 			basket = Number(basket) * Number(qty);
 			$(".eachTotalPrice"+count).text(basket);
+			totalPrice += basket;
+			$("#totalPrice").text(totalPrice);
 	}
+	
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
@@ -33,9 +37,12 @@ $(document).ready(function(){
 			qty -= 1;
 			return;
 		}
+		var add = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice += add;
+		$("#totalPrice").text(totalPrice);		
 	});
 	$(".minus").click("click",function(){
 		count = $(this).attr('id');
@@ -45,10 +52,13 @@ $(document).ready(function(){
 		if(qty<min){
 			qty += 1;
 			return;
-		}	
+		}
+		var minus = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice -= minus;
+		$("#totalPrice").text(totalPrice);		
 	});
 });
 </script>
@@ -73,13 +83,13 @@ $(document).ready(function(){
 			</div>
 			<!-- 장바구니 목록 있을때 -->
 			
-			<c:if test="${basket != '[]'}">
+			<c:if test="${basket ne null}">
 			<div class="cart_header wh_box" id="cart_header">
 				
 					<dl>
-						<dt>배달주소</dt>
+						<dt>픽업매장</dt>
 						<dd>
-							<strong>서울 마포구 양화로 45 1호</strong>
+							<strong></strong>
 							<a href="javascript:void(0);" id="changeStore" data-url="/order/view/home/step1" data-stor="66406">
 								변경
 							</a>
@@ -146,7 +156,7 @@ $(document).ready(function(){
 												<span>${basket.meat}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].meat_price}</strong>
+												<strong>${price[stat.index].meat_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -157,7 +167,7 @@ $(document).ready(function(){
 												<span>${basket.topping}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].topping_price}</strong>
+												<strong>${price[stat.index].topping_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -168,7 +178,7 @@ $(document).ready(function(){
 												<span>${basket.add_cheese}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].cheese_price}</strong>
+												<strong>${price[stat.index].cheese_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>

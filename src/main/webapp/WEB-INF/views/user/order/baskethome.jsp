@@ -12,12 +12,12 @@
 <meta charset="UTF-8">
 <title>장바구니</title>
 <script type="text/javascript">
-//수량변경 고정 값들
 var min = 1;
 var max = "10";
 var count = "";
 var qty = "";
 var basket = "";
+var totalPrice = 0;
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
 			count = i;
@@ -25,7 +25,10 @@ $(document).ready(function(){
 			basket = $(".eachTotalPrice"+count).attr('id');
 			basket = Number(basket) * Number(qty);
 			$(".eachTotalPrice"+count).text(basket);
+			totalPrice += basket;
+			$("#totalPrice").text(totalPrice);
 	}
+	
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
@@ -37,9 +40,12 @@ $(document).ready(function(){
 			qty -= 1;
 			return;
 		}
+		var add = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice += add;
+		$("#totalPrice").text(totalPrice);		
 	});
 	$(".minus").click("click",function(){
 		count = $(this).attr('id');
@@ -49,10 +55,13 @@ $(document).ready(function(){
 		if(qty<min){
 			qty += 1;
 			return;
-		}	
+		}
+		var minus = Number(basket);
 		basket = Number(basket) * Number(qty);
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
+		totalPrice -= minus;
+		$("#totalPrice").text(totalPrice);		
 	});
 });
 </script>
@@ -73,13 +82,13 @@ $(document).ready(function(){
 				</ul>
 			</div>
 			<!-- 장바구니 목록 있을때 -->
-			<c:if test="${basket != '[]'}">
+			<c:if test="${basket ne null}">
 			<div class="cart_header wh_box" id="cart_header">
 				
 					<dl>
 						<dt>배달주소</dt>
 						<dd>
-							<strong>서울 마포구 양화로 45 1호</strong>
+							<strong>${user_address}</strong>
 							<a href="javascript:void(0);" id="changeStore" data-url="/order/view/home/step1" data-stor="66406">
 								변경
 							</a>
@@ -108,22 +117,22 @@ $(document).ready(function(){
 									<th:object>${basket.menu_name}</th:object>
 								</label>
 								<p>
-								<c:if test="${basket.menu_type ne '사이드'}">
+								<c:if test="${basket.menu_type ne '사이드' and basket.menu_type ne '랩'}">
 										<c:if test="${basket.menu_type eq '샌드위치'}">
 										<!-- 빵길이 -->
 											<c:if test="${basket.size eq 'false'}">
-												<th:object>15cm</th:object>
+												<th:object>15cm, </th:object>
 											</c:if>
 											<c:if test="${basket.size eq 'true'}">
-												<th:object>30cm</th:object>
+												<th:object>30cm, </th:object>
 											</c:if>
 										<!-- 빵종류 -->
-										<th:object>${basket.bread}</th:object>
+										<th:object>${basket.bread}, </th:object>
 										</c:if>
 										<!-- 치즈 -->
-										<th:object>${basket.cheese}</th:object>
+										<th:object>${basket.cheese}, </th:object>
 										<!-- 야채 -->
-										<th:object>${basket.vegetable}</th:object>
+										<th:object>${basket.vegetable}, </th:object>
 										<!-- 소스 -->
 										<th:object>${basket.sauce}</th:object>
 								</c:if>
@@ -146,7 +155,7 @@ $(document).ready(function(){
 												<span>${basket.meat}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].meat_price}</strong>
+												<strong>1800</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -157,7 +166,7 @@ $(document).ready(function(){
 												<span>${basket.topping}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].topping_price}</strong>
+												<strong>${price[stat.index]}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -168,16 +177,16 @@ $(document).ready(function(){
 												<span>${basket.add_cheese}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].cheese_price}</strong>
+												<strong>900</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
 										
-										<c:if test="${basket.add_cheese ne null}">										
+										<c:if test="${basket.set_price ne null}">										
 											<dt>
 												<em>추가</em>
 												<span class="sideText">
-													더블 초코칩 쿠키/스프라이트 / 
+													${basket.set_name} 
 												</span>
 											</dt>
 											<dd>
@@ -214,7 +223,7 @@ $(document).ready(function(){
 					<dl>
 						<dt>최종 결제 금액</dt>
 						<dd>
-							<strong id="totalPrice">111</strong>
+							<strong id="totalPrice"></strong>
 							<span>원</span>
 						</dd>
 					</dl>
@@ -235,7 +244,7 @@ $(document).ready(function(){
 				</c:if>
 
 			<!-- 장바구니 목록 없을때 -->
-			<c:if test="${basket == '[]'}">
+			<c:if test="${basket eq null}">
 			<div class="data_none wh_box" id="data_none">
 				<p>장바구니가 비어있습니다.</p>
 			</div>
