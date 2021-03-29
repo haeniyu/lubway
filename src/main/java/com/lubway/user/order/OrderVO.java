@@ -28,4 +28,7 @@ public class OrderVO {
 	private String request;
 	private String storename;
 	private String menuname;
+	
+	private String searchCondition;
+	private String searchKeyword;
 }
