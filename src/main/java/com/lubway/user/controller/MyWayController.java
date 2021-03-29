@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
+import com.lubway.user.order.OrderVO;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
 
@@ -135,8 +136,9 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(String whatWay) {
+	public String orderList(OrderVO vo) {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
+		System.out.println(vo.toString());
 		return "myway/orderList";
 	}
 	

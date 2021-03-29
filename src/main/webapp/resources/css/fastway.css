@@ -281,8 +281,8 @@
 .bill_order .stroe_order .input_set:first-child dl dt {line-height:18px; padding-top:8px;}
 .bill_order .stroe_order dl dt,
 .bill_order .stroe_order dl dd {color:#292929;}
-.bill_order .write_info_wrap .input_set .info_dl dt {width:120px;}
-.bill_order .write_info_wrap .input_set .info_dl dd {float:left; box-sizing:border-box; /*text-indent:20px;*/ padding-top:8px; padding-left:20px;}
+.bill_order .write_info_wrap .input_set .info_dl dt {width:120px; padding-top: 4px;}
+.bill_order .write_info_wrap .input_set .info_dl dd {float:left; box-sizing:border-box; /*text-indent:20px;*/ padding-top:4px; padding-left:20px;}
 
 .bill_order .write_info_wrap .form_select {border:2px solid #dddddd;}
 .bill_order .write_info_wrap .input_set .bdr_text input {box-sizing:border-box; line-height:1.1em; letter-spacing:0; padding-top:6px; padding-bottom:11px;}
@@ -642,10 +642,12 @@ legend{display:block;overflow:hidden;position:absolute;top:-1000em;left:0;width:
 .order .menu_list .list .label span.season {background-color:#9631a8;}
 .order .menu_list .list .label span.recommend {background-color:#ff4b06;}
 
-
-
-
-
+/* 주문내역 상세페이지 */
+.form_box .Tborder {background: #009223; height: 3px;}
+.form_box .board_list_wrapper .content .history_table .addMenu{display: none;}
+.form_box .board_list_wrapper .content .history_table .on .addMenu{display: block;}
+.form_box .board_list_wrapper .content .history_table .sum .arrow{float: right; width: 22px; height: 22px; background: url('https://lubway.s3.ap-northeast-2.amazonaws.com/bill_list_btn.png') no-repeat 0 50%; font-size: 0; transform:rotate(180deg);}
+.form_box .board_list_wrapper .content .history_table .on .sum .arrow  {transform:rotate(0deg); display: block;}
 
 
 
