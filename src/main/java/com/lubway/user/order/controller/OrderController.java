@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
@@ -23,11 +22,11 @@ import com.lubway.admin.menu.service.MenuService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
+import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
-import com.lubway.user.service.UserService;
 
 @Controller
 public class OrderController {
@@ -44,8 +43,8 @@ public class OrderController {
 	@Autowired
 	private UserCouponService couponService;
 	
-	@Autowired
-	private UserService userService;
+	//@Autowired
+	//private UserService userService;
 	
 	@Autowired
 	private OrderService orderService;
@@ -190,34 +189,43 @@ public class OrderController {
 	
 	
 	/** 주문 확인, 결제하기  페이지 */
-	@RequestMapping("/orderStep04.do")
-	public String orderStep04(Model model, UserCouponVO vo, HttpSession session,
+	@PostMapping("/orderStep04.do")
+	public String orderStep04(Model model, UserCouponVO coupon, HttpSession session,
 			String step01Text, String step02Text, String step03Text,
 			String eachCost, String quantity, String totalPrice,
-			String franchiseNo, String whatWay, String code) {
+			String franchiseNo, String whatWay, String code, String menuName,
+			String toppingAdd, String meatAdd, String cheeseAdd,String setAdd) {
 		
 		System.out.println("주문 및 결제하기 페이지로 이동");
 		
 		// 사용 가능한 쿠폰 리스트 띄우기
-		UserVO userVO = (UserVO) session.getAttribute("user");
-		UserVO getInfo = userService.getUserInfo(userVO);
-		session.setAttribute("userInfo", getInfo);
-		vo.setId(userVO.getId());
+		UserVO user = (UserVO) session.getAttribute("user");
+		coupon.setId(user.getId());
 		
 		int couponTotal = couponService.getCouponTotal();
 		int useCouponTotal = couponService.getUseCouponTotal();
-		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
+		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
 		
 		model.addAttribute("couponList", couponList);
 		model.addAttribute("couponTotal", couponTotal);
 		model.addAttribute("useCouponTotal", useCouponTotal);
 		
-		
+		//주문한 매장 정보 설정
 		StoreInfoVO store = orderService.getStoreInfoByNo(franchiseNo);
-		System.out.println(store.toString());
+		model.addAttribute("store", store);
+
+		//토핑 추가 관련 정보 설정
+		List<ToppingAddVO> toppingList = new ArrayList<ToppingAddVO>();
+		String[] toppingArr = toppingAdd.split(", ");
+		for(String t : toppingArr) {
+			ToppingAddVO topping = orderService.getToppingByName(t);
+			toppingList.add(topping);
+		}
+		
+		if(meatAdd.equals("미트 추가를 선택해 주세요")) meatAdd="";
+		if(cheeseAdd.equals("치즈 추가를 선택해 주세요")) cheeseAdd="";
 		
 		//step03에서 받은 주문정보 설정
-		model.addAttribute("store", store);
 		model.addAttribute("step01Text", step01Text);
 		model.addAttribute("step02Text", step02Text);
 		model.addAttribute("step03Text", step03Text);
@@ -226,6 +234,11 @@ public class OrderController {
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("whatWay", whatWay);
 		model.addAttribute("code", code);
+		model.addAttribute("menuName", menuName);
+		model.addAttribute("toppingList", toppingList);
+		model.addAttribute("meatAdd", meatAdd);
+		model.addAttribute("cheeseAdd", cheeseAdd);
+		model.addAttribute("setAdd", setAdd);
 		
 		return "order/orderStep04";
 	}

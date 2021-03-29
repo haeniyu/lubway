@@ -134,7 +134,7 @@ function hideDiv() {
 									<div class="option_display">
 										<dl>
 											<dt>빵 길이 선택</dt>
-											<dd id="lengthText">15cm</dd>
+											<dd id="lengthText"></dd>
 										</dl>
 									</div>
 									<div class="popup_content length">
@@ -596,6 +596,11 @@ function hideDiv() {
 	<input type="hidden" id="step03Text" name="step03Text" value="">
 	<input type="hidden" id="quantity" name="quantity" value="">
 	<input type="hidden" id="eachCost" name="eachCost" value="">
+	<input type="hidden" id="menuName" name="menuName" value="${menu.name}">
+	<input type="hidden" id="toppingAdd" name="toppingAdd" value="">
+	<input type="hidden" id="meatAdd" name="meatAdd" value="">
+	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
+	<input type="hidden" id="setAdd" name="setAdd" value="">
 </form> 
 </body>
 </html>

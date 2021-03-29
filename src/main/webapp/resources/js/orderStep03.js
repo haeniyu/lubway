@@ -1,15 +1,17 @@
 	//주문하기 페이지로 이동
 	function gotoStep04() {
-		if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
-			alert("필수 선택을 선택해주세요.");
-			return;
+		if($("#code").val().includes("SDW")){
+			if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
+				alert("필수 선택을 선택해주세요.");
+				return;
+			}	
 		}
-		var totalPrice = $("#finalAmt").text();
+		var totalPrice = $("#finalAmt").text();//총 가격
 		$("#totalPrice").val(totalPrice);
 		
-		var step01Text = $("#selectStep01").text();
-		var step02Text = $("#selectStep02").text();
-		var step03Text = $("#selectStep03").text();
+		var step01Text = $("#selectStep01").text();//필수선택 텍스트
+		var step02Text = $("#selectStep02").text();//추가선택 텍스트
+		var step03Text = $("#selectStep03").text();//세트선택 텍스트
 		$("#step01Text").val(step01Text);
 		$("#step02Text").val(step02Text);
 		$("#step03Text").val(step03Text);
@@ -18,6 +20,15 @@
 		$("#quantity").val(quantity);
 		var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
 		$("#eachCost").val(eachCost);
+		
+		var toppingAdd = $("#toppingText").text();//토핑추가
+		$("#toppingAdd").val(toppingAdd);
+		
+		var meatAdd = $("#meatText").text();//미트추가
+		$("#meatAdd").val(meatAdd); 
+		
+		var cheeseAdd = $("#addCheeseText").text();//치즈추가
+		$("#cheeseAdd").val(cheeseAdd);
 		
 		$("#orderForm").submit();
 	}
@@ -155,10 +166,13 @@
 	
 	
 	// ========= 추가 선택 항목 기능 처리 =========
+	var toppingFlag = false;	//토핑 추가 했는지 확인
 	// 토핑 추가 선택
 	function endAddSelect() {
+		toppingFlag = true;
 		var topping = $("#toppingText").text();
 		if(topping == "원하는 제품을 추가 선택해 주세요") {
+			toppingFlag = false;
 			$("#selectTopping").remove();
 			$("#closeLength").get(0).click();
 			return;
@@ -184,8 +198,9 @@
 		var object = $('<object id="selectMeat">' + meat + ', </object>')
 		
 		$("#selectMeat").remove();
-		$(object).insertAfter("#selectTopping");
-		
+		if(toppingFlag) $(object).insertAfter("#selectTopping");	//토핑추가 했으면 뒤에 붙이고
+		else $(object).prependTo("#selectStep02");	//안했으면 처음에 넣어라
+			
 		$("#closeLength").get(0).click();
 	}
 	
@@ -210,7 +225,7 @@
 /******************STEP01********************/
 	
 	$(document).ready(function() {
-		
+
 		hideDiv();
 		
 	/******************수량 조절 , 결제 금액 ********************/
@@ -261,7 +276,6 @@
 		$("input:radio[name=bread]").click(function(){
 			var bread = document.getElementsByName('bread');
 			var breadChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-			console.log(breadChoice);
 			for(var i=0; i<bread.length; i++) {
 			    if(bread[i].checked) {
 			    	breadChoice = bread[i].value;
@@ -274,7 +288,6 @@
 		$("input:radio[name=cheese]").click(function(){
 			var cheese = document.getElementsByName('cheese');
 			var cheeseChoice; // 여기에 선택된 radio 버튼의 값이 담기게 된다.
-			console.log(cheeseChoice);
 			for(var i=0; i<cheese.length; i++) {
 			    if(cheese[i].checked) {
 			    	cheeseChoice = cheese[i].value;
@@ -566,6 +579,7 @@
 			$(".choice_set_btn").click(function(){
 				sum = sumUntilStep2;
 				sum += setcost;
+				$("#setAdd").val(setcost);
 				
 				var object = $('<object id="showSet">' + $("#setText").text() + '</object>');
 				$("#showSet").remove();
