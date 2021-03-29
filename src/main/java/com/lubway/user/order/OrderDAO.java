@@ -42,4 +42,12 @@ public class OrderDAO {
 	public List<OrderVO> orderList(OrderVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.orderList", vo);
 	}
+	
+	public List<OrderVO> selectHomeway(OrderVO vo){
+		return sqlSessionTemplate.selectList("OrderDAO.selectHomeway", vo);
+	}
+	
+	public List<OrderVO> selectFastway(OrderVO vo){
+		return sqlSessionTemplate.selectList("OrderDAO.selectFastway", vo);
+	}
 }

@@ -65,6 +65,16 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderVO> orderList(OrderVO vo) {
 		return orderDao.orderList(vo);
 	}
+	
+	@Override
+	public List<OrderVO> selectHomeway(OrderVO vo) {
+		return orderDao.selectHomeway(vo);
+	}
+
+	@Override
+	public List<OrderVO> selectFastway(OrderVO vo) {
+		return orderDao.selectFastway(vo);
+	}
 
 	@Override
 	public List<OrderVO> getTodayOrderList(Pagination pagination) {

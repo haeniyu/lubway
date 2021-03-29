@@ -48,4 +48,15 @@
 		select * from order_list where id=#{id}
 	</select>
 	
+	<select id="selectHomeway" parameterType="order" resultType="order">
+		select * from order_list where id=#{id} and receive='배달'
+		order by ordertime desc
+	</select>
+	
+	<select id="selectFastway" parameterType="order" resultType="order">
+		select * from order_list 
+		where id=#{id} and receive not in(select receive from order_list where receive='배달')
+		order by ordertime desc
+	</select>
+	
 </mapper>

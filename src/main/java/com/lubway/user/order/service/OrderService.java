@@ -29,4 +29,8 @@ public interface OrderService {
 	List<OrderVO> getTodayOrderList(Pagination pagination);
 	
 	List<OrderVO> orderList(OrderVO vo);
+	
+	List<OrderVO> selectHomeway(OrderVO vo);
+	
+	List<OrderVO> selectFastway(OrderVO vo);
 }
