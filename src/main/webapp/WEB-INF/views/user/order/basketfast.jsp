@@ -156,7 +156,7 @@ $(document).ready(function(){
 												<span>${basket.meat}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].meat_price}</strong>
+												<strong>${price[stat.index].meat_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -167,7 +167,7 @@ $(document).ready(function(){
 												<span>${basket.topping}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].topping_price}</strong>
+												<strong>${price[stat.index].topping_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
@@ -178,7 +178,7 @@ $(document).ready(function(){
 												<span>${basket.add_cheese}</span>
 											</dt>
 											<dd>
-												<strong>${price[status.index].cheese_price}</strong>
+												<strong>${price[stat.index].cheese_price}</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
