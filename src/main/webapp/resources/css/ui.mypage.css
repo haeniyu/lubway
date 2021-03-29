@@ -1565,7 +1565,7 @@
 .order_wrapper .order_box .order_list .order_listTit .refresh {
 	width: 26px;
 	height: 26px;
-	background: url(../images/mypage/icon_refresh_green.png) no-repeat
+	background: url(https://lubway.s3.ap-northeast-2.amazonaws.com/icon_refresh_green.png) no-repeat
 		center/100%;
 }
 

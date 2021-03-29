@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -12,14 +13,27 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var way;
-	if('${order.receive}' == "배달"){
-		way = homeway;
-		if(way == 'homeway'){
-			$('.order_type').addClass('home');
-			$('.order_type').removeClass('fast');
-		}
-	}
+		var selected = '${select}'
+		console.log(selected);
+		
+		if(selected != "") $('#ordType').val(selected);
+	$('#ordType').on('change', function(){
+		var select = $('#ordType').val();
+		
+		var form = document.createElement("form");
+
+		form.setAttribute("method", "post");
+		form.setAttribute("action", "orderListTab.do");
+
+		var input_select = document.createElement("input");
+		input_select.setAttribute("type", "hidden");
+		input_select.setAttribute("name", "select");
+		input_select.setAttribute("value", select);
+
+		form.appendChild(input_select);
+		document.body.appendChild(form);
+		form.submit();
+	});
 });
 </script>
 </head>
@@ -41,14 +55,12 @@ $(document).ready(function(){
 					<div class="search_order">
 						<span>주문내역</span>
 						<div class="form_select" style="width: 356px;">
-							<form id="searchForm" method="get" name="searchForm" onsubmit="/mypage/order">
-								<input name="pageNo" type="hidden" value="1" /> 
-								<select id="ordType" name="ordType">
-									<option value="">전체주문</option>
-									<option value="ORD_TYPE.FAST_SUB">FAST-SUB</option>
-									<option value="ORD_TYPE.HOME_SUB">HOME-SUB</option>
-								</select>
-							</form>
+							<input name="pageNo" type="hidden" value="1" /> 
+							<select id="ordType" name="ordType">
+								<option value="">전체주문</option>
+								<option value="fastway">FAST-WAY</option>
+								<option value="homeway">HOME-WAY</option>
+							</select>
 						</div>
 					</div>
 					<div class="order_list">
@@ -57,35 +69,35 @@ $(document).ready(function(){
 						</div>
 						<ul>
 							<!-- 1세트 -->
+							<c:forEach items="${order}" var="order">
 							<li>
 								<div class="order_card">
 									<a href="/lubway/orderListDetail.do"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
 										<c:if test="${order.receive ne '배달'}">
-											<p class="order_type">
+											<p class="order_type fast">
 												FAST-WAY
-												<span>픽업완료</span>
 											</p>
 										</c:if>
 										<c:if test="${order.receive eq '배달'}">
-											<p class="order_type">
+											<p class="order_type home">
 												HOME-WAY
-												<span>배달완료</span>
 											</p>
 										</c:if>
 										<div class="order_menu">
 											<p>
-												<span class="menu">스테이크/치즈15</span>
+												<span class="menu">${order.menuname }</span>
 											</p>
 										</div>
 										<div class="order_detail">
-											<span class="price"><span>36,500</span><em>원</em></span> 
-											<span class="store">종로삼일대로점</span> 
-											<span class="date">2021-03-08 17:30:00</span> 
-											<span class="num">주문번호 ( <em>ORD20210308173004584278</em> ) </span>
+											<span class="price"><span>${order.totalprice }</span><em>원</em></span> 
+											<span class="store">${order.storename }</span> 
+											<span class="date"><fmt:formatDate value="${order.ordertime }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
+											<span class="num">주문번호 ( <em>${order.code }</em> ) </span>
 										</div>
 									</a>
 								</div>
 							</li>
+							</c:forEach>
 							<!--// 1세트 -->
 						</ul>
 						<!-- board 페이지 -->

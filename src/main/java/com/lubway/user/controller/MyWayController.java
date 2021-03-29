@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,14 +40,15 @@ public class MyWayController {
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
-	public String myWay(HttpSession session, Model model, UserCouponVO vo) {
+	public String myWay(HttpSession session, Model model, UserCouponVO cvo, OrderVO ovo) {
 		// 쿠폰 조회할 사용자 아이디 세팅
 		System.out.println("마이웨이 페이지로 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
-		vo.setId(userVo.getId());
+		cvo.setId(userVo.getId());
 		
 		// 남은 쿠폰 개수 보여주기
-		int countUseCoupon = couponService.countUseCoupon(vo);
+		int countUseCoupon = couponService.countUseCoupon(cvo);
+		// 주문내역 리스트 개수 보여주기
 
 		model.addAttribute("countCoupon", countUseCoupon);
 		
@@ -146,9 +148,32 @@ public class MyWayController {
 		vo.setId(userVo.getId());
 		
 		List<OrderVO> orderInfo = orderService.orderList(vo);
-		System.out.println(orderInfo.toString());
 		
 		model.addAttribute("order", orderInfo);
+		
+		return "myway/orderList";
+	}
+	
+	// Fast-Way / Home-Way 각각 보기
+	@PostMapping("/orderListTab.do")
+	public String selectOrderList(Model model, String select, OrderVO vo, HttpSession session) {
+		UserVO userVo = (UserVO) session.getAttribute("user");
+		vo.setId(userVo.getId());
+		
+		List<OrderVO> orderInfo = orderService.orderList(vo);
+		List<OrderVO> homeway = orderService.selectHomeway(vo);
+		List<OrderVO> fastway = orderService.selectFastway(vo);
+		
+		model.addAttribute("select", select);
+		System.out.println(select);
+		
+		if(select.equals("")) {
+			model.addAttribute("order", orderInfo);
+		}else if(select.equals("homeway")) {
+			model.addAttribute("order", homeway);
+		}else if(select.equals("fastway")) {
+			model.addAttribute("order", fastway);
+		}
 		
 		return "myway/orderList";
 	}
