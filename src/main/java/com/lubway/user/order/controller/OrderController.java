@@ -43,9 +43,6 @@ public class OrderController {
 	@Autowired
 	private UserCouponService couponService;
 	
-	//@Autowired
-	//private UserService userService;
-	
 	@Autowired
 	private OrderService orderService;
 
@@ -127,7 +124,8 @@ public class OrderController {
 	 * */
 	@PostMapping("orderStep03.do")
 	public String orderStep03(Model model,
-			String franchiseNo,String whatWay,String code,String selected,
+			String franchiseNo,String whatWay,String code,String fullAddr,
+			String selected,
 			CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, 
 			SaladVO svo, DrinkVO dvo, NutrientVO nvo) {
 		
@@ -140,6 +138,7 @@ public class OrderController {
 		model.addAttribute("franchiseNo", franchiseNo);
 		model.addAttribute("whatWay", whatWay);
 		model.addAttribute("code", code);
+		model.addAttribute("fullAddr", fullAddr);
 		
 		//영양성분표 설정
 		model.addAttribute("nutrient", menuService.selectNutrient(nvo));
@@ -193,7 +192,8 @@ public class OrderController {
 	public String orderStep04(Model model, UserCouponVO coupon, HttpSession session,
 			String step01Text, String step02Text, String step03Text,
 			String eachCost, String quantity, String totalPrice,
-			String franchiseNo, String whatWay, String code, String menuName,
+			String franchiseNo, String whatWay, String code, String fullAddr,
+			String menuName,
 			String toppingAdd, String meatAdd, String cheeseAdd,String setAdd) {
 		
 		System.out.println("주문 및 결제하기 페이지로 이동");
@@ -202,13 +202,11 @@ public class OrderController {
 		UserVO user = (UserVO) session.getAttribute("user");
 		coupon.setId(user.getId());
 		
-		int couponTotal = couponService.getCouponTotal();
-		int useCouponTotal = couponService.getUseCouponTotal();
 		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
+		int countUseCoupon = couponService.countUseCoupon(coupon);
 		
 		model.addAttribute("couponList", couponList);
-		model.addAttribute("couponTotal", couponTotal);
-		model.addAttribute("useCouponTotal", useCouponTotal);
+		model.addAttribute("countCoupon", countUseCoupon);
 		
 		//주문한 매장 정보 설정
 		StoreInfoVO store = orderService.getStoreInfoByNo(franchiseNo);
@@ -239,6 +237,7 @@ public class OrderController {
 		model.addAttribute("meatAdd", meatAdd);
 		model.addAttribute("cheeseAdd", cheeseAdd);
 		model.addAttribute("setAdd", setAdd);
+		model.addAttribute("fullAddr", fullAddr);
 		
 		return "order/orderStep04";
 	}

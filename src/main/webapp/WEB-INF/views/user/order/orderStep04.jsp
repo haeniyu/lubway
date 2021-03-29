@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script src="${path}/resources/js/orderStep04.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
@@ -195,19 +196,16 @@ $(function() {
 										<dt>쿠폰 사용</dt>
 										<dd>
 											<div class="form_select" style="width: 670px;">
-												<select name="couponCode">
-													<c:if test="${couponTotal == useCouponTotal}">
-														<option value="">보유하신 쿠폰이 없습니다.</option>
-													</c:if>
-													<c:if test="${couponTotal != useCouponTotal}">
+												<select name="couponCode" id="couponCode">
+													<option>사용가능 쿠폰 ${countCoupon}장</option>
 														<c:forEach items="${couponList }" var="coupon">
-															<option>${coupon.name } ${coupon.discount }% ( <fmt:formatDate value="${coupon.regdate }"
+															<option value="${coupon.discount }">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
 														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
-														pattern="yyyy-MM-dd" /> )</option>
+														pattern="yyyy-MM-dd" /> )
+														</option>
 														</c:forEach>
-													</c:if>
 												</select>
-											</div>
+											</div> 
 											<div class="btn_input_in">
 												<a class="in_form_btn" href="javascript:void(0);" id="couponApply"><span>쿠폰 사용</span></a>
 											</div>
@@ -419,5 +417,23 @@ $(function() {
 		</div>
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+<!-- 주문 완료 결제 페이지 이동 -->
+<form action="#" method="post" id="orderForm" style="display: none;">
+	<input type="hidden" id="code" name="code" value="${code}">
+	<input type="hidden" name="whatWay" value="${whatWay}">
+	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
+	<input type="hidden" id="totalPrice" name="totalPrice" value="">
+	<input type="hidden" id="step01Text" name="step01Text" value="">
+	<input type="hidden" id="step02Text" name="step02Text" value="">
+	<input type="hidden" id="step03Text" name="step03Text" value="">
+	<input type="hidden" id="quantity" name="quantity" value="">
+	<input type="hidden" id="eachCost" name="eachCost" value="">
+	<input type="hidden" id="menuName" name="menuName" value="${menu.name}">
+	<input type="hidden" id="toppingAdd" name="toppingAdd" value="">
+	<input type="hidden" id="meatAdd" name="meatAdd" value="">
+	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
+	<input type="hidden" id="setAdd" name="setAdd" value="">
+	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
+</form> 
 </body>
 </html>

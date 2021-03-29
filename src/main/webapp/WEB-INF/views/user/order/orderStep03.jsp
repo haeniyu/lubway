@@ -601,6 +601,7 @@ function hideDiv() {
 	<input type="hidden" id="meatAdd" name="meatAdd" value="">
 	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
 	<input type="hidden" id="setAdd" name="setAdd" value="">
+	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
 </form> 
 </body>
 </html>
