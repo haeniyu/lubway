@@ -132,4 +132,19 @@ public class MyWayController {
 		
 		return "myway/coupon";
 	}
+	
+	//주문내역 페이지로 이동
+	@RequestMapping("/orderList.do")
+	public String orderList(String whatWay) {
+		System.out.println("사용자 주문내역 조회 페이지 이동");
+		return "myway/orderList";
+	}
+	
+	//주문내역 상세 페이지 이동
+	@RequestMapping("/orderListDetail.do")
+	public String orderListDetail() {
+		System.out.println("주문내역 상세페이지 이동");
+		return "myway/orderListDetail";
+	}
+	
 }

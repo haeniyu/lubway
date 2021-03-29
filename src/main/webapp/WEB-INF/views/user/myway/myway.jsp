@@ -60,7 +60,7 @@
 									<strong>0</strong>개
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/mypage/order"><span>주문 내역 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/lubway/orderList.do"><span>주문 내역 관리</span></a>
 						</div>
 						<div class="info coupon">
 							<dl>
