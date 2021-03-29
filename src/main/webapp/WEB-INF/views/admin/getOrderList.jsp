@@ -124,7 +124,6 @@
 									<th>연락처</th>
 									<th>주문 메뉴</th>
 									<th>주문 상세</th>
-									<th>메뉴 금액</th>
 									<th>총 금액</th>
 									<th>수령 방법</th>
 									<th>결제 수단</th>
@@ -135,7 +134,22 @@
 							<tbody>
 								<c:forEach items="${orderList}" var="list">
 									<tr>
-										내용 넣기...
+										<td>${list.code }</td>
+										<td>${list.id }</td>
+										<td>${list.name }</td>
+										<td><fmt:formatDate type="both" value="${list.ordertime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><fmt:formatDate type="both" value="${list.deliverytime }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td>${list.address }</td>
+										<td>${list.tel }</td>
+										<td>${list.menuname }</td>
+										<td>${list.menu }</td>
+										<td>${list.totalprice  }</td>
+										<td>${list.receive }</td>
+										<td>${list.payment_list }</td>
+										<td>${list.storename }</td>
+										<td>${list.request }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

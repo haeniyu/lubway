@@ -53,7 +53,7 @@ public class AdminOrderController {
 		List<OrderVO> pageList = orderService.getPageList(pagination);
 
 		model.addAttribute("pagination", pagination);
-		model.addAttribute("noticeList", pageList);
+		model.addAttribute("orderList", pageList);
 
 		return "getOrderList";
 	}
