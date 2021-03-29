@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
 
@@ -32,6 +33,9 @@ public class MyWayController {
 	
 	@Inject
 	BCryptPasswordEncoder passEncoder;
+	
+	@Autowired
+	private OrderService orderService;
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
@@ -136,9 +140,16 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderVO vo) {
+	public String orderList(OrderVO vo, Model model, HttpSession session) {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
-		System.out.println(vo.toString());
+		UserVO userVo = (UserVO) session.getAttribute("user");
+		vo.setId(userVo.getId());
+		
+		List<OrderVO> orderInfo = orderService.orderList(vo);
+		System.out.println(orderInfo.toString());
+		
+		model.addAttribute("order", orderInfo);
+		
 		return "myway/orderList";
 	}
 	

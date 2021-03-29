@@ -9,6 +9,19 @@
 <title>마이페이지</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var way;
+	if('${order.receive}' == "배달"){
+		way = homeway;
+		if(way == 'homeway'){
+			$('.order_type').addClass('home');
+			$('.order_type').removeClass('fast');
+		}
+	}
+});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -47,10 +60,18 @@
 							<li>
 								<div class="order_card">
 									<a href="/lubway/orderListDetail.do"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
-										<p class="order_type fast">
-											FAST-SUB
-											<span>픽업완료</span>
-										</p>
+										<c:if test="${order.receive ne '배달'}">
+											<p class="order_type">
+												FAST-WAY
+												<span>픽업완료</span>
+											</p>
+										</c:if>
+										<c:if test="${order.receive eq '배달'}">
+											<p class="order_type">
+												HOME-WAY
+												<span>배달완료</span>
+											</p>
+										</c:if>
 										<div class="order_menu">
 											<p>
 												<span class="menu">스테이크/치즈15</span>

@@ -61,4 +61,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.getSearchPagingList(pagination);
 	}
 
+	@Override
+	public List<OrderVO> orderList(OrderVO vo) {
+		return orderDao.orderList(vo);
+	}
+
 }

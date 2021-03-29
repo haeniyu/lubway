@@ -34,4 +34,8 @@ public class OrderDAO {
 	public List<OrderVO> getSearchPagingList(Pagination pagination){
 		return sqlSessionTemplate.selectList("OrderDAO.searchPagingList", pagination);
 	}
+	
+	public List<OrderVO> orderList(OrderVO vo){
+		return sqlSessionTemplate.selectList("OrderDAO.orderList", vo);
+	}
 }

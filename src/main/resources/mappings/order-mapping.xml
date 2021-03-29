@@ -5,8 +5,7 @@
 <mapper namespace="OrderDAO">
 
 	<select id="getOrderList" parameterType="order" resultType="order">
-		SELECT code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
-		FROM ORDER_LIST
+		SELECT * FROM ORDER_LIST
 		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY ordertime DESC, code DESC
 	</select>
@@ -25,7 +24,12 @@
 		limit #{listSize} offset #{startList}
 	</select>
 
-
+	<select id="getTodayOrderList" resultType="order">
+	select * FROM ORDER_LIST
+		WHERE storename=#{storename}
+		ORDER BY ordertime DESC, code DESC
+	</select>
+	
 	<select id="pagingCnt" resultType="int">
 		select count(*) as listCnt
 		from order_list
@@ -36,4 +40,9 @@
 		select count(*) from order_list where menuname LIKE
 		'%'||#{searchKeyword}||'%';
 	</select>
+	
+	<select id="orderList" parameterType="order" resultType="order">
+		select * from order_list where id=#{id}
+	</select>
+	
 </mapper>
