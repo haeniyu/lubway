@@ -57,7 +57,7 @@
 							<dl>
 								<dt>주문내역</dt>
 								<dd>
-									<strong>0</strong>개
+									<strong>${countOrder}</strong>개
 								</dd>
 							</dl>
 							<a class="btn go_view whiteBtn" href="/lubway/orderList.do"><span>주문 내역 관리</span></a>

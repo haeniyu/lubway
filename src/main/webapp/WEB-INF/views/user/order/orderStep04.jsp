@@ -15,6 +15,18 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
+	// fast/home 배경 구분
+	var way = '${whatWay}';
+	console.log("whatWay : " + way);
+	
+	if(way == 'Fast-Way'){
+		$('.order').addClass('fast_sub');
+		$('.order').removeClass('home_sub');
+	} else if(way == 'Home-Way'){
+		$('.order').addClass('home_sub');
+		$('.order').removeClass('fast_sub');
+	}
+	
 	$('.history_table .selectMenu').on('click', function () {
 		var spd = 0.5,
 			eft = Power3.easeOut
@@ -93,12 +105,18 @@ $(function() {
 		<!-- container s -->
 		<div id="container">
 			<!-- sub content -->
-			<div class="order fast_sub" id="content">
+			<div class="order" id="content">
 				<!-- 주문하기 -->
 				<div class="bill_order">
 					<div class="order_title">
-						<h3>Fast-Way</h3>
-						<p class="step04p">온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						<c:if test="${whatWay eq 'Fast-Way' }">
+							<h3>Fast-Way</h3>
+							<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						</c:if>
+						<c:if test="${whatWay eq 'Home-Way' }">
+							<h3>Home-Way</h3>
+							<p>온라인 주문 시 배달되는 서비스입니다.</p>
+						</c:if>
 					</div>
 					<div class="order_con">
 						<!-- 결제폼 -->

@@ -7,17 +7,34 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.common.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script type="text/javascript">
+$(function() {
+	$('.history_table .selectMenu').on('click', function () {
+		var spd = 0.5,
+			eft = Power3.easeOut
+		if ($(this).parent('li').hasClass('on')) {
+			$(this).parent('li').removeClass('on');
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: 0 })
+		} else {
+			$(this).parent('li').addClass('on');
+			var h = $(this).next('.addMenu').find('ul').innerHeight();
+			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: h })
+		}
+	})
+});
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
 
 	<!-- container s -->
 	<div class="bg_gray" id="container">
-		<input id="ordNo" name="ordNo" type="hidden" value="ORD20210308173004584278" />
+		<input id="ordNo" name="ordNo" type="hidden" value="${order.code }" />
 		<!-- sub content -->
 		<div class="order my_order_wrap" id="content">
 			<h2 class="subTitle">주문 내역 상세</h2>
@@ -25,10 +42,10 @@
 			<!-- FAST-SUB 주문내역상세 -->
 			<div class="bill_order">
 				<div class="order_con">
-					<div class="order_number fast_sub">
+					<div class="order_number fast_sub"> <!-- fast/home 에 따라 색 달라짐 -->
 						<dl>
 							<dt>주문번호 :</dt>
-							<dd>ORD20210308173004584278</dd>
+							<dd>${order.code }</dd>
 						</dl>
 					</div>
 
@@ -61,6 +78,7 @@
 					<!-- 주문내역 -->
 					<section class="form_box">
 						<h3>주문내역</h3>
+						<hr class="Tborder">
 						<div class="board_list_wrapper">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
@@ -139,11 +157,6 @@
 							<dd>
 								<span>5</span>개
 							</dd>
-
-							<dt>써브카드 사용</dt>
-							<dd>
-								<strong>0</strong>원
-							</dd>
 							<dt>쿠폰 할인</dt>
 							<dd>
 								<strong>0</strong>원
@@ -159,12 +172,6 @@
 								<strong>36,500</strong><span>원</span>
 							</dd>
 						</dl>
-						<!-- 적립예정 포인트란 제거
-						<dl class="order_sum">
-							<dt>포인트 적립</dt>
-							<dd><strong>2,900</strong>P</dd>
-						</dl>
-						 -->
 					</section>
 					<!--// 주문금액 -->
 
@@ -192,7 +199,7 @@
 					<!--// 결제정보 -->
 				</div>
 				<div class="btn_area">
-					<a class="btn bgc_point" href="/mypage/order" style="width: 170px;"><span>주문목록</span></a>
+					<a class="btn bgc_point" href="/lubway/orderList.do" style="width: 170px;"><span>주문목록</span></a>
 				</div>
 			</div>
 			<!--// FAST-SUB 주문내역상세 -->

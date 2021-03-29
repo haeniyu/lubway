@@ -15,6 +15,18 @@
 	var select = "";
 	
 	$(document).ready(function() {
+		
+		// fast/home 배경 구분
+		var way = '${whatWay}';
+		console.log("whatWay : " + way);
+		
+		if(way == 'Fast-Way'){
+			$('.order').addClass('fast_sub');
+			$('.order').removeClass('home_sub');
+		} else if(way == 'Home-Way'){
+			$('.order').addClass('home_sub');
+			$('.order').removeClass('fast_sub');
+		}
 
 		//When page loads...
 		$("ul.select li:first").addClass("active").show(); //Activate first tab
@@ -138,13 +150,19 @@
 	<div class="content">
 		<!-- container s -->
 		<div id="container">
-			<div id="content" class="order fast_sub">
+			<div id="content" class="order">
 				<!-- fast_sub / home_sub -->
 				<!-- index -->
 				<div class="menu_list">
 					<div class="order_title">
-						<h3>Fast-Way</h3>
-						<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						<c:if test="${whatWay eq 'Fast-Way' }">
+							<h3>Fast-Way</h3>
+							<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+						</c:if>
+						<c:if test="${whatWay eq 'Home-Way' }">
+							<h3>Home-Way</h3>
+							<p>온라인 주문 시 배달되는 서비스입니다.</p>
+						</c:if>
 					</div>
 					<div class="tab02">
 						<ul class="select" id="select" >

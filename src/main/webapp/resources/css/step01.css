@@ -542,7 +542,7 @@ address {font-style:normal;}
 /* 데이터 없음 ::2019 */
 .data_none {padding:172px 0; text-align:center;}
 .data_none p {position:relative; line-height:18px; letter-spacing:-0.05em; color:#999; padding-top:58px;}
-.data_none p:before {content:'';position:absolute;top:0;left:50%;margin-left:-20px;background:url(../images/common/icon_exc_sm.png)no-repeat;width:40px; height:40px;}
+.data_none p:before {content:'';position:absolute;top:0;left:50%;margin-left:-20px;background:url(https://lubway.s3.ap-northeast-2.amazonaws.com/icon_exc_sm.png)no-repeat;width:40px; height:40px;}
 
 /* 포인트 style */
 .txt_point { font-size:16px; font-weight:bold;}

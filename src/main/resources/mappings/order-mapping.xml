@@ -4,8 +4,65 @@
 
 <mapper namespace="OrderDAO">
 
-	<select id="getOrderList" parameterType="order">
-		SELECT * FROM order_list
+	<select id="getOrderList" parameterType="order" resultType="order">
+		SELECT * FROM ORDER_LIST
+		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY ordertime DESC, code DESC
+	</select>
+	
+	<select id="pagingList" resultType="order">
+		select * FROM ORDER_LIST
+		where status='주문 완료'
+		ORDER BY ordertime DESC, code DESC
+		limit #{listSize} offset #{startList}
+	</select>
+
+	<select id="searchPagingList" resultType="order">
+		select code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
+		FROM ORDER_LIST
+		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY ordertime DESC, code DESC
+		limit #{listSize} offset #{startList}
+	</select>
+
+	<select id="getTodayOrderList" resultType="order">
+		<![CDATA[ 
+			select * FROM ORDER_LIST
+			WHERE storename=#{storename} and
+			ordertime >= current_date and ordertime < current_date + integer '1'
+			ORDER BY ordertime DESC, code DESC
+			limit #{listSize} offset #{startList}
+		]]>
+	</select>
+	
+	<select id="pagingCnt" resultType="int">
+		select count(*) as listCnt
+		from order_list
+	</select>
+
+	<select id="searchTitleCnt" parameterType="String"
+		resultType="int">
+		select count(*) from order_list where menuname LIKE
+		'%'||#{searchKeyword}||'%';
+	</select>
+	
+	<select id="orderList" parameterType="order" resultType="order">
+		select * from order_list where id=#{id}
+	</select>
+	
+	<select id="selectHomeway" parameterType="order" resultType="order">
+		select * from order_list where id=#{id} and receive='배달'
+		order by ordertime desc
+	</select>
+	
+	<select id="selectFastway" parameterType="order" resultType="order">
+		select * from order_list 
+		where id=#{id} and receive not in(select receive from order_list where receive='배달')
+		order by ordertime desc
+	</select>
+	
+	<select id="countOrderList" resultType="int">
+		select count(*) from order_list where id=#{id}
 	</select>
 	
 </mapper>

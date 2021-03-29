@@ -44,15 +44,37 @@ function hideDiv() {
 		break;
 	}
 }
+
+$(document).ready(function() {
+	
+	// fast/home 배경 구분
+	var way = '${whatWay}';
+	console.log("whatWay : " + way);
+	
+	if(way == 'Fast-Way'){
+		$('.order').addClass('fast_sub');
+		$('.order').removeClass('home_sub');
+	} else if(way == 'Home-Way'){
+		$('.order').addClass('home_sub');
+		$('.order').removeClass('fast_sub');
+	}
+});
+
 </script>
 <script src="${path}/resources/js/orderStep03.js"></script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-	<div id="content" class="order fast_sub" style="padding-top: 175px">
+	<div id="content" class="order" style="padding-top: 175px">
 		<div class="order_title">
-			<h3>Fast-Way</h3>
-			<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+			<c:if test="${whatWay eq 'Fast-Way' }">
+				<h3>Fast-Way</h3>
+				<p>온라인 주문 후 매장에서 픽업/시식하는 서비스 입니다.</p>
+			</c:if>
+			<c:if test="${whatWay eq 'Home-Way' }">
+				<h3>Home-Way</h3>
+				<p>온라인 주문 시 배달되는 서비스입니다.</p>
+			</c:if>
 		</div>
 		<!-- 메뉴소개 s -->
 		<div class="menu_view_wrapper" style="padding-left: 180px; padding-top:0px;">

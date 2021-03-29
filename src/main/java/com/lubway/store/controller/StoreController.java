@@ -3,6 +3,7 @@ package com.lubway.store.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Time;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,20 +11,28 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.StoreVO;
+import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
+import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class StoreController {
 
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private OrderService orderService;
 
 	@PostMapping("/main.sdo")
 	public String main(@RequestParam("id") String id, 
@@ -112,6 +121,46 @@ public class StoreController {
 		storeService.updatestoreinfo(store);
 
 		return "storeinfo";
+	}
+	
+	/** 글목록 요청 */
+	@GetMapping("/getTodayOrderList.sdo")
+	public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range, HttpSession session) {
+
+		System.out.println("글 목록 요청 처리");
+
+		System.out.println("page : " + page);
+		System.out.println("range : " + range);
+
+		/** 전체 게시글 개수 */
+		int listCnt = orderService.getPageListCnt();
+
+		System.out.println("listCnt : " + listCnt);
+		
+		StoreVO vo = (StoreVO) session.getAttribute("store");
+		System.out.println(vo.toString());
+
+		String storename = vo.getStorename();
+
+		/** Pagination */
+		Pagination pagination = new Pagination();
+		pagination.pageTodayOrderList(page, range, listCnt, storename);
+
+		List<OrderVO> pageList = orderService.getTodayOrderList(pagination);
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("orderList", pageList);
+
+		return "todayOrder";
+	}
+
+	@RequestMapping(value = "/todayOrderCnt.sdo", method = RequestMethod.GET)
+	public String getEventPageListCnt() {
+
+		System.out.println(orderService.getPageListCnt());
+
+		return "todayOrder";
 	}
 
 }
