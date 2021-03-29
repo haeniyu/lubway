@@ -28,6 +28,7 @@ public class OrderVO {
 	private String request;
 	private String storename;
 	private String menuname;
+	private int countOrder; // 주문내역 개수
 	
 	private String searchCondition;
 	private String searchKeyword;

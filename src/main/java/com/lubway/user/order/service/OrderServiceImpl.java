@@ -81,4 +81,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.getTodayOrderList(pagination);
 	}
 
+	@Override
+	public int countOrderList(OrderVO vo) {
+		return orderDao.countOrderList(vo);
+	}
+
 }

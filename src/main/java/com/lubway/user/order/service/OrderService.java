@@ -28,9 +28,15 @@ public interface OrderService {
 	
 	List<OrderVO> getTodayOrderList(Pagination pagination);
 	
+	// 전체 주문내역
 	List<OrderVO> orderList(OrderVO vo);
 	
+	// homeway 주문내역
 	List<OrderVO> selectHomeway(OrderVO vo);
 	
+	// fastway 주문내역
 	List<OrderVO> selectFastway(OrderVO vo);
+	
+	// 총 주문내역 개수
+	int countOrderList(OrderVO vo);
 }

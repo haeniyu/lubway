@@ -45,12 +45,15 @@ public class MyWayController {
 		System.out.println("마이웨이 페이지로 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		cvo.setId(userVo.getId());
+		ovo.setId(userVo.getId());
 		
 		// 남은 쿠폰 개수 보여주기
 		int countUseCoupon = couponService.countUseCoupon(cvo);
+		int countOrder = orderService.countOrderList(ovo);
 		// 주문내역 리스트 개수 보여주기
 
 		model.addAttribute("countCoupon", countUseCoupon);
+		model.addAttribute("countOrder", countOrder);
 		
 		return "myway/myway";
 	}

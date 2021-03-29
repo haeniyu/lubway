@@ -50,4 +50,8 @@ public class OrderDAO {
 	public List<OrderVO> selectFastway(OrderVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.selectFastway", vo);
 	}
+	
+	public int countOrderList(OrderVO vo) {
+		return sqlSessionTemplate.selectOne("OrderDAO.countOrderList", vo);
+	}
 }
