@@ -1,3 +1,62 @@
+	//장바구니 페이지로 이동
+	function gotoBasket() {
+		if($("#code").val().includes("SDW")){
+			if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
+				alert("필수 선택을 선택해주세요.");
+				return;
+			}	
+		}
+		
+		if($("#code").val().includes("SLD")){
+			if(!checkCheese || !checkVegetable || !checkSauce){
+				alert("필수 선택을 선택해주세요.");
+				return;
+			}	
+		}	
+		
+		if($("#code").val().includes("SLD")){
+			if(!checkCheese || !checkVegetable || !checkSauce){
+				alert("필수 선택을 선택해주세요.");
+				return;
+			}	
+		}
+		
+		var totalPrice = $("#finalAmt").text();//총 가격
+		$("#totalPrice").val(totalPrice);
+		
+		var step01Text = $("#selectStep01").text();//필수선택 텍스트
+		var step02Text = $("#selectStep02").text();//추가선택 텍스트
+		var step03Text = $("#selectStep03").text();//세트선택 텍스트
+		$("#step01Text").val(step01Text);
+		$("#step02Text").val(step02Text);
+		$("#step03Text").val(step03Text);
+		
+		var selectVegetable = $("#selectVegetable").text();
+		console.log(selectVegetable);
+
+		var selectSauce = $("#selectSauce").text();
+		console.log(selectSauce);
+		
+		var quantity = $("#ordQty").val(); //수량
+		$("#quantity").val(quantity);
+		var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
+		$("#eachCost").val(eachCost);
+		
+		var toppingAdd = $("#toppingText").text();//토핑추가
+		$("#toppingAdd").val(toppingAdd);
+		
+		var meatAdd = $("#meatText").text();//미트추가
+		$("#meatAdd").val(meatAdd); 
+		
+		var cheeseAdd = $("#addCheeseText").text();//치즈추가
+		$("#cheeseAdd").val(cheeseAdd);
+		
+		$("#orderForm").attr("action", "basket.do");
+		
+		//$("#orderForm").submit();		
+	
+	}//end gotoBasket()
+
 	//주문하기 페이지로 이동
 	function gotoStep04() {
 		if($("#code").val().includes("SDW")){
@@ -6,6 +65,14 @@
 				return;
 			}	
 		}
+		
+		if($("#code").val().includes("SLD")){
+			if(!checkCheese || !checkVegetable || !checkSauce){
+				alert("필수 선택을 선택해주세요.");
+				return;
+			}	
+		}
+		
 		var totalPrice = $("#finalAmt").text();//총 가격
 		$("#totalPrice").val(totalPrice);
 		

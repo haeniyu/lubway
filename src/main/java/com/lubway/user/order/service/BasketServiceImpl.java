@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lubway.store.StoreInfoVO;
 import com.lubway.user.order.BasketDAO;
 import com.lubway.user.order.BasketVO;
 import com.lubway.user.order.PriceVO;
@@ -21,8 +22,13 @@ public class BasketServiceImpl implements BasketService {
 	}
 
 	@Override
-	public List<PriceVO> getPrice(BasketVO vo) {
+	public List<String> getPrice(BasketVO vo) {
 		return basketDAO.getPrice(vo);
+	}
+
+	@Override
+	public StoreInfoVO getStoreInfo(int no) {
+		return basketDAO.getStoreInfo(no);
 	}
 
 }

@@ -83,13 +83,13 @@ $(document).ready(function(){
 			</div>
 			<!-- 장바구니 목록 있을때 -->
 			
-			<c:if test="${basket != '[]'}">
+			<c:if test="${basket ne null}">
 			<div class="cart_header wh_box" id="cart_header">
 				
 					<dl>
-						<dt>배달주소</dt>
+						<dt>픽업매장</dt>
 						<dd>
-							<strong>서울 마포구 양화로 45 1호</strong>
+							<strong></strong>
 							<a href="javascript:void(0);" id="changeStore" data-url="/order/view/home/step1" data-stor="66406">
 								변경
 							</a>
