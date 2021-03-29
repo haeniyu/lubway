@@ -47,9 +47,9 @@ $(function() {
 		console.log("temp:" + temp);
 		pay = temp;
 	})
-	var lastcost = $('#totalPayAmtNavi').text();
-	console.log(lastcost);
 	$("#startOrder").click(function (){
+		var lastcost = $('#totalPayAmtNavi').text();
+		console.log(lastcost);
 		if(pay == "PAY_METHOD.PAYCOKAKAO"){
 			IMP.init('imp80143812');
 			IMP.request_pay({
