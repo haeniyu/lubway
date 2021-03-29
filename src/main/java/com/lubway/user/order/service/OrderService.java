@@ -26,5 +26,7 @@ public interface OrderService {
 	// 검색한 글 페이징 리스트
 	List<OrderVO> getSearchPagingList(Pagination pagination);
 	
+	List<OrderVO> getTodayOrderList(Pagination pagination);
+	
 	List<OrderVO> orderList(OrderVO vo);
 }

@@ -11,8 +11,7 @@
 	</select>
 	
 	<select id="pagingList" resultType="order">
-		select code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
-		FROM ORDER_LIST ORDER BY ordertime DESC, code DESC
+		select * FROM ORDER_LIST ORDER BY ordertime DESC, code DESC
 		limit #{listSize} offset #{startList}
 	</select>
 
@@ -25,9 +24,13 @@
 	</select>
 
 	<select id="getTodayOrderList" resultType="order">
-	select * FROM ORDER_LIST
-		WHERE storename=#{storename}
+	<![CDATA[ 
+		select * FROM ORDER_LIST
+		WHERE storename=#{storename} and
+		ordertime >= current_date and ordertime < current_date + integer '1'
 		ORDER BY ordertime DESC, code DESC
+		limit #{listSize} offset #{startList}
+	]]>
 	</select>
 	
 	<select id="pagingCnt" resultType="int">
