@@ -72,7 +72,7 @@ $(document).ready(function(){
 							<c:forEach items="${order}" var="order">
 							<li>
 								<div class="order_card">
-									<a href="/lubway/orderListDetail.do"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
+									<a href="/lubway/orderListDetail.do?code=${order.code }"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
 										<c:if test="${order.receive ne '배달'}">
 											<p class="order_type fast">
 												FAST-WAY

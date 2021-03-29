@@ -183,8 +183,9 @@ public class MyWayController {
 	
 	//주문내역 상세 페이지 이동
 	@RequestMapping("/orderListDetail.do")
-	public String orderListDetail() {
+	public String orderListDetail(Model model, OrderVO vo) {
 		System.out.println("주문내역 상세페이지 이동");
+		model.addAttribute("order", orderService.orderList(vo));
 		return "myway/orderListDetail";
 	}
 	

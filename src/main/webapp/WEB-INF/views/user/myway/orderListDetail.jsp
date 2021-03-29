@@ -34,7 +34,7 @@ $(function() {
 
 	<!-- container s -->
 	<div class="bg_gray" id="container">
-		<input id="ordNo" name="ordNo" type="hidden" value="ORD20210308173004584278" />
+		<input id="ordNo" name="ordNo" type="hidden" value="${order.code }" />
 		<!-- sub content -->
 		<div class="order my_order_wrap" id="content">
 			<h2 class="subTitle">주문 내역 상세</h2>
@@ -45,7 +45,7 @@ $(function() {
 					<div class="order_number fast_sub"> <!-- fast/home 에 따라 색 달라짐 -->
 						<dl>
 							<dt>주문번호 :</dt>
-							<dd>ORD20210308173004584278</dd>
+							<dd>${order.code }</dd>
 						</dl>
 					</div>
 
@@ -157,11 +157,6 @@ $(function() {
 							<dd>
 								<span>5</span>개
 							</dd>
-
-							<dt>써브카드 사용</dt>
-							<dd>
-								<strong>0</strong>원
-							</dd>
 							<dt>쿠폰 할인</dt>
 							<dd>
 								<strong>0</strong>원
@@ -177,12 +172,6 @@ $(function() {
 								<strong>36,500</strong><span>원</span>
 							</dd>
 						</dl>
-						<!-- 적립예정 포인트란 제거
-						<dl class="order_sum">
-							<dt>포인트 적립</dt>
-							<dd><strong>2,900</strong>P</dd>
-						</dl>
-						 -->
 					</section>
 					<!--// 주문금액 -->
 
@@ -210,7 +199,7 @@ $(function() {
 					<!--// 결제정보 -->
 				</div>
 				<div class="btn_area">
-					<a class="btn bgc_point" href="/mypage/order" style="width: 170px;"><span>주문목록</span></a>
+					<a class="btn bgc_point" href="/lubway/orderList.do" style="width: 170px;"><span>주문목록</span></a>
 				</div>
 			</div>
 			<!--// FAST-SUB 주문내역상세 -->
