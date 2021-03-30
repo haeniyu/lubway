@@ -18,7 +18,7 @@
 	</select>
 
 	<select id="searchPagingList" resultType="order">
-		select code, id, name, ordertime, deliverytime, address, tel, menuname, menu, price, totalprice, receive, payment_list, storename, request
+		select code, id, name, ordertime, deliverytime, address, tel, menuname, step01, topping_add, meat_add, cheese_add, step03, price, totalprice, receive, payment_list, storename, request
 		FROM ORDER_LIST
 		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
 		ORDER BY ordertime DESC, code DESC
@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="orderList" parameterType="order" resultType="order">
-		select * from order_list where id=#{id}
+		select * from order_list where id=#{id} order by ordertime desc
 	</select>
 	
 	<select id="selectHomeway" parameterType="order" resultType="order">
@@ -66,9 +66,11 @@
 	</select>
 	
 	<insert id="insertOrder" parameterType="order">
-		insert into order_list (code, id, name, ordertime, deliverytime, address, tel, storename, menuname, menu, price, coupon, point, totalprice, receive, payment_list, payment_status, request, status, quantity)
+		insert into order_list (code, id, name, ordertime, deliverytime, address, tel, storename, menuname, price, coupon, point, totalprice, 
+			receive, payment_list, payment_status, request, status, quantity, step01, topping_add, meat_add, cheese_add, step03)
 		values('ORD'||(SELECT last_value FROM order_list_no_seq), #{id}, #{name}, now()+'-3hours', now()+'-2hours', #{address}, #{tel}, #{storename}, #{menuname}, 
-		#{menu}, #{price}, #{coupon}, #{point}, #{totalprice}, #{receive}, #{payment_list}, #{payment_status}, #{request}, '주문 접수', #{quantity})
+			#{price}, #{coupon}, #{point}, #{totalprice}, #{receive}, #{payment_list}, #{payment_status}, #{request}, '주문 접수', #{quantity}, 
+			#{step01}, #{topping_add}, #{meat_add}, #{cheese_add}, #{step03})
 	</insert>
 	
 </mapper>

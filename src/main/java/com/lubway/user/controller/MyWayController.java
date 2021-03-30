@@ -152,7 +152,7 @@ public class MyWayController {
 		
 		List<OrderVO> orderInfo = orderService.orderList(vo);
 		int countOrder = orderService.countOrderList(vo);
-		
+
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
 		
@@ -168,7 +168,9 @@ public class MyWayController {
 		List<OrderVO> orderInfo = orderService.orderList(vo);
 		List<OrderVO> homeway = orderService.selectHomeway(vo);
 		List<OrderVO> fastway = orderService.selectFastway(vo);
+		int countOrder = orderService.countOrderList(vo);
 		
+		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("select", select);
 		System.out.println(select);
 		

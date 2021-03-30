@@ -18,9 +18,13 @@ public class OrderVO {
 	private Timestamp deliverytime;
 	private String address;
 	private String tel;
-	private String menu;
 	private String price;
 	private String totalprice;
+	private String step01;
+	private String topping_add;
+	private String meat_add;
+	private String cheese_add;
+	private String step03;
 	private String receive;
 	private String payment_list;
 	private boolean payment_status;

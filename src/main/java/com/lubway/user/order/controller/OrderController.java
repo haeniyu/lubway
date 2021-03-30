@@ -261,7 +261,11 @@ public class OrderController {
 		ovo.setTel(tel);
 		ovo.setStorename(storeName);
 		ovo.setMenuname(menuName);
-		ovo.setMenu(step01Text + toppingAdd + meatAdd + cheeseAdd + step03Text);
+		ovo.setStep01(step01Text);
+		ovo.setTopping_add(toppingAdd); // 리스트 처리
+		ovo.setMeat_add(meatAdd);
+		ovo.setCheese_add(cheeseAdd);
+		ovo.setStep03(step03Text);
 		ovo.setPrice(eachCost);
 		ovo.setCoupon(coupon);
 		ovo.setPoint(point);
@@ -271,19 +275,18 @@ public class OrderController {
 		ovo.setPayment_status(payment_status);
 		ovo.setRequest(request);
 		int quan = Integer.parseInt(quantity);
-		System.out.println(quantity);
-		System.out.println(quan);
 		ovo.setQuantity(quan);
 		
 		orderService.insertOrder(ovo);
 		
-		return "myway/orderList";
+		return "redirect:/orderList.do";
 		
 		// homeway 주문시 주문자 주소 받아오기
+		// 방문포장/매장식사 처리하기
 		// toppingList로 받아오기 - 지금은 토핑 맨 처음꺼 하나 받아옴
 		// 이거 다 하고
 		// 쿠폰 사용한거 사용 처리
-		// 주문내역에 바로 인서트 되기
+		// 포인트 사용한거 처리하기
 	}
 
 }

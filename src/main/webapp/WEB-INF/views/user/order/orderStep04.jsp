@@ -158,11 +158,12 @@ function gotoOrderList() {
 	
 	// 수령 방법
 	var way = '${whatWay}';
+	var temp = "";
+	var pickUp = $(".receive").val();
 	if(way == "Home-Way"){
-		way = "배달";
-		$("#receive").val(way);
+		temp = "배달";
+		$("#receive").val(temp);
 	}else{
-		var pickUp = $(".receive").val();
 		if(pickUp == "Y"){
 			pickUp = "방문포장"
 			$("#receive").val(pickUp);
