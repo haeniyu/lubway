@@ -236,6 +236,7 @@ public class OrderController {
 		model.addAttribute("code", code);
 		model.addAttribute("menuName", menuName);
 		model.addAttribute("toppingList", toppingList);
+		model.addAttribute("toppingAdd", toppingAdd);
 		model.addAttribute("meatAdd", meatAdd);
 		model.addAttribute("cheeseAdd", cheeseAdd);
 		model.addAttribute("setAdd", setAdd);
@@ -262,7 +263,7 @@ public class OrderController {
 		ovo.setStorename(storeName);
 		ovo.setMenuname(menuName);
 		ovo.setStep01(step01Text);
-		ovo.setTopping_add(toppingAdd); // 리스트 처리
+		ovo.setTopping_add(toppingAdd); // 리스트 처
 		ovo.setMeat_add(meatAdd);
 		ovo.setCheese_add(cheeseAdd);
 		ovo.setStep03(step03Text);
@@ -283,7 +284,6 @@ public class OrderController {
 		
 		// homeway 주문시 주문자 주소 받아오기
 		// 방문포장/매장식사 처리하기
-		// toppingList로 받아오기 - 지금은 토핑 맨 처음꺼 하나 받아옴
 		// 이거 다 하고
 		// 쿠폰 사용한거 사용 처리
 		// 포인트 사용한거 처리하기

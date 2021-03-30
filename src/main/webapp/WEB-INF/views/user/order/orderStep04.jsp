@@ -116,7 +116,7 @@ function gotoOrderList() {
 	var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
 	$("#eachCost").val(eachCost);
 	
-	var toppingAdd = $("#toppingText").text();//토핑추가
+	var toppingAdd = '${toppingAdd}';//토핑추가
 	$("#toppingAdd").val(toppingAdd);
 	
 	var meatAdd = $("#meatText").text();//미트추가
@@ -525,12 +525,11 @@ function gotoOrderList() {
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
 	<input type="hidden" id="totalPrice" name="totalPrice" value="">
 	<input type="hidden" id="step01Text" name="step01Text" value="">
-	<input type="hidden" id="step02Text" name="step02Text" value="">
 	<input type="hidden" id="step03Text" name="step03Text" value="">
 	<input type="hidden" id="quantity" name="quantity" value="${quantity }">
 	<input type="hidden" id="eachCost" name="eachCost" value="">
 	<input type="hidden" id="menuName" name="menuName" value="${menuName }">
-	<input type="hidden" id="toppingAdd" name="toppingAdd" value="">
+	<input type="hidden" id="toppingAdd" name="toppingAdd" value="${toppingList }">
 	<input type="hidden" id="meatAdd" name="meatAdd" value="">
 	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
 	<input type="hidden" id="setAdd" name="setAdd" value="">
