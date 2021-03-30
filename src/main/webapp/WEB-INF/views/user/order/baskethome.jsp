@@ -10,7 +10,7 @@
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <meta charset="UTF-8">
-<title>장바구니</title>
+<title>LUBWAY</title>
 <script type="text/javascript">
 var min = 1;
 var max = "10";
@@ -23,45 +23,48 @@ $(document).ready(function(){
 			count = i;
 			qty = $("#qty"+count).val();
 			basket = $(".eachTotalPrice"+count).attr('id');
-			basket = Number(basket) * Number(qty);
+			basket = Number(basket);
 			$(".eachTotalPrice"+count).text(basket);
 			totalPrice += basket;
 			$("#totalPrice").text(totalPrice);
 	}
-	
+	console.log('${price}');
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
 		qty = $("#qty"+count).val()*1;
-		basket = $(".eachTotalPrice"+count).attr('id');
+		basket = $(".eachTotalPrice"+count).text();
 		qty += 1;
 		if(qty>max){
 			alert("최대수량은 10개 입니다.");
 			qty -= 1;
 			return;
 		}
-		var add = Number(basket);
-		basket = Number(basket) * Number(qty);
+		var add = Number(basket) / Number(qty-1);
+		basket = Number(basket) + add;
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 		totalPrice += add;
 		$("#totalPrice").text(totalPrice);		
+
 	});
+	
 	$(".minus").click("click",function(){
 		count = $(this).attr('id');
 		qty = $("#qty"+count).val()*1;
-		basket = $(".eachTotalPrice"+count).attr('id');
+		basket = $(".eachTotalPrice"+count).text();
 		qty -= 1;
 		if(qty<min){
 			qty += 1;
 			return;
 		}
-		var minus = Number(basket);
-		basket = Number(basket) * Number(qty);
+		var minus = Number(basket) / Number(qty+1);
+		basket = Number(basket) - minus;
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 		totalPrice -= minus;
 		$("#totalPrice").text(totalPrice);		
+
 	});
 });
 </script>
@@ -77,8 +80,8 @@ $(document).ready(function(){
 			<h2 class="subTitle_02">장바구니</h2>
 			<div class="tab02">
 				<ul>
-					<li class="swiper-slide "><a href="/lubway/basketfast.do">FAST-SUB</a></li>
-					<li class="swiper-slide active"><a href="/lubway/baskethome.do">HOME-SUB</a></li>
+					<li class="swiper-slide "><a href="/lubway/basketfast.do">FAST-WAY</a></li>
+					<li class="swiper-slide active"><a href="/lubway/baskethome.do">HOME-WAY</a></li>
 				</ul>
 			</div>
 			<!-- 장바구니 목록 있을때 -->
@@ -117,8 +120,8 @@ $(document).ready(function(){
 									<th:object>${basket.menu_name}</th:object>
 								</label>
 								<p>
-								<c:if test="${basket.menu_type ne '사이드' and basket.menu_type ne '랩'}">
-										<c:if test="${basket.menu_type eq '샌드위치'}">
+								<c:if test="${basket.menu_type ne 'side' and basket.menu_type ne 'wrap'}">
+										<c:if test="${basket.menu_type eq 'sandwich'}">
 										<!-- 빵길이 -->
 											<c:if test="${basket.size eq 'false'}">
 												<th:object>15cm, </th:object>
@@ -161,14 +164,28 @@ $(document).ready(function(){
 										</c:if>
 
 										<c:if test="${basket.topping ne null}">
-											<dt>
-												<em>추가</em>
-												<span>${basket.topping}</span>
-											</dt>
-											<dd>
-												<strong>${price[stat.index]}</strong>
-												<span>원</span>
-											</dd>
+											<c:if test="${price[stat.index] eq null}">
+												<dt>
+													<em>추가</em>
+													<span>${basket.topping}</span>
+												</dt>
+												<dd>
+													<strong>${price[stat.index]}</strong>
+													<span>원아래</span>
+												</dd>
+											</c:if>
+											<c:if test="${price[stat.index] ne null}">
+												<c:forEach items="${price[stat.index]}" var="getPrice" varStatus="status">
+													<dt>
+														<em>추가</em>
+														<span>${basket.topping}</span>
+													</dt>
+													<dd>
+														<strong>${getPrice}</strong>
+														<span>원위</span>
+													</dd>
+												</c:forEach>
+											</c:if>											
 										</c:if>
 										
 										<c:if test="${basket.add_cheese ne null}">
@@ -237,7 +254,7 @@ $(document).ready(function(){
 								<input name="receiverAddrDtl" type="hidden" value="1호" />
 							
 						</form>
-						<a class="btn bgc_white" href="javascript:void(0);" id="addMenu"><span>메뉴추가하기</span></a>
+						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
 						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" data-cart-type="CART_TYPE.HOME_SUB"><span>주문하기</span></a>
 					</div>
 				</div>
@@ -254,6 +271,11 @@ $(document).ready(function(){
 		<!--// sub content e -->
 	</div>
 
-<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	<form action="orderStep02.do" method="post" id="addMenuForm">
+		<input type="hidden" name="franchiseNo" value="${franchiseNo}">
+		<input type="hidden" name="whatWay" value="Home-Way">
+		<input type="hidden" name="fullAddr" value="${fullAddr}">
+	</form>
 </body>
 </html>

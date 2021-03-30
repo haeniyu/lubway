@@ -9,7 +9,6 @@
 <meta name="google-signin-client_id" content="848158094091-dmohdudpt9hfq0m0uubdln37dfg2mqbk.apps.googleusercontent.com">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/login.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/google.css" />
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/naver.css" />
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
@@ -24,6 +23,16 @@
 				$("#login").submit();
 			}
 		});
+		$("#username").keydown(function(key) {
+            if (key.keyCode == 13) {
+                $("#login").submit();
+            }
+        });
+		$("#password").keydown(function(key) {
+            if (key.keyCode == 13) {
+                $("#login").submit();
+            }
+        });
 	});
 </script>
 <script type="text/javascript">

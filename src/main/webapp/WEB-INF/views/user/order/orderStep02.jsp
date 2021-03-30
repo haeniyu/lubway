@@ -193,6 +193,7 @@
 		<input type="hidden" id="code" name="code" value="">
 		<input type="hidden" name="whatWay" value="${whatWay}">
 		<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
+		<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr}">
 	</form> 
 </body>
 </html>

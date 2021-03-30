@@ -8,6 +8,7 @@ import com.lubway.user.order.BasketVO;
 
 public interface BasketService {
 	List<BasketVO> getBasket(BasketVO vo);
-	List<String> getPrice(BasketVO vo);
+	String getPrice(String topping);
 	StoreInfoVO getStoreInfo(int no);
+	void insertBasket(BasketVO vo);
 }

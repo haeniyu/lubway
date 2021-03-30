@@ -9,6 +9,10 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/cart.css" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+function addMenu() {
+	$("#addMenuForm").submit();
+}
+
 var min = 1;
 var max = "10";
 var count = "";
@@ -20,7 +24,8 @@ $(document).ready(function(){
 			count = i;
 			qty = $("#qty"+count).val();
 			basket = $(".eachTotalPrice"+count).attr('id');
-			basket = Number(basket) * Number(qty);
+//			basket = Number(basket) * Number(qty);
+			basket = Number(basket);
 			$(".eachTotalPrice"+count).text(basket);
 			totalPrice += basket;
 			$("#totalPrice").text(totalPrice);
@@ -30,41 +35,44 @@ $(document).ready(function(){
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
 		qty = $("#qty"+count).val()*1;
-		basket = $(".eachTotalPrice"+count).attr('id');
+		basket = $(".eachTotalPrice"+count).text();
 		qty += 1;
 		if(qty>max){
 			alert("최대수량은 10개 입니다.");
 			qty -= 1;
 			return;
 		}
-		var add = Number(basket);
-		basket = Number(basket) * Number(qty);
+		var add = Number(basket) / Number(qty-1);
+		basket = Number(basket) + add;
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 		totalPrice += add;
 		$("#totalPrice").text(totalPrice);		
+
 	});
+	
 	$(".minus").click("click",function(){
 		count = $(this).attr('id');
 		qty = $("#qty"+count).val()*1;
-		basket = $(".eachTotalPrice"+count).attr('id');
+		basket = $(".eachTotalPrice"+count).text();
 		qty -= 1;
 		if(qty<min){
 			qty += 1;
 			return;
 		}
-		var minus = Number(basket);
-		basket = Number(basket) * Number(qty);
+		var minus = Number(basket) / Number(qty+1);
+		basket = Number(basket) - minus;
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 		totalPrice -= minus;
 		$("#totalPrice").text(totalPrice);		
+
 	});
 });
 </script>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>LUBWAY</title>
 </head>
 
 <body>
@@ -77,8 +85,8 @@ $(document).ready(function(){
 			<h2 class="subTitle_02">장바구니</h2>
 			<div class="tab02">
 				<ul>
-					<li class="swiper-slide active"><a href="/lubway/basketfast.do">FAST-SUB</a></li>
-					<li class="swiper-slide "><a href="/lubway/baskethome.do">HOME-SUB</a></li>
+					<li class="swiper-slide active"><a href="/lubway/basketfast.do">FAST-WAY</a></li>
+					<li class="swiper-slide "><a href="/lubway/baskethome.do">HOME-WAY</a></li>
 				</ul>
 			</div>
 			<!-- 장바구니 목록 있을때 -->
@@ -117,9 +125,9 @@ $(document).ready(function(){
 									<span class="icon"></span>
 									<th:object>${basket.menu_name}</th:object>
 								</label>
-								<c:if test="${basket.menu_type ne '사이드'}">
+								<c:if test="${basket.menu_type ne 'side'}">
 								<p>
-										<c:if test="${basket.menu_type eq '샌드위치'}">
+										<c:if test="${basket.menu_type eq 'sandwich'}">
 										<!-- 빵길이 -->
 											<c:if test="${basket.size eq 'false'}">
 												<th:object>15cm</th:object>
@@ -238,7 +246,7 @@ $(document).ready(function(){
 								<input name="receiverAddrDtl" type="hidden" value="1호" />
 							
 						</form>
-						<a class="btn bgc_white" href="javascript:void(0);" id="addMenu"><span>메뉴추가하기</span></a>
+						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
 						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" data-cart-type="CART_TYPE.HOME_SUB"><span>주문하기</span></a>
 					</div>
 				</div>
@@ -246,7 +254,7 @@ $(document).ready(function(){
 			<!-- 장바구니 목록 없을때 -->
 			
 				<!-- 장바구니 목록 없을때 -->
-			<c:if test="${basket == '[]'}">
+			<c:if test="${basket eq null}">
 			<div class="data_none wh_box" id="data_none">
 				<p>장바구니가 비어있습니다.</p>
 			</div>
@@ -259,5 +267,9 @@ $(document).ready(function(){
 	</div>
 
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
+	<form action="orderStep02.do" method="post" id="addMenuForm">
+		<input type="hidden" name="franchiseNo" value="${franchiseNo}">
+		<input type="hidden" name="whatWay" value="Fast-Way">
+	</form>
 </body>
 </html>

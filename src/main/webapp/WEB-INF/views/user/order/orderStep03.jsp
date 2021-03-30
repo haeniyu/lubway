@@ -499,8 +499,8 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="order_btn">
-				<a class="cart" href="#">장바구니</a> <a class="bill"
-					href="javascript:;" onclick="gotoStep04();">주문하기</a>
+				<a class="cart" href="javascript:;" onclick="gotoBasket();">장바구니</a>
+				<a class="bill" href="javascript:;" onclick="gotoStep04();">주문하기</a>
 			</div>
 		</div>
 		<!--// 메뉴소개 e -->
@@ -616,6 +616,9 @@ $(document).ready(function() {
 	<input type="hidden" id="step01Text" name="step01Text" value="">
 	<input type="hidden" id="step02Text" name="step02Text" value="">
 	<input type="hidden" id="step03Text" name="step03Text" value="">
+	<input type="hidden" id="cheeseList" name="basicCheese" value="">
+	<input type="hidden" id="vegetableList" name="vegetable" value="">
+	<input type="hidden" id="sauceList" name="sauce" value="">
 	<input type="hidden" id="quantity" name="quantity" value="">
 	<input type="hidden" id="eachCost" name="eachCost" value="">
 	<input type="hidden" id="menuName" name="menuName" value="${menu.name}">
@@ -623,7 +626,8 @@ $(document).ready(function() {
 	<input type="hidden" id="meatAdd" name="meatAdd" value="">
 	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
 	<input type="hidden" id="setAdd" name="setAdd" value="">
-	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
+	<input type="hidden" id="menu_type" name="menu_type" value="${select}">
+	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr}">
 </form> 
 </body>
 </html>
