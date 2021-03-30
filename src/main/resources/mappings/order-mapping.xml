@@ -65,4 +65,10 @@
 		select count(*) from order_list where id=#{id}
 	</select>
 	
+	<insert id="insertOrder" parameterType="order">
+		insert into order_list (code, id, name, ordertime, deliverytime, address, tel, storename, menuname, menu, price, coupon, point, totalprice, receive, payment_list, payment_status, request, status, quantity)
+		values('ORD'||(SELECT last_value FROM order_list_no_seq), #{id}, #{name}, now()+'-3hours', now()+'-2hours', #{address}, #{tel}, #{storename}, #{menuname}, 
+		#{menu}, #{price}, #{coupon}, #{point}, #{totalprice}, #{receive}, #{payment_list}, #{payment_status}, #{request}, '주문 접수', #{quantity})
+	</insert>
+	
 </mapper>

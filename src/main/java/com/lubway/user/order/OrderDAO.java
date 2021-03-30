@@ -54,4 +54,8 @@ public class OrderDAO {
 	public int countOrderList(OrderVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.countOrderList", vo);
 	}
+	
+	public void insertOrder(OrderVO vo) {
+		sqlSessionTemplate.insert("OrderDAO.insertOrder", vo);
+	}
 }

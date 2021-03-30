@@ -46,77 +46,81 @@ $(document).ready(function(){
 		<div id="content">
 			<!-- My-sub > 주문내역 -->
 			<div class="order_wrapper">
-				<h2 class="subTitle">최근 주문 내역</h2>
+				<h2 class="subTitle" style="padding-top: 80px">최근 주문 내역</h2>
 				<p class="tit_sub_copy">
 					최근 6개월 이내 고객님의 주문내역입니다.<br />주문 내역을 Tab하시면 상세조회를 할 수 있습니다.
 				</p>
 				<!-- 주문내역 데이터 있을 시 노출 -->
-				<div class="order_box">
-					<div class="search_order">
-						<span>주문내역</span>
-						<div class="form_select" style="width: 356px;">
-							<input name="pageNo" type="hidden" value="1" /> 
-							<select id="ordType" name="ordType">
-								<option value="">전체주문</option>
-								<option value="fastway">FAST-WAY</option>
-								<option value="homeway">HOME-WAY</option>
-							</select>
-						</div>
-					</div>
-					<div class="order_list">
-						<div class="order_listTit">
-							<h3>주문내역 전체보기</h3>
-						</div>
-						<ul>
-							<!-- 1세트 -->
-							<c:forEach items="${order}" var="order">
-							<li>
-								<div class="order_card">
-									<a href="/lubway/orderListDetail.do?code=${order.code }"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
-										<c:if test="${order.receive ne '배달'}">
-											<p class="order_type fast">
-												FAST-WAY
-											</p>
-										</c:if>
-										<c:if test="${order.receive eq '배달'}">
-											<p class="order_type home">
-												HOME-WAY
-											</p>
-										</c:if>
-										<div class="order_menu">
-											<p>
-												<span class="menu">${order.menuname }</span>
-											</p>
-										</div>
-										<div class="order_detail">
-											<span class="price"><span>${order.totalprice }</span><em>원</em></span> 
-											<span class="store">${order.storename }</span> 
-											<span class="date"><fmt:formatDate value="${order.ordertime }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-											<span class="num">주문번호 ( <em>${order.code }</em> ) </span>
-										</div>
-									</a>
-								</div>
-							</li>
-							</c:forEach>
-							<!--// 1세트 -->
-						</ul>
-						<!-- board 페이지 -->
-						<div>
-							<div class="pagination">
-								<a class="arr prev" href="javascript:void(0);"></a> 
-								<a class="active" href="#">1</a> 
-								<a class="arr next" href="javascript:void(0);"></a>
+				<c:if test="${countOrder > 0 }">
+					<div class="order_box">
+						<div class="search_order">
+							<span>주문내역</span>
+							<div class="form_select" style="width: 356px;">
+								<input name="pageNo" type="hidden" value="1" /> 
+								<select id="ordType" name="ordType">
+									<option value="">전체주문</option>
+									<option value="fastway">FAST-WAY</option>
+									<option value="homeway">HOME-WAY</option>
+								</select>
 							</div>
 						</div>
-						<!--// board 페이지 -->
+						<div class="order_list">
+							<div class="order_listTit">
+								<h3>주문내역 전체보기</h3>
+							</div>
+							<ul>
+								<!-- 1세트 -->
+								<c:forEach items="${order}" var="order">
+								<li>
+									<div class="order_card">
+										<a href="/lubway/orderListDetail.do?code=${order.code }"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
+											<c:if test="${order.receive ne '배달'}">
+												<p class="order_type fast">
+													FAST-WAY
+												</p>
+											</c:if>
+											<c:if test="${order.receive eq '배달'}">
+												<p class="order_type home">
+													HOME-WAY
+												</p>
+											</c:if>
+											<div class="order_menu">
+												<p>
+													<span class="menu">${order.menuname }</span>
+												</p>
+											</div>
+											<div class="order_detail">
+												<span class="price"><span>${order.totalprice }</span><em>원</em></span> 
+												<span class="store">${order.storename }</span> 
+												<span class="date"><fmt:formatDate value="${order.ordertime }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
+												<span class="num">주문번호 ( <em>${order.code }</em> ) </span>
+											</div>
+										</a>
+									</div>
+								</li>
+								</c:forEach>
+								<!--// 1세트 -->
+							</ul>
+							<!-- board 페이지 -->
+							<div>
+								<div class="pagination">
+									<a class="arr prev" href="javascript:void(0);"></a> 
+									<a class="active" href="#">1</a> 
+									<a class="arr next" href="javascript:void(0);"></a>
+								</div>
+							</div>
+							<!--// board 페이지 -->
+						</div>
 					</div>
-				</div>
+				</c:if>
 				<!--// 주문내역 데이터 있을 시 노출 -->
-
-				<!-- 주문내역 데이터 없을 시 노출
-				<div class="data_none">
-					<p>최근 주문 내역이 없습니다.</p>
-				</div> -->
+				
+				<!-- 주문내역 데이터 없을 시 노출 -->
+				<c:if test="${countOrder == 0 }">
+					<div class="data_none">
+						<p>최근 주문 내역이 없습니다.</p>
+					</div>
+				</c:if>
 				<!--// 주문내역 데이터 없을 시 노출 -->
 			</div>
 			<!--// My-sub > 주문내역 -->

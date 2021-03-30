@@ -1,6 +1,83 @@
 
 $(document).ready(function() {
-	
+/*
+	function gotoOrderList() {
+		
+		var totalPrice = $("#totalPayAmtNavi").text();//총 가격
+		$("#totalPrice").val(totalPrice);
+		
+		var step01Text = $("#selectStep01").text();//필수선택 텍스트
+		var step02Text = $("#selectStep02").text();//추가선택 텍스트
+		var step03Text = $(".selectStep03").text();//세트선택 텍스트
+		$("#step01Text").val(step01Text);
+		$("#step02Text").val(step02Text);
+		$("#step03Text").val(step03Text);
+		
+		var quantity = $("#ordQty").val(); //수량
+		$("#quantity").val(quantity);
+		var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
+		$("#eachCost").val(eachCost);
+		
+		var toppingAdd = $("#toppingText").text();//토핑추가
+		$("#toppingAdd").val(toppingAdd);
+		
+		var meatAdd = $("#meatText").text();//미트추가
+		$("#meatAdd").val(meatAdd); 
+		
+		var cheeseAdd = $("#addCheeseText").text();//치즈추가
+		$("#cheeseAdd").val(cheeseAdd);
+		
+		// step04 추가
+		var setAdd = $("#setAdd").text();
+		$("#setAdd").val(setAdd);
+		
+		var coupon = $("#couponAmtNavi").text();
+		$("#coupon").val(coupon);
+		
+		var point = $("#pointAmtNavi").text();
+		$("#point").val(point);
+		
+		var request = $("#ordMemoContent").text();
+		$("#request").val(request);
+		
+		// 결제 수단
+		var payment = $(".pay").value();
+		var payment_status;
+		
+		if(payment == "PAY_METHOD.CASH"){
+			payment = "현금";
+			payment_status = false;
+			
+		}else if(payment == "PAY_METHOD.PAYCOKAKAO"){
+			payment = "카카오페이";
+			payment_status = true;
+		}else{
+			payment = "신용카드";
+			payment_status = true;
+		}
+		$("#payment").val(payment);
+		$("#payment_status").val(payment_status);
+		
+		// 수령 방법
+		var way = $("#whatWay").text();
+		if(way == "Home-Way"){
+			way = "배달";
+			$("#receive").val(way);
+		}else{
+			var pickUp = $(".receive").value();
+			if(pickUp == "Y"){
+				pickUp = "방문포장"
+				$("#receive").val(pickUp);
+			}else{
+				pickUp = "매장식사"
+				$("#receive").val(pickUp);
+			}
+		}
+		
+		$("#orderForm").submit();
+		
+	}
+*/
 	const USABLE_TMP = $("#usablePoint").text(); 	//보유포인트
 	const USABLE_POINT = parseInt(USABLE_TMP);
 	var priceTmp = $("#orderTotal").text();			//결제할 금액 = price(int)

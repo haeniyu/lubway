@@ -86,4 +86,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.countOrderList(vo);
 	}
 
+	@Override
+	public void insertOrder(OrderVO vo) {
+		orderDao.insertOrder(vo);
+	}
+
 }

@@ -40,8 +40,8 @@ $(function() {
 		}
 	})
 });
+var pay = "";
 $(function() {
-	var pay = "";
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);
@@ -94,9 +94,89 @@ $(function() {
 			        alert(msg);
 			    }
 			});
+		}else if(pay == "PAY_METHOD.CASH"){
+			
+			gotoOrderList();
+			
 		}
-	});
-});
+	});	
+}); //end of pay function
+
+function gotoOrderList() {
+	var totalPrice = $("#totalPayAmtNavi").text();//총 가격
+	$("#totalPrice").val(totalPrice);
+	
+	var step01Text = $("#selectStep01").text();//필수선택 텍스트
+	var step02Text = $("#selectStep02").text();//추가선택 텍스트
+	var step03Text = $(".selectStep03").text();//세트선택 텍스트
+	$("#step01Text").val(step01Text);
+	$("#step02Text").val(step02Text);
+	$("#step03Text").val(step03Text);
+	
+	var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
+	$("#eachCost").val(eachCost);
+	
+	var toppingAdd = $("#toppingText").text();//토핑추가
+	$("#toppingAdd").val(toppingAdd);
+	
+	var meatAdd = $("#meatText").text();//미트추가
+	$("#meatAdd").val(meatAdd); 
+	
+	var cheeseAdd = $("#addCheeseText").text();//치즈추가
+	$("#cheeseAdd").val(cheeseAdd);
+	
+	// step04 추가
+	var setAdd = $("#setAdd").text();
+	$("#setAdd").val(setAdd);
+	
+	var coupon = $("#couponAmtNavi").text();
+	$("#coupon").val(coupon);
+	
+	var point = $("#pointAmtNavi").text();
+	$("#point").val(point);
+	
+	var request = $("#ordMemoContent").val();
+	$("#request").val(request);
+	
+	// 결제 수단
+	var payment = pay;
+	var payment_status;
+	
+	if(payment == "PAY_METHOD.CASH"){
+		payment = "현금";
+		payment_status = false;
+		
+	}else if(payment == "PAY_METHOD.PAYCOKAKAO"){
+		payment = "카카오페이";
+		payment_status = true;
+	}else{
+		payment = "신용카드";
+		payment_status = true;
+	}
+	$("#payment").val(payment);
+	$("#payment_status").val(payment_status);
+	
+	// 수령 방법
+	var way = '${whatWay}';
+	if(way == "Home-Way"){
+		way = "배달";
+		$("#receive").val(way);
+	}else{
+		var pickUp = $(".receive").val();
+		if(pickUp == "Y"){
+			pickUp = "방문포장"
+			$("#receive").val(pickUp);
+		}else{
+			pickUp = "매장식사"
+			$("#receive").val(pickUp);
+		}
+	}
+	
+	$("#orderForm").submit();
+	
+}
+
+
 </script>
 </head>
 <body>
@@ -155,12 +235,13 @@ $(function() {
 											<dd>
 												<div class="choice_wrap">
 													<!-- radio -->
-													<label class="form_circle" for="r2"> <input
-														checked="checked" id="r2" name="paveFg" type="radio"
-														value="Y" /> <span class="icon"></span> <em>방문포장</em>
-													</label> <label class="form_circle" for="r1"> <input id="r1"
-														name="paveFg" type="radio" value="N" /> <span class="icon"></span>
-														<em>매장식사</em>
+													<label class="form_circle" for="r2"> 
+														<input checked="checked" id="r2" name="paveFg" type="radio" value="Y" class="receive"/> 
+														<span class="icon"></span> <em>방문포장</em>
+													</label> 
+													<label class="form_circle" for="r1"> 
+														<input id="r1" name="paveFg" type="radio" value="N" class="receive" /> 
+														<span class="icon"></span> <em>매장식사</em>
 													</label>
 													<!--// radio -->
 												</div>
@@ -195,9 +276,9 @@ $(function() {
 									<dl class="">
 										<dt>주문시, 요청사항</dt>
 										<dd>
-											<span class="form_text"> <input maxlength="50"
+											<span class="form_text"> <input maxlength="50" id="ordMemoContent"
 												name="ordMemoContent" placeholder="주문시 요청사항을 입력하세요"
-												type="text" />
+												type="text">
 											</span>
 										</dd>
 									</dl>
@@ -265,15 +346,15 @@ $(function() {
 										<dd>
 											<div class="form_radio square">
 												<label> 
-													<input checked="checked" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
+													<input checked="checked" class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
 													<span class="shape">현금</span>
 												</label> 
 												<label> 
-													<input id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
+													<input id="creditcard" class="pay"  name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
 													<span class="shape">신용카드</span>
 												</label> 
 												<label> 
-													<input id="kakao" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
+													<input id="kakao"  class="pay" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
 													<span class="shape">
 														<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>
 													</span>
@@ -302,10 +383,10 @@ $(function() {
 												<div class="name" data-target="mainItem">
 													<!-- 선택한 메뉴 이름 -->
 													<strong>${menuName }</strong>
-													<p>${step01Text}</p>
+													<p id="selectStep01">${step01Text}</p>
 												</div>
 												<div class="count">
-													<strong class="qty">${quantity }</strong>개
+													<strong class="qty" id="ordQty">${quantity }</strong>개
 												</div>
 												<div class="sum">
 													<span> <strong class="price">${totalPrice}</strong><em>원</em>
@@ -322,7 +403,7 @@ $(function() {
 														<c:forEach items="${toppingList }" var="topping">
 															<li>
 																<div class="addname">
-																	<strong>${topping.name }</strong>
+																	<strong id="toppingText">${topping.name }</strong>
 																</div>
 																<div class="addcount"></div>
 																<div class="addsum">
@@ -336,7 +417,7 @@ $(function() {
 													<c:if test="${meatAdd.length() gt 0 }">
 														<li>
 															<div class="addname">
-																<strong>${meatAdd }</strong>
+																<strong id="meatText">${meatAdd }</strong>
 															</div>
 															<div class="addcount"></div>
 															<div class="addsum">
@@ -349,7 +430,7 @@ $(function() {
 													<c:if test="${cheeseAdd.length() gt 0 }">
 														<li>
 															<div class="addname">
-																<strong>${cheeseAdd }</strong>
+																<strong id="addCheeseText">${cheeseAdd }</strong>
 															</div>
 															<div class="addcount"></div>
 															<div class="addsum">
@@ -364,11 +445,11 @@ $(function() {
 														<li>
 															<div class="setname">
 																<strong>세트추가</strong>
-																<p>${step03Text }</p>
+																<p class="selectStep03">${step03Text }</p>
 															</div>
 															<div class="setcount"></div>
 															<div class="setsum">
-																<span> <strong>${setAdd }</strong><em>원</em>
+																<span> <strong id="setAdd">${setAdd }</strong><em>원</em>
 																</span>
 															</div>
 														</li>
@@ -390,6 +471,7 @@ $(function() {
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
+								<input id="eachPrice" type="hidden" value="${eachCost}" />
 								<strong id="orderTotal">${totalPrice}</strong>
 								원
 							</dd>
@@ -423,7 +505,7 @@ $(function() {
 							</dl>
 						</div>
 						<div class="btn_area">
-							<a class="btn bgc_point i_reg" href="javascript:void(0);" id="startOrder"><span>결제하기</span></a>
+							<a class="btn bgc_point i_reg" href="javascript:;" id="startOrder"><span>결제하기</span></a>
 						</div>
 					</div>
 					<!--// 결제금액 -->
@@ -436,22 +518,30 @@ $(function() {
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 <!-- 주문 완료 결제 페이지 이동 -->
-<form action="#" method="post" id="orderForm" style="display: none;">
+<form action="orderStep05.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" id="code" name="code" value="${code}">
-	<input type="hidden" name="whatWay" value="${whatWay}">
+	<input type="hidden" id="whatWay" name="whatWay" value="${whatWay}">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
 	<input type="hidden" id="totalPrice" name="totalPrice" value="">
 	<input type="hidden" id="step01Text" name="step01Text" value="">
 	<input type="hidden" id="step02Text" name="step02Text" value="">
 	<input type="hidden" id="step03Text" name="step03Text" value="">
-	<input type="hidden" id="quantity" name="quantity" value="">
+	<input type="hidden" id="quantity" name="quantity" value="${quantity }">
 	<input type="hidden" id="eachCost" name="eachCost" value="">
-	<input type="hidden" id="menuName" name="menuName" value="${menu.name}">
+	<input type="hidden" id="menuName" name="menuName" value="${menuName }">
 	<input type="hidden" id="toppingAdd" name="toppingAdd" value="">
 	<input type="hidden" id="meatAdd" name="meatAdd" value="">
 	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
 	<input type="hidden" id="setAdd" name="setAdd" value="">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
+	<input type="hidden" id="storeName" name="storeName" value="${store.storename }">
+	<input type="hidden" id="coupon" name="coupon" value="">
+	<input type="hidden" id="point" name="point" value="">
+	<input type="hidden" id="request" name="request" value="">
+	<input type="hidden" id="tel" name="tel" value="${user.tel }">
+	<input type="hidden" id="receive" name="receive" value="">
+	<input type="hidden" id="payment" name="payment" value="">
+	<input type="hidden" id="payment_status" name="payment_status" value="">
 </form> 
 </body>
 </html>

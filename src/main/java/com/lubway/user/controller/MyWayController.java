@@ -49,8 +49,8 @@ public class MyWayController {
 		
 		// 남은 쿠폰 개수 보여주기
 		int countUseCoupon = couponService.countUseCoupon(cvo);
-		int countOrder = orderService.countOrderList(ovo);
 		// 주문내역 리스트 개수 보여주기
+		int countOrder = orderService.countOrderList(ovo);
 
 		model.addAttribute("countCoupon", countUseCoupon);
 		model.addAttribute("countOrder", countOrder);
@@ -151,7 +151,9 @@ public class MyWayController {
 		vo.setId(userVo.getId());
 		
 		List<OrderVO> orderInfo = orderService.orderList(vo);
+		int countOrder = orderService.countOrderList(vo);
 		
+		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
 		
 		return "myway/orderList";

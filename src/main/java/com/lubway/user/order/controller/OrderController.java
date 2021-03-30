@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,6 +25,7 @@ import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
+import com.lubway.user.order.OrderVO;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
@@ -240,6 +242,48 @@ public class OrderController {
 		model.addAttribute("fullAddr", fullAddr);
 		
 		return "order/orderStep04";
+	}
+	
+	// insert
+	@PostMapping("/orderStep05.do")
+	public String orderStep05(Model model, OrderVO ovo, HttpSession session,
+			String step01Text, String step02Text, String step03Text, String storeName,
+			String eachCost, String quantity, String totalPrice, String tel, 
+			String franchiseNo, String whatWay, String code, String fullAddr, 
+			String menuName, String toppingAdd, String meatAdd, String cheeseAdd,String setAdd,
+			String coupon, String point, String request, String payment, Boolean payment_status, String receive) {
+
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		ovo.setId(user.getId());
+		ovo.setName(user.getName());
+		ovo.setAddress(fullAddr);
+		ovo.setTel(tel);
+		ovo.setStorename(storeName);
+		ovo.setMenuname(menuName);
+		ovo.setMenu(step01Text + toppingAdd + meatAdd + cheeseAdd + step03Text);
+		ovo.setPrice(eachCost);
+		ovo.setCoupon(coupon);
+		ovo.setPoint(point);
+		ovo.setTotalprice(totalPrice);
+		ovo.setReceive(receive);
+		ovo.setPayment_list(payment);
+		ovo.setPayment_status(payment_status);
+		ovo.setRequest(request);
+		int quan = Integer.parseInt(quantity);
+		System.out.println(quantity);
+		System.out.println(quan);
+		ovo.setQuantity(quan);
+		
+		orderService.insertOrder(ovo);
+		
+		return "myway/orderList";
+		
+		// homeway 주문시 주문자 주소 받아오기
+		// toppingList로 받아오기 - 지금은 토핑 맨 처음꺼 하나 받아옴
+		// 이거 다 하고
+		// 쿠폰 사용한거 사용 처리
+		// 주문내역에 바로 인서트 되기
 	}
 
 }

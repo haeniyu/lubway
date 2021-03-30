@@ -39,4 +39,7 @@ public interface OrderService {
 	
 	// 총 주문내역 개수
 	int countOrderList(OrderVO vo);
+	
+	// insert
+	void insertOrder(OrderVO vo);
 }

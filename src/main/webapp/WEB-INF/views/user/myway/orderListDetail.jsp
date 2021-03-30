@@ -49,7 +49,7 @@ $(function() {
 						</dl>
 					</div>
 
-					<!-- 픽업매장 -->
+					<!-- fastway -->
 					<section class="form_box">
 						<h3>픽업 매장</h3>
 						<div class="write_info_wrap">
@@ -73,7 +73,33 @@ $(function() {
 							</div>
 						</div>
 					</section>
-					<!--// 픽업매장 -->
+					<!--// fastway -->
+					
+					<!-- homeway -->
+					<section class="form_box">
+						<h3>픽업 매장</h3>
+						<div class="write_info_wrap">
+							<div class="input_set">
+								<dl class="shop info_dl">
+									<dt>종로삼일대로점</dt>
+									<dd>서울특별시 종로구 삼일대로 391</dd>
+								</dl>
+							</div>
+							<div class="input_set">
+								<dl class="info_dl">
+									<dt>방문포장/매장식사</dt>
+									<dd>매장식사</dd>
+								</dl>
+							</div>
+							<div class="input_set">
+								<dl class="info_dl">
+									<dt>전화번호</dt>
+									<dd>${user.tel}</dd>
+								</dl>
+							</div>
+						</div>
+					</section>
+					<!--// homeway -->
 
 					<!-- 주문내역 -->
 					<section class="form_box">
