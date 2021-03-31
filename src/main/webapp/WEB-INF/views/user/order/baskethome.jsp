@@ -22,6 +22,9 @@ var count = "";
 var qty = "";
 var basket = "";
 var totalPrice = 0;
+var cnt = 0;
+var totalCnt = 0;
+var selectId = "";
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
 			count = i;
@@ -32,6 +35,23 @@ $(document).ready(function(){
 			totalPrice += basket;
 			$("#totalPrice").text(totalPrice);
 	}
+	
+	$(".form_checkbox").off().on("click", function() {
+		totalCnt = $(".form_checkbox").length;
+		cnt = $("[class=menu]:checked").length;
+		selectId = $(this).find("input").attr("id");
+		console.log(selectId);
+		if(selectId == "all") {
+			if($("input:checkbox[id=all]").is(":checked") == true) $("input:checkbox").prop("checked", false);
+			else $("input:checkbox").prop("checked", true);
+		} else {
+			if($("input:checkbox[id=all]").is(":checked") == true) $("input:checkbox[id=all]").prop("checked", false);
+			else {
+				if(totalCnt-1 == cnt) $("input:checkbox[id=all]").prop("checked", true);
+			}
+		}
+	});
+	
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
@@ -70,6 +90,32 @@ $(document).ready(function(){
 
 	});
 });
+
+//주문하기 페이지로 이동
+function orderBasket() {
+	var totalNum = "";
+	if(cnt == 0) {
+		alert("주문하실 메뉴를 선택해 주세요.");
+		return;
+	} else {
+		for(var i=0; i < totalCnt-1; i++){
+			console.log(i);
+			console.log($("[name=menu"+i+"]").attr("id"));
+			console.log($("[name=menu"+i+"]").is(":checked") == true);
+			if($("[name=menu"+i+"]").is(":checked") == true) {
+				if(i == totalCnt-2) {
+					totalNum += $("[name=menu" + i + "]:checked").attr("id");
+				} else {
+					totalNum += $("[name=menu" + i + "]:checked").attr("id") + ",";
+				}
+			}
+		}
+	}
+	console.log(totalNum);
+	$("input[name=basketNo]").val(totalNum);
+	console.log($("input[name=basketNo]").val());
+	$("#orderForm").submit();
+}
 </script>
 </head>
 <body>
@@ -100,10 +146,9 @@ $(document).ready(function(){
 							</a>
 						</dd>
 					</dl>
-					<div class="txt_last_14day">최근 14일 이내 담은 상품만 확인 가능합니다.</div>
 					<div class="all_select">
 						<label class="form_checkbox">
-							<input data-target="all" type="checkbox" />
+							<input id="all" type="checkbox" />
 							<span class="icon"></span>
 							전체선택
 						</label>
@@ -119,7 +164,7 @@ $(document).ready(function(){
 						<div class="order_info">
 							<div class="menu_info">
 								<label class="form_checkbox">
-									<input data-target="each" type="checkbox" />
+									<input id="${basket.no}" type="checkbox" name="menu${stat.index}" class="menu"/>
 									<span class="icon"></span>
 									<object>${basket.menu_name}</object>
 								</label>
@@ -231,7 +276,7 @@ $(document).ready(function(){
 					</dl>
 					<div class="btn_area">
 						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
-						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" data-cart-type="CART_TYPE.HOME_SUB"><span>주문하기</span></a>
+						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" onclick="orderBasket();"><span>주문하기</span></a>
 					</div>
 				</div>
 				</c:if>
@@ -252,6 +297,9 @@ $(document).ready(function(){
 		<input type="hidden" name="franchiseNo" value="${store.no}">
 		<input type="hidden" name="fullAddr" value="${user_address}">
 		<input type="hidden" name="whatWay" value="Home-Way">
+	</form>
+	<form action="orderBasket.do" method="post" id="orderForm">
+		<input type="hidden" name="basketNo" value="">
 	</form>
 </body>
 </html>

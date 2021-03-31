@@ -87,8 +87,6 @@ $(document).ready(function(){
 				if(totalCnt-1 == cnt) $("input:checkbox[id=all]").prop("checked", true);
 			}
 		}
-//		console.log($(".form_checkbox").length);
-//		console.log($("[name=menu]:checked").length);
 	});
 	
 	
@@ -153,7 +151,6 @@ function orderBasket() {
 							</a>
 						</dd>
 					</dl>
-					<div class="txt_last_14day">최근 14일 이내 담은 상품만 확인 가능합니다.</div>
 					<div class="all_select">
 						<label class="form_checkbox">
 							<input id="all" type="checkbox" />
