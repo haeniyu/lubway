@@ -33,5 +33,6 @@ public class BasketVO {
 	private int store_no;
 	private String user_address;
 	private String set_name;
+	private int count;
 	
 }

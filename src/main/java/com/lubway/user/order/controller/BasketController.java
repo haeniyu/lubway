@@ -20,9 +20,10 @@ import com.lubway.admin.menu.WrapVO;
 import com.lubway.admin.menu.service.MenuService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserVO;
+import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.BasketVO;
-import com.lubway.user.order.PriceVO;
 import com.lubway.user.order.service.BasketService;
+import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class BasketController {
@@ -32,6 +33,8 @@ public class BasketController {
 
 	@Autowired
 	private MenuService menuservice;
+	
+	@Autowired OrderService orderservice;
 
 	/** 장바구니 FAST-WAY */
 	@GetMapping("/basketfast.do")
@@ -39,15 +42,35 @@ public class BasketController {
 		System.out.println("장바구니 페이지 FAST-WAY 이동");
 		vo.setOrder_type("Fast-Way");
 
-		UserVO user = (UserVO) session.getAttribute("user");
+		UserVO user = (UserVO) session.getAttribute("user");		
 		vo.setId(user.getId());
 		vo.setTel(user.getTel());
 
 		List<BasketVO> basketList = basketservice.getBasket(vo);
-
-		if(basketList.size() != 0) {
+		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
+		
+		for(BasketVO list : basketList) {
+			if(list.getTopping() != null) {
+				if(list.getTopping().split(",").length > 1) {
+					String[] toppingList = list.getTopping().split(",");
+					for(String topping : toppingList) {
+						ToppingAddVO addTrue = orderservice.getToppingByName(topping.trim());
+						total.add(addTrue);
+					}
+					list.setCount(toppingList.length);
+				} else {
+					ToppingAddVO addFasle = orderservice.getToppingByName(list.getTopping());
+					list.setCount(1);
+					total.add(addFasle);
+				}
+			}
+		}
+	
+		if(basketList.size() > 0 ) {
+			StoreInfoVO storeInfo = basketservice.getStoreInfo(basketList.get(0).getStore_no());
+			model.addAttribute("store", storeInfo);
 			model.addAttribute("basket", basketList);
-			model.addAttribute("franchiseNo", basketList.get(0).getStore_no());
+			model.addAttribute("price", total);
 		}
 
 		return "order/basketfast";
@@ -64,47 +87,32 @@ public class BasketController {
 		vo.setTel(user.getTel());
 
 		List<BasketVO> basketList = basketservice.getBasket(vo);
-		List<Object> priceList = new ArrayList<Object>();
+		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
 		
-		int i = 0;
 		for(BasketVO list : basketList) {
-			System.out.println(list.getTopping());
 			if(list.getTopping() != null) {
 				if(list.getTopping().split(",").length > 1) {
-					System.out.println("얘 토핑 여러개임 : " + list.getTopping());
 					String[] toppingList = list.getTopping().split(",");
-					PriceVO price = new PriceVO();
 					for(String topping : toppingList) {
-						String getPrice = basketservice.getPrice(topping.trim());
-						switch (topping.trim()) {
-							case "에그마요" : price.setEgg(getPrice);	break;
-							case "페퍼로니" : price.setPepperoni(getPrice); break;
-							case "베이컨" : price.setBacon(getPrice); break;
-							case "아보카도" : price.setAvocado(getPrice); break;
-							case "오믈렛" : price.setOmelet(getPrice); break;
-						}
+						ToppingAddVO addTrue = orderservice.getToppingByName(topping.trim());
+						total.add(addTrue);
 					}
-					priceList.add(price);
-					System.out.println(i + "번");
-					model.addAttribute("price" + i, price);
+					list.setCount(toppingList.length);
 				} else {
-					priceList.add(basketservice.getPrice(list.getTopping()));
+					ToppingAddVO addFasle = orderservice.getToppingByName(list.getTopping());
+					list.setCount(1);
+					total.add(addFasle);
 				}
 			}
-			i++;
 		}
 	
-		System.out.println("basketList : " + basketList.size());
-		System.out.println("priceList : " + priceList.size());
-		for(Object o : priceList) System.out.println("가격 리스트 : " + o);
-		
 		if(basketList.size() > 0 ) {
 			StoreInfoVO storeInfo = basketservice.getStoreInfo(basketList.get(0).getStore_no());
 			String user_address = basketList.get(0).getUser_address();
 			model.addAttribute("store", storeInfo);
 			model.addAttribute("user_address", user_address);
 			model.addAttribute("basket", basketList);
-			model.addAttribute("price", priceList);
+			model.addAttribute("price", total);
 		}
 
 		return "order/baskethome";

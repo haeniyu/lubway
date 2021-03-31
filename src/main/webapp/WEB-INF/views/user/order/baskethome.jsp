@@ -12,6 +12,10 @@
 <meta charset="UTF-8">
 <title>LUBWAY</title>
 <script type="text/javascript">
+function addMenu() {
+	$("#addMenuForm").submit();
+}
+
 var min = 1;
 var max = "10";
 var count = "";
@@ -28,7 +32,6 @@ $(document).ready(function(){
 			totalPrice += basket;
 			$("#totalPrice").text(totalPrice);
 	}
-	console.log('${price}');
 	//수량 변경
 	$(".plus").click("click",function(){
 		count = $(this).attr('id');
@@ -109,6 +112,7 @@ $(document).ready(function(){
 				</div>
 				
 				<!-- 리스트 박스  -->
+				<c:set var="endCount" value="0" />
 				<c:forEach items="${basket}" var="basket" varStatus="stat">
 				<ul class="cart_list" id="cart_list">
 					<li class="wh_box" data-target="row" data-orderableYn="Y" data-cartIdx="1076572" data-side="N">
@@ -117,28 +121,23 @@ $(document).ready(function(){
 								<label class="form_checkbox">
 									<input data-target="each" type="checkbox" />
 									<span class="icon"></span>
-									<th:object>${basket.menu_name}</th:object>
+									<object>${basket.menu_name}</object>
 								</label>
 								<p>
-								<c:if test="${basket.menu_type ne 'side' and basket.menu_type ne 'wrap'}">
+									<c:if test="${basket.menu_type ne 'side' and basket.menu_type ne 'wrap'}">
 										<c:if test="${basket.menu_type eq 'sandwich'}">
-										<!-- 빵길이 -->
 											<c:if test="${basket.size eq 'false'}">
-												<th:object>15cm, </th:object>
+												<object>15cm, </object>
 											</c:if>
 											<c:if test="${basket.size eq 'true'}">
-												<th:object>30cm, </th:object>
+												<object>30cm, </object>
 											</c:if>
-										<!-- 빵종류 -->
-										<th:object>${basket.bread}, </th:object>
+											<object>${basket.bread}, </object>
 										</c:if>
-										<!-- 치즈 -->
-										<th:object>${basket.cheese}, </th:object>
-										<!-- 야채 -->
-										<th:object>${basket.vegetable}, </th:object>
-										<!-- 소스 -->
-										<th:object>${basket.sauce}</th:object>
-								</c:if>
+										<object>${basket.cheese}, </object>
+										<object>${basket.vegetable}, </object>
+										<object>${basket.sauce}</object>
+									</c:if>
 								</p>
 								<strong>
 									<em>${basket.single_price}</em>
@@ -146,9 +145,6 @@ $(document).ready(function(){
 								</strong>
 							</div>
 							<img alt="${basket.menu_name}" src="${basket.menu_filepath}">
-							<!-- 
-							<img onError="this.src=''" alt="D로스트 치킨 아보카도 (15cm)" src="" />
-							 -->
 						</div>
 						<c:if test="${basket.meat ne null or basket.topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
 								<dl class="detail_list">
@@ -162,30 +158,20 @@ $(document).ready(function(){
 												<span>원</span>
 											</dd>
 										</c:if>
-
+										
 										<c:if test="${basket.topping ne null}">
-											<c:if test="${price[stat.index] eq null}">
+											<c:set var="count" value="${basket.count}" />
+											<c:forEach items="${price}" var="getPrice" varStatus="var" begin="${endCount}" end="${endCount + count - 1}">
 												<dt>
 													<em>추가</em>
-													<span>${basket.topping}</span>
+													<span>${getPrice.name}</span>
 												</dt>
 												<dd>
-													<strong>${price[stat.index]}</strong>
-													<span>원아래</span>
-												</dd>
-											</c:if>
-											<c:if test="${price[stat.index] ne null}">
-												<c:forEach items="${price[stat.index]}" var="getPrice" varStatus="status">
-													<dt>
-														<em>추가</em>
-														<span>${basket.topping}</span>
-													</dt>
-													<dd>
-														<strong>${getPrice}</strong>
-														<span>원위</span>
-													</dd>
-												</c:forEach>
-											</c:if>											
+													<strong>${getPrice.topping_price}</strong>
+													<span>원</span>
+												</dd> 	
+											</c:forEach>
+											<c:set var="endCount" value="${endCount + count}" />
 										</c:if>
 										
 										<c:if test="${basket.add_cheese ne null}">
@@ -232,7 +218,6 @@ $(document).ready(function(){
 									</dd>
 								</dl>
 							</div>
-						
 					</li>
 				</ul>
 				</c:forEach>
@@ -245,15 +230,6 @@ $(document).ready(function(){
 						</dd>
 					</dl>
 					<div class="btn_area">
-						<form method="post" name="orderForm">
-							<input name="ordType" type="hidden" value="ORD_TYPE.HOME_SUB" />
-							<input name="storCd" type="hidden" value="66406" />
-							
-								<input name="receiverZipcd" type="hidden" value="04036" />
-								<input name="receiverAddr" type="hidden" value="서울 마포구 양화로 45" />
-								<input name="receiverAddrDtl" type="hidden" value="1호" />
-							
-						</form>
 						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
 						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" data-cart-type="CART_TYPE.HOME_SUB"><span>주문하기</span></a>
 					</div>
@@ -273,9 +249,9 @@ $(document).ready(function(){
 
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 	<form action="orderStep02.do" method="post" id="addMenuForm">
-		<input type="hidden" name="franchiseNo" value="${franchiseNo}">
+		<input type="hidden" name="franchiseNo" value="${store.no}">
+		<input type="hidden" name="fullAddr" value="${user_address}">
 		<input type="hidden" name="whatWay" value="Home-Way">
-		<input type="hidden" name="fullAddr" value="${fullAddr}">
 	</form>
 </body>
 </html>
