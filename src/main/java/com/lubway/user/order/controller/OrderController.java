@@ -228,6 +228,7 @@ public class OrderController {
 			toppingList.add(topping);
 		}
 		
+		if(toppingAdd.equals("원하는 제품을 추가 선택해 주세요")) toppingAdd="";
 		if(meatAdd.equals("미트 추가를 선택해 주세요")) meatAdd="";
 		if(cheeseAdd.equals("치즈 추가를 선택해 주세요")) cheeseAdd="";
 		
@@ -367,7 +368,7 @@ public class OrderController {
 	}	
 	
 	/** 
-	 * 장바구니 결제 (DB insert)
+	 * 장바구니 결제 (order_list insert, usecoupon insert, point update, basket delete)
 	 * */
 	@PostMapping("/orderStep05Basket.do")
 	public String orderStep05Basket(Model model, String totalPrice, String coupon, String point,
