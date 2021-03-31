@@ -334,6 +334,8 @@ public class OrderController {
 		}
 		
 		model.addAttribute("ttl", ttl);
+		String user_address = list.get(0).getUser_address();
+		if(user_address != null) model.addAttribute("user_address", user_address);
 		
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();	//추가한 토핑 정보를 List로 세팅합니다.
 

@@ -15,6 +15,7 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
+	$("#totalPayAmtNavi").text($("#totalPayAmtNavi").text().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	// fast/home 배경 구분
 	var way = '${whatWay}';
 	console.log("whatWay : " + way);
@@ -60,6 +61,28 @@ $(function() {
 	console.log(pickUp);
 })
 	$("#startOrder").click(function (){
+		
+		if($("#paymentAgree").is(":checked") == false) {
+			alert("구매조건 및 결제동의를 해주세요."); 
+			return;
+		}
+		
+		var phoneNum = $('#phoneNum').val().trim();
+		var checkNum = /(01[0|1|6|9|7])(\d{3}|\d{4})(\d{4}$)/g;
+
+		if (phoneNum == null || phoneNum == '') {
+			alert("핸드폰 번호를 입력해주세요.");
+			$("#phoneNum").focus();
+			check = false;
+			return false;
+		}
+		if (!checkNum.test(phoneNum)) {
+			alert("핸드폰 번호가 올바르지 않습니다.");
+			$("#phoneNum").focus();
+			check = false;
+			return false;
+		}
+		
 		var lastcost = $('#totalPayAmtNavi').text();
 		console.log(lastcost);
 		if(pay == "PAY_METHOD.PAYCOKAKAO"){
@@ -159,7 +182,7 @@ function gotoOrderList() {
 	var menu_type = $("#menuType").val();
 	$("#menu_type").val(menu_type);
 	
-	var tel = $("#ordHp").val();
+	var tel = $("#phoneNum").val();
 	$("#tel").val(tel);
 	
 	var addr = $("#addr").text();
@@ -214,7 +237,7 @@ function gotoOrderList() {
 									<c:if test="${whatWay eq 'Home-Way' }">
 										<dl class="info_dl">
 											<dt>주소</dt>
-											<dd id="addr">${basket.user_address }</dd>
+											<dd id="addr">${user_address }</dd>
 										</dl>
 									</c:if>
 								</div>
@@ -255,9 +278,8 @@ function gotoOrderList() {
 									<dl class="">
 										<dt>전화번호</dt>
 										<dd>
-											<span class="form_text"> <input maxlength="11"
-												name="ordHp" id="ordHp" placeholder="전화번호를 입력하세요" type="text"
-												value="${user.tel }" />
+											<span class="form_text"> 
+												<input maxlength="11" id="phoneNum" placeholder="전화번호를 입력하세요" type="text" value="${user.tel }" />
 											</span>
 										</dd>
 									</dl>
