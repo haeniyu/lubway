@@ -5,19 +5,35 @@
 <mapper namespace="BasketDAO">
 	
 	<select id="getBasket" parameterType="basket" resultType="basket">
-		SELECT * FROM basket WHERE tel=#{tel} AND order_type=#{order_type} ORDER BY no
+		SELECT * FROM basket WHERE id=#{id} AND order_type=#{order_type} ORDER BY no
 	</select>
 
-	<select id="getPrice" parameterType="basket" resultType="String">
+<!--  
+	<select id="getPrice" parameterType="String" resultType="String">
 		select  b.topping_price
 		from basket a
 		left outer join topping_add b on a.topping = b.name
-		where a.tel = #{tel} and a.order_type = #{order_type}
+		where a.id = #{id} and a.order_type = #{order_type}
 		order by a.no
 	</select>
+-->
+
+	<select id="getPrice" parameterType="String" resultType="String">
+		SELECT topping_price FROM topping_add WHERE name = #{topping}
+	</select>
+	
 	<select id="getStoreInfo" parameterType="int" resultType="storeInfo">
 		select * from StoreInfo where no=#{no}
 	</select>
 	
+	<insert id="insertBasket" parameterType="basket">
+		INSERT INTO basket(
+		id, name, size, bread, cheese, vegetable, sauce, meat, topping, single_price, set, set_price, total_price, 
+		quantity, add_cheese, menu_name, menu_filepath, menu_type, tel, order_type, store_no, user_address, set_name)
+		VALUES (#{id}, #{name}, #{size}, #{bread}, #{cheese}, #{vegetable}, #{sauce}, 
+		#{meat}, #{topping}, #{single_price}, #{set}, #{set_price}, #{total_price}, 
+		#{quantity}, #{add_cheese}, #{menu_name}, #{menu_filepath}, #{menu_type}, 
+		#{tel}, #{order_type}, #{store_no}, #{user_address}, #{set_name});
+	</insert>
 	
 </mapper>

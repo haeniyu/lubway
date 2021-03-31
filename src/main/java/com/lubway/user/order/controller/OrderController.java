@@ -50,14 +50,14 @@ public class OrderController {
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
-	public String orderStep02(Model model, String franchiseNo ,String whatWay,String fullAddr) {
+	public String orderStep02(Model model, String franchiseNo, String whatWay, String fullAddr) {
 		System.out.println("orderStep02 - 페이지 이동");
 		System.out.println("OrderController - franchiseNo : " + franchiseNo);
 		System.out.println("OrderController - whatWay : " + whatWay);
 		System.out.println("OrderController - fullAddr : " + fullAddr);
 		
-		model.addAttribute("whatWay",whatWay);
-		model.addAttribute("franchiseNo",franchiseNo);
+		model.addAttribute("whatWay", whatWay);
+		model.addAttribute("franchiseNo", franchiseNo);
 		model.addAttribute("fullAddr", fullAddr);
 		
 		return "order/orderStep02";
@@ -127,8 +127,7 @@ public class OrderController {
 	@PostMapping("orderStep03.do")
 	public String orderStep03(Model model,
 			String franchiseNo,String whatWay,String code,String fullAddr,
-			String selected,
-			CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, 
+			String selected, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, 
 			SaladVO svo, DrinkVO dvo, NutrientVO nvo) {
 		
 		System.out.println("orderStep03 - 페이지 이동");
@@ -184,6 +183,7 @@ public class OrderController {
 		model.addAttribute("vegeList", service.getVegetableList());
 		model.addAttribute("cookieList", service.getCookieList());
 		model.addAttribute("wedgeList", service.getWedgeList());
+		model.addAttribute("select", selected);
 		
 		return "order/orderStep03";
 	}

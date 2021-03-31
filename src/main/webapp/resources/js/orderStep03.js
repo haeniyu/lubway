@@ -33,9 +33,15 @@
 		
 		var selectVegetable = $("#selectVegetable").text();
 		console.log(selectVegetable);
+		$("#vegetableList").val(selectVegetable); 
 
 		var selectSauce = $("#selectSauce").text();
 		console.log(selectSauce);
+		$("#sauceList").val(selectSauce); 
+		
+		var selectCheese = $("#selectCheese").text();
+		console.log(selectCheese);
+		$("#cheeseList").val(selectCheese);
 		
 		var quantity = $("#ordQty").val(); //수량
 		$("#quantity").val(quantity);
@@ -43,17 +49,24 @@
 		$("#eachCost").val(eachCost);
 		
 		var toppingAdd = $("#toppingText").text();//토핑추가
+		if(toppingAdd == "원하는 제품을 추가 선택해 주세요") toppingAdd = null;
 		$("#toppingAdd").val(toppingAdd);
 		
 		var meatAdd = $("#meatText").text();//미트추가
+		if(meatAdd == "미트 추가를 선택해 주세요") meatAdd = null;
 		$("#meatAdd").val(meatAdd); 
 		
 		var cheeseAdd = $("#addCheeseText").text();//치즈추가
+		if(cheeseAdd == "치즈 추가를 선택해 주세요") cheeseAdd = null;
 		$("#cheeseAdd").val(cheeseAdd);
 		
 		$("#orderForm").attr("action", "basket.do");
 		
-		//$("#orderForm").submit();		
+		var selectSauce = $("#selectSauce").text();
+		console.log(selectSauce);
+		$("#sauceList").val(selectSauce); 
+		
+		$("#orderForm").submit();		
 	
 	}//end gotoBasket()
 
@@ -275,14 +288,14 @@
 	function endAddCheeseSelect() {
 		var add_cheese = $("#addCheeseText").text();
 		if(add_cheese == "치즈 추가를 선택해 주세요") {
-			$("#selectCheese").remove();
+			$("#selectAddCheese").remove();
 			$("#closeLength").get(0).click();
 			return;
 		}
 			
-		var object = $('<object id="selectCheese">' + add_cheese + '</object>')
+		var object = $('<object id="selectAddCheese">' + add_cheese + '</object>')
 		
-		$("#selectCheese").remove();
+		$("#selectAddCheese").remove();
 		$(object).appendTo("#selectStep02");
 		
 		$("#closeLength").get(0).click();
