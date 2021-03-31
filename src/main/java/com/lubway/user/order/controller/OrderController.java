@@ -26,7 +26,8 @@ import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
 import com.lubway.user.order.BasketVO;
-import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.OrderCodeVO;
+import com.lubway.user.order.OrderListVO;
 import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
@@ -252,7 +253,7 @@ public class OrderController {
 	
 	// insert
 	@PostMapping("/orderStep05.do")
-	public String orderStep05(Model model, OrderVO ovo, HttpSession session,
+	public String orderStep05(Model model, OrderCodeVO cvo, OrderListVO lvo, HttpSession session,
 			String step01Text, String step02Text, String step03Text, String storeName,
 			String eachCost, String quantity, String totalPrice, String tel, 
 			String franchiseNo, String whatWay, String code, String fullAddr, 
@@ -261,37 +262,38 @@ public class OrderController {
 
 		UserVO user = (UserVO) session.getAttribute("user");
 		
-		ovo.setId(user.getId());
-		ovo.setName(user.getName());
-		ovo.setAddress(fullAddr);
-		ovo.setTel(tel);
-		ovo.setStorename(storeName);
-		ovo.setMenuname(menuName);
-		ovo.setStep01(step01Text);
-		ovo.setTopping_add(toppingAdd); // 리스트 처
-		ovo.setMeat_add(meatAdd);
-		ovo.setCheese_add(cheeseAdd);
-		ovo.setStep03(step03Text);
-		ovo.setPrice(eachCost);
-		ovo.setCoupon(coupon);
-		ovo.setPoint(point);
-		ovo.setTotalprice(totalPrice);
-		ovo.setReceive(receive);
-		ovo.setPayment_list(payment);
-		ovo.setPayment_status(payment_status);
-		ovo.setRequest(request);
-		int quan = Integer.parseInt(quantity);
-		ovo.setQuantity(quan);
+		// orderCodeVO
+		cvo.setId(user.getId());
+		cvo.setName(user.getName());
+		cvo.setTel(tel);
+		cvo.setAddress(fullAddr);
+		cvo.setRequest(request);
+		cvo.setStore_name(storeName);
+		cvo.setOrder_type(receive);
+		cvo.setUse_coupon(coupon);
+		cvo.setUse_point(point);
+		cvo.setTotal_price(totalPrice);
+		cvo.setPayment_list(payment);
+		cvo.setPayment_status(payment_status);
 		
-		orderService.insertOrder(ovo);
+		// orderListVO
+		//lvo.setMenu_type(menu_type);
+		lvo.setMenu_name(menuName);
+		int quan = Integer.parseInt(quantity);
+		lvo.setQuantity(quan);
+		lvo.setSingle_price(eachCost);
+		lvo.setStep01(step01Text);
+		lvo.setAdd_topping(toppingAdd);
+		lvo.setAdd_meat(meatAdd);
+		lvo.setAdd_cheese(cheeseAdd);
+		lvo.setStep03(step03Text);
+		//lvo.setSet_price(set_price);
+		
+		orderService.insertOrderCode(cvo);
+		orderService.insertOrderList(lvo);
 		
 		return "redirect:/orderList.do";
 		
-		// homeway 주문시 주문자 주소 받아오기
-		// 방문포장/매장식사 처리하기
-		// 이거 다 하고
-		// 쿠폰 사용한거 사용 처리
-		// 포인트 사용한거 처리하기
 	}
 
 	@RequestMapping("/orderBasket.do")
