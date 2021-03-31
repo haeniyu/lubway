@@ -36,4 +36,5 @@ public class TotalOrderVO {
 	private String add_cheese;
 	private String step03;
 	private String set_price;
+	private String menu_price;
 }

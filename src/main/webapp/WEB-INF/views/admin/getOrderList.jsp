@@ -144,7 +144,7 @@
 											${list.add_cheese }
 										</td>
 										<td>${list.step03 }</td>
-										<td>${list.total_price }</td>
+										<td>${list.menu_price }</td>
 										<td>${list.order_type }</td>
 										<td>${list.payment_list }</td>
 										<td>${list.store_name }</td>
