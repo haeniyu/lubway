@@ -24,7 +24,6 @@ $(document).ready(function(){
 			count = i;
 			qty = $("#qty"+count).val();
 			basket = $(".eachTotalPrice"+count).attr('id');
-//			basket = Number(basket) * Number(qty);
 			basket = Number(basket);
 			$(".eachTotalPrice"+count).text(basket);
 			totalPrice += basket;
@@ -68,6 +67,24 @@ $(document).ready(function(){
 		$("#totalPrice").text(totalPrice);		
 
 	});
+
+	$(".form_checkbox").off().on("click", function() {
+		var totalCnt = $(".form_checkbox").length;
+		var cnt = $("[name=menu]:checked").length;
+		var selectId = $(this).find("input").attr("id");
+		console.log(selectId);
+		if(selectId == "all") {
+			if($("input:checkbox[id=all]").is(":checked") == true) $("input:checkbox").prop("checked", false);
+			else $("input:checkbox").prop("checked", true);
+		} else {
+			if($("input:checkbox[id=all]").is(":checked") == true) $("input:checkbox[id=all]").prop("checked", false);
+			else {
+				if(totalCnt-1 == cnt) $("input:checkbox[id=all]").prop("checked", true);
+			}
+		}
+		console.log($(".form_checkbox").length);
+		console.log($("[name=menu]:checked").length);
+	});
 });
 </script>
 <head>
@@ -97,7 +114,7 @@ $(document).ready(function(){
 					<dl>
 						<dt>픽업매장</dt>
 						<dd>
-							<strong></strong>
+							<strong>${store.storename} (${store.address_road})</strong>
 							<a href="javascript:void(0);" id="changeStore" data-url="/order/view/home/step1" data-stor="66406">
 								변경
 							</a>
@@ -106,7 +123,7 @@ $(document).ready(function(){
 					<div class="txt_last_14day">최근 14일 이내 담은 상품만 확인 가능합니다.</div>
 					<div class="all_select">
 						<label class="form_checkbox">
-							<input data-target="all" type="checkbox" />
+							<input id="all" type="checkbox" />
 							<span class="icon"></span>
 							전체선택
 						</label>
@@ -115,46 +132,39 @@ $(document).ready(function(){
 				</div>
 				
 				<!-- 리스트 박스  -->
+				<c:set var="endCount" value="0" />
 				<c:forEach items="${basket}" var="basket" varStatus="stat">
 				<ul class="cart_list" id="cart_list">
 					<li class="wh_box" data-target="row" data-orderableYn="Y" data-cartIdx="1076572" data-side="N">
 						<div class="order_info">
 							<div class="menu_info">
 								<label class="form_checkbox">
-									<input data-target="each" type="checkbox" />
+									<input id="${basket.no}" type="checkbox" name="menu"/>
 									<span class="icon"></span>
-									<th:object>${basket.menu_name}</th:object>
+									<object>${basket.menu_name}</object>
 								</label>
-								<c:if test="${basket.menu_type ne 'side'}">
 								<p>
+									<c:if test="${basket.menu_type ne 'side' and basket.menu_type ne 'wrap'}">
 										<c:if test="${basket.menu_type eq 'sandwich'}">
-										<!-- 빵길이 -->
 											<c:if test="${basket.size eq 'false'}">
-												<th:object>15cm</th:object>
+												<object>15cm, </object>
 											</c:if>
 											<c:if test="${basket.size eq 'true'}">
-												<th:object>30cm</th:object>
+												<object>30cm, </object>
 											</c:if>
-										<!-- 빵종류 -->
-										<th:object>${basket.bread}</th:object>
+											<object>${basket.bread}, </object>
 										</c:if>
-										<!-- 치즈 -->
-										<th:object>${basket.cheese}</th:object>
-										<!-- 야채 -->
-										<th:object>${basket.vegetable}</th:object>
-										<!-- 소스 -->
-										<th:object>${basket.sauce}</th:object>
+										<object>${basket.cheese}, </object>
+										<object>${basket.vegetable}, </object>
+										<object>${basket.sauce}</object>
+									</c:if>
 								</p>
-								</c:if>
 								<strong>
 									<em>${basket.single_price}</em>
 									<span>원</span>
 								</strong>
 							</div>
 							<img alt="${basket.menu_name}" src="${basket.menu_filepath}">
-							<!-- 
-							<img onError="this.src=''" alt="D로스트 치킨 아보카도 (15cm)" src="" />
-							 -->
 						</div>
 						<c:if test="${basket.meat ne null or basket.topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
 								<dl class="detail_list">
@@ -164,20 +174,24 @@ $(document).ready(function(){
 												<span>${basket.meat}</span>
 											</dt>
 											<dd>
-												<strong>${price[stat.index].meat_price}</strong>
+												<strong>1800</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
 
 										<c:if test="${basket.topping ne null}">
-											<dt>
-												<em>추가</em>
-												<span>${basket.topping}</span>
-											</dt>
-											<dd>
-												<strong>${price[stat.index].topping_price}</strong>
-												<span>원</span>
-											</dd>
+											<c:set var="count" value="${basket.count}" />
+											<c:forEach items="${price}" var="getPrice" varStatus="var" begin="${endCount}" end="${endCount + count - 1}">
+												<dt>
+													<em>추가</em>
+													<span>${getPrice.name}</span>
+												</dt>
+												<dd>
+													<strong>${getPrice.topping_price}</strong>
+													<span>원</span>
+												</dd> 	
+											</c:forEach>
+											<c:set var="endCount" value="${endCount + count}" />
 										</c:if>
 										
 										<c:if test="${basket.add_cheese ne null}">
@@ -186,16 +200,16 @@ $(document).ready(function(){
 												<span>${basket.add_cheese}</span>
 											</dt>
 											<dd>
-												<strong>${price[stat.index].cheese_price}</strong>
+												<strong>900</strong>
 												<span>원</span>
 											</dd>
 										</c:if>
 										
-										<c:if test="${basket.add_cheese ne null}">										
+										<c:if test="${basket.set_price ne null}">										
 											<dt>
 												<em>추가</em>
 												<span class="sideText">
-													더블 초코칩 쿠키/스프라이트 / 
+													${basket.set_name} 
 												</span>
 											</dt>
 											<dd>
@@ -268,7 +282,7 @@ $(document).ready(function(){
 
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 	<form action="orderStep02.do" method="post" id="addMenuForm">
-		<input type="hidden" name="franchiseNo" value="${franchiseNo}">
+		<input type="hidden" name="franchiseNo" value="${store.no}">
 		<input type="hidden" name="whatWay" value="Fast-Way">
 	</form>
 </body>
