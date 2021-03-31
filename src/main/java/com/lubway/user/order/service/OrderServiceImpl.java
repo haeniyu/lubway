@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
@@ -35,38 +36,20 @@ public class OrderServiceImpl implements OrderService {
 	public ToppingAddVO getToppingByName(String t) {
 		return userOptionDao.getToppingByName(t);
 	}
-	/*
+	
+	// admin 주문 완료 목록 //
+	
 	@Override
-	public List<OrderVO> getOrderList(OrderVO vo) {
-		return orderDao.getOrderList(vo);
-	}
-
-	@Override
-	public List<OrderVO> getPageList(Pagination pagination) {
+	public List<OrderCodeVO> getPageList(Pagination pagination) {
 		return orderDao.getPageList(pagination);
 	}
 
 	@Override
 	public int getPageListCnt() {
-		return orderDao.getPageListCnt();
+		return getPageListCnt();
 	}
-
-	@Override
-	public int getSearchTitleCnt(String title) {
-		return orderDao.getSearchTitleCnt(title);
-	}
-
-	@Override
-	public List<OrderVO> getSearchPagingList(Pagination pagination) {
-		return orderDao.getSearchPagingList(pagination);
-	}
-
-	@Override
-	public List<OrderCodeVO> getTodayOrderList(Pagination pagination) {
-		return orderDao.getTodayOrderList(pagination);
-	}
-	*/
-	//사용자 페이지//
+	
+	//MyWay 주문 내역 페이지//
 	
 	@Override
 	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo) {
@@ -102,5 +85,6 @@ public class OrderServiceImpl implements OrderService {
 	public void insertOrderList(OrderListVO vo) {
 		orderDao.insertOrderList(vo);
 	}
+
 
 }

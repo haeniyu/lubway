@@ -25,7 +25,6 @@ import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
-import com.lubway.user.order.OrderVO;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
@@ -244,7 +243,7 @@ public class OrderController {
 		
 		return "order/orderStep04";
 	}
-	
+	/*
 	// insert
 	@PostMapping("/orderStep05.do")
 	public String orderStep05(Model model, OrderVO ovo, HttpSession session,
@@ -288,5 +287,5 @@ public class OrderController {
 		// 쿠폰 사용한거 사용 처리
 		// 포인트 사용한거 처리하기
 	}
-
+	*/
 }

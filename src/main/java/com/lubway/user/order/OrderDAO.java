@@ -6,37 +6,24 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lubway.admin.board.Pagination;
+
 @Repository
 public class OrderDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
-	/*
-	public List<OrderVO> getOrderList(OrderVO vo){
-		return sqlSessionTemplate.selectList("OrderDAO.getOrderList", vo);
-	}
 	
-	public List<OrderVO> getPageList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.pagingList", pagination);
+	// Admin 주문 완료 목록 //
+	public List<OrderCodeVO> getPageList(Pagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.getPageList", pagination);
 	}
 	
 	public int getPageListCnt() {
-		return sqlSessionTemplate.selectOne("OrderDAO.pagingCnt");
+		return sqlSessionTemplate.selectOne("OrderDAO.getPageListCnt");
 	}
 	
-	public int getSearchTitleCnt(String title) {
-		return sqlSessionTemplate.selectOne("OrderDAO.searchTitleCnt", title);
-	}
-
-	public List<OrderVO> getSearchPagingList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.searchPagingList", pagination);
-	}
-	
-	public List<OrderVO> getTodayOrderList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.getTodayOrderList", pagination);
-	}*/
-	
-	// 사용자 주문내역 //
+	// 사용자 Myway 주문내역 //
 	
 	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.orderCodeList", vo);

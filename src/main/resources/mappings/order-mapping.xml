@@ -35,6 +35,17 @@
 		<result property="step03" column="STEP03" />
 		<result property="set_price" column="SET_PRICE" />
 	</resultMap>
+	
+	<select id="getPagingList" resultType="order_code">
+		select * from order_code
+		where STATUS='주문 완료'
+		ORDER BY ORDER_TIME DESC, NO DESC
+		limit #{listSize} offset #{startList}
+	</select>
+	
+	<select id="getPageListCnt" resultType="int">
+		select count(*) from order_code where STATUS='주문 완료'
+	</select>
 
 	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} order by ORDER_TIME DESC

@@ -8,7 +8,6 @@
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
-	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
 </c:url>
 
 <!DOCTYPE html>
@@ -31,8 +30,6 @@
 
       url = url + "&range=" + range;
 
-      url = url + "&searchKeyword=" + searchKeyword;
-
       location.href = url;
 
    }
@@ -45,8 +42,6 @@
       url = url + "?page=" + page;
 
       url = url + "&range=" + range;
-
-      url = url + "&searchKeyword=" + searchKeyword;
 
       location.href = url;
       
@@ -68,8 +63,6 @@
 
       url = url + "&range=" + range;
 
-      url = url + "&searchKeyword=" + searchKeyword;
-
       location.href = url;
    }
 </script>
@@ -90,20 +83,6 @@
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
 			</div>
 				<div class="card-body">
-					<!-- 검색 시작 -->
-					<div align="right">
-						<form action="/lubway/search.mdo" method="get">
-							<tr>
-								<td><input type="text" name="searchKeyword"
-									placeholder="검색할 제품을 입력해 주세요." style="width: 20%" /> 
-									<input
-									style="margin: 3px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="submit"
-									value="search" /></td>
-							</tr>
-						</form>
-					</div>
-					<!-- 검색 종료 -->
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
@@ -111,33 +90,34 @@
 									<th>주문 코드</th>
 									<th>아이디</th>
 									<th>이름</th>
-									<th>주문 시간</th>
-									<th>도착 예정 시간</th>
-									<th>주소</th>
 									<th>연락처</th>
-									<th>주문 메뉴</th>
-									<th>기본 선택</th>
-									<th>추가 선택</th>
-									<th>세트 선택</th>
-									<th>총 금액</th>
-									<th>수령 방법</th>
-									<th>결제 수단</th>
-									<th>주문 매장</th>
+									<th>배달 주소</th>
 									<th>요청 사항</th>
+									<th>주문 매장</th>
+									<th>수령 방법</th>
+									<th>주문 시간</th>
+									<th>배달 시간</th>
+									<th>사용 포인트 금액</th>
+									<th>사용 쿠폰 금액</th>
+									<th>주문 총 금액</th>
+									<th>결제 수단</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${orderList}" var="list">
 									<tr style="font-size: 12px">
-										<td>${list.code }</td>
+										<td>${list.no }</td>
 										<td>${list.id }</td>
 										<td>${list.name }</td>
-										<td><fmt:formatDate type="both" value="${list.ordertime }"
-												pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td><fmt:formatDate type="both" value="${list.deliverytime }"
-												pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td>${list.address }</td>
 										<td>${list.tel }</td>
+										<td>${list.address }</td>
+										<td>${list.request }</td>
+										<td>${list.store_name }</td>
+										<td>${list.order_type }</td>
+										<td><fmt:formatDate type="both" value="${list.order_time }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><fmt:formatDate type="both" value="${list.delivery_time }"
+												pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td>${list.menuname }</td>
 										<td>${list.step01 }</td>
 										<td>${list.topping_add }
@@ -152,10 +132,7 @@
 										</td>
 										<td>${list.step03 }</td>
 										<td>${list.totalprice  }</td>
-										<td>${list.receive }</td>
 										<td>${list.payment_list }</td>
-										<td>${list.storename }</td>
-										<td>${list.request }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
