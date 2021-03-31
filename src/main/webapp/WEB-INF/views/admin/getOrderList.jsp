@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
+<c:url var="getOrderList" value="/lubway/orderSearch.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -72,10 +72,6 @@
 
       location.href = url;
    }
-   
-
-
-
 </script>
 </head>
 <body id="page-top">
@@ -111,26 +107,28 @@
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
-								<tr align="center" style="font-size: 14px">
-									<th width="5%">주문 코드</th>
-									<th width="5%">아이디</th>
-									<th width="5%">이름</th>
-									<th width="8%">주문 시간</th>
-									<th width="8%">도착 예정 시간</th>
-									<th width="10%">주소</th>
-									<th width="5%">연락처</th>
-									<th width="9%">주문 메뉴</th>
-									<th width="15%">주문 상세</th>
-									<th width="5%">총 금액</th>
-									<th width="5%">수령 방법</th>
-									<th width="5%">결제 수단</th>
-									<th width="5%">주문 매장</th>
-									<th width="10%">요청 사항</th>
+								<tr align="center" style="font-size: 12px">
+									<th>주문 코드</th>
+									<th>아이디</th>
+									<th>이름</th>
+									<th>주문 시간</th>
+									<th>도착 예정 시간</th>
+									<th>주소</th>
+									<th>연락처</th>
+									<th>주문 메뉴</th>
+									<th>기본 선택</th>
+									<th>추가 선택</th>
+									<th>세트 선택</th>
+									<th>총 금액</th>
+									<th>수령 방법</th>
+									<th>결제 수단</th>
+									<th>주문 매장</th>
+									<th>요청 사항</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${orderList}" var="list">
-									<tr style="font-size: 14px">
+									<tr style="font-size: 12px">
 										<td>${list.code }</td>
 										<td>${list.id }</td>
 										<td>${list.name }</td>
@@ -141,7 +139,18 @@
 										<td>${list.address }</td>
 										<td>${list.tel }</td>
 										<td>${list.menuname }</td>
-										<td>${list.menu }</td>
+										<td>${list.step01 }</td>
+										<td>${list.topping_add }
+											<c:if test="${list.topping_add ne '' and (list.meat_add ne '' or list.cheese_add ne '')}">
+												,
+											</c:if>
+											${list.meat_add }
+											<c:if test="${list.meat_add ne '' and list.cheese_add ne ''}">
+												,
+											</c:if>
+											${list.cheese_add }
+										</td>
+										<td>${list.step03 }</td>
 										<td>${list.totalprice  }</td>
 										<td>${list.receive }</td>
 										<td>${list.payment_list }</td>
@@ -157,7 +166,7 @@
 			<!-- pagination{s} -->
 
 			<div align="center">
-				<ul class="pagination" class="NoticeVO">
+				<ul class="pagination" class="OrderVO">
 					<c:if test="${pagination.prev}">
 						<li class="page-item"><a class="page-link" href="#"
 							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>

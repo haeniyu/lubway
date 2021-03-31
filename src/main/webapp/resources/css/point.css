@@ -78,11 +78,13 @@
 
 
 th{
-	line-height: 40px;
-	background-color: #E5E5E5;
+	line-height: 50px;
+	border-bottom: 2px solid #009223;
+	color: #292929;
 }
 
 td{
-	line-height: 40px;
-	border-bottom: 1px solid #989898;
+	line-height: 47px;
+	border-bottom: 1px solid #009223;
+	color: #292929;
 }
