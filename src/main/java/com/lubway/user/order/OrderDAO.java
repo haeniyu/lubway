@@ -15,8 +15,8 @@ public class OrderDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	// Admin 주문 완료 목록 //
-	public List<OrderCodeVO> getPageList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.getPageList", pagination);
+	public List<OrderCodeVO> getPagingList(Pagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.getPagingList", pagination);
 	}
 	
 	public int getPageListCnt() {

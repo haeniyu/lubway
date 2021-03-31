@@ -18,6 +18,7 @@
 		<typeAlias type="com.lubway.admin.menu.SandwichVO" alias="sandwich"/>
 		<typeAlias type="com.lubway.admin.menu.WedgeAndSoupVO" alias="wedgeandsoup"/>
 		<typeAlias type="com.lubway.admin.menu.WrapVO" alias="wrap"/>
+		<typeAlias type="com.lubway.admin.TotalOrderVO" alias="total_order"/>
 		
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 		
@@ -62,5 +63,6 @@
 		<mapper resource="mappings/user-option-mapping.xml"/>
 		<mapper resource="mappings/basket-mapping.xml"/>
 		<mapper resource="mappings/order-mapping.xml"/>
+		<mapper resource="mappings/total-order-mapping.xml"/>
 	</mappers>
 </configuration>

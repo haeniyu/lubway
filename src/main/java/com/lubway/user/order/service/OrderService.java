@@ -16,7 +16,7 @@ public interface OrderService {
 	/** Admin 주문완료 목록 **/
 	
 	// 페이징 리스트
-	List<OrderCodeVO> getPageList(Pagination pagination);
+	List<OrderCodeVO> getPagingList(Pagination pagination);
 
 	// 페이징처리 개수
 	int getPageListCnt();

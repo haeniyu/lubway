@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.admin.TotalOrderVO;
 import com.lubway.admin.board.Pagination;
+import com.lubway.admin.service.TotalOrderService;
 import com.lubway.user.order.OrderCodeVO;
+import com.lubway.user.order.OrderListVO;
 import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class AdminOrderController {
 	@Autowired
-	private OrderService orderService;
+	private TotalOrderService totalOrderService;
 
 	/** 글목록 요청  */
 	@GetMapping("/getOrderList.mdo")
@@ -30,7 +33,7 @@ public class AdminOrderController {
 		System.out.println("range : " + range);
 
 		/** 전체 게시글 개수  */
-		int listCnt = orderService.getPageListCnt();
+		int listCnt = totalOrderService.getTotalListCnt();
 
 		System.out.println("listCnt : " + listCnt);
 
@@ -38,7 +41,7 @@ public class AdminOrderController {
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
 
-		List<OrderCodeVO> pageList = orderService.getPageList(pagination);
+		List<TotalOrderVO> pageList = totalOrderService.getTotalList(pagination);
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("orderList", pageList);
@@ -49,7 +52,7 @@ public class AdminOrderController {
 	@RequestMapping(value = "/orderCnt.mdo", method = RequestMethod.GET)
 	public String getPageListCnt() {
 
-		System.out.println(orderService.getPageListCnt());
+		System.out.println(totalOrderService.getTotalListCnt());
 
 		return "getOrderList";
 	}
