@@ -108,7 +108,7 @@ $(function() {
 						<div class="board_list_wrapper">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
-								<c:forEach items="">
+								<c:forEach items="${orderL }" var="order">
 									<div class="history_table">
 										<!-- 선택한 메뉴 -->
 										<ul>
@@ -116,46 +116,80 @@ $(function() {
 												<div class="selectMenu">
 													<div class="name" data-target="mainItem">
 														<!-- 선택한 메뉴 이름 -->
-														<strong>로스트 치킨</strong>
-														<p>${step01Text}</p>
+														<strong>${order.menu_name }</strong>
+														<p>${order.step01}</p>
 													</div>
 													<div class="count">
-														<strong class="qty">${quantity }</strong>개
+														<strong class="qty">${order.quantity }</strong>개
 													</div>
 													<div class="sum">
 														<span>
-															<strong class="price">${totalPrice}</strong><em>원</em>
+															<strong class="price">${order.single_price}*연산 필요 단품+추가토핑+세트(추가 했을 경우 아닐경우)*</strong><em>원</em>
 														</span>
 														<!-- 추가 선택 메뉴 있을경우 생김 -->
+														<c:if test="${order.add_topping.length() gt 0  || order.add_meat.length() gt 0 || order.add_cheese.length() gt 0 || step03Text.length() gt 0}">
 														<a class="arrow"></a>
+														</c:if>
 													</div>
 												</div>
 												<!-- 추가 선택 메뉴 있을경우 보임-->
 												<div class="addMenu">
 													<ul>
-														<li>
-															<div class="addname">
-																<strong>모차렐라치즈</strong>
-															</div>
-															<div class="addcount"></div>
-															<div class="addsum">
-																<span>
-																	<strong>1,800</strong><em>원</em>
-																</span>
-															</div>
-														</li>
+														<c:if test="${order.add_topping.length() gt 0 }">
+															<c:forEach items="${toppingList }" var="topping">
+																<li>
+																	<div class="addname">
+																		<strong>${order.add_topping }</strong>
+																	</div>
+																	<div class="addcount"></div>
+																	<div class="addsum">
+																		<span>
+																			<strong>1,800</strong><em>원</em>
+																		</span>
+																	</div>
+																</li>
+															</c:forEach>
+														</c:if>
+														<!-- 미트 추가 시  -->
+														<c:if test="${order.add_meat.length() gt 0 }">
+															<li>
+																<div class="addname">
+																	<strong>${order.add_meat }</strong>
+																</div>
+																<div class="addcount"></div>
+																<div class="addsum">
+																	<span>
+																		<strong>1,800</strong><em>원</em>
+																	</span>
+																</div>
+															</li>
+														</c:if>
+														<!-- 치즈 추가 시 -->
+														<c:if test="${order.add_cheese.length() gt 0 }">
+															<li>
+																<div class="addname">
+																	<strong>${order.add_cheese }</strong>
+																</div>
+																<div class="addcount"></div>
+																<div class="addsum">
+																	<span>
+																		<strong>900</strong><em>원</em>
+																	</span>
+																</div>
+															</li>
+														</c:if>
 														<!-- 세트 추가했을 경우 보임 -->
 														<li>
 															<div class="setname">
 																<strong>세트추가</strong>
 																<p>
-																	${step03Text }
+																	${order.step03 }
 																</p>
 															</div>
 															<div class="setcount"></div>
 															<div class="setsum">
 																<span>
-																	<strong>1,900</strong><em>원</em>
+																	<strong>${order.set_price }</strong><em>원</em>
 																</span>
 															</div>
 														</li>
@@ -177,21 +211,17 @@ $(function() {
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong>36,500</strong> 원
+								<strong>${orderC.total_price }</strong> 원
 							</dd>
 						</dl>
 						<dl class="detail_sum">
-							<dt>주문 제품 수</dt>
-							<dd>
-								<span>5</span>개
-							</dd>
 							<dt>쿠폰 할인</dt>
 							<dd>
-								<strong>0</strong>원
+								<strong>${orderC.use_coupon }</strong>원
 							</dd>
 							<dt>포인트 사용</dt>
 							<dd>
-								<strong>0</strong>원
+								<strong>${orderC.use_point }</strong>원
 							</dd>
 						</dl>
 						<dl class="payment_sum">
@@ -208,12 +238,12 @@ $(function() {
 						<h3>결제정보</h3>
 						<dl>
 							<dt>결제방법</dt>
-							<dd>페이코 &amp; 카카오</dd>
+							<dd>${orderC.payment_list }</dd>
 						</dl>
 						<dl>
 							<dt>결제일시</dt>
 							<dd>
-								<span class="font_sw">2021.03.08 오후 17:31:39</span>
+								<span class="font_sw">${orderC.order_time }</span>
 							</dd>
 						</dl>
 						<dl>
