@@ -3,14 +3,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="OrderDAO">
-	<resultMap type="order_code" id="code">
+	<resultMap type="order_code" id="orderCode">
 		<id property="no" column="NO" />
 		<result property="id" column="ID" />
 		<result property="name" column="NAME" />
 		<result property="tel" column="TEL" />
 		<result property="address" column="ADDRESS" />
 		<result property="request" column="REQUEST" />
-		<result property="store_no" column="STORE_NO" />
+		<result property="store_name" column="STORE_NAME" />
 		<result property="order_type" column="ORDER_TYPE" />
 		<result property="order_time" column="ORDER_TIME" />
 		<result property="delivery_time" column="DELICERY_TIME" />
@@ -22,7 +22,7 @@
 		<result property="status" column="STATUS" />
 	</resultMap>
 	
-	<resultMap type="order_list" id="list">
+	<resultMap type="order_list" id="orderList">
 		<id property="no" column="NO" />
 		<result property="menu_type" column="MENU_TYPE" />
 		<result property="menu_name" column="MENU_NAME" />
@@ -36,20 +36,20 @@
 		<result property="set_price" column="SET_PRICE" />
 	</resultMap>
 
-	<select id="orderCodeList" parameterType="code" resultType="code">
+	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} order by ORDER_TIME DESC
 	</select>
 
-	<select id="orderList" parameterType="list" resultType="list">
+	<select id="orderList" parameterType="order_list" resultType="order_list">
 		select * from order_list where NO=#{no}
 	</select>
 	
-	<select id="selectHomeway" parameterType="code" resultType="code">
+	<select id="selectHomeway" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} and ORDER_TYPE='배달'
 		order by ORDER_TIME DESC
 	</select>
 	
-	<select id="selectFastway" parameterType="code" resultType="code">
+	<select id="selectFastway" parameterType="order_code" resultType="order_code">
 		select * from order_code 
 		where ID=#{id} and ORDER_TYPE not in(select ORDER_TYPE from order_code where ORDER_TYPE='배달')
 		order by ORDER_TIME DESC
@@ -58,5 +58,22 @@
 	<select id="countOrderList" resultType="int">
 		select count(*) from order_code where ID=#{id}
 	</select>
+	
+	<!-- insert -->
+	<insert id="insertOrderCode" parameterType="order_code">
+		insert into order_code (id, name, tel, address, request, store_name, order_type,
+								use_point, use_coupon, total_price, payment_list, payment_status, status)
+		values(#{id}, #{name}, #{tel}, #{address}, #{request}, #{store_name}, #{order_type},
+								#{use_point}, #{use_coupon}, #{total_price}, #{payment_list}, #{payment_status}, '주문 접수')
+		
+	</insert>
+	
+	<insert id="insertOrderList" parameterType="order_list">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select MAX(no) from order_code
+		</selectKey>
+		insert into order_list values(#{no}, #{menu_type}, #{menu_name}, #{quantity}, #{single_price}, #{step01}, #{add_topping},
+										#{add_meat}, #{add_cheese}, #{step03}, #{set_price})
+	</insert>
 	
 </mapper>

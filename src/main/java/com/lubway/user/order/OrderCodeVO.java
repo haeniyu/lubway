@@ -16,7 +16,7 @@ public class OrderCodeVO {
 	private String tel;
 	private String address;
 	private String request;
-	private int store_no;
+	private String store_name;
 	private String order_type;
 	private Timestamp order_time;
 	private Timestamp delivery_time;
@@ -26,4 +26,5 @@ public class OrderCodeVO {
 	private String payment_list;
 	private boolean payment_status;
 	private String status;
+	
 }

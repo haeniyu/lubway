@@ -92,10 +92,15 @@ public class OrderServiceImpl implements OrderService {
 	public int countOrderList(OrderCodeVO vo) {
 		return orderDao.countOrderList(vo);
 	}
-/*
+
 	@Override
-	public void insertOrder(OrderVO vo) {
-		orderDao.insertOrder(vo);
+	public void insertOrderCode(OrderCodeVO vo) {
+		orderDao.insertOrderCode(vo);
 	}
-*/
+	
+	@Override
+	public void insertOrderList(OrderListVO vo) {
+		orderDao.insertOrderList(vo);
+	}
+
 }

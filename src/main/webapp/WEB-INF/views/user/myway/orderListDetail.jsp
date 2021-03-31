@@ -34,7 +34,7 @@ $(function() {
 
 	<!-- container s -->
 	<div class="bg_gray" id="container">
-		<input id="ordNo" name="ordNo" type="hidden" value="${order.code }" />
+		<input id="ordNo" name="ordNo" type="hidden" value="${orderL.no }" />
 		<!-- sub content -->
 		<div class="order my_order_wrap" id="content">
 			<h2 class="subTitle">주문 내역 상세</h2>
@@ -45,7 +45,7 @@ $(function() {
 					<div class="order_number fast_sub"> <!-- fast/home 에 따라 색 달라짐 -->
 						<dl>
 							<dt>주문번호 :</dt>
-							<dd>${order.code }</dd>
+							<dd>${orderL.no }</dd>
 						</dl>
 					</div>
 
@@ -55,20 +55,20 @@ $(function() {
 						<div class="write_info_wrap">
 							<div class="input_set">
 								<dl class="shop info_dl">
-									<dt>종로삼일대로점</dt>
-									<dd>서울특별시 종로구 삼일대로 391</dd>
+									<dt>${orderC.store_name}</dt>
+									<dd>서울특별시 종로구 삼일대로 391</dd><!--일단 킵 -->
 								</dl>
 							</div>
 							<div class="input_set">
 								<dl class="info_dl">
 									<dt>방문포장/매장식사</dt>
-									<dd>매장식사</dd>
+									<dd>${orderC.order_type }</dd>
 								</dl>
 							</div>
 							<div class="input_set">
 								<dl class="info_dl">
 									<dt>전화번호</dt>
-									<dd>01068075447</dd>
+									<dd>${orderC.tel }</dd>
 								</dl>
 							</div>
 						</div>
@@ -81,20 +81,20 @@ $(function() {
 						<div class="write_info_wrap">
 							<div class="input_set">
 								<dl class="shop info_dl">
-									<dt>종로삼일대로점</dt>
-									<dd>서울특별시 종로구 삼일대로 391</dd>
+									<dt>배달 주소</dt>
+									<dd>${orderC.address}</dd>
 								</dl>
 							</div>
 							<div class="input_set">
 								<dl class="info_dl">
-									<dt>방문포장/매장식사</dt>
-									<dd>매장식사</dd>
+									<dt>주문 매장</dt>
+									<dd>${orderC.store_name }</dd>
 								</dl>
 							</div>
 							<div class="input_set">
 								<dl class="info_dl">
 									<dt>전화번호</dt>
-									<dd>${user.tel}</dd>
+									<dd>${orderC.tel}</dd>
 								</dl>
 							</div>
 						</div>
@@ -108,61 +108,63 @@ $(function() {
 						<div class="board_list_wrapper">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
-								<div class="history_table">
-									<!-- 선택한 메뉴 -->
-									<ul>
-										<li>
-											<div class="selectMenu">
-												<div class="name" data-target="mainItem">
-													<!-- 선택한 메뉴 이름 -->
-													<strong>로스트 치킨</strong>
-													<p>${step01Text}</p>
+								<c:forEach items="">
+									<div class="history_table">
+										<!-- 선택한 메뉴 -->
+										<ul>
+											<li>
+												<div class="selectMenu">
+													<div class="name" data-target="mainItem">
+														<!-- 선택한 메뉴 이름 -->
+														<strong>로스트 치킨</strong>
+														<p>${step01Text}</p>
+													</div>
+													<div class="count">
+														<strong class="qty">${quantity }</strong>개
+													</div>
+													<div class="sum">
+														<span>
+															<strong class="price">${totalPrice}</strong><em>원</em>
+														</span>
+														<!-- 추가 선택 메뉴 있을경우 생김 -->
+														<a class="arrow"></a>
+													</div>
 												</div>
-												<div class="count">
-													<strong class="qty">${quantity }</strong>개
+												<!-- 추가 선택 메뉴 있을경우 보임-->
+												<div class="addMenu">
+													<ul>
+														<li>
+															<div class="addname">
+																<strong>모차렐라치즈</strong>
+															</div>
+															<div class="addcount"></div>
+															<div class="addsum">
+																<span>
+																	<strong>1,800</strong><em>원</em>
+																</span>
+															</div>
+														</li>
+														<!-- 세트 추가했을 경우 보임 -->
+														<li>
+															<div class="setname">
+																<strong>세트추가</strong>
+																<p>
+																	${step03Text }
+																</p>
+															</div>
+															<div class="setcount"></div>
+															<div class="setsum">
+																<span>
+																	<strong>1,900</strong><em>원</em>
+																</span>
+															</div>
+														</li>
+													</ul>
 												</div>
-												<div class="sum">
-													<span>
-														<strong class="price">${totalPrice}</strong><em>원</em>
-													</span>
-													<!-- 추가 선택 메뉴 있을경우 생김 -->
-													<a class="arrow"></a>
-												</div>
-											</div>
-											<!-- 추가 선택 메뉴 있을경우 보임-->
-											<div class="addMenu">
-												<ul>
-													<li>
-														<div class="addname">
-															<strong>모차렐라치즈</strong>
-														</div>
-														<div class="addcount"></div>
-														<div class="addsum">
-															<span>
-																<strong>1,800</strong><em>원</em>
-															</span>
-														</div>
-													</li>
-													<!-- 세트 추가했을 경우 보임 -->
-													<li>
-														<div class="setname">
-															<strong>세트추가</strong>
-															<p>
-																${step03Text }
-															</p>
-														</div>
-														<div class="setcount"></div>
-														<div class="setsum">
-															<span>
-																<strong>1,900</strong><em>원</em>
-															</span>
-														</div>
-													</li>
-												</ul>
-											</div>
-										</li>
-									</ul>
-								</div>
+											</li>
+										</ul>
+									</div>
+								</c:forEach>
 							<!--// 1세트 -->
 							</div>
 						</div>

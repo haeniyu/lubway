@@ -42,5 +42,6 @@ public interface OrderService {
 	int countOrderList(OrderCodeVO vo);
 	
 	// insert
-	//void insertOrder(OrderVO vo);
+	void insertOrderCode(OrderCodeVO vo);
+	void insertOrderList(OrderListVO vo);
 }

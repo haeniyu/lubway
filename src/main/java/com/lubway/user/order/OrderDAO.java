@@ -6,9 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lubway.admin.board.NoticeVO;
-import com.lubway.admin.board.Pagination;
-
 @Repository
 public class OrderDAO {
 	
@@ -61,7 +58,11 @@ public class OrderDAO {
 	}
 	
 	//insert
-	/*public void insertOrder(OrderVO vo) {
-		sqlSessionTemplate.insert("OrderDAO.insertOrder", vo);
-	}*/
+	public void insertOrderCode(OrderCodeVO vo) {
+		sqlSessionTemplate.insert("OrderDAO.insertOrderCode", vo);
+	}
+	//insert
+	public void insertOrderList(OrderListVO vo) {
+		sqlSessionTemplate.insert("OrderDAO.insertOrderList", vo);
+	}
 }

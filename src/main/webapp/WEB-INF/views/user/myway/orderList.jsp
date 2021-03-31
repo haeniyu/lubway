@@ -73,27 +73,24 @@ $(document).ready(function(){
 								<c:forEach items="${order}" var="order">
 								<li>
 									<div class="order_card">
-										<a href="/lubway/orderListDetail.do?code=${order.code }"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
-											<c:if test="${order.receive ne '배달'}">
+										<a href="/lubway/orderListDetail.do?no=${order.no}"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
+											<c:if test="${order.order_type ne '배달'}">
 												<p class="order_type fast">
 													FAST-WAY
 												</p>
 											</c:if>
-											<c:if test="${order.receive eq '배달'}">
+											<c:if test="${order.order_type eq '배달'}">
 												<p class="order_type home">
 													HOME-WAY
 												</p>
 											</c:if>
 											<div class="order_menu">
 												<p>
-													<span class="menu">${order.menuname }</span>
+													<span class="menu">${order.store_name }점</span>
+													<span class="date"><fmt:formatDate value="${order.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
+													<span class="price"><span> ${order.total_price }</span><em>원</em></span> 
+													<span class="num">주문번호  ( <em>${order.no }</em> )</span>
 												</p>
-											</div>
-											<div class="order_detail">
-												<span class="price"><span>${order.totalprice }</span><em>원</em></span> 
-												<span class="store">${order.storename }</span> 
-												<span class="date"><fmt:formatDate value="${order.ordertime }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-												<span class="num">주문번호 ( <em>${order.code }</em> ) </span>
 											</div>
 										</a>
 									</div>

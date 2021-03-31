@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.board.Pagination;
-import com.lubway.user.order.OrderVO;
 import com.lubway.user.order.service.OrderService;
 
 @Controller
@@ -30,8 +29,8 @@ public class AdminOrderController {
 		conditionMap.put("매장명", "STORE");
 		return conditionMap;
 	}
-
-	/** 글목록 요청 */
+/*
+	/** 글목록 요청 
 	@GetMapping("/getOrderList.mdo")
 	public String getOrderList(OrderVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
@@ -41,12 +40,12 @@ public class AdminOrderController {
 		System.out.println("page : " + page);
 		System.out.println("range : " + range);
 
-		/** 전체 게시글 개수 */
+		/** 전체 게시글 개수 
 		int listCnt = orderService.getPageListCnt();
 
 		System.out.println("listCnt : " + listCnt);
 
-		/** Pagination */
+		/** Pagination 
 		Pagination pagination = new Pagination();
 		pagination.pageInfo(page, range, listCnt);
 
@@ -66,7 +65,7 @@ public class AdminOrderController {
 		return "getOrderList";
 	}
 
-	/** 검색기능 */
+	/** 검색기능 
 	@GetMapping("/orderSearch.mdo")
 	public String searchPagingList(Model model, OrderVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
@@ -90,5 +89,5 @@ public class AdminOrderController {
 		model.addAttribute("orderList", pageList);
 		return "getOrderList";
 	}
-
+*/
 }
