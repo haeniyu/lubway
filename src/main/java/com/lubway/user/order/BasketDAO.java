@@ -18,11 +18,15 @@ public class BasketDAO {
 		return sqlSessionTemplate.selectList("BasketDAO.getBasket", vo);
 	}
 
-	public List<String> getPrice(BasketVO vo) {
-		return sqlSessionTemplate.selectList("BasketDAO.getPrice", vo);
+	public String getPrice(String topping) {
+		return sqlSessionTemplate.selectOne("BasketDAO.getPrice", topping);
 	}
 	
 	public StoreInfoVO getStoreInfo(int no) {
 		return sqlSessionTemplate.selectOne("BasketDAO.getStoreInfo", no);
-	} 
+	}
+	
+	public void insertBasket(BasketVO vo) {
+		sqlSessionTemplate.insert("BasketDAO.insertBasket", vo);
+	}
 }
