@@ -33,7 +33,8 @@
 		<typeAlias type="com.lubway.user.menu.VegetableVO" alias="vege"/>
 		<typeAlias type="com.lubway.user.order.BasketVO" alias="basket" />
 		<typeAlias type="com.lubway.user.order.PriceVO" alias="price" />
-		<typeAlias type="com.lubway.user.order.OrderVO" alias="order" />
+		<typeAlias type="com.lubway.user.order.OrderCodeVO" alias="order_code" />
+		<typeAlias type="com.lubway.user.order.OrderListVO" alias="order_list" />
 		
 	</typeAliases>
 	

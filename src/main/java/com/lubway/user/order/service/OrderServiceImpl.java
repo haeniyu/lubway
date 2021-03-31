@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.UserOptionDAO;
+import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderDAO;
-import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.OrderListVO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -35,7 +35,7 @@ public class OrderServiceImpl implements OrderService {
 	public ToppingAddVO getToppingByName(String t) {
 		return userOptionDao.getToppingByName(t);
 	}
-
+	/*
 	@Override
 	public List<OrderVO> getOrderList(OrderVO vo) {
 		return orderDao.getOrderList(vo);
@@ -62,33 +62,40 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<OrderVO> orderList(OrderVO vo) {
+	public List<OrderCodeVO> getTodayOrderList(Pagination pagination) {
+		return orderDao.getTodayOrderList(pagination);
+	}
+	*/
+	//사용자 페이지//
+	
+	@Override
+	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo) {
+		return orderDao.orderCodeList(vo);
+	}
+	
+	@Override
+	public List<OrderListVO> orderList(OrderListVO vo) {
 		return orderDao.orderList(vo);
 	}
 	
 	@Override
-	public List<OrderVO> selectHomeway(OrderVO vo) {
+	public List<OrderCodeVO> selectHomeway(OrderCodeVO vo) {
 		return orderDao.selectHomeway(vo);
 	}
 
 	@Override
-	public List<OrderVO> selectFastway(OrderVO vo) {
+	public List<OrderCodeVO> selectFastway(OrderCodeVO vo) {
 		return orderDao.selectFastway(vo);
 	}
 
 	@Override
-	public List<OrderVO> getTodayOrderList(Pagination pagination) {
-		return orderDao.getTodayOrderList(pagination);
-	}
-
-	@Override
-	public int countOrderList(OrderVO vo) {
+	public int countOrderList(OrderCodeVO vo) {
 		return orderDao.countOrderList(vo);
 	}
-
+/*
 	@Override
 	public void insertOrder(OrderVO vo) {
 		orderDao.insertOrder(vo);
 	}
-
+*/
 }

@@ -2,16 +2,16 @@ package com.lubway.user.order.service;
 
 import java.util.List;
 
-import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
-import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.OrderCodeVO;
+import com.lubway.user.order.OrderListVO;
 
 public interface OrderService {
 	StoreInfoVO getStoreInfoByNo(String franchiseNo);
 
 	ToppingAddVO getToppingByName(String t);
-
+	/*
 	List<OrderVO> getOrderList(OrderVO vo);
 
 	// 페이징 리스트
@@ -27,19 +27,20 @@ public interface OrderService {
 	List<OrderVO> getSearchPagingList(Pagination pagination);
 	
 	List<OrderVO> getTodayOrderList(Pagination pagination);
-	
+	*/
 	// 전체 주문내역
-	List<OrderVO> orderList(OrderVO vo);
+	List<OrderCodeVO> orderCodeList(OrderCodeVO vo);
+	List<OrderListVO> orderList(OrderListVO vo);
 	
 	// homeway 주문내역
-	List<OrderVO> selectHomeway(OrderVO vo);
+	List<OrderCodeVO> selectHomeway(OrderCodeVO vo);
 	
 	// fastway 주문내역
-	List<OrderVO> selectFastway(OrderVO vo);
+	List<OrderCodeVO> selectFastway(OrderCodeVO vo);
 	
 	// 총 주문내역 개수
-	int countOrderList(OrderVO vo);
+	int countOrderList(OrderCodeVO vo);
 	
 	// insert
-	void insertOrder(OrderVO vo);
+	//void insertOrder(OrderVO vo);
 }
