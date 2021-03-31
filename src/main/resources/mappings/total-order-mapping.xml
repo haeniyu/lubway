@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TotalOrderDAO">
+	
+	<select id="getTotalList" parameterType="total_order" resultType="total_order">
+		select * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료'
+	</select>
+	
+	<select id="getTotalListCnt" resultType="int">
+		select count(*) from
+		(select * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료')
+		as totalcnt
+	</select>
+	
+</mapper>

@@ -38,15 +38,14 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	// admin 주문 완료 목록 //
-	
 	@Override
-	public List<OrderCodeVO> getPageList(Pagination pagination) {
-		return orderDao.getPageList(pagination);
+	public List<OrderCodeVO> getPagingList(Pagination pagination) {
+		return orderDao.getPagingList(pagination);
 	}
 
 	@Override
 	public int getPageListCnt() {
-		return getPageListCnt();
+		return orderDao.getPageListCnt();
 	}
 	
 	//MyWay 주문 내역 페이지//

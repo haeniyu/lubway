@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getOrderList" value="/lubway/orderSearch.mdo">
+<c:url var="getTotalList" value="/lubway/orderSearch.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -83,6 +83,20 @@
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
 			</div>
 				<div class="card-body">
+					<!-- 검색 시작 -->
+					<div align="right">
+						<form action="/lubway/search.mdo" method="get">
+							<tr>
+								<td><input type="text" name="searchKeyword"
+									placeholder="검색할 제품을 입력해 주세요." style="width: 20%" /> 
+									<input
+									style="margin: 3px; padding: 3px"
+									class="btn btn-warning btn-icon-split" type="submit"
+									value="search" /></td>
+							</tr>
+						</form>
+					</div>
+					<!-- 검색 종료 -->
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
@@ -90,17 +104,19 @@
 									<th>주문 코드</th>
 									<th>아이디</th>
 									<th>이름</th>
-									<th>연락처</th>
-									<th>배달 주소</th>
-									<th>요청 사항</th>
-									<th>주문 매장</th>
-									<th>수령 방법</th>
 									<th>주문 시간</th>
-									<th>배달 시간</th>
-									<th>사용 포인트 금액</th>
-									<th>사용 쿠폰 금액</th>
-									<th>주문 총 금액</th>
+									<th>도착 예정 시간</th>
+									<th>주소</th>
+									<th>연락처</th>
+									<th>주문 메뉴</th>
+									<th>기본 선택</th>
+									<th>추가 선택</th>
+									<th>세트 선택</th>
+									<th>총 금액</th>
+									<th>수령 방법</th>
 									<th>결제 수단</th>
+									<th>주문 매장</th>
+									<th>요청 사항</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -109,30 +125,30 @@
 										<td>${list.no }</td>
 										<td>${list.id }</td>
 										<td>${list.name }</td>
-										<td>${list.tel }</td>
-										<td>${list.address }</td>
-										<td>${list.request }</td>
-										<td>${list.store_name }</td>
-										<td>${list.order_type }</td>
 										<td><fmt:formatDate type="both" value="${list.order_time }"
 												pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td><fmt:formatDate type="both" value="${list.delivery_time }"
 												pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td>${list.menuname }</td>
+										<td>${list.address }</td>
+										<td>${list.tel }</td>
+										<td>${list.menu_name }</td>
 										<td>${list.step01 }</td>
-										<td>${list.topping_add }
-											<c:if test="${list.topping_add ne '' and (list.meat_add ne '' or list.cheese_add ne '')}">
+										<td>${list.add_topping }
+											<c:if test="${list.add_topping ne '' and (list.add_meat ne '' or list.add_cheese ne '')}">
 												,
 											</c:if>
-											${list.meat_add }
-											<c:if test="${list.meat_add ne '' and list.cheese_add ne ''}">
+											${list.add_meat }
+											<c:if test="${list.add_meat ne '' and list.add_cheese ne ''}">
 												,
 											</c:if>
-											${list.cheese_add }
+											${list.add_cheese }
 										</td>
 										<td>${list.step03 }</td>
-										<td>${list.totalprice  }</td>
+										<td>${list.total_price }</td>
+										<td>${list.order_type }</td>
 										<td>${list.payment_list }</td>
+										<td>${list.store_name }</td>
+										<td>${list.request }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -143,7 +159,7 @@
 			<!-- pagination{s} -->
 
 			<div align="center">
-				<ul class="pagination" class="OrderVO">
+				<ul class="pagination" class="TotalOrderVO">
 					<c:if test="${pagination.prev}">
 						<li class="page-item"><a class="page-link" href="#"
 							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
