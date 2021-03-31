@@ -10,8 +10,9 @@ import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.UserOptionDAO;
+import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderDAO;
-import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.OrderListVO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -35,60 +36,55 @@ public class OrderServiceImpl implements OrderService {
 	public ToppingAddVO getToppingByName(String t) {
 		return userOptionDao.getToppingByName(t);
 	}
-
+	
+	// admin 주문 완료 목록 //
+	
 	@Override
-	public List<OrderVO> getOrderList(OrderVO vo) {
-		return orderDao.getOrderList(vo);
-	}
-
-	@Override
-	public List<OrderVO> getPageList(Pagination pagination) {
+	public List<OrderCodeVO> getPageList(Pagination pagination) {
 		return orderDao.getPageList(pagination);
 	}
 
 	@Override
 	public int getPageListCnt() {
-		return orderDao.getPageListCnt();
+		return getPageListCnt();
 	}
-
+	
+	//MyWay 주문 내역 페이지//
+	
 	@Override
-	public int getSearchTitleCnt(String title) {
-		return orderDao.getSearchTitleCnt(title);
+	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo) {
+		return orderDao.orderCodeList(vo);
 	}
-
+	
 	@Override
-	public List<OrderVO> getSearchPagingList(Pagination pagination) {
-		return orderDao.getSearchPagingList(pagination);
-	}
-
-	@Override
-	public List<OrderVO> orderList(OrderVO vo) {
+	public List<OrderListVO> orderList(OrderListVO vo) {
 		return orderDao.orderList(vo);
 	}
 	
 	@Override
-	public List<OrderVO> selectHomeway(OrderVO vo) {
+	public List<OrderCodeVO> selectHomeway(OrderCodeVO vo) {
 		return orderDao.selectHomeway(vo);
 	}
 
 	@Override
-	public List<OrderVO> selectFastway(OrderVO vo) {
+	public List<OrderCodeVO> selectFastway(OrderCodeVO vo) {
 		return orderDao.selectFastway(vo);
 	}
 
 	@Override
-	public List<OrderVO> getTodayOrderList(Pagination pagination) {
-		return orderDao.getTodayOrderList(pagination);
-	}
-
-	@Override
-	public int countOrderList(OrderVO vo) {
+	public int countOrderList(OrderCodeVO vo) {
 		return orderDao.countOrderList(vo);
 	}
 
 	@Override
-	public void insertOrder(OrderVO vo) {
-		orderDao.insertOrder(vo);
+	public void insertOrderCode(OrderCodeVO vo) {
+		orderDao.insertOrderCode(vo);
 	}
+	
+	@Override
+	public void insertOrderList(OrderListVO vo) {
+		orderDao.insertOrderList(vo);
+	}
+
 
 }

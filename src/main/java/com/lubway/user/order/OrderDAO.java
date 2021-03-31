@@ -14,47 +14,42 @@ public class OrderDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public List<OrderVO> getOrderList(OrderVO vo){
-		return sqlSessionTemplate.selectList("OrderDAO.getOrderList", vo);
-	}
-	
-	public List<OrderVO> getPageList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.pagingList", pagination);
+	// Admin 주문 완료 목록 //
+	public List<OrderCodeVO> getPageList(Pagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.getPageList", pagination);
 	}
 	
 	public int getPageListCnt() {
-		return sqlSessionTemplate.selectOne("OrderDAO.pagingCnt");
+		return sqlSessionTemplate.selectOne("OrderDAO.getPageListCnt");
 	}
 	
-	public int getSearchTitleCnt(String title) {
-		return sqlSessionTemplate.selectOne("OrderDAO.searchTitleCnt", title);
-	}
-
-	public List<OrderVO> getSearchPagingList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.searchPagingList", pagination);
-	}
+	// 사용자 Myway 주문내역 //
 	
-	public List<OrderVO> getTodayOrderList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.getTodayOrderList", pagination);
+	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo){
+		return sqlSessionTemplate.selectList("OrderDAO.orderCodeList", vo);
 	}
-	
-	public List<OrderVO> orderList(OrderVO vo){
+	public List<OrderListVO> orderList(OrderListVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.orderList", vo);
 	}
 	
-	public List<OrderVO> selectHomeway(OrderVO vo){
+	public List<OrderCodeVO> selectHomeway(OrderCodeVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.selectHomeway", vo);
 	}
 	
-	public List<OrderVO> selectFastway(OrderVO vo){
+	public List<OrderCodeVO> selectFastway(OrderCodeVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.selectFastway", vo);
 	}
 	
-	public int countOrderList(OrderVO vo) {
+	public int countOrderList(OrderCodeVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.countOrderList", vo);
 	}
 	
-	public void insertOrder(OrderVO vo) {
-		sqlSessionTemplate.insert("OrderDAO.insertOrder", vo);
+	//insert
+	public void insertOrderCode(OrderCodeVO vo) {
+		sqlSessionTemplate.insert("OrderDAO.insertOrderCode", vo);
+	}
+	//insert
+	public void insertOrderList(OrderListVO vo) {
+		sqlSessionTemplate.insert("OrderDAO.insertOrderList", vo);
 	}
 }

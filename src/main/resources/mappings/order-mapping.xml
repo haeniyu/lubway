@@ -3,74 +3,88 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="OrderDAO">
-
-	<select id="getOrderList" parameterType="order" resultType="order">
-		SELECT * FROM ORDER_LIST
-		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
-		ORDER BY ordertime DESC, code DESC
-	</select>
+	<resultMap type="order_code" id="orderCode">
+		<id property="no" column="NO" />
+		<result property="id" column="ID" />
+		<result property="name" column="NAME" />
+		<result property="tel" column="TEL" />
+		<result property="address" column="ADDRESS" />
+		<result property="request" column="REQUEST" />
+		<result property="store_name" column="STORE_NAME" />
+		<result property="order_type" column="ORDER_TYPE" />
+		<result property="order_time" column="ORDER_TIME" />
+		<result property="delivery_time" column="DELICERY_TIME" />
+		<result property="use_point" column="USE_POINT" />
+		<result property="use_coupon" column="USE_COUPON" />
+		<result property="total_price" column="TOTAL_PRICE" />
+		<result property="payment_list" column="PAYMENT_LIST" />
+		<result property="payment_status" column="PAYMENT_STATUS" />
+		<result property="status" column="STATUS" />
+	</resultMap>
 	
-	<select id="pagingList" resultType="order">
-		select * FROM ORDER_LIST
-		where status='주문 완료'
-		ORDER BY ordertime DESC, code DESC
+	<resultMap type="order_list" id="orderList">
+		<id property="no" column="NO" />
+		<result property="menu_type" column="MENU_TYPE" />
+		<result property="menu_name" column="MENU_NAME" />
+		<result property="quantity" column="QUANTITY" />
+		<result property="single_price" column="SINGLE_PRICE" />
+		<result property="step01" column="STEP01" />
+		<result property="add_topping" column="ADD_TOPPING" />
+		<result property="add_meat" column="ADD_MEAT" />
+		<result property="add_cheese" column="ADD_CHEESE" />
+		<result property="step03" column="STEP03" />
+		<result property="set_price" column="SET_PRICE" />
+	</resultMap>
+	
+	<select id="getPagingList" resultType="order_code">
+		select * from order_code
+		where STATUS='주문 완료'
+		ORDER BY ORDER_TIME DESC, NO DESC
 		limit #{listSize} offset #{startList}
 	</select>
-
-	<select id="searchPagingList" resultType="order">
-		select code, id, name, ordertime, deliverytime, address, tel, menuname, step01, topping_add, meat_add, cheese_add, step03, price, totalprice, receive, payment_list, storename, request
-		FROM ORDER_LIST
-		WHERE menuname LIKE '%'||#{searchKeyword}||'%'
-		ORDER BY ordertime DESC, code DESC
-		limit #{listSize} offset #{startList}
+	
+	<select id="getPageListCnt" resultType="int">
+		select count(*) from order_code where STATUS='주문 완료'
 	</select>
 
-	<select id="getTodayOrderList" resultType="order">
-		<![CDATA[ 
-			select * FROM ORDER_LIST
-			WHERE storename=#{storename} and
-			ordertime >= current_date and ordertime < current_date + integer '1'
-			ORDER BY ordertime DESC, code DESC
-			limit #{listSize} offset #{startList}
-		]]>
-	</select>
-	
-	<select id="pagingCnt" resultType="int">
-		select count(*) as listCnt
-		from order_list
+	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
+		select * from order_code where ID=#{id} order by ORDER_TIME DESC
 	</select>
 
-	<select id="searchTitleCnt" parameterType="String"
-		resultType="int">
-		select count(*) from order_list where menuname LIKE
-		'%'||#{searchKeyword}||'%';
+	<select id="orderList" parameterType="order_list" resultType="order_list">
+		select * from order_list where NO=#{no}
 	</select>
 	
-	<select id="orderList" parameterType="order" resultType="order">
-		select * from order_list where id=#{id} order by ordertime desc
+	<select id="selectHomeway" parameterType="order_code" resultType="order_code">
+		select * from order_code where ID=#{id} and ORDER_TYPE='배달'
+		order by ORDER_TIME DESC
 	</select>
 	
-	<select id="selectHomeway" parameterType="order" resultType="order">
-		select * from order_list where id=#{id} and receive='배달'
-		order by ordertime desc
-	</select>
-	
-	<select id="selectFastway" parameterType="order" resultType="order">
-		select * from order_list 
-		where id=#{id} and receive not in(select receive from order_list where receive='배달')
-		order by ordertime desc
+	<select id="selectFastway" parameterType="order_code" resultType="order_code">
+		select * from order_code 
+		where ID=#{id} and ORDER_TYPE not in(select ORDER_TYPE from order_code where ORDER_TYPE='배달')
+		order by ORDER_TIME DESC
 	</select>
 	
 	<select id="countOrderList" resultType="int">
-		select count(*) from order_list where id=#{id}
+		select count(*) from order_code where ID=#{id}
 	</select>
 	
-	<insert id="insertOrder" parameterType="order">
-		insert into order_list (code, id, name, ordertime, deliverytime, address, tel, storename, menuname, price, coupon, point, totalprice, 
-			receive, payment_list, payment_status, request, status, quantity, step01, topping_add, meat_add, cheese_add, step03)
-		values('ORD'||(SELECT last_value FROM order_list_no_seq), #{id}, #{name}, now()+'-3hours', now()+'-2hours', #{address}, #{tel}, #{storename}, #{menuname}, 
-			#{price}, #{coupon}, #{point}, #{totalprice}, #{receive}, #{payment_list}, #{payment_status}, #{request}, '주문 접수', #{quantity}, 
-			#{step01}, #{topping_add}, #{meat_add}, #{cheese_add}, #{step03})
+	<!-- insert -->
+	<insert id="insertOrderCode" parameterType="order_code">
+		insert into order_code (id, name, tel, address, request, store_name, order_type,
+								use_point, use_coupon, total_price, payment_list, payment_status, status)
+		values(#{id}, #{name}, #{tel}, #{address}, #{request}, #{store_name}, #{order_type},
+								#{use_point}, #{use_coupon}, #{total_price}, #{payment_list}, #{payment_status}, '주문 접수')
+		
+	</insert>
+	
+	<insert id="insertOrderList" parameterType="order_list">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			select MAX(no) from order_code
+		</selectKey>
+		insert into order_list values(#{no}, #{menu_type}, #{menu_name}, #{quantity}, #{single_price}, #{step01}, #{add_topping},
+										#{add_meat}, #{add_cheese}, #{step03}, #{set_price})
 	</insert>
 	
 </mapper>

@@ -16,9 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.admin.StoreVO;
+import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
-import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.OrderCodeVO;
+import com.lubway.user.order.OrderListVO;
+import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
@@ -38,9 +42,12 @@ public class MyWayController {
 	@Autowired
 	private OrderService orderService;
 	
+	@Autowired
+	private BasketService basketService;
+	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
-	public String myWay(HttpSession session, Model model, UserCouponVO cvo, OrderVO ovo) {
+	public String myWay(HttpSession session, Model model, UserCouponVO cvo, OrderCodeVO ovo) {
 		// 쿠폰 조회할 사용자 아이디 세팅
 		System.out.println("마이웨이 페이지로 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
@@ -145,14 +152,14 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderVO vo, Model model, HttpSession session) {
+	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo) {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
+		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
 		
-		List<OrderVO> orderInfo = orderService.orderList(vo);
 		int countOrder = orderService.countOrderList(vo);
-
+		
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
 		
@@ -161,13 +168,13 @@ public class MyWayController {
 	
 	// Fast-Way / Home-Way 각각 보기
 	@PostMapping("/orderListTab.do")
-	public String selectOrderList(Model model, String select, OrderVO vo, HttpSession session) {
+	public String selectOrderList(Model model, String select, OrderCodeVO vo, HttpSession session) {
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
-		List<OrderVO> orderInfo = orderService.orderList(vo);
-		List<OrderVO> homeway = orderService.selectHomeway(vo);
-		List<OrderVO> fastway = orderService.selectFastway(vo);
+		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
+		List<OrderCodeVO> homeway = orderService.selectHomeway(vo);
+		List<OrderCodeVO> fastway = orderService.selectFastway(vo);
 		int countOrder = orderService.countOrderList(vo);
 		
 		model.addAttribute("countOrder", countOrder);
@@ -187,9 +194,10 @@ public class MyWayController {
 	
 	//주문내역 상세 페이지 이동
 	@RequestMapping("/orderListDetail.do")
-	public String orderListDetail(Model model, OrderVO vo) {
+	public String orderListDetail(Model model, OrderCodeVO ovo, OrderListVO vo) {
 		System.out.println("주문내역 상세페이지 이동");
-		model.addAttribute("order", orderService.orderList(vo));
+		model.addAttribute("orderC", orderService.orderCodeList(ovo));
+		model.addAttribute("orderL", orderService.orderList(vo));
 		return "myway/orderListDetail";
 	}
 	

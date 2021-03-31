@@ -22,7 +22,6 @@ import com.lubway.admin.StoreVO;
 import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
-import com.lubway.user.order.OrderVO;
 import com.lubway.user.order.service.OrderService;
 
 @Controller
@@ -123,7 +122,7 @@ public class StoreController {
 		return "storeinfo";
 	}
 	
-	/** 글목록 요청 */
+	/** 글목록 요청 
 	@GetMapping("/getTodayOrderList.sdo")
 	public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range, HttpSession session) {
@@ -133,7 +132,7 @@ public class StoreController {
 		System.out.println("page : " + page);
 		System.out.println("range : " + range);
 
-		/** 전체 게시글 개수 */
+		/** 전체 게시글 개수 
 		int listCnt = orderService.getPageListCnt();
 
 		System.out.println("listCnt : " + listCnt);
@@ -143,7 +142,7 @@ public class StoreController {
 
 		String storename = vo.getStorename();
 
-		/** Pagination */
+		/** Pagination 
 		Pagination pagination = new Pagination();
 		pagination.pageTodayOrderList(page, range, listCnt, storename);
 
@@ -162,5 +161,5 @@ public class StoreController {
 
 		return "todayOrder";
 	}
-
+*/
 }

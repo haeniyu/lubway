@@ -1435,9 +1435,8 @@
 .order_wrapper .order_box .order_list .order_card a {
 	display: block;
 	position: relative;
-	padding: 26px 30px 29px;
+	padding: 26px 30px 26px;
 	border: 1px solid #e5e5e5;
-	height: 180px;
 	box-sizing: border-box;
 }
 
@@ -1484,24 +1483,24 @@
 }
 
 .order_wrapper .order_box .order_list .order_card .order_menu {
-	padding: 8px 0 28px;
+	padding: 8px 0;
 	font-size: 20px;
 	font-weight: bold;
 	letter-spacing: -0.05em;
 	color: #292929;
-	border-bottom: 1px solid #e5e5e5;
-	margin-bottom: 25px;
 }
 
-.order_wrapper .order_box .order_list .order_card .price {
+.order_wrapper .order_box .order_list .order_card .order_menu .price span {
 	color: #31a74d;
 	letter-spacing: -0.05em;
 	display: inline-block;
-	vertical-align: top;
+	font-size: 14px;
 }
 
 .order_wrapper .order_box .order_list .order_card .price em {
 	font-weight: bold;
+	color: #31a74d;
+	font-size: 14px;
 }
 
 .order_wrapper .order_box .order_list .order_card .store {
@@ -1542,6 +1541,7 @@
 	font-size: 13px;
 	font-weight: normal;
 	letter-spacing: 0em;
+	color: #999;
 }
 
 .order_wrapper .data_none {
