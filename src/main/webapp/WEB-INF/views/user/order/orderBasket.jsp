@@ -15,6 +15,15 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
+	/*console.log($(".price").text());
+	var priceTmp = $(".price").text();
+	var price2 = priceTmp.replace(/  /g, " ");
+	var price3 = price2.replace(/ /g, ",");
+	console.log(price3);*/
+	
+	${basket.total_price}
+	
+	
 	// fast/home 배경 구분
 	var way = '${whatWay}';
 	console.log("whatWay : " + way);
@@ -143,7 +152,7 @@ $(function() {
 									<c:if test="${whatWay eq 'Home-Way' }">
 										<dl class="info_dl">
 											<dt>주소</dt>
-											<dd>${basket.addr }</dd>
+											<dd>${basket.user_address }</dd>
 										</dl>
 									</c:if>
 								</div>
@@ -294,7 +303,8 @@ $(function() {
 							<hr class="Tborder">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
-								<c:forEach items="${basket }" var="basket">
+								<c:set var="endCount" value="0" />
+								<c:forEach items="${basket}" var="basket" varStatus="stat">
 								<div class="history_table">
 									<!-- 선택한 메뉴 -->
 									<ul>
@@ -303,41 +313,59 @@ $(function() {
 												<div class="name" data-target="mainItem">
 													<!-- 선택한 메뉴 이름 -->
 													<strong>${basket.menu_name }</strong>
-													<p>${step01Text}</p>
-												</div>
-												<div class="count">
+														<p>
+															<c:if test="${basket.menu_type ne 'side' and basket.menu_type ne 'wrap'}">
+																<c:if test="${basket.menu_type eq 'sandwich'}">
+																	<c:if test="${basket.size eq 'false'}">
+																		<object>15cm, </object>
+																	</c:if>
+																	<c:if test="${basket.size eq 'true'}">
+																		<object>30cm, </object>
+																	</c:if>
+																	<object>${basket.bread}, </object>
+																</c:if>
+																<object>${basket.cheese}, </object>
+																<object>${basket.vegetable}, </object>
+																<object>${basket.sauce}</object>
+															</c:if>
+														</p>
+													</div>
+												<div class="count" >
 													<strong class="qty">${basket.quantity }</strong>개
 												</div>
-												<div class="sum">
-													<span> <strong class="price">${basket.total_price}</strong><em>원</em>
+												<div class="sum" >
+													<span> <strong class="price${stat.count }">${basket.total_price}</strong><em>원</em>
 													</span>
 													<!-- 추가 선택 메뉴 있을경우 생김 -->
-													<c:if test="${step02Text.length() gt 0  || step03Text.length() gt 0}">
+													<c:if test="${basket.add_meat ne null or basket.add_cheese ne null or basket.add_topping ne null or basket.set_name ne null}">
 													<a class="arrow"></a>
 													</c:if>
 												</div>
+												
 											</div> <!-- 추가 선택 메뉴 있을경우 보임-->
 											<div class="addMenu">
 												<ul>
-													<c:if test="${step02Text.length() gt 0 }">
-														<c:forEach items="${toppingList }" var="topping">
+													<c:if test="${basket.add_topping ne null}">
+														<c:set var="count" value="${basket.count}" />
+														<c:forEach items="${price}" var="getPrice" varStatus="var" begin="${endCount}" end="${endCount + count - 1}">
 															<li>
 																<div class="addname">
-																	<strong>${topping.name }</strong>
+																	<strong>${getPrice.name }</strong>
 																</div>
 																<div class="addcount"></div>
 																<div class="addsum">
-																	<span> <strong>${topping.topping_price }</strong><em>원</em>
+																	<span> <strong>${getPrice.topping_price }</strong><em>원</em>
 																	</span>
 																</div>
 															</li>
 														</c:forEach>
+														<c:set var="endCount" value="${endCount + count}" />
 													</c:if>
 													<!-- 미트 추가 시  -->
-													<c:if test="${meatAdd.length() gt 0 }">
+													<c:if test="${basket.add_meat.length() gt 0 }">
 														<li>
 															<div class="addname">
-																<strong>${basket.meat }</strong>
+																<strong>${basket.add_meat }</strong>
 															</div>
 															<div class="addcount"></div>
 															<div class="addsum">
@@ -347,7 +375,7 @@ $(function() {
 														</li>
 													</c:if>
 													<!-- 치즈 추가 시 -->
-													<c:if test="${cheeseAdd.length() gt 0 }">
+													<c:if test="${basket.add_cheese.length() gt 0 }">
 														<li>
 															<div class="addname">
 																<strong>${basket.add_cheese }</strong>
@@ -361,11 +389,11 @@ $(function() {
 													</c:if>
 
 													<!-- 세트 추가 시 -->
-													<c:if test="${step03Text.length() gt 0 }">
+													<c:if test="${basket.set_name.length() gt 0 }">
 														<li>
 															<div class="setname">
 																<strong>세트추가</strong>
-																<p>${step03Text }</p>
+																<p>${basket.set_name }</p>
 															</div>
 															<div class="setcount"></div>
 															<div class="setsum">
@@ -392,7 +420,7 @@ $(function() {
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong id="orderTotal">${totalPrice}</strong>
+								<strong id="orderTotal"></strong>
 								원
 							</dd>
 						</dl>

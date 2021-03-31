@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.swing.text.StyledEditorKit.BoldAction;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
@@ -25,7 +25,9 @@ import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.menu.service.UserOptionService;
+import com.lubway.user.order.BasketVO;
 import com.lubway.user.order.OrderVO;
+import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
@@ -47,6 +49,9 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService orderService;
+	
+	@Autowired
+	private BasketService basketService;
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
@@ -289,4 +294,51 @@ public class OrderController {
 		// 포인트 사용한거 처리하기
 	}
 
+	@RequestMapping("/orderBasket.do")
+	public String orderBasket(Model model, HttpSession session, String basketNo) {
+		System.out.println("장바구니 주문 페이지 이동");
+		System.out.println("주문 no " + basketNo);
+		
+		List<BasketVO> list = new ArrayList<>();
+		
+		String[] arr = basketNo.split(",");
+		for(String no : arr) {
+			int num = Integer.parseInt(no);
+			BasketVO vo = basketService.getBasketByNo(num);
+			list.add(vo);
+		}
+		
+		model.addAttribute("whatWay", list.get(0).getOrder_type());
+		
+		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();	//추가한 토핑 정보를 List로 세팅합니다.
+
+		//토핑 추가 관련 설정
+		for(BasketVO basket : list) {
+			if(basket.getAdd_topping() != null) {
+				if(basket.getAdd_topping().split(",").length > 1) {	//토핑이 여러 개인지 확인합니다.
+					String[] toppingList = basket.getAdd_topping().split(",");
+					for(String topping : toppingList) {			//여러 개의 토핑을 list에 담습니다.
+						ToppingAddVO addMany = orderService.getToppingByName(topping.trim());
+						total.add(addMany);
+					}
+					basket.setCount(toppingList.length);			//BasketVO의 토핑 개수를 설정합니다.
+				} else {											//토핑이 한 개일 경우
+					ToppingAddVO addOne = orderService.getToppingByName(basket.getAdd_topping());
+					basket.setCount(1);
+					total.add(addOne);
+				}
+			}
+		}
+	
+		// 장바구니에 담긴 메뉴가 존재할 경우 (데이터가 있을 경우)
+		if(list.size() > 0 ) {
+			StoreInfoVO storeInfo = basketService.getStoreInfo(list.get(0).getStore_no());
+			model.addAttribute("store", storeInfo);
+			model.addAttribute("basket", list);
+			model.addAttribute("price", total);
+		}
+		
+		return "order/orderBasket";
+	}	
+	
 }

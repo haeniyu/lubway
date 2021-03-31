@@ -11,4 +11,5 @@ public interface BasketService {
 	String getPrice(String topping);
 	StoreInfoVO getStoreInfo(int no);
 	void insertBasket(BasketVO vo);
+	BasketVO getBasketByNo(int no);
 }

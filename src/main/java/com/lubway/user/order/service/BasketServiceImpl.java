@@ -34,5 +34,9 @@ public class BasketServiceImpl implements BasketService {
 	public void insertBasket(BasketVO vo) {
 		basketDAO.insertBasket(vo);
 	}
+	
+	public BasketVO getBasketByNo(int no) {
+		return basketDAO.getBasketByNo(no);
+	}
 
 }

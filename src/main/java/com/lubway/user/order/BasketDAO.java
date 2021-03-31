@@ -29,4 +29,8 @@ public class BasketDAO {
 	public void insertBasket(BasketVO vo) {
 		sqlSessionTemplate.insert("BasketDAO.insertBasket", vo);
 	}
+	
+	public BasketVO getBasketByNo(int no) {
+		return sqlSessionTemplate.selectOne("BasketDAO.getBasketByNo", no);
+	}
 }

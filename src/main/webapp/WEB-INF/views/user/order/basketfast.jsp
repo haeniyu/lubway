@@ -19,6 +19,10 @@ var count = "";
 var qty = "";
 var basket = "";
 var totalPrice = 0;
+var cnt = 0;
+var totalCnt = 0;
+var selectId = "";
+
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
 			count = i;
@@ -68,10 +72,11 @@ $(document).ready(function(){
 
 	});
 
+	
 	$(".form_checkbox").off().on("click", function() {
-		var totalCnt = $(".form_checkbox").length;
-		var cnt = $("[name=menu]:checked").length;
-		var selectId = $(this).find("input").attr("id");
+		totalCnt = $(".form_checkbox").length;
+		cnt = $("[class=menu]:checked").length;
+		selectId = $(this).find("input").attr("id");
 		console.log(selectId);
 		if(selectId == "all") {
 			if($("input:checkbox[id=all]").is(":checked") == true) $("input:checkbox").prop("checked", false);
@@ -82,10 +87,38 @@ $(document).ready(function(){
 				if(totalCnt-1 == cnt) $("input:checkbox[id=all]").prop("checked", true);
 			}
 		}
-		console.log($(".form_checkbox").length);
-		console.log($("[name=menu]:checked").length);
+//		console.log($(".form_checkbox").length);
+//		console.log($("[name=menu]:checked").length);
 	});
-});
+	
+	
+});// end of document ready
+
+//주문하기 페이지로 이동
+function orderBasket() {
+	var totalNum = "";
+	if(cnt == 0) {
+		alert("주문하실 메뉴를 선택해 주세요.");
+		return;
+	} else {
+		for(var i=0; i < totalCnt-1; i++){
+			console.log(i);
+			console.log($("[name=menu"+i+"]").attr("id"));
+			console.log($("[name=menu"+i+"]").is(":checked") == true);
+			if($("[name=menu"+i+"]").is(":checked") == true) {
+				if(i == totalCnt-2) {
+					totalNum += $("[name=menu" + i + "]:checked").attr("id");
+				} else {
+					totalNum += $("[name=menu" + i + "]:checked").attr("id") + ",";
+				}
+			}
+		}
+	}
+	console.log(totalNum);
+	$("input[name=basketNo]").val(totalNum);
+	console.log($("input[name=basketNo]").val());
+	$("#orderForm").submit();
+}
 </script>
 <head>
 <meta charset="UTF-8">
@@ -139,7 +172,7 @@ $(document).ready(function(){
 						<div class="order_info">
 							<div class="menu_info">
 								<label class="form_checkbox">
-									<input id="${basket.no}" type="checkbox" name="menu"/>
+									<input id="${basket.no}" type="checkbox" name="menu${stat.index}" class="menu" />
 									<span class="icon"></span>
 									<object>${basket.menu_name}</object>
 								</label>
@@ -166,12 +199,12 @@ $(document).ready(function(){
 							</div>
 							<img alt="${basket.menu_name}" src="${basket.menu_filepath}">
 						</div>
-						<c:if test="${basket.meat ne null or basket.topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
+						<c:if test="${basket.add_meat ne null or basket.add_topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
 								<dl class="detail_list">
-									<c:if test="${basket.meat ne null}">
+									<c:if test="${basket.add_meat ne null}">
 											<dt>
 												<em>추가</em>
-												<span>${basket.meat}</span>
+												<span>${basket.add_meat}</span>
 											</dt>
 											<dd>
 												<strong>1800</strong>
@@ -179,7 +212,7 @@ $(document).ready(function(){
 											</dd>
 										</c:if>
 
-										<c:if test="${basket.topping ne null}">
+										<c:if test="${basket.add_topping ne null}">
 											<c:set var="count" value="${basket.count}" />
 											<c:forEach items="${price}" var="getPrice" varStatus="var" begin="${endCount}" end="${endCount + count - 1}">
 												<dt>
@@ -261,7 +294,7 @@ $(document).ready(function(){
 							
 						</form>
 						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
-						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" data-cart-type="CART_TYPE.HOME_SUB"><span>주문하기</span></a>
+						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" onclick="orderBasket();"><span>주문하기</span></a>
 					</div>
 				</div>
 				</c:if>
@@ -273,7 +306,6 @@ $(document).ready(function(){
 				<p>장바구니가 비어있습니다.</p>
 			</div>
 			</c:if>
-			
 
 			<!--// index -->
 		</div>
@@ -284,6 +316,9 @@ $(document).ready(function(){
 	<form action="orderStep02.do" method="post" id="addMenuForm">
 		<input type="hidden" name="franchiseNo" value="${store.no}">
 		<input type="hidden" name="whatWay" value="Fast-Way">
+	</form>
+	<form action="orderBasket.do" method="post" id="orderForm">
+		<input type="hidden" name="basketNo" value="">
 	</form>
 </body>
 </html>

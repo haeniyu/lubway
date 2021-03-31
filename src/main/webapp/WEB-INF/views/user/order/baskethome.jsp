@@ -146,12 +146,12 @@ $(document).ready(function(){
 							</div>
 							<img alt="${basket.menu_name}" src="${basket.menu_filepath}">
 						</div>
-						<c:if test="${basket.meat ne null or basket.topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
+						<c:if test="${basket.add_meat ne null or basket.add_topping ne null or basket.add_cheese ne null or basket.set_price ne null}">
 								<dl class="detail_list">
-									<c:if test="${basket.meat ne null}">
+									<c:if test="${basket.add_meat ne null}">
 											<dt>
 												<em>추가</em>
-												<span>${basket.meat}</span>
+												<span>${basket.add_meat}</span>
 											</dt>
 											<dd>
 												<strong>1800</strong>
@@ -159,7 +159,7 @@ $(document).ready(function(){
 											</dd>
 										</c:if>
 										
-										<c:if test="${basket.topping ne null}">
+										<c:if test="${basket.add_topping ne null}">
 											<c:set var="count" value="${basket.count}" />
 											<c:forEach items="${price}" var="getPrice" varStatus="var" begin="${endCount}" end="${endCount + count - 1}">
 												<dt>

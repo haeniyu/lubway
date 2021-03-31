@@ -42,30 +42,32 @@ public class BasketController {
 		System.out.println("장바구니 페이지 FAST-WAY 이동");
 		vo.setOrder_type("Fast-Way");
 
+		//로그인 계정 설정
 		UserVO user = (UserVO) session.getAttribute("user");		
 		vo.setId(user.getId());
-		vo.setTel(user.getTel());
 
-		List<BasketVO> basketList = basketservice.getBasket(vo);
-		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
-		
+		List<BasketVO> basketList = basketservice.getBasket(vo);	//해당 오더 타입의 로그인한 계정의 모든 장바구니 정보를 불러옵니다.
+		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();	//추가한 토핑 정보를 List로 세팅합니다.
+
+		//토핑 추가 관련 설정
 		for(BasketVO list : basketList) {
-			if(list.getTopping() != null) {
-				if(list.getTopping().split(",").length > 1) {
-					String[] toppingList = list.getTopping().split(",");
-					for(String topping : toppingList) {
-						ToppingAddVO addTrue = orderservice.getToppingByName(topping.trim());
-						total.add(addTrue);
+			if(list.getAdd_topping() != null) {
+				if(list.getAdd_topping().split(",").length > 1) {	//토핑이 여러 개인지 확인합니다.
+					String[] toppingList = list.getAdd_topping().split(",");
+					for(String topping : toppingList) {			//여러 개의 토핑을 list에 담습니다.
+						ToppingAddVO addMany = orderservice.getToppingByName(topping.trim());
+						total.add(addMany);
 					}
-					list.setCount(toppingList.length);
-				} else {
-					ToppingAddVO addFasle = orderservice.getToppingByName(list.getTopping());
+					list.setCount(toppingList.length);			//BasketVO의 토핑 개수를 설정합니다.
+				} else {										//토핑이 한 개일 경우
+					ToppingAddVO addOne = orderservice.getToppingByName(list.getAdd_topping());
 					list.setCount(1);
-					total.add(addFasle);
+					total.add(addOne);
 				}
 			}
 		}
 	
+		// 장바구니에 담긴 메뉴가 존재할 경우 (데이터가 있을 경우)
 		if(basketList.size() > 0 ) {
 			StoreInfoVO storeInfo = basketservice.getStoreInfo(basketList.get(0).getStore_no());
 			model.addAttribute("store", storeInfo);
@@ -84,22 +86,21 @@ public class BasketController {
 
 		UserVO user = (UserVO) session.getAttribute("user");		
 		vo.setId(user.getId());
-		vo.setTel(user.getTel());
 
 		List<BasketVO> basketList = basketservice.getBasket(vo);
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
 		
 		for(BasketVO list : basketList) {
-			if(list.getTopping() != null) {
-				if(list.getTopping().split(",").length > 1) {
-					String[] toppingList = list.getTopping().split(",");
+			if(list.getAdd_topping() != null) {
+				if(list.getAdd_topping().split(",").length > 1) {
+					String[] toppingList = list.getAdd_topping().split(",");
 					for(String topping : toppingList) {
 						ToppingAddVO addTrue = orderservice.getToppingByName(topping.trim());
 						total.add(addTrue);
 					}
 					list.setCount(toppingList.length);
 				} else {
-					ToppingAddVO addFasle = orderservice.getToppingByName(list.getTopping());
+					ToppingAddVO addFasle = orderservice.getToppingByName(list.getAdd_topping());
 					list.setCount(1);
 					total.add(addFasle);
 				}
@@ -175,7 +176,6 @@ public class BasketController {
 		if(code.substring(0, 3).equals("SDW") || code.substring(0, 3).equals("SLD")) basicCheese = basicCheese.substring(0, basicCheese.length()-2);
 
 		basket.setId(vo.getId());
-		basket.setTel(vo.getTel());
 		basket.setName(vo.getName());
 		if(step01[0].trim().equals("15cm")) basket.setSize(false);
 		else basket.setSize(true);
@@ -192,10 +192,10 @@ public class BasketController {
 			basket.setVegetable(v);
 			basket.setSauce(sauce);
 		}
-		if(meatAdd.equals("")) basket.setMeat(null);
-		else basket.setMeat(meatAdd);
-		if(toppingAdd.equals("")) basket.setTopping(null);
-		else basket.setTopping(toppingAdd);
+		if(meatAdd.equals("")) basket.setAdd_meat(null);
+		else basket.setAdd_meat(meatAdd);
+		if(toppingAdd.equals("")) basket.setAdd_topping(null);
+		else basket.setAdd_topping(toppingAdd);
 		basket.setSingle_price(eachCost);
 		if(!setAdd.equals("")) {
 			basket.setSet(true);
@@ -222,8 +222,6 @@ public class BasketController {
 			String setName = step03[1].trim() + "/" + step03[2].trim();
 			basket.setSet_name(setName);
 		}
-
-		//		System.out.println("후 : " + basket);
 
 		basketservice.insertBasket(basket);
 
