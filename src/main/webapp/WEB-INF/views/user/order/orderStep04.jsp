@@ -15,6 +15,8 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
+	console.log('${menu_type}');
+	
 	// fast/home 배경 구분
 	var way = '${whatWay}';
 	console.log("whatWay : " + way);
@@ -116,14 +118,10 @@ $(function() {
 console.log("픽업 선택 : " + pickUp);
 
 function gotoOrderList() {
-	var totalPrice = $("#totalPayAmtNavi").text();//총 가격
-	$("#totalPrice").val(totalPrice);
 	
 	var step01Text = $("#selectStep01").text();//필수선택 텍스트
-	var step02Text = $("#selectStep02").text();//추가선택 텍스트
 	var step03Text = $(".selectStep03").text();//세트선택 텍스트
 	$("#step01Text").val(step01Text);
-	$("#step02Text").val(step02Text);
 	$("#step03Text").val(step03Text);
 	
 	var eachCost = $("#eachPrice").val(); //빵 길이 추가 가격 포함
@@ -137,10 +135,6 @@ function gotoOrderList() {
 	
 	var cheeseAdd = $("#addCheeseText").text();//치즈추가
 	$("#cheeseAdd").val(cheeseAdd);
-	
-	// step04 추가
-	var setAdd = $("#setAdd").text();
-	$("#setAdd").val(setAdd);
 	
 	var coupon = $("#couponAmtNavi").text();
 	$("#coupon").val(coupon);
@@ -230,7 +224,7 @@ function gotoOrderList() {
 									<c:if test="${whatWay eq 'Home-Way' }">
 										<dl class="info_dl">
 											<dt>주소</dt>
-											<dd>서울특별시 종로구 삼일대로 391</dd>
+											<dd>${fullAddr }</dd>
 										</dl>
 									</c:if>
 								</div>
@@ -529,7 +523,7 @@ function gotoOrderList() {
 	<input type="hidden" id="code" name="code" value="${code}">
 	<input type="hidden" id="whatWay" name="whatWay" value="${whatWay}">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
-	<input type="hidden" id="totalPrice" name="totalPrice" value="">
+	<input type="hidden" id="totalPrice" name="totalPrice" value="${totalPrice}">
 	<input type="hidden" id="step01Text" name="step01Text" value="">
 	<input type="hidden" id="step03Text" name="step03Text" value="">
 	<input type="hidden" id="quantity" name="quantity" value="${quantity }">
@@ -538,7 +532,7 @@ function gotoOrderList() {
 	<input type="hidden" id="toppingAdd" name="toppingAdd" value="${toppingList }">
 	<input type="hidden" id="meatAdd" name="meatAdd" value="">
 	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
-	<input type="hidden" id="setAdd" name="setAdd" value="">
+	<input type="hidden" id="setAdd" name="setAdd" value="${setAdd }">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
 	<input type="hidden" id="storeName" name="storeName" value="${store.storename }">
 	<input type="hidden" id="coupon" name="coupon" value="">
@@ -548,6 +542,7 @@ function gotoOrderList() {
 	<input type="hidden" id="receive" name="receive" value="">
 	<input type="hidden" id="payment" name="payment" value="">
 	<input type="hidden" id="payment_status" name="payment_status" value="">
+	<input type="hidden" id="menu_type" name="menu_type" value="${menu_type }">
 </form> 
 </body>
 </html>

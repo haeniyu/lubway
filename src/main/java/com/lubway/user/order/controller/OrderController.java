@@ -201,7 +201,7 @@ public class OrderController {
 			String step01Text, String step02Text, String step03Text,
 			String eachCost, String quantity, String totalPrice,
 			String franchiseNo, String whatWay, String code, String fullAddr,
-			String menuName,
+			String menuName, String menu_type,
 			String toppingAdd, String meatAdd, String cheeseAdd,String setAdd) {
 		
 		System.out.println("주문 및 결제하기 페이지로 이동");
@@ -232,6 +232,7 @@ public class OrderController {
 		if(cheeseAdd.equals("치즈 추가를 선택해 주세요")) cheeseAdd="";
 		
 		//step03에서 받은 주문정보 설정
+		System.out.println("메뉴 타입 : " + menu_type);
 		model.addAttribute("step01Text", step01Text);
 		model.addAttribute("step02Text", step02Text);
 		model.addAttribute("step03Text", step03Text);
@@ -247,15 +248,18 @@ public class OrderController {
 		model.addAttribute("cheeseAdd", cheeseAdd);
 		model.addAttribute("setAdd", setAdd);
 		model.addAttribute("fullAddr", fullAddr);
+		model.addAttribute("menu_type", menu_type);
 		
 		return "order/orderStep04";
 	}
 	
-	// insert
+	/** 
+	 * 단품 결제 (DB insert)
+	 * */
 	@PostMapping("/orderStep05.do")
 	public String orderStep05(Model model, OrderCodeVO cvo, OrderListVO lvo, HttpSession session,
 			String step01Text, String step02Text, String step03Text, String storeName,
-			String eachCost, String quantity, String totalPrice, String tel, 
+			String eachCost, String quantity, String totalPrice, String tel, String menu_type,
 			String franchiseNo, String whatWay, String code, String fullAddr, 
 			String menuName, String toppingAdd, String meatAdd, String cheeseAdd,String setAdd,
 			String coupon, String point, String request, String payment, Boolean payment_status, String receive) {
@@ -277,7 +281,7 @@ public class OrderController {
 		cvo.setPayment_status(payment_status);
 		
 		// orderListVO
-		//lvo.setMenu_type(menu_type);
+		lvo.setMenu_type(menu_type);
 		lvo.setMenu_name(menuName);
 		int quan = Integer.parseInt(quantity);
 		lvo.setQuantity(quan);
@@ -287,7 +291,8 @@ public class OrderController {
 		lvo.setAdd_meat(meatAdd);
 		lvo.setAdd_cheese(cheeseAdd);
 		lvo.setStep03(step03Text);
-		//lvo.setSet_price(set_price);
+		lvo.setSet_price(setAdd);
+		lvo.setMenu_price(totalPrice);
 		
 		orderService.insertOrderCode(cvo);
 		orderService.insertOrderList(lvo);
@@ -296,6 +301,9 @@ public class OrderController {
 		
 	}
 
+	/**
+	 * 장바구니 주문 화면 이동
+	 */
 	@RequestMapping("/orderBasket.do")
 	public String orderBasket(Model model, HttpSession session, String basketNo, UserCouponVO coupon) {
 		System.out.println("장바구니 주문 페이지 이동");
@@ -352,9 +360,78 @@ public class OrderController {
 		model.addAttribute("basket", list);
 		model.addAttribute("price", total);
 		model.addAttribute("whatWay", list.get(0).getOrder_type());
+		model.addAttribute("basketNo", basketNo);
 		
 		
 		return "order/orderBasket";
 	}	
+	
+	/** 
+	 * 장바구니 결제 (DB insert)
+	 * */
+	@PostMapping("/orderStep05Basket.do")
+	public String orderStep05Basket(Model model, String totalPrice, String coupon, String point,
+			String request, String order_type, String tel, String storeName, String fullAddr,
+			String payment, Boolean payment_status,
+			String basketNo, OrderCodeVO cvo, OrderListVO lvo, HttpSession session) {
+		
+		UserVO user = (UserVO) session.getAttribute("user");
+		// orderCodeVO
+		cvo.setId(user.getId());
+		cvo.setName(user.getName());
+		cvo.setTel(tel);
+		cvo.setAddress(fullAddr);
+		cvo.setRequest(request);
+		cvo.setStore_name(storeName);
+		cvo.setOrder_type(order_type);
+		cvo.setUse_coupon(coupon);
+		cvo.setUse_point(point);
+		cvo.setTotal_price(totalPrice);
+		cvo.setPayment_list(payment);
+		cvo.setPayment_status(payment_status);
+		
+		orderService.insertOrderCode(cvo);
+		
+		
+		// orderListVO
+		String[] arr = basketNo.split(",");	
+		for(String no : arr) {
+			int num = Integer.parseInt(no);
+			BasketVO vo = basketService.getBasketByNo(num);
+			
+			lvo.setMenu_type(vo.getMenu_type());
+			lvo.setMenu_name(vo.getMenu_name());
+			lvo.setQuantity(vo.getQuantity());
+			lvo.setSingle_price(vo.getSingle_price());
+			
+			if(vo.getMenu_type().equals("sandwich")) {
+				String size = "";
+				if(!vo.isSize()) {
+					size = "15cm,";
+				}else {
+					size = "30cm,";
+				}
+				
+				lvo.setStep01(size + vo.getBread() + "," + vo.getCheese() + "," + vo.getVegetable() + "," + vo.getSauce());
+			
+			}else if(vo.getMenu_type().equals("salad")) {
+				lvo.setStep01(vo.getCheese() + "," + vo.getVegetable() + "," + vo.getSauce());
+			}
+			
+			lvo.setAdd_topping(vo.getAdd_topping());
+			lvo.setAdd_meat(vo.getAdd_meat());
+			lvo.setAdd_cheese(vo.getAdd_cheese());
+			lvo.setStep03(vo.getSet_name());
+			lvo.setSet_price(vo.getSet_price());
+			lvo.setMenu_price(vo.getTotal_price());
+			
+			orderService.insertOrderList(lvo);
+			
+		}
+		
+		
+		return "redirect:/orderList.do";
+		
+	}
 	
 }

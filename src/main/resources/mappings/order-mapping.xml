@@ -34,6 +34,7 @@
 		<result property="add_cheese" column="ADD_CHEESE" />
 		<result property="step03" column="STEP03" />
 		<result property="set_price" column="SET_PRICE" />
+		<result property="menu_price" column="MENU_PRICE"/>
 	</resultMap>
 	
 	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
@@ -73,7 +74,7 @@
 			select MAX(no) from order_code
 		</selectKey>
 		insert into order_list values(#{no}, #{menu_type}, #{menu_name}, #{quantity}, #{single_price}, #{step01}, #{add_topping},
-										#{add_meat}, #{add_cheese}, #{step03}, #{set_price})
+										#{add_meat}, #{add_cheese}, #{step03}, #{set_price}, #{menu_price})
 	</insert>
 	
 </mapper>

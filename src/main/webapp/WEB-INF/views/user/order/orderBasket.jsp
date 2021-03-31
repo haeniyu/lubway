@@ -112,6 +112,62 @@ $(function() {
 		}
 	});	
 }); //end of pay function
+
+function gotoOrderList() {
+	var totalPrice = $("#orderTotal").text();//총 가격
+	$("#totalPrice").val(totalPrice);
+	
+	var coupon = $("#couponAmtNavi").text();
+	$("#coupon").val(coupon);
+	
+	var point = $("#pointAmtNavi").text();
+	$("#point").val(point);
+	
+	var request = $("#ordMemoContent").val();
+	$("#request").val(request);
+	
+	// 결제 수단
+	var payment = pay;
+	var payment_status;
+	
+	if(payment == "PAY_METHOD.CASH"){
+		payment = "현금";
+		payment_status = false;
+		
+	}else if(payment == "PAY_METHOD.PAYCOKAKAO"){
+		payment = "카카오페이";
+		payment_status = true;
+	}else{
+		payment = "신용카드";
+		payment_status = true;
+	}
+	$("#payment").val(payment);
+	$("#payment_status").val(payment_status);
+	
+	// 수령 방법
+	var way = '${whatWay}';
+	var temp = "";
+	
+	if(way == "Home-Way"){
+		temp = "배달";
+		$("#order_type").val(temp);
+	}else{
+		$("#order_type").val(pickUp);
+		console.log("픽업 선택 : " + pickUp);
+	}
+	
+	var menu_type = $("#menuType").val();
+	$("#menu_type").val(menu_type);
+	
+	var tel = $("#ordHp").val();
+	$("#tel").val(tel);
+	
+	var addr = $("#addr").text();
+	$("#fullAddr").val(addr);
+	
+	$("#orderForm").submit();
+	
+}
 </script>
 </head>
 <body>
@@ -158,7 +214,7 @@ $(function() {
 									<c:if test="${whatWay eq 'Home-Way' }">
 										<dl class="info_dl">
 											<dt>주소</dt>
-											<dd>${basket.user_address }</dd>
+											<dd id="addr">${basket.user_address }</dd>
 										</dl>
 									</c:if>
 								</div>
@@ -200,7 +256,7 @@ $(function() {
 										<dt>전화번호</dt>
 										<dd>
 											<span class="form_text"> <input maxlength="11"
-												name="ordHp" placeholder="전화번호를 입력하세요" type="text"
+												name="ordHp" id="ordHp" placeholder="전화번호를 입력하세요" type="text"
 												value="${user.tel }" />
 											</span>
 										</dd>
@@ -439,7 +495,7 @@ $(function() {
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
-							<dd><strong id="totalPayAmtNavi">${totalPrice}</strong><span>원</span></dd>
+							<dd><strong id="totalPayAmtNavi">${ttl}</strong><span>원</span></dd>
 						</dl>
 						<div class="payment_agree">
 							<dl>
@@ -472,22 +528,18 @@ $(function() {
 	</div>
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 <!-- 주문 완료 결제 페이지 이동 -->
-<form action="#" method="post" id="orderForm" style="display: none;">
-	<input type="hidden" id="code" name="code" value="${code}">
-	<input type="hidden" name="whatWay" value="${whatWay}">
-	<input type="hidden" id="franchiseNo" name="franchiseNo" value="${franchiseNo}">
+<form action="orderStep05Basket.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" id="totalPrice" name="totalPrice" value="">
-	<input type="hidden" id="step01Text" name="step01Text" value="">
-	<input type="hidden" id="step02Text" name="step02Text" value="">
-	<input type="hidden" id="step03Text" name="step03Text" value="">
-	<input type="hidden" id="quantity" name="quantity" value="">
-	<input type="hidden" id="eachCost" name="eachCost" value="">
-	<input type="hidden" id="menuName" name="menuName" value="${menu.name}">
-	<input type="hidden" id="toppingAdd" name="toppingAdd" value="">
-	<input type="hidden" id="meatAdd" name="meatAdd" value="">
-	<input type="hidden" id="cheeseAdd" name="cheeseAdd" value="">
-	<input type="hidden" id="setAdd" name="setAdd" value="">
-	<input type="hidden" id="fullAddr" name="fullAddr" value="${fullAddr }">
+	<input type="hidden" id="coupon" name="coupon" value="">
+	<input type="hidden" id="point" name="point" value="">
+	<input type="hidden" id="request" name="request" value="">
+	<input type="hidden" id="order_type" name="order_type" value="">
+	<input type="hidden" id="payment" name="payment" value="">
+	<input type="hidden" id="payment_status" name="payment_status" value="">
+	<input type="hidden" id="basketNo" name="basketNo" value="${basketNo }">
+	<input type="hidden" id="tel" name="tel" value="">
+	<input type="hidden" id="storeName" name="storeName" value="${store.storename }">
+	<input type="hidden" id="fullAddr" name="fullAddr" value="">
 </form> 
 </body>
 </html>
