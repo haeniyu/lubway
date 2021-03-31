@@ -41,12 +41,24 @@ $(function() {
 	})
 });
 var pay = "";
+var pickUp = "";
 $(function() {
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);
 		pay = temp;
 	})
+	$("input:radio[name=paveFg]").click(function(){
+	var pick = $(this).val();
+	console.log(pick);
+	if(pick == "Y"){
+		pickUp = "방문포장"
+	}
+	if(pick == "N"){
+		pickUp = "매장식사"
+	}
+	console.log(pickUp);
+})
 	$("#startOrder").click(function (){
 		var lastcost = $('#totalPayAmtNavi').text();
 		console.log(lastcost);
@@ -97,10 +109,11 @@ $(function() {
 		}else if(pay == "PAY_METHOD.CASH"){
 			
 			gotoOrderList();
-			
 		}
 	});	
 }); //end of pay function
+
+console.log("픽업 선택 : " + pickUp);
 
 function gotoOrderList() {
 	var totalPrice = $("#totalPayAmtNavi").text();//총 가격
@@ -159,25 +172,18 @@ function gotoOrderList() {
 	// 수령 방법
 	var way = '${whatWay}';
 	var temp = "";
-	var pickUp = $(".receive").val();
+	
 	if(way == "Home-Way"){
 		temp = "배달";
 		$("#receive").val(temp);
 	}else{
-		if(pickUp == "Y"){
-			pickUp = "방문포장"
-			$("#receive").val(pickUp);
-		}else{
-			pickUp = "매장식사"
-			$("#receive").val(pickUp);
-		}
+		$("#receive").val(pickUp);
+		console.log("픽업 선택 : " + pickUp);
 	}
 	
 	$("#orderForm").submit();
 	
 }
-
-
 </script>
 </head>
 <body>
@@ -237,7 +243,7 @@ function gotoOrderList() {
 												<div class="choice_wrap">
 													<!-- radio -->
 													<label class="form_circle" for="r2"> 
-														<input checked="checked" id="r2" name="paveFg" type="radio" value="Y" class="receive"/> 
+														<input id="r2" name="paveFg" type="radio" value="Y" class="receive"/> 
 														<span class="icon"></span> <em>방문포장</em>
 													</label> 
 													<label class="form_circle" for="r1"> 
@@ -347,7 +353,7 @@ function gotoOrderList() {
 										<dd>
 											<div class="form_radio square">
 												<label> 
-													<input checked="checked" class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
+													<input class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
 													<span class="shape">현금</span>
 												</label> 
 												<label> 
