@@ -15,15 +15,6 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
-	/*console.log($(".price").text());
-	var priceTmp = $(".price").text();
-	var price2 = priceTmp.replace(/  /g, " ");
-	var price3 = price2.replace(/ /g, ",");
-	console.log(price3);*/
-	
-	${basket.total_price}
-	
-	
 	// fast/home 배경 구분
 	var way = '${whatWay}';
 	console.log("whatWay : " + way);
@@ -49,16 +40,28 @@ $(function() {
 		}
 	})
 });
+var pay = "";
+var pickUp = "";
 $(function() {
-	var pay = "";
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);
 		pay = temp;
 	})
-	var lastcost = $('#totalPayAmtNavi').text();
-	console.log(lastcost);
+	$("input:radio[name=paveFg]").click(function(){
+	var pick = $(this).val();
+	console.log(pick);
+	if(pick == "Y"){
+		pickUp = "방문포장"
+	}
+	if(pick == "N"){
+		pickUp = "매장식사"
+	}
+	console.log(pickUp);
+})
 	$("#startOrder").click(function (){
+		var lastcost = $('#totalPayAmtNavi').text();
+		console.log(lastcost);
 		if(pay == "PAY_METHOD.PAYCOKAKAO"){
 			IMP.init('imp80143812');
 			IMP.request_pay({
@@ -103,9 +106,12 @@ $(function() {
 			        alert(msg);
 			    }
 			});
+		}else if(pay == "PAY_METHOD.CASH"){
+			
+			gotoOrderList();
 		}
-	});
-});
+	});	
+}); //end of pay function
 </script>
 </head>
 <body>
@@ -420,7 +426,7 @@ $(function() {
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong id="orderTotal"></strong>
+								<strong id="orderTotal">${ttl }</strong>
 								원
 							</dd>
 						</dl>

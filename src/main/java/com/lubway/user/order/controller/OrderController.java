@@ -295,20 +295,34 @@ public class OrderController {
 	}
 
 	@RequestMapping("/orderBasket.do")
-	public String orderBasket(Model model, HttpSession session, String basketNo) {
+	public String orderBasket(Model model, HttpSession session, String basketNo, UserCouponVO coupon) {
 		System.out.println("장바구니 주문 페이지 이동");
 		System.out.println("주문 no " + basketNo);
 		
-		List<BasketVO> list = new ArrayList<>();
+		// 사용 가능한 쿠폰 리스트 띄우기
+		UserVO user = (UserVO) session.getAttribute("user");
+		coupon.setId(user.getId());
 		
-		String[] arr = basketNo.split(",");
+		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
+		int countUseCoupon = couponService.countUseCoupon(coupon);
+		
+		model.addAttribute("couponList", couponList);
+		model.addAttribute("countCoupon", countUseCoupon);
+		
+		//BasketVO를 담아줄 리스트
+		List<BasketVO> list = new ArrayList<>();
+		int ttl = 0;	//결제될 총 가격
+		String[] arr = basketNo.split(",");	
+		
 		for(String no : arr) {
 			int num = Integer.parseInt(no);
 			BasketVO vo = basketService.getBasketByNo(num);
 			list.add(vo);
+			String price = vo.getTotal_price().trim();
+			ttl += Integer.parseInt(price);
 		}
 		
-		model.addAttribute("whatWay", list.get(0).getOrder_type());
+		model.addAttribute("ttl", ttl);
 		
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();	//추가한 토핑 정보를 List로 세팅합니다.
 
@@ -330,13 +344,13 @@ public class OrderController {
 			}
 		}
 	
-		// 장바구니에 담긴 메뉴가 존재할 경우 (데이터가 있을 경우)
-		if(list.size() > 0 ) {
-			StoreInfoVO storeInfo = basketService.getStoreInfo(list.get(0).getStore_no());
-			model.addAttribute("store", storeInfo);
-			model.addAttribute("basket", list);
-			model.addAttribute("price", total);
-		}
+		
+		StoreInfoVO storeInfo = basketService.getStoreInfo(list.get(0).getStore_no());
+		model.addAttribute("store", storeInfo);
+		model.addAttribute("basket", list);
+		model.addAttribute("price", total);
+		model.addAttribute("whatWay", list.get(0).getOrder_type());
+		
 		
 		return "order/orderBasket";
 	}	
