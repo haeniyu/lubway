@@ -54,7 +54,6 @@
 			url : '/lubway/changeCategory.do?select=' + select,
 			type : 'post',
 			success : function(data) {
-//			console.log("ajax : 통신 성공");
 				console.log("=== Ajax result data ===");
 				console.log(data);
 				insertInfo(data);

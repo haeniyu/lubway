@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
 import com.lubway.admin.menu.DrinkVO;
@@ -33,7 +34,7 @@ public class BasketController {
 
 	@Autowired
 	private MenuService menuservice;
-	
+
 	@Autowired OrderService orderservice;
 
 	/** 장바구니 FAST-WAY */
@@ -66,7 +67,7 @@ public class BasketController {
 				}
 			}
 		}
-	
+
 		// 장바구니에 담긴 메뉴가 존재할 경우 (데이터가 있을 경우)
 		if(basketList.size() > 0 ) {
 			StoreInfoVO storeInfo = basketservice.getStoreInfo(basketList.get(0).getStore_no());
@@ -89,7 +90,7 @@ public class BasketController {
 
 		List<BasketVO> basketList = basketservice.getBasket(vo);
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
-		
+
 		for(BasketVO list : basketList) {
 			if(list.getAdd_topping() != null) {
 				if(list.getAdd_topping().split(",").length > 1) {
@@ -106,7 +107,7 @@ public class BasketController {
 				}
 			}
 		}
-	
+
 		if(basketList.size() > 0 ) {
 			StoreInfoVO storeInfo = basketservice.getStoreInfo(basketList.get(0).getStore_no());
 			String user_address = basketList.get(0).getUser_address();
@@ -122,24 +123,22 @@ public class BasketController {
 	/** 장바구니 데이터 delete */
 	@PostMapping("/deleteBasket.do")
 	public String deleteBasket(String deleteNo, String whatWay, String selectAll, HttpSession session) {
-		
-		System.out.println(selectAll);
-		
+
 		UserVO user = (UserVO) session.getAttribute("user");
-		
+		BasketVO basketVO = new BasketVO();
+		basketVO.setId(user.getId());
+		basketVO.setOrder_type(whatWay);
+
 		if(selectAll.equals("1")) {
-			basketservice.deleteAllBasket(user.getId());
+			basketservice.deleteAllBasket(basketVO);
 		} else {
 			if(deleteNo.split(",").length == 1) {
-				System.out.println("삭제할 데이터 개수 : 1 - " + deleteNo);
 				BasketVO vo = new BasketVO();
 				vo.setNo(Integer.parseInt(deleteNo));
 				basketservice.deleteBasket(vo);
 			} else {
-				System.out.println("삭제할 데이터 개수 : " + deleteNo.split(",").length + " - " + deleteNo);
 				String[] deleteData = deleteNo.split(",");
 				for(String data : deleteData) {
-					System.out.println("얘 삭제할 거임 : " + data);
 					BasketVO vo = new BasketVO();
 					vo.setNo(Integer.parseInt(data));
 					basketservice.deleteBasket(vo);
@@ -148,6 +147,16 @@ public class BasketController {
 		}
 		if(whatWay.equals("Home-Way")) return "redirect:baskethome.do";
 		else return "redirect:basketfast.do";
+	}
+	
+	/** 장바구니 데이터 update */
+	@PostMapping("/updateBasket.do")
+	@ResponseBody
+	public void updateBasket(String no, String type) {
+		System.out.println("update할 no : " + no);
+		System.out.println("update할 type : " + type);
+		if(type.equals("plus")) basketservice.updatePlus(Integer.parseInt(no));
+		else basketservice.updateMinus(Integer.parseInt(no));
 	}
 	
 	/**	장바구니 데이터 insert */
@@ -170,32 +179,32 @@ public class BasketController {
 		String filePath = "";
 
 		switch (code.substring(0, 3)) {
-		case "SDW" : SandwichVO sandwich = new SandwichVO();
-		sandwich.setCode(code);
-		filePath += menuservice.selectSandwich(sandwich).getFilePath();
-		break;
-		case "WRP" : WrapVO wrap = new WrapVO();
-		wrap.setCode(code);
-		filePath += menuservice.selectWrap(wrap).getFilePath();
-		break;
-		case "SLD" : SaladVO salad = new SaladVO();
-		salad.setCode(code);
-		filePath += menuservice.selectSalad(salad).getFilePath();
-		break;
-		case "SMW" : if(code.substring(code.length()-1, code.length()).equals("W")) {
-			WedgeAndSoupVO wedgeSoup = new WedgeAndSoupVO();
-			wedgeSoup.setCode(code);
-			filePath += menuservice.selectWAS(wedgeSoup).getFilePath();
-		} else {
-			CookieVO cookie = new CookieVO();
-			cookie.setCode(code);
-			filePath += menuservice.selectCookie(cookie).getFilePath();
-		}
-		break;
-		case "DRK" : DrinkVO drink = new DrinkVO();
-		drink.setCode(code);
-		filePath += menuservice.selectDrink(drink).getFilePath();
-		break;
+			case "SDW" : SandwichVO sandwich = new SandwichVO();
+						 sandwich.setCode(code);
+						 filePath += menuservice.selectSandwich(sandwich).getFilePath();
+						 break;
+			case "WRP" : WrapVO wrap = new WrapVO();
+						 wrap.setCode(code);
+						 filePath += menuservice.selectWrap(wrap).getFilePath();
+						 break;
+			case "SLD" : SaladVO salad = new SaladVO();
+						 salad.setCode(code);
+						 filePath += menuservice.selectSalad(salad).getFilePath();
+						 break;
+			case "SMW" : if(code.substring(code.length()-1, code.length()).equals("W")) {
+							 WedgeAndSoupVO wedgeSoup = new WedgeAndSoupVO();
+							 wedgeSoup.setCode(code);
+							 filePath += menuservice.selectWAS(wedgeSoup).getFilePath();
+						 } else {
+							 CookieVO cookie = new CookieVO();
+							 cookie.setCode(code);
+							 filePath += menuservice.selectCookie(cookie).getFilePath();
+						 }
+						 break;
+			case "DRK" : DrinkVO drink = new DrinkVO();
+						 drink.setCode(code);
+						 filePath += menuservice.selectDrink(drink).getFilePath();
+						 break;
 		}
 
 		String v = "";
@@ -237,8 +246,9 @@ public class BasketController {
 		}
 		System.out.println(totalPrice);
 		totalPrice = totalPrice.replace(",", "");
+		totalPrice = totalPrice.trim();
 		System.out.println(totalPrice);
-		basket.setTotal_price(totalPrice);
+		basket.setTotal_price(Integer.parseInt(totalPrice));
 		if(cheeseAdd.equals("")) basket.setAdd_cheese(null);
 		else basket.setAdd_cheese(cheeseAdd);
 		basket.setMenu_name(menuName);
@@ -256,7 +266,8 @@ public class BasketController {
 
 		basketservice.insertBasket(basket);
 
-		return "redirect:basketfast.do";
+		if(whatWay.equals("Home-Way")) return "redirect:baskethome.do";
+		else return "redirect:basketfast.do";
 	}
 
 }

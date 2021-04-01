@@ -24,11 +24,7 @@ public class FastwayController {
 	/** 패스트웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
 	@GetMapping("step01.do")
 	public String fastwayView(String franchiseNo, Model model) {
-		if(franchiseNo != null) {
-			System.out.println("장바구니에서 매장 변경 요청으로 옴");
-			System.out.println(franchiseNo);
-			model.addAttribute("changeNo", franchiseNo);
-		}
+		if(franchiseNo != null) model.addAttribute("changeNo", franchiseNo);
 		return "order/fastway";
 	}
 	

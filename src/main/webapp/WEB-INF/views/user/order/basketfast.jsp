@@ -64,6 +64,7 @@ var cnt = 0;
 var totalCnt = 0;
 var selectId = "";
 var selectNo = "";
+var updateNo = "";
 
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
@@ -92,8 +93,24 @@ $(document).ready(function(){
 		$(".eachTotalPrice"+count).text(basket);
 		$("#qty"+count).val(qty);
 		totalPrice += add;
-		$("#totalPrice").text(totalPrice);		
-
+		$("#totalPrice").text(totalPrice);
+	
+		updateNo = $("input[name=update" + count + "]").val();
+		
+		$.ajax({
+			url : '/lubway/updateBasket.do',
+			type : 'post',
+			data : {
+				no : updateNo,
+				type : "plus"
+			},
+			success : function() {
+				console.log("ajax 통신 성공");
+			},
+			error : function(data, status, opt) {
+				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+			}
+		});
 	});
 	
 	$(".minus").click("click",function(){
@@ -111,7 +128,23 @@ $(document).ready(function(){
 		$("#qty"+count).val(qty);
 		totalPrice -= minus;
 		$("#totalPrice").text(totalPrice);		
-
+		
+		updateNo = $("input[name=update" + count + "]").val();
+		
+		$.ajax({
+			url : '/lubway/updateBasket.do',
+			type : 'post',
+			data : {
+				no : updateNo,
+				type : "minus"
+			},
+			success : function() {
+				console.log("ajax 통신 성공");
+			},
+			error : function(data, status, opt) {
+				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+			}
+		});
 	});
 
 	
@@ -294,9 +327,10 @@ function orderBasket() {
 									<dt>수량</dt>
 									<dd>
 										<input name="eachPrice" type="hidden" value="" />
-										<a class="minus" id="${stat.count }" href="javascript:void(0);">수량 빼기</a>
-										<input class="qty" id="qty${stat.count }" name="${stat.count}" type="text" value="${basket.quantity}" readonly/>
-										<a class="plus" id="${stat.count }" href="javascript:void(0);">수량 더하기</a>
+										<a class="minus" id="${stat.count}" href="javascript:void(0);">수량 빼기</a>
+										<input class="qty" id="qty${stat.count}" name="${stat.count}" type="text" value="${basket.quantity}" readonly/>
+										<a class="plus" id="${stat.count}" href="javascript:void(0);">수량 더하기</a>
+										<input type="hidden" name="update${stat.count}" value="${basket.no}">
 									</dd>
 								</dl>
 								
@@ -321,15 +355,6 @@ function orderBasket() {
 						</dd>
 					</dl>
 					<div class="btn_area">
-						<form method="post" name="orderForm">
-							<input name="ordType" type="hidden" value="ORD_TYPE.HOME_SUB" />
-							<input name="storCd" type="hidden" value="66406" />
-							
-								<input name="receiverZipcd" type="hidden" value="04036" />
-								<input name="receiverAddr" type="hidden" value="서울 마포구 양화로 45" />
-								<input name="receiverAddrDtl" type="hidden" value="1호" />
-							
-						</form>
 						<a class="btn bgc_white" href="javascript:void(0);" onclick="addMenu();" id="addMenu"><span>메뉴추가하기</span></a>
 						<a class="btn bgc_point i_reg" href="javascript:void(0);" id="setOrder" onclick="orderBasket();"><span>주문하기</span></a>
 					</div>

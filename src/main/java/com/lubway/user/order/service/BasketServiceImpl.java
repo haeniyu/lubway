@@ -45,8 +45,17 @@ public class BasketServiceImpl implements BasketService {
 	}
 
 	@Override
-	public void deleteAllBasket(String name) {
-		basketDAO.deleteAllBasket(name);
+	public void deleteAllBasket(BasketVO vo) {
+		basketDAO.deleteAllBasket(vo);
 	}
 
+	@Override
+	public void updatePlus(int no) {
+		basketDAO.updatePlus(no);
+	}
+
+	@Override
+	public void updateMinus(int no) {
+		basketDAO.updateMinus(no);
+	}
 }

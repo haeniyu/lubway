@@ -254,7 +254,8 @@ function orderStart(franchiseNo) {
 <form action="/lubway/orderStep02.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" name="whatWay" value="Fast-Way">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
-	<input type="hidden" id="franchiseNo" name="changeNo" value="${changeNo}">
+	<input type="hidden" name="changeNo" value="${changeNo}">
+	<input type="hidden" name="user" value="${user.id}">
 </form> 
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
