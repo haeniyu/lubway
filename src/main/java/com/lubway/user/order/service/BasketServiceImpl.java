@@ -39,4 +39,9 @@ public class BasketServiceImpl implements BasketService {
 		return basketDAO.getBasketByNo(no);
 	}
 
+	@Override
+	public void deleteBasket(BasketVO vo) {
+		basketDAO.deleteBasket(vo);
+	}
+
 }

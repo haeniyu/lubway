@@ -12,4 +12,5 @@ public interface BasketService {
 	StoreInfoVO getStoreInfo(int no);
 	void insertBasket(BasketVO vo);
 	BasketVO getBasketByNo(int no);
+	void deleteBasket(BasketVO vo);
 }
