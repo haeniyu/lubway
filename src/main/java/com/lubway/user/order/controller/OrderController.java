@@ -360,8 +360,8 @@ public class OrderController {
 			int num = Integer.parseInt(no);
 			BasketVO vo = basketService.getBasketByNo(num);
 			list.add(vo);
-			String price = vo.getTotal_price().trim();
-			ttl += Integer.parseInt(price);
+			int price = vo.getTotal_price();
+			ttl += price;
 		}
 		
 		model.addAttribute("ttl", ttl);
@@ -461,7 +461,7 @@ public class OrderController {
 			lvo.setAdd_cheese(vo.getAdd_cheese());
 			lvo.setStep03(vo.getSet_name());
 			lvo.setSet_price(Integer.parseInt(vo.getSet_price()));
-			//lvo.setMenu_price(vo.getTotal_price());
+			lvo.setMenu_price(vo.getTotal_price());
 			
 			orderService.insertOrderList(lvo);
 			basketService.deleteBasket(vo);
