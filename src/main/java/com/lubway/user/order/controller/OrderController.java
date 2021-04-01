@@ -294,12 +294,21 @@ public class OrderController {
 		int quan = Integer.parseInt(quantity);
 		lvo.setQuantity(quan);
 		lvo.setSingle_price(eachCost);
-		lvo.setStep01(step01Text);
-		lvo.setAdd_topping(toppingAdd);
-		lvo.setAdd_meat(meatAdd);
-		lvo.setAdd_cheese(cheeseAdd);
-		lvo.setStep03(step03Text);
-		lvo.setSet_price(setAdd);
+		if(step01Text.equals("")) lvo.setStep01(null);
+		else lvo.setStep01(step01Text);
+		if(meatAdd.equals("")) lvo.setAdd_meat(null);
+		else lvo.setAdd_meat(meatAdd);
+		if(toppingAdd.equals("")) lvo.setAdd_topping(null);
+		else lvo.setAdd_topping(toppingAdd);
+		if(cheeseAdd.equals("")) lvo.setAdd_cheese(null);
+		else lvo.setAdd_cheese(cheeseAdd);
+		if(step03Text.equals("")) {
+			lvo.setStep03(null);
+			lvo.setSet_price(null);
+		}else {
+			lvo.setStep03(step03Text);
+			lvo.setSet_price(setAdd);
+		}
 		lvo.setMenu_price(totalPrice);
 		
 		orderService.insertOrderCode(cvo);
@@ -411,7 +420,7 @@ public class OrderController {
 		cvo.setOrder_type(order_type);
 		cvo.setUse_coupon(coupon);
 		cvo.setUse_point(point);
-		cvo.setTotal_price(totalPrice);
+		cvo.setTotal_price(totalPrice.trim());
 		cvo.setPayment_list(payment);
 		cvo.setPayment_status(payment_status);
 		
@@ -441,6 +450,8 @@ public class OrderController {
 			
 			}else if(vo.getMenu_type().equals("salad")) {
 				lvo.setStep01(vo.getCheese() + "," + vo.getVegetable() + "," + vo.getSauce());
+			}else {
+				lvo.setStep01(null);
 			}
 			
 			lvo.setAdd_topping(vo.getAdd_topping());
@@ -448,7 +459,7 @@ public class OrderController {
 			lvo.setAdd_cheese(vo.getAdd_cheese());
 			lvo.setStep03(vo.getSet_name());
 			lvo.setSet_price(vo.getSet_price());
-			lvo.setMenu_price(vo.getTotal_price());
+			lvo.setMenu_price(vo.getTotal_price().trim());
 			
 			orderService.insertOrderList(lvo);
 			basketService.deleteBasket(vo);
