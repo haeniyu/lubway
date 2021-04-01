@@ -373,7 +373,7 @@
 .bill_order .btn_area a{width: 170px;}
 
 /* 매장찾기 레이어 */
-.store_map_layer{width:298px; height:280px; border:1px solid #000000; background-color:#fff; position:absolute; left:50%; top:50%; margin:-290px 0 0 -150px; z-index:0}
+.store_map_layer{width:298px; height:243px; border:1px solid #000000; background-color:#fff; position:absolute; left:50%; top:50%; margin:-290px 0 0 -150px; z-index:0}
 .store_map_layer:after{content:''; position:absolute; left:50%; bottom:-8px; width:12px; height:8px; margin-left:-6px; background:url(../images/icon_arr_d.png) 0 0 no-repeat;}
 .store_map_layer .head{background-color:#ffce32; position:relative; height:54px;}
 .store_map_layer .head strong{color:#292929; font-size:18px; font-weight:bold; display:block; padding:17px 0 0 23px; letter-spacing:-0.03em}
