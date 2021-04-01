@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -259,15 +260,18 @@ public class OrderController {
 	}
 	
 	/** 
-	 * 단품 결제 (order_list insert, usecoupon insert, point update)
+	 * 단품 결제
 	 * */
 	@PostMapping("/orderStep05.do")
+	@Transactional
 	public String orderStep05(Model model, OrderCodeVO cvo, OrderListVO lvo, HttpSession session,
 			String step01Text, String step02Text, String step03Text, String storeName,
-			String eachCost, String quantity, String totalPrice, String tel, String menu_type,
+			String eachCost, String quantity, String totalPrice, String restPrice,
+			String tel, String menu_type,
 			String franchiseNo, String whatWay, String code, String fullAddr, 
 			String menuName, String toppingAdd, String meatAdd, String cheeseAdd,String setAdd,
-			String coupon, String point, String request, String payment, Boolean payment_status, String receive) {
+			String coupon, String couponCode, String point, 
+			String request, String payment, Boolean payment_status, String receive) {
 
 		UserVO user = (UserVO) session.getAttribute("user");
 		
@@ -302,12 +306,18 @@ public class OrderController {
 		orderService.insertOrderCode(cvo);
 		orderService.insertOrderList(lvo);
 		
-		//계정 보유 포인트 처리
+		//계정 보유 포인트 처리 (기존포인트 - 사용포인트 + 적립포인트)
 		int userPoint = user.getPoint();
 		int usedPoint = Integer.parseInt(point);
-		userPoint -= usedPoint;
+		String rest = restPrice.replace(",", "");
+		int restNum = Integer.parseInt(rest);
+		int earnedPoint = (int) (restNum*0.05); 
+		userPoint = userPoint - usedPoint + earnedPoint;
 		user.setPoint(userPoint);
 		userService.updateUser(user);
+		
+		//쿠폰 사용 처리
+		couponService.insertUseCoupon(couponCode, user.getId());
 		
 		return "redirect:/orderList.do";
 		
@@ -381,12 +391,14 @@ public class OrderController {
 	}	
 	
 	/** 
-	 * 장바구니 결제 (order_list insert, usecoupon insert, point update, basket delete)
+	 * 장바구니 결제 처리
 	 * */
 	@PostMapping("/orderStep05Basket.do")
-	public String orderStep05Basket(Model model, String totalPrice, String coupon, String point,
+	public String orderStep05Basket(Model model, 
+			String totalPrice, String restPrice, 
+			String coupon, String couponCode, String point,
 			String request, String order_type, String tel, String storeName, String fullAddr,
-			String payment, Boolean payment_status,
+			String payment, Boolean payment_status, 
 			String basketNo, OrderCodeVO cvo, OrderListVO lvo, HttpSession session) {
 		
 		UserVO user = (UserVO) session.getAttribute("user");
@@ -445,13 +457,18 @@ public class OrderController {
 		}// end of for
 		
 		
-		//계정 보유 포인트 처리
+		//계정 보유 포인트 처리 (기존포인트 - 사용포인트 + 적립포인트)
 		int userPoint = user.getPoint();
 		int usedPoint = Integer.parseInt(point);
-		userPoint -= usedPoint;
+		String rest = restPrice.replace(",", "");
+		int restNum = Integer.parseInt(rest);
+		int earnedPoint = (int) (restNum*0.05); 
+		userPoint = userPoint - usedPoint + earnedPoint;
 		user.setPoint(userPoint);
 		userService.updateUser(user);
 		
+		//쿠폰 사용 처리
+		couponService.insertUseCoupon(couponCode, user.getId());
 		
 		return "redirect:/orderList.do";
 		

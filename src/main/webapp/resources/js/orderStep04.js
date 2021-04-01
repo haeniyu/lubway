@@ -12,7 +12,12 @@ $(document).ready(function() {
 	
 	/* 쿠폰 사용 */	
 	function coupon_func(){
-		var percentageTmp = ($("#couponCode").val());
+		var data = $("#couponSelection").val();
+		var arrTmp = data.split(",");
+		var percentageTmp = arrTmp[0];
+		var couponCode = arrTmp[1];
+		console.log("percentageTmp : " + percentageTmp);
+		console.log("couponCode : " + couponCode);
 		if(percentageTmp.includes("사용가능")) percentageTmp="0";
 		var percentage = parseInt(percentageTmp);
 		
@@ -22,6 +27,7 @@ $(document).ready(function() {
 		
 		$("#totalPayAmtNavi").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		$("#couponAmtNavi").text(discount.toString());
+		$("#couponCode").val(couponCode);
 		
 	}//end of coupon_func()
 	
@@ -83,7 +89,7 @@ $(document).ready(function() {
 	$("#pointAmt").on("blur", point_func);
 	
 	//쿠폰 사용
-	$("#couponCode").on("change", coupon_func);
+	$("#couponSelection").on("change", coupon_func);
 	
 	
 });//end of document ready

@@ -41,10 +41,9 @@ $(function() {
 		}
 	})
 });
-var pay = "";
-var pickUp = "";
+var pay = "PAY_METHOD.CASH";
+var pickUp = "방문포장";
 $(function() {
-	//결제방식 유효성 검사 !!!!!!!!!11
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);
@@ -189,6 +188,9 @@ function gotoOrderList() {
 	var addr = $("#addr").text();
 	$("#fullAddr").val(addr);
 	
+	var restPrice = $('#totalPayAmtNavi').text()
+	$("#restPrice").val(restPrice);
+	
 	$("#orderForm").submit();
 	
 }
@@ -308,10 +310,10 @@ function gotoOrderList() {
 										<dt>쿠폰 사용</dt>
 										<dd>
 											<div class="form_select" style="width: 670px;">
-												<select name="couponCode" id="couponCode">
+												<select name="couponSelection" id="couponSelection">
 													<option>사용가능 쿠폰 ${countCoupon}장</option>
 														<c:forEach items="${couponList }" var="coupon">
-															<option value="${coupon.discount }">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
+															<option value="${coupon.discount },${coupon.code}">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
 														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
 														pattern="yyyy-MM-dd" /> )
 														</option>
@@ -563,6 +565,8 @@ function gotoOrderList() {
 	<input type="hidden" id="tel" name="tel" value="">
 	<input type="hidden" id="storeName" name="storeName" value="${store.storename }">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="">
+	<input type="hidden" id="restPrice" name="restPrice" value="">
+	<input type="hidden" id="couponCode" name="couponCode" value="">
 </form> 
 </body>
 </html>

@@ -42,8 +42,8 @@ $(function() {
 		}
 	})
 });
-var pay = "";
-var pickUp = "";
+var pay = "PAY_METHOD.CASH";
+var pickUp = "방문포장";
 $(function() {
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
@@ -62,6 +62,27 @@ $(function() {
 	console.log(pickUp);
 })
 	$("#startOrder").click(function (){
+		if($("#paymentAgree").is(":checked") == false) {
+			alert("구매조건 및 결제동의를 해주세요."); 
+			return;
+		}
+		
+		var phoneNum = $('#phoneNum').val().trim();
+		var checkNum = /(01[0|1|6|9|7])(\d{3}|\d{4})(\d{4}$)/g;
+
+		if (phoneNum == null || phoneNum == '') {
+			alert("핸드폰 번호를 입력해주세요.");
+			$("#phoneNum").focus();
+			check = false;
+			return false;
+		}
+		if (!checkNum.test(phoneNum)) {
+			alert("핸드폰 번호가 올바르지 않습니다.");
+			$("#phoneNum").focus();
+			check = false;
+			return false;
+		}
+		
 		var lastcost = $('#totalPayAmtNavi').text();
 		console.log(lastcost);
 		if(pay == "PAY_METHOD.PAYCOKAKAO"){
@@ -175,6 +196,9 @@ function gotoOrderList() {
 		console.log("픽업 선택 : " + pickUp);
 	}
 	
+	var restPrice = $('#totalPayAmtNavi').text()
+	$("#restPrice").val(restPrice);
+	
 	$("#orderForm").submit();
 	
 }
@@ -237,7 +261,7 @@ function gotoOrderList() {
 												<div class="choice_wrap">
 													<!-- radio -->
 													<label class="form_circle" for="r2"> 
-														<input id="r2" name="paveFg" type="radio" value="Y" class="receive"/> 
+														<input id="r2" name="paveFg" type="radio" value="Y" class="receive" checked="checked" /> 
 														<span class="icon"></span> <em>방문포장</em>
 													</label> 
 													<label class="form_circle" for="r1"> 
@@ -267,7 +291,7 @@ function gotoOrderList() {
 										<dt>전화번호</dt>
 										<dd>
 											<span class="form_text"> <input maxlength="11"
-												name="ordHp" placeholder="전화번호를 입력하세요" type="text"
+												id="phoneNum" placeholder="전화번호를 입력하세요" type="text"
 												value="${user.tel }" />
 											</span>
 										</dd>
@@ -296,10 +320,10 @@ function gotoOrderList() {
 										<dt>쿠폰 사용</dt>
 										<dd>
 											<div class="form_select" style="width: 670px;">
-												<select name="couponCode" id="couponCode">
+												<select name="couponSelection" id="couponSelection">
 													<option>사용가능 쿠폰 ${countCoupon}장</option>
 														<c:forEach items="${couponList }" var="coupon">
-															<option value="${coupon.discount }">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
+															<option value="${coupon.discount },${coupon.code}">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
 														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
 														pattern="yyyy-MM-dd" /> )
 														</option>
@@ -347,7 +371,7 @@ function gotoOrderList() {
 										<dd>
 											<div class="form_radio square">
 												<label> 
-													<input class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
+													<input checked="checked" class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
 													<span class="shape">현금</span>
 												</label> 
 												<label> 
@@ -543,6 +567,8 @@ function gotoOrderList() {
 	<input type="hidden" id="payment" name="payment" value="">
 	<input type="hidden" id="payment_status" name="payment_status" value="">
 	<input type="hidden" id="menu_type" name="menu_type" value="${menu_type }">
+	<input type="hidden" id="restPrice" name="restPrice" value="">
+	<input type="hidden" id="couponCode" name="couponCode" value="">
 </form> 
 </body>
 </html>
