@@ -2,6 +2,7 @@ package com.lubway.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.Message;
@@ -27,7 +28,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.lubway.user.UserPagination;
 import com.lubway.user.UserVO;
+import com.lubway.user.board.UserNoticeVO;
+import com.lubway.user.board.service.UserNoticeService;
+import com.lubway.user.service.UserMenuService;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -35,6 +40,12 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserNoticeService noticeService;
+	
+	@Autowired
+	private UserMenuService userMenuService;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -189,11 +200,30 @@ public class UserController {
 	 * 로그인 처리 후 메인 페이지 이동
 	 */
 	@PostMapping("/main.do")
-	public String main(@RequestParam("id") String id, @RequestParam("password") String password, HttpServletResponse response, HttpServletRequest request) throws IOException {
+	public String main(@RequestParam("id") String id, 
+			@RequestParam("password") String password, 
+			HttpServletResponse response,
+			HttpServletRequest request, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,String select, String code) throws IOException {
 		System.out.println("메인 화면으로 이동");
-
+		
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
+		
 		int i = userService.idCheck(id);
-
+		
 		UserVO getUser = null;
 		boolean check = false;
 
@@ -212,8 +242,10 @@ public class UserController {
 			session.setAttribute("user", getUser);
 			System.out.println("ID, Password 일치");
 			System.out.println("로그인 성공");
+			
 			return "main";
 		}
+		
 
 	}
 
@@ -231,8 +263,26 @@ public class UserController {
 	 * 메인 페이지 이동
 	 */
 	@GetMapping("/main.do")
-	public String mainView(HttpSession seesion) {
+	public String mainView(HttpSession seesion,Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
+			String select, String code) {
 		if(seesion.getAttribute("findPwd") != null) seesion.removeAttribute("findPwd");
+		
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
+		
 		return "main";
 	}
 
@@ -382,6 +432,20 @@ public class UserController {
 		seesion.setAttribute("findId", new String("1"));
 		return "join/step02";
 	}
+	/**
+	 * 이용약관
+	 */
+	@GetMapping("/agreement.do")
+	public String agreement() {
+		return "terms/termsone";
+	}
+	@GetMapping("/privacy.do")
+	public String privacy() {
+		return "terms/termstwo";
+	}
+	/**
+	 * 개인정보처리방침
+	 */
 
 	/**
 	 * 임시 비밀번호 생성 기능

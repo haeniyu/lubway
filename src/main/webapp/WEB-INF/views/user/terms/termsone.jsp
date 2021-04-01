@@ -1,13 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.etc.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.commons.css">
 <head>
 <meta charset="UTF-8">
 <title>LUBWAY - 이용약관</title>
 </head>
+
 <body>
 
+<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	 <div id="wrap">
 	 <div id="container">
 
 		<!-- sub content s -->
@@ -275,6 +282,8 @@
 		<!--// sub content e -->
 
 	</div>
+	</div>
+	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 
 </body>
 </html>

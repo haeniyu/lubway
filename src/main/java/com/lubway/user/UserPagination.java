@@ -80,4 +80,32 @@ public class UserPagination {
 		}
 	}
 	
+	public void pageInfoMain(int page, int range, int listCnt) {
+
+		this.page = page;
+		this.range = range;
+		this.listCnt = listCnt;
+		this.listSize = 3;
+		//전체 페이지수 
+		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);
+		
+		
+		//시작 페이지
+		this.startPage = (range-1) * rangeSize + 1 ;
+
+		//끝 페이지
+		this.endPage = range * rangeSize;
+
+		//게시판 시작번호
+		this.startList = (page-1) * listSize;
+
+
+
+		
+		if (this.endPage > this.pageCnt) {
+			this.endPage = this.pageCnt;
+
+		}
+	}
+	
 }

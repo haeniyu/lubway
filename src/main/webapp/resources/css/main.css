@@ -152,6 +152,31 @@ div .wrap {
 
 div .wrap>.best_menu>a>img {
 	width: 260px;
+	height: 168px;
+}
+
+div .wrap:hover .best_menu a img {
+	width: 260px;
+	height : 168px;
+	animation-name:img0111;
+    animation-duration: 5s;
+    transition-timing-function: linear;
+    animation-iteration-count: infinite;
+	
+}
+
+@keyframes img0111 {
+  0% {width: 262px; height: 168px;}
+  10% {width: 260px; height: 180px;}
+  20% {width: 260px; height: 168px;}
+  30% {width: 260px; height: 180px;}
+  40% {width: 260px; height: 168px;}
+  50% {width: 260px; height: 180px;}
+  60% {width: 260px; height: 168px;}
+  70% {width: 260px; height: 180px;}
+  80% {width: 260px; height: 168px;}
+  90% {width: 260px; height: 180px;}
+  100% {width:260px;  height: 168px;}
 }
 
 div .wrap>.best_menu>a>strong.title {
