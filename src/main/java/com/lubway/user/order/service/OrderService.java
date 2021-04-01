@@ -39,4 +39,10 @@ public interface OrderService {
 	// insert
 	void insertOrderCode(OrderCodeVO vo);
 	void insertOrderList(OrderListVO vo);
+	
+	// 사용자 주문내역 상세
+	OrderCodeVO getOrderListDetail(OrderCodeVO vo);
+	   
+	StoreInfoVO getAddress(String name);
+	
 }
