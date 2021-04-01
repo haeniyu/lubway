@@ -35,18 +35,12 @@ $(document).ready(function(){
 		form.submit();
 	});
 	
-	var price = '${orderC.total_price }';
-	var point = '${orderC.use_point}';
-	var coupon = '${orderC.use_coupon}';
-	
-	
-	
 });
+
 </script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-
 	<!-- container s -->
 	<div class="bg_gray" id="container">
 		<!-- sub content s -->
@@ -80,7 +74,7 @@ $(document).ready(function(){
 								<c:forEach items="${order}" var="order">
 								<li>
 									<div class="order_card">
-										<a href="/lubway/orderListDetail.do?no=${order.no}">
+										<a href="/lubway/orderListDetail.do?no=${order.no }">
 											<c:if test="${order.order_type ne '배달'}">
 												<p class="order_type fast">
 													FAST-WAY
@@ -95,7 +89,7 @@ $(document).ready(function(){
 												<p>
 													<span class="menu">${order.store_name }점</span>
 													<span class="date"><fmt:formatDate value="${order.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-													<span class="price"><span id="price"></span><em>원</em></span> 
+													<span class="price"><span><fmt:formatNumber value="${order.finalPrice }" pattern="#,###" /></span><em>원</em></span> 
 													<span class="num">주문번호  ( <em>${order.no }</em> )</span>
 												</p>
 											</div>
@@ -130,7 +124,6 @@ $(document).ready(function(){
 			<!--// My-sub > 주문내역 -->
 		</div>
 	</div>
-
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>
 </html>

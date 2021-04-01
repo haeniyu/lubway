@@ -12,10 +12,6 @@
 		<result property="filePath" column="FILEPATH" />
 	</resultMap>
 
-	<sql id="page">
-		select * from notice_board limit #{listSize} offset #{startList}
-	</sql>
-	
 	<!-- 관리자 공지사항 글 등록, 수정, 삭제, 상세보기, 목록보기, 페이징 처리 -->
 	<insert id="insertNotice" parameterType="notice">
 		INSERT INTO
@@ -27,7 +23,6 @@
 		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=#{fix} WHERE
 		NO=#{no}
 	</update>
-
 
 	<delete id="deleteNotice">
 		DELETE FROM NOTICE_BOARD WHERE no=#{no}
@@ -61,7 +56,6 @@
 		order by regdate desc,rownum desc
 		limit #{listSize} offset #{startList}
 		) as two
-
 	</select>
 
 	<select id="searchPagingList" resultType="notice">
@@ -79,9 +73,7 @@
 		order by regdate desc,rownum desc
 		limit #{listSize} offset #{startList}
 		) as two
-
 	</select>
-
 
 	<select id="pagingCnt" resultType="int">
 		select count(*) as listCnt

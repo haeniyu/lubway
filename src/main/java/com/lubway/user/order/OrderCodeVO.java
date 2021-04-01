@@ -2,6 +2,8 @@ package com.lubway.user.order;
 
 import java.sql.Timestamp;
 
+import com.lubway.store.StoreInfoVO;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,5 +28,8 @@ public class OrderCodeVO {
 	private String payment_list;
 	private boolean payment_status;
 	private String status;
+	
+	private String address_road; // 매장 주소
+	private int finalPrice; // 최종 결제 금액
 	
 }

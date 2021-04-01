@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lubway.admin.StoreVO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
@@ -158,9 +157,24 @@ public class MyWayController {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
+		
 		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
-
 		int countOrder = orderService.countOrderList(vo);
+		
+		// 최종 결제 금액 연산
+		for(int i =0; i <orderInfo.size(); i++) {
+			String price = orderInfo.get(i).getTotal_price().trim().replace(",","");
+			String point = orderInfo.get(i).getUse_point().trim().replace(",","");
+			String coupon = orderInfo.get(i).getUse_coupon().trim().replace(",","");
+			
+			int total = 0;
+			int iprice = Integer.parseInt(price);
+			int ipoint = Integer.parseInt(point);
+			int icoupon = Integer.parseInt(coupon);
+			
+			total = iprice - ipoint - icoupon;
+			orderInfo.get(i).setFinalPrice(total);
+		}
 		
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
@@ -170,7 +184,7 @@ public class MyWayController {
 	
 	// Fast-Way / Home-Way 각각 보기
 	@PostMapping("/orderListTab.do")
-	public String selectOrderList(Model model, String select, OrderCodeVO vo, HttpSession session) {
+	public String selectOrderList(Model model, String select, OrderCodeVO vo, HttpSession session, String finalPrice) {
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
@@ -203,8 +217,8 @@ public class MyWayController {
 		
 		List<OrderListVO> orderList = orderService.orderList(vo);
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
-		//StoreInfoVO store_addr = orderService.getAddress(orderList.get(0).getAddress_road());
-		// orderListvo -> ordercodevo address_road 옮기기
+		StoreInfoVO store_addr = orderService.getAddress(cvo.getStore_name());
+		System.out.println(store_addr);
 		for(OrderListVO list : orderList) {
 			if(list.getAdd_topping() != null) {
 				if(list.getAdd_topping().split(",").length > 1) {
@@ -222,9 +236,13 @@ public class MyWayController {
 			}
 		}
 		
+		OrderCodeVO orderCode = orderService.getOrderListDetail(cvo);
+		System.out.println(orderCode.toString());
+		
+		model.addAttribute("storeAddr", store_addr);
 		model.addAttribute("price", total);
-		model.addAttribute("orderC", orderService.getOrderListDetail(cvo));
-		model.addAttribute("orderL", orderService.orderList(vo));
+		model.addAttribute("orderC", orderCode);
+		model.addAttribute("orderL", orderList);
 		
 		return "myway/orderListDetail";
 	}
