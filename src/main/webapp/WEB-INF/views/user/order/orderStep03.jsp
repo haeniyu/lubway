@@ -499,7 +499,7 @@ $(document).ready(function() {
 				</div>
 			</div>
 			<div class="order_btn">
-				<a class="cart" href="javascript:;" onclick="gotoBasket();">장바구니</a>
+				<a class="car" href="javascript:;" onclick="gotoBasket();">장바구니</a>
 				<a class="bill" href="javascript:;" onclick="gotoStep04();">주문하기</a>
 			</div>
 		</div>
