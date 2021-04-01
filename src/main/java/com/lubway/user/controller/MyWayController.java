@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.store.StoreInfoVO;
+import com.lubway.store.service.StoreService;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
@@ -45,6 +46,9 @@ public class MyWayController {
 	
 	@Autowired
 	private BasketService basketService;
+	
+	@Autowired
+	private StoreService storeService;
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
@@ -163,16 +167,13 @@ public class MyWayController {
 		
 		// 최종 결제 금액 연산
 		for(int i =0; i <orderInfo.size(); i++) {
-			String price = orderInfo.get(i).getTotal_price().trim().replace(",","");
-			String point = orderInfo.get(i).getUse_point().trim().replace(",","");
-			String coupon = orderInfo.get(i).getUse_coupon().trim().replace(",","");
+			int price = orderInfo.get(i).getTotal_price();
+			int point = orderInfo.get(i).getUse_point();
+			int coupon = orderInfo.get(i).getUse_coupon();
 			
 			int total = 0;
-			int iprice = Integer.parseInt(price);
-			int ipoint = Integer.parseInt(point);
-			int icoupon = Integer.parseInt(coupon);
 			
-			total = iprice - ipoint - icoupon;
+			total = price - point - coupon;
 			orderInfo.get(i).setFinalPrice(total);
 		}
 		
@@ -217,8 +218,8 @@ public class MyWayController {
 		
 		List<OrderListVO> orderList = orderService.orderList(vo);
 		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
-		StoreInfoVO store_addr = orderService.getAddress(cvo.getStore_name());
-		System.out.println(store_addr);
+		
+		
 		for(OrderListVO list : orderList) {
 			if(list.getAdd_topping() != null) {
 				if(list.getAdd_topping().split(",").length > 1) {
@@ -236,10 +237,19 @@ public class MyWayController {
 			}
 		}
 		
+		//주문했던 매장 주소 설정
 		OrderCodeVO orderCode = orderService.getOrderListDetail(cvo);
 		System.out.println(orderCode.toString());
+		StoreInfoVO storeInfo = storeService.getstoreinfo(orderCode.getStore_name());
+		String storeAddr = storeInfo.getAddress_road();
 		
-		model.addAttribute("storeAddr", store_addr);
+		int price = orderCode.getTotal_price();
+		int point = orderCode.getUse_point();
+		int coupon = orderCode.getUse_coupon();
+		int finalPrice = price - point - coupon;
+		orderCode.setFinalPrice(finalPrice);
+		
+		model.addAttribute("storeAddr", storeAddr);
 		model.addAttribute("price", total);
 		model.addAttribute("orderC", orderCode);
 		model.addAttribute("orderL", orderList);

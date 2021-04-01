@@ -81,10 +81,9 @@
    	<select id="getOrderListDetail" parameterType="order_code" resultType="order_code">
   	    select * from order_code where no=#{no} and id=#{id}
   	 </select>
-   
-  	<!--  
-  	 <select id="getAddress" parameterType="String" resultType="storeInfo">
- 	     select address_road from storeInfo where name=#{store_name}
-  	 </select>-->
+    
+  	 <select id="getAddress" parameterType="String" resultType="String">
+ 	     select address_road from storeInfo where storename=#{store_name}
+  	 </select>
 	
 </mapper>
