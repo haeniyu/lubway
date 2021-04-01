@@ -153,8 +153,6 @@ public class BasketController {
 	@PostMapping("/updateBasket.do")
 	@ResponseBody
 	public void updateBasket(String no, String type) {
-		System.out.println("update할 no : " + no);
-		System.out.println("update할 type : " + type);
 		if(type.equals("plus")) basketservice.updatePlus(Integer.parseInt(no));
 		else basketservice.updateMinus(Integer.parseInt(no));
 	}

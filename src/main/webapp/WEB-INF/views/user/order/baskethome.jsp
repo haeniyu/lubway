@@ -68,6 +68,7 @@ var totalCnt = 0;
 var selectId = "";
 var selectNo = "";
 var updateNo = "";
+var updateNo = "";
 
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
@@ -113,7 +114,23 @@ $(document).ready(function(){
 		$("#qty"+count).val(qty);
 		totalPrice += add;
 		$("#totalPrice").text(totalPrice);		
-
+		
+		updateNo = $("input[name=update" + count + "]").val();
+		
+		$.ajax({
+			url : '/lubway/updateBasket.do',
+			type : 'post',
+			data : {
+				no : updateNo,
+				type : "plus"
+			},
+			success : function() {
+				console.log("ajax 통신 성공");
+			},
+			error : function(data, status, opt) {
+				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+			}
+		});
 	});
 	
 	$(".minus").click("click",function(){
@@ -132,6 +149,22 @@ $(document).ready(function(){
 		totalPrice -= minus;
 		$("#totalPrice").text(totalPrice);		
 
+		updateNo = $("input[name=update" + count + "]").val();
+		
+		$.ajax({
+			url : '/lubway/updateBasket.do',
+			type : 'post',
+			data : {
+				no : updateNo,
+				type : "minus"
+			},
+			success : function() {
+				console.log("ajax 통신 성공");
+			},
+			error : function(data, status, opt) {
+				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+			}
+		});
 	});
 });
 
