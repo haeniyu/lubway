@@ -34,6 +34,13 @@ $(document).ready(function(){
 		document.body.appendChild(form);
 		form.submit();
 	});
+	
+	var price = '${orderC.total_price }';
+	var point = '${orderC.use_point}';
+	var coupon = '${orderC.use_coupon}';
+	
+	
+	
 });
 </script>
 </head>
@@ -73,7 +80,7 @@ $(document).ready(function(){
 								<c:forEach items="${order}" var="order">
 								<li>
 									<div class="order_card">
-										<a href="/lubway/orderListDetail.do?no=${order.no}"> <!-- FAST-SUB 일 경우 class="fast", HOME-SUB 일 경우 class="home" 추가 -->
+										<a href="/lubway/orderListDetail.do?no=${order.no}">
 											<c:if test="${order.order_type ne '배달'}">
 												<p class="order_type fast">
 													FAST-WAY
@@ -88,7 +95,7 @@ $(document).ready(function(){
 												<p>
 													<span class="menu">${order.store_name }점</span>
 													<span class="date"><fmt:formatDate value="${order.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
-													<span class="price"><span> ${order.total_price }</span><em>원</em></span> 
+													<span class="price"><span id="price"></span><em>원</em></span> 
 													<span class="num">주문번호  ( <em>${order.no }</em> )</span>
 												</p>
 											</div>

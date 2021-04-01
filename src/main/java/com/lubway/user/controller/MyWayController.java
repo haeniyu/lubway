@@ -2,6 +2,7 @@ package com.lubway.user.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -20,6 +21,7 @@ import com.lubway.admin.StoreVO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.UserCouponVO;
 import com.lubway.user.UserVO;
+import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderListVO;
 import com.lubway.user.order.service.BasketService;
@@ -157,7 +159,7 @@ public class MyWayController {
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
-		
+
 		int countOrder = orderService.countOrderList(vo);
 		
 		model.addAttribute("countOrder", countOrder);
@@ -194,10 +196,36 @@ public class MyWayController {
 	
 	//주문내역 상세 페이지 이동
 	@RequestMapping("/orderListDetail.do")
-	public String orderListDetail(Model model, OrderCodeVO ovo, OrderListVO vo) {
+	public String orderListDetail(Model model, OrderCodeVO cvo, OrderListVO vo, HttpSession session) {
 		System.out.println("주문내역 상세페이지 이동");
-		model.addAttribute("orderC", orderService.orderCodeList(ovo));
+		UserVO userVo = (UserVO) session.getAttribute("user");
+		cvo.setId(userVo.getId());
+		
+		List<OrderListVO> orderList = orderService.orderList(vo);
+		List<ToppingAddVO> total = new ArrayList<ToppingAddVO>();
+		//StoreInfoVO store_addr = orderService.getAddress(orderList.get(0).getAddress_road());
+		// orderListvo -> ordercodevo address_road 옮기기
+		for(OrderListVO list : orderList) {
+			if(list.getAdd_topping() != null) {
+				if(list.getAdd_topping().split(",").length > 1) {
+					String[] toppingList = list.getAdd_topping().split(",");
+					for(String topping : toppingList) {
+						ToppingAddVO addMany = orderService.getToppingByName(topping.trim());
+						total.add(addMany);
+					}
+					list.setCount(toppingList.length);
+				}else {
+					ToppingAddVO addOne = orderService.getToppingByName(list.getAdd_topping());
+					list.setCount(1);
+					total.add(addOne);
+				}
+			}
+		}
+		
+		model.addAttribute("price", total);
+		model.addAttribute("orderC", orderService.getOrderListDetail(cvo));
 		model.addAttribute("orderL", orderService.orderList(vo));
+		
 		return "myway/orderListDetail";
 	}
 	

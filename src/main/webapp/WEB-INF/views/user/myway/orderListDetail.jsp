@@ -26,6 +26,17 @@ $(function() {
 			TweenLite.to($(this).next('.addMenu'), spd, { ease: eft, height: h })
 		}
 	})
+	
+	var way = '${orderC.order_type}';
+	if(way == '배달'){
+		$(".order_number").addClass('home_sub');
+		$(".order)number").removeClass('fast_sub');
+	}else{
+		$(".order_number").addClass('fast_sub');
+		$(".order)number").removeClass('home_sub');
+	}
+	
+	
 });
 </script>
 </head>
@@ -34,7 +45,7 @@ $(function() {
 
 	<!-- container s -->
 	<div class="bg_gray" id="container">
-		<input id="ordNo" name="ordNo" type="hidden" value="${orderL.no }" />
+		<input id="ordNo" name="ordNo" type="hidden" value="${orderC.no }" />
 		<!-- sub content -->
 		<div class="order my_order_wrap" id="content">
 			<h2 class="subTitle">주문 내역 상세</h2>
@@ -45,60 +56,64 @@ $(function() {
 					<div class="order_number fast_sub"> <!-- fast/home 에 따라 색 달라짐 -->
 						<dl>
 							<dt>주문번호 :</dt>
-							<dd>${orderL.no }</dd>
+							<dd>${orderC.no }</dd>
 						</dl>
 					</div>
 
 					<!-- fastway -->
-					<section class="form_box">
-						<h3>픽업 매장</h3>
-						<div class="write_info_wrap">
-							<div class="input_set">
-								<dl class="shop info_dl">
-									<dt>${orderC.store_name}</dt>
-									<dd>서울특별시 종로구 삼일대로 391</dd><!--일단 킵 -->
-								</dl>
+					<c:if test="${orderC.order_type ne '배달' }">
+						<section class="form_box">
+							<h3>픽업 매장</h3>
+							<div class="write_info_wrap">
+								<div class="input_set">
+									<dl class="shop info_dl">
+										<dt>${orderC.store_name}</dt>
+										<dd>매장주소</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="info_dl">
+										<dt>방문포장/매장식사</dt>
+										<dd>${orderC.order_type }</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="info_dl">
+										<dt>전화번호</dt>
+										<dd>${orderC.tel }</dd>
+									</dl>
+								</div>
 							</div>
-							<div class="input_set">
-								<dl class="info_dl">
-									<dt>방문포장/매장식사</dt>
-									<dd>${orderC.order_type }</dd>
-								</dl>
-							</div>
-							<div class="input_set">
-								<dl class="info_dl">
-									<dt>전화번호</dt>
-									<dd>${orderC.tel }</dd>
-								</dl>
-							</div>
-						</div>
-					</section>
+						</section>
+					</c:if>
 					<!--// fastway -->
 					
 					<!-- homeway -->
-					<section class="form_box">
-						<h3>픽업 매장</h3>
-						<div class="write_info_wrap">
-							<div class="input_set">
-								<dl class="shop info_dl">
-									<dt>배달 주소</dt>
-									<dd>${orderC.address}</dd>
-								</dl>
+					<c:if test="${orderC.order_type eq '배달' }">
+						<section class="form_box">
+							<h3>픽업 매장</h3>
+							<div class="write_info_wrap">
+								<div class="input_set">
+									<dl class="shop info_dl">
+										<dt>배달 주소</dt>
+										<dd>${orderC.address}</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="info_dl">
+										<dt>주문 매장</dt>
+										<dd>${orderC.store_name }</dd>
+									</dl>
+								</div>
+								<div class="input_set">
+									<dl class="info_dl">
+										<dt>전화번호</dt>
+										<dd>${orderC.tel}</dd>
+									</dl>
+								</div>
 							</div>
-							<div class="input_set">
-								<dl class="info_dl">
-									<dt>주문 매장</dt>
-									<dd>${orderC.store_name }</dd>
-								</dl>
-							</div>
-							<div class="input_set">
-								<dl class="info_dl">
-									<dt>전화번호</dt>
-									<dd>${orderC.tel}</dd>
-								</dl>
-							</div>
-						</div>
-					</section>
+						</section>
+					</c:if>
 					<!--// homeway -->
 
 					<!-- 주문내역 -->
@@ -108,6 +123,7 @@ $(function() {
 						<div class="board_list_wrapper">
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
+								<c:set var="endCount" value="0" />
 								<c:forEach items="${orderL }" var="order">
 									<div class="history_table">
 										<!-- 선택한 메뉴 -->
@@ -124,10 +140,10 @@ $(function() {
 													</div>
 													<div class="sum">
 														<span>
-															<strong class="price">${order.single_price}*연산 필요 단품+추가토핑+세트(추가 했을 경우 아닐경우)*</strong><em>원</em>
+															<strong class="price">${order.menu_price}</strong><em>원</em>
 														</span>
 														<!-- 추가 선택 메뉴 있을경우 생김 -->
-														<c:if test="${order.add_topping.length() gt 0  || order.add_meat.length() gt 0 || order.add_cheese.length() gt 0 || step03Text.length() gt 0}">
+														<c:if test="${order.add_topping ne null  || order.add_meat ne null || order.add_cheese ne null || order.step03 ne null}">
 														<a class="arrow"></a>
 														</c:if>
 													</div>
@@ -135,23 +151,25 @@ $(function() {
 												<!-- 추가 선택 메뉴 있을경우 보임-->
 												<div class="addMenu">
 													<ul>
-														<c:if test="${order.add_topping.length() gt 0 }">
-															<c:forEach items="${toppingList }" var="topping">
+														<c:if test="${order.add_topping ne null || order.add_topping eq ''}">
+															<c:set var="count" value="${order.count }" />
+															<c:forEach items="${price }" var="getPrice" varStatus="var" begin="${endCount }" end="${endCount + count}">
 																<li>
 																	<div class="addname">
-																		<strong>${order.add_topping }</strong>
+																		<strong>${getPrice.name }</strong>
 																	</div>
 																	<div class="addcount"></div>
 																	<div class="addsum">
 																		<span>
-																			<strong>1,800</strong><em>원</em>
+																			<strong>${getPrice.topping_price }</strong><em>원</em>
 																		</span>
 																	</div>
 																</li>
 															</c:forEach>
+															<c:set var="endCount" value="${endCount + count }" />
 														</c:if>
 														<!-- 미트 추가 시  -->
-														<c:if test="${order.add_meat.length() gt 0 }">
+														<c:if test="${order.add_meat ne null || order.add_meat eq '' }">
 															<li>
 																<div class="addname">
 																	<strong>${order.add_meat }</strong>
@@ -165,7 +183,7 @@ $(function() {
 															</li>
 														</c:if>
 														<!-- 치즈 추가 시 -->
-														<c:if test="${order.add_cheese.length() gt 0 }">
+														<c:if test="${order.add_cheese ne null || order.add_cheese eq ''}">
 															<li>
 																<div class="addname">
 																	<strong>${order.add_cheese }</strong>
@@ -179,20 +197,22 @@ $(function() {
 															</li>
 														</c:if>
 														<!-- 세트 추가했을 경우 보임 -->
-														<li>
-															<div class="setname">
-																<strong>세트추가</strong>
-																<p>
-																	${order.step03 }
-																</p>
-															</div>
-															<div class="setcount"></div>
-															<div class="setsum">
-																<span>
-																	<strong>${order.set_price }</strong><em>원</em>
-																</span>
-															</div>
-														</li>
+														<c:if test="${order.step03 ne null || order.step03 eq '' }">
+															<li>
+																<div class="setname">
+																	<strong>세트추가</strong>
+																	<p>
+																		${order.step03 }
+																	</p>
+																</div>
+																<div class="setcount"></div>
+																<div class="setsum">
+																	<span>
+																		<strong>${order.set_price }</strong><em>원</em>
+																	</span>
+																</div>
+															</li>
+														</c:if>
 													</ul>
 												</div>
 											</li>
