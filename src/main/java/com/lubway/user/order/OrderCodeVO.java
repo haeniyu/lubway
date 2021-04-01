@@ -2,8 +2,6 @@ package com.lubway.user.order;
 
 import java.sql.Timestamp;
 
-import com.lubway.store.StoreInfoVO;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -22,9 +20,9 @@ public class OrderCodeVO {
 	private String order_type;
 	private Timestamp order_time;
 	private Timestamp delivery_time;
-	private String use_point;
-	private String use_coupon;
-	private String total_price;
+	private int use_point;
+	private int use_coupon;
+	private int total_price;
 	private String payment_list;
 	private boolean payment_status;
 	private String status;

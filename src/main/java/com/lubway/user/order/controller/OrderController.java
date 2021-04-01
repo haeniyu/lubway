@@ -259,7 +259,7 @@ public class OrderController {
 	}
 	
 	/** 
-	 * 단품 결제
+	 * 단품 결제 (orderStep04 -> orderStep05)
 	 * */
 	@PostMapping("/orderStep05.do")
 	@Transactional
@@ -274,6 +274,9 @@ public class OrderController {
 
 		UserVO user = (UserVO) session.getAttribute("user");
 		
+		// 총금액 천단위 구분자 제거
+		String finalTotalPrice = totalPrice.replace(",", "");
+		
 		// orderCodeVO
 		cvo.setId(user.getId());
 		cvo.setName(user.getName());
@@ -282,9 +285,9 @@ public class OrderController {
 		cvo.setRequest(request);
 		cvo.setStore_name(storeName);
 		cvo.setOrder_type(receive);
-		cvo.setUse_coupon(coupon);
-		cvo.setUse_point(point);
-		cvo.setTotal_price(totalPrice);
+		cvo.setUse_coupon(Integer.parseInt(coupon));
+		cvo.setUse_point(Integer.parseInt(point));
+		cvo.setTotal_price(Integer.parseInt(finalTotalPrice));
 		cvo.setPayment_list(payment);
 		cvo.setPayment_status(payment_status);
 		
@@ -293,7 +296,7 @@ public class OrderController {
 		lvo.setMenu_name(menuName);
 		int quan = Integer.parseInt(quantity);
 		lvo.setQuantity(quan);
-		lvo.setSingle_price(eachCost);
+		lvo.setSingle_price(Integer.parseInt(eachCost));
 		if(step01Text.equals("")) lvo.setStep01(null);
 		else lvo.setStep01(step01Text);
 		if(meatAdd.equals("")) lvo.setAdd_meat(null);
@@ -304,12 +307,11 @@ public class OrderController {
 		else lvo.setAdd_cheese(cheeseAdd);
 		if(step03Text.equals("")) {
 			lvo.setStep03(null);
-			lvo.setSet_price(null);
 		}else {
 			lvo.setStep03(step03Text);
-			lvo.setSet_price(setAdd);
+			lvo.setSet_price(Integer.parseInt(setAdd));
 		}
-		lvo.setMenu_price(totalPrice);
+		lvo.setMenu_price(Integer.parseInt(finalTotalPrice));
 		
 		orderService.insertOrderCode(cvo);
 		orderService.insertOrderList(lvo);
@@ -399,7 +401,7 @@ public class OrderController {
 	}	
 	
 	/** 
-	 * 장바구니 결제 처리
+	 * 장바구니 결제 처리 (orderBakset -> orderStep05Basket)
 	 * */
 	@PostMapping("/orderStep05Basket.do")
 	public String orderStep05Basket(Model model, 
@@ -418,9 +420,9 @@ public class OrderController {
 		cvo.setRequest(request);
 		cvo.setStore_name(storeName);
 		cvo.setOrder_type(order_type);
-		cvo.setUse_coupon(coupon);
-		cvo.setUse_point(point);
-		cvo.setTotal_price(totalPrice.trim());
+		cvo.setUse_coupon(Integer.parseInt(coupon));
+		cvo.setUse_point(Integer.parseInt(point));
+		cvo.setTotal_price(Integer.parseInt(totalPrice.trim()));
 		cvo.setPayment_list(payment);
 		cvo.setPayment_status(payment_status);
 		
@@ -436,7 +438,7 @@ public class OrderController {
 			lvo.setMenu_type(vo.getMenu_type());
 			lvo.setMenu_name(vo.getMenu_name());
 			lvo.setQuantity(vo.getQuantity());
-			lvo.setSingle_price(vo.getSingle_price());
+			lvo.setSingle_price(Integer.parseInt(vo.getSingle_price()));
 			
 			if(vo.getMenu_type().equals("sandwich")) {
 				String size = "";
@@ -458,8 +460,8 @@ public class OrderController {
 			lvo.setAdd_meat(vo.getAdd_meat());
 			lvo.setAdd_cheese(vo.getAdd_cheese());
 			lvo.setStep03(vo.getSet_name());
-			lvo.setSet_price(vo.getSet_price());
-			lvo.setMenu_price(vo.getTotal_price().trim());
+			lvo.setSet_price(Integer.parseInt(vo.getSet_price()));
+			//lvo.setMenu_price(vo.getTotal_price());
 			
 			orderService.insertOrderList(lvo);
 			basketService.deleteBasket(vo);
