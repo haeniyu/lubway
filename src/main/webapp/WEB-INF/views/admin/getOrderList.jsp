@@ -4,12 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getTotalList" value="/lubway/getTotalList.mdo">
-	<c:param name="page" value="${pagination.page}" />
-	<c:param name="range" value="${pagination.range}" />
-	<c:param name="rangeSize" value="${pagination.rangeSize}" />
-</c:url>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +18,7 @@
 
       var range = range - 1;
 
-      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
+      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
 
       url = url + "?page=" + page;
 
@@ -37,7 +31,7 @@
    //페이지 번호 클릭
    function fn_pagination(page, range, rangeSize) {
       
-      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
+      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
 
       url = url + "?page=" + page;
 
@@ -57,7 +51,7 @@
 
       var range = parseInt(range) + 1;
 
-      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
+      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
 
       url = url + "?page=" + page;
 

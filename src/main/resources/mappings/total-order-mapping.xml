@@ -7,6 +7,8 @@
 	<!-- ADMIN 관리자 판매내역 페이지 -->
 	<select id="getTotalList" parameterType="total_order" resultType="total_order">
 		select ROW_NUMBER() OVER() rownum, * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료'
+		ORDER BY order_time DESC
+		limit #{listSize} offset #{startList}
 	</select>
 	
 	<select id="getTotalListCnt" resultType="int">
