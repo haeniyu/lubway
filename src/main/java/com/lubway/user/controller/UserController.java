@@ -74,12 +74,14 @@ public class UserController {
 		System.out.println(vo.getName());
 		System.out.println(email);
 
+		UserVO user = userService.getUser(vo.getId());
+		
 		if(userService.idCheck(vo.getId()) == 0) {
 			userService.insertUser(vo);
 		} else {
 			if(userService.getUser(vo.getId()).getStatus() > 0) return "lock";
 		}
-		session.setAttribute("user", vo);
+		session.setAttribute("user", user);
 		session.setAttribute("kuser", new String("1"));
 		return "success";
 	}
@@ -112,7 +114,13 @@ public class UserController {
 				return null;
 			}
 		}
-		session.setAttribute("user", vo);
+		
+		UserVO user = userService.getUser(vo.getId());
+		
+		System.out.println("vo : " + vo);
+		System.out.println("user : " + user);
+		
+		session.setAttribute("user", user);
 		session.setAttribute("guser", new String("1"));
 		return "main";
 	}

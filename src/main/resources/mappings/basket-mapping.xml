@@ -30,8 +30,15 @@
 		DELETE FROM basket WHERE no=#{no}
 	</delete>
 	
-	<delete id="deleteAllBasket" parameterType="String">
-		DELETE FROM basket WHERE id=#{name}
+	<delete id="deleteAllBasket" parameterType="basket">
+		DELETE FROM basket WHERE id=#{id} and order_type=#{order_type}
 	</delete>
 	
+	<update id="updatePlus" parameterType="int">
+		UPDATE basket SET quantity = quantity+1, total_price = total_price+(total_price/quantity) WHERE no=#{no}
+	</update>
+		
+	<update id="updateMinus" parameterType="int">
+		UPDATE basket SET quantity = quantity-1, total_price = total_price-(total_price/quantity) WHERE no=#{no}
+	</update>
 </mapper>

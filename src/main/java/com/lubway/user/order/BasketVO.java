@@ -34,7 +34,7 @@ public class BasketVO {
 	private String set_price;
 	
 	//총가격 및 수량
-	private String total_price;
+	private int total_price;
 	private int quantity;
 	
 	private String menu_name; 

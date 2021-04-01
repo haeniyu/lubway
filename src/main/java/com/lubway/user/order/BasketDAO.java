@@ -35,11 +35,15 @@ public class BasketDAO {
 	}
 
 	public void deleteBasket(BasketVO vo) {
-		System.out.println("BasketDAO - deleteBasket() 장바구니 아이템 삭제 실행");
 		sqlSessionTemplate.delete("BasketDAO.deleteBasket", vo);
 	}
-	public void deleteAllBasket(String name) {
-		System.out.println("BasketDAO - deleteAllBasket() 장바구니 아이템 삭제 실행");
-		sqlSessionTemplate.delete("BasketDAO.deleteAllBasket", name);
+	public void deleteAllBasket(BasketVO vo) {
+		sqlSessionTemplate.delete("BasketDAO.deleteAllBasket", vo);
+	}
+	public void updatePlus(int no) {
+		sqlSessionTemplate.update("BasketDAO.updatePlus", no);
+	}
+	public void updateMinus(int no) {
+		sqlSessionTemplate.update("BasketDAO.updateMinus", no);
 	}
 }

@@ -396,6 +396,8 @@
 	<input type="hidden" name="whatWay" value="Home-Way">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="">
+	<input type="hidden" name="changeNo" value="${changeNo}">
+	<input type="hidden" name="user" value="${user.id}">
 </form>
 <%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>

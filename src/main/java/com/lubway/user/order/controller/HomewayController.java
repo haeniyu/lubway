@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,8 @@ public class HomewayController {
 	
 	/** 홈웨이 step01 - 매장 찾기 및 선택 페이지 이동 */
 	@GetMapping("step01.do")
-	public String homewayView() {
+	public String homewayView(String franchiseNo, Model model) {
+		if(franchiseNo != null) model.addAttribute("changeNo", franchiseNo);
 		return "order/homeway";
 	}
 	
