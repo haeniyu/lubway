@@ -208,8 +208,7 @@ public class OrderController {
 			String franchiseNo, String whatWay, String code, String fullAddr,
 			String menuName, String menu_type,
 			String toppingAdd, String meatAdd, String cheeseAdd,String setAdd) {
-		
-		System.out.println("주문 및 결제하기 페이지로 이동");
+
 		
 		// 사용 가능한 쿠폰 리스트 띄우기
 		UserVO user = (UserVO) session.getAttribute("user");

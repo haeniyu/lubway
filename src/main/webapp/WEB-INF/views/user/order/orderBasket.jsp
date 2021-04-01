@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="${path}/resources/js/orderStep04.js"></script>
+<script src="${path}/resources/js/orderStep04.js?v=2"></script>
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
@@ -516,7 +516,10 @@ function gotoOrderList() {
 							<dd><strong id="couponAmtNavi">0</strong>원</dd>
 							<dt>포인트 사용 </dt>
 							<dd><strong id="pointAmtNavi">0</strong>원</dd>
-							
+							<c:if test="${whatWay eq 'Home-Way' }">
+								<dt>배달비</dt>
+								<dd><strong>+3,900원</strong></dd>	
+							</c:if>
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
@@ -567,6 +570,7 @@ function gotoOrderList() {
 	<input type="hidden" id="fullAddr" name="fullAddr" value="">
 	<input type="hidden" id="restPrice" name="restPrice" value="">
 	<input type="hidden" id="couponCode" name="couponCode" value="">
+	<input type="hidden" id="whatWay" name="whatWay" value="${whatWay }">
 </form> 
 </body>
 </html>

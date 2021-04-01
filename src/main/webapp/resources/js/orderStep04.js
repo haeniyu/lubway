@@ -2,13 +2,20 @@
 $(document).ready(function() {
 	const USABLE_TMP = $("#usablePoint").text(); 	//보유포인트
 	const USABLE_POINT = parseInt(USABLE_TMP);
-	var priceTmp = $("#orderTotal").text();			//결제할 금액 = price(int)
+	var priceTmp = $("#orderTotal").text();			//결제할 금액 
 	var priceTmp2 = priceTmp.replace(",","");		
 	var price = parseInt(priceTmp2);				//연산이 진행되는 최종 결제 금액
 	var savePrice = parseInt(priceTmp2);			//연산 전 총 금액 고정 값
 	var discount = 0;								//쿠폰 적용 할인 금액
 	var pointAmt = 0;								//포인트 할인 금액
 	
+	//홈웨이일 경우 배달비 증액 설정
+	var homewayDeliveryFee = $("#whatWay").val();
+	console.log(homewayDeliveryFee);
+	if(homewayDeliveryFee== 'Home-Way'){
+		price=price+3900;
+		$("#totalPayAmtNavi").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+	}
 	
 	/* 쿠폰 사용 */	
 	function coupon_func(){
@@ -24,6 +31,7 @@ $(document).ready(function() {
 		discount = (percentage/100)*savePrice;	//할인 금액
 		
 		price = savePrice - discount - pointAmt;
+		if(homewayDeliveryFee== 'Home-Way') price+=3900;
 		
 		$("#totalPayAmtNavi").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		$("#couponAmtNavi").text(discount.toString());
@@ -42,6 +50,8 @@ $(document).ready(function() {
 		pointAmt = USABLE_POINT;
 		
 		price = savePrice - discount - pointAmt;
+		if(homewayDeliveryFee== 'Home-Way') price+=3900;
+		
 		$("#totalPayAmtNavi").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 		
 		
@@ -55,6 +65,7 @@ $(document).ready(function() {
 		if(pointTmp.length==0) {				//초기화
 			pointAmt=0;
 			price = savePrice - discount - pointAmt;
+			if(homewayDeliveryFee== 'Home-Way') price+=3900;
 		}
 		
 		if(pointAmt>USABLE_POINT || pointAmt>price || pointAmt>savePrice){
@@ -69,6 +80,7 @@ $(document).ready(function() {
 		
 		//최종 결제 금액 - 포인트 사용 금액
 		price = savePrice - discount - pointAmt;
+		if(homewayDeliveryFee== 'Home-Way') price+=3900;
 		$("#totalPayAmtNavi").text(price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));	
 		
 		//보유 포인트 연산
@@ -80,6 +92,7 @@ $(document).ready(function() {
 		if(pointTmp.length==0) {
 			pointAmt=0;
 			price = savePrice - discount - pointAmt;
+			if(homewayDeliveryFee== 'Home-Way') price+=3900;
 		}
 		
 	}//end of point_func

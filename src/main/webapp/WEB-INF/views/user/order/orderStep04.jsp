@@ -15,8 +15,6 @@
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
 $(function() {
-	console.log('${menu_type}');
-	
 	// fast/home 배경 구분
 	var way = '${whatWay}';
 	console.log("whatWay : " + way);
@@ -506,7 +504,10 @@ function gotoOrderList() {
 							<dd><strong id="couponAmtNavi">0</strong>원</dd>
 							<dt>포인트 사용 </dt>
 							<dd><strong id="pointAmtNavi">0</strong>원</dd>
-							
+							<c:if test="${whatWay eq 'Home-Way' }">
+								<dt>배달비</dt>
+								<dd><strong>+3,900원</strong></dd>	
+							</c:if>
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
