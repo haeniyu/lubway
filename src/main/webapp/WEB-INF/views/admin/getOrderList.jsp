@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getTotalList" value="/lubway/orderSearch.mdo">
+<c:url var="getTotalList" value="/lubway/getTotalList.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -18,13 +18,13 @@
 <script>
    //이전 버튼 이벤트
 
-   function fn_prev(page, range, rangeSize, searchKeyword) {
+   function fn_prev(page, range, rangeSize) {
 
       var page = ((range - 2) * rangeSize) + 1;
 
       var range = range - 1;
 
-      var url = "${pageContext.request.contextPath}/search.mdo";
+      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
 
       url = url + "?page=" + page;
 
@@ -35,9 +35,9 @@
    }
 
    //페이지 번호 클릭
-   function fn_pagination(page, range, rangeSize, searchKeyword, fix) {
+   function fn_pagination(page, range, rangeSize) {
       
-      var url = "${pageContext.request.contextPath}/search.mdo";
+      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
 
       url = url + "?page=" + page;
 
@@ -51,13 +51,13 @@
    
    //다음 버튼 이벤트
 
-   function fn_next(page, range, rangeSize, searchKeyword) {
+   function fn_next(page, range, rangeSize) {
 
       var page = parseInt((range * rangeSize)) + 1;
 
       var range = parseInt(range) + 1;
 
-      var url = "${pageContext.request.contextPath}/search.mdo";
+      var url = "${pageContext.request.contextPath}/getTotalList.mdo";
 
       url = url + "?page=" + page;
 
@@ -83,20 +83,6 @@
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
 			</div>
 				<div class="card-body">
-					<!-- 검색 시작 -->
-					<div align="right">
-						<form action="/lubway/search.mdo" method="get">
-							<tr>
-								<td><input type="text" name="searchKeyword"
-									placeholder="검색할 제품을 입력해 주세요." style="width: 20%" /> 
-									<input
-									style="margin: 3px; padding: 3px"
-									class="btn btn-warning btn-icon-split" type="submit"
-									value="search" /></td>
-							</tr>
-						</form>
-					</div>
-					<!-- 검색 종료 -->
 					<div class="table-responsive">
 						<table class="table table-bordered" id="dataTable" width="100%"	cellspacing="0">
 							<thead>
@@ -134,11 +120,11 @@
 										<td>${list.menu_name }</td>
 										<td>${list.step01 }</td>
 										<td>${list.add_topping }
-											<c:if test="${list.add_topping ne '' and (list.add_meat ne '' or list.add_cheese ne '')}">
+											<c:if test="${list.add_topping ne null and (list.add_meat ne null or list.add_cheese ne null)}">
 												,
 											</c:if>
 											${list.add_meat }
-											<c:if test="${list.add_meat ne '' and list.add_cheese ne ''}">
+											<c:if test="${list.add_meat ne null and list.add_cheese ne null}">
 												,
 											</c:if>
 											${list.add_cheese }
@@ -157,29 +143,28 @@
 			
 			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
 			<!-- pagination{s} -->
-
-			<div align="center">
-				<ul class="pagination" class="TotalOrderVO">
-					<c:if test="${pagination.prev}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
-					</c:if>
-					<c:forEach begin="${pagination.startPage}"
-						end="${pagination.endPage}" var="idx">
-						<li
-							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-							class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-								${idx} </a></li>
-					</c:forEach>
-
-
-					<c:if test="${pagination.next}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
-					</c:if>
-				</ul>
-			</div>
+			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
+					<!-- pagination{s} -->
+					<div align="center">
+						<ul class="pagination">
+							<c:if test="${pagination.prev}">
+								<li class="page-item"><a class="page-link" href="#"
+									onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}')">Prev</a></li>
+							</c:if>
+							<c:forEach begin="${pagination.startPage}"
+								end="${pagination.endPage}" var="idx">
+								<li
+									class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+									class="page-link" href="#"
+									onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}')">
+										${idx} </a></li>
+							</c:forEach>
+							<c:if test="${pagination.next}">
+								<li class="page-item"><a class="page-link" href="#"
+									onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+							</c:if>
+						</ul>
+					</div>
 		</div>
 	</div>
 	</div>

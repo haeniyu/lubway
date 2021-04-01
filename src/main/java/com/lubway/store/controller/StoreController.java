@@ -19,10 +19,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.StoreVO;
+import com.lubway.admin.TotalOrderVO;
 import com.lubway.admin.board.Pagination;
+import com.lubway.admin.service.TotalOrderService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
-import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class StoreController {
@@ -31,7 +32,7 @@ public class StoreController {
 	private StoreService storeService;
 	
 	@Autowired
-	private OrderService orderService;
+	private TotalOrderService orderService;
 
 	@PostMapping("/main.sdo")
 	public String main(@RequestParam("id") String id, 
@@ -122,8 +123,8 @@ public class StoreController {
 		return "storeinfo";
 	}
 	
-	/** 글목록 요청 
-	@GetMapping("/getTodayOrderList.sdo")
+	/** 글목록 요청  */
+	@GetMapping("/getTodayOrder.sdo")
 	public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range, HttpSession session) {
 
@@ -132,24 +133,26 @@ public class StoreController {
 		System.out.println("page : " + page);
 		System.out.println("range : " + range);
 
-		/** 전체 게시글 개수 
-		int listCnt = orderService.getPageListCnt();
+		/** 전체 게시글 개수 */
+		int listCnt = orderService.getTodayListCnt();
 
 		System.out.println("listCnt : " + listCnt);
 		
 		StoreVO vo = (StoreVO) session.getAttribute("store");
 		System.out.println(vo.toString());
 
-		String storename = vo.getStorename();
+		String store_name = vo.getStorename();
 
-		/** Pagination 
+		/** Pagination */
 		Pagination pagination = new Pagination();
-		pagination.pageTodayOrderList(page, range, listCnt, storename);
+		pagination.pageTodayOrderList(page, range, listCnt, store_name);
 
-		List<OrderVO> pageList = orderService.getTodayOrderList(pagination);
+		List<TotalOrderVO> pageList = orderService.getTodayList(pagination);
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("orderList", pageList);
+		
+		System.out.println(pageList.toString());
 
 		return "todayOrder";
 	}
@@ -157,9 +160,38 @@ public class StoreController {
 	@RequestMapping(value = "/todayOrderCnt.sdo", method = RequestMethod.GET)
 	public String getEventPageListCnt() {
 
-		System.out.println(orderService.getPageListCnt());
+		System.out.println(orderService.getTodayListCnt());
 
 		return "todayOrder";
 	}
-*/
+	
+	/** 결제 여부 수정 */
+	@RequestMapping("/updatepayment.sdo")
+	public String updatePayment(String no){
+		
+		int check = Integer.parseInt(no);
+		orderService.updatePaymentStatus(check);
+		
+		System.out.println("결제 여부 업데이트 실행됨");
+		return "redirect:/getTodayOrder.sdo";
+	}
+	
+	/** 주문 상태 변경 */
+	@RequestMapping("/updatestatus.sdo")
+	public String updatePayment(String no, String select){
+		
+		int check = Integer.parseInt(no);
+		
+		List<TotalOrderVO> vo = orderService.getChoiceOrder(check);
+		
+		for(int i=0; i < vo.size(); i++) {
+			TotalOrderVO sta = vo.get(i);
+			sta.setStatus(select);
+			orderService.updateStatus(sta);
+		}
+		
+		System.out.println("주문 상태 업데이트 실행됨");
+		return "redirect:/getTodayOrder.sdo";
+	}
+
 }

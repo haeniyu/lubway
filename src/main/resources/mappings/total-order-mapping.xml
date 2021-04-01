@@ -6,7 +6,7 @@
 	
 	<!-- ADMIN 관리자 판매내역 페이지 -->
 	<select id="getTotalList" parameterType="total_order" resultType="total_order">
-		select * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료'
+		select ROW_NUMBER() OVER() rownum, * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료'
 	</select>
 	
 	<select id="getTotalListCnt" resultType="int">
@@ -19,14 +19,13 @@
 	<select id="getTodayList" parameterType="total_order" resultType="total_order">
 		<![CDATA[ 
 			select * from
-			(select * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료')
+			(select * from order_code, order_list where order_code.no = order_list.no)
 			as total
 			where store_name=#{store_name} and order_time >= current_date and order_time < current_date + integer '1'
 			ORDER BY order_time DESC
 			limit #{listSize} offset #{startList}
 		]]>
 	</select>
-	
 	
 	<select id="getTodayListCnt" resultType="int">
 		<![CDATA[ 
@@ -35,5 +34,20 @@
 			as total
 			where store_name=#{store_name} and order_time >= current_date and order_time < current_date + integer '1'
 		]]>
+	</select>
+	
+	<!-- 결제 버튼 클릭시 결제 완료 -->
+	<update id="updatePaymentStatus" parameterType="total_order">
+		update order_code set payment_status = 'true' where no=#{no}
+	</update>
+	
+	<!-- 주문 상태 변경 -->
+	<update id="updateStatus" parameterType="total_order">
+		update order_code set status = #{status} where no=#{no}
+	</update>
+	
+	<!-- 선택한 vo 가져오기 -->
+	<select id="getChoiceOrder" resultType="total_order">
+		select * from order_code, order_list where order_code.no = order_list.no and order_code.no = #{no}
 	</select>
 </mapper>

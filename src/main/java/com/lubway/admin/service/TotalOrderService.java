@@ -8,5 +8,16 @@ import com.lubway.admin.board.Pagination;
 public interface TotalOrderService {
 
 	List<TotalOrderVO> getTotalList(Pagination pagination);
+	
 	int getTotalListCnt();
+	
+	List<TotalOrderVO> getTodayList(Pagination pagination);
+	
+	int getTodayListCnt();
+	
+	void updatePaymentStatus(int no);
+	
+	void updateStatus(TotalOrderVO vo);
+	
+	List<TotalOrderVO> getChoiceOrder(int no);
 }

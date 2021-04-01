@@ -14,8 +14,6 @@ import com.lubway.admin.TotalOrderVO;
 import com.lubway.admin.board.Pagination;
 import com.lubway.admin.service.TotalOrderService;
 import com.lubway.user.order.OrderCodeVO;
-import com.lubway.user.order.OrderListVO;
-import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class AdminOrderController {

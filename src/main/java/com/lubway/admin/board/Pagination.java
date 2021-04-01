@@ -23,7 +23,7 @@ public class Pagination {
 	private boolean next;
 	private String searchKeyword;
 	private boolean fix;
-	private String storename;
+	private String store_name;
 	
 	public void pageInfo(int page, int range, int listCnt) {
 
@@ -94,12 +94,12 @@ public class Pagination {
 		}
 	}
 	
-	public void pageTodayOrderList(int page, int range, int listCnt, String storename) {
+	public void pageTodayOrderList(int page, int range, int listCnt, String store_name) {
 		
 		this.page = page;
 		this.range = range;
 		this.listCnt = listCnt;
-		this.storename=storename;
+		this.store_name=store_name;
 		
 		//전체 페이지수 
 		this.pageCnt = (int) Math.ceil((double)listCnt/listSize);

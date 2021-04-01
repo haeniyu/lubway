@@ -15,15 +15,6 @@ public class OrderDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	// Admin 주문 완료 목록 //
-	public List<OrderCodeVO> getPagingList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.getPagingList", pagination);
-	}
-	
-	public int getPageListCnt() {
-		return sqlSessionTemplate.selectOne("OrderDAO.getPageListCnt");
-	}
-	
 	// 사용자 Myway 주문내역 //
 	
 	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo){

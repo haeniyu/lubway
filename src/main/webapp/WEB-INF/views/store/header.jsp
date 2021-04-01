@@ -56,7 +56,7 @@
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Order Customer:</h6>
 						<a class="collapse-item" href="tables-list.sdo">주문목록</a>
-						<a class="collapse-item" href="tables.sdo">주문조회</a>
+						<a class="collapse-item" href="getTodayOrder.sdo">오늘의 주문</a>
 					</div>
 				</div>
 			</li>

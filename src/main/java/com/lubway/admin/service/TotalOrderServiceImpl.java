@@ -25,4 +25,29 @@ public class TotalOrderServiceImpl implements TotalOrderService {
 		return dao.getTotalListCnt();
 	}
 
+	@Override
+	public List<TotalOrderVO> getTodayList(Pagination pagination) {
+		return dao.getTodayList(pagination);
+	}
+
+	@Override
+	public int getTodayListCnt() {
+		return dao.getTodayListCnt();
+	}
+
+	@Override
+	public void updatePaymentStatus(int no) {
+		dao.updatePaymentStatus(no);
+	}
+
+	@Override
+	public void updateStatus(TotalOrderVO vo) {
+		dao.updateStatus(vo);
+	}
+
+	@Override
+	public List<TotalOrderVO> getChoiceOrder(int no) {
+		return dao.getChoiceOrder(no);
+	}
+
 }

@@ -22,4 +22,28 @@ public class TotalOrderDAO {
 	public int getTotalListCnt() {
 		return sqlSessionTemplate.selectOne("TotalOrderDAO.getTotalListCnt");
 	}
+	
+	// Store 주문 확인 //
+	public List<TotalOrderVO> getTodayList(Pagination pagination){
+		return sqlSessionTemplate.selectList("TotalOrderDAO.getTodayList", pagination);
+	}
+	
+	public int getTodayListCnt() {
+		return sqlSessionTemplate.selectOne("TotalOrderDAO.getTodayListCnt");
+	}
+	
+	// Store 현금 결제 //
+	public void updatePaymentStatus(int no) {
+		sqlSessionTemplate.update("TotalOrderDAO.updatePaymentStatus", no);
+	}
+	
+	// Store 주문 상태 변경 //
+	public void updateStatus(TotalOrderVO vo) {
+		sqlSessionTemplate.update("TotalOrderDAO.updateStatus", vo);
+	}
+	
+	// 선택한 OrderCodeVO 불러오기//
+	public List<TotalOrderVO> getChoiceOrder(int no) {
+		return sqlSessionTemplate.selectList("TotalOrderDAO.getChoiceOrder", no);
+	}
 }

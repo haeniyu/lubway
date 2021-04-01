@@ -13,13 +13,6 @@ public interface OrderService {
 
 	ToppingAddVO getToppingByName(String t);
 	
-	/** Admin 주문완료 목록 **/
-	
-	// 페이징 리스트
-	List<OrderCodeVO> getPagingList(Pagination pagination);
-
-	// 페이징처리 개수
-	int getPageListCnt();
 	
 	/** MyWay 주문 내역 **/
 	
