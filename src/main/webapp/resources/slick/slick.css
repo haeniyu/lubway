@@ -101,7 +101,8 @@
 }
 .slick-initialized .slick-slide
 {
-    display: block;
+    display: inline-block;
+    text-align: -webkit-center;
 }
 .slick-loading .slick-slide
 {

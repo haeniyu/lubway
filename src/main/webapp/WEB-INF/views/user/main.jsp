@@ -81,7 +81,7 @@
 			</div>
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=cl02"> <img alt="비엘티"
+					<a href=""> <img alt="비엘티"
 						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_cl02.jpg" /> <strong class="title">비엘티</strong>
 						<p>
 							오리지널 아메리칸 베이컨의<br />풍미와 바삭함 그대로~
@@ -244,7 +244,7 @@
 				<p>
 					러브웨이를<br />제대로 즐기는 방법!
 				</p>
-				<a class="btn" href="/utilizationSubway"><span>이용방법</span></a>
+				<a class="btn" href="/lubway/howtouse.do"><span>이용방법</span></a>
 			</div>
 			<!--// 이용방법 -->
 
@@ -253,7 +253,7 @@
 				<p>
 					50년 역사를 가진<br />No.1 프랜차이즈의 성장기
 				</p>
-				<a class="btn" href="/subwayHistory"><span>러브웨이 역사</span></a> <img
+				<a class="btn" href="/lubway/history.do"><span>러브웨이 역사</span></a> <img
 					src="${path}/resources/images/main/img_subway_history.png" />
 			</div>
 			<!--// 러브웨이 역사 -->
@@ -274,12 +274,9 @@
 					<ul>
 						<li><a href="#" onclick="view.noticeView(this);return false;"
 							data-idx="243">러브웨이 고객센터 2021년 설 연휴 휴무 안내</a></li>
-						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="242">2021년 설날 당일 매장 영업 안내 </a></li>
-						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="241">러브웨이와 함께하는 JTBC &#39;라이브온&#39;</a></li>
+						
 					</ul>
-					<a class="more" href="/newsList">more</a>
+					<a class="more" href="/lubway/getUserNoticeList.do">more</a>
 				</div>
 			</div>
 			<!--// whats new -->
@@ -299,19 +296,19 @@
 	</div>
 	<div class="quick_menu">
 		<ul>
-			<li class="qm01"><a href="/franchise">
+			<li class="qm01"><a href="/lubway/franchise.do">
 					<div class="icon"></div> <strong>프랜차이즈</strong> <span>개설절차/투자비용
 						정보</span>
 			</a></li>
-			<li class="qm02"><a href="/franchiseBranchGuide">
-					<div class="icon"></div> <strong>지사안내</strong> <span>수도권/지방
+			<li class="qm02"><a href="/lubway/findStore.do">
+					<div class="icon"></div> <strong>매장찾기</strong> <span>수도권
 						지사정보</span>
 			</a></li>
 			<li class="qm03"><a href="/lubway/video.do">
 					<div class="icon"></div> <strong>광고영상</strong> <span>TV광고/동영상</span>
 			</a></li>
-			<li class="qm04"><a href="/qna">
-					<div class="icon"></div> <strong>1:1 문의</strong> <span>개선/문의사항</span>
+			<li class="qm04"><a href="/lubway/franchiseInquiry.do">
+					<div class="icon"></div> <strong>가맹문의</strong> <span>가맹/신청문의</span>
 			</a></li>
 		</ul>
 	</div>
