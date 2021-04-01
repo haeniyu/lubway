@@ -77,15 +77,4 @@
 										#{add_meat}, #{add_cheese}, #{step03}, #{set_price}, #{menu_price})
 	</insert>
 	
-	<!-- 사용자 주문내역 상세 불러오기 -->
-   <select id="getOrderListDetail" parameterType="order_code" resultType="order_code">
-      select * from order_code where no=#{no} and id=#{id}
-   </select>
-   
-   <!--  
-   <select id="getAddress" parameterType="String" resultType="storeInfo">
-      select address_road from storeInfo where name=#{store_name}
-   </select>-->
-   
-	
 </mapper>

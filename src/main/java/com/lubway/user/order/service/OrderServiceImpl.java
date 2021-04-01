@@ -85,14 +85,5 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.insertOrderList(vo);
 	}
 
-	// 사용자 주문 상세내역
-	@Override
-	   public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
-	      return orderDao.getOrderListDetail(vo);
-	   }
-	   
-   @Override
-   public StoreInfoVO getAddress(String name) {
-      return orderDao.getAddress(name);
-   }
+
 }

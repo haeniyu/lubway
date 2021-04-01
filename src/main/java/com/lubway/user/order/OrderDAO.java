@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.lubway.admin.board.Pagination;
-import com.lubway.store.StoreInfoVO;
 
 @Repository
 public class OrderDAO {
@@ -53,14 +52,4 @@ public class OrderDAO {
 	public void insertOrderList(OrderListVO vo) {
 		sqlSessionTemplate.insert("OrderDAO.insertOrderList", vo);
 	}
-	
-	// 사용자 주문 상세내역
-   public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
-      return sqlSessionTemplate.selectOne("OrderDAO.getOrderListDetail", vo);
-   }
-   
-   public StoreInfoVO getAddress(String name) {
-      return sqlSessionTemplate.selectOne("OrderDAO.getAddress", name);
-   }
-   
 }
