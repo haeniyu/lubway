@@ -22,5 +22,5 @@ public class OrderListVO {
 	private String menu_price;
 	
 	private int count; // 토핑 개수 설정
-	private String address_road; // 매장 주소
+	
 }

@@ -36,7 +36,6 @@ $(function() {
 		$(".order)number").removeClass('home_sub');
 	}
 	
-	
 });
 </script>
 </head>
@@ -68,7 +67,7 @@ $(function() {
 								<div class="input_set">
 									<dl class="shop info_dl">
 										<dt>${orderC.store_name}</dt>
-										<dd>매장주소</dd>
+										<dd>${storeAddr }</dd>
 									</dl>
 								</div>
 								<div class="input_set">
@@ -151,7 +150,7 @@ $(function() {
 												<!-- 추가 선택 메뉴 있을경우 보임-->
 												<div class="addMenu">
 													<ul>
-														<c:if test="${order.add_topping ne null || order.add_topping eq ''}">
+														<c:if test="${order.add_topping ne null}">
 															<c:set var="count" value="${order.count }" />
 															<c:forEach items="${price }" var="getPrice" varStatus="var" begin="${endCount }" end="${endCount + count}">
 																<li>
@@ -169,7 +168,7 @@ $(function() {
 															<c:set var="endCount" value="${endCount + count }" />
 														</c:if>
 														<!-- 미트 추가 시  -->
-														<c:if test="${order.add_meat ne null || order.add_meat eq '' }">
+														<c:if test="${order.add_meat ne null}">
 															<li>
 																<div class="addname">
 																	<strong>${order.add_meat }</strong>
@@ -183,7 +182,7 @@ $(function() {
 															</li>
 														</c:if>
 														<!-- 치즈 추가 시 -->
-														<c:if test="${order.add_cheese ne null || order.add_cheese eq ''}">
+														<c:if test="${order.add_cheese ne null}">
 															<li>
 																<div class="addname">
 																	<strong>${order.add_cheese }</strong>
@@ -197,7 +196,7 @@ $(function() {
 															</li>
 														</c:if>
 														<!-- 세트 추가했을 경우 보임 -->
-														<c:if test="${order.step03 ne null || order.step03 eq '' }">
+														<c:if test="${order.step03 ne null}">
 															<li>
 																<div class="setname">
 																	<strong>세트추가</strong>
@@ -245,9 +244,9 @@ $(function() {
 							</dd>
 						</dl>
 						<dl class="payment_sum">
-							<dt>잔여 결제금액</dt>
+							<dt>최종 결제금액</dt>
 							<dd>
-								<strong>36,500</strong><span>원</span>
+								<strong>${orderC.finalPrice }</strong><span>원</span>
 							</dd>
 						</dl>
 					</section>
@@ -269,7 +268,7 @@ $(function() {
 						<dl>
 							<dt>결제금액</dt>
 							<dd>
-								<span class="font_sw">36,500</span>원
+								<span class="font_sw">${orderC.finalPrice }</span>원
 							</dd>
 						</dl>
 
