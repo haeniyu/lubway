@@ -44,4 +44,9 @@ public class BasketServiceImpl implements BasketService {
 		basketDAO.deleteBasket(vo);
 	}
 
+	@Override
+	public void deleteAllBasket(String name) {
+		basketDAO.deleteAllBasket(name);
+	}
+
 }

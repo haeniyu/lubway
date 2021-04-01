@@ -13,6 +13,47 @@ function addMenu() {
 	$("#addMenuForm").submit();
 }
 
+function deleteBasket() {
+	for(var i=0; i<totalCnt-1; i++) {
+		if($("input:checkbox[name=menu" + i + "]").is(":checked") == true) {
+			console.log("체크된 no 값 : " + $("input:checkbox[name=menu" + i + "]").attr("id"));
+		} else {
+			console.log("얘네는 체크 안됬다 : " + $("input:checkbox[name=menu" + i + "]").attr("id"));
+		}
+	}
+	
+	if(cnt == 0) alert("삭제할 상품을 선택하세요.");
+	else {
+		if(confirm("선택한 상품을 삭제하시겠습니까?") == true) {
+			for(var i=0; i<totalCnt-1; i++) {
+				if($("input:checkbox[name=menu" + i + "]").is(":checked") == true) {
+					if(i == totalCnt-2) selectNo += $("input:checkbox[name=menu" + i + "]").attr("id");
+					else selectNo += $("input:checkbox[name=menu" + i + "]").attr("id") + ",";
+				}
+			}
+			checkMenu = $("[class=menu]:checked").length;
+			alert("선택한 " + checkMenu + "개의 상품이 삭제되었습니다.");
+			if(selectNo.substring(selectNo.length-1, selectNo.length) == ",") {
+				console.log(selectNo);
+				console.log("뒤에 , 지워라");
+				selectNo = selectNo.substring(0, selectNo.length-1);
+				console.log(selectNo);
+			}
+			console.log(selectNo);
+			if($("input:checkbox[id=all]").is(":checked") == true) $("input[name=selectAll]").val("1");
+			$("input[name=deleteNo]").val(selectNo);
+			$("#deleteForm").submit();
+		}
+	}
+}
+
+function changeStore() {
+	if(confirm("현재 선택된 매장과 다른 매장을 선택할경우 장바구니에 담긴 상품은 삭제됩니다. 변경하시겠습니까?") == true) {
+		console.log("바꿀거야!");
+		$("#changeForm").submit();
+	}
+}
+
 var min = 1;
 var max = "10";
 var count = "";
@@ -22,6 +63,7 @@ var totalPrice = 0;
 var cnt = 0;
 var totalCnt = 0;
 var selectId = "";
+var selectNo = "";
 
 $(document).ready(function(){
 	for(var i=1; i <= Number($("#qty"+i).attr("name")); i++){
@@ -146,9 +188,7 @@ function orderBasket() {
 						<dt>픽업매장</dt>
 						<dd>
 							<strong>${store.storename} (${store.address_road})</strong>
-							<a href="javascript:void(0);" id="changeStore" data-url="/order/view/home/step1" data-stor="66406">
-								변경
-							</a>
+							<a href="javascript:void(0);" onclick="changeStore();" id="changeStore">변경</a>
 						</dd>
 					</dl>
 					<div class="all_select">
@@ -157,7 +197,7 @@ function orderBasket() {
 							<span class="icon"></span>
 							전체선택
 						</label>
-						<a class="btn bgc_white" href="javascript:void(0);" id="cartItemDelete"><span>선택삭제</span></a>
+						<a class="btn bgc_white" href="javascript:void(0);" id="cartItemDelete" onclick="deleteBasket();"><span>선택삭제</span></a>
 					</div>
 				</div>
 				
@@ -317,5 +357,13 @@ function orderBasket() {
 	<form action="orderBasket.do" method="post" id="orderForm">
 		<input type="hidden" name="basketNo" value="">
 	</form>
-</body>
+	<form action="deleteBasket.do" method="post" id="deleteForm">
+		<input type="hidden" name="deleteNo" value="">
+		<input type="hidden" name="selectAll" value="0">
+		<input type="hidden" name="whatWay" value="Fast-Way">
+	</form>
+	<form action="fastway/step01.do" method="get" id="changeForm">
+		<input type="hidden" name="franchiseNo" value="${store.no}">
+	</form>
+	</body>
 </html>

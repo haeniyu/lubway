@@ -13,4 +13,5 @@ public interface BasketService {
 	void insertBasket(BasketVO vo);
 	BasketVO getBasketByNo(int no);
 	void deleteBasket(BasketVO vo);
+	void deleteAllBasket(String name);
 }

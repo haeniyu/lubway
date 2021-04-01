@@ -47,7 +47,6 @@ public class UserOptionDAO {
 	}
 
 	public ToppingAddVO getToppingByName(String t) {
-		System.out.println("UserOptionDAO - getToppingByName 실행");
 		return sqlSessionTemplate.selectOne("UserOptionDAO.getToppingByName", t);
 	}
 }

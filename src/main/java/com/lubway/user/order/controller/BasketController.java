@@ -119,6 +119,37 @@ public class BasketController {
 		return "order/baskethome";
 	}
 
+	/** 장바구니 데이터 delete */
+	@PostMapping("/deleteBasket.do")
+	public String deleteBasket(String deleteNo, String whatWay, String selectAll, HttpSession session) {
+		
+		System.out.println(selectAll);
+		
+		UserVO user = (UserVO) session.getAttribute("user");
+		
+		if(selectAll.equals("1")) {
+			basketservice.deleteAllBasket(user.getId());
+		} else {
+			if(deleteNo.split(",").length == 1) {
+				System.out.println("삭제할 데이터 개수 : 1 - " + deleteNo);
+				BasketVO vo = new BasketVO();
+				vo.setNo(Integer.parseInt(deleteNo));
+				basketservice.deleteBasket(vo);
+			} else {
+				System.out.println("삭제할 데이터 개수 : " + deleteNo.split(",").length + " - " + deleteNo);
+				String[] deleteData = deleteNo.split(",");
+				for(String data : deleteData) {
+					System.out.println("얘 삭제할 거임 : " + data);
+					BasketVO vo = new BasketVO();
+					vo.setNo(Integer.parseInt(data));
+					basketservice.deleteBasket(vo);
+				}
+			}
+		}
+		if(whatWay.equals("Home-Way")) return "redirect:baskethome.do";
+		else return "redirect:basketfast.do";
+	}
+	
 	/**	장바구니 데이터 insert */
 	@PostMapping("/basket.do")
 	public String insertBasket(Model model, HttpSession session,
