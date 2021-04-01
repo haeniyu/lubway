@@ -30,4 +30,8 @@
 		DELETE FROM basket WHERE no=#{no}
 	</delete>
 	
+	<delete id="deleteAllBasket" parameterType="String">
+		DELETE FROM basket WHERE id=#{name}
+	</delete>
+	
 </mapper>
