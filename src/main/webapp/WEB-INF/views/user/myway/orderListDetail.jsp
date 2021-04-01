@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -139,7 +140,7 @@ $(function() {
 													</div>
 													<div class="sum">
 														<span>
-															<strong class="price">${order.menu_price}</strong><em>원</em>
+															<strong class="price"><fmt:formatNumber value="${order.menu_price}" pattern="#,###" /></strong><em>원</em>
 														</span>
 														<!-- 추가 선택 메뉴 있을경우 생김 -->
 														<c:if test="${order.add_topping ne null  || order.add_meat ne null || order.add_cheese ne null || order.step03 ne null}">
@@ -207,7 +208,7 @@ $(function() {
 																<div class="setcount"></div>
 																<div class="setsum">
 																	<span>
-																		<strong>${order.set_price }</strong><em>원</em>
+																		<strong><fmt:formatNumber value="${order.set_price }" pattern="#,###" /></strong><em>원</em>
 																	</span>
 																</div>
 															</li>
@@ -230,23 +231,23 @@ $(function() {
 						<dl class="order_sum">
 							<dt>총 주문 금액</dt>
 							<dd>
-								<strong>${orderC.total_price }</strong> 원
+								<strong><fmt:formatNumber value="${orderC.total_price }" pattern="#,###" /></strong> 원
 							</dd>
 						</dl>
 						<dl class="detail_sum">
 							<dt>쿠폰 할인</dt>
 							<dd>
-								<strong>${orderC.use_coupon }</strong>원
+								<strong><fmt:formatNumber value="${orderC.use_coupon }" pattern="#,###" /></strong>원
 							</dd>
 							<dt>포인트 사용</dt>
 							<dd>
-								<strong>${orderC.use_point }</strong>원
+								<strong><fmt:formatNumber value="${orderC.use_point }" pattern="#,###" /></strong>원
 							</dd>
 						</dl>
 						<dl class="payment_sum">
 							<dt>최종 결제금액</dt>
 							<dd>
-								<strong>${orderC.finalPrice }</strong><span>원</span>
+								<strong><fmt:formatNumber value="${orderC.finalPrice }" pattern="#,###" /></strong><span>원</span>
 							</dd>
 						</dl>
 					</section>
@@ -268,7 +269,7 @@ $(function() {
 						<dl>
 							<dt>결제금액</dt>
 							<dd>
-								<span class="font_sw">${orderC.finalPrice }</span>원
+								<span class="font_sw"><fmt:formatNumber value="${orderC.finalPrice }" pattern="#,###" /></span>원
 							</dd>
 						</dl>
 
