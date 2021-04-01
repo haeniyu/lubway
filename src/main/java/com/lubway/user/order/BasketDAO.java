@@ -33,4 +33,9 @@ public class BasketDAO {
 	public BasketVO getBasketByNo(int no) {
 		return sqlSessionTemplate.selectOne("BasketDAO.getBasketByNo", no);
 	}
+
+	public void deleteBasket(BasketVO vo) {
+		System.out.println("BasketDAO - deleteBasket() 장바구니 아이템 삭제 실행");
+		sqlSessionTemplate.delete("BasketDAO.deleteBasket", vo);
+	}
 }
