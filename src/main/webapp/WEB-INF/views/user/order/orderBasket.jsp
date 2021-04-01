@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-<script src="${path}/resources/js/orderStep04.js"></script>
+<script src="${path}/resources/js/orderStep04.js?v=2"></script>
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
@@ -41,10 +41,9 @@ $(function() {
 		}
 	})
 });
-var pay = "";
-var pickUp = "";
+var pay = "PAY_METHOD.CASH";
+var pickUp = "방문포장";
 $(function() {
-	//결제방식 유효성 검사 !!!!!!!!!11
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);
@@ -189,6 +188,9 @@ function gotoOrderList() {
 	var addr = $("#addr").text();
 	$("#fullAddr").val(addr);
 	
+	var restPrice = $('#totalPayAmtNavi').text()
+	$("#restPrice").val(restPrice);
+	
 	$("#orderForm").submit();
 	
 }
@@ -308,10 +310,10 @@ function gotoOrderList() {
 										<dt>쿠폰 사용</dt>
 										<dd>
 											<div class="form_select" style="width: 670px;">
-												<select name="couponCode" id="couponCode">
+												<select name="couponSelection" id="couponSelection">
 													<option>사용가능 쿠폰 ${countCoupon}장</option>
 														<c:forEach items="${couponList }" var="coupon">
-															<option value="${coupon.discount }">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
+															<option value="${coupon.discount },${coupon.code}">${coupon.name } ${coupon.discount }%( <fmt:formatDate value="${coupon.regdate }"
 														pattern="yyyy-MM-dd" /> ~ <fmt:formatDate value="${coupon.enddate }"
 														pattern="yyyy-MM-dd" /> )
 														</option>
@@ -514,7 +516,10 @@ function gotoOrderList() {
 							<dd><strong id="couponAmtNavi">0</strong>원</dd>
 							<dt>포인트 사용 </dt>
 							<dd><strong id="pointAmtNavi">0</strong>원</dd>
-							
+							<c:if test="${whatWay eq 'Home-Way' }">
+								<dt>배달비</dt>
+								<dd><strong>+3,900원</strong></dd>	
+							</c:if>
 						</dl>
 						<dl class="payment_sum">
 							<dt>잔여 결제금액 </dt>
@@ -563,6 +568,9 @@ function gotoOrderList() {
 	<input type="hidden" id="tel" name="tel" value="">
 	<input type="hidden" id="storeName" name="storeName" value="${store.storename }">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="">
+	<input type="hidden" id="restPrice" name="restPrice" value="">
+	<input type="hidden" id="couponCode" name="couponCode" value="">
+	<input type="hidden" id="whatWay" name="whatWay" value="${whatWay }">
 </form> 
 </body>
 </html>

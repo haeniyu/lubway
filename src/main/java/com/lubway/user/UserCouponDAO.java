@@ -1,5 +1,6 @@
 package com.lubway.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -31,4 +32,10 @@ public class UserCouponDAO {
 		System.out.println("countUseCoupon() 기능처리");
 		return sqlSessionTemplate.selectOne("UserCouponDAO.countUseCoupon", vo);
 	}
+
+	public void insertUseCoupon(HashMap<String, String> map) {
+		System.out.println("UserCouponDAO - insertUseCoupon() 실행");
+		sqlSessionTemplate.insert("UserCouponDAO.insertUseCoupon", map);
+	}
+
 }
