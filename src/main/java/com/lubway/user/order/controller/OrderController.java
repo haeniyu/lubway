@@ -32,6 +32,7 @@ import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserMenuService;
+import com.lubway.user.service.UserService;
 
 @Controller
 public class OrderController {
@@ -53,6 +54,9 @@ public class OrderController {
 	
 	@Autowired
 	private BasketService basketService;
+	
+	@Autowired
+	private UserService userService;
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
@@ -255,7 +259,7 @@ public class OrderController {
 	}
 	
 	/** 
-	 * 단품 결제 (DB insert)
+	 * 단품 결제 (order_list insert, usecoupon insert, point update)
 	 * */
 	@PostMapping("/orderStep05.do")
 	public String orderStep05(Model model, OrderCodeVO cvo, OrderListVO lvo, HttpSession session,
@@ -297,6 +301,13 @@ public class OrderController {
 		
 		orderService.insertOrderCode(cvo);
 		orderService.insertOrderList(lvo);
+		
+		//계정 보유 포인트 처리
+		int userPoint = user.getPoint();
+		int usedPoint = Integer.parseInt(point);
+		userPoint -= usedPoint;
+		user.setPoint(userPoint);
+		userService.updateUser(user);
 		
 		return "redirect:/orderList.do";
 		
@@ -429,8 +440,17 @@ public class OrderController {
 			lvo.setMenu_price(vo.getTotal_price());
 			
 			orderService.insertOrderList(lvo);
+			basketService.deleteBasket(vo);
 			
-		}
+		}// end of for
+		
+		
+		//계정 보유 포인트 처리
+		int userPoint = user.getPoint();
+		int usedPoint = Integer.parseInt(point);
+		userPoint -= usedPoint;
+		user.setPoint(userPoint);
+		userService.updateUser(user);
 		
 		
 		return "redirect:/orderList.do";

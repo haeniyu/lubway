@@ -44,6 +44,7 @@ $(function() {
 var pay = "";
 var pickUp = "";
 $(function() {
+	//결제방식 유효성 검사 !!!!!!!!!11
 	$("input:radio[name=payment]").click(function(){
 		var temp = $(this).val();
 		console.log("temp:" + temp);

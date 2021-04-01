@@ -26,4 +26,8 @@
 		SELECT * FROM basket WHERE no=#{no}
 	</select>
 	
+	<delete id="deleteBasket" parameterType="basket">
+		DELETE FROM basket WHERE no=#{no}
+	</delete>
+	
 </mapper>
