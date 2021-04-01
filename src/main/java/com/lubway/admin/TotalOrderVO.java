@@ -20,21 +20,21 @@ public class TotalOrderVO {
 	private String order_type;
 	private Timestamp order_time;
 	private Timestamp delivery_time;
-	private String use_point;
-	private String use_coupon;
-	private String total_price;
+	private int use_point;
+	private int use_coupon;
+	private int total_price;
 	private String payment_list;
 	private boolean payment_status;
 	private String status;
 	private String menu_type;
 	private String menu_name;
 	private int quantity;
-	private String single_price;
+	private int single_price;
 	private String step01;
 	private String add_topping;
 	private String add_meat;
 	private String add_cheese;
 	private String step03;
-	private String set_price;
-	private String menu_price;
+	private int set_price;
+	private int menu_price;
 }
