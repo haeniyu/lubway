@@ -174,7 +174,13 @@ public class MyWayController {
 			int total = 0;
 			
 			total = price - point - coupon;
-			orderInfo.get(i).setFinalPrice(total);
+			
+			if(orderInfo.get(i).getOrder_type().equals("배달")) {
+				total += 3900;
+				orderInfo.get(i).setFinalPrice(total);
+			}else {
+				orderInfo.get(i).setFinalPrice(total);
+			}
 		}
 		
 		model.addAttribute("countOrder", countOrder);
@@ -247,7 +253,12 @@ public class MyWayController {
 		int point = orderCode.getUse_point();
 		int coupon = orderCode.getUse_coupon();
 		int finalPrice = price - point - coupon;
-		orderCode.setFinalPrice(finalPrice);
+		if(orderCode.getOrder_type().equals("배달")) {
+			finalPrice += 3900;
+			orderCode.setFinalPrice(finalPrice);
+		}else {
+			orderCode.setFinalPrice(finalPrice);
+		}
 		
 		model.addAttribute("storeAddr", storeAddr);
 		model.addAttribute("price", total);

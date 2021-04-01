@@ -243,6 +243,10 @@ $(function() {
 							<dd>
 								<strong><fmt:formatNumber value="${orderC.use_point }" pattern="#,###" /></strong>원
 							</dd>
+							<c:if test="${orderC.order_type eq '배달' }">
+								<dt>배달비</dt>
+								<dd><strong>+3,900원</strong></dd>	
+							</c:if>
 						</dl>
 						<dl class="payment_sum">
 							<dt>최종 결제금액</dt>
