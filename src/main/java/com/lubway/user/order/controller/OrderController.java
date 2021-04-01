@@ -61,11 +61,22 @@ public class OrderController {
 
 	/** 메뉴 선택 페이지 */
 	@PostMapping("/orderStep02.do")
-	public String orderStep02(Model model, String franchiseNo, String whatWay, String fullAddr) {
+	public String orderStep02(Model model, String franchiseNo, String whatWay, String fullAddr, String changeNo, String user) {
 		System.out.println("orderStep02 - 페이지 이동");
 		System.out.println("OrderController - franchiseNo : " + franchiseNo);
 		System.out.println("OrderController - whatWay : " + whatWay);
 		System.out.println("OrderController - fullAddr : " + fullAddr);
+		
+		if(changeNo != null) {
+			if(!changeNo.equals("")) {
+				if(!franchiseNo.equals(changeNo)) {
+					BasketVO vo = new BasketVO();
+					vo.setId(user);
+					vo.setOrder_type(whatWay);
+					basketService.deleteAllBasket(vo);
+				}
+			}
+		}
 		
 		model.addAttribute("whatWay", whatWay);
 		model.addAttribute("franchiseNo", franchiseNo);
