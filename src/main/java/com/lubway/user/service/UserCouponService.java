@@ -14,4 +14,5 @@ public interface UserCouponService {
 	
 	int countUseCoupon(UserCouponVO vo);
 
+	void insertUseCoupon(String couponCode, String id);
 }

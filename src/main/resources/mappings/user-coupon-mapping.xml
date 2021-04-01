@@ -37,4 +37,8 @@
 		]]>
 	</select>
 	
+	<insert id="insertUseCoupon" parameterType="HashMap">
+		INSERT INTO use_coupon(code, id) values( #{code}, #{id} )
+	</insert>
+	
 </mapper>
