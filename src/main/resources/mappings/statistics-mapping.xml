@@ -10,5 +10,16 @@
 		]]>
 	</select>
 	
+	<select id="getThisMonthSales" resultType="int">
+		<![CDATA[
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2);
+		]]>
+	</select>
+	
+	<select id="getThisYearSales" resultType="int">
+		<![CDATA[
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4);
+		]]>
+	</select>
 
 </mapper>

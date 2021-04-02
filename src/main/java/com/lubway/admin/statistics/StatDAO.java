@@ -11,8 +11,15 @@ public class StatDAO {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	public int getTodaySales() {
-		System.out.println("StatDAO - getTodaySales() 실행");
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
+	}
+	
+	public int getThisMonthSales() {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisMonthSales");
+	}
+
+	public int getThisYearSales() {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisYearSales");
 	}
 	
 	

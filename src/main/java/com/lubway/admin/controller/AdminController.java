@@ -38,7 +38,7 @@ public class AdminController {
 	 */
 	@PostMapping("/main.mdo")
 	public String main(@RequestParam("id") String id, @RequestParam("password") String password, 
-			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
+			HttpServletResponse response, HttpServletRequest request,Model model) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -57,14 +57,18 @@ public class AdminController {
 		} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("admin", getAdmin);
-				System.out.println("ID, Password 일치");
-				System.out.println("로그인 성공");
-				
+
 				//일 매출 설정
 				int todaySales = statService.getTodaySales();
 				model.addAttribute("todaySales", todaySales);
-				
-				
+
+				//월 매출 설정
+				int thisMonthSales = statService.getThisMonthSales();
+				model.addAttribute("thisMonthSales", thisMonthSales);
+
+				//연 매출 설정
+				int thisYearSales = statService.getThisYearSales();
+				model.addAttribute("thisYearSales", thisYearSales);
 				
 				return "main";
 		}
@@ -74,10 +78,23 @@ public class AdminController {
 	 * 메인 페이지 이동
 	 */
 	@GetMapping("/main.mdo")
-	public String mainView(HttpSession session) {
+	public String mainView(HttpSession session,Model model) {
 		if(session.getAttribute("admin") == null) {
 			return "login";
 		}
+		
+		//일 매출 설정
+		int todaySales = statService.getTodaySales();
+		model.addAttribute("todaySales", todaySales);
+
+		//월 매출 설정
+		int thisMonthSales = statService.getThisMonthSales();
+		model.addAttribute("thisMonthSales", thisMonthSales);
+
+		//연 매출 설정
+		int thisYearSales = statService.getThisYearSales();
+		model.addAttribute("thisYearSales", thisYearSales);
+		
 		return "main";
 	}
 	
