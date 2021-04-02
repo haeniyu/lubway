@@ -298,7 +298,7 @@ public class OrderController {
 		cvo.setOrder_type(receive);
 		cvo.setUse_coupon(Integer.parseInt(coupon));
 		cvo.setUse_point(Integer.parseInt(point));
-		cvo.setTotal_price(Integer.parseInt(finalTotalPrice));
+		cvo.setTotal_price(Integer.parseInt(finalTotalPrice.trim()));
 		cvo.setPayment_list(payment);
 		cvo.setPayment_status(payment_status);
 		
@@ -415,6 +415,7 @@ public class OrderController {
 	 * 장바구니 결제 처리 (orderBakset -> orderStep05Basket)
 	 * */
 	@PostMapping("/orderStep05Basket.do")
+	@Transactional
 	public String orderStep05Basket(Model model, 
 			String totalPrice, String restPrice, 
 			String coupon, String couponCode, String point,
@@ -471,8 +472,9 @@ public class OrderController {
 			lvo.setAdd_meat(vo.getAdd_meat());
 			lvo.setAdd_cheese(vo.getAdd_cheese());
 			lvo.setStep03(vo.getSet_name());
-			lvo.setSet_price(Integer.parseInt(vo.getSet_price()));
 			lvo.setMenu_price(vo.getTotal_price());
+			if(vo.getSet_price()==null) lvo.setSet_price(0);
+			else lvo.setSet_price(Integer.parseInt(vo.getSet_price()));
 			
 			orderService.insertOrderList(lvo);
 			basketService.deleteBasket(vo);

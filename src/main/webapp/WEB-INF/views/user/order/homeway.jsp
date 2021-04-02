@@ -278,7 +278,6 @@
 	                      
 						var itemStr = '<dl><dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
 						itemStr += '<dd class="delivery time"><p>예상 배달 소요시간</p><span>40분</span></dd>';
-						itemStr += '<dd class="delivery"><p>최소 주문 금액</p><span>13,000원</span></dd>';
 						itemStr += '<dd class="delivery"><p>배달비</p><span>3,900원</span></dd>';
 						itemStr += '<dd><p>' + obj.address_road + '</p>';
 						itemStr += '<p>' + obj.store_tel  + '</p></dd></dl>';
@@ -322,7 +321,7 @@
 							"		<a href='#none' class='btn_close' onclick='closeOverlay();'>닫기</a>" +
 							"	</div>" +
 							"	<div class='info'>" +
-							"		<dl>" +
+							"		<dl style='padding:20px 20px 0 20px;'>" +
 							"			<dt>주소</dt>" +
 							"			<dd id='ui_storeInfoLayer_addr'>" + storeAddr1 + 
 							"			</dd>" +
@@ -330,12 +329,11 @@
 							"			<dd>" + storeTel + "</dd>" +
 							"			<dt>영업시간</dt>" +
 							"			<dd>"+ openTm + " - " + closeTm +"</dd>" +
-							"			<dt>최소주문금액</dt><dd>13,000원</dd>" +
 							"			<dt>배달비</dt><dd>3,900원</dd>" +
 							"		</dl>" +
 							"	</div>" +
 							"	<div class='foot'>" +
-							"		<a class='btn_order on' onclick=javascript:orderStart(";
+							"		<a class='btn_order on' style='margin:10px auto'onclick=javascript:orderStart(";
 							content += "'" + franchiseNo + "'";
 							content += "); target='blank'><span>주문하기</span></a>" +"	</div>" +"</div>";
 							
