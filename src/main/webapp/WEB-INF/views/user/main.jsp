@@ -6,10 +6,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css?v=1" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick-theme.css" />
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+function menuDetail(code) {
+	if($("#m_morning").is(":checked") == true){		
+		var select = '${select1}';
+	} else {
+		var select = '${select}';
+	}
+	
+	var form = document.createElement('form');
+	form.setAttribute("method", "post");
+	form.setAttribute("action", "menuDetail.do");
+	
+	var hiddenField_code = document.createElement("input");
+    hiddenField_code.setAttribute("type", "hidden");
+    hiddenField_code.setAttribute("name", "code");
+    hiddenField_code.setAttribute("value", code);
+    
+    var hiddenField_select = document.createElement("input");
+    hiddenField_select.setAttribute("type", "hidden");
+    hiddenField_select.setAttribute("name", "select");
+    hiddenField_select.setAttribute("value", select);
+    
+    form.appendChild(hiddenField_code);
+    form.appendChild(hiddenField_select);
+    document.body.appendChild(form);
+    
+	form.submit();
+}
+</script>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
@@ -46,10 +76,10 @@
 	<!-- 샌드위치 메뉴 슬라이더 -->
 	<div class="subway_slider_menu_wrap">
 		<h2>Lubway's Menu</h2>
-		<input type="radio" name="tabmenu" id="m_classic" checked> <input
-			type="radio" name="tabmenu" id="m_fresh"> <input type="radio"
-			name="tabmenu" id="m_premium"> <input type="radio"
-			name="tabmenu" id="m_morning">
+		<input type="radio" name="tabmenu" id="m_classic" checked> 
+		<input type="radio" name="tabmenu" id="m_fresh"> 
+		<input type="radio" name="tabmenu" id="m_premium"> 
+		<input type="radio" name="tabmenu" id="m_morning">
 
 		<div class="subway_slider_menu">
 			<label for="m_classic">클래식</label> <label for="m_fresh">프레쉬&라이트</label>
@@ -57,181 +87,68 @@
 		</div>
 
 		<div class="subway_slider_content cl">
+		<c:forEach items="${list1}" var="list">
+			<c:if test="${list.name eq '에그마요' or list.name eq '이탈리안 비엠티' or list.name eq '비엘티' or list.name eq '미트볼' }">
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=cl06"> <img alt="에그마요"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_cl06.jpg" /> <strong class="title">에그마요</strong>
+					<a href="#" onclick="javascript:menuDetail('${list.code}');"> <img alt="${list.name}"
+						src="${list.filePath}" /> <strong class="title">${list.name}</strong>
 						<p>
-							친환경 인증 받은 농장에서 생산된 달걀과<br />고소한 마요네즈가 만나 더 부드러운<br />스테디셀러
+							${list.content}
 						</p>
 					</a>
 				</div>
 			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=cl01"> <img alt="이탈리안 비엠티"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_cl01.jpg" /> <strong class="title">이탈리안
-							비엠티</strong>
-						<p>
-							7시간 숙성된 페퍼로니, 살라미<br />그리고 햄이 만들어내는 최상의 조화!<br />전세계가 사랑하는 No.1
-							베스트셀러!<br />Biggest Meatiest Tastiest, It's B.M.T.!
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=cl02"> <img alt="비엘티"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_cl02.jpg" /> <strong class="title">비엘티</strong>
-						<p>
-							오리지널 아메리칸 베이컨의<br />풍미와 바삭함 그대로~
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=cl03"> <img alt="미트볼"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_cl03.jpg" /> <strong class="title">미트볼</strong>
-						<p>
-							이탈리안 스타일 비프 미트볼에<br />러브웨이만의 풍부한 토마토 향이 살아있는<br />마리나라소스를 듬뿍
-						</p>
-					</a>
-				</div>
-			</div>
+			</c:if>
+		</c:forEach>
 		</div>
 		<div class="subway_slider_content fr">
+			<c:forEach items="${list1}" var="list">
+			<c:if test="${list.name eq '로티세리 바비큐 치킨' or list.name eq '로스트 치킨' or list.name eq '러브웨이 클럽' or list.name eq '터키' }">
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=fl01"> <img alt="로티세리 바비큐 치킨"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_fl01.jpg" /> <strong class="title">로티세리
-							바비큐 치킨</strong>
+					<a href="#" onclick="javascript:menuDetail('${list.code}');"> <img alt="${list.name}"
+						src="${list.filePath}" /> <strong class="title">${list.name}</strong>
 						<p>
-							촉촉한 바비큐 치킨의 풍미가득.<br />손으로 찢어 더욱 부드러운 치킨의 혁명
+							${list.content}
 						</p>
 					</a>
 				</div>
 			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=fl02"> <img alt="로스트 치킨"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_fl02.jpg" /> <strong class="title">로스트
-							치킨</strong>
-						<p>
-							오븐에 구워 담백한 저칼로리<br />닭가슴살의 건강한 풍미
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=fl04"> <img alt="러브웨이 클럽"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_fl04.jpg" /> <strong class="title">러브웨이
-							클럽</strong>
-						<p>
-							명실공히 시그니처 러브!<br />터키, 비프, 포크 햄의 완벽한 앙상블
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=fl05"> <img alt="터키"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_fl05.jpg" /> <strong class="title">터키</strong>
-						<p>
-							280kcal로 슬림하게 즐기는<br />오리지날 터키 샌드위치
-						</p>
-					</a>
-				</div>
-			</div>
+			</c:if>
+		</c:forEach>
 		</div>
 		<div class="subway_slider_content pe">
+			<c:forEach items="${list1}" var="list">
+			<c:if test="${list.name eq '러브웨이 멜트' or list.name eq '스파이시 이탈리안' or list.name eq '치킨 데리야끼'}">
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=pm10"> <img alt="풀드포크"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_pm08.jpg" /> <strong class="title">풀드포크</strong>
+					<a href="#" onclick="javascript:menuDetail('${list.code}');"> <img alt="${list.name}"
+						src="${list.filePath}" /> <strong class="title">${list.name}</strong>
 						<p>
-							7시간 저온 훈연한 미국 정통 스타일의<br />리얼 바비큐 풀드포크는 오직 러브웨이에서
+							${list.content}
 						</p>
 					</a>
 				</div>
 			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=pm01"> <img alt="스테이크&amp;치즈"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_pm01.jpg" /> <strong class="title">스테이크&amp;치즈</strong>
-						<p>
-							육즙이 쫙~<br />풍부한 비프 스테이크의 풍미가 입안 한가득
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=pm02"> <img alt="터키 베이컨 아보카도"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_pm02.jpg" /> <strong class="title">터키
-							베이컨 아보카도</strong>
-						<p>
-							담백한 터키와 바삭한 베이컨 환상조합에<br />부드러운 아보카도는 신의 한수
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=pm04"> <img alt="스파이시 이탈리안"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_pm06.jpg" /> <strong class="title">스파이시
-							이탈리안</strong>
-						<p>
-							살라미, 페퍼로니가 입안 한가득!<br />쏘 핫한 이탈리아의 맛
-						</p>
-					</a>
-				</div>
-			</div>
+			</c:if>
+		</c:forEach>
 		</div>
 		<div class="subway_slider_content mo">
+			<c:forEach items="${list2}" var="list">
+			<c:if test="${list.name eq '햄, 에그&치즈' or list.name eq '웨스턴, 에그 & 치즈' or list.name eq '베이컨, 에그 & 치즈' or list.name eq '스테이크, 에그 & 치즈 ' }">
 			<div class="wrap">
 				<div class="best_menu">
-					<a href="/sandwichView?param=bf01"> <img alt="햄, 에그&치즈"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_bf01.jpg" /> <strong class="title">햄,
-							에그&치즈</strong>
-						<p>푹신한 오믈렛과 햄의 가장 클래식한 조화</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=bf02"> <img alt="웨스턴, 에그 & 치즈"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_bf02.jpg" /> <strong class="title">웨스턴,
-							에그 & 치즈</strong>
+					<a class="morning" href="#" onclick="javascript:menuDetail('${list.code}');"> <img alt="${list.name}"
+						src="${list.filePath}" /> <strong class="title">${list.name}</strong>
 						<p>
-							토마토, 피망, 양파 세가지 야채가 더해져<br />더욱 신선한 하루 시작
+							${list.content}
 						</p>
 					</a>
 				</div>
 			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=bf03"> <img alt="베이컨, 에그 & 치즈"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_bf03.jpg" /> <strong class="title">베이컨,
-							에그 & 치즈</strong>
-						<p>
-							오리지널 아메리칸 베이컨으로<br />더욱 풍성한 아침 식사
-						</p>
-					</a>
-				</div>
-			</div>
-			<div class="wrap">
-				<div class="best_menu">
-					<a href="/sandwichView?param=bf04"> <img alt="스테이크, 에그 & 치즈"
-						src="https://lubway.s3.ap-northeast-2.amazonaws.com/menu/sandwich_bf04.jpg" /> <strong class="title">스테이크,
-							에그 & 치즈</strong>
-						<p>
-							육즙 가득 비프 스테이크로<br />든든한 아침 식사
-						</p>
-					</a>
-				</div>
-			</div>
+			</c:if>
+		</c:forEach>
 		</div>
 	</div>
 	<!-- 샌드위치 메뉴 슬라이더 끝 -->
@@ -244,7 +161,7 @@
 				<p>
 					러브웨이를<br />제대로 즐기는 방법!
 				</p>
-				<a class="btn" href="/utilizationSubway"><span>이용방법</span></a>
+				<a class="btn" href="/lubway/howtouse.do"><span>이용방법</span></a>
 			</div>
 			<!--// 이용방법 -->
 
@@ -253,7 +170,7 @@
 				<p>
 					50년 역사를 가진<br />No.1 프랜차이즈의 성장기
 				</p>
-				<a class="btn" href="/subwayHistory"><span>러브웨이 역사</span></a> <img
+				<a class="btn" href="/lubway/history.do"><span>러브웨이 역사</span></a> <img
 					src="${path}/resources/images/main/img_subway_history.png" />
 			</div>
 			<!--// 러브웨이 역사 -->
@@ -272,14 +189,11 @@
 				</div>
 				<div class="board_list">
 					<ul>
-						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="243">러브웨이 고객센터 2021년 설 연휴 휴무 안내</a></li>
-						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="242">2021년 설날 당일 매장 영업 안내 </a></li>
-						<li><a href="#" onclick="view.noticeView(this);return false;"
-							data-idx="241">러브웨이와 함께하는 JTBC &#39;라이브온&#39;</a></li>
+						<c:forEach items="${UserPageList}" var="pageList" begin="1" end="3">
+						<li><a type="hidden" href="getUserNotice.do?no=${pageList.no}">${pageList.title}</a></li>
+						</c:forEach>
 					</ul>
-					<a class="more" href="/newsList">more</a>
+					<a class="more" href="/lubway/getUserNoticeList.do">more</a>
 				</div>
 			</div>
 			<!--// whats new -->
@@ -299,19 +213,19 @@
 	</div>
 	<div class="quick_menu">
 		<ul>
-			<li class="qm01"><a href="/franchise">
+			<li class="qm01"><a href="/lubway/franchise.do">
 					<div class="icon"></div> <strong>프랜차이즈</strong> <span>개설절차/투자비용
 						정보</span>
 			</a></li>
-			<li class="qm02"><a href="/franchiseBranchGuide">
-					<div class="icon"></div> <strong>지사안내</strong> <span>수도권/지방
+			<li class="qm02"><a href="/lubway/findStore.do">
+					<div class="icon"></div> <strong>매장찾기</strong> <span>수도권
 						지사정보</span>
 			</a></li>
 			<li class="qm03"><a href="/lubway/video.do">
 					<div class="icon"></div> <strong>광고영상</strong> <span>TV광고/동영상</span>
 			</a></li>
-			<li class="qm04"><a href="/qna">
-					<div class="icon"></div> <strong>1:1 문의</strong> <span>개선/문의사항</span>
+			<li class="qm04"><a href="/lubway/franchiseInquiry.do">
+					<div class="icon"></div> <strong>가맹문의</strong> <span>가맹/신청문의</span>
 			</a></li>
 		</ul>
 	</div>
