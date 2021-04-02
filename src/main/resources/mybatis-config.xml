@@ -64,5 +64,6 @@
 		<mapper resource="mappings/basket-mapping.xml"/>
 		<mapper resource="mappings/order-mapping.xml"/>
 		<mapper resource="mappings/total-order-mapping.xml"/>
+		<mapper resource="mappings/statistics-mapping.xml"/>
 	</mappers>
 </configuration>

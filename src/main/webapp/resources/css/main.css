@@ -146,12 +146,37 @@ div .wrap {
 }
 
 .wrap>.best_menu {
-	height: 320px;
+	height: 168px;
 	justify-content: space-around;
 }
 
 div .wrap>.best_menu>a>img {
 	width: 260px;
+	padding-top:10px;
+
+}
+
+div .wrap:hover .best_menu a img {
+	width: 260px;
+	animation-name:img0111;
+    animation-duration: 5s;
+    transition-timing-function: linear;
+    animation-iteration-count: infinite;
+	
+}
+
+@keyframes img0111 {
+  0% {padding-top : 10px;}
+  10% {padding-top : 0px; padding-bottom : 10px; }
+  20% {padding-top : 10px; padding-bottom : 0px;}
+  30% {padding-top : 0px; padding-bottom : 10px;}
+  40% {padding-top : 10px; padding-bottom : 0px;}
+  50% {padding-top : 0px; padding-bottom : 10px;}
+  60% {padding-top : 10px; padding-bottom : 0px;}
+  70% {padding-top : 0px; padding-bottom : 10px;}
+  80% {padding-top : 10px; padding-bottom : 0px;}
+  90% {padding-top : 0px; padding-bottom : 10px;}
+  100% {padding-top : 10px; padding-bottom : 0px;}
 }
 
 div .wrap>.best_menu>a>strong.title {

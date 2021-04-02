@@ -1,5 +1,7 @@
+var count = 0;
 	//장바구니 페이지로 이동
 	function gotoBasket() {
+	if(count == 1) return;
 		if($("#code").val().includes("SDW")){
 			if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
 				alert("필수 선택을 선택해주세요.");
@@ -60,14 +62,15 @@
 		if(cheeseAdd == "치즈 추가를 선택해 주세요") cheeseAdd = null;
 		$("#cheeseAdd").val(cheeseAdd);
 		
-		$("#orderForm").attr("action", "basket.do");
-		
-		var selectSauce = $("#selectSauce").text();
-		console.log(selectSauce);
-		$("#sauceList").val(selectSauce); 
-		
-		$("#orderForm").submit();		
-	
+		if(count == 0){
+			$("#orderForm").attr("action", "basket.do");
+			
+			var selectSauce = $("#selectSauce").text();
+			console.log(selectSauce);
+			$("#sauceList").val(selectSauce); 
+			count++;
+			$("#orderForm").submit();		
+		}
 	}//end gotoBasket()
 
 	//주문하기 페이지로 이동
@@ -85,6 +88,7 @@
 				return;
 			}	
 		}
+		count++;
 		
 		var totalPrice = $("#finalAmt").text();//총 가격
 		$("#totalPrice").val(totalPrice);
@@ -111,6 +115,7 @@
 		$("#cheeseAdd").val(cheeseAdd);
 		
 		$("#orderForm").submit();
+		
 	}
 	
 	// 필수 선택 항목 선택 여부

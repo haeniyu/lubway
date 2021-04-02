@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.AdminVO;
 import com.lubway.admin.service.AdminService;
+import com.lubway.admin.statistics.service.StatService;
 
 @Controller
 public class AdminController {
@@ -28,15 +30,15 @@ public class AdminController {
 	@Inject
 	BCryptPasswordEncoder passEncoder;
 	
+	@Autowired
+	StatService statService;
+	
 	/**
 	 * 로그인 처리 후 메인 페이지 이동
 	 */
 	@PostMapping("/main.mdo")
-	public String main(@RequestParam("id") String id, 
-			@RequestParam("password") String password, 
-			HttpServletResponse response, 
-			HttpServletRequest request) throws IOException {
-		System.out.println("관리자 메인  화면으로 이동");
+	public String main(@RequestParam("id") String id, @RequestParam("password") String password, 
+			HttpServletResponse response, HttpServletRequest request, Model model) throws IOException {
 		
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -57,6 +59,13 @@ public class AdminController {
 				session.setAttribute("admin", getAdmin);
 				System.out.println("ID, Password 일치");
 				System.out.println("로그인 성공");
+				
+				//일 매출 설정
+				int todaySales = statService.getTodaySales();
+				model.addAttribute("todaySales", todaySales);
+				
+				
+				
 				return "main";
 		}
 	}

@@ -13,8 +13,8 @@
 			<!-- util menu -->
 			<div class="util_menu">
 				<ul>
-					<li><a href="/agreement">이용약관</a></li>
-					<li><a href="/privacy"><strong>개인정보처리방침</strong></a></li>
+					<li><a href="/lubway/agreement.do">이용약관</a></li>
+					<li><a href="/lubway/privacy.do"><strong>개인정보처리방침</strong></a></li>
 					<li><a href="/lubway/login.sdo" target="_blank">점주관리자</a></li>
 				</ul>
 			</div>

@@ -1,22 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
+<head>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+});//end of document ready
+</script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
+</head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
 
-	<!-- 관리자 버전 화면 만들기  -->
-	<!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
 	<div class="container-fluid">
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
 			<h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-			<a href="#"
-				class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-				class="fas fa-download fa-sm text-white-50"></i> PDF로 다운받기</a>
 		</div>
 
 		<!-- Content Row -->
@@ -28,11 +33,12 @@
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div
-									class="text-xs font-weight-bold text-info text-uppercase mb-1">일
-									매출</div>
+									class="text-xs font-weight-bold text-info text-uppercase mb-1">일 매출</div>
 								<div class="row no-gutters align-items-center">
 									<div class="col-auto">
-										<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">6,397,900원</div>
+										<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+											<fmt:formatNumber type="currency" value="${todaySales}" />원
+										</div>
 									</div>
 								</div>
 							</div>
