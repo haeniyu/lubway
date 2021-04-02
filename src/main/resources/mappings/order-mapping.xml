@@ -38,7 +38,8 @@
 	</resultMap>
 	
 	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
-		select * from order_code where ID=#{id} order by ORDER_TIME DESC
+		select * from order_code where ID=#{id} order by NO DESC
+		limit 10
 	</select>
 
 	<select id="orderList" parameterType="order_list" resultType="order_list">
@@ -47,13 +48,15 @@
 	
 	<select id="selectHomeway" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} and ORDER_TYPE='배달'
-		order by ORDER_TIME DESC
+		order by NO DESC
+		limit 10
 	</select>
 	
 	<select id="selectFastway" parameterType="order_code" resultType="order_code">
 		select * from order_code 
 		where ID=#{id} and ORDER_TYPE not in(select ORDER_TYPE from order_code where ORDER_TYPE='배달')
-		order by ORDER_TIME DESC
+		order by NO DESC
+		limit 10
 	</select>
 	
 	<select id="countOrderList" resultType="int">
@@ -82,23 +85,4 @@
   	    select * from order_code where no=#{no} and id=#{id}
   	 </select>
   	 
-  	 <select id="getOrderList" parameterType="order_code"
-		resultType="order_code">
-		SELECT * FROM ORDER_CODE
-		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
-		ORDER BY ORDER_TIME DESC
-	</select>
-
-	<select id="pagingList" resultType="order_code">
-		select ROW_NUMBER() OVER() rownum, no, store_name, order_time, total_price, use_point, use_coupon
-		from order_code order by order_time desc, rownum desc
-		limit #{listSize} offset #{startList}
-		
-	</select>
-
-	<select id="pagingCnt" resultType="int">
-		select count(*) as listCnt
-		from order_code
-	</select>
-    
 </mapper>

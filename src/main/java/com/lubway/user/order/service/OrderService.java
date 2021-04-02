@@ -36,14 +36,4 @@ public interface OrderService {
 	
 	// 사용자 주문내역 상세
 	OrderCodeVO getOrderListDetail(OrderCodeVO vo);
-	
-	// 글 목록 조회
-	List<OrderCodeVO> getOrderList(OrderCodeVO vo);
-
-	//페이징 리스트
-	List<OrderCodeVO> getOrderPageList(Pagination pagination);
-	
-	//페이징처리 개수
-	int getOrderPageListCnt();
-	   
 }

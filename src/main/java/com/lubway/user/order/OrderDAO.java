@@ -50,18 +50,4 @@ public class OrderDAO {
 	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.getOrderListDetail", vo);
 	}
-	
-	public List<OrderCodeVO> getOrderList(OrderCodeVO vo){
-		System.out.println("getOrderList() 기능 처리");
-		return sqlSessionTemplate.selectList("OrderDAO.getOrderList", vo);
-	}
-	
-	public List<OrderCodeVO> getOrderPageList(Pagination pagination){
-		return sqlSessionTemplate.selectList("OrderDAO.pagingList", pagination);
-	}
-	
-	public int getOrderPageListCnt() {
-		return sqlSessionTemplate.selectOne("OrderDAO.pagingCnt");
-	}
-   
 }

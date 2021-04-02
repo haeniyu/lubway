@@ -267,7 +267,7 @@ $(function() {
 						<dl>
 							<dt>결제일시</dt>
 							<dd>
-								<span class="font_sw">${orderC.order_time }</span>
+								<span class="font_sw"><fmt:formatDate value="${orderC.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></span>
 							</dd>
 						</dl>
 						<dl>

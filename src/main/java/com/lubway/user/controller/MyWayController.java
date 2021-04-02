@@ -159,18 +159,13 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo,
-			@RequestParam(required = false, defaultValue = "1") int page,
-			@RequestParam(required = false, defaultValue = "1") int range) {
+	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo) {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
 		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
 		int countOrder = orderService.countOrderList(vo);
-		
-		/** 전체 게시글 개수 */
-		int listCnt = orderService.getOrderPageListCnt();
 		
 		// 최종 결제 금액 연산
 		for(int i =0; i <orderInfo.size(); i++) {
@@ -189,16 +184,6 @@ public class MyWayController {
 				orderInfo.get(i).setFinalPrice(total);
 			}
 		}
-		
-		/** Pagination */
-		Pagination pagination = new Pagination();
-		pagination.PageInfoEvent(page, range, listCnt);
-		System.out.println(pagination.getListSize());
-		
-		List<OrderCodeVO> pageList = orderService.getOrderPageList(pagination);
-
-		model.addAttribute("pagination", pagination);
-		model.addAttribute("orderList", pageList);
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
 		
@@ -219,12 +204,61 @@ public class MyWayController {
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("select", select);
 		System.out.println(select);
-		
+
+		// 최종 결제금액 연산 및 값 넣어주기
 		if(select.equals("")) {
+			for(int i =0; i <orderInfo.size(); i++) {
+				int price = orderInfo.get(i).getTotal_price();
+				int point = orderInfo.get(i).getUse_point();
+				int coupon = orderInfo.get(i).getUse_coupon();
+				
+				int total = 0;
+				
+				total = price - point - coupon;
+				
+				if(orderInfo.get(i).getOrder_type().equals("배달")) {
+					total += 3900;
+					orderInfo.get(i).setFinalPrice(total);
+				}else {
+					orderInfo.get(i).setFinalPrice(total);
+				}
+			}
 			model.addAttribute("order", orderInfo);
 		}else if(select.equals("homeway")) {
+			for(int i =0; i <homeway.size(); i++) {
+				int price = homeway.get(i).getTotal_price();
+				int point = homeway.get(i).getUse_point();
+				int coupon = homeway.get(i).getUse_coupon();
+				
+				int total = 0;
+				
+				total = price - point - coupon;
+				
+				if(homeway.get(i).getOrder_type().equals("배달")) {
+					total += 3900;
+					homeway.get(i).setFinalPrice(total);
+				}else {
+					homeway.get(i).setFinalPrice(total);
+				}
+			}
 			model.addAttribute("order", homeway);
 		}else if(select.equals("fastway")) {
+			for(int i =0; i <fastway.size(); i++) {
+				int price = fastway.get(i).getTotal_price();
+				int point = fastway.get(i).getUse_point();
+				int coupon = fastway.get(i).getUse_coupon();
+				
+				int total = 0;
+				
+				total = price - point - coupon;
+				
+				if(fastway.get(i).getOrder_type().equals("배달")) {
+					total += 3900;
+					fastway.get(i).setFinalPrice(total);
+				}else {
+					fastway.get(i).setFinalPrice(total);
+				}
+			}
 			model.addAttribute("order", fastway);
 		}
 		
@@ -262,9 +296,12 @@ public class MyWayController {
 		//주문했던 매장 주소 설정
 		OrderCodeVO orderCode = orderService.getOrderListDetail(cvo);
 		System.out.println(orderCode.toString());
-		StoreInfoVO storeInfo = storeService.getstoreinfo(orderCode.getStore_name());
-		String storeAddr = storeInfo.getAddress_road();
 		
+		if(!orderCode.getOrder_type().equals("배달")) {
+			StoreInfoVO storeInfo = storeService.getstoreinfo(orderCode.getStore_name());
+			String storeAddr = storeInfo.getAddress_road();
+			model.addAttribute("storeAddr", storeAddr);
+		}
 		int price = orderCode.getTotal_price();
 		int point = orderCode.getUse_point();
 		int coupon = orderCode.getUse_coupon();
@@ -276,7 +313,6 @@ public class MyWayController {
 			orderCode.setFinalPrice(finalPrice);
 		}
 		
-		model.addAttribute("storeAddr", storeAddr);
 		model.addAttribute("price", total);
 		model.addAttribute("orderC", orderCode);
 		model.addAttribute("orderL", orderList);

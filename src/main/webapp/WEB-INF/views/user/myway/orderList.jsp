@@ -128,32 +128,6 @@ $(document).ready(function(){
 								</c:forEach>
 								<!--// 1세트 -->
 							</ul>
-							<!-- board 페이지 -->
-							<div>
-								<div class="pagination" >
-								<ul class="UserPagination">
-									<c:if test="${pagination.prev}">
-										<a class="arr prev" href="javascript:void(0);"
-											onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
-									</c:if>
-				
-									<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
-										<li 
-											class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-											<a class="page-link" href="#"
-											onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-												${idx} </a></li>
-									</c:forEach>
-				
-									<c:if test="${pagination.next}">
-										<li class="page-item"><a class="arr next" href="javascript:void(0);"
-											onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
-									</c:if>
-								</ul>
-				
-								</div>
-							</div>
-							<!--// board 페이지 -->
 						</div>
 					</div>
 				</c:if>
