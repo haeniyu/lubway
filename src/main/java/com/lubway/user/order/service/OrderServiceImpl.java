@@ -80,19 +80,4 @@ public class OrderServiceImpl implements OrderService {
 	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
 		return orderDao.getOrderListDetail(vo);
 	}
-	
-	@Override
-	public List<OrderCodeVO> getOrderList(OrderCodeVO vo) {
-		return orderDao.getOrderList(vo);
-	}
-	
-	public List<OrderCodeVO> getOrderPageList(Pagination pagination){
-		return orderDao.getOrderPageList(pagination);
-	}
-	
-	@Override
-	public int getOrderPageListCnt() {
-		return orderDao.getOrderPageListCnt();
-
-	}
 }
