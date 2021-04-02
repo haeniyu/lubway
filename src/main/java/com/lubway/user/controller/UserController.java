@@ -261,7 +261,22 @@ public class UserController {
 	 * 로그아웃 처리
 	 */
 	@GetMapping("/logout.do")
-	public String logout(HttpSession session) {
+	public String logout(HttpSession session,@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range, Model model,
+			String select, String code) {
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
 		session.invalidate();
 		System.out.println("로그아웃 처리");
 		return "main";
