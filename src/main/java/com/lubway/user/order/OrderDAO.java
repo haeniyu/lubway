@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.lubway.admin.board.EventVO;
 import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 
@@ -49,8 +50,18 @@ public class OrderDAO {
 	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.getOrderListDetail", vo);
 	}
-   
-	public StoreInfoVO getAddress(String name) {
-		return sqlSessionTemplate.selectOne("OrderDAO.getAddress", name);
+	
+	public List<OrderCodeVO> getOrderList(OrderCodeVO vo){
+		System.out.println("getOrderList() 기능 처리");
+		return sqlSessionTemplate.selectList("OrderDAO.getOrderList", vo);
 	}
+	
+	public List<OrderCodeVO> getOrderPageList(Pagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.pagingList", pagination);
+	}
+	
+	public int getOrderPageListCnt() {
+		return sqlSessionTemplate.selectOne("OrderDAO.pagingCnt");
+	}
+   
 }

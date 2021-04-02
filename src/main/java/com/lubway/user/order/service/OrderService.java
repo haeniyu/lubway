@@ -2,6 +2,7 @@ package com.lubway.user.order.service;
 
 import java.util.List;
 
+import com.lubway.admin.board.EventVO;
 import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
@@ -35,7 +36,14 @@ public interface OrderService {
 	
 	// 사용자 주문내역 상세
 	OrderCodeVO getOrderListDetail(OrderCodeVO vo);
-	   
-	StoreInfoVO getAddress(String name);
 	
+	// 글 목록 조회
+	List<OrderCodeVO> getOrderList(OrderCodeVO vo);
+
+	//페이징 리스트
+	List<OrderCodeVO> getOrderPageList(Pagination pagination);
+	
+	//페이징처리 개수
+	int getOrderPageListCnt();
+	   
 }

@@ -1685,3 +1685,24 @@
 .mysub_index .member_active .my_info .btn.go_view.whiteBtn > span {
 	color: #FFF;
 }
+
+.pagination .arr {
+    display: inline-block;
+}
+
+.pagination .arr.prev {
+    margin-right: 97px;
+}
+
+.pagination strong, .pagination a {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0 3px;
+    margin: 0 10px;
+    color: #bbbbbb;
+}
+
+.pagination a.active {
+    display: inline-block;
+    color: #009223;
+}

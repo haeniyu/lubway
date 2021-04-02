@@ -38,6 +38,34 @@ $(document).ready(function(){
 	$()
 	
 });
+
+	//이전 버튼 이벤트
+	function fn_prev(page, range, rangeSize) {
+		var page = ((range - 2) * rangeSize) + 1;
+		var range = range - 1;
+		var url = "${pageContext.request.contextPath}/orderList.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		location.href = url;
+	}
+	
+	//페이지 번호 클릭
+	function fn_pagination(page, range, rangeSize ) {
+		var url = "${pageContext.request.contextPath}/orderList.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		location.href = url;
+	}
+	
+	//다음 버튼 이벤트
+	function fn_next(page, range, rangeSize, searchKeyword) {
+		var page = parseInt((range * rangeSize)) + 1;
+		var range = parseInt(range) + 1;
+		var url = "${pageContext.request.contextPath}/orderList.do";
+		url = url + "?page=" + page;
+		url = url + "&range=" + range;
+		location.href = url;
+	}
 </script>
 </head>
 <body>
@@ -102,10 +130,27 @@ $(document).ready(function(){
 							</ul>
 							<!-- board 페이지 -->
 							<div>
-								<div class="pagination">
-									<a class="arr prev" href="javascript:void(0);"></a> 
-									<a class="active" href="#">1</a> 
-									<a class="arr next" href="javascript:void(0);"></a>
+								<div class="pagination" >
+								<ul class="UserPagination">
+									<c:if test="${pagination.prev}">
+										<a class="arr prev" href="javascript:void(0);"
+											onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+									</c:if>
+				
+									<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
+										<li 
+											class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+											<a class="page-link" href="#"
+											onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+												${idx} </a></li>
+									</c:forEach>
+				
+									<c:if test="${pagination.next}">
+										<li class="page-item"><a class="arr next" href="javascript:void(0);"
+											onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+									</c:if>
+								</ul>
+				
 								</div>
 							</div>
 							<!--// board 페이지 -->

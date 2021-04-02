@@ -42,6 +42,7 @@ public class ManageStoreController {
 	public String insertStore(StoreVO vo, 
 			@RequestParam("openTime") String openTime, 
 			@RequestParam("closeTime") String closeTime, 
+			@RequestParam("addr") String addr, 
 			StoreInfoVO info) throws ParseException {
 		
 		System.out.println(vo.toString());
@@ -52,6 +53,9 @@ public class ManageStoreController {
 		info.setOpen(open);
 		info.setClose(close);
 		System.out.println(info.toString());
+		
+		System.out.println(addr);
+		info.setAddress_road(addr);
 		
 		manageService.insertStore(vo);
 		manageService.insertStoreInfo(info);

@@ -81,9 +81,24 @@
    	<select id="getOrderListDetail" parameterType="order_code" resultType="order_code">
   	    select * from order_code where no=#{no} and id=#{id}
   	 </select>
+  	 
+  	 <select id="getOrderList" parameterType="order_code"
+		resultType="order_code">
+		SELECT * FROM ORDER_CODE
+		WHERE TITLE LIKE '%'||#{searchKeyword}||'%'
+		ORDER BY ORDER_TIME DESC
+	</select>
+
+	<select id="pagingList" resultType="order_code">
+		select ROW_NUMBER() OVER() rownum, no, store_name, order_time, total_price, use_point, use_coupon
+		from order_code order by order_time desc, rownum desc
+		limit #{listSize} offset #{startList}
+		
+	</select>
+
+	<select id="pagingCnt" resultType="int">
+		select count(*) as listCnt
+		from order_code
+	</select>
     
-  	 <select id="getAddress" parameterType="String" resultType="String">
- 	     select address_road from storeInfo where storename=#{store_name}
-  	 </select>
-	
 </mapper>

@@ -24,6 +24,7 @@ $(document).ready(function(){
 	function setTime() {
 		var open = $("#open").val();
 		var close = $("#close").val();
+		var addr = $("#address").val();
 
 		var openField = document.createElement("input");
 		openField.setAttribute("type", "hidden");
@@ -35,8 +36,14 @@ $(document).ready(function(){
 		closeField.setAttribute("name", "closeTime");
 		closeField.setAttribute("value", close);
 
+		var addrField = document.createElement("input");
+		addrField.setAttribute("type", "hidden");
+		addrField.setAttribute("name", "addr");
+		addrField.setAttribute("value", addr);
+
 		document.form.appendChild(openField);
 		document.form.appendChild(closeField);
+		document.form.appendChild(addrField);
 		document.form.submit();
 	}
 

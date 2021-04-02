@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.admin.board.EventVO;
+import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
 import com.lubway.user.UserCouponVO;
@@ -157,13 +159,18 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo) {
+	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) {
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
 		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
 		int countOrder = orderService.countOrderList(vo);
+		
+		/** 전체 게시글 개수 */
+		int listCnt = orderService.getOrderPageListCnt();
 		
 		// 최종 결제 금액 연산
 		for(int i =0; i <orderInfo.size(); i++) {
@@ -183,6 +190,15 @@ public class MyWayController {
 			}
 		}
 		
+		/** Pagination */
+		Pagination pagination = new Pagination();
+		pagination.PageInfoEvent(page, range, listCnt);
+		System.out.println(pagination.getListSize());
+		
+		List<OrderCodeVO> pageList = orderService.getOrderPageList(pagination);
+
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("orderList", pageList);
 		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("order", orderInfo);
 		
