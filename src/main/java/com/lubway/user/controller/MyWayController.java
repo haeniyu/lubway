@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lubway.admin.board.EventVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
 import com.lubway.user.UserCouponVO;
@@ -26,7 +24,6 @@ import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderListVO;
-import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
@@ -45,9 +42,6 @@ public class MyWayController {
 	
 	@Autowired
 	private OrderService orderService;
-	
-	@Autowired
-	private BasketService basketService;
 	
 	@Autowired
 	private StoreService storeService;
@@ -120,6 +114,23 @@ public class MyWayController {
 		
 		user.setSms_usable(sms);
 		user.setEmail_usable(email);
+		
+		userService.updateUser(user);
+		System.out.println(user.toString());
+		System.out.println("정보 변경 완료");
+		return "myway/updateinfo";
+	}
+	
+	
+	//정보변경
+	@RequestMapping("/resultmodSocial.do")
+	public String resultmodSocial(@RequestParam("tel") String tel, @RequestParam("sms_recep") boolean sms, @RequestParam("email_recep") boolean email, HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("user");
+		System.out.println(user.toString());
+		
+		user.setSms_usable(sms);
+		user.setEmail_usable(email);
+		user.setTel(tel);
 		
 		userService.updateUser(user);
 		System.out.println(user.toString());

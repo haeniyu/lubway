@@ -18,7 +18,7 @@
 	</insert>
 	
 	<update id="updateUser" parameterType="user">
-		UPDATE lubuser SET password=#{password}, sms_usable=#{sms_usable}, email_usable=#{email_usable}, point=#{point}
+		UPDATE lubuser SET password=#{password}, sms_usable=#{sms_usable}, email_usable=#{email_usable}, point=#{point}, tel=#{tel}
 		WHERE id = #{id}
 	</update>
 	

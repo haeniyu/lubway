@@ -11,6 +11,7 @@
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
+	
 	//체크박스 표시 유지
 	$("input[name='sms_usable']").each(function(){
         var check = ${user.sms_usable};
@@ -104,6 +105,56 @@ $(document).ready(function() {
 		
 	});
 	
+	//소셜 계정 확인 버튼 눌렀을 때
+	$("#modSocialInfo").on("click", function(){
+		
+		var sms = $("#sms_recep").is(":checked");
+		var email = $("#email_recep").is(":checked");
+		var tel = $("#tel").val().trim();
+		
+		//휴대폰 번호 유효성 검사
+		var checkNum = /(01[0|1|6|9|7])(\d{3}|\d{4})(\d{4}$)/g;
+
+		if (!checkNum.test(tel)) {
+			alert("번호가 올바르지 않습니다.");
+			$("#tel").focus();
+			return;
+		}
+		
+		var form = document.createElement("form");
+        form.setAttribute("method", "Post");
+        
+        form.setAttribute("action", "/lubway/resultmodSocial.do");
+		
+      	//sms 수신 동의 여부 저장
+        var smsField = document.createElement("input");
+        smsField.setAttribute("type", "hidden");
+        smsField.setAttribute("name", "sms_recep");
+        smsField.setAttribute("value", sms);
+
+      	//email 수신 동의 여부 저장
+        var emailField = document.createElement("input");
+        emailField.setAttribute("type", "hidden");
+        emailField.setAttribute("name", "email_recep");
+        emailField.setAttribute("value", email);
+        
+        //핸드폰번호 업데이트
+        var telField = document.createElement("input");
+        telField.setAttribute("type","hidden");
+        telField.setAttribute("name","tel");
+        telField.setAttribute("value", tel);
+	        
+	    form.appendChild(telField);
+        form.appendChild(smsField);
+        form.appendChild(emailField);
+        document.body.appendChild(form);
+        
+		alert("수정되었습니다.");
+        
+        form.submit();
+		
+	});
+	
 	$("#withdrawal").on("click",function(){
 		var flag = confirm("정말로 탈퇴하시겠습니까?");
 		if(flag){
@@ -143,7 +194,12 @@ $(document).ready(function() {
 									</c:if>
 									<dl class="info_dl">
 										<dt>휴대전화</dt>
-										<dd>${user.tel }</dd>
+										<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
+											<dd>${user.tel }</dd>
+										</c:if>
+										<c:if test="${nuser != null || guser != null || kuser != null}">
+											<dd><span class="form_text"><input type="text" id="tel" value="${user.tel }" style="text-align:right"></span></dd>
+										</c:if>
 									</dl>
 								</div>
 								<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
@@ -189,7 +245,12 @@ $(document).ready(function() {
 
 					<div class="btn_area">
 						<a class="btn bgc_white" href="javascript:void(0);" id="withdrawal" style="width: 126px;"><span>회원탈퇴</span></a>
-						<a class="btn bgc_point " href="javascript:void(0);" id="modInfo" style="width: 197px;"><span>회원정보 변경</span></a>
+						<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
+							<a class="btn bgc_point " href="javascript:void(0);" id="modInfo" style="width: 197px;"><span>회원정보 변경</span></a>
+						</c:if>
+						<c:if test="${nuser != null || guser != null || kuser != null}">
+							<a class="btn bgc_point " href="javascript:void(0);" id="modSocialInfo" style="width: 197px;"><span>회원정보 변경</span></a>
+						</c:if>
 					</div>
 				</div>
 			</div>
