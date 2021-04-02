@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/main.css?v=1" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/slick/slick-theme.css" />
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">

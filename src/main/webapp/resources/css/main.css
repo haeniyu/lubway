@@ -146,18 +146,18 @@ div .wrap {
 }
 
 .wrap>.best_menu {
-	height: 320px;
+	height: 168px;
 	justify-content: space-around;
 }
 
 div .wrap>.best_menu>a>img {
 	width: 260px;
-	height: 168px;
+	padding-top:10px;
+
 }
 
 div .wrap:hover .best_menu a img {
 	width: 260px;
-	height : 168px;
 	animation-name:img0111;
     animation-duration: 5s;
     transition-timing-function: linear;
@@ -166,17 +166,17 @@ div .wrap:hover .best_menu a img {
 }
 
 @keyframes img0111 {
-  0% {width: 262px; height: 168px;}
-  10% {width: 260px; height: 180px;}
-  20% {width: 260px; height: 168px;}
-  30% {width: 260px; height: 180px;}
-  40% {width: 260px; height: 168px;}
-  50% {width: 260px; height: 180px;}
-  60% {width: 260px; height: 168px;}
-  70% {width: 260px; height: 180px;}
-  80% {width: 260px; height: 168px;}
-  90% {width: 260px; height: 180px;}
-  100% {width:260px;  height: 168px;}
+  0% {padding-top : 10px;}
+  10% {padding-top : 0px; padding-bottom : 10px; }
+  20% {padding-top : 10px; padding-bottom : 0px;}
+  30% {padding-top : 0px; padding-bottom : 10px;}
+  40% {padding-top : 10px; padding-bottom : 0px;}
+  50% {padding-top : 0px; padding-bottom : 10px;}
+  60% {padding-top : 10px; padding-bottom : 0px;}
+  70% {padding-top : 0px; padding-bottom : 10px;}
+  80% {padding-top : 10px; padding-bottom : 0px;}
+  90% {padding-top : 0px; padding-bottom : 10px;}
+  100% {padding-top : 10px; padding-bottom : 0px;}
 }
 
 div .wrap>.best_menu>a>strong.title {
