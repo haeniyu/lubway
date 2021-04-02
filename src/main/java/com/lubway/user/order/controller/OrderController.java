@@ -322,7 +322,7 @@ public class OrderController {
 			lvo.setStep03(step03Text);
 			lvo.setSet_price(Integer.parseInt(setAdd));
 		}
-		lvo.setMenu_price(Integer.parseInt(finalTotalPrice));
+		lvo.setMenu_price(Integer.parseInt(finalTotalPrice.trim()));
 		
 		orderService.insertOrderCode(cvo);
 		orderService.insertOrderList(lvo);
@@ -331,7 +331,7 @@ public class OrderController {
 		int userPoint = user.getPoint();
 		int usedPoint = Integer.parseInt(point);
 		String rest = restPrice.replace(",", "");
-		int restNum = Integer.parseInt(rest);
+		int restNum = Integer.parseInt(rest.trim());
 		int earnedPoint = (int) (restNum*0.05); 
 		userPoint = userPoint - usedPoint + earnedPoint;
 		user.setPoint(userPoint);
