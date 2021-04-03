@@ -17,6 +17,7 @@
 <link rel="stylesheet" href="${path}/resources/css/menu.css?v=2">
 <link rel="stylesheet" href="${path}/resources/css/ui.popup.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript">
 //메뉴에 따른 선택 항목 노출 설정
 function hideDiv() {
