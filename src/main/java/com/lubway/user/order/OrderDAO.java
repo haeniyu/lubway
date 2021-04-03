@@ -47,7 +47,11 @@ public class OrderDAO {
 	}
 	
 	// 사용자 주문내역
-	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
+	public OrderListVO getOrderListDetail(OrderCodeVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.getOrderListDetail", vo);
+	}
+	
+	public List<OrderListVO> getTypeCount() {
+		return sqlSessionTemplate.selectList("OrderDAO.getTypeCount");
 	}
 }

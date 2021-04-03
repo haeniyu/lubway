@@ -75,9 +75,15 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.insertOrderList(vo);
 	}
 
-	//사용자 주문내역 상세
+
+	@Override
+	public List<OrderListVO> getTypeCount() {
+		return orderDao.getTypeCount();
+	}
+
 	@Override
 	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
-		return orderDao.getOrderListDetail(vo);
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

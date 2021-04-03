@@ -36,4 +36,7 @@ public interface OrderService {
 	
 	// 사용자 주문내역 상세
 	OrderCodeVO getOrderListDetail(OrderCodeVO vo);
+	
+	//메뉴 타입별 매출 카운트
+	List<OrderListVO> getTypeCount();
 }

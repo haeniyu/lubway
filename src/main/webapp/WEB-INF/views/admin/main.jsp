@@ -6,13 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-$(document).ready(function() {
-	
-});//end of document ready
-</script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	createtypeChart();
+})
+</script>
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
@@ -142,24 +142,35 @@ $(document).ready(function() {
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-						<div class="chart-pie pt-4 pb-2">
-							<canvas id="myPieChart"></canvas>
-						</div>
-						<div class="mt-4 text-center small">
-							<span class="mr-2"> <i class="fas fa-circle text-primary"></i>
-								매장
-							</span> <span class="mr-2"> <i class="fas fa-circle text-success"></i>
-								포장
-							</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-								배달
-							</span>
+						<div>
+							<canvas id="typeChart"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div><!-- End of container-fluid -->
-
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
+<script type="text/javascript">
+function createtypeChart(){
+	
+	var ctx = document.getElementById("typeChart").getContext('2d');
+	var typeChart = new Chart(ctx, {
+	  type: 'doughnut',
+	  data: {
+	    labels: ["salad", "side", "sandwich", "wrap"],
+	    datasets: [{
+	      backgroundColor: [
+	        "#E85A1C",
+	        "#14A8E6",
+	        "#008D43",
+	        "#FFCA01"
+	      ],
+	      data: [32, 63, 81, 22]
+	    }]
+	  }
+	});
+}
+</script>
 </html>

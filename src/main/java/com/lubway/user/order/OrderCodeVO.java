@@ -29,5 +29,6 @@ public class OrderCodeVO {
 	
 	private String address_road; // 매장 주소
 	private int finalPrice; // 최종 결제 금액
-	
+
+	private int num; //rownum
 }
