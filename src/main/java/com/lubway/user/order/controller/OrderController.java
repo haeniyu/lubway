@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lubway.admin.menu.CookieVO;
@@ -269,6 +269,22 @@ public class OrderController {
 		return "order/orderStep04";
 	}
 	
+	/**
+	 * 결제 후 뒤로가기 막기
+	 */
+	@GetMapping("/orderStep04.do")
+	public String blockGoBack1(HttpSession session) {
+		if(session.getAttribute("user") == null) {
+			return "main.do";
+		}
+		if(session.getAttribute("blocking")!=null) {
+			
+			return "redirect:/orderList.do";
+		}
+
+		return "redirect:/orderList.do";
+	}
+	
 	/** 
 	 * 단품 결제 (orderStep04 -> orderStep05)
 	 * */
@@ -340,6 +356,9 @@ public class OrderController {
 		//쿠폰 사용 처리
 		couponService.insertUseCoupon(couponCode, user.getId());
 		
+		session.setAttribute("blocking", "true");
+		
+		
 		return "redirect:/orderList.do";
 		
 	}
@@ -347,7 +366,7 @@ public class OrderController {
 	/**
 	 * 장바구니 주문 화면 이동
 	 */
-	@RequestMapping("/orderBasket.do")
+	@PostMapping("/orderBasket.do")
 	public String orderBasket(Model model, HttpSession session, String basketNo, UserCouponVO coupon) {
 		System.out.println("장바구니 주문 페이지 이동");
 		System.out.println("주문 no " + basketNo);
@@ -410,6 +429,18 @@ public class OrderController {
 		
 		return "order/orderBasket";
 	}	
+	
+	/**
+	 * 결제 후 뒤로가기 막기
+	 */
+	@GetMapping("/orderBasket.do")
+	public String blockGoBack2(HttpSession session) {
+		if(session.getAttribute("user") == null) {
+			return "main.do";
+		}
+		
+		return "redirect:/orderList.do";
+	}
 	
 	/** 
 	 * 장바구니 결제 처리 (orderBakset -> orderStep05Basket)
