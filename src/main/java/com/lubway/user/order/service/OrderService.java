@@ -39,4 +39,7 @@ public interface OrderService {
 	
 	//메뉴 타입별 매출 카운트
 	List<OrderListVO> getTypeCount();
+	
+	//최고 매출 매장
+	List<OrderCodeVO> getBestStore();
 }

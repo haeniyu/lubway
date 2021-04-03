@@ -7,11 +7,52 @@
 <html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	createtypeChart();
-})
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+var labels = new Array();
+var data = new Array();
+<c:forEach items="${typeList}" var="result" >
+var json = new Object();
+labels.push("${result.menu_type}");
+data.push("${result.count}");
+</c:forEach>
+console.log(data);
+var count = new Array();
+    for(var i = 0; i < data.length; i++){ //랜덤 데이터 생성
+      var cnt = data[i].replace('"','');
+      console.log(cnt);
+      count.push(cnt);
+    }
+console.log(count);
+function drawChart() {
+	
+	 var data = new google.visualization.DataTable();
+     //그래프에 표시할 컬럼 추가
+     data.addColumn('string', '메뉴타입');
+     data.addColumn('number', '판매량');
+
+     //그래프에 표시할 데이터
+     var dataRow = [];
+
+     for(var i = 0; i < labels.length; i++){ //랜덤 데이터 생성
+       var type = labels[i];
+       var cnt = Number(count[i]);
+       console.log(cnt);
+       dataRow = [type , cnt];
+       data.addRow(dataRow);
+     }
+
+    var options = {
+		title: '타입별 판매 현황'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+	chart.draw(data, options);
+}
 </script>
 </head>
 <body id="page-top">
@@ -98,9 +139,8 @@ $(document).ready(function(){
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div
-									class="text-xs font-weight-bold text-warning text-uppercase mb-1">금일
-									가맹점 문의 건수</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+									class="text-xs font-weight-bold text-warning text-uppercase mb-1">최고 매출 매장</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">${best }</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -142,9 +182,7 @@ $(document).ready(function(){
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-						<div>
-							<canvas id="typeChart"></canvas>
-						</div>
+						<div id="piechart" style="width: 100%; height: 350px;"></div>
 					</div>
 				</div>
 			</div>
@@ -152,25 +190,4 @@ $(document).ready(function(){
 	</div><!-- End of container-fluid -->
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
-<script type="text/javascript">
-function createtypeChart(){
-	
-	var ctx = document.getElementById("typeChart").getContext('2d');
-	var typeChart = new Chart(ctx, {
-	  type: 'doughnut',
-	  data: {
-	    labels: ["salad", "side", "sandwich", "wrap"],
-	    datasets: [{
-	      backgroundColor: [
-	        "#E85A1C",
-	        "#14A8E6",
-	        "#008D43",
-	        "#FFCA01"
-	      ],
-	      data: [32, 63, 81, 22]
-	    }]
-	  }
-	});
-}
-</script>
 </html>

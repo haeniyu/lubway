@@ -75,6 +75,11 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.insertOrderList(vo);
 	}
 
+	
+	@Override
+	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
+		return null;
+	}
 
 	@Override
 	public List<OrderListVO> getTypeCount() {
@@ -82,8 +87,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderCodeVO> getBestStore() {
+		return orderDao.getBestStore();
 	}
 }

@@ -51,7 +51,13 @@ public class OrderDAO {
 		return sqlSessionTemplate.selectOne("OrderDAO.getOrderListDetail", vo);
 	}
 	
+	//메뉴 타입별 매출
 	public List<OrderListVO> getTypeCount() {
 		return sqlSessionTemplate.selectList("OrderDAO.getTypeCount");
+	}
+	
+	//최고 매출 매장
+	public List<OrderCodeVO> getBestStore(){
+		return sqlSessionTemplate.selectList("OrderDAO.getBestStore");
 	}
 }
