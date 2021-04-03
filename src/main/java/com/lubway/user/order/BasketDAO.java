@@ -46,4 +46,8 @@ public class BasketDAO {
 	public void updateMinus(int no) {
 		sqlSessionTemplate.update("BasketDAO.updateMinus", no);
 	}
+
+	public void deleteBasketByid(String id) {
+		sqlSessionTemplate.delete("BasketDAO.deleteBasketByid", id);
+	}
 }

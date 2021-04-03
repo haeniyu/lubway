@@ -41,4 +41,8 @@
 	<update id="updateMinus" parameterType="int">
 		UPDATE basket SET quantity = quantity-1, total_price = total_price-(total_price/quantity) WHERE no=#{no}
 	</update>
+	
+	<delete id="deleteBasketByid" parameterType="String">
+		DELETE FROM basket WHERE id=#{id}
+	</delete>
 </mapper>

@@ -24,6 +24,7 @@ import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderListVO;
+import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
 import com.lubway.user.service.UserService;
@@ -45,6 +46,9 @@ public class MyWayController {
 	
 	@Autowired
 	private StoreService storeService;
+	
+	@Autowired
+	private BasketService basketService;
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
@@ -150,6 +154,7 @@ public class MyWayController {
 		System.out.println("컨트롤러 - withdrawal 실행");
 		UserVO vo = (UserVO) session.getAttribute("user");
 		userService.deleteUser(vo);
+		basketService.deleteBasketByid(vo.getId());
 		session.invalidate();
 		return "main";
 	}
