@@ -88,9 +88,19 @@
 			</a></li>
 
 			<!-- Nav Item - 매출현황 -->
-			<li class="nav-item"><a class="nav-link" href="#">
-					<i class="fas fa-fw fa-chart-area"></i> <span>매출현황</span>
-			</a></li>
+			<li class="nav-item">
+				<a class="nav-link collapsed" href="charts.sdo" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+					<i class="fas fa-fw fa-chart-area"></i>
+					<span>매출현황</span>
+				</a>
+				<div id="collapseOne" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+					<div class="bg-white py-2 collapse-inner rounded">
+						<h6 class="collapse-header">Sales Status:</h6>
+						<a class="collapse-item" href="/lubway/storeSalesStatus.mdo">매장별 매출 현황</a>
+						<a class="collapse-item" href="/lubway/productSalesStatus.mdo">품목별 매출 현황</a>
+					</div>
+				</div>
+			</li>
 
 			<!-- Nav Item - 메뉴관리 -->
 			<li class="nav-item"><a class="nav-link" href="/lubway/menuList.mdo">

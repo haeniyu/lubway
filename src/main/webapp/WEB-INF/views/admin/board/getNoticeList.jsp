@@ -99,7 +99,6 @@
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
-
 							<input type="submit" class="btn btn-warning btn-icon-split"
 								style="padding: 5px" value="글등록">
 						</div>
@@ -137,52 +136,50 @@
 									</tr>
 								</c:forEach>
 							</tbody>
-
 						</table>
-			</form>
-			<!-- 검색 시작 -->
-			<div align="right">
-				<form action="/lubway/search.mdo" method="get">
-					<tr>
-						<td><input type="text" name="searchKeyword"
-							placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> 
-							<input
-							style="margin: 3px; padding: 3px"
-							class="btn btn-warning btn-icon-split" type="submit"
-							value="search" /></td>
-					</tr>
 				</form>
-			</div>
-			<!-- 검색 종료 -->
-			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
-			<!-- pagination{s} -->
-
-			<div align="center">
-				<ul class="pagination" class="NoticeVO">
-					<c:if test="${pagination.prev}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
-					</c:if>
-					<c:forEach begin="${pagination.startPage}"
-						end="${pagination.endPage}" var="idx">
-						<li
-							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
-							class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-								${idx} </a></li>
-					</c:forEach>
-
-
-					<c:if test="${pagination.next}">
-						<li class="page-item"><a class="page-link" href="#"
-							onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
-					</c:if>
-				</ul>
+				<!-- 검색 시작 -->
+				<div align="right">
+					<form action="/lubway/search.mdo" method="get">
+						<tr>
+							<td><input type="text" name="searchKeyword"
+								placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> 
+								<input
+								style="margin: 3px; padding: 3px"
+								class="btn btn-warning btn-icon-split" type="submit"
+								value="search" /></td>
+						</tr>
+					</form>
+				</div>
+				<!-- 검색 종료 -->
+				<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
+				<!-- pagination{s} -->
+	
+				<div align="center">
+					<ul class="pagination" class="NoticeVO">
+						<c:if test="${pagination.prev}">
+							<li class="page-item"><a class="page-link" href="#"
+								onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
+						</c:if>
+						<c:forEach begin="${pagination.startPage}"
+							end="${pagination.endPage}" var="idx">
+							<li
+								class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
+								class="page-link" href="#"
+								onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+									${idx} </a></li>
+						</c:forEach>
+	
+						<c:if test="${pagination.next}">
+							<li class="page-item"><a class="page-link" href="#"
+								onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
+						</c:if>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-<!-- /.container-fluid -->
-<!-- End of Main Content -->
+</div>
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+.chart{
+	display: inline-block;
+	margin: 5px 5px;
+}
+
+.btn btn-primary dropdown-toggle{
+	width: 140px;
+}
+
+.btn btn-warning btn-icon-split{
+	height: 35px;
+}
+
+.selectDate{
+	height: 35px;
+}
+
+.table-responsive thead{
+	text-align: center;
+}
+
+.table-responsive tbody tr td:first-child{
+	text-align: center;
+}
+
+.table-responsive tbody{
+	text-align: right;
+}
+
+.searchMenu{
+	display: inline-block;
+}
+
+.searchStore{
+	display: inline-block;
+}
+
+.searchKeyword{
+	float: right;
+}
+
+.searchKeyword input[name=searchBtn]{
+
+}
+
+.searchKeyword input[name=searchKeyword]{
+	width: 20%;
+	height: 35px;
+}
+

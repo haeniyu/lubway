@@ -150,39 +150,39 @@ public class EventController {
 	}
 	
 	/** 글목록 요청 */
-		@GetMapping("/getEventList.mdo")
-		public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
-				@RequestParam(required = false, defaultValue = "1") int range) {
+	@GetMapping("/getEventList.mdo")
+	public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) {
 
-			System.out.println("글 목록 요청 처리");
+		System.out.println("글 목록 요청 처리");
 
-			System.out.println("page : " + page);
-			System.out.println("range : " + range);
+		System.out.println("page : " + page);
+		System.out.println("range : " + range);
 
-			/** 전체 게시글 개수 */
-			int listCnt = eventService.getEventPageListCnt();
+		/** 전체 게시글 개수 */
+		int listCnt = eventService.getEventPageListCnt();
 
-			System.out.println("listCnt : " + listCnt);
-			
-			/** Pagination */
-			Pagination pagination = new Pagination();
-			pagination.PageInfoEvent(page, range, listCnt);
-			System.out.println(pagination.getListSize());
-			
-			List<EventVO> pageList = eventService.getEventPageList(pagination);
+		System.out.println("listCnt : " + listCnt);
+		
+		/** Pagination */
+		Pagination pagination = new Pagination();
+		pagination.PageInfoEvent(page, range, listCnt);
+		System.out.println(pagination.getListSize());
+		
+		List<EventVO> pageList = eventService.getEventPageList(pagination);
 
-			model.addAttribute("pagination", pagination);
-			model.addAttribute("eventList", pageList);
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("eventList", pageList);
 
-			return "board/getEventList";
-		}
+		return "board/getEventList";
+	}
 
-		@RequestMapping(value = "/evnetCnt.mdo", method = RequestMethod.GET)
-		public String getEventPageListCnt() {
+	@RequestMapping(value = "/evnetCnt.mdo", method = RequestMethod.GET)
+	public String getEventPageListCnt() {
 
-			System.out.println(eventService.getEventPageListCnt());
+		System.out.println(eventService.getEventPageListCnt());
 
-			return "board/getEventList";
-		}
-	
+		return "board/getEventList";
+	}
+
 }
