@@ -83,7 +83,7 @@
 					</select>
 				</div>
 				<div>
-					<input type="text" name="searchKeyword" placeholder="메뉴명으로 검색해 주세요." style="width: 20%" />
+					<input type="text" name="searchKeyword" placeholder="메뉴명으로 검색해 주세요." style="width: 70%" />
 					<input style="margin: 5px 0 10px 0; padding: 5px" class="btn btn-warning btn-icon-split" type="submit" value="search" />
 				</div>
 				<!-- 기간, 메뉴 타입, 메뉴 선택 및 검색  종료 -->

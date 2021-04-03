@@ -39,6 +39,7 @@
 
 .searchKeyword{
 	float: right;
+	width: 300px;
 }
 
 .searchKeyword input[name=searchBtn]{
