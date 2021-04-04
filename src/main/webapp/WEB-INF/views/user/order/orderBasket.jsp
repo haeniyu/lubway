@@ -194,6 +194,7 @@ function gotoOrderList() {
 	$("#orderForm").submit();
 	
 }
+window.history.forward(0);
 </script>
 </head>
 <body>
