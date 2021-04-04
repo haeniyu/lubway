@@ -269,22 +269,6 @@ public class OrderController {
 		return "order/orderStep04";
 	}
 	
-	/**
-	 * 결제 후 뒤로가기 막기
-	 */
-	@GetMapping("/orderStep04.do")
-	public String blockGoBack1(HttpSession session) {
-		if(session.getAttribute("user") == null) {
-			return "main.do";
-		}
-		if(session.getAttribute("blocking")!=null) {
-			
-			return "redirect:/orderList.do";
-		}
-
-		return "redirect:/orderList.do";
-	}
-	
 	/** 
 	 * 단품 결제 (orderStep04 -> orderStep05)
 	 * */
@@ -355,9 +339,6 @@ public class OrderController {
 		
 		//쿠폰 사용 처리
 		couponService.insertUseCoupon(couponCode, user.getId());
-		
-		session.setAttribute("blocking", "true");
-		
 		
 		return "redirect:/orderList.do";
 		

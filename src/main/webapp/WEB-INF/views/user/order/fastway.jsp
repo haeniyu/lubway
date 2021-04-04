@@ -79,8 +79,68 @@ function orderStart(franchiseNo) {
 					//지도 생성
 					var map = new kakao.maps.Map(container, options);
 					//주소-좌표간 변환 서비스 객체를 생성
-					var geocoder = new kakao.maps.services.Geocoder(); 
-
+					var geocoder = new kakao.maps.services.Geocoder();
+					
+					
+					// HTML5의 geolocation으로 현위치 얻기
+					if (navigator.geolocation) {
+					    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+					    navigator.geolocation.getCurrentPosition(function(position) {
+					        
+					        var lat = position.coords.latitude, // 위도
+					            lon = position.coords.longitude; // 경도
+					        
+					        var locPosition = new kakao.maps.LatLng(lat, lon) // geolocation으로 얻어온 좌표로 위치 설정
+					            
+					        // 지도 중심 위치 변경
+					        map.setCenter(locPosition);
+					        // 좌표 -> 주소 변환
+					        geocoder.coord2RegionCode(lon, lat, getLoca);         
+					        
+					      });
+					}//end of 현위치 얻기
+					
+					//좌표를 주소로 변환 후 매장 검색
+					function getLoca(result, status){
+						if (status === kakao.maps.services.Status.OK) {
+					        for(var i = 0; i < result.length; i++) {
+					            // 행정동의 region_type 값은 'H' 이므로
+					            if (result[i].region_type === 'H') {
+					               console.log(result[i].region_2depth_name);
+					               
+					               //접속한 위치의 행정동 주소 기준 '구' 추출 후 검색
+					               keyword = result[i].region_2depth_name;
+					               searchStoreNearHere(keyword);
+					               break;
+					            }
+					        }
+					    }    
+					}
+					
+					// 현위치 기반 검색
+					function searchStoreNearHere(keyword) {
+						$.ajax({
+							url : '/lubway/searchStore.do?keyword=' + keyword,
+							type : 'post',
+							success : function(data) {
+								//검색결과가 없을 시
+								if(data.length == 0) {
+									// 목록 검색 결과 내역 지우기
+									while(listEl.firstChild){
+				                        listEl.removeChild(listEl.firstChild);
+				                     }
+									document.getElementById('uiResultCount').innerHTML=data.length;
+								}
+								//검색 결과 존재
+								search(data);
+							},
+							error : function() {
+								console.log("실패");
+							}
+						});
+					}
+					
+					
 					//검색 시 실행되는 함수(ajax success)
 					function search(data) {
 						closeOverlay();
@@ -171,7 +231,7 @@ function orderStart(franchiseNo) {
 	                      var el = document.createElement('li');
 	                      el.setAttribute("onclick", "showStoreInfoLayer(" + "'" + obj.no + "'" + ", " + "'" + obj.storename + "'" + ", " + "'" + obj.address_road + "'" + ",   " + "'" + obj.address_detail + "'" + ",   " + "'" + obj.store_tel + "'" + ", " + "'" + obj.open + "'" + ", " + "'" + obj.close + "'" + ")");
 	                      
-	                      var itemStr = '<dl> <dt><strong>' + obj.storename + '</strong><em class="on">주문하기</em></dt>';
+	                      var itemStr = '<dl> <dt><strong>' + obj.storename + '</strong><em class="on" style="cursor:pointer;">주문하기</em></dt>';
 	                     
 	                        itemStr += '    <dd><p>' + obj.address_road + '</p>';
 	                       
