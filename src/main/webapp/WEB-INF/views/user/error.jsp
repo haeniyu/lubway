@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<title>LUBWAY 러브웨이</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

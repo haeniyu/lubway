@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>History</title>
+<title>LUBWAY - 러브웨이 역사</title>
 <style type="text/css">
 #content{
 	width: 100%;
@@ -17,6 +17,7 @@ img{
 	width: 100%;
 }
 </style>
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>

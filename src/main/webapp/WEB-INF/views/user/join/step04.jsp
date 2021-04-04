@@ -6,11 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>가입완료</title>
-
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/joining.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
-
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>

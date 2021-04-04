@@ -6,11 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Promise</title>
+<title>LUBWAY - 러브웨이 약속</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/point.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

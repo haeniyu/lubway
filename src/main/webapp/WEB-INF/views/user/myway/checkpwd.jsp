@@ -6,13 +6,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>비밀번호 확인</title>
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/step01.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.mypage.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/ui.common.css" />
+<title>MY-WAY > 비밀번호 확인</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>	
 <script type="text/javascript">
 $(document).ready(function() {
