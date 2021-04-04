@@ -78,7 +78,7 @@ public class OrderServiceImpl implements OrderService {
 	
 	@Override
 	public OrderCodeVO getOrderListDetail(OrderCodeVO vo) {
-		return null;
+		 return orderDao.getOrderListDetail(vo);
 	}
 
 	@Override
@@ -89,5 +89,10 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<OrderCodeVO> getBestStore() {
 		return orderDao.getBestStore();
+	}
+
+	@Override
+	public List<OrderCodeVO> getTotalAvg() {
+		return orderDao.getTotalAvg();
 	}
 }

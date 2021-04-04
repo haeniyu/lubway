@@ -19,14 +19,12 @@ var json = new Object();
 labels.push("${result.menu_type}");
 data.push("${result.count}");
 </c:forEach>
-console.log(data);
 var count = new Array();
-    for(var i = 0; i < data.length; i++){ //랜덤 데이터 생성
-      var cnt = data[i].replace('"','');
-      console.log(cnt);
-      count.push(cnt);
-    }
-console.log(count);
+for(var i = 0; i < data.length; i++){ //문자 - 숫자로 변환
+  var cnt = data[i].replace('"','');
+  console.log(cnt);
+  count.push(cnt);
+}
 function drawChart() {
 	
 	 var data = new google.visualization.DataTable();
@@ -37,7 +35,7 @@ function drawChart() {
      //그래프에 표시할 데이터
      var dataRow = [];
 
-     for(var i = 0; i < labels.length; i++){ //랜덤 데이터 생성
+     for(var i = 0; i < labels.length; i++){ //데이터 입력
        var type = labels[i];
        var cnt = Number(count[i]);
        console.log(cnt);
@@ -53,6 +51,46 @@ function drawChart() {
 
 	chart.draw(data, options);
 }
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawColColors);
+
+var date = new Array();
+var total = new Array();
+var average = new Array();
+
+<c:forEach items="${totalavg}" var="ttl" >
+var json = new Object();
+date.push("${ttl.date}");
+total.push("${ttl.total}");
+average.push("${ttl.average}");
+</c:forEach>
+
+function drawColColors() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '날짜');
+	data.addColumn('number', '판매금액');
+	data.addColumn('number', '일평균');
+      
+	//그래프에 표시할 데이터
+	var dataRow = [];
+
+	for(var i = 0; i < labels.length; i++){ //데이터 입력
+		var type = date[i];
+        var ttl = Number(total[i]);
+        var avg = Number(average[i]);
+        dataRow = [type , ttl, avg];
+        data.addRow(dataRow);
+      }
+
+      var options = {
+        title: '일별 매출 총 합계 & 평균',
+        colors: ['#008D43', '#FFCA01']
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
 </script>
 </head>
 <body id="page-top">
@@ -165,9 +203,7 @@ function drawChart() {
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-						<div class="chart-area">
-							<canvas id="myAreaChart"></canvas>
-						</div>
+						<div id="chart_div" style="width: 100%; height: 350px;"></div>
 					</div>
 				</div>
 			</div>

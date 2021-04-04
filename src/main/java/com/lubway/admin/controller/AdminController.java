@@ -80,34 +80,16 @@ public class AdminController {
 				
 				//메뉴 타입별 매출
 				List<OrderListVO> typeList = orderService.getTypeCount();
-				
-				
-				List<String> type = new ArrayList<String>();
-				List<Integer> count = new ArrayList<Integer>();
-				
-				System.out.println(typeList.toString());
-				
-				for(int i = 0; i<typeList.size(); i++) {
-					String types = typeList.get(i).getMenu_type();
-					int cnt = typeList.get(i).getCount();
-					type.add(types);
-					count.add(cnt);
-				}
-				
-				System.out.println(type.toString());
-				System.out.println(count.toString());
-				
 				model.addAttribute("typeList", typeList);
-				model.addAttribute("type", type);
-				model.addAttribute("count", count);
 				
 				//최고 매출 매장
 				List<OrderCodeVO> bestList = orderService.getBestStore();
-				
 				String best = bestList.get(0).getStore_name();
-				System.out.println(best);
-				
 				model.addAttribute("best", best);
+
+				//일별 총 매출, 평균
+				List<OrderCodeVO> totalavg = orderService.getTotalAvg();
+				model.addAttribute("totalavg", totalavg);
 
 				return "main";
 		}

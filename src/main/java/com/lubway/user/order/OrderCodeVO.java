@@ -1,6 +1,7 @@
 package com.lubway.user.order;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +32,8 @@ public class OrderCodeVO {
 	private int finalPrice; // 최종 결제 금액
 
 	private int num; //rownum
+	
+	private String date;
+	private int total; //일별 매출 총 합
+	private float average; //일별 매출 평균
 }

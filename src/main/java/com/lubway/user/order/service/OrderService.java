@@ -42,4 +42,7 @@ public interface OrderService {
 	
 	//최고 매출 매장
 	List<OrderCodeVO> getBestStore();
+	
+	//일별 총 매출, 평균
+	List<OrderCodeVO> getTotalAvg();
 }
