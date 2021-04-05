@@ -7,19 +7,19 @@
 <head>
 <meta charset="utf-8" />
 <title>LUBWAY ADMIN</title>
-
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="shortcut icon" href="" type="image/x-icon" />
-
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.button.css" />
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#ui_login_btn").on("click", function(){
 			if($("#id").val().trim() == "" || $("#password").val().trim() == "") {
 				alert("아이디와 비밀번호를 확인해주세요.");
+				$("#id").val('');
+				$("#password").val('');
+				$("#id").focus();
 				return;
 			} else {
 				console.log("로그인");
@@ -44,8 +44,7 @@
 			<div class="form-group">
 				<input type="password" class="form-text" placeholder="비밀번호" id="password" name="password" />
 			</div>
-
-			<button type="submit" class="btn_login" id="ui_login_btn">로그인</button>
+			<button type="button" class="btn_login" id="ui_login_btn">로그인</button>
 		</form>
 		<p>
 			본 시스템은 등록된 관리자에 한하여 사용하실 수 있습니다.<br /> 불법적인 접근 및 사용 시 관련 법규에 의해 처벌 될
@@ -53,8 +52,7 @@
 		</p>
 	</div>
 	<div class="copyright">© 2021 Lubway’s Associates Inc. LUBWAY® is
-		a registered trademark of Lubway’s Associates Inc.. All rights
-		reserved.</div>
+		a registered trademark of Lubway’s Associates Inc.. All rights reserved.</div>
 
 </body>
 </html>

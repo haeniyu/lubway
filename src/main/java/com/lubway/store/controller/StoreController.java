@@ -25,7 +25,6 @@ import com.lubway.admin.service.TotalOrderService;
 import com.lubway.admin.statistics.service.StatService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
-import com.lubway.user.order.OrderCodeVO;
 
 @Controller
 public class StoreController {
@@ -53,9 +52,11 @@ public class StoreController {
 		StoreVO store = new StoreVO();
 		store.setId(id);
 		StoreVO getStore = storeService.getStore(store);
-		System.out.println(getStore.toString());
-
-		if(getStore == null) {
+		boolean check = false;
+		
+		if(getStore != null) check = password.equals(getStore.getPassword());
+		
+		if(getStore == null || !check) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
 			out.flush();
 			out.close();
