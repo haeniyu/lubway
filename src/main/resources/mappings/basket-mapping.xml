@@ -47,4 +47,7 @@
 		SELECT COUNT(*) FROM BASKET WHERE ID=#{id} AND ORDER_TYPE=#{order_type}
 	</select>
 	
+	<delete id="deleteBasketByid" parameterType="String">
+		DELETE FROM basket WHERE id=#{id}
+	</delete>
 </mapper>

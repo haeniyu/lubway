@@ -18,7 +18,7 @@
 			<!-- 에러 페이지-->
 			<div class="error">
 				<h2 class="subTitle_02">페이지 호출 오류</h2>
-				<div class="sub_txt_wrap wh_box">
+				<div class="sub_txt_wrap wh_box" style="padding:90px 100px;">
 					<h3 class="sub_tit_h3">
 						이용에 불편을 드려 죄송합니다.<br />예기치 않은 오류가 발생하였습니다.
 					</h3>

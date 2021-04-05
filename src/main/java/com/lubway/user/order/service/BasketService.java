@@ -17,4 +17,5 @@ public interface BasketService {
 	void updatePlus(int no);
 	void updateMinus(int no);
 	int  checkNum(BasketVO vo);
+	void deleteBasketByid(String id);
 }

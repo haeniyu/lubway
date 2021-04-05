@@ -75,6 +75,16 @@ $(document).ready(function() {
 	function point_func(){
 		
 		var pointTmp = $("#pointAmt").val();	//사용하고자 하는 포인트
+		
+		//숫자 유효성 검사
+		var regexp = /^[0-9]*$/;
+		if(!regexp.test(pointTmp)){ 
+			alert("숫자만 입력해 주세요.");
+			pointAmt=0;
+			$("#pointAmt").val("0");
+			return;
+		}
+		
 		pointAmt = parseInt(pointTmp);
 		if(pointTmp.length==0) {				//초기화
 			pointAmt=0;

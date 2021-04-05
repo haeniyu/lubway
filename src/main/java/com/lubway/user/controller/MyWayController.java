@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lubway.admin.board.EventVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
 import com.lubway.user.UserCouponVO;
@@ -47,10 +45,10 @@ public class MyWayController {
 	private OrderService orderService;
 	
 	@Autowired
-	private BasketService basketService;
+	private StoreService storeService;
 	
 	@Autowired
-	private StoreService storeService;
+	private BasketService basketService;
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
@@ -127,6 +125,23 @@ public class MyWayController {
 		return "myway/updateinfo";
 	}
 	
+	
+	//정보변경
+	@RequestMapping("/resultmodSocial.do")
+	public String resultmodSocial(@RequestParam("tel") String tel, @RequestParam("sms_recep") boolean sms, @RequestParam("email_recep") boolean email, HttpSession session) {
+		UserVO user = (UserVO) session.getAttribute("user");
+		System.out.println(user.toString());
+		
+		user.setSms_usable(sms);
+		user.setEmail_usable(email);
+		user.setTel(tel);
+		
+		userService.updateUser(user);
+		System.out.println(user.toString());
+		System.out.println("정보 변경 완료");
+		return "myway/updateinfo";
+	}
+	
 	//내 포인트 페이지로 이동
 	@RequestMapping("/point.do")
 	public String point() {
@@ -139,6 +154,7 @@ public class MyWayController {
 		System.out.println("컨트롤러 - withdrawal 실행");
 		UserVO vo = (UserVO) session.getAttribute("user");
 		userService.deleteUser(vo);
+		basketService.deleteBasketByid(vo.getId());
 		session.invalidate();
 		return "main";
 	}

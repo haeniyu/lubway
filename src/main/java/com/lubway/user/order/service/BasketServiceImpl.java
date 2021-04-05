@@ -62,5 +62,7 @@ public class BasketServiceImpl implements BasketService {
 	@Override
 	public int checkNum(BasketVO vo) {
 		return basketDAO.checkNum(vo);
+	public void deleteBasketByid(String id) {
+		basketDAO.deleteBasketByid(id);
 	}
 }

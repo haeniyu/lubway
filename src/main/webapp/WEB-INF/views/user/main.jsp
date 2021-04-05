@@ -46,15 +46,13 @@ function menuDetail(code) {
 	<!-- 배너 -->
 	<div class="banner">
 		<div>
-			<img alt="1-2월 에그마요 콜렉션 윈도우"
-				src="${path}/resources/upload/banner/main_PC_1920x440_20201223014928858.jpg" />
+			<img alt="완충" src="${path}/resources/upload/banner/main_PC_1920x440_20210302111138000.png" />
 		</div>
 		<div>
-			<img alt="민트초코"
-				src="${path}/resources/upload/banner/main_PC_1920x440_20210205043330107.jpg" />
+			<img alt="민트초코" src="${path}/resources/upload/banner/main_PC_1920x440_20210205043330107.jpg" />
 		</div>
 		<div>
-			<img alt="02.내손안의 작은 러브웨이" src="${path}/resources/upload/banner/benner.png" />
+			<img alt="비엘티프로모션" src="${path}/resources/upload/banner/main_PC_1920x440_20210302111248934.png" />
 		</div>
 	</div>
 	<!-- 배너 끝 -->
