@@ -22,8 +22,10 @@ import com.lubway.admin.StoreVO;
 import com.lubway.admin.TotalOrderVO;
 import com.lubway.admin.board.Pagination;
 import com.lubway.admin.service.TotalOrderService;
+import com.lubway.admin.statistics.service.StatService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
+import com.lubway.user.order.OrderCodeVO;
 
 @Controller
 public class StoreController {
@@ -34,12 +36,15 @@ public class StoreController {
 	@Autowired
 	private TotalOrderService orderService;
 
+	@Autowired
+	StatService statService;
+
 	@SuppressWarnings("unused")
 	@PostMapping("/main.sdo")
 	public String main(@RequestParam("id") String id, 
 			@RequestParam("password") String password, 
 			HttpServletResponse response, 
-			HttpServletRequest request) throws IOException {
+			HttpServletRequest request, Model model) throws IOException {
 		System.out.println("매장 관리자 메인 화면 이동");
 
 		response.setContentType("text/html; charset=utf-8");
@@ -60,15 +65,56 @@ public class StoreController {
 			session.setAttribute("store", getStore);
 			System.out.println("ID, Password 일치");
 			System.out.println("로그인 성공");
+			
+			String store_name = getStore.getStorename();
+			
+			//월 매출 설정
+			int thisMonthSales = statService.getStoreMonthSales(store_name);
+			model.addAttribute("monthSales", thisMonthSales);
+			System.out.println(thisMonthSales);
+
+			//연 매출 설정
+			int thisYearSales = statService.getStoreYearSales(store_name);
+			model.addAttribute("yearSales", thisYearSales);
+			System.out.println(thisYearSales);
+
+			//메뉴 타입별 매출
+			List<TotalOrderVO> typeList = orderService.getTypeCountStore(store_name);
+			model.addAttribute("typeList", typeList);
+			
+			//일별 총 매출, 평균
+			List<TotalOrderVO> totalavg = orderService.getTotalAvgStore(store_name);
+			model.addAttribute("totalavg", totalavg);
+			
 			return "main";
 		}
 	}
 
 	@GetMapping("/main.sdo")
-	public String mainView(HttpSession session) {
+	public String mainView(HttpSession session, Model model) {
 		if(session.getAttribute("store") == null) {
 			return "login";
 		}
+		
+		StoreVO thisstore = (StoreVO) session.getAttribute("store");
+		String store_name = thisstore.getStorename();
+		
+		//월 매출 설정
+		int thisMonthSales = statService.getStoreMonthSales(store_name);
+		model.addAttribute("monthSales", thisMonthSales);
+
+		//연 매출 설정
+		int thisYearSales = statService.getStoreYearSales(store_name);
+		model.addAttribute("yearSales", thisYearSales);
+		
+		//메뉴 타입별 매출
+		List<TotalOrderVO> typeList = orderService.getTypeCountStore(store_name);
+		model.addAttribute("typeList", typeList);
+		
+		//일별 총 매출, 평균
+		List<TotalOrderVO> totalavg = orderService.getTotalAvgStore(store_name);
+		model.addAttribute("totalavg", totalavg);
+		
 		return "main";
 	}
 

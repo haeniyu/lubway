@@ -50,5 +50,18 @@
 	from order_sales
 	order by order_time::date
 	</select>
+	
+	
+	<select id="getStoreMonthSales" resultType="int">
+		<![CDATA[
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2) and store_name=#{store_name};
+		]]>
+	</select>
+	
+	<select id="getStoreYearSales" resultType="int">
+		<![CDATA[
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4) and store_name=#{store_name};
+		]]>
+	</select>
 
 </mapper>

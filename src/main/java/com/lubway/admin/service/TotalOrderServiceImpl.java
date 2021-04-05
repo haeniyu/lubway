@@ -50,4 +50,14 @@ public class TotalOrderServiceImpl implements TotalOrderService {
 		return dao.getChoiceOrder(no);
 	}
 
+	@Override
+	public List<TotalOrderVO> getTypeCountStore(String store_name) {
+		return dao.getTypeCountStore(store_name);
+	}
+
+	@Override
+	public List<TotalOrderVO> getTotalAvgStore(String store_name) {
+		return dao.getTotalAvgStore(store_name);
+	}
+
 }

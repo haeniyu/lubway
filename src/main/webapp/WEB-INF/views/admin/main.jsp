@@ -75,7 +75,7 @@ function drawColColors() {
 	//그래프에 표시할 데이터
 	var dataRow = [];
 
-	for(var i = 0; i < labels.length; i++){ //데이터 입력
+	for(var i = 0; i < date.length; i++){ //데이터 입력
 		var type = date[i];
         var ttl = Number(total[i]);
         var avg = Number(average[i]);
@@ -193,7 +193,7 @@ function drawColColors() {
 
 		<div class="row">
 
-			<!-- Area Chart -->
+			<!-- column Chart -->
 			<div class="col-xl-8 col-lg-7">
 				<div class="card shadow mb-4">
 					<!-- Card Header - Dropdown -->

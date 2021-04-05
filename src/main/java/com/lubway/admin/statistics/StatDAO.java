@@ -32,5 +32,12 @@ public class StatDAO {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchStat", vo);
 	}
 	
-	
+
+	public int getStoreMonthSales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreMonthSales", store_name);
+	}
+
+	public int getStoreYearSales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
+	}
 }

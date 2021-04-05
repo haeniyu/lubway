@@ -20,4 +20,8 @@ public interface TotalOrderService {
 	void updateStatus(TotalOrderVO vo);
 	
 	List<TotalOrderVO> getChoiceOrder(int no);
+	
+	List<TotalOrderVO> getTypeCountStore(String store_name);
+	
+	List<TotalOrderVO> getTotalAvgStore(String store_name);
 }

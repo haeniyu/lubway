@@ -85,8 +85,7 @@
   	    select * from order_code where no=#{no} and id=#{id}
   	 </select>
   	 
-  	 <!-- 대시보드에서 사용할 통계자료 -->
-  	 
+  	 <!-- ADMIN 대시보드에서 사용할 통계자료 -->
   	 <!-- 메뉴 타입별 매출 카운트 -->
   	 <select id="getTypeCount" resultType="order_list">
   	 	select menu_type, count(*) from order_list group by menu_type
@@ -106,5 +105,4 @@
 		SELECT date(order_time), SUM(total_price) as total, avg(total_price) as average
 		FROM order_code group by date(order_time) order by date(order_time)
   	 </select>
-  	 
 </mapper>

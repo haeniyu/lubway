@@ -10,4 +10,6 @@ public interface StatService {
 	int getThisYearSales();
 	List<StatVO> getBasicStat();
 	List<StatVO> getSearchStat(StatVO vo);
+	int getStoreMonthSales(String store_name);
+	int getStoreYearSales(String store_name);
 }

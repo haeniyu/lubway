@@ -38,5 +38,15 @@ public class StatServiceImpl implements StatService {
 	public List<StatVO> getSearchStat(StatVO vo) {
 		return dao.getSearchStat(vo);
 	}
+
+	@Override
+	public int getStoreMonthSales(String store_name) {
+		return dao.getStoreMonthSales(store_name);
+	}
+
+	@Override
+	public int getStoreYearSales(String store_name) {
+		return dao.getStoreYearSales(store_name);
+	}
 	
 }

@@ -46,4 +46,14 @@ public class TotalOrderDAO {
 	public List<TotalOrderVO> getChoiceOrder(int no) {
 		return sqlSessionTemplate.selectList("TotalOrderDAO.getChoiceOrder", no);
 	}
+	
+	//메뉴 타입별 매출 카운트
+	public List<TotalOrderVO> getTypeCountStore(String store_name){
+		return sqlSessionTemplate.selectList("TotalOrderDAO.getTypeCountStore", store_name);
+	}
+	
+	//일별 총 매출, 평균
+	public List<TotalOrderVO> getTotalAvgStore(String store_name){
+		return sqlSessionTemplate.selectList("TotalOrderDAO.getTotalAvgStore", store_name);
+	}
 }
