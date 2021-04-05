@@ -116,8 +116,19 @@ public class AdminController {
 		int thisYearSales = statService.getThisYearSales();
 		model.addAttribute("thisYearSales", thisYearSales);
 		
-		//가장 매출이 큰 매장
+
+		//메뉴 타입별 매출
+		List<OrderListVO> typeList = orderService.getTypeCount();
+		model.addAttribute("typeList", typeList);
 		
+		//최고 매출 매장
+		List<OrderCodeVO> bestList = orderService.getBestStore();
+		String best = bestList.get(0).getStore_name();
+		model.addAttribute("best", best);
+
+		//일별 총 매출, 평균
+		List<OrderCodeVO> totalavg = orderService.getTotalAvg();
+		model.addAttribute("totalavg", totalavg);
 		
 		
 		return "main";

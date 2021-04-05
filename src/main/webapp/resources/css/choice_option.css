@@ -213,11 +213,11 @@ p[id^=selectStep] {
 .menu_view_wrapper .order_btn {
 	display: flex;
 	justify-content: center;
-	width: 85%;
 	background-color: #fff;
 	padding-bottom: 50px;
+	padding-top: 50px;
 	margin-top: -2em;
-	border-top: 2px solid #f6f6f6;
+	border-bottom: 2px solid #f6f6f6;
 }
 
 .car {
