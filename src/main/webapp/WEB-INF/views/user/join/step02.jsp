@@ -74,7 +74,7 @@ var findPwd = '<%=(String)session.getAttribute("findPwd") %>';
 											</div>
 										</dd>
 									</dl>
-									<dl>
+									<dl style="border-top:1px solid #e8e8e8">
 										<dt>
 											인증 번호<span class="ess"></span>
 										</dt>
@@ -91,7 +91,7 @@ var findPwd = '<%=(String)session.getAttribute("findPwd") %>';
 										</dd>
 									</dl>
 								</div>
-								<div class="btn_area">
+								<div class="btn_area" style="border-top:none;">
 									<a class="btn bgc_point i_reg" href="javascript:void(0);" id="submitBtn" style="width: 170px;">
 										<span>인증 완료</span>
 									</a>

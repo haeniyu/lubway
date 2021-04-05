@@ -14,7 +14,7 @@
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp" %>
 	<!-- container s -->
-	<div class="bg_type01" id="container">
+	<div class="bg_type01" id="container" style="padding-top:175px;">
 		<!-- sub content s -->
 		<div id="content">
 			<!-- 비밀번호찾기 -->
@@ -29,7 +29,7 @@
 						
 					</div>
 					<div class="btn_area">
-						<a class="btn bgc_point i_reg" href="/user/login" style="width: 150px;"> <span>로그인</span>
+						<a class="btn bgc_point i_reg" href="login.do" style="width: 150px;"> <span>로그인</span>
 						</a>
 					</div>
 				</div>

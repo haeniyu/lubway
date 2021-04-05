@@ -85,7 +85,7 @@
 												<span class="form_text" style="width: 235px">
 													<input class="required-value input_pw" id="pw" name="password" placeholder="비밀번호 입력" type="password" />
 												</span>
-												<span class="pw_check miss worng-msg-pw" id="pwdMsg1"></span>
+												<span class="pw_check miss worng-msg-pw" id="pwdMsg1" style="padding-left:30px;"></span>
 											</dd>
 										</dl>
 									</div>

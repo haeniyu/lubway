@@ -13,7 +13,7 @@
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<!-- container s -->
-	<div class="bg_gray" id="container">
+	<div class="bg_gray" id="container" style="padding-top:175px;">
 
 		<!-- sub content s -->
 		<div id="content">
@@ -29,11 +29,9 @@
 						<div class="write_info_wrap">
 							<div class="input_set readonly">
 								<dl>
-									<dt>아이디</dt>
+									<dt style="line-height:normal;">아이디</dt>
 									<dd>
-										<span class="form_text"> 
-											<input type="text" id="id" value="${findId}" />
-										</span>
+										<span class="form_text"> ${findId}</span>
 									</dd>
 								</dl>
 							</div>
@@ -55,7 +53,6 @@
 			<!--// 아이디찾기 -->
 		</div>
 	</div>
-	<input type="hidden" name="id" value="${id}">
 	<!--// sub content e -->
 	<%@ include file="/WEB-INF/views/user/footer.jsp"%>
 </body>

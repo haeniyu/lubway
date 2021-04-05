@@ -60,7 +60,7 @@
 		//인증 완료 버튼 눌렀을 때
 		$("#submitBtn").on("click", function() {
 			if (check) {
-				if(findId != "null") {	
+				if(findId != "null" && findPwd == "null") {	
 					
 					var tel = $("#phoneNum").val();
 					var form = document.createElement("form");
