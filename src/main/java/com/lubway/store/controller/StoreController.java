@@ -34,6 +34,7 @@ public class StoreController {
 	@Autowired
 	private TotalOrderService orderService;
 
+	@SuppressWarnings("unused")
 	@PostMapping("/main.sdo")
 	public String main(@RequestParam("id") String id, 
 			@RequestParam("password") String password, 

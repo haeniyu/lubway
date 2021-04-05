@@ -9,12 +9,10 @@
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
 </c:url>
-
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
    //이전 버튼 이벤트
    function fn_prev(page, range, rangeSize) {
@@ -105,11 +103,8 @@
 </script>
 </head>
 <body id="page-top">
+<%@ include file="/WEB-INF/views/store/header.jsp"%>
 
-	<%@ include file="/WEB-INF/views/store/header.jsp"%>
-
-	<!-- 관리자 버전 화면 만들기  -->
-	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<!-- Page Heading -->
 		<h1 class="h3 mb-2 text-gray-800">주문 조회</h1>
@@ -121,8 +116,9 @@
 			</div>
 			<form action="/lubway/updateOrder.sdo" method="post">
 				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<div class="fixed-table-container">
+						<div class="fixed-table-body">
+						<table class="table table-bordered" id="dataTable" style="width:auto;">
 							<thead>
 								<tr align="center" style="font-size: 14px">
 									<th>주문 코드</th>
@@ -150,10 +146,8 @@
 										<td>${list.no }</td>
 										<td>${list.id }</td>
 										<td>${list.name }</td>
-										<td><fmt:formatDate type="both" value="${list.order_time }"
-												pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td><fmt:formatDate type="both" value="${list.delivery_time }"
-												pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><fmt:formatDate type="both" value="${list.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
+										<td><fmt:formatDate type="both" value="${list.delivery_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td>${list.address }</td>
 										<td>${list.tel }</td>
 										<td>${list.menu_name }</td>
@@ -172,7 +166,8 @@
 										<td>${list.total_price  }</td>
 										<td>${list.order_type }</td>
 										<td>${list.payment_list }</td>
-										<td><c:if test="${list.payment_status eq 'true'}">
+										<td>
+											<c:if test="${list.payment_status eq 'true'}">
 												결제 완료
 											</c:if>
 											<c:if test="${list.payment_status eq 'false'}">
@@ -181,27 +176,26 @@
 											</c:if>
 										</td>
 										<td>
-										<input id="order_status${status.index}" type="hidden" value="${list.status }" >
-										<select id="status${status.index}" name="count" onchange="changeStatus(${list.no }, this)">
-											<option value="주문 접수">주문 접수</option>
-											<option value="주문 완료">주문 완료</option>
-											<option value="배달 중">배달 중</option>
-											<option value="배달 완료">배달 완료</option>
-											<option value="주문 취소">주문 취소</option>
-										</select></td>
+											<input id="order_status${status.index}" type="hidden" value="${list.status }" >
+											<select id="status${status.index}" name="count" onchange="changeStatus(${list.no }, this)">
+												<option value="주문 접수">주문 접수</option>
+												<option value="주문 완료">주문 완료</option>
+												<option value="배달 중">배달 중</option>
+												<option value="배달 완료">배달 완료</option>
+												<option value="주문 취소">주문 취소</option>
+											</select>
+										</td>
 										<td>${list.request }</td>
 									</tr>
 								</c:forEach>
 							</tbody>
-
 						</table>
 					</div>
 				</div>
-			</form>
+			</div>
+		</form>
 			
-			<!-- 페이지 네비게이션 (페이지 알고리즘 관련) 출력 -->
-			<!-- pagination{s} -->
-
+			<!-- pagination -->
 			<div align="center">
 				<ul class="pagination">
 					<c:if test="${pagination.prev}">
