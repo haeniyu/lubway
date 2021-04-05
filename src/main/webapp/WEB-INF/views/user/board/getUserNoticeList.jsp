@@ -167,11 +167,16 @@ $(window).load(function(){
 					</c:if>
 
 					<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
-						<li 
-							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-							<a class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-								${idx} </a></li>
+						<c:if test="${pagination.page eq idx}">
+							<li class="page-item">
+								<a class="page-link active" href="#" onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')"> ${idx} </a>
+							</li>
+						</c:if>
+						<c:if test="${pagination.page ne idx}">
+							<li class="page-item">
+								<a class="page-link" href="#" onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')"> ${idx} </a>
+							</li>
+						</c:if>
 					</c:forEach>
 
 					<c:if test="${pagination.next}">

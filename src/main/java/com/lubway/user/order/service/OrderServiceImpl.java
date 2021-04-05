@@ -5,8 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.lubway.admin.board.EventVO;
-import com.lubway.admin.board.Pagination;
 import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.menu.ToppingAddVO;
@@ -14,6 +12,7 @@ import com.lubway.user.menu.UserOptionDAO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderDAO;
 import com.lubway.user.order.OrderListVO;
+import com.lubway.user.order.OrderPagination;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -41,8 +40,8 @@ public class OrderServiceImpl implements OrderService {
 	//MyWay 주문 내역 페이지//
 	
 	@Override
-	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo) {
-		return orderDao.orderCodeList(vo);
+	public List<OrderCodeVO> orderCodeList(OrderPagination pagination) {
+		return orderDao.orderCodeList(pagination);
 	}
 	
 	@Override
@@ -51,13 +50,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public List<OrderCodeVO> selectHomeway(OrderCodeVO vo) {
-		return orderDao.selectHomeway(vo);
+	public List<OrderCodeVO> selectHomeway(OrderPagination pagination) {
+		return orderDao.selectHomeway(pagination);
 	}
 
 	@Override
-	public List<OrderCodeVO> selectFastway(OrderCodeVO vo) {
-		return orderDao.selectFastway(vo);
+	public List<OrderCodeVO> selectFastway(OrderPagination pagination) {
+		return orderDao.selectFastway(pagination);
 	}
 
 	@Override
@@ -65,6 +64,15 @@ public class OrderServiceImpl implements OrderService {
 		return orderDao.countOrderList(vo);
 	}
 
+	@Override
+	public int countOrderFastList(OrderCodeVO vo) {
+		return orderDao.countOrderFastList(vo);
+	}
+
+	@Override
+	public int countOrderHomeList(OrderCodeVO vo) {
+		return orderDao.countOrderHomeList(vo);
+	}
 	@Override
 	public void insertOrderCode(OrderCodeVO vo) {
 		orderDao.insertOrderCode(vo);
@@ -95,4 +103,5 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderCodeVO> getTotalAvg() {
 		return orderDao.getTotalAvg();
 	}
+
 }
