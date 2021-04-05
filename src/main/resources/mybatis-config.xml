@@ -19,6 +19,7 @@
 		<typeAlias type="com.lubway.admin.menu.WedgeAndSoupVO" alias="wedgeandsoup"/>
 		<typeAlias type="com.lubway.admin.menu.WrapVO" alias="wrap"/>
 		<typeAlias type="com.lubway.admin.TotalOrderVO" alias="total_order"/>
+		<typeAlias type="com.lubway.admin.statistics.StatVO" alias="stat" />
 		
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 		

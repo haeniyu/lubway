@@ -22,4 +22,33 @@
 		]]>
 	</select>
 
+	<select id="getBasicStat" resultType="stat">
+		with order_sales as(
+			select order_time::date, 
+				  substring(order_time::date::text, 1,7) as year_month, 
+				  sum(total_price) as total_price
+		      	  from order_code
+		      	  group by order_time::date
+		)
+		select *, sum(total_price) over(partition by year_month order by order_time::date rows unbounded preceding)
+		from order_sales
+		order by order_time::date
+	</select>
+
+	<select id="getSearchStat" parameterType="stat" resultType="stat">
+		with order_sales as(
+		select order_time::date, 
+			  substring(order_time::date::text, 1,7) as year_month, 
+			  sum(total_price) as total_price
+	      	  from order_code 
+				  where order_time::date 
+				  BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+				  AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
+	      	  group by order_time::date
+	)
+	select *, sum(total_price) over(partition by year_month order by order_time::date rows unbounded preceding)
+	from order_sales
+	order by order_time::date
+	</select>
+
 </mapper>
