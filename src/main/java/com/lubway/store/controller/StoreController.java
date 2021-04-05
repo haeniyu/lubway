@@ -86,6 +86,10 @@ public class StoreController {
 			List<TotalOrderVO> totalavg = orderService.getTotalAvgStore(store_name);
 			model.addAttribute("totalavg", totalavg);
 			
+			//매장 전체 주문 건수
+			int totalCount = orderService.countStoreOrder(store_name);
+			model.addAttribute("totalcount", totalCount);
+			
 			return "main";
 		}
 	}
@@ -114,6 +118,10 @@ public class StoreController {
 		//일별 총 매출, 평균
 		List<TotalOrderVO> totalavg = orderService.getTotalAvgStore(store_name);
 		model.addAttribute("totalavg", totalavg);
+
+		//매장 전체 주문 건수
+		int totalCount = orderService.countStoreOrder(store_name);
+		model.addAttribute("totalcount", totalCount);
 		
 		return "main";
 	}

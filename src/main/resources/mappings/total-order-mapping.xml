@@ -65,4 +65,9 @@
 		SELECT date(order_time), SUM(total_price) as total, avg(total_price) as average
 		FROM order_code where store_name=#{store_name} group by date(order_time) order by date(order_time)
   	 </select>
+  	 
+  	 <!-- 매장 전체 주문 건수 -->
+  	 <select id="countStoreOrder" resultType="int">
+  	 	select count(*) from (select * from order_code, order_list where order_code.no = order_list.no and order_code.store_name=#{store_name}) as total
+  	 </select>
 </mapper>

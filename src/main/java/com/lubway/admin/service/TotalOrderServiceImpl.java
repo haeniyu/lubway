@@ -60,4 +60,9 @@ public class TotalOrderServiceImpl implements TotalOrderService {
 		return dao.getTotalAvgStore(store_name);
 	}
 
+	@Override
+	public int countStoreOrder(String store_name) {
+		return dao.countStoreOrder(store_name);
+	}
+
 }

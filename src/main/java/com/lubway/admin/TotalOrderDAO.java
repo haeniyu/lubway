@@ -56,4 +56,9 @@ public class TotalOrderDAO {
 	public List<TotalOrderVO> getTotalAvgStore(String store_name){
 		return sqlSessionTemplate.selectList("TotalOrderDAO.getTotalAvgStore", store_name);
 	}
+	
+	//매장 전체 주문 건수
+	public int countStoreOrder(String store_name) {
+		return sqlSessionTemplate.selectOne("TotalOrderDAO.countStoreOrder", store_name);
+	}
 }

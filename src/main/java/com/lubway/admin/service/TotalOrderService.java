@@ -24,4 +24,6 @@ public interface TotalOrderService {
 	List<TotalOrderVO> getTypeCountStore(String store_name);
 	
 	List<TotalOrderVO> getTotalAvgStore(String store_name);
+	
+	int countStoreOrder(String store_name);
 }
