@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>약관동의</title>
-
 <link rel="stylesheet" type="text/css"href="${path}/resources/css/jquery.mCustomScrollbar.min.css" />
 <link rel="stylesheet" type="text/css"href="${path}/resources/css/joining.css" />
 <link rel="stylesheet" type="text/css"href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css"href="${path}/resources/css/ui.commons.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript"src="${path}/resources/js/jquery-1.12.4.min.js"></script>
 <script type="text/javascript"src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/step01.js"></script>

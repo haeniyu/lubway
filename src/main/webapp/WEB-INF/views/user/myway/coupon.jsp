@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>My Coupon</title>
+<title>MY-WAY > 사용가능쿠폰</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/point.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>

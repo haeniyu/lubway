@@ -6,7 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>회원 정보 입력</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step03.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/step03.js"></script>
 </head>

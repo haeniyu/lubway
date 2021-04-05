@@ -2,6 +2,8 @@ package com.lubway.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lubway.admin.AdminVO;
 import com.lubway.admin.service.AdminService;
 import com.lubway.admin.statistics.service.StatService;
+import com.lubway.user.order.OrderCodeVO;
+import com.lubway.user.order.OrderListVO;
+import com.lubway.user.order.service.OrderService;
 
 @Controller
 public class AdminController {
@@ -32,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	StatService statService;
+	
+	@Autowired
+	OrderService orderService;
 	
 	/**
 	 * 로그인 처리 후 메인 페이지 이동
@@ -70,6 +78,19 @@ public class AdminController {
 				int thisYearSales = statService.getThisYearSales();
 				model.addAttribute("thisYearSales", thisYearSales);
 				
+				//메뉴 타입별 매출
+				List<OrderListVO> typeList = orderService.getTypeCount();
+				model.addAttribute("typeList", typeList);
+				
+				//최고 매출 매장
+				List<OrderCodeVO> bestList = orderService.getBestStore();
+				String best = bestList.get(0).getStore_name();
+				model.addAttribute("best", best);
+
+				//일별 총 매출, 평균
+				List<OrderCodeVO> totalavg = orderService.getTotalAvg();
+				model.addAttribute("totalavg", totalavg);
+
 				return "main";
 		}
 	}
@@ -95,6 +116,10 @@ public class AdminController {
 		int thisYearSales = statService.getThisYearSales();
 		model.addAttribute("thisYearSales", thisYearSales);
 		
+		//가장 매출이 큰 매장
+		
+		
+		
 		return "main";
 	}
 	
@@ -104,7 +129,5 @@ public class AdminController {
 		session.invalidate();
 		return "login";
 	}
-	
-
 	
 }

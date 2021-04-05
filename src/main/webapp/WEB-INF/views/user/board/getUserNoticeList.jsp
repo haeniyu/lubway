@@ -46,7 +46,8 @@
 </script>
 <head>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/notice.css" />
-<title>SUBWAY - 뉴스ㆍ공지사항</title>
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<title>LUBWAY - 뉴스ㆍ공지사항</title>
 <meta charset="utf-8" />
 </head>
 <body>

@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/cart.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
 function addMenu() {

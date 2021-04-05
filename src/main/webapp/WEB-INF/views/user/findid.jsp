@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/findid.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<title>아이디 찾기</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>

@@ -6,9 +6,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>매장 찾기</title>
+<title>LUBWAY - 매장 찾기</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.subway.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
 </head>

@@ -6,13 +6,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-$(document).ready(function() {
-	
-});//end of document ready
-</script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
+var labels = new Array();
+var data = new Array();
+<c:forEach items="${typeList}" var="result" >
+var json = new Object();
+labels.push("${result.menu_type}");
+data.push("${result.count}");
+</c:forEach>
+var count = new Array();
+for(var i = 0; i < data.length; i++){ //문자 - 숫자로 변환
+  var cnt = data[i].replace('"','');
+  console.log(cnt);
+  count.push(cnt);
+}
+function drawChart() {
+	
+	 var data = new google.visualization.DataTable();
+     //그래프에 표시할 컬럼 추가
+     data.addColumn('string', '메뉴타입');
+     data.addColumn('number', '판매량');
+
+     //그래프에 표시할 데이터
+     var dataRow = [];
+
+     for(var i = 0; i < labels.length; i++){ //데이터 입력
+       var type = labels[i];
+       var cnt = Number(count[i]);
+       console.log(cnt);
+       dataRow = [type , cnt];
+       data.addRow(dataRow);
+     }
+
+    var options = {
+		title: '타입별 판매 현황'
+	};
+
+	var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+	chart.draw(data, options);
+}
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawColColors);
+
+var date = new Array();
+var total = new Array();
+var average = new Array();
+
+<c:forEach items="${totalavg}" var="ttl" >
+var json = new Object();
+date.push("${ttl.date}");
+total.push("${ttl.total}");
+average.push("${ttl.average}");
+</c:forEach>
+
+function drawColColors() {
+	var data = new google.visualization.DataTable();
+	data.addColumn('string', '날짜');
+	data.addColumn('number', '판매금액');
+	data.addColumn('number', '일평균');
+      
+	//그래프에 표시할 데이터
+	var dataRow = [];
+
+	for(var i = 0; i < labels.length; i++){ //데이터 입력
+		var type = date[i];
+        var ttl = Number(total[i]);
+        var avg = Number(average[i]);
+        dataRow = [type , ttl, avg];
+        data.addRow(dataRow);
+      }
+
+      var options = {
+        title: '일별 매출 총 합계 & 평균',
+        colors: ['#008D43', '#FFCA01']
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
@@ -98,9 +177,8 @@ $(document).ready(function() {
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div
-									class="text-xs font-weight-bold text-warning text-uppercase mb-1">금일
-									가맹점 문의 건수</div>
-								<div class="h5 mb-0 font-weight-bold text-gray-800">3</div>
+									class="text-xs font-weight-bold text-warning text-uppercase mb-1">최고 매출 매장</div>
+								<div class="h5 mb-0 font-weight-bold text-gray-800">${best }</div>
 							</div>
 							<div class="col-auto">
 								<i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -125,9 +203,7 @@ $(document).ready(function() {
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-						<div class="chart-area">
-							<canvas id="myAreaChart"></canvas>
-						</div>
+						<div id="chart_div" style="width: 100%; height: 350px;"></div>
 					</div>
 				</div>
 			</div>
@@ -142,24 +218,12 @@ $(document).ready(function() {
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
-						<div class="chart-pie pt-4 pb-2">
-							<canvas id="myPieChart"></canvas>
-						</div>
-						<div class="mt-4 text-center small">
-							<span class="mr-2"> <i class="fas fa-circle text-primary"></i>
-								매장
-							</span> <span class="mr-2"> <i class="fas fa-circle text-success"></i>
-								포장
-							</span> <span class="mr-2"> <i class="fas fa-circle text-info"></i>
-								배달
-							</span>
-						</div>
+						<div id="piechart" style="width: 100%; height: 350px;"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div><!-- End of container-fluid -->
-
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

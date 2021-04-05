@@ -40,6 +40,7 @@ function menuDetail(code) {
 	form.submit();
 }
 </script>
+<title>LUBWAY 러브웨이</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

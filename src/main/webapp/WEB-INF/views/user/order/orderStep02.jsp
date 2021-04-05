@@ -6,6 +6,7 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <head>
 <meta charset="UTF-8">
 <title>주문하기 > Step02</title>

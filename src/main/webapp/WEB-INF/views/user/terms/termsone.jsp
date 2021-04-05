@@ -6,6 +6,7 @@
 <html>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.etc.css">
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.commons.css">
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <head>
 <meta charset="UTF-8">
 <title>LUBWAY - 이용약관</title>

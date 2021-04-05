@@ -36,4 +36,13 @@ public interface OrderService {
 	
 	// 사용자 주문내역 상세
 	OrderCodeVO getOrderListDetail(OrderCodeVO vo);
+	
+	//메뉴 타입별 매출 카운트
+	List<OrderListVO> getTypeCount();
+	
+	//최고 매출 매장
+	List<OrderCodeVO> getBestStore();
+	
+	//일별 총 매출, 평균
+	List<OrderCodeVO> getTotalAvg();
 }

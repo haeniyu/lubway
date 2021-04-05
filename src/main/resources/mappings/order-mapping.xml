@@ -85,4 +85,26 @@
   	    select * from order_code where no=#{no} and id=#{id}
   	 </select>
   	 
+  	 <!-- 대시보드에서 사용할 통계자료 -->
+  	 
+  	 <!-- 메뉴 타입별 매출 카운트 -->
+  	 <select id="getTypeCount" resultType="order_list">
+  	 	select menu_type, count(*) from order_list group by menu_type
+  	 </select>
+  	 
+  	 <!-- 매출 높은 순으로 매장 정렬 rownum 사용 -->
+  	 <select id="getBestStore" resultType="order_code">
+  	 	select (row_number() over()) AS num, store_name from 
+		(select store_name, max(price) 
+		from (select store_name, sum(total_price) as price from order_code group by store_name) as best
+		group by store_name, price
+		order by price desc) as best
+  	 </select>
+  	 
+  	 <!-- 일별 총 매출, 평균 -->
+  	 <select id="getTotalAvg" resultType="order_code">
+		SELECT date(order_time), SUM(total_price) as total, avg(total_price) as average
+		FROM order_code group by date(order_time) order by date(order_time)
+  	 </select>
+  	 
 </mapper>

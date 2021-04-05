@@ -7,13 +7,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/noticein.css" />
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/header.css">
-<link rel="stylesheet" type="text/css"
-	href="${path}/resources/css/footer.css" />
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/noticein.css" />
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="${path}/resources/css/footer.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<title>LUBWAY - 뉴스·공지사항</title>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>

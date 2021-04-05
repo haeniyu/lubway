@@ -7,11 +7,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<title>MY-WAY > 주문내역</title>
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.common.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/ui.mypage.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/step01.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
+<link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
 $(function() {
