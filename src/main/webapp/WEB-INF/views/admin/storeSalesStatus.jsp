@@ -201,23 +201,21 @@ var searchAjax = false;
 				</div>
 				<div class="searchStore">	
 					<strong>매장 선택 : </strong>
-					<!-- 수령 방식 선택 -->
-	               <select class="btn btn-primary dropdown-toggle" style="margin: 5px 5px 10px 5px">
-	                  <option>수령 방식 선택</option>
-	               </select>
-	               <!-- 지역구 선택 -->
-					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 5px 10px 5px">
-						<option>지역구 선택</option>
-					</select>
-					<!-- 선택한 지역구에 따른 매장명 선택 -->
-					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
+					<!-- 매장명 선택 -->
+					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 5px">
 						<option>매장명 선택</option>
 					</select>
-				</div>
-				<div class="searchKeyword" >
-					<input type="text" name="searchKeyword" placeholder="매장명으로 검색해 주세요." style="width: 70%" />
+					<!-- 수령 방식 선택 -->
+	               <select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
+	                  <option>수령 방식 선택</option>
+	               </select>
+	               <!-- 결제 방식 선택 -->
+					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
+						<option>결제 방식 선택</option>
+					</select>
 					<input style="margin: 5px 5px 10px 0; padding: 5px" class="btn btn-warning btn-icon-split" type="submit" onclick="searchStat()" value="search" />
 				</div>
+					<span class="num">총<strong> 0 </strong>건</span>
 				<!-- 기간, 지역, 매장 선택 및 검색  종료 -->
 				
                 <div class="table-responsive">

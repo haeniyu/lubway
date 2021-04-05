@@ -42,8 +42,11 @@
 	width: 300px;
 }
 
-.searchKeyword input[name=searchBtn]{
-
+.num{
+	float: right;
+	padding-top: 11px;
+	margin-right: 5px;
+	
 }
 
 .searchKeyword input[name=searchKeyword]{
