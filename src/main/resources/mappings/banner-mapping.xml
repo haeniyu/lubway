@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="BannerDAO">
+  
+  	<insert id="insertBanner" parameterType="banner">
+  		INSERT INTO BANNER(TITLE, FILEPATH, CONTENTS)
+  		VALUES (#{title}, #{filepath}, #{contents})
+  	</insert>
+  	
+  	<update id="updateBanner" parameterType="banner">
+  		UPDATE BANNER SET TITLE=#{title}, FILEPATH=#{filepath}, CONTENTS=#{contents}
+  		WHERE NO=#{no}
+  	</update>
+	
+	<delete id="deleteBanner">
+		DELETE FROM BANNER WHERE NO=#{no}
+	</delete>
+	
+	<select id="getBannerList" resultType="banner">
+		SELECT * FROM BANNER ORDER BY NO DESC
+	</select>
+	
+	<select id="getBanner" parameterType="banner" resultType="banner">
+		SELECT * FROM BANNER WHERE NO=#{no}
+	</select>
+	
+	<select id="countBanner" resultType="int">
+		SELECT COUNT(*) FROM BANNER
+	</select>
+	
+	<select id="getBannerListView" resultType="banner">
+		SELECT * FROM BANNER ORDER BY NO DESC
+	</select>
+  
+  </mapper>
