@@ -442,7 +442,6 @@
 .bread_leng ul li label em{color: #292929; font-size: 20px; font-weight: bold;}
 
 /* 빵 선택 레이어 */
-.bread{margin-top: 54px;}
 .bread .warm{position: absolute; left: 0; top: -42px; color: #fff; font-size: 18px; font-weight: bold; line-height: 30px;}
 .bread .warm .icon{margin-right: 6px; background-color: #fff;}
 
@@ -451,7 +450,6 @@
 .cheese h2{padding: 12px 0 3px 16px; font-size: 20px; font-weight: bold;}
 
 /* 야채 선택 레이어 */
-.vegetable{margin-top: 52px;}
 .vegetable h2{padding: 12px 0 3px 16px; font-size: 20px; font-weight: bold;}
 .vegetable .lately{position: absolute; left: 0; top: -42px; width: 100%; overflow: hidden;}
 .vegetable .lately label{float: left; color: #fff; font-size: 18px; font-weight: bold; line-height: 30px;}
