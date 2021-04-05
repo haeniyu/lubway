@@ -41,4 +41,10 @@
 	<update id="updateMinus" parameterType="int">
 		UPDATE basket SET quantity = quantity-1, total_price = total_price-(total_price/quantity) WHERE no=#{no}
 	</update>
+	
+	<!-- 장바구니 담고있는 상품 개수 구하기 -->
+	<select id="checkNum" resultType="int">
+		SELECT COUNT(*) FROM BASKET WHERE ID=#{id} AND ORDER_TYPE=#{order_type}
+	</select>
+	
 </mapper>

@@ -46,4 +46,8 @@ public class BasketDAO {
 	public void updateMinus(int no) {
 		sqlSessionTemplate.update("BasketDAO.updateMinus", no);
 	}
+	
+	public int checkNum(BasketVO vo) {
+		return sqlSessionTemplate.selectOne("BasketDAO.checkNum", vo);
+	}
 }

@@ -19,6 +19,9 @@
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <script type="text/javascript">
 //메뉴에 따른 선택 항목 노출 설정
+var min = 1;
+var max = 10;
+
 function hideDiv() {
 	var protocol = '${hideNum}';
 	console.log("hideNum : " + protocol);
@@ -67,7 +70,34 @@ $(document).ready(function() {
 var count = 0;
 //장바구니 페이지로 이동
 function gotoBasket() {
-if(count == 1) return;
+	var order_type = $("input:hidden[name=whatWay]").val();
+	var check = true;
+	
+	$.ajax({
+        url : '/lubway/checkNum.do',
+        type : 'post',
+        data : {
+           whatWay : order_type
+        },
+        async : false,
+        success : function(data) {
+           console.log("ajax 통신 성공");
+           console.log(data);
+           if(data == 10){
+        	   check = false;
+        	   alert("장바구니에 담을수 있는 최대 수량은 10개 입니다.");
+           }
+        },
+        error : function(data, status, opt) {
+           alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+        }
+     });
+	
+	if(check == false){
+		return;
+	}
+	
+	if(count == 1) return;
 	if($("#code").val().includes("SDW")){
 		if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
 			alert("필수 선택을 선택해주세요.");
@@ -769,19 +799,22 @@ $("#select_one").click(function(){
 
 //수량 조절
 $("#qtyAdd").click(function() {
+	if(qty == 11) {
+		qty -= 2;
+	}
 	qty++;
-	console.log(qty);
 	var num = qty.toString();
 	$("#ordQty").val(num);
-	
+	if(num>max){
+		num -= 1;
+		alert("최대 10개까지만 됩니다.")
+		$("#ordQty").val(num);
+		return;
+	}
 	var showprice = 0;
 	showprice = sum * qty;
-	
-	console.log(sum);
-	
 	var num2 = showprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	$("#finalAmt").text(num2);
-	
 });//end of 수량더하기
 
 $("#qtySub").click(function() {
@@ -790,6 +823,8 @@ $("#qtySub").click(function() {
 		console.log(qty);
 		var num = qty.toString();
 		$("#ordQty").val(num);
+		
+		
 		
 		var showprice = 0;
 		showprice = sum * qty;

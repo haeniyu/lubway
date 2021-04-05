@@ -58,4 +58,9 @@ public class BasketServiceImpl implements BasketService {
 	public void updateMinus(int no) {
 		basketDAO.updateMinus(no);
 	}
+
+	@Override
+	public int checkNum(BasketVO vo) {
+		return basketDAO.checkNum(vo);
+	}
 }

@@ -499,4 +499,17 @@ public class OrderController {
 		
 	}
 	
+	@PostMapping("/checkNum.do")
+	@ResponseBody
+	public int checkNum(String whatWay, HttpSession session) {
+		BasketVO vo = new BasketVO();
+		UserVO user = (UserVO) session.getAttribute("user");
+		vo.setId(user.getId());
+		vo.setOrder_type(whatWay);
+		
+		int check = basketService.checkNum(vo);
+		
+		return check;
+	}
+	
 }

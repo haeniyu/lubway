@@ -92,11 +92,12 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width: 15%">메뉴 코드</th>
+                                <th style="width: 15%">주문 날짜</th>
+                                <th style="width: 20%">매뉴 타입</th>
                                 <th style="width: 20%">메뉴명</th>
-                                <th style="width: 20%">카테고리명</th>
-                                <th style="width: 20%">총 주문 건수</th>
-                                <th style="width: 25%">총 매출액</th>
+                                <th style="width: 20%">수령 방식</th>
+                                <th style="width: 25%">결제 방식</th>
+                                <th style="width: 25%">결제 금액</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -106,6 +107,7 @@
                                 <td>로스트 치킨</td>
                                 <td>프레쉬&라이트</td>
                                 <td>5</td>
+                                <td>29,500</td>
                                 <td>29,500</td>
                             </tr>
                         </tbody>
