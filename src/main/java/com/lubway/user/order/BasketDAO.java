@@ -49,6 +49,7 @@ public class BasketDAO {
 	
 	public int checkNum(BasketVO vo) {
 		return sqlSessionTemplate.selectOne("BasketDAO.checkNum", vo);
+	}
 
 	public void deleteBasketByid(String id) {
 		sqlSessionTemplate.delete("BasketDAO.deleteBasketByid", id);
