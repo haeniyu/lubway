@@ -30,15 +30,6 @@ public class NoticeController {
 	private NoticeService noticeService;
 	public AwsS3 awss3 = AwsS3.getInstance();
 
-	/** 검색 조건 목록 설정 */
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		return conditionMap;
-	}
-
 	/** 글 등록 화면 */
 	@RequestMapping("/insertNotice.mdo")
 	public String insertNoticeView(NoticeVO vo) throws IOException, PSQLException {

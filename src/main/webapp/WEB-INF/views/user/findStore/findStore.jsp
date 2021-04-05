@@ -12,10 +12,26 @@
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+</script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-
+<div class="loading"></div>
 	<div id="content">
 		<!-- 매장찾기 s -->
 		<div class="store_search_wrapper">
@@ -173,6 +189,7 @@
 
 				// 검색
 				function searchStore() {
+					$('.loading').show();
 					var keyword = $("#keyword").val().trim();
 					console.log(keyword);
 					
@@ -182,6 +199,7 @@
 						success : function(data) {
 							//검색결과가 없을 시
 							if(data.length == 0) {
+								$('.loading').hide();
 								// 목록 검색 결과 내역 지우기
 								while(listEl.firstChild){
 			                        listEl.removeChild(listEl.firstChild);
@@ -190,6 +208,7 @@
 							}
 							//검색 결과 존재
 							search(data);
+							$('.loading').hide();
 						},
 						error : function() {
 							console.log("실패");

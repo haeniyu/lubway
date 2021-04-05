@@ -15,6 +15,10 @@
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+
 $(function() {
 	$("#totalPayAmtNavi").text($("#totalPayAmtNavi").text().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
 	// fast/home 배경 구분
@@ -138,6 +142,8 @@ $(function() {
 }); //end of pay function
 
 function gotoOrderList() {
+	$('.loading').show();
+	
 	var totalPrice = $("#orderTotal").text();//총 가격
 	$("#totalPrice").val(totalPrice);
 	
@@ -197,9 +203,21 @@ function gotoOrderList() {
 }
 window.history.forward(0);
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<div class="loading"></div>
 	<div class="content">
 		<!-- container s -->
 		<div id="container">

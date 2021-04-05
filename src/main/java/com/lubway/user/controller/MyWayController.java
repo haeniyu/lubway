@@ -175,7 +175,10 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo) {
+	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) {
+		
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());

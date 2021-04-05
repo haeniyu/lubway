@@ -14,11 +14,15 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript">
 $(document).ready(function(){
-
+	$(window).load(function(){
+	    $(".loading").fadeOut();
+	});
+	
 	var selected = '${select}'
 	if(selected != "") $('#ordType').val(selected);
 	
 	$('#ordType').on('change', function(){
+		$('.loading').show();
 		var select = $('#ordType').val();
 		
 		var form = document.createElement("form");
@@ -65,11 +69,22 @@ $(document).ready(function(){
 		url = url + "&range=" + range;
 		location.href = url;
 	}
-	
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
+<div class="loading"></div>
 	<!-- container s -->
 	<div class="bg_gray" id="container">
 		<!-- sub content s -->
@@ -103,7 +118,7 @@ $(document).ready(function(){
 								<c:forEach items="${order}" var="order">
 								<li>
 									<div class="order_card">
-										<a href="/lubway/orderListDetail.do?no=${order.no }" id="">
+										<a href="/lubway/orderListDetail.do?no=${order.no }">
 											<c:if test="${order.order_type ne '배달'}">
 												<p class="order_type fast">
 													FAST-WAY
@@ -120,6 +135,7 @@ $(document).ready(function(){
 													<span class="date"><fmt:formatDate value="${order.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></span> 
 													<span class="price"><span><fmt:formatNumber value="${order.finalPrice }" pattern="#,###" /></span><em>원</em></span> 
 													<span class="num">주문번호  ( <em>${order.no }</em> )</span>
+													<span class="status">${order.status }</span>
 												</p>
 											</div>
 										</a>
@@ -129,6 +145,32 @@ $(document).ready(function(){
 								<!--// 1세트 -->
 							</ul>
 						</div>
+					<!-- board 페이지 -->
+					<div>
+						<div class="pagination" >
+						<ul class="UserPagination">
+							<c:if test="${pagination.prev}">
+								<a class="arr prev" href="javascript:void(0);"
+									onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+							</c:if>
+		
+							<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
+								<li 
+									class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
+									<a class="page-link" href="#"
+									onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
+										${idx} </a></li>
+							</c:forEach>
+		
+							<c:if test="${pagination.next}">
+								<li class="page-item"><a class="arr next" href="javascript:void(0);"
+									onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')"></a></li>
+							</c:if>
+						</ul>
+		
+						</div>
+					</div>
+					<!--// board 페이지 -->
 					</div>
 				</c:if>
 				<!--// 주문내역 데이터 있을 시 노출 -->
