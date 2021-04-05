@@ -63,7 +63,6 @@
 						<h6 class="collapse-header">Manage Customer:</h6>
 						<a class="collapse-item" href="/lubway/getuserlist.mdo">회원 관리</a>
 						<a class="collapse-item" href="/lubway/getCouponList.mdo">쿠폰</a> 
-						<a class="collapse-item" href="#">포인트</a>
 					</div>
 				</div></li>
 
@@ -122,8 +121,8 @@
 					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Site:</h6>
-						<a class="collapse-item" href="#">배너</a> <a class="collapse-item"
-							href="getEventList.mdo">이벤트</a> <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
+						 <a class="collapse-item" href="getEventList.mdo">이벤트</a> 
+						 <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
 					</div>
 				</div></li>
 
