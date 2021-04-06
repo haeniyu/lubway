@@ -2,7 +2,6 @@ package com.lubway.admin.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -55,7 +54,8 @@ public class AdminController {
 		admin.setId(id);
 		AdminVO getAdmin = adminService.getAdmin(admin);
 		
-		boolean check = passEncoder.matches(password, getAdmin.getPassword());
+		boolean check = false;
+		if(getAdmin!=null) check = passEncoder.matches(password, getAdmin.getPassword());
 		
 		if(getAdmin == null || !check) {
 			out.println("<script>alert('아이디 또는 비밀번호가 틀렸습니다.'); history.go(-1); </script>");
