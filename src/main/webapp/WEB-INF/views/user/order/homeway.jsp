@@ -206,46 +206,6 @@
 					      });
 					}//end of 현위치 얻기
 					
-					//좌표를 주소로 변환 후 매장 검색
-					function getLoca(result, status){
-						if (status === kakao.maps.services.Status.OK) {
-					        for(var i = 0; i < result.length; i++) {
-					            // 행정동의 region_type 값은 'H' 이므로
-					            if (result[i].region_type === 'H') {
-					               console.log(result[i].region_2depth_name);
-					               
-					               //접속한 위치의 행정동 주소 기준 '구' 추출 후 검색
-					               keyword = result[i].region_2depth_name;
-					               searchStoreNearHere(keyword);
-					               break;
-					            }
-					        }
-					    }    
-					}
-					
-					// 현위치 기반 검색
-					function searchStoreNearHere(keyword) {
-						$.ajax({
-							url : '/lubway/searchStore.do?keyword=' + keyword,
-							type : 'post',
-							success : function(data) {
-								//검색결과가 없을 시
-								if(data.length == 0) {
-									// 목록 검색 결과 내역 지우기
-									while(listEl.firstChild){
-				                        listEl.removeChild(listEl.firstChild);
-				                     }
-									document.getElementById('uiResultCount').innerHTML=data.length;
-								}
-								//검색 결과 존재
-								search(data);
-							},
-							error : function() {
-								console.log("실패");
-							}
-						});
-					}
-					
 
 					//검색 시작
 					function search(data) {

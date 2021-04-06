@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+import com.lubway.admin.board.TermsVO;
+import com.lubway.admin.board.service.TermsService;
 import com.lubway.user.UserPagination;
 import com.lubway.user.UserVO;
 import com.lubway.user.board.UserNoticeVO;
@@ -52,6 +54,9 @@ public class UserController {
 
 	@Inject
 	private BCryptPasswordEncoder passEncoder;
+	
+	@Autowired
+	TermsService termsService;
 
 	/** Naver Login */
 	private NaverLoginBO naverLoginBO;
@@ -323,10 +328,13 @@ public class UserController {
 	 * 회원가입 페이지 이동
 	 */
 	@RequestMapping("/step01.do")
-	public String termsStep(HttpSession session) {
-		System.out.println("약관동의 화면으로 이동");
-
+	public String termsStep(HttpSession session,Model model) {
 		if(session.getAttribute("findId") != null) session.removeAttribute("findId");
+		
+		List<TermsVO> list = termsService.getAllTerms();
+		model.addAttribute("homepage", list.get(0));
+		model.addAttribute("privacy", list.get(1));
+		model.addAttribute("service", list.get(2));
 
 		return "join/step01";
 	}

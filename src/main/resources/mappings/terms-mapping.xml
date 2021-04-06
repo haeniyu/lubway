@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="TermsDAO">
+
+	<select id="getAllTerms" resultType="terms">
+		SELECT * FROM terms ORDER BY no
+	</select>
+	
+	<update id="updateTerms" parameterType="terms">
+		UPDATE terms SET content=#{content} WHERE no=#{no}
+	</update>
+
+</mapper>

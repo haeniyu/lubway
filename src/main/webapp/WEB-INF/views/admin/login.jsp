@@ -39,12 +39,12 @@
 		<h3>LUBWAY 관리자 사이트 로그인</h3>
 		<form action="main.mdo" method="post" id="login">
 			<div class="form-group">
-				<input type="text" class="form-text" placeholder="아이디" id="username" name="id" />
+				<input type="text" class="form-text" placeholder="아이디" id="id" name="id" />
 			</div>
 			<div class="form-group">
 				<input type="password" class="form-text" placeholder="비밀번호" id="password" name="password" />
 			</div>
-			<button type="button" class="btn_login" id="ui_login_btn">로그인</button>
+			<button type="submit" class="btn_login" id="ui_login_btn">로그인</button>
 		</form>
 		<p>
 			본 시스템은 등록된 관리자에 한하여 사용하실 수 있습니다.<br /> 불법적인 접근 및 사용 시 관련 법규에 의해 처벌 될
