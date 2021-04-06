@@ -167,8 +167,11 @@ public class MyWayController {
 		vo.setId(userVo.getId());
 		
 		List<UserCouponVO> couponList = couponService.getUserCouponList(vo);
+		int countCoupon = couponService.countUseCoupon(vo);
+		System.out.println(countCoupon);
 		
 		model.addAttribute("couponList", couponList);
+		model.addAttribute("countCoupon", countCoupon);
 		
 		return "myway/coupon";
 	}

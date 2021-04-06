@@ -26,6 +26,8 @@
 					<li class="active" id="mypoint"><span>${user.name }</span>님의 보유 쿠폰 현황입니다.</li>
 				</ul>
 			</div>
+			<!-- 쿠폰이 있을 시 노출 -->
+			<c:if test="${countCoupon > 0 }">
 			<section class="tab_content" style="background-color:white;">
 				<div class="coupon_status">
 
@@ -65,7 +67,14 @@
 					</section>
 				</div>
 			</section>
-
+			</c:if>
+				<!-- 쿠폰이 없을 시 노출 -->
+				<c:if test="${countCoupon == 0 }">
+					<div class="data_none">
+						<p>사용 가능한 쿠폰이 없습니다.</p>
+					</div>
+				</c:if>
+				<!-- 쿠폰이 없을 시 노출 -->
 		</div>
 		<!--// 멤버십 > 쿠폰현황 -->
 	</div>
