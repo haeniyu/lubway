@@ -38,55 +38,87 @@ public class EventController {
 
 	/** 글 수정 화면 */
 	@RequestMapping("/updateEvent.mdo")
-	public String updateEvent(EventVO vo, HttpSession session, @RequestParam("start") String start, @RequestParam("end") String end) throws IOException, PSQLException, ParseException {
+	public String updateEvent(EventVO vo, @RequestParam("start") String start, @RequestParam("end") String end,
+			MultipartFile thumb, MultipartFile conimg) throws IOException, PSQLException, ParseException {
 
-		/** 세션 데이터 */
-		EventVO sessionVO = (EventVO) session.getAttribute("vo");
-		System.out.println("기존 vo : " + sessionVO.toString());
+		EventVO bringData = eventService.getEvent(vo);
 
-		/** 이미지 root url */
-		String imageUrl = "https://lubway.s3.ap-northeast-2.amazonaws.com/";
-		
 		/** 이벤트 기간 수정 여부 */
 		if(!start.equals("")) {
 			System.out.println("시작 기간 수정");
 			Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
-			vo.setRegdate(regd);
+			bringData.setRegdate(regd);
 		} else {
 			System.out.println("시작 기간 수정 X");
-			vo.setRegdate(sessionVO.getRegdate());
+			bringData.setRegdate(bringData.getRegdate());
 		}
 
 		if(!end.equals("")) { 
 			System.out.println("종료 기간 수정");
 			Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(end);
-			vo.setEnddate(endd);
+			bringData.setEnddate(endd);
 		} else {
 			System.out.println("종료 기간 수정 X");
-			vo.setEnddate(sessionVO.getEnddate());
+			bringData.setEnddate(bringData.getEnddate());
 		}
 
-		/** 이미지 수정 여부 */
-		if(vo.getThumbnail().equals("")) {
-			System.out.println("썸네일 기존 데이터");
-			vo.setThumbnail(sessionVO.getThumbnail());
-		} else {
-			System.out.println("썸네일 수정");
-			vo.setThumbnail(imageUrl + vo.getThumbnail());			
+		/** 썸네일 이미지 수정 */
+		int thumbIndex = bringData.getThumbnail().indexOf("/", 20);
+		String thumbKey = bringData.getThumbnail().substring(thumbIndex+1);
+		
+		if(!thumb.getOriginalFilename().equals("")) {
+			if(!thumbKey.equals("event/" + thumb)) {
+				awss3.delete(thumbKey);
+				
+				InputStream is = thumb.getInputStream();
+				String uploadKey = thumb.getOriginalFilename();
+				String contentType = thumb.getContentType();
+				long contentLength = thumb.getSize();
+				
+				String bucket = "lubway/event";
+				
+				awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+				
+				String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/event/" + uploadKey;
+				
+				bringData.setThumbnail(filePath);
+			}else {
+				bringData.setThumbnail(bringData.getThumbnail());
+			}
+		}else {
+			bringData.setThumbnail(bringData.getThumbnail());
 		}
 		
-		if(vo.getContimg().equals("")) {
-			System.out.println("내용 이미지 기존 데이터");
-			vo.setContimg(sessionVO.getContimg());
-		} else {
-			System.out.println("내용 이미지 수정");
-			vo.setContimg(imageUrl + vo.getContimg());			
-		}
-
-		System.out.println("수정 데이터 세팅 : " + vo.toString());
+		/** 내용 이미지 수정 */
+		int contIndex = bringData.getContimg().indexOf("/", 20);
+		String contKey = bringData.getContimg().substring(contIndex+1);
 		
-		eventService.updateEvent(vo);
-		session.removeAttribute("vo");
+		if(!conimg.getOriginalFilename().equals("")) {
+			if(!contKey.equals("event/" + conimg)) {
+				awss3.delete(contKey);
+				
+				InputStream is = conimg.getInputStream();
+				String uploadKey = conimg.getOriginalFilename();
+				String contentType = conimg.getContentType();
+				long contentLength = conimg.getSize();
+				
+				String bucket = "lubway/event";
+				
+				awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+				
+				String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/event/" + uploadKey;
+				
+				bringData.setContimg(filePath);
+			}else {
+				bringData.setContimg(bringData.getContimg());
+			}
+		}else {
+			bringData.setContimg(bringData.getContimg());
+		}
+		
+		bringData.setTitle(vo.getTitle());
+		
+		eventService.updateEvent(bringData);
 		
 		System.out.println("이벤트 게시판 수정 실행됨");
 		return "redirect:/getEventList.mdo";
@@ -95,8 +127,19 @@ public class EventController {
 	/** 글 삭제 화면 */
 	@RequestMapping("/deleteEvent.mdo")
 	public String deleteEvent(EventVO vo) throws IOException, PSQLException {
-		eventService.deleteEvent(vo);
+		
+		EventVO bringData = eventService.getEvent(vo);
+		
+		int thumbIndex = bringData.getThumbnail().indexOf("/", 20);
+		int contIndex = bringData.getContimg().indexOf("/", 20);
+		String thumbKey = bringData.getThumbnail().substring(thumbIndex+1);
+		String contKey = bringData.getContimg().substring(contIndex+1);
+		awss3.delete(thumbKey);
+		awss3.delete(contKey);
+		
+		eventService.deleteEvent(bringData);
 		System.out.println("이벤트 게시판 삭제 실행됨");
+		
 		return "redirect:/getEventList.mdo";
 	}
 

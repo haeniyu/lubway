@@ -7,11 +7,8 @@ import com.lubway.user.board.UserNoticeVO;
 
 public interface UserNoticeService {
 
-	// 관리자 CRUD 기능의 메소드 구현
 	// 글 상세 조회
 	UserNoticeVO getUserNotice(UserNoticeVO vo);
-
-	// 글 목록 조회
 
 	// 페이징 리스트
 	List<UserNoticeVO> getUserPageList(UserPagination pagination);

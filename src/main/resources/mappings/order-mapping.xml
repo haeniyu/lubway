@@ -39,7 +39,7 @@
 	
 	<select id="orderCodeList" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} order by NO DESC
-		limit 10
+		limit #{listSize} offset #{startList}
 	</select>
 
 	<select id="orderList" parameterType="order_list" resultType="order_list">
@@ -49,20 +49,28 @@
 	<select id="selectHomeway" parameterType="order_code" resultType="order_code">
 		select * from order_code where ID=#{id} and ORDER_TYPE='배달'
 		order by NO DESC
-		limit 10
+		limit #{listSize} offset #{startList}
 	</select>
 	
 	<select id="selectFastway" parameterType="order_code" resultType="order_code">
 		select * from order_code 
 		where ID=#{id} and ORDER_TYPE not in(select ORDER_TYPE from order_code where ORDER_TYPE='배달')
 		order by NO DESC
-		limit 10
+		limit #{listSize} offset #{startList}
 	</select>
 	
 	<select id="countOrderList" resultType="int">
-		select count(*) from order_code where ID=#{id}
+			select count(*) from order_code where ID=#{id}
 	</select>
-	
+
+	<select id="countOrderHomeList" resultType="int">
+			select count(*) from order_code where ID=#{id} and ORDER_TYPE='배달'
+	</select>
+
+	<select id="countOrderFastList" resultType="int">
+			select count(*) from order_code where ID=#{id} and ORDER_TYPE not in(select ORDER_TYPE from order_code where ORDER_TYPE='배달')
+	</select>
+
 	<!-- insert -->
 	<insert id="insertOrderCode" parameterType="order_code">
 		insert into order_code (id, name, tel, address, request, store_name, order_type,

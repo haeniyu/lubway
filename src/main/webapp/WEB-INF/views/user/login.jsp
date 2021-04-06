@@ -14,7 +14,12 @@
 <script type = "text/javascript" src = "https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 <script src = "//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+	$(window).load(function(){
+	    $(".loading").fadeOut();
+	});
+
 	$(document).ready(function() {
 		$("#loginBtn").on("click", function(){
 			if($("#username").val().trim() == "" || $("#password").val().trim() == "") {
@@ -71,10 +76,22 @@
 		form.submit();
 	}
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 <title>로그인</title>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<div class="loading"></div>
 	<!-- login -->
 	<!-- container s -->
 	<div class="bg_type01" id="container">

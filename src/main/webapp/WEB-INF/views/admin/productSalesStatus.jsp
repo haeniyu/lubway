@@ -76,16 +76,18 @@
 					<strong>메뉴 선택 : </strong>
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 5px 10px 5px">
 						<option>메뉴 카테고리</option>
+						<option>샌드위치</option>
+						<option>샐러드</option>
+						<option>랩 기타</option>
+						<option>사이드 음료</option>
 					</select>
 					<!-- 선택한 메뉴에 따른 메뉴명 선택 -->
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
 						<option>메뉴명 선택</option>
 					</select>
-				</div>
-				<div class="searchKeyword">
-					<input type="text" name="searchKeyword" placeholder="메뉴명으로 검색해 주세요." style="width:70%"/>
 					<input style="margin: 5px 0 10px 0; padding: 5px" name="searchBtn" class="btn btn-warning btn-icon-split" type="submit" value="search" />
 				</div>
+				<span class="num">총<strong> 0 </strong>건</span>
 				<!-- 기간, 메뉴 타입, 메뉴 선택 및 검색  종료 -->
 				
                 <div class="table-responsive">

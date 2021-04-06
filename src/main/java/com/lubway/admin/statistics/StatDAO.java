@@ -29,6 +29,7 @@ public class StatDAO {
 	}
 	
 	public List<StatVO> getSearchStat(StatVO vo) {
+	public List<StatVO> getSearchStat(StatPagination vo) {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchStat", vo);
 	}
 	
@@ -39,5 +40,21 @@ public class StatDAO {
 
 	public int getStoreYearSales(String store_name) {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
+=======
+	public int getBasicStatCnt() {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getBasicStatCnt");
+	}
+	
+	public int getSearchStatCnt(StatPagination page) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getSearchStatCnt", page);
+	}
+	
+	public List<StatVO> getBasicOrderList(StatPagination page) {
+		return sqlSessionTemplate.selectList("StatisticsDAO.getBasicOrderList", page);
+	}
+	
+	public List<StatVO> getSearchOrderList(StatPagination page) {
+		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchOrderList", page);
+>>>>>>> feature/chart
 	}
 }

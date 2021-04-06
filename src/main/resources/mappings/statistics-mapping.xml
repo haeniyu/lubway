@@ -22,33 +22,73 @@
 		]]>
 	</select>
 
+	<select id="getBasicStatCnt" resultType="int">
+		select count(*) from order_code
+	</select>
+
+	<select id="getBasicOrderList" resultType="stat">
+		select order_time::date, store_name, order_type, payment_list, total_price
+		from order_code 
+		order by order_time::date limit #{listSize} offset #{startList}
+	</select>
+
 	<select id="getBasicStat" resultType="stat">
 		with order_sales as(
-			select order_time::date, 
-				  substring(order_time::date::text, 1,7) as year_month, 
-				  sum(total_price) as total_price
-		      	  from order_code
-		      	  group by order_time::date
+		   select
+		         order_time::date
+		         ,substring(order_time::date::text, 1,7) as year_month
+		         ,sum(total_price) as total
+		         ,sum(total_price - use_coupon - use_point) as real_total
+		         ,sum(use_coupon) as coupon
+		         ,sum(use_point) as point
+		      from order_code
+		      group by order_time::date
 		)
-		select *, sum(total_price) over(partition by year_month order by order_time::date rows unbounded preceding)
+		select *, sum(total) over(partition by year_month order by order_time::date rows unbounded preceding)
 		from order_sales
 		order by order_time::date
+	</select>
+	
+	<select id="getSearchStatCnt" resultType="int">
+		select count(*) from order_code where 
+			store_name like '%'||#{store_name}||'%' and 
+			order_type like '%'||#{order_type}||'%' and 
+			payment_list like '%'||#{payment_list}||'%' and
+			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+
+	<select id="getSearchOrderList" resultType="stat">
+		select * from (
+			select order_time::date, store_name, order_type, payment_list, total_price
+			from ( 
+				select * from order_code 
+				where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+				order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+				order by no asc) as three
+			order by order_time desc
+			limit #{listSize} offset #{startList}
+			) as two
 	</select>
 
 	<select id="getSearchStat" parameterType="stat" resultType="stat">
 		with order_sales as(
-		select order_time::date, 
-			  substring(order_time::date::text, 1,7) as year_month, 
-			  sum(total_price) as total_price
-	      	  from order_code 
-				  where order_time::date 
-				  BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-				  AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
-	      	  group by order_time::date
-	)
-	select *, sum(total_price) over(partition by year_month order by order_time::date rows unbounded preceding)
-	from order_sales
-	order by order_time::date
+			select order_time::date, 
+				  substring(order_time::date::text, 1,7) as year_month 
+				 ,sum(total_price) as total
+				 ,sum(total_price - use_coupon - use_point) as real_total
+				 ,sum(use_coupon) as coupon
+				 ,sum(use_point) as point
+		      	  from order_code 
+					  where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
+		      	  group by order_time::date
+			)
+			select *, sum(total) over(partition by year_month order by order_time::date rows unbounded preceding)
+			from order_sales
+			order by order_time::date
 	</select>
 	
 	

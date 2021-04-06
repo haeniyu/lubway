@@ -49,10 +49,27 @@
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <title>LUBWAY - 뉴스ㆍ공지사항</title>
 <meta charset="utf-8" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+</script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-
+<div class="loading"></div>
 	<!-- container s -->
 	<div id="container">
 		<div class="sub_header">
@@ -150,11 +167,16 @@
 					</c:if>
 
 					<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx" >
-						<li 
-							class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-							<a class="page-link" href="#"
-							onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')">
-								${idx} </a></li>
+						<c:if test="${pagination.page eq idx}">
+							<li class="page-item">
+								<a class="page-link active" href="#" onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')"> ${idx} </a>
+							</li>
+						</c:if>
+						<c:if test="${pagination.page ne idx}">
+							<li class="page-item">
+								<a class="page-link" href="#" onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }','${pagination.fix }')"> ${idx} </a>
+							</li>
+						</c:if>
 					</c:forEach>
 
 					<c:if test="${pagination.next}">

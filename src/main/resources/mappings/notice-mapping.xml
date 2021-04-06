@@ -20,7 +20,7 @@
 	</insert>
 
 	<update id="updateNotice" parameterType="notice">
-		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FIX=#{fix} WHERE
+		UPDATE NOTICE_BOARD SET TITLE=#{title}, CONTENT=#{content}, FILEPATH=#{filePath}, FIX=#{fix} WHERE
 		NO=#{no}
 	</update>
 

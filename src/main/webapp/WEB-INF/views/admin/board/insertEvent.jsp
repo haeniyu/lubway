@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>이벤트 페이지 등록</title>
+<title>이벤트 등록 페이지</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 	$(document).ready(function(){

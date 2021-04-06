@@ -13,8 +13,7 @@
 		<result property="searchKeyword" column="SEARCHKEYWORD" />
 	</resultMap>
 
-	<select id="getUserNotice" parameterType="usernotice"
-		resultType="usernotice">
+	<select id="getUserNotice" parameterType="usernotice" resultType="usernotice">
 		SELECT * FROM NOTICE_BOARD WHERE NO=#{no}
 	</select>
 
@@ -46,14 +45,12 @@
 		from notice_board
 	</select>
 
-	<select id="searchTitleCnt" parameterType="String"
-		resultType="int">
+	<select id="searchTitleCnt" parameterType="String" resultType="int">
 		select count(*) from notice_board where TITLE LIKE
 		'%'||#{searchKeyword}||'%';
 	</select>
 
-	<select id="getUserPageList" resultType="usernotice"
-		>
+	<select id="getUserPageList" resultType="usernotice">
 
 		select * from
 		( select

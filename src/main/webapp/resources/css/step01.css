@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.page-item {
+    display: inline-block;
+}
+
 select{
     -webkit-appearance:none; /* 화살표 없애기 for chrome*/
     -moz-appearance:none;    /* 화살표 없애기 for firefox*/

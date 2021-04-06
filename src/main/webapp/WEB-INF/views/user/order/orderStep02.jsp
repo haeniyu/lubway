@@ -12,6 +12,9 @@
 <title>주문하기 > Step02</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+	$(window).load(function(){
+	    $(".loading").fadeOut();
+	});
 
 	var select = "";
 	
@@ -40,12 +43,10 @@
 		//On Click Event
 		$("ul.select li").click(function() {
 			select = $(this).attr("id");
-			
 			$("ul.select li").removeClass("active"); //Remove any "active" class
 			$(this).addClass("active"); //Add "active" class to selected tab
 			
 			update(select);
-
 		});//end click function
 			
 	});//end document.ready
@@ -121,6 +122,7 @@
 	
 	// 메뉴 선택시 실행되는 함수
 	function selectDetail(data,whatWay,franchiseNo) {
+		$('.loading').show();
 		console.log("=== [function] selectDetail ===");
 		
 		$("#selected").val(select);
@@ -134,6 +136,7 @@
 	
 	// 사이드 메뉴 선택시 실행되는 함수 ( 쿠키제외 - 추가적으로 처리해야 함 )
 	function selectSide(data, whatWay, franchiseNo) {
+		$('.loading').show();
 		console.log("=== [function] selectSide ===");
 		
 		$("#selected").val(select);
@@ -144,9 +147,21 @@
 		$("#orderForm").submit();
 	}//end selectSide function
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<div class="loading"></div>
 	<div class="content">
 		<!-- container s -->
 		<div id="container">

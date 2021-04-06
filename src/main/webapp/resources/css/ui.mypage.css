@@ -1529,6 +1529,15 @@
 	background-color: #e5e5e5
 }
 
+.order_wrapper .order_box .order_list .order_card .status {
+	float: right;
+	font-size: 14px;
+	color: #FFCA01;
+	font-weight: bold;
+	letter-spacing: -0.05em;
+	padding-right: 10px;
+}
+
 .order_wrapper .order_box .order_list .order_card .num {
 	float: right;
 	font-size: 14px;

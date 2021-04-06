@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,15 +31,6 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	public AwsS3 awss3 = AwsS3.getInstance();
-
-	/** 검색 조건 목록 설정 */
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		return conditionMap;
-	}
 
 	/** 글 등록 화면 */
 	@RequestMapping("/insertNotice.mdo")
@@ -76,16 +69,53 @@ public class NoticeController {
 
 	/** 글 수정 */
 	@RequestMapping("/updateNotice.mdo")
-	public String updateNotice(NoticeVO vo) throws IOException, PSQLException {
-		noticeService.updateNotice(vo);
-		System.out.println("업데이트 실행됨");
+	public String updateNotice(NoticeVO vo, MultipartFile uploadImg) throws IOException, PSQLException {
+		System.out.println("가져온 데이터 : " +vo.toString());
+		NoticeVO bringData = noticeService.getNotice(vo);
+		
+		if(!uploadImg.getOriginalFilename().equals("")) {
+			if(bringData.getFilePath() != null) {
+				int index = bringData.getFilePath().indexOf("/", 20);
+				String key = bringData.getFilePath().substring(index+1);
+				awss3.delete(key);
+			}
+		
+			InputStream is = uploadImg.getInputStream();
+			String uploadKey = uploadImg.getOriginalFilename();
+			String contentType = uploadImg.getContentType();
+			long contentLength = uploadImg.getSize();
+			
+			String bucket = "lubway/notice";
+			
+			System.out.println(uploadKey);
+			
+			awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+			
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/notice/" + uploadKey;
+			
+			bringData.setFilePath(filePath);
+		}
+		
+		bringData.setTitle(vo.getTitle());
+		bringData.setContent(vo.getContent());
+
+		noticeService.updateNotice(bringData);
+		System.out.println("파일 업로드 업데이트 실행됨");
+		
 		return "redirect:/getNoticeList.mdo";
 	}
 
 	/** 글 삭제 */
 	@RequestMapping("/deleteNotice.mdo")
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
-		noticeService.deleteNotice(vo);
+		
+		NoticeVO bringData = noticeService.getNotice(vo);
+		
+		int index = bringData.getFilePath().indexOf("/", 20);
+		String key = bringData.getFilePath().substring(index+1);
+		awss3.delete(key);
+		
+		noticeService.deleteNotice(bringData);
 		System.out.println("삭제 실행됨");
 		return "redirect:/getNoticeList.mdo";
 	}

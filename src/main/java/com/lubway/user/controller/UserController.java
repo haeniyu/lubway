@@ -28,8 +28,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
+<<<<<<< HEAD
 import com.lubway.admin.board.TermsVO;
 import com.lubway.admin.board.service.TermsService;
+=======
+import com.lubway.admin.board.BannerVO;
+import com.lubway.admin.board.service.BannerService;
+>>>>>>> feature/chart
 import com.lubway.user.UserPagination;
 import com.lubway.user.UserVO;
 import com.lubway.user.board.UserNoticeVO;
@@ -48,6 +53,9 @@ public class UserController {
 	
 	@Autowired
 	private UserMenuService userMenuService;
+	
+	@Autowired
+	private BannerService bannerService;
 
 	@Autowired
 	private JavaMailSender mailSender;
@@ -215,7 +223,7 @@ public class UserController {
 	@PostMapping("/main.do")
 	public String main(@RequestParam("id") String id, 
 			@RequestParam("password") String password, 
-			HttpServletResponse response,
+			HttpServletResponse response, BannerVO vo,
 			HttpServletRequest request, Model model,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,String select, String code) throws IOException {
@@ -234,6 +242,8 @@ public class UserController {
 		
 		model.addAttribute("select1", "menuMorning.do");
 		model.addAttribute("list2", userMenuService.getMorningList());
+		
+		model.addAttribute("banner", bannerService.getBannerListView(vo));
 		
 		int i = userService.idCheck(id);
 		
@@ -258,8 +268,6 @@ public class UserController {
 			
 			return "main";
 		}
-		
-
 	}
 
 	/**
@@ -291,7 +299,7 @@ public class UserController {
 	 * 메인 페이지 이동
 	 */
 	@GetMapping("/main.do")
-	public String mainView(HttpSession seesion,Model model,
+	public String mainView(HttpSession seesion,Model model, BannerVO vo,
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range,
 			String select, String code) {
@@ -310,6 +318,8 @@ public class UserController {
 		
 		model.addAttribute("select1", "menuMorning.do");
 		model.addAttribute("list2", userMenuService.getMorningList());
+		
+		model.addAttribute("banner", bannerService.getBannerListView(vo));
 		
 		return "main";
 	}

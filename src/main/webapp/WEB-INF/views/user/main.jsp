@@ -46,15 +46,11 @@ function menuDetail(code) {
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
 	<!-- 배너 -->
 	<div class="banner">
-		<div>
-			<img alt="완충" src="${path}/resources/upload/banner/main_PC_1920x440_20210302111138000.png" />
-		</div>
-		<div>
-			<img alt="민트초코" src="${path}/resources/upload/banner/main_PC_1920x440_20210205043330107.jpg" />
-		</div>
-		<div>
-			<img alt="비엘티프로모션" src="${path}/resources/upload/banner/main_PC_1920x440_20210302111248934.png" />
-		</div>
+		<c:forEach items="${banner }" var="banner">
+			<div>
+				<img alt="${banner.title }" src="${banner.filepath}" />
+			</div>
+		</c:forEach>
 	</div>
 	<!-- 배너 끝 -->
 	<!-- quick link -->

@@ -15,6 +15,10 @@
 <meta charset="UTF-8">
 <title>주문하기 > Step04</title>
 <script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+
 $(function() {
 	// fast/home 배경 구분
 	var way = '${whatWay}';
@@ -138,6 +142,7 @@ $(function() {
 console.log("픽업 선택 : " + pickUp);
 
 function gotoOrderList() {
+	$('.loading').show();
 	
 	var step01Text = $("#selectStep01").text();//필수선택 텍스트
 	var step03Text = $(".selectStep03").text();//세트선택 텍스트
@@ -203,9 +208,21 @@ function gotoOrderList() {
 }
 window.history.forward(0);
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
+	<div class="loading"></div>
 	<div class="content">
 		<!-- container s -->
 		<div id="container">
@@ -373,10 +390,6 @@ window.history.forward(0);
 												<label> 
 													<input checked="checked" class="pay" id="cash" name="payment" type="radio" value="PAY_METHOD.CASH" /> 
 													<span class="shape">현금</span>
-												</label> 
-												<label> 
-													<input id="creditcard" class="pay"  name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
-													<span class="shape">신용카드</span>
 												</label> 
 												<label> 
 													<input id="kakao"  class="pay" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
