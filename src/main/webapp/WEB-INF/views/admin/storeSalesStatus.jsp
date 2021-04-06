@@ -386,18 +386,6 @@ var searchAjax = false;
 						<option>결제 방식 선택</option>
 						<option>현금</option>
 						<option>카카오페이</option>
-=======
-	               <select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
-	                  <option>수령 방식 선택</option>
-	                  <option>방문 포장</option>
-	                  <option>매장 식사</option>
-	                  <option>배달</option>
-	               </select>
-	               <!-- 결제 방식 선택 -->
-					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
-						<option>결제 방식 선택</option>
-						<option>현금</option>
-						<option>카카오 페이</option>
 					</select>
 					<input style="margin: 5px 5px 10px 0; padding: 5px" class="btn btn-warning btn-icon-split" type="submit" onclick="searchStat()" value="search" />
 				</div>
