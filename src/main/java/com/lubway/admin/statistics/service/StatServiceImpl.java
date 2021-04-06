@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lubway.admin.statistics.StatDAO;
+import com.lubway.admin.statistics.StatPagination;
 import com.lubway.admin.statistics.StatVO;
 
 @Service
@@ -35,8 +36,28 @@ public class StatServiceImpl implements StatService {
 	}
 
 	@Override
-	public List<StatVO> getSearchStat(StatVO vo) {
+	public List<StatVO> getSearchStat(StatPagination vo) {
 		return dao.getSearchStat(vo);
 	}
+
+	@Override
+	public int getBasicStatCnt() {
+		return dao.getBasicStatCnt();
+	}
 	
+	@Override
+	public int getSearchStatCnt(StatPagination page) {
+		return dao.getSearchStatCnt(page);
+	}
+
+	@Override
+	public List<StatVO> getBasicOrderList(StatPagination page) {
+		return dao.getBasicOrderList(page);
+	}
+
+	@Override
+	public List<StatVO> getSearchOrderList(StatPagination page) {
+		return dao.getSearchOrderList(page);
+	}
+
 }
