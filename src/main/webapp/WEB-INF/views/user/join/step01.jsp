@@ -34,12 +34,8 @@ $(window).load(function(){
 </style>
 </head>
 <body>
-<<<<<<< HEAD
-<%@ include file="/WEB-INF/views/user/header.jsp"%>
-=======
 	<div class="loading"></div>
 	<%@ include file="/WEB-INF/views/user/header.jsp"%>
->>>>>>> feature/chart
 	<!-- container s -->
 	<div class="bg_type01" id="container">
 		<!-- sub content -->

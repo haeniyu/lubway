@@ -73,8 +73,6 @@ $(document).ready(function() {
 });
 
 </script>
-<<<<<<< HEAD
-=======
 <script type="text/javascript">
 var count = 0;
 //장바구니 페이지로 이동
@@ -880,7 +878,6 @@ function clearAll(){
 
 });//end of document.ready
 </script>
->>>>>>> feature/chart
 <!-- 
 <script src="${path}/resources/js/orderStep03.js"></script>
  -->

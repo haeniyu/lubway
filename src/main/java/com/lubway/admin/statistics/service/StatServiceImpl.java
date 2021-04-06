@@ -41,7 +41,6 @@ public class StatServiceImpl implements StatService {
 	}
 
 	@Override
-<<<<<<< HEAD
 	public int getStoreMonthSales(String store_name) {
 		return dao.getStoreMonthSales(store_name);
 	}
@@ -49,10 +48,11 @@ public class StatServiceImpl implements StatService {
 	@Override
 	public int getStoreYearSales(String store_name) {
 		return dao.getStoreYearSales(store_name);
-=======
+	}
+
+	@Override
 	public int getBasicStatCnt() {
 		return dao.getBasicStatCnt();
->>>>>>> feature/chart
 	}
 	
 	@Override

@@ -28,13 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-<<<<<<< HEAD
-import com.lubway.admin.board.TermsVO;
-import com.lubway.admin.board.service.TermsService;
-=======
 import com.lubway.admin.board.BannerVO;
+import com.lubway.admin.board.TermsVO;
 import com.lubway.admin.board.service.BannerService;
->>>>>>> feature/chart
+import com.lubway.admin.board.service.TermsService;
 import com.lubway.user.UserPagination;
 import com.lubway.user.UserVO;
 import com.lubway.user.board.UserNoticeVO;

@@ -12,13 +12,9 @@ public interface StatService {
 	int getBasicStatCnt();
 	int getSearchStatCnt(StatPagination page);
 	List<StatVO> getBasicStat();
-<<<<<<< HEAD
-	List<StatVO> getSearchStat(StatVO vo);
 	int getStoreMonthSales(String store_name);
 	int getStoreYearSales(String store_name);
-=======
 	List<StatVO> getBasicOrderList(StatPagination page);
 	List<StatVO> getSearchStat(StatPagination vo);
 	List<StatVO> getSearchOrderList(StatPagination page);
->>>>>>> feature/chart
 }
