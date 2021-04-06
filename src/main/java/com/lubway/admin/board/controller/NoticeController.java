@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -67,9 +69,39 @@ public class NoticeController {
 
 	/** 글 수정 */
 	@RequestMapping("/updateNotice.mdo")
-	public String updateNotice(NoticeVO vo) throws IOException, PSQLException {
+	public String updateNotice(NoticeVO vo, MultipartFile uploadImg, HttpSession session) throws IOException, PSQLException {
+		
+		NoticeVO sessionVO = (NoticeVO) session.getAttribute("vo");
+		vo.setFilePath(sessionVO.getFilePath());
+		System.out.println("기존 vo : " + sessionVO.toString());
+		System.out.println(uploadImg);
+		
+		if(!uploadImg.getOriginalFilename().equals("")) {
+			System.out.println("이미지 수정 O");
+			int index = sessionVO.getFilePath().indexOf("/", 20);
+			String key = sessionVO.getFilePath().substring(index+1);
+			System.out.println(key);
+			awss3.delete(key);
+		
+			InputStream is = uploadImg.getInputStream();
+			String uploadKey = uploadImg.getOriginalFilename();
+			String contentType = uploadImg.getContentType();
+			long contentLength = uploadImg.getSize();
+			
+			String bucket = "lubway/notice";
+			
+			System.out.println(uploadKey);
+			
+			awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+			
+			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/notice/" + uploadKey;
+			
+			vo.setFilePath(filePath);
+			System.out.println("수정 후 vo : " + vo.toString());
+		}
+		
 		noticeService.updateNotice(vo);
-		System.out.println("업데이트 실행됨");
+		System.out.println("파일 업로드 업데이트 실행됨");
 		return "redirect:/getNoticeList.mdo";
 	}
 
@@ -83,8 +115,9 @@ public class NoticeController {
 
 	/** 글 상세 조회 */
 	@RequestMapping("/getNotice.mdo")
-	public String getNotice(NoticeVO vo, Model model) {
+	public String getNotice(NoticeVO vo, Model model, HttpSession session) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
+		session.setAttribute("vo", noticeService.getNotice(vo));
 		return "board/getNotice";
 	}
 
