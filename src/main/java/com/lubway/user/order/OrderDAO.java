@@ -6,10 +6,6 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.lubway.admin.board.EventVO;
-import com.lubway.admin.board.Pagination;
-import com.lubway.store.StoreInfoVO;
-
 @Repository
 public class OrderDAO {
 	
@@ -18,23 +14,31 @@ public class OrderDAO {
 	
 	// 사용자 Myway 주문내역 //
 	
-	public List<OrderCodeVO> orderCodeList(OrderCodeVO vo){
-		return sqlSessionTemplate.selectList("OrderDAO.orderCodeList", vo);
+	public List<OrderCodeVO> orderCodeList(OrderPagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.orderCodeList", pagination);
 	}
 	public List<OrderListVO> orderList(OrderListVO vo){
 		return sqlSessionTemplate.selectList("OrderDAO.orderList", vo);
 	}
 	
-	public List<OrderCodeVO> selectHomeway(OrderCodeVO vo){
-		return sqlSessionTemplate.selectList("OrderDAO.selectHomeway", vo);
+	public List<OrderCodeVO> selectHomeway(OrderPagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.selectHomeway", pagination);
 	}
 	
-	public List<OrderCodeVO> selectFastway(OrderCodeVO vo){
-		return sqlSessionTemplate.selectList("OrderDAO.selectFastway", vo);
+	public List<OrderCodeVO> selectFastway(OrderPagination pagination){
+		return sqlSessionTemplate.selectList("OrderDAO.selectFastway", pagination);
 	}
 	
 	public int countOrderList(OrderCodeVO vo) {
 		return sqlSessionTemplate.selectOne("OrderDAO.countOrderList", vo);
+	}
+	
+	public int countOrderFastList(OrderCodeVO vo) {
+		return sqlSessionTemplate.selectOne("OrderDAO.countOrderFastList", vo);
+	}
+	
+	public int countOrderHomeList(OrderCodeVO vo) {
+		return sqlSessionTemplate.selectOne("OrderDAO.countOrderHomeList", vo);
 	}
 	
 	//insert

@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,6 +23,7 @@ import com.lubway.user.UserVO;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderListVO;
+import com.lubway.user.order.OrderPagination;
 import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
@@ -175,72 +175,107 @@ public class MyWayController {
 	
 	//주문내역 페이지로 이동
 	@RequestMapping("/orderList.do")
-	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo) {
+	public String orderList(OrderCodeVO vo, Model model, HttpSession session, StoreInfoVO svo,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) {
+		
 		System.out.println("사용자 주문내역 조회 페이지 이동");
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
-		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
+		// 전체 주문 개수
 		int countOrder = orderService.countOrderList(vo);
 		
+		// Pagination
+		OrderPagination pagination = new OrderPagination();
+		pagination.pageInfo(page, range, countOrder);
+		pagination.setId(userVo.getId());
+		
+		List<OrderCodeVO> pageList = orderService.orderCodeList(pagination);
+		
 		// 최종 결제 금액 연산
-		for(int i =0; i <orderInfo.size(); i++) {
-			int price = orderInfo.get(i).getTotal_price();
-			int point = orderInfo.get(i).getUse_point();
-			int coupon = orderInfo.get(i).getUse_coupon();
+		for(int i =0; i <pageList.size(); i++) {
+			int price = pageList.get(i).getTotal_price();
+			int point = pageList.get(i).getUse_point();
+			int coupon = pageList.get(i).getUse_coupon();
 			
 			int total = 0;
 			
 			total = price - point - coupon;
 			
-			if(orderInfo.get(i).getOrder_type().equals("배달")) {
+			if(pageList.get(i).getOrder_type().equals("배달")) {
 				total += 3900;
-				orderInfo.get(i).setFinalPrice(total);
+				pageList.get(i).setFinalPrice(total);
 			}else {
-				orderInfo.get(i).setFinalPrice(total);
+				pageList.get(i).setFinalPrice(total);
 			}
 		}
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("order", pageList);
 		model.addAttribute("countOrder", countOrder);
-		model.addAttribute("order", orderInfo);
 		
 		return "myway/orderList";
 	}
 	
 	// Fast-Way / Home-Way 각각 보기
-	@PostMapping("/orderListTab.do")
-	public String selectOrderList(Model model, String select, OrderCodeVO vo, HttpSession session, String finalPrice) {
+	@RequestMapping("/orderListTab.do")
+	public String selectOrderList(Model model, String select, OrderCodeVO vo, HttpSession session, String finalPrice,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range) {
+		
 		UserVO userVo = (UserVO) session.getAttribute("user");
 		vo.setId(userVo.getId());
 		
-		List<OrderCodeVO> orderInfo = orderService.orderCodeList(vo);
-		List<OrderCodeVO> homeway = orderService.selectHomeway(vo);
-		List<OrderCodeVO> fastway = orderService.selectFastway(vo);
-		int countOrder = orderService.countOrderList(vo);
-		
-		model.addAttribute("countOrder", countOrder);
 		model.addAttribute("select", select);
 		System.out.println(select);
 
-		// 최종 결제금액 연산 및 값 넣어주기
+		// 최종 결제금액 연산 및 값 넣어주기 / pagination
 		if(select.equals("")) {
-			for(int i =0; i <orderInfo.size(); i++) {
-				int price = orderInfo.get(i).getTotal_price();
-				int point = orderInfo.get(i).getUse_point();
-				int coupon = orderInfo.get(i).getUse_coupon();
+			int countOrder = orderService.countOrderList(vo);
+			
+			// Pagination
+			OrderPagination pagination = new OrderPagination();
+			pagination.pageInfo(page, range, countOrder);
+			pagination.setId(userVo.getId());
+			pagination.setOrder_type(select);
+					
+			List<OrderCodeVO> pageList = orderService.orderCodeList(pagination);
+			
+			model.addAttribute("countOrder", countOrder);
+			
+			for(int i =0; i <pageList.size(); i++) {
+				int price = pageList.get(i).getTotal_price();
+				int point = pageList.get(i).getUse_point();
+				int coupon = pageList.get(i).getUse_coupon();
 				
 				int total = 0;
 				
 				total = price - point - coupon;
 				
-				if(orderInfo.get(i).getOrder_type().equals("배달")) {
+				if(pageList.get(i).getOrder_type().equals("배달")) {
 					total += 3900;
-					orderInfo.get(i).setFinalPrice(total);
+					pageList.get(i).setFinalPrice(total);
 				}else {
-					orderInfo.get(i).setFinalPrice(total);
+					pageList.get(i).setFinalPrice(total);
 				}
 			}
-			model.addAttribute("order", orderInfo);
+			model.addAttribute("pagination", pagination);
+			model.addAttribute("order", pageList);
+			
 		}else if(select.equals("homeway")) {
+			int countOrder = orderService.countOrderHomeList(vo);
+			
+			// Pagination
+			OrderPagination pagination = new OrderPagination();
+			pagination.pageInfo(page, range, countOrder);
+			pagination.setId(userVo.getId());
+			pagination.setOrder_type(select);
+					
+			List<OrderCodeVO> homeway = orderService.selectHomeway(pagination);
+			
+			model.addAttribute("countOrder", countOrder);
+			
 			for(int i =0; i <homeway.size(); i++) {
 				int price = homeway.get(i).getTotal_price();
 				int point = homeway.get(i).getUse_point();
@@ -257,8 +292,22 @@ public class MyWayController {
 					homeway.get(i).setFinalPrice(total);
 				}
 			}
+			model.addAttribute("pagination", pagination);
 			model.addAttribute("order", homeway);
+			
 		}else if(select.equals("fastway")) {
+			int countOrder = orderService.countOrderFastList(vo);
+			
+			// Pagination
+			OrderPagination pagination = new OrderPagination();
+			pagination.pageInfo(page, range, countOrder);
+			pagination.setId(userVo.getId());
+			pagination.setOrder_type(select);
+					
+			List<OrderCodeVO> fastway = orderService.selectFastway(pagination);
+			
+			model.addAttribute("countOrder", countOrder);
+			
 			for(int i =0; i <fastway.size(); i++) {
 				int price = fastway.get(i).getTotal_price();
 				int point = fastway.get(i).getUse_point();
@@ -267,14 +316,9 @@ public class MyWayController {
 				int total = 0;
 				
 				total = price - point - coupon;
-				
-				if(fastway.get(i).getOrder_type().equals("배달")) {
-					total += 3900;
-					fastway.get(i).setFinalPrice(total);
-				}else {
-					fastway.get(i).setFinalPrice(total);
-				}
+				fastway.get(i).setFinalPrice(total);
 			}
+			model.addAttribute("pagination", pagination);
 			model.addAttribute("order", fastway);
 		}
 		

@@ -18,7 +18,12 @@
 <link rel="stylesheet" href="${path}/resources/css/ui.popup.css" />
 <link rel="stylesheet" type="text/css" href="${path}/resources/css/fastway.css" />
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+
 //메뉴에 따른 선택 항목 노출 설정
 var min = 1;
 var max = 10;
@@ -71,6 +76,7 @@ $(document).ready(function() {
 var count = 0;
 //장바구니 페이지로 이동
 function gotoBasket() {
+	$('.loading').show();
 	var order_type = $("input:hidden[name=whatWay]").val();
 	var check = true;
 	
@@ -87,10 +93,11 @@ function gotoBasket() {
            if(data == 10){
         	   check = false;
         	   alert("장바구니에 담을수 있는 최대 수량은 10개 입니다.");
+        	   $('.loading').hide();
            }
         },
-        error : function(data, status, opt) {
-           alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+        error : function(data) {
+           alert("error");
         }
      });
 	
@@ -172,6 +179,7 @@ function gotoBasket() {
 
 //주문하기 페이지로 이동
 function gotoStep04() {
+	$('.loading').show();
 	if($("#code").val().includes("SDW")){
 		if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
 			alert("필수 선택을 선택해주세요.");
@@ -872,9 +880,21 @@ function clearAll(){
 <!-- 
 <script src="${path}/resources/js/orderStep03.js"></script>
  -->
+ <style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
+<div class="loading"></div>
 	<div id="content" class="order" style="padding-top: 175px">
 		<div class="order_title">
 			<c:if test="${whatWay eq 'Fast-Way' }">

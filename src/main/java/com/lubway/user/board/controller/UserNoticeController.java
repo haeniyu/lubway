@@ -22,15 +22,6 @@ public class UserNoticeController {
 	@Autowired
 	private UserNoticeService noticeService;
 
-	// 검색 조건 목록 설정
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new HashMap<String, String>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
-		return conditionMap;
-	}
-
 	// 글 상세 조회
 	@RequestMapping("/getUserNotice.do")
 	public String getUserNotice(UserNoticeVO vo, Model model,

@@ -11,6 +11,10 @@
 <link rel="shortcut icon" type="image/x-icon" href="${path}/resources/images/subway_favicon.ico">
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+
 function addMenu() {
 	$("#addMenuForm").submit();
 }
@@ -171,9 +175,12 @@ $(document).ready(function(){
 
 //주문하기 페이지로 이동
 function orderBasket() {
+	$('.loading').show();
+	
 	var totalNum = "";
 	if(cnt == 0) {
 		alert("주문하실 메뉴를 선택해 주세요.");
+		$('.loading').hide();
 		return;
 	} else {
 		for(var i=0; i < totalCnt-1; i++){
@@ -195,14 +202,24 @@ function orderBasket() {
 	$("#orderForm").submit();
 }
 </script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+</style>
 <head>
 <meta charset="UTF-8">
 <title>LUBWAY</title>
 </head>
-
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
-
+	<div class="loading"></div>
     <div id="container">
 		<!-- sub content s -->
 		<div class="cart fast_sub" id="content">

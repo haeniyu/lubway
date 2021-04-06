@@ -20,6 +20,7 @@
 		<typeAlias type="com.lubway.admin.menu.WrapVO" alias="wrap"/>
 		<typeAlias type="com.lubway.admin.TotalOrderVO" alias="total_order"/>
 		<typeAlias type="com.lubway.admin.statistics.StatVO" alias="stat" />
+		<typeAlias type="com.lubway.admin.board.BannerVO" alias="banner" />
 		
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
 		
@@ -66,5 +67,6 @@
 		<mapper resource="mappings/order-mapping.xml"/>
 		<mapper resource="mappings/total-order-mapping.xml"/>
 		<mapper resource="mappings/statistics-mapping.xml"/>
+		<mapper resource="mappings/banner-mapping.xml"/>
 	</mappers>
 </configuration>

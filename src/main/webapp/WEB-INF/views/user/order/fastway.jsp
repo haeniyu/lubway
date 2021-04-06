@@ -14,13 +14,31 @@
 <script type="text/javascript" src="${path}/resources/js/jquery-ui-1.12.0.min.js"></script>
 <script type="text/javascript">
 function orderStart(franchiseNo) {
+	$('.loading').show();
 	$("#franchiseNo").val(franchiseNo);
 	$("#orderForm").submit();
 }
 </script>
+<script type="text/javascript">
+$(window).load(function(){
+    $(".loading").fadeOut();
+});
+</script>
+<style type="text/css">
+.loading{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	z-index: 1000;
+	background-image : url("https://lubway.s3.ap-northeast-2.amazonaws.com/KakaoTalk_20210405_101739419.gif");
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+</style>
 </head>
 <body>
 <%@ include file="/WEB-INF/views/user/header.jsp"%>
+<div class="loading"></div>
 <!-- container s -->
 <div id="container">
 	<!-- sub content s -->

@@ -76,6 +76,10 @@
 					<strong>메뉴 선택 : </strong>
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 5px 10px 5px">
 						<option>메뉴 카테고리</option>
+						<option>샌드위치</option>
+						<option>샐러드</option>
+						<option>랩 기타</option>
+						<option>사이드 음료</option>
 					</select>
 					<!-- 선택한 메뉴에 따른 메뉴명 선택 -->
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">

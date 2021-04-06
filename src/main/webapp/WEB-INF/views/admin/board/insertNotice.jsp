@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>공지사항 등록 페이지</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
 	$(document).ready(function(){
