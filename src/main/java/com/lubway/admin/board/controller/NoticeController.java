@@ -69,19 +69,16 @@ public class NoticeController {
 
 	/** 글 수정 */
 	@RequestMapping("/updateNotice.mdo")
-	public String updateNotice(NoticeVO vo, MultipartFile uploadImg, HttpSession session) throws IOException, PSQLException {
-		
-		NoticeVO sessionVO = (NoticeVO) session.getAttribute("vo");
-		vo.setFilePath(sessionVO.getFilePath());
-		System.out.println("기존 vo : " + sessionVO.toString());
-		System.out.println(uploadImg);
+	public String updateNotice(NoticeVO vo, MultipartFile uploadImg) throws IOException, PSQLException {
+		System.out.println("가져온 데이터 : " +vo.toString());
+		NoticeVO bringData = noticeService.getNotice(vo);
 		
 		if(!uploadImg.getOriginalFilename().equals("")) {
-			System.out.println("이미지 수정 O");
-			int index = sessionVO.getFilePath().indexOf("/", 20);
-			String key = sessionVO.getFilePath().substring(index+1);
-			System.out.println(key);
-			awss3.delete(key);
+			if(bringData.getFilePath() != null) {
+				int index = bringData.getFilePath().indexOf("/", 20);
+				String key = bringData.getFilePath().substring(index+1);
+				awss3.delete(key);
+			}
 		
 			InputStream is = uploadImg.getInputStream();
 			String uploadKey = uploadImg.getOriginalFilename();
@@ -96,28 +93,37 @@ public class NoticeController {
 			
 			String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/notice/" + uploadKey;
 			
-			vo.setFilePath(filePath);
-			System.out.println("수정 후 vo : " + vo.toString());
+			bringData.setFilePath(filePath);
 		}
 		
-		noticeService.updateNotice(vo);
+		bringData.setTitle(vo.getTitle());
+		bringData.setContent(vo.getContent());
+
+		noticeService.updateNotice(bringData);
 		System.out.println("파일 업로드 업데이트 실행됨");
+		
 		return "redirect:/getNoticeList.mdo";
 	}
 
 	/** 글 삭제 */
 	@RequestMapping("/deleteNotice.mdo")
 	public String deleteNotice(NoticeVO vo) throws IOException, PSQLException {
-		noticeService.deleteNotice(vo);
+		
+		NoticeVO bringData = noticeService.getNotice(vo);
+		
+		int index = bringData.getFilePath().indexOf("/", 20);
+		String key = bringData.getFilePath().substring(index+1);
+		awss3.delete(key);
+		
+		noticeService.deleteNotice(bringData);
 		System.out.println("삭제 실행됨");
 		return "redirect:/getNoticeList.mdo";
 	}
 
 	/** 글 상세 조회 */
 	@RequestMapping("/getNotice.mdo")
-	public String getNotice(NoticeVO vo, Model model, HttpSession session) {
+	public String getNotice(NoticeVO vo, Model model) {
 		model.addAttribute("notice", noticeService.getNotice(vo));
-		session.setAttribute("vo", noticeService.getNotice(vo));
 		return "board/getNotice";
 	}
 

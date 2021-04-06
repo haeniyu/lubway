@@ -43,7 +43,7 @@ $(document).ready(function(){
 <body id="page-top">
 
    <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-   <form action="/lubway/updateEvent.mdo" enctype="multipart/form-data">
+   <form action="/lubway/updateEvent.mdo" method="post" enctype="multipart/form-data">
       <input name="no" type="hidden" value="${event.no }">
       <!-- 관리자 버전 화면 만들기  -->
       <!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
@@ -72,7 +72,7 @@ $(document).ready(function(){
 						<li class="img">
 							<div>
 								<div class="index">썸네일 이미지</div>
-								<input type="file" name="thumbnail" id="thumb">
+								<input type="file" name="thumb" id="thumb">
 								<img src="${event.thumbnail }">
 							</div>
 						</li>
@@ -80,7 +80,7 @@ $(document).ready(function(){
 						<li class="img">
 							<div>
 								<div class="index">이벤트 이미지</div>
-								<input type="file" name="contimg" id="conimg"/>
+								<input type="file" name="conimg" id="conimg"/>
 								<img src="${event.contimg }">
 							</div>
 						</li>

@@ -54,27 +54,37 @@ public class BannerController {
 	
 	/** 배너 수정 */
 	@RequestMapping("/updateBanner.mdo")
-	public String updateBanner(BannerVO vo, HttpSession session) throws PSQLException {
-		/** 세션 데이터 */
-		BannerVO sessionVO = (BannerVO) session.getAttribute("vo");
-		System.out.println("기존 vo : " + sessionVO.toString());
+	public String updateBanner(BannerVO vo, MultipartFile uploadImg) throws PSQLException, IOException {
+		BannerVO bringData = bannerService.getBanner(vo);
 		
-		/** 이미지 url */
-		String imageUrl = "https://lubway.s3.ap-northeast-2.amazonaws.com/banner/";
+		int index = bringData.getFilepath().indexOf("/", 20);
+		String key = bringData.getFilepath().substring(index+1);
 		
-		/** 이미지 수정 여부 */
-		if(vo.getFilepath().equals("")) {
-			System.out.println("이미지 수정 X");
-			vo.setFilepath(sessionVO.getFilepath());
-		} else {
-			System.out.println("이미지 수정 O");
-			vo.setFilepath(imageUrl + vo.getFilepath());			
+		if(!uploadImg.getOriginalFilename().equals("")) {
+			if(!key.equals("banner/" + uploadImg)) {
+				awss3.delete(key);
+				
+				InputStream is = uploadImg.getInputStream();
+				String uploadKey = uploadImg.getOriginalFilename();
+				String contentType = uploadImg.getContentType();
+				long contentLength = uploadImg.getSize();
+				
+				String bucket = "lubway/banner";
+				
+				awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+				
+				String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/banner/" + uploadKey;
+				
+				bringData.setFilepath(filePath);
+			}else {
+				bringData.setFilepath(bringData.getFilepath());
+			}
+		}else {
+			bringData.setFilepath(bringData.getFilepath());
 		}
-		
-		System.out.println("수정 vo : " + vo.toString());
-		
-		bannerService.updateBanner(vo);
-		session.removeAttribute("vo");
+		bringData.setTitle(vo.getTitle());
+		bringData.setContents(vo.getContents());
+		bannerService.updateBanner(bringData);
 		
 		return "redirect:/getBannerList.mdo";
 	}
@@ -82,7 +92,15 @@ public class BannerController {
 	/** 배너 삭제 */
 	@RequestMapping("/deleteBanner.mdo")
 	public String deleteBanner(BannerVO vo) throws IOException, PSQLException{
-		bannerService.deleteBanner(vo);
+		
+		BannerVO bringData = bannerService.getBanner(vo);
+		
+		int index = bringData.getFilepath().indexOf("/", 20);
+		String key = bringData.getFilepath().substring(index+1);
+		awss3.delete(key);
+		
+		bannerService.deleteBanner(bringData);
+		
 		return "redirect:/getBannerList.mdo";
 	}
 	

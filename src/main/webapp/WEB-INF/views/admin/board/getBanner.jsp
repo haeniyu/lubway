@@ -39,7 +39,7 @@ li{
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/updateBanner.mdo" enctype="multipart/form-data">
+	<form action="/lubway/updateBanner.mdo" method="post" enctype="multipart/form-data">
 		<input name="no" type="hidden" value="${banner.no }">
 		<div class="container-fluid">
 			<!-- Page Heading -->
@@ -64,7 +64,7 @@ li{
 						<li class="img">
 							<div>
 								<div class="index">배너 이미지</div>
-								<input type="file" name="filepath"/>
+								<input type="file" name="uploadImg"/>
 								<img src="${banner.filepath }" width="850px">
 							</div>
 						</li>
