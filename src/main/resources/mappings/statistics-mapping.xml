@@ -87,7 +87,7 @@
 				,sum(total_price) as total
 				,sum(total_price - use_coupon - use_point) as real_total
 				,sum(use_coupon) as coupon
-				,sum(use_point) as point
+				,sum(use_point) as poin
 				,count(case when order_type='방문포장' or order_type= '매장식사' then 1 end) as fast
 				,count(case when order_type='배달' then 1 end) as home
 			from order_code 
@@ -101,6 +101,110 @@
 		order by order_time::date
 	</select>
 	
+	<!-- 품목별 매출 현황 총 데이터 수 -->
+	<select id="getProductBasicStatCnt" resultType="int">
+		select count(*) from order_list
+	</select>
+
+	<!-- 품목별 매출 현황 총 데이터 정보 -->
+	<select id="getProductBasicOrderList" resultType="stat">
+		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price
+		from order_code a 
+		right outer join order_list b on b.no = a.no 
+		order by a.order_time::date limit #{listSize} offset #{startList}
+	</select>
+
+	<!-- 품목별 매출 현황 총 데이터 Chart -->
+	<select id="getProductBasicStat" resultType="stat">
+		select
+			order_time::date,
+			substring(order_time::date::text, 1,7) as year_month,
+			sum(case when menu_type='sandwich' then total_price end) as sandwich,
+			sum(case when menu_type='salad' then total_price end) as salad,
+			sum(case when menu_type='wrap' then total_price end) as wrap,
+			sum(case when menu_type='side' then total_price end) as side
+		from order_code a 
+		right outer join order_list b on b.no = a.no
+		group by order_time::date
+		order by order_time::date		
+	</select>
+	
+	<!-- 품목별 매출 현황 총 데이터 Type Chart -->
+	<select id="getProductBasicTypeStat" resultType="stat">
+		select
+			sum(case when menu_type='sandwich' then total_price end) as sandwich,
+			sum(case when menu_type='salad' then total_price end) as salad,
+			sum(case when menu_type='wrap' then total_price end) as wrap,
+			sum(case when menu_type='side' then total_price end) as side
+		from order_code a 
+		right outer join order_list b on b.no = a.no
+	</select>
+
+	<!-- 품목별 매출 현황 검색 데이터 수 -->
+	<select id="getProductSearchStatCnt" resultType="int">
+		select count(*)
+		from order_code a 
+		right outer join order_list b on b.no = a.no where 
+			menu_type like '%'||#{menu_type}||'%' and 
+			menu_name like '%'||#{menu_name}||'%' and 
+			order_type like '%'||#{order_type}||'%' and 
+			payment_list like '%'||#{payment_list}||'%' and
+			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+
+	<!-- 품목별 매출 현황 검색 데이터 정보 -->
+	<select id="getProductSearchOrderList" resultType="stat">
+		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price
+		from order_code a 
+		right outer join order_list b on b.no = a.no 
+		where menu_type like '%'||#{menu_type}||'%' and 
+			  menu_name like '%'||#{menu_name}||'%' and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
+			  					   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
+		order by a.order_time::date limit #{listSize} offset #{startList}
+	</select>
+
+	<!-- 품목별 매출 현황 검색 데이터 Chart -->
+	<select id="getProductSearchStat" resultType="stat">
+		select
+			order_time::date,
+			substring(order_time::date::text, 1,7) as year_month,
+			sum(case when menu_type='sandwich' then total_price end) as sandwich,
+			sum(case when menu_type='salad' then total_price end) as salad,
+			sum(case when menu_type='wrap' then total_price end) as wrap,
+			sum(case when menu_type='side' then total_price end) as side
+		from order_code a
+		right outer join order_list b on b.no = a.no
+		where menu_type like '%'||#{menu_type}||'%' and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS') and 
+			  to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS')
+		group by order_time::date
+		order by order_time::date		
+	</select>
+
+	<!-- 품목별 매출 현황 검색 데이터 Type Chart -->
+	<select id="getProductSearchTypeStat" resultType="stat">
+		select
+			sum(case when menu_type='sandwich' then total_price end) as sandwich,
+			sum(case when menu_type='salad' then total_price end) as salad,
+			sum(case when menu_type='wrap' then total_price end) as wrap,
+			sum(case when menu_type='side' then total_price end) as side
+		from order_code a 
+		right outer join order_list b on b.no = a.no
+		where order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS') and 
+			  to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
+	<select id="selectType" parameterType="string">
+		select name from #{type}
+	</select>
 	
 	<select id="getStoreMonthSales" resultType="int">
 		<![CDATA[

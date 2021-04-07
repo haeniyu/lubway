@@ -10,8 +10,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-var searchAjax = false;
-
 	//이전 버튼 이벤트
 	function fn_prev(page, range, rangeSize, store_name, order_type, payment_list, start, end) {
 		console.log("이전 버튼 클릭");
@@ -125,7 +123,6 @@ var searchAjax = false;
 	
 	//검색 Area Chart - Ajax
 	function searchDrawChart(searchData) {
-		console.log(searchAjax);
 		console.log(searchData);
 		
 		console.log(searchData[0]);
@@ -322,7 +319,6 @@ var searchAjax = false;
 			success : function(data) {
 				console.log("ajax 통신 성공");
 				console.log(data);
-				searchAjax = true;
 				if(data[0].length == 0) {
 					alert("해당 조건의 검색 결과가 없습니다.");
 					return;
@@ -448,10 +444,6 @@ var searchAjax = false;
         	</div>
     	</div>
 	</div>
-	<input type="hidden" id="range" value="'${pagination.range}'">
-	<input type="hidden" id="rangeSize" value="'${pagination.rangeSize}'">
-<!-- /.container-fluid -->
-<!-- End of Main Content -->
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>
