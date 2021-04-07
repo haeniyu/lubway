@@ -338,7 +338,7 @@ public class OrderController {
 		userService.updateUser(user);
 		
 		//쿠폰 사용 처리
-		if(!couponCode.trim().equals("")) couponService.insertUseCoupon(couponCode, user.getId());
+		couponService.insertUseCoupon(couponCode, user.getId());
 		
 		return "redirect:/orderList.do";
 		
@@ -505,7 +505,7 @@ public class OrderController {
 		userService.updateUser(user);
 		
 		//쿠폰 사용 처리
-		if(!couponCode.trim().equals("")) couponService.insertUseCoupon(couponCode, user.getId());
+		couponService.insertUseCoupon(couponCode, user.getId());
 		
 		return "redirect:/orderList.do";
 		
