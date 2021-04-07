@@ -12,15 +12,15 @@ public class StatDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-	public int getTodaySales() {
+	public Integer getTodaySales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
 	}
 	
-	public int getThisMonthSales() {
+	public Integer getThisMonthSales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisMonthSales");
 	}
 
-	public int getThisYearSales() {
+	public Integer getThisYearSales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisYearSales");
 	}
 	

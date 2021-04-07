@@ -17,17 +17,23 @@ public class StatServiceImpl implements StatService {
 	
 	@Override
 	public int getTodaySales() {
-		return dao.getTodaySales();
+		Integer result = dao.getTodaySales();
+		if (result==null) result = 0;
+		return result;
 	}
 
 	@Override
 	public int getThisMonthSales() {
-		return dao.getThisMonthSales();
+		Integer result = dao.getThisMonthSales();
+		if (result==null) result = 0;
+		return result;
 	}
 
 	@Override
 	public int getThisYearSales() {
-		return dao.getThisYearSales();
+		Integer result = dao.getThisYearSales();
+		if (result==null) result = 0;
+		return result;
 	}
 
 	@Override

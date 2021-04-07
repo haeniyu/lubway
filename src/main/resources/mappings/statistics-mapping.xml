@@ -4,19 +4,19 @@
 
 <mapper namespace="StatisticsDAO">
 
-	<select id="getTodaySales" resultType="int">
+	<select id="getTodaySales" resultType="Integer">
 		<![CDATA[
 		SELECT SUM(total_price) FROM order_code WHERE order_time >= CURRENT_DATE and order_time < CURRENT_DATE+1
 		]]>
 	</select>
 	
-	<select id="getThisMonthSales" resultType="int">
+	<select id="getThisMonthSales" resultType="Integer">
 		<![CDATA[
 		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2);
 		]]>
 	</select>
 	
-	<select id="getThisYearSales" resultType="int">
+	<select id="getThisYearSales" resultType="Integer">
 		<![CDATA[
 		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4);
 		]]>
