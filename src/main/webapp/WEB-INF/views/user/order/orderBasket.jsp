@@ -407,10 +407,10 @@ window.history.forward(0);
 							<div class="content">
 								<!-- 1세트 (메뉴 여러개 선택시 이부분 반복됨) -->
 								<c:set var="endCount" value="0" />
-								<c:forEach items="${basket}" var="basket" varStatus="stat">
 								<div class="history_table">
 									<!-- 선택한 메뉴 -->
 									<ul>
+										<c:forEach items="${basket}" var="basket" varStatus="stat">
 										<li>
 											<div class="selectMenu">
 												<div class="name" data-target="mainItem">
@@ -508,9 +508,9 @@ window.history.forward(0);
 												</ul>
 											</div>
 										</li>
+										</c:forEach>
 									</ul>
 								</div>
-								</c:forEach>
 								<!--// 1세트 -->
 							</div>
 						</div>

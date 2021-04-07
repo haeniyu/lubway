@@ -273,7 +273,7 @@ public class UserController {
 	@GetMapping("/logout.do")
 	public String logout(HttpSession session,@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range, Model model,
-			String select, String code) {
+			String select, String code, BannerVO vo) {
 		int listCnt = noticeService.getUserPageListCnt();
 		UserPagination pagination = new UserPagination();
 		pagination.pageInfoMain(page, range, listCnt);
@@ -287,6 +287,7 @@ public class UserController {
 		
 		model.addAttribute("select1", "menuMorning.do");
 		model.addAttribute("list2", userMenuService.getMorningList());
+		model.addAttribute("banner", bannerService.getBannerListView(vo));
 		session.invalidate();
 		System.out.println("로그아웃 처리");
 		return "main";
