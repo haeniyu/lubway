@@ -70,4 +70,9 @@ public class StatServiceImpl implements StatService {
 		return dao.getSearchOrderList(page);
 	}
 
+	@Override
+	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
+		return dao.getSearchOrderListForExcel(page);
+	}
+
 }

@@ -17,4 +17,5 @@ public interface StatService {
 	List<StatVO> getBasicOrderList(StatPagination page);
 	List<StatVO> getSearchStat(StatPagination vo);
 	List<StatVO> getSearchOrderList(StatPagination page);
+	List<StatVO> getSearchOrderListForExcel(StatPagination page);
 }

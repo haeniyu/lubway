@@ -332,6 +332,17 @@ var searchAjax = false;
 			}
 		});
 	}
+	
+	function downloadExcel(){
+		var start = $("input[name=start]").val();
+		var end = $("input[name=end]").val();
+		var store_name = $("#store").val();
+		var order_type = $("#order").val();
+		var payment_list = $("#pay").val();
+		
+		location.href="/lubway/excelDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
+
+	}
 </script>
 </head>
 <body id="page-top">
@@ -349,6 +360,7 @@ var searchAjax = false;
                	<div class="chart chart1" id="AreaChart" style="width: 50%; height: 300px;"></div>
                	<div class="chart chart2" id="ColumnChart" style="width: 50%; height: 300px;"></div>
 				
+				<button onclick="downloadExcel();">안녕</button>				
 				<!-- 기간, 지역, 매장 선택 및 검색 시작 -->
 				<div class="searchDate">
 					<!-- 날짜 선택 -->
