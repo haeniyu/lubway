@@ -385,10 +385,6 @@ window.history.forward(0);
 													<span class="shape">현금</span>
 												</label> 
 												<label> 
-													<input id="creditcard" name="payment" type="radio" value="PAY_METHOD.CRDT" /> 
-													<span class="shape">신용카드</span>
-												</label> 
-												<label> 
 													<input id="kakao" name="payment" type="radio" value="PAY_METHOD.PAYCOKAKAO"/> 
 													<span class="shape">
 														<i class="pay_logo"><img alt="카카오페이" src="https://lubway.s3.ap-northeast-2.amazonaws.com/icon_kakaopay.png" /></i>

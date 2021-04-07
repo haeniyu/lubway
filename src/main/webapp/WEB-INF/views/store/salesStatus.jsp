@@ -4,13 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
-	<c:param name="page" value="${pagination.page}" />
-	<c:param name="range" value="${pagination.range}" />
-	<c:param name="rangeSize" value="${pagination.rangeSize}" />
-	<c:param name="searchKeyword" value="${pagination.searchKeyword}" />
-	<c:param name="fix" value="${pagination.fix }" />
-</c:url>
 <!DOCTYPE html>
 <html>
 <head>
@@ -76,6 +69,10 @@
 					<strong>메뉴 선택 : </strong>
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 5px 10px 5px">
 						<option>메뉴 카테고리</option>
+						<option>샌드위치</option>
+						<option>샐러드</option>
+						<option>랩 기타</option>
+						<option>사이드 음료</option>
 					</select>
 					<!-- 선택한 메뉴 타입에 따른 메뉴명 선택 -->
 					<select class="btn btn-primary dropdown-toggle" style="margin: 5px 0 10px 0">
@@ -90,14 +87,12 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th style="width: 8%">메뉴 코드</th>
-                                <th style="width: 12%">메뉴명</th>
-                                <th style="width: 10%">총 주문 건수</th>
-                                <th style="width: 10%">총 매출액</th>
-                                <th style="width: 15%">Fast-Way(주문건수)</th>
-                                <th style="width: 15%">Fast-Way(매출액)</th>
-                                <th style="width: 15%">Home-Way(주문건수)</th>
-                                <th style="width: 15%">Home-Way(매출액)</th>
+                                <th style="width: 15%">주문 날짜</th>
+                                <th style="width: 20%">매뉴 타입</th>
+                                <th style="width: 20%">메뉴명</th>
+                                <th style="width: 20%">수령 방식</th>
+                                <th style="width: 25%">결제 방식</th>
+                                <th style="width: 25%">결제 금액</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -105,12 +100,10 @@
                             <tr>
                                 <td>SDW001</td>
                                 <td>로스트 치킨</td>
+                                <td>프레쉬&라이트</td>
                                 <td>5</td>
                                 <td>29,500</td>
-                                <td>2</td>
-                                <td>11,800</td>
-                                <td>3</td>
-                                <td>17,700</td>
+                                <td>29,500</td>
                             </tr>
                         </tbody>
                     </table>

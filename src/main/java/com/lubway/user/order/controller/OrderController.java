@@ -225,8 +225,19 @@ public class OrderController {
 		UserVO user = (UserVO) session.getAttribute("user");
 		coupon.setId(user.getId());
 		
-		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
 		int countUseCoupon = couponService.countUseCoupon(coupon);
+		
+		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
+		for(int i=0; i < couponList.size(); i++) {
+			String way = couponList.get(i).getType();
+			if(whatWay.equals("Fast-Way") && way.equals("home")) {
+				couponList.remove(i);
+			}else if (whatWay.equals("Home-Way") && way.equals("fast")) {
+				couponList.remove(i);
+			}
+		}
+		
+		countUseCoupon = couponList.size();
 		
 		model.addAttribute("couponList", couponList);
 		model.addAttribute("countCoupon", countUseCoupon);
@@ -352,16 +363,6 @@ public class OrderController {
 		System.out.println("장바구니 주문 페이지 이동");
 		System.out.println("주문 no " + basketNo);
 		
-		// 사용 가능한 쿠폰 리스트 띄우기
-		UserVO user = (UserVO) session.getAttribute("user");
-		coupon.setId(user.getId());
-		
-		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
-		int countUseCoupon = couponService.countUseCoupon(coupon);
-		
-		model.addAttribute("couponList", couponList);
-		model.addAttribute("countCoupon", countUseCoupon);
-		
 		//BasketVO를 담아줄 리스트
 		List<BasketVO> list = new ArrayList<>();
 		int ttl = 0;	//결제될 총 가격
@@ -399,6 +400,29 @@ public class OrderController {
 			}
 		}
 	
+		
+		// 사용 가능한 쿠폰 리스트 띄우기
+		UserVO user = (UserVO) session.getAttribute("user");
+		coupon.setId(user.getId());
+		
+		int countUseCoupon = couponService.countUseCoupon(coupon);
+
+		List<UserCouponVO> couponList = couponService.getUserCouponList(coupon);
+		for(int i=0; i < couponList.size(); i++) {
+			String way = couponList.get(i).getType();
+			if(list.get(0).getOrder_type().equals("Fast-Way") && way.equals("home")) {
+				couponList.remove(i);
+			}else if (list.get(0).getOrder_type().equals("Home-Way") && way.equals("fast")) {
+				couponList.remove(i);
+			}
+		}
+		
+		countUseCoupon = couponList.size();
+		
+		
+		model.addAttribute("couponList", couponList);
+		model.addAttribute("countCoupon", countUseCoupon);
+		
 		
 		StoreInfoVO storeInfo = basketService.getStoreInfo(list.get(0).getStore_no());
 		model.addAttribute("store", storeInfo);
