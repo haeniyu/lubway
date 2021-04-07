@@ -29,6 +29,6 @@
   		SELECT * FROM wedgeandsoup WHERE code=#{code}
   	</select>
   	<select id="selectListWAS" resultType="wedgeandsoup">
-  		SELECT * FROM wedgeandsoup
+  		SELECT * FROM wedgeandsoup ORDER BY no
   	</select>
   </mapper>
