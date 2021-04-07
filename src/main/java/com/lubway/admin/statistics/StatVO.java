@@ -19,6 +19,8 @@ public class StatVO {
 	private int real_total;
 	private int coupon;
 	private int point;
+	private int fast;
+	private int home;
 	private int sum;
 	private String request;
 	private String store_name;

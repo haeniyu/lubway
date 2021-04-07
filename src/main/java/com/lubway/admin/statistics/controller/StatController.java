@@ -21,6 +21,7 @@ public class StatController {
 	@Autowired
 	private StatService statservice;
 	
+	/**	매장별 매출 현황 */
 	@RequestMapping("/storeSalesStatus.mdo")
 	public String storeSalesStatus(Model model) {
 		
@@ -32,8 +33,7 @@ public class StatController {
 		}
 
 		int listCnt = statservice.getBasicStatCnt();
-		System.out.println(listCnt);
-		
+
 		StatPagination pagination = new StatPagination();
 		pagination.setPage(1);
 		pagination.setRange(1);
@@ -49,7 +49,8 @@ public class StatController {
 		
 		return "/storeSalesStatus";
 	}
-
+	
+	/**	매장별 매출 현황(검색 - Ajax) */
 	@PostMapping("/searchStat.mdo")
 	@ResponseBody
 	public List<Object> searchStat(StatPagination vo, Model model) {
