@@ -15,11 +15,11 @@ public class SaladDAO {
 	}
 
 	public void updateSalad(SaladVO vo) {
-		sqlSessionTemplate.update("SaladDAO.insertSalad",vo);
+		sqlSessionTemplate.update("SaladDAO.updateSalad",vo);
 	}
 
 	public void deleteSalad(SaladVO vo) {
-		sqlSessionTemplate.delete("SaladDAO.insertSalad",vo);
+		sqlSessionTemplate.delete("SaladDAO.deleteSalad",vo);
 	}
 
 	public SaladVO getSalad(SaladVO vo) {

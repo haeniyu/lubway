@@ -30,6 +30,6 @@
   		SELECT * FROM sandwich WHERE code=#{code}
   	</select>
   	<select id="selectListSandwich" resultType="sandwich">
-  		SELECT * FROM sandwich 
+  		SELECT * FROM sandwich ORDER BY no
   	</select>
   </mapper>

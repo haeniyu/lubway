@@ -18,7 +18,7 @@
   		values (#{code}, #{name},#{engname}, #{category}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateSalad" parameterType="salad">
-  		update salad set code=#{code}, name=#{name},engname=#{engname},category=#{category}, price=#{price} content=#{content}, filepath=#{filePath}
+  		update salad set code=#{code}, name=#{name},engname=#{engname},category=#{category}, price=#{price}, content=#{content}, filepath=#{filePath}
   		where no=#{no}
   	</update>
   	<delete id="deleteSalad" parameterType="salad">
@@ -28,6 +28,6 @@
   		SELECT * FROM salad WHERE code=#{code}
   	</select>
   	<select id="selectListSalad" resultType="salad">
-  		SELECT * FROM salad
+  		SELECT * FROM salad ORDER BY no
   	</select>
   </mapper>
