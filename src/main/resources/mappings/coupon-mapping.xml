@@ -36,7 +36,7 @@
 	<select id="getCouponList" parameterType="coupon"
 		resultType="coupon">
 		SELECT * FROM COUPON
-		ORDER BY ENDDATE DESC
+		ORDER BY CODE DESC, ENDDATE DESC
 	</select>
 	
 	
