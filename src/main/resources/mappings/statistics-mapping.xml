@@ -107,18 +107,18 @@
 	
 	<!-- 엑셀 쿼리문 -->
 	<select id="getSearchOrderListForExcel" resultType="stat">
-
-		select order_time::date, order_type, store_name, payment_list
-			 ,sum(total_price) as total
-			 ,sum(total_price - use_coupon - use_point) as real_total
-			 ,sum(use_coupon) as coupon
-			 ,sum(use_point) as point
-	      	  from order_code 
-				  where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
-				  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-				  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
-	      	  group by order_time::date , order_type, store_name, payment_list
-			
+		select * from (
+			select order_time::date, order_type, store_name, payment_list
+				 ,sum(total_price) as total
+				 ,sum(total_price - use_coupon - use_point) as real_total
+				 ,sum(use_coupon) as coupon
+				 ,sum(use_point) as point
+		      	  from order_code 
+					  where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
+		      	  group by order_time::date , order_type, store_name, payment_list
+			) as two
 	</select>
 	
 
