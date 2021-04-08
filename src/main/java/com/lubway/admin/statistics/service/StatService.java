@@ -24,14 +24,8 @@ public interface StatService {
 
 	/**	매장별 총 데이터 Chart */
 	List<StatVO> getBasicStat();
-<<<<<<< HEAD
 	
 	/**	매장별 총 데이터 정보 */
-=======
-	int getStoreTodaySales(String store_name);
-	int getStoreMonthSales(String store_name);
-	int getStoreYearSales(String store_name);
->>>>>>> feature/excel
 	List<StatVO> getBasicOrderList(StatPagination page);
 
 	/**	매장별 검색 주문내역 AreaChart */
@@ -70,9 +64,9 @@ public interface StatService {
 	/** 메뉴 Category 선택 */
 	List<String> getMenuName(String select);
 	
-	/**	 */
+	/** 매장관리자 대시보드 매출통계 관련 */
+	int getStoreTodaySales(String store_name);
 	int getStoreMonthSales(String store_name);
-
-	/**	 */
 	int getStoreYearSales(String store_name);
+	
 }

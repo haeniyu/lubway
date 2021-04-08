@@ -71,7 +71,6 @@ public class StatServiceImpl implements StatService {
 
 	/**	검색 데이터 정보 */
 	@Override
-<<<<<<< HEAD
 	public List<StatVO> getSearchOrderList(StatPagination page) {
 		return dao.getSearchOrderList(page);
 	}
@@ -80,32 +79,12 @@ public class StatServiceImpl implements StatService {
 	@Override
 	public int getProductBasicStatCnt() {
 		return dao.getProductBasicStatCnt();
-=======
-	public int getStoreTodaySales(String store_name) {
-		Integer result = dao.getStoreTodaySales(store_name);
-		if(result == null) result = 0;
-		return result;
-	}
-	
-	@Override
-	public int getStoreMonthSales(String store_name) {
-		Integer result = dao.getStoreMonthSales(store_name);
-		if(result == null) result = 0;
-		return result;
->>>>>>> feature/excel
 	}
 
 	/**	품목별 검색 주문내역 데이터 수 */
 	@Override
-<<<<<<< HEAD
 	public int getProductSearchStatCnt(StatPagination page) {
 		return dao.getProductSearchStatCnt(page);
-=======
-	public int getStoreYearSales(String store_name) {
-		Integer result = dao.getStoreYearSales(store_name);
-		if(result == null) result = 0;
-		return result;
->>>>>>> feature/excel
 	}
 
 	/**	품목별 총 데이터 Chart */
@@ -144,16 +123,27 @@ public class StatServiceImpl implements StatService {
 		return dao.getProductSearchTypeStat(page);
 	}
 
+	/** DashBoard Today Sales */
+	public int getStoreTodaySales(String store_name) {
+		Integer result = dao.getStoreTodaySales(store_name);
+		if(result == null) result = 0;
+		return result;
+	}
+	
 	/** DashBoard Month Sales */
 	@Override
 	public int getStoreMonthSales(String store_name) {
-		return dao.getStoreMonthSales(store_name);
+		Integer result = dao.getStoreMonthSales(store_name);
+		if(result == null) result = 0;
+		return result;
 	}
 
 	/** Dash Year Sales */
 	@Override
 	public int getStoreYearSales(String store_name) {
-		return dao.getStoreYearSales(store_name);
+		Integer result = dao.getStoreYearSales(store_name);
+		if(result == null) result = 0;
+		return result;
 	}
 
 	/** 메뉴명 DB조회 */

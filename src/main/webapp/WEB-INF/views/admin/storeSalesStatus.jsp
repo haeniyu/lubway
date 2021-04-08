@@ -333,7 +333,7 @@
 		});
 	}
 	
-	function downloadExcel(){
+	function SaveAsExcel(){
 		var start = $("input[name=start]").val();
 		var end = $("input[name=end]").val();
 		var store_name = $("#store").val();
@@ -341,6 +341,17 @@
 		var payment_list = $("#pay").val();
 		
 		location.href="/lubway/excelDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
+
+	}
+	
+	function SaveAsPdf(){
+		var start = $("input[name=start]").val();
+		var end = $("input[name=end]").val();
+		var store_name = $("#store").val();
+		var order_type = $("#order").val();
+		var payment_list = $("#pay").val();
+		
+		location.href="/lubway/pdfDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
 
 	}
 </script>
@@ -355,21 +366,16 @@
         <div class="card shadow mb-4">
         	<div class="card-header py-3 justify-content-between">
             	<h6 class="m-0 font-weight-bold text-warning" style="display:inline;">Sales Status By Store</h6>
-            	<a class="btn btn-sm btn-secondary" onclick="downloadExcel();" style="float:right;">
+            	<a class="btn btn-sm btn-secondary" onclick="SaveAsExcel();" style="float:right;">
 					<i class="fas fa-download fa-sm text-white-50"></i> Excel
+				</a>&nbsp;&nbsp;&nbsp;
+            	<a class="btn btn-sm btn-secondary" onclick="SaveAsPdf();" style="float:right;">
+					<i class="fas fa-download fa-sm text-white-50"></i> PDF
 				</a>
             </div>
             <div class="card-body">
-<<<<<<< HEAD
-               	<div class="chart chart1" id="AreaChart" style="width: 40%; height: 300px;"></div>
-               	<div class="chart chart2" id="ColumnChart" style="width: 40%; height: 300px;"></div>
-				
-				<button onclick="downloadExcel();">안녕</button>				
-=======
                	<div class="chart chart1" id="AreaChart" style="width:47%; height: 300px;"></div>
                	<div class="chart chart2" id="ColumnChart" style="width:47%; height: 300px;"></div>
-							
->>>>>>> feature/excel
 				<!-- 기간, 지역, 매장 선택 및 검색 시작 -->
 				<div class="searchDate">
 					<!-- 날짜 선택 -->

@@ -12,30 +12,18 @@ public class StatDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
-<<<<<<< HEAD
 	/**	금일 매출 */
-	public int getTodaySales() {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
-	}
-	
-	/**	월 매출 */
-	public int getThisMonthSales() {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisMonthSales");
-	}
-
-	/**	연 매출 */
-	public int getThisYearSales() {
-=======
 	public Integer getTodaySales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
 	}
 	
+	/**	월 매출 */
 	public Integer getThisMonthSales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisMonthSales");
 	}
 
+	/**	연 매출 */
 	public Integer getThisYearSales() {
->>>>>>> feature/excel
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisYearSales");
 	}
 	
@@ -78,27 +66,26 @@ public class StatDAO {
 	/**	품목별 검색 주문내역 데이터 수 */
 	public int getProductSearchStatCnt(StatPagination page) {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getProductSearchStatCnt", page);
-
-<<<<<<< HEAD
-=======
+	}
+	
+	/** 매장관리자 대시보드 일매출  */
 	public Integer getStoreTodaySales(String store_name) {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreTodaySales", store_name);
 	}
 	
+	/** 매장관리자 대시보드 월매출  */
 	public Integer getStoreMonthSales(String store_name) {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreMonthSales", store_name);
->>>>>>> feature/excel
+	}
+	
+	/** 매장관리자 대시보드 연매출  */
+	public Integer getStoreYearSales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
 	}
 	
 	/**	품목별 총 데이터 Chart */
 	public List<StatVO> getProductBasicStat() {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getProductBasicStat");
-
-<<<<<<< HEAD
-=======
-	public Integer getStoreYearSales(String store_name) {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
->>>>>>> feature/excel
 	}
 	
 	/** 품목별 총 데이터 TypeChart */
@@ -109,7 +96,6 @@ public class StatDAO {
 	/**	품목별 총 데이터 정보 */
 	public List<StatVO> getProductBasicOrderList(StatPagination page) {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getProductBasicOrderList", page);
-
 	}
 	
 	/**	품목별 검색 주문내역 AreaChart */
@@ -132,16 +118,6 @@ public class StatDAO {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getMenuName", select);
 	}
 	
-	/**  */
-	public int getStoreMonthSales(String store_name) {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreMonthSales", store_name);
-	}
-
-	/**  */
-	public int getStoreYearSales(String store_name) {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
-	}
-
 	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchOrderListForExcel", page);
 	}
