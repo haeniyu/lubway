@@ -117,23 +117,25 @@ public class StatServiceImpl implements StatService {
 		return dao.getProductSearchTypeStat(page);
 	}
 
-	/**  */
+	/** DashBoard Month Sales */
 	@Override
 	public int getStoreMonthSales(String store_name) {
 		return dao.getStoreMonthSales(store_name);
 	}
 
-	/**  */
+	/** Dash Year Sales */
 	@Override
 	public int getStoreYearSales(String store_name) {
 		return dao.getStoreYearSales(store_name);
 	}
 
+	/** 메뉴명 DB조회 */
 	@Override
 	public List<String> getMenuName(String select) {
 		return dao.getMenuName(select);
 	}
 
+	/** 매장별 매출 현황 Excel */
 	@Override
 	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
 		return dao.getSearchOrderListForExcel(page);

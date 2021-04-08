@@ -79,11 +79,7 @@
 			) as two
 	</select>
 
-<<<<<<< HEAD
-	<!-- 총매출현황 영역그래프 쿼리 -->
-=======
 	<!-- 매장별 매출 현황 검색 데이터 Chart -->
->>>>>>> chart
 	<select id="getSearchStat" parameterType="stat" resultType="stat">
 		with order_sales as(
 			select order_time::date, 
