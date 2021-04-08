@@ -19,10 +19,20 @@ public class StatVO {
 	private int real_total;
 	private int coupon;
 	private int point;
+	private int fast;
+	private int home;
 	private int sum;
 	private String request;
+	
 	private String store_name;
 	private String order_type;	
 	private String payment_list;
+	
+	private String menu_type;
+	private String menu_name;
+	private int sandwich;
+	private int salad;
+	private int wrap;
+	private int side;
 	
 }

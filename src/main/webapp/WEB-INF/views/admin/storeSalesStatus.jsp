@@ -10,8 +10,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
-var searchAjax = false;
-
 	//이전 버튼 이벤트
 	function fn_prev(page, range, rangeSize, store_name, order_type, payment_list, start, end) {
 		console.log("이전 버튼 클릭");
@@ -106,14 +104,13 @@ var searchAjax = false;
    google.charts.setOnLoadCallback(drawChart);
 	
 	function drawChart() {
-	   
 		var data = google.visualization.arrayToDataTable([
 			['Month', '총 매출', '실 수익', '쿠폰 사용량', '포인트 사용량'],
-			<c:forEach items="${stat}" var="result" varStatus="status">
+			<c:forEach items="${stat}" var="result">
 				['${result.formatDate}', ${result.total}, ${result.real_total}, ${result.coupon}, ${result.point}],
 			</c:forEach>
 		]);
-	   
+		
 		var options = {
 			title: '총 매출 현황',
 			hAxis: {title: 'LUBWAY - 총 매출 현황',  titleTextStyle: {color: '#333'}},
@@ -126,7 +123,6 @@ var searchAjax = false;
 	
 	//검색 Area Chart - Ajax
 	function searchDrawChart(searchData) {
-		console.log(searchAjax);
 		console.log(searchData);
 		
 		console.log(searchData[0]);
@@ -155,6 +151,60 @@ var searchAjax = false;
 		};
 	
 		var chart = new google.visualization.AreaChart(document.getElementById('AreaChart'));
+		chart.draw(data, options);
+	}
+	
+	//Column Chart
+	google.charts.load('current', {packages: ['corechart', 'bar']});
+	google.charts.setOnLoadCallback(drawMultSeries);
+	
+	function drawMultSeries() {
+		var data = new google.visualization.DataTable();
+		
+		data.addColumn('string', 'Month');
+		data.addColumn('number', 'Fast-Way');
+		data.addColumn('number', 'Home-Way');
+		
+		data.addRows([
+			<c:forEach items="${stat}" var="result">
+				['${result.formatDate}', ${result.fast}, ${result.home}],
+			</c:forEach>
+	      ]);
+		
+		var options = {
+			title: 'Fast-Way / Home-Way 주문 비율',
+			hAxis: {
+				title: '주문방식 비율',
+				titleTextStyle: {color: '#333'}
+			},
+		};
+		var chart = new google.visualization.ColumnChart(document.getElementById('ColumnChart'));
+		chart.draw(data, options);
+	}
+	
+	//검색 Column Chart - Ajax
+	function searchDrawMultSeries(searchData) {
+		var data = new google.visualization.DataTable();
+		
+		data.addColumn('string', 'Month');
+		data.addColumn('number', 'Fast-Way');
+		data.addColumn('number', 'Home-Way');
+		
+		var dataRow = [];
+		
+		for(var i=0; i<searchData.length; i++) {
+			dataRow = [searchData[i].formatDate, searchData[i].fast, searchData[i].home];
+			data.addRow(dataRow);
+		}
+		
+		var options = {
+			title: 'Fast-Way / Home-Way 주문 비율',
+			hAxis: {
+				title: '주문방식 비율',
+				titleTextStyle: {color: '#333'}
+			},
+		};
+		var chart = new google.visualization.ColumnChart(document.getElementById('ColumnChart'));
 		chart.draw(data, options);
 	}
 	
@@ -199,9 +249,9 @@ var searchAjax = false;
 			if(searchPage[0].store_name == "") elem2 += "''" + ",";
 			else elem2 += "'" + searchPage[0].store_name + "',";
 			if(searchPage[0].order_type == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].order_type + ","; 
+			else elem2 += "'" + searchPage[0].order_type + "',"; 
 			if(searchPage[0].payment_list == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].payment_list + ",";
+			else elem2 += "'" + searchPage[0].payment_list + "',";
 			elem2 += "'" + searchPage[0].start + "','" + searchPage[0].end + "'";
 			elem2 += ')">';
 			elem2 += 'Prev</a></li>';
@@ -218,9 +268,9 @@ var searchAjax = false;
 			if(searchPage[0].store_name == "") elem2 += "''" + ",";
 			else elem2 += "'" + searchPage[0].store_name + "',";
 			if(searchPage[0].order_type == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].order_type + ","; 
+			else elem2 += "'" + searchPage[0].order_type + "',"; 
 			if(searchPage[0].payment_list == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].payment_list + ",";
+			else elem2 += "'" + searchPage[0].payment_list + "',";
 			elem2 += "'" + searchPage[0].start + "','" + searchPage[0].end + "'";
 			elem2 += ')">';
 			elem2 += idx + '</a></li>';
@@ -236,68 +286,18 @@ var searchAjax = false;
 			if(searchPage[0].store_name == "") elem2 += "''" + ",";
 			else elem2 += "'" + searchPage[0].store_name + "',";
 			if(searchPage[0].order_type == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].order_type + ","; 
+			else elem2 += "'" + searchPage[0].order_type + "',"; 
 			if(searchPage[0].payment_list == "") elem2 += "''" + ",";
-			else elem2 += searchPage[0].payment_list + ",";
+			else elem2 += "'" + searchPage[0].payment_list + "',";
 			elem2 += "'" + searchPage[0].start + "','" + searchPage[0].end + "'";
 			elem2 += ')">';
 			elem2 += 'Next</a></li>';
 			document.getElementById("page").innerHTML = elem2;
 		}
 	}
-	
-	//Column Chart
-	google.charts.load('current', {packages: ['corechart', 'bar']});
-	google.charts.setOnLoadCallback(drawMultSeries);
-	
-	function drawMultSeries() {
-	      var data = new google.visualization.DataTable();
-	      data.addColumn('timeofday', 'Time of Day');
-	      data.addColumn('number', 'Fast-Way');
-	      data.addColumn('number', 'Home-Way');
-	
-	      data.addRows([
-	        [{v: [8, 0, 0], f: '1월'}, 1, .25],
-	        [{v: [9, 0, 0], f: '2월'}, 2, .5],
-	        [{v: [10, 0, 0], f:'3월'}, 3, 1],
-	        [{v: [11, 0, 0], f: '4월'}, 4, 2.25],
-	        [{v: [12, 0, 0], f: '5월'}, 5, 2.25],
-	        [{v: [13, 0, 0], f: '6월'}, 6, 3],
-	        [{v: [14, 0, 0], f: '7월'}, 7, 4],
-	        [{v: [15, 0, 0], f: '8월'}, 8, 5.25],
-	        [{v: [16, 0, 0], f: '9월'}, 9, 7.5],
-	        [{v: [17, 0, 0], f: '10월'}, 10, 10],
-	        [{v: [17, 0, 0], f: '11월'}, 10, 10],
-	        [{v: [17, 0, 0], f: '12월'}, 10, 10]
-	      ]);
-	
-	      var options = {
-	        title: 'Fast-Way / Home-Way 주문 비율',
-	        hAxis: {
-	          title: '주문방식 비율',
-	          format: 'h:mm a',
-	          viewWindow: {
-	            min: [7, 30, 0],
-	            max: [17, 30, 0]
-	          }
-	        },
-	      };
-	      var chart = new google.visualization.ColumnChart(
-	        document.getElementById('ColumnChart'));
-	
-	      chart.draw(data, options);
-	    }
-	
+		
 	//검색 function
 	function searchStat() {
-		/*
-		console.log("검색");
-		console.log($("input[name=start]").val());
-		console.log($("input[name=end]").val());
-		console.log($("#store").val());
-		console.log($("#order").val());
-		console.log($("#pay").val());
-		*/
 		
 		var start = $("input[name=start]").val();
 		var end = $("input[name=end]").val();
@@ -319,12 +319,12 @@ var searchAjax = false;
 			success : function(data) {
 				console.log("ajax 통신 성공");
 				console.log(data);
-				searchAjax = true;
 				if(data[0].length == 0) {
 					alert("해당 조건의 검색 결과가 없습니다.");
 					return;
 				}
 				searchDrawChart(data[0]);
+				searchDrawMultSeries(data[0]);
 				searchCreateTable(data[1], data[2]);
 			},
 			error : function(data, status, opt) {
@@ -357,8 +357,8 @@ var searchAjax = false;
             	<h6 class="m-0 font-weight-bold text-warning">Sales Status By Store</h6>
             </div>
             <div class="card-body">
-               	<div class="chart chart1" id="AreaChart" style="width: 50%; height: 300px;"></div>
-               	<div class="chart chart2" id="ColumnChart" style="width: 50%; height: 300px;"></div>
+               	<div class="chart chart1" id="AreaChart" style="width: 40%; height: 300px;"></div>
+               	<div class="chart chart2" id="ColumnChart" style="width: 40%; height: 300px;"></div>
 				
 				<button onclick="downloadExcel();">안녕</button>				
 				<!-- 기간, 지역, 매장 선택 및 검색 시작 -->
@@ -456,10 +456,6 @@ var searchAjax = false;
         	</div>
     	</div>
 	</div>
-	<input type="hidden" id="range" value="'${pagination.range}'">
-	<input type="hidden" id="rangeSize" value="'${pagination.rangeSize}'">
-<!-- /.container-fluid -->
-<!-- End of Main Content -->
 <%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>

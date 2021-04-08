@@ -29,10 +29,13 @@ public class StatPagination {
 	private String start;
 	private String end;
 	private String request;
+	
 	private String store_name;
 	private String order_type;	
 	private String payment_list;
-
+	
+	private String menu_type;
+	private String menu_name;
 	
 	public void pageInfo(int page, int range, int listCnt) {
 
