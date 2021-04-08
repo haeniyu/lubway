@@ -35,4 +35,8 @@ public class StatVO {
 	private int wrap;
 	private int side;
 	
+	private int set_price;
+	private int single_price;
+	private int topping_price;
+	
 }
