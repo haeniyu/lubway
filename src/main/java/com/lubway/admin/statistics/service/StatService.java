@@ -43,9 +43,6 @@ public interface StatService {
 	/** 매장별 검색X 주문내역 AreaChart */
 	List<StatVO> getNotSearchStat(StatPagination page);
 	
-	/** 지수가 충돌냄 */
-	List<StatVO> getSearchOrderListForExcel(StatPagination page);
-
 	/**	품목별 주문내역 총 데이터 수 */
 	int getProductBasicStatCnt();
 
@@ -77,5 +74,13 @@ public interface StatService {
 	int getStoreTodaySales(String store_name);
 	int getStoreMonthSales(String store_name);
 	int getStoreYearSales(String store_name);
+	
+	/** 매장별 매출 현황 Excel&PDF */
+	List<StatVO> getSearchOrderListForExcel(StatPagination page);
+	
+	/** 품목별 매출 현황 Excel&PDF */
+	List<StatVO> getProductSearchOrderListForExcel(StatPagination page);
+	
+	
 	
 }

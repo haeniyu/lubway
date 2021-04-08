@@ -192,11 +192,18 @@ public class StatServiceImpl implements StatService {
 		return dao.getMenuName(select);
 	}
 
-	/** 매장별 매출 현황 Excel */
+	/** 매장별 매출 현황 Excel&PDF */
 	@Override
 	@Transactional
 	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
 		return dao.getSearchOrderListForExcel(page);
+	}
+
+	/** 품목별 매출 현황 Excel&PDF */
+	@Override
+	@Transactional
+	public List<StatVO> getProductSearchOrderListForExcel(StatPagination page) {
+		return dao.getProductSearchOrderListForExcel(page);
 	}
 
 }

@@ -133,8 +133,14 @@ public class StatDAO {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getMenuName", select);
 	}
 	
+	/** 매장별 엑셀&PDF */
 	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchOrderListForExcel", page);
+	}
+	
+	/** 품목별 엑셀&PDF */
+	public List<StatVO> getProductSearchOrderListForExcel(StatPagination page){
+		return sqlSessionTemplate.selectList("StatisticsDAO.getProductSearchOrderListForExcel", page);
 	}
 	
 }

@@ -366,10 +366,10 @@
         <div class="card shadow mb-4">
         	<div class="card-header py-3 justify-content-between">
             	<h6 class="m-0 font-weight-bold text-warning" style="display:inline;">Sales Status By Store</h6>
-            	<a class="btn btn-sm btn-secondary" onclick="SaveAsExcel();" style="float:right;">
+            	<a class="btn btn-sm btn-success" onclick="SaveAsExcel();" style="float:right;margin-left:5px;">
 					<i class="fas fa-download fa-sm text-white-50"></i> Excel
 				</a>&nbsp;&nbsp;&nbsp;
-            	<a class="btn btn-sm btn-secondary" onclick="SaveAsPdf();" style="float:right;">
+            	<a class="btn btn-sm btn-danger" onclick="SaveAsPdf();" style="float:right;">
 					<i class="fas fa-download fa-sm text-white-50"></i> PDF
 				</a>
             </div>

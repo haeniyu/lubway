@@ -269,7 +269,7 @@
 		]]>
 	</select>
 	
-	<!-- 엑셀 쿼리문 -->
+	<!-- 매장별 엑셀&PDF 쿼리문 -->
 	<select id="getSearchOrderListForExcel" resultType="stat">
 		select * from (
 			select order_time::date, order_type, store_name, payment_list
@@ -283,6 +283,20 @@
 					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
 		      	  group by order_time::date , order_type, store_name, payment_list
 			) as two
+	</select>
+	<!-- 품목별 엑셀&PDF 쿼리문 -->
+	<select id="getProductSearchOrderListForExcel" resultType="stat">
+		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price, set_price,
+		(total_price-(single_price*quantity)-(set_price*quantity)) as topping_price, single_price 
+		from order_code a 
+		right outer join order_list b on b.no = a.no 
+		where menu_type like '%'||#{menu_type}||'%' and 
+			  menu_name like '%'||#{menu_name}||'%' and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
+			  					   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
+		order by a.order_time::date
 	</select>
 	
 

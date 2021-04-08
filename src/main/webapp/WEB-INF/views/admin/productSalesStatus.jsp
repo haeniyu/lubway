@@ -424,8 +424,8 @@ function SaveAsPdf(){
         <h1 class="h3 mb-2 text-gray-800">품목별 매출 현황</h1>
         <p class="mb-4"></p>
         <div class="card shadow mb-4">
-        	<div class="card-header py-3">
-            	<h6 class="m-0 font-weight-bold text-warning">Sales Status By Product</h6>
+        	<div class="card-header py-3 justify-content-between">
+            	<h6 class="m-0 font-weight-bold text-warning" style="display:inline;">Sales Status By Product</h6>
             	<a class="btn btn-sm btn-success" onclick="SaveAsExcel();" style="float:right; margin-left:5px;">
 					<i class="fas fa-download fa-sm text-white-50"></i> Excel
 				</a>&nbsp;&nbsp;&nbsp;
@@ -434,8 +434,8 @@ function SaveAsPdf(){
 				</a>
             </div>
             <div class="card-body">
-               	<div class="chart chart1" id="LineChart" style="width: 40%; height: 300px;"></div>
-               	<div class="chart chart2" id="PieChart" style="width: 40%; height: 300px;"></div>
+               	<div class="chart chart1" id="LineChart" style="width:47%; height: 300px;"></div>
+               	<div class="chart chart2" id="PieChart" style="width:47%; height: 300px;"></div>
                      	
 				<!-- 기간, 메뉴 타입, 메뉴 선택 및 검색 시작 -->
 				<div class="searchDate">
