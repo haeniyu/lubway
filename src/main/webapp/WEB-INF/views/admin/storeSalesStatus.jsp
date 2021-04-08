@@ -234,7 +234,7 @@
 			elem += searchData[i].order_type;
 			elem += '</td><td>';
 			elem += searchData[i].payment_list;
-			elem += '</td><td>';
+			elem += '</td><td>￦';
 			elem += searchData[i].total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			elem += '원</td></tr>';
 			document.getElementById("searchTable").innerHTML = elem;
