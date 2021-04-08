@@ -235,6 +235,7 @@ public class StoreController {
 	public String updatePayment(String no){
 		
 		int check = Integer.parseInt(no);
+		System.out.println("결제변경번호 : " + check);
 		orderService.updatePaymentStatus(check);
 		
 		System.out.println("결제 여부 업데이트 실행됨");
