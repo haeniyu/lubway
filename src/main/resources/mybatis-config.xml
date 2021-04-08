@@ -24,6 +24,7 @@
 		<typeAlias type="com.lubway.admin.board.BannerVO" alias="banner" />
 		
 		<typeAlias type="com.lubway.store.StoreInfoVO" alias="storeInfo"/>
+		<typeAlias type="com.lubway.store.StoreStatVO" alias="storeStat"/>
 		
 		<typeAlias type="com.lubway.user.UserVO" alias="user"/>
 		<typeAlias type="com.lubway.user.board.UserNoticeVO" alias="usernotice"/>

@@ -18,7 +18,7 @@
 		var range = range - 1;
 	
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/lubway/productSearchStat.sdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -47,7 +47,7 @@
 		console.log("페이지 번호 클릭");
 	
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/lubway/productSearchStat.sdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -80,7 +80,7 @@
 		var range = parseInt(range) + 1;
 	  
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/lubway/productSearchStat.sdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -315,7 +315,7 @@
 		var payment_list = $("#pay").val();
 			
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/lubway/productSearchStat.sdo',
 			type : 'post',
 			data : {
 				start : start,
@@ -362,7 +362,7 @@ $(document).ready(function() {
 		if(select != "side" && select != "메뉴 카테고리") {
 			$("#menu").show();
 			$.ajax({
-				url : '/lubway/selectCategory.mdo',
+				url : '/lubway/selectCategory.sdo',
 				type : 'post',
 				data : {select : select},
 				async : false,

@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lubway.admin.StoreDAO;
 import com.lubway.admin.StoreVO;
-import com.lubway.admin.statistics.StatPagination;
-import com.lubway.admin.statistics.StatVO;
 import com.lubway.store.StoreInfoDAO;
 import com.lubway.store.StoreInfoVO;
+import com.lubway.store.StoreStatPagination;
+import com.lubway.store.StoreStatVO;
 
 @Service
 public class StoreServiceImpl implements StoreService{
@@ -43,56 +43,56 @@ public class StoreServiceImpl implements StoreService{
 	/**	품목별 주문내역 총 데이터 수 */
 	@Override
 	@Transactional
-	public int getProductBasicStatCnt() {
-		return infodao.getProductBasicStatCnt();
+	public int getProductBasicStatCnt(String name) {
+		return infodao.getProductBasicStatCnt(name);
 	}
 
 	/**	품목별 검색 주문내역 데이터 수 */
 	@Override
 	@Transactional
-	public int getProductSearchStatCnt(StatPagination page) {
+	public int getProductSearchStatCnt(StoreStatPagination page) {
 		return infodao.getProductSearchStatCnt(page);
 	}
 
 	/**	품목별 총 데이터 Chart */
 	@Override
 	@Transactional
-	public List<StatVO> getProductBasicStat() {
-		return infodao.getProductBasicStat();
+	public List<StoreStatVO> getProductBasicStat(String name) {
+		return infodao.getProductBasicStat(name);
 	}
 
 	/** 품목별 총 데이터 TypeChart */
 	@Override
 	@Transactional
-	public StatVO getProductBasicTypeStat() {
-		return infodao.getProductBasicTypeStat();
+	public StoreStatVO getProductBasicTypeStat(String name) {
+		return infodao.getProductBasicTypeStat(name);
 	}
 
 	/**	품목별 총 데이터 정보 */
 	@Override
 	@Transactional
-	public List<StatVO> getProductBasicOrderList(StatPagination page) {
+	public List<StoreStatVO> getProductBasicOrderList(StoreStatPagination page) {
 		return infodao.getProductBasicOrderList(page);
 	}
 
 	/**	품목별 검색 주문내역 AreaChart */
 	@Override
 	@Transactional
-	public List<StatVO> getProductSearchStat(StatPagination page) {
+	public List<StoreStatVO> getProductSearchStat(StoreStatPagination page) {
 		return infodao.getProductSearchStat(page);
 	}
 
 	/**	품목별 검색 데이터 정보 */
 	@Override
 	@Transactional
-	public List<StatVO> getProductSearchOrderList(StatPagination page) {
+	public List<StoreStatVO> getProductSearchOrderList(StoreStatPagination page) {
 		return infodao.getProductSearchOrderList(page);
 	}
 
 	/**	품목별 검색 주문내역 TypeChart */
 	@Override
 	@Transactional
-	public StatVO getProductSearchTypeStat(StatPagination page) {
+	public StoreStatVO getProductSearchTypeStat(StoreStatPagination page) {
 		return infodao.getProductSearchTypeStat(page);
 	}
 	

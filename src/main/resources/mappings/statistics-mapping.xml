@@ -57,7 +57,7 @@
 	<!-- 매장별 매출 현황 검색 데이터 수 -->
 	<select id="getSearchStatCnt" resultType="int">
 		select count(*) from order_code where 
-			store_name like '%'||#{store_name}||'%' and 
+			store_name like #{store_name} and 
 			order_type like '%'||#{order_type}||'%' and 
 			payment_list like '%'||#{payment_list}||'%' and
 			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
@@ -70,7 +70,7 @@
 			select order_time::date, store_name, order_type, payment_list, total_price
 			from ( 
 				select * from order_code 
-				where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+				where store_name like #{store_name} and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
 				order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
 								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
 				order by order_time::date desc) as three
@@ -81,6 +81,52 @@
 
 	<!-- 매장별 매출 현황 검색 데이터 Chart -->
 	<select id="getSearchStat" parameterType="stat" resultType="stat">
+		with order_sales as(
+			select order_time::date, 
+				substring(order_time::date::text, 1,7) as year_month 
+				,sum(total_price) as total
+				,sum(total_price - use_coupon - use_point) as real_total
+				,sum(use_coupon) as coupon
+				,sum(use_point) as point
+				,count(case when order_type='방문포장' or order_type= '매장식사' then 1 end) as fast
+				,count(case when order_type='배달' then 1 end) as home
+			from order_code 
+			where store_name like #{store_name} and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+				  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+									   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
+			group by order_time::date
+		)
+		select *, sum(total) over(partition by year_month order by order_time::date rows unbounded preceding)
+		from order_sales
+		order by order_time::date
+	</select>
+	
+	<!-- 매장별 선택X 데이터 수 -->
+	<select id="getNotSearchStatCnt" resultType="int">
+		select count(*) from order_code where 
+			store_name like '%'||#{store_name}||'%' and 
+			order_type like '%'||#{order_type}||'%' and 
+			payment_list like '%'||#{payment_list}||'%' and
+			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
+	<!-- 매장별 선택X 데이터 정보 -->
+	<select id="getNotSelectSerchOrderList" resultType="stat">
+		select * from (
+			select order_time::date, store_name, order_type, payment_list, total_price
+			from ( 
+				select * from order_code 
+				where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+				order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 	 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+				order by order_time::date desc) as three
+			limit #{listSize} offset #{startList}
+			) as two
+	</select>
+	
+	<!-- 매장별 매출 현황 검색X 데이터 Chart -->
+	<select id="getNotSearchStat" parameterType="stat" resultType="stat">
 		with order_sales as(
 			select order_time::date, 
 				substring(order_time::date::text, 1,7) as year_month 
