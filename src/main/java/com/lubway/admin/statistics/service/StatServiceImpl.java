@@ -47,13 +47,24 @@ public class StatServiceImpl implements StatService {
 	}
 
 	@Override
+	public int getStoreTodaySales(String store_name) {
+		Integer result = dao.getStoreTodaySales(store_name);
+		if(result == null) result = 0;
+		return result;
+	}
+	
+	@Override
 	public int getStoreMonthSales(String store_name) {
-		return dao.getStoreMonthSales(store_name);
+		Integer result = dao.getStoreMonthSales(store_name);
+		if(result == null) result = 0;
+		return result;
 	}
 
 	@Override
 	public int getStoreYearSales(String store_name) {
-		return dao.getStoreYearSales(store_name);
+		Integer result = dao.getStoreYearSales(store_name);
+		if(result == null) result = 0;
+		return result;
 	}
 
 	@Override

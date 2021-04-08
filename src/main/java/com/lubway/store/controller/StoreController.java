@@ -69,6 +69,11 @@ public class StoreController {
 			
 			String store_name = getStore.getStorename();
 			
+			//일 매출 설정
+			int thisDaySales = statService.getStoreTodaySales(store_name);
+			model.addAttribute("todaySales", thisDaySales);
+			System.out.println(thisDaySales);
+			
 			//월 매출 설정
 			int thisMonthSales = statService.getStoreMonthSales(store_name);
 			model.addAttribute("monthSales", thisMonthSales);
@@ -103,6 +108,10 @@ public class StoreController {
 		
 		StoreVO thisstore = (StoreVO) session.getAttribute("store");
 		String store_name = thisstore.getStorename();
+
+		//일 매출 설정
+		int thisDaySales = statService.getStoreTodaySales(store_name);
+		model.addAttribute("todaySales", thisDaySales);
 		
 		//월 매출 설정
 		int thisMonthSales = statService.getStoreMonthSales(store_name);

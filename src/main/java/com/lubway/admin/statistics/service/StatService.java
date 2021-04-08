@@ -12,6 +12,7 @@ public interface StatService {
 	int getBasicStatCnt();
 	int getSearchStatCnt(StatPagination page);
 	List<StatVO> getBasicStat();
+	int getStoreTodaySales(String store_name);
 	int getStoreMonthSales(String store_name);
 	int getStoreYearSales(String store_name);
 	List<StatVO> getBasicOrderList(StatPagination page);

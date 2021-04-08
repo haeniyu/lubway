@@ -93,15 +93,21 @@
 	</select>
 	
 	
-	<select id="getStoreMonthSales" resultType="int">
+	<select id="getStoreTodaySales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2) and store_name=#{store_name};
+		SELECT SUM(total_price) FROM order_code WHERE order_time >= CURRENT_DATE and order_time < CURRENT_DATE+1 and store_name=#{store_name}
 		]]>
 	</select>
 	
-	<select id="getStoreYearSales" resultType="int">
+	<select id="getStoreMonthSales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4) and store_name=#{store_name};
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2) and store_name=#{store_name}
+		]]>
+	</select>
+	
+	<select id="getStoreYearSales" resultType="Integer">
+		<![CDATA[
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4) and store_name=#{store_name}
 		]]>
 	</select>
 	
