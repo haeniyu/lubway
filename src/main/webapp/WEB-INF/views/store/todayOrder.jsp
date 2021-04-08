@@ -47,8 +47,7 @@
       location.href = url;
    }
    
-	function changePayment(){
-		var no = $("#list_no").val();
+	function changePayment(no, obj){
 		console.log(no);
 		
 		var form = document.createElement("form");
@@ -122,12 +121,9 @@
 							<thead>
 								<tr align="center" style="font-size: 14px">
 									<th>주문 코드</th>
-									<th>아이디</th>
 									<th>이름</th>
 									<th>주문 시간</th>
 									<th>도착 예정 시간</th>
-									<th>주소</th>
-									<th>연락처</th>
 									<th>주문 메뉴</th>
 									<th>기본 선택</th>
 									<th>추가 선택</th>
@@ -138,18 +134,18 @@
 									<th>결제 상태</th>
 									<th>주문 상태</th>
 									<th>요청 사항</th>
+									<th>아이디</th>
+									<th>주소</th>
+									<th>연락처</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach items="${orderList}" var="list" varStatus="status">
 									<tr style="font-size: 14px">
 										<td>${list.no }</td>
-										<td>${list.id }</td>
 										<td>${list.name }</td>
 										<td><fmt:formatDate type="both" value="${list.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										<td><fmt:formatDate type="both" value="${list.delivery_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td>${list.address }</td>
-										<td>${list.tel }</td>
 										<td>${list.menu_name }</td>
 										<td>${list.step01 }</td>
 										<td>${list.add_topping }
@@ -171,8 +167,7 @@
 												결제 완료
 											</c:if>
 											<c:if test="${list.payment_status eq 'false'}">
-												<input type="button" value="결제" onclick="changePayment()">
-												<input type="hidden" value="${list.no }" id="list_no">
+												<input type="button" value="결제" onclick="changePayment(${list.no }, this)">
 											</c:if>
 										</td>
 										<td>
@@ -186,6 +181,9 @@
 											</select>
 										</td>
 										<td>${list.request }</td>
+										<td>${list.id }</td>
+										<td>${list.address }</td>
+										<td>${list.tel }</td>
 									</tr>
 								</c:forEach>
 							</tbody>

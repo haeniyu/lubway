@@ -236,7 +236,7 @@
 			elem += searchData[i].order_type;
 			elem += '</td><td>';
 			elem += searchData[i].payment_list;
-			elem += '</td><td>';
+			elem += '</td><td>￦';
 			elem += searchData[i].total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			elem += '원</td></tr>';
 			document.getElementById("searchTable").innerHTML = elem;
@@ -375,7 +375,10 @@ $(document).ready(function() {
 				}
 			});
 		} else {
-			if(select != "메뉴 카테고리") $("#menu").hide();
+			if(select != "메뉴 카테고리"){
+				$("#menu").val("메뉴명 선택");
+				$("#menu").hide();
+			}
 			else {
 				$("#menu").show();
 				$("#menu").empty();

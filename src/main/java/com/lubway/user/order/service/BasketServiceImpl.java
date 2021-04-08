@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.lubway.store.StoreInfoVO;
 import com.lubway.user.order.BasketDAO;
@@ -16,35 +17,42 @@ public class BasketServiceImpl implements BasketService {
 	private BasketDAO basketDAO;
 	
 	@Override
+	@Transactional
 	public List<BasketVO> getBasket(BasketVO vo) {
 		return basketDAO.getBasket(vo);
 	}
 
 	@Override
+	@Transactional
 	public String getPrice(String topping) {
 		return basketDAO.getPrice(topping);
 	}
 
 	@Override
+	@Transactional
 	public StoreInfoVO getStoreInfo(int no) {
 		return basketDAO.getStoreInfo(no);
 	}
 
 	@Override
+	@Transactional
 	public void insertBasket(BasketVO vo) {
 		basketDAO.insertBasket(vo);
 	}
 	
+	@Transactional
 	public BasketVO getBasketByNo(int no) {
 		return basketDAO.getBasketByNo(no);
 	}
 
 	@Override
+	@Transactional
 	public void deleteBasket(BasketVO vo) {
 		basketDAO.deleteBasket(vo);
 	}
 
 	@Override
+	@Transactional
 	public void deleteAllBasket(BasketVO vo) {
 		basketDAO.deleteAllBasket(vo);
 	}

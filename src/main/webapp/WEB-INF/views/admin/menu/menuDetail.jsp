@@ -147,7 +147,7 @@ $(document).ready(function() {
 						<div class="mb-3">
 							<label for="code">제품 코드</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="code" id="code" value="${update.code}">
+								<input type="text" class="form-control" name="code" id="code" value="${update.code}"readonly>
 							</div>
 						</div>
 
