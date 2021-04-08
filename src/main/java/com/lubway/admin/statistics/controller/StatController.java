@@ -73,29 +73,40 @@ public class StatController {
 		else vo.setStart(vo.getStart() + " 00:00:00");
 		if(vo.getEnd().equals("")) vo.setEnd("3000-12-31 23:59:59");
 		else vo.setEnd(vo.getEnd() + " 23:59:59");
+
+		List<StatVO> statList = new ArrayList<StatVO>();
+		List<StatVO> orderList = new ArrayList<StatVO>();
 		
-		System.out.println(vo.getPage());
-		System.out.println(vo.getRange());
-		
-		System.out.println(vo.getStart());
-		System.out.println(vo.getEnd());
-		
-		List<StatVO> statList = statservice.getSearchStat(vo);
-		for(StatVO v : statList) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+		if(vo.getStore_name() == "") {
+			statList = statservice.getNotSearchStat(vo);
+			for(StatVO v : statList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
+			
+			int listCnt = statservice.getNotSearchStatCnt(vo);
+			System.out.println(listCnt);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+
+			orderList = statservice.getNotSelectSerchOrderList(vo);
+		} else {
+			statList = statservice.getSearchStat(vo);
+			for(StatVO v : statList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
+			
+			int listCnt = statservice.getSearchStatCnt(vo);
+			System.out.println(listCnt);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+			
+			orderList = statservice.getSearchOrderList(vo);
 		}
-		
-		System.out.println(vo.getStore_name());
-		System.out.println(vo.getOrder_type());
-		System.out.println(vo.getPayment_list());
-		
-		int listCnt = statservice.getSearchStatCnt(vo);
-		System.out.println(listCnt);
-		if(vo.getPage() == 0) vo.setPage(1);
-		if(vo.getRange() == 0) vo.setRange(1);
-		vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
-		List<StatVO> orderList = statservice.getSearchOrderList(vo);
+
 		for(StatVO v : orderList) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
 		
 		List<StatPagination> pageList = new ArrayList<StatPagination>();

@@ -1,4 +1,4 @@
-package com.lubway.admin.statistics;
+package com.lubway.store;
 
 import java.util.Date;
 
@@ -9,7 +9,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class StatVO {
+public class StoreStatVO {
 
 	private Date order_time;
 	private String formatDate;
@@ -34,9 +34,5 @@ public class StatVO {
 	private int salad;
 	private int wrap;
 	private int side;
-	
-	private int set_price;
-	private int single_price;
-	private int topping_price;
 	
 }

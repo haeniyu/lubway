@@ -387,7 +387,32 @@ $(document).ready(function() {
 		}
 		
 	});
-});
+});//end of document ready
+
+function SaveAsExcel(){
+	var start = $("input[name=start]").val();
+	var end = $("input[name=end]").val();
+	var menu_type = $("#category").val();
+	var order_type = $("#order").val();
+	var payment_list = $("#pay").val();
+	var menu_name = $("#menu").val();
+	
+	location.href="/lubway/excelDownloadForMenu.mdo?start="+start+"&end="+end+
+			"&menu_type="+menu_type+"&order_type="+order_type+"&payment_list="+payment_list+"&menu_name="+menu_name;
+
+}
+
+function SaveAsPdf(){
+	var start = $("input[name=start]").val();
+	var end = $("input[name=end]").val();
+	var menu_type = $("#category").val();
+	var order_type = $("#order").val();
+	var payment_list = $("#pay").val();
+	var menu_name = $("#menu").val();
+	
+	location.href="/lubway/pdfDownloadForMenu.mdo?start="+start+"&end="+end+
+		"&menu_type="+menu_type+"&order_type="+order_type+"&payment_list="+payment_list+"&menu_name="+menu_name;
+}
 
 </script>
 </head>
@@ -401,6 +426,12 @@ $(document).ready(function() {
         <div class="card shadow mb-4">
         	<div class="card-header py-3">
             	<h6 class="m-0 font-weight-bold text-warning">Sales Status By Product</h6>
+            	<a class="btn btn-sm btn-success" onclick="SaveAsExcel();" style="float:right; margin-left:5px;">
+					<i class="fas fa-download fa-sm text-white-50"></i> Excel
+				</a>&nbsp;&nbsp;&nbsp;
+            	<a class="btn btn-sm btn-danger" onclick="SaveAsPdf();" style="float:right;">
+					<i class="fas fa-download fa-sm text-white-50"></i> PDF
+				</a>
             </div>
             <div class="card-body">
                	<div class="chart chart1" id="LineChart" style="width: 40%; height: 300px;"></div>
