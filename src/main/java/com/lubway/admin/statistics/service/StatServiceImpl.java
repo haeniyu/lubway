@@ -181,4 +181,9 @@ public class StatServiceImpl implements StatService {
 		return dao.getSearchOrderListForExcel(page);
 	}
 
+	@Override
+	public List<StatVO> getNotSelectSerchOrderList(StatPagination page) {
+		return dao.getNotSelectSerchOrderList(page);
+	}
+
 }

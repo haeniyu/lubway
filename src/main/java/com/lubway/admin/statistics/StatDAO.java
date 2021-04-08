@@ -121,4 +121,8 @@ public class StatDAO {
 	public List<StatVO> getSearchOrderListForExcel(StatPagination page) {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchOrderListForExcel", page);
 	}
+	
+	public List<StatVO> getNotSelectSerchOrderList(StatPagination page){
+		return sqlSessionTemplate.selectList("StatisticsDAO.getNotSelectSerchOrderList",page);
+	}
 }
