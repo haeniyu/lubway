@@ -18,16 +18,16 @@
   		values (#{code}, #{name},#{engname}, #{category}, #{price},#{content}, #{filePath})
   	</insert>
   	<update id="updateSalad" parameterType="salad">
-  		update salad set code=#{code}, name=#{name},engname=#{engname},category=#{category}, price=#{price} content=#{content}, filepath=#{filePath}
-  		where no=#{no}
+  		update salad set code=#{code}, name=#{name},engname=#{engname},category=#{category}, price=#{price}, content=#{content}, filepath=#{filePath}
+  		where code=#{code}
   	</update>
   	<delete id="deleteSalad" parameterType="salad">
-  		delete from salad where no=#{no}
+  		delete from salad where code=#{code}
   	</delete>
   	<select id="selectSalad" resultType="salad">
   		SELECT * FROM salad WHERE code=#{code}
   	</select>
   	<select id="selectListSalad" resultType="salad">
-  		SELECT * FROM salad
+  		SELECT * FROM salad ORDER BY no
   	</select>
   </mapper>

@@ -127,6 +127,7 @@ public class MenuController {
 			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code, String select) {
 
 		System.out.println("select : " + select);
+		System.out.println("code : " + code);
 		model.addAttribute("select", select);
 		model.addAttribute("code",code);
 		switch (select) {
@@ -139,6 +140,7 @@ public class MenuController {
 						  break;
 		case "salad"    : model.addAttribute("update", menuservice.selectSalad(svo));
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));
+						  System.out.println(menuservice.selectSalad(svo).toString());
 						  break;
 		case "drink"    : model.addAttribute("update", menuservice.selectDrink(dvo));
 						  model.addAttribute("nutrient", menuservice.selectNutrient(nvo));

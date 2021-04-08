@@ -12,6 +12,7 @@ public class StatDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
+<<<<<<< HEAD
 	/**	금일 매출 */
 	public int getTodaySales() {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
@@ -24,6 +25,17 @@ public class StatDAO {
 
 	/**	연 매출 */
 	public int getThisYearSales() {
+=======
+	public Integer getTodaySales() {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getTodaySales");
+	}
+	
+	public Integer getThisMonthSales() {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisMonthSales");
+	}
+
+	public Integer getThisYearSales() {
+>>>>>>> feature/excel
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getThisYearSales");
 	}
 	
@@ -67,12 +79,26 @@ public class StatDAO {
 	public int getProductSearchStatCnt(StatPagination page) {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getProductSearchStatCnt", page);
 
+<<<<<<< HEAD
+=======
+	public Integer getStoreTodaySales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreTodaySales", store_name);
+	}
+	
+	public Integer getStoreMonthSales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreMonthSales", store_name);
+>>>>>>> feature/excel
 	}
 	
 	/**	품목별 총 데이터 Chart */
 	public List<StatVO> getProductBasicStat() {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getProductBasicStat");
 
+<<<<<<< HEAD
+=======
+	public Integer getStoreYearSales(String store_name) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
+>>>>>>> feature/excel
 	}
 	
 	/** 품목별 총 데이터 TypeChart */

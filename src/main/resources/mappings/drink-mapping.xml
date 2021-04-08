@@ -27,6 +27,6 @@
   		SELECT * FROM drink WHERE code=#{code}
   	</select>
   	<select id="selectListDrink" resultType="drink">
-  		SELECT * FROM drink
+  		SELECT * FROM drink ORDER BY no
   	</select>
   </mapper>

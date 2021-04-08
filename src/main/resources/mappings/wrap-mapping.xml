@@ -28,6 +28,6 @@
   		SELECT * FROM wrap WHERE code=#{code}
   	</select>
   	<select id="selectListWrap" resultType="wrap">
-  		SELECT * FROM wrap
+  		SELECT * FROM wrap ORDER BY no
   	</select>
   </mapper>

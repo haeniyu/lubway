@@ -18,7 +18,7 @@
   		values(#{code},#{name}, #{engname}, #{price}, #{content}, #{category}, #{filePath})
   	</insert>
   	<update id="updateMorning" parameterType="morning">
-  		update morning set code=#{code}, name=#{name}, engname=#{engname}, price=#{price}, category=#{category}, content=#{content},filePath=#{filepath}
+  		update morning set code=#{code}, name=#{name}, engname=#{engname}, price=#{price}, category=#{category}, content=#{content},filepath=#{filePath}
   		where code=#{code}
   	</update>
   	<delete id="deleteMorning" parameterType="morning">
@@ -28,6 +28,6 @@
   		SELECT * FROM morning WHERE code=#{code}
   	</select>
   	<select id="selectListMorning" resultType="morning">
-  		SELECT * FROM morning
+  		SELECT * FROM morning ORDER BY no
   	</select>
   </mapper>
