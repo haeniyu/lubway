@@ -28,7 +28,10 @@ public interface StatService {
 	/**	매장별 총 데이터 정보 */
 	List<StatVO> getBasicOrderList(StatPagination page);
 	
-	/** 매장별 총 데이터 정보 */
+	/** 매장별 검색X 데이터 수 */
+	int getNotSearchStatCnt(StatPagination page);
+	
+	/** 매장별 검색X 데이터 정보 */
 	List<StatVO> getNotSelectSerchOrderList(StatPagination page);
 
 	/**	매장별 검색 주문내역 AreaChart */

@@ -186,4 +186,10 @@ public class StatServiceImpl implements StatService {
 		return dao.getNotSelectSerchOrderList(page);
 	}
 
+	/** 매장별 검색X 데이터 수 */
+	@Override
+	public int getNotSearchStatCnt(StatPagination page) {
+		return dao.getNotSearchStatCnt(page);
+	}
+
 }

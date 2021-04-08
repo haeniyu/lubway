@@ -125,4 +125,8 @@ public class StatDAO {
 	public List<StatVO> getNotSelectSerchOrderList(StatPagination page){
 		return sqlSessionTemplate.selectList("StatisticsDAO.getNotSelectSerchOrderList",page);
 	}
+	
+	public int getNotSearchStatCnt(StatPagination page) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getNotSearchStatCnt", page);
+	}
 }

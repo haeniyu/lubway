@@ -78,6 +78,16 @@
 			) as two
 	</select>
 	
+	<!-- 매장별 선택안했을시 데이터 수 -->
+	<select id="getNotSearchStatCnt" resultType="int">
+		select count(*) from order_code where 
+			store_name like '%'||#{store_name}||'%' and 
+			order_type like '%'||#{order_type}||'%' and 
+			payment_list like '%'||#{payment_list}||'%' and
+			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+	</select>
+	
 	<!-- 매장별 선택안했을시 데이터 정보 -->
 	<select id="getNotSelectSerchOrderList" resultType="stat">
 		select * from (
