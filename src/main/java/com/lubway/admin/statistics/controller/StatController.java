@@ -77,16 +77,6 @@ public class StatController {
 		List<StatVO> statList = new ArrayList<StatVO>();
 		List<StatVO> orderList = new ArrayList<StatVO>();
 		
-		System.out.println(vo.getPage());
-		System.out.println(vo.getRange());
-		
-		System.out.println(vo.getStart());
-		System.out.println(vo.getEnd());
-		
-		List<StatVO> statList = statservice.getSearchStat(vo);
-		for(StatVO v : statList) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
 		if(vo.getStore_name() == "") {
 			statList = statservice.getNotSearchStat(vo);
 			for(StatVO v : statList) {
@@ -108,30 +98,6 @@ public class StatController {
 				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
 			}
 			
-			int listCnt = statservice.getSearchStatCnt(vo);
-			System.out.println(listCnt);
-			if(vo.getPage() == 0) vo.setPage(1);
-			if(vo.getRange() == 0) vo.setRange(1);
-			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
-			
-			orderList = statservice.getSearchOrderList(vo);
-		}
-		
-		System.out.println(vo.getStore_name());
-		System.out.println(vo.getOrder_type());
-		System.out.println(vo.getPayment_list());
-
-		List<StatVO> orderList = new ArrayList<StatVO>();
-
-		if(vo.getStore_name() == "") {
-			int listCnt = statservice.getNotSearchStatCnt(vo);
-			System.out.println(listCnt);
-			if(vo.getPage() == 0) vo.setPage(1);
-			if(vo.getRange() == 0) vo.setRange(1);
-			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
-
-			orderList = statservice.getNotSelectSerchOrderList(vo);
-		} else {
 			int listCnt = statservice.getSearchStatCnt(vo);
 			System.out.println(listCnt);
 			if(vo.getPage() == 0) vo.setPage(1);
