@@ -3,18 +3,13 @@ package com.lubway.admin.board.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +38,7 @@ public class NoticeController {
 	public String insertNotice(NoticeVO vo, MultipartFile multipart) throws IOException, PSQLException {
 
 		System.out.println(multipart.toString());
-
+		
 		if (!multipart.getOriginalFilename().equals("")) {
 			// aws s3 파일 업로드 처리 */
 			InputStream is = multipart.getInputStream();
@@ -70,7 +65,6 @@ public class NoticeController {
 	/** 글 수정 */
 	@RequestMapping("/updateNotice.mdo")
 	public String updateNotice(NoticeVO vo, MultipartFile uploadImg) throws IOException, PSQLException {
-		System.out.println("가져온 데이터 : " +vo.toString());
 		NoticeVO bringData = noticeService.getNotice(vo);
 		
 		if(!uploadImg.getOriginalFilename().equals("")) {
@@ -98,7 +92,8 @@ public class NoticeController {
 		
 		bringData.setTitle(vo.getTitle());
 		bringData.setContent(vo.getContent());
-
+		bringData.setFix(vo.isFix());
+		
 		noticeService.updateNotice(bringData);
 		System.out.println("파일 업로드 업데이트 실행됨");
 		

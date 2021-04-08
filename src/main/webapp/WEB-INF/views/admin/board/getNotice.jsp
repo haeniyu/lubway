@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <script type="text/javascript">
+
+var fix = false;
 $(document).ready(function(){
     $("#registerBtn").on("click",function(){
        alert("수정되었습니다.");
@@ -16,11 +18,9 @@ $(document).ready(function(){
  });
 function fix(){
 
-     $("input[name='fix']").each(function(){
-        var fix = ${notice.fix};
-        if( fix == true ){
-           $(this).attr("checked", true );
-        }
+     $("input[name='fix']").is("checked",function(){
+       fix = true;
+     }
      }); 
 }
 </script>
@@ -126,7 +126,7 @@ ul {
                </ul>
                <div align="center">
                   <div class="fix_notice">
-                     <input type="checkbox" name="fix" id="fix" /><span>상단에 고정하기</span>
+                     <input type="checkbox" name="fix" id="fix"/><span>상단에 고정하기</span>
                   </div>
                   <input style="padding: 5px" class="btn btn-warning btn-icon-split"
                      type="submit" value="수정하기" id="registerBtn" />
