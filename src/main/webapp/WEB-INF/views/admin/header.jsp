@@ -123,7 +123,7 @@
 						<h6 class="collapse-header">Manage Site:</h6>
 						 <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
 						 <a class="collapse-item" href="getEventList.mdo">이벤트</a> 
-						 <a class="collapse-item" href="#">배너</a>
+						 <a class="collapse-item" href="getBannerList.mdo">배너</a>
 						 <a class="collapse-item" href="/lubway/getTerms.mdo">약관동의</a>
 					</div>
 				</div></li>

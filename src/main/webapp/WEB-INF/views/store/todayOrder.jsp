@@ -120,10 +120,11 @@
 						<table class="table table-bordered" id="dataTable" style="width:auto;">
 							<thead>
 								<tr align="center" style="font-size: 14px">
-									<th>주문 코드</th>
+									<th>번호</th>
 									<th>이름</th>
 									<th>주문 시간</th>
-									<th>도착 예정 시간</th>
+									<th>결제 상태</th>
+									<th>주문 상태</th>
 									<th>주문 메뉴</th>
 									<th>기본 선택</th>
 									<th>추가 선택</th>
@@ -131,9 +132,8 @@
 									<th>총 금액</th>
 									<th>수령 방법</th>
 									<th>결제 수단</th>
-									<th>결제 상태</th>
-									<th>주문 상태</th>
 									<th>요청 사항</th>
+									<th>도착 예정 시간</th>
 									<th>아이디</th>
 									<th>주소</th>
 									<th>연락처</th>
@@ -144,24 +144,7 @@
 									<tr style="font-size: 14px">
 										<td>${list.no }</td>
 										<td>${list.name }</td>
-										<td><fmt:formatDate type="both" value="${list.order_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td><fmt:formatDate type="both" value="${list.delivery_time }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
-										<td>${list.menu_name }</td>
-										<td>${list.step01 }</td>
-										<td>${list.add_topping }
-											<c:if test="${list.add_topping ne null and (list.add_meat ne null or list.add_cheese ne null)}">
-												,
-											</c:if>
-											${list.add_meat }
-											<c:if test="${list.add_meat ne null and list.add_cheese ne null}">
-												,
-											</c:if>
-											${list.add_cheese }
-										</td>
-										<td>${list.step03 }</td>
-										<td>${list.total_price  }</td>
-										<td>${list.order_type }</td>
-										<td>${list.payment_list }</td>
+										<td><fmt:formatDate type="both" value="${list.order_time }" pattern="HH:mm:ss" /></td>
 										<td>
 											<c:if test="${list.payment_status eq 'true'}">
 												결제 완료
@@ -180,7 +163,24 @@
 												<option value="주문 취소">주문 취소</option>
 											</select>
 										</td>
+										<td>${list.menu_name }</td>
+										<td>${list.step01 }</td>
+										<td>${list.add_topping }
+											<c:if test="${list.add_topping ne null and (list.add_meat ne null or list.add_cheese ne null)}">
+												,
+											</c:if>
+											${list.add_meat }
+											<c:if test="${list.add_meat ne null and list.add_cheese ne null}">
+												,
+											</c:if>
+											${list.add_cheese }
+										</td>
+										<td>${list.step03 }</td>
+										<td>${list.total_price  }</td>
+										<td>${list.order_type }</td>
+										<td>${list.payment_list }</td>
 										<td>${list.request }</td>
+										<td><fmt:formatDate type="both" value="${list.delivery_time }" pattern="HH:mm:ss" /></td>
 										<td>${list.id }</td>
 										<td>${list.address }</td>
 										<td>${list.tel }</td>
