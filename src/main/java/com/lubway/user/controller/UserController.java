@@ -111,7 +111,10 @@ public class UserController {
 	 * 카카오 로그아웃
 	 */
 	@GetMapping("kakaoLogout.do")
-	public String kakao_logout(HttpSession session) {
+	public String kakao_logout(HttpSession session, Model model, BannerVO vo) {
+		
+		model.addAttribute("banner", bannerService.getBannerListView(vo));
+		
 		session.invalidate();
 		return "main";
 	}
@@ -120,7 +123,9 @@ public class UserController {
 	 * 구글 로그인
 	 */
 	@PostMapping("/google.do")
-	public String googleLogin(UserVO vo, HttpSession session, HttpServletResponse response) throws IOException {
+	public String googleLogin(UserVO vo, HttpSession session, HttpServletResponse response, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range, BannerVO bvo) throws IOException {
 		System.out.println(vo.toString());
 
 		if(userService.idCheck(vo.getId()) == 0) {
@@ -141,6 +146,21 @@ public class UserController {
 		System.out.println("vo : " + vo);
 		System.out.println("user : " + user);
 		
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
+		model.addAttribute("banner", bannerService.getBannerListView(bvo));
+		
 		session.setAttribute("user", user);
 		session.setAttribute("guser", new String("1"));
 		return "main";
@@ -150,7 +170,9 @@ public class UserController {
 	 * 네이버 로그인 처리
 	 */
 	@GetMapping("/callback.do")
-	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse servletResponse) throws IOException {
+	public String callback(@RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse servletResponse, 
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,BannerVO vo, Model model ) throws IOException {
 
 		OAuth2AccessToken oauthToken;
 		oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -210,6 +232,22 @@ public class UserController {
 			session.setAttribute("user", user);
 			session.setAttribute("nuser", new String("1"));
 		}
+		
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
+		
+		model.addAttribute("banner", bannerService.getBannerListView(vo));
 
 		return "main";
 	}

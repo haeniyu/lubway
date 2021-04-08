@@ -77,7 +77,6 @@ $(document).ready(function() {
 var count = 0;
 //장바구니 페이지로 이동
 function gotoBasket() {
-	$('.loading').show();
 	var order_type = $("input:hidden[name=whatWay]").val();
 	var check = true;
 	
@@ -180,7 +179,6 @@ function gotoBasket() {
 
 //주문하기 페이지로 이동
 function gotoStep04() {
-	$('.loading').show();
 	if($("#code").val().includes("SDW")){
 		if(!checkSize || !checkBread || !checkCheese || !checkVegetable || !checkSauce){
 			alert("필수 선택을 선택해주세요.");
