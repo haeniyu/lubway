@@ -58,6 +58,8 @@ public interface StatService {
 	/**	품목별 검색 주문내역 TypeChart */
 	StatVO getProductSearchTypeStat(StatPagination page);
 
+	/** 메뉴 Category 선택 */
+	List<String> getMenuName(String select);
 	
 	/**	 */
 	int getStoreMonthSales(String store_name);

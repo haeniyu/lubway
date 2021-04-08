@@ -145,10 +145,10 @@
 		select count(*)
 		from order_code a 
 		right outer join order_list b on b.no = a.no where 
-			menu_type like '%'||#{menu_type}||'%' and 
-			menu_name like '%'||#{menu_name}||'%' and 
-			order_type like '%'||#{order_type}||'%' and 
-			payment_list like '%'||#{payment_list}||'%' and
+			b.menu_type like '%'||#{menu_type}||'%' and 
+			b.menu_name like '%'||#{menu_name}||'%' and 
+			a.order_type like '%'||#{order_type}||'%' and 
+			a.payment_list like '%'||#{payment_list}||'%' and
 			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
 								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
@@ -202,8 +202,8 @@
 			  to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
-	<select id="selectType" parameterType="string">
-		select name from #{type}
+	<select id="getMenuName" parameterType="string" resultType="string">
+		select name from ${select}
 	</select>
 	
 	<select id="getStoreMonthSales" resultType="int">

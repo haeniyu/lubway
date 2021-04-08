@@ -129,4 +129,9 @@ public class StatServiceImpl implements StatService {
 		return dao.getStoreYearSales(store_name);
 	}
 
+	@Override
+	public List<String> getMenuName(String select) {
+		return dao.getMenuName(select);
+	}
+
 }

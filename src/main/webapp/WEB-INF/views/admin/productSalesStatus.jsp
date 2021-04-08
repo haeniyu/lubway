@@ -33,7 +33,7 @@
 			async : false,
 			success : function(data) {
 				console.log("페이징 ajax 통신 성공");
-				searchCreateTable(data[1], data[2]);
+				searchCreateTable(data[2], data[3]);
 			},
 			error : function(data, status, opt) {
 				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
@@ -62,7 +62,8 @@
 			async : false,
 			success : function(data) {
 				console.log("페이징 ajax 통신 성공");
-				searchCreateTable(data[1], data[2]);
+				console.log(data)
+				searchCreateTable(data[2], data[3]);
 			},
 			error : function(data, status, opt) {
 				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
@@ -94,7 +95,7 @@
 			async : false,
 			success : function(data) {
 				console.log("페이징 ajax 통신 성공");
-				searchCreateTable(data[1], data[2]);
+				searchCreateTable(data[2], data[3]);
 			},
 			error : function(data, status, opt) {
 				alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
@@ -341,6 +342,50 @@
 			}
 		});
 	}
+	
+	function setMenuName(list) {
+		console.log("메뉴명 세팅");
+		
+		$("#menu").empty();
+		$("#menu").append("<option>메뉴명 선택</option>");
+		for(var i=0; i<list.length; i++) {
+			$("#menu").append("<option>" + list[i] + "</option>");
+		}
+	}
+	
+$(document).ready(function() {
+	//메뉴 카테고리 function
+	$("#category").change(function() {
+		var select = $(this).val();
+		console.log("종류 선택 : " + select);	
+		
+		if(select != "side" && select != "메뉴 카테고리") {
+			$("#menu").show();
+			$.ajax({
+				url : '/lubway/selectCategory.mdo',
+				type : 'post',
+				data : {select : select},
+				async : false,
+				success : function(data) {
+					console.log(data);
+					setMenuName(data);
+				},
+				error : function(data, status, opt) {
+					alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+				}
+			});
+		} else {
+			if(select != "메뉴 카테고리") $("#menu").hide();
+			else {
+				$("#menu").show();
+				$("#menu").empty();
+				$("#menu").append("<option>메뉴명 선택</option>");
+			}
+		}
+		
+	});
+});
+
 </script>
 </head>
 <body id="page-top">

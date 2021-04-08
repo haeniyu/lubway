@@ -65,7 +65,7 @@ public class StatDAO {
 
 	/**	품목별 검색 주문내역 데이터 수 */
 	public int getProductSearchStatCnt(StatPagination page) {
-		return sqlSessionTemplate.selectOne("StatisticsDAO.getProductSearchStatCnt");
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getProductSearchStatCnt", page);
 
 	}
 	
@@ -102,6 +102,9 @@ public class StatDAO {
 
 	}
 
+	public List<String> getMenuName(String select) {
+		return sqlSessionTemplate.selectList("StatisticsDAO.getMenuName", select);
+	}
 	
 	/**  */
 	public int getStoreMonthSales(String store_name) {

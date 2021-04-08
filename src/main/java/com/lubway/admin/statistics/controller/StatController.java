@@ -86,7 +86,12 @@ public class StatController {
 			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
 		}
 		
+		System.out.println(vo.getStore_name());
+		System.out.println(vo.getOrder_type());
+		System.out.println(vo.getPayment_list());
+		
 		int listCnt = statservice.getSearchStatCnt(vo);
+		System.out.println(listCnt);
 		if(vo.getPage() == 0) vo.setPage(1);
 		if(vo.getRange() == 0) vo.setRange(1);
 		vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
@@ -175,12 +180,8 @@ public class StatController {
 			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
 		}
-		System.out.println(vo.getMenu_type());
-		System.out.println(vo.getMenu_name());
-		System.out.println(vo.getOrder_type());
-		System.out.println(vo.getPayment_list());
+
 		int listCnt = statservice.getProductSearchStatCnt(vo);
-		System.out.println(listCnt);
 		if(vo.getPage() == 0) vo.setPage(1);
 		if(vo.getRange() == 0) vo.setRange(1);
 		vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
@@ -193,8 +194,14 @@ public class StatController {
 		totalList.add(productStatTypeList);
 		totalList.add(productOrderList);
 		totalList.add(productPageList);
-		System.out.println(productPageList.get(0).getListCnt());
 		return totalList;
 	}
 	
+	/** 메뉴 Category 선택 Ajax */
+	@PostMapping("/selectCategory.mdo")
+	@ResponseBody
+	public List<String> selectCategory(String select) {
+		List<String> categoryList = statservice.getMenuName(select);
+		return categoryList;
+	}
 }
