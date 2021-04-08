@@ -83,6 +83,21 @@ public class StatDAO {
 		return sqlSessionTemplate.selectOne("StatisticsDAO.getStoreYearSales", store_name);
 	}
 	
+	/** 매장별 검색X 데이터 수 */
+	public int getNotSearchStatCnt(StatPagination page) {
+		return sqlSessionTemplate.selectOne("StatisticsDAO.getNotSearchStatCnt", page);
+	}
+	
+	/** 매장별 검색X 데이터 정보 */
+	public List<StatVO> getNotSelectSerchOrderList(StatPagination page){
+		return sqlSessionTemplate.selectList("StatisticsDAO.getNotSelectSerchOrderList",page);
+	}
+	
+	/** 매장별 검색X 데이터 정보 */
+	public List<StatVO> getNotSearchStat(StatPagination page){
+		return sqlSessionTemplate.selectList("StatisticsDAO.getNotSearchStat",page);
+	}
+	
 	/**	품목별 총 데이터 Chart */
 	public List<StatVO> getProductBasicStat() {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getProductBasicStat");

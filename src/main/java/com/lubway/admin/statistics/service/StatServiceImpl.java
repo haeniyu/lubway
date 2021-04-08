@@ -85,6 +85,24 @@ public class StatServiceImpl implements StatService {
 		return dao.getSearchOrderList(page);
 	}
 	
+	/** 매장별 검색X 데이터 수 */
+	@Override
+	public int getNotSearchStatCnt(StatPagination page) {
+		return dao.getNotSearchStatCnt(page);
+	}
+
+	/** 매장별 검색X 데이터 정보 */
+	@Override
+	public List<StatVO> getNotSelectSerchOrderList(StatPagination page) {
+		return dao.getNotSelectSerchOrderList(page);
+	}
+	
+	/** 매장별 검색X 데이터 정보 */
+	@Override
+	public List<StatVO> getNotSearchStat(StatPagination page) {
+		return dao.getNotSearchStat(page);
+	}
+	
 	/**	품목별 주문내역 총 데이터 수 */
 	@Override
 	@Transactional
