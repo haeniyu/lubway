@@ -43,14 +43,16 @@ public class MenuController {
 	/** 관리자 메뉴 등록 */
 	@PostMapping("/menuInsert.mdo")
 	public String insertMenu(NutrientVO nvo, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo,
-			SaladVO svo, MorningVO mvo, DrinkVO dvo, @RequestParam("select") String select,
-			@RequestParam("uploadImg") MultipartFile multipart, RedirectAttributes rttr) throws IOException, PSQLException {
+			SaladVO svo, MorningVO mvo, DrinkVO dvo, @RequestParam("typeSelect") String select,
+			MultipartFile uploadImg, RedirectAttributes rttr) throws IOException, PSQLException {
 
+		System.out.println(uploadImg);
+		
 		/** aws s3 파일 업로드 처리 */
-		InputStream is = multipart.getInputStream();
-		String key = multipart.getOriginalFilename();
-		String contentType = multipart.getContentType();
-		long contentLength = multipart.getSize();
+		InputStream is = uploadImg.getInputStream();
+		String key = uploadImg.getOriginalFilename();
+		String contentType = uploadImg.getContentType();
+		long contentLength = uploadImg.getSize();
 		
 		/** 파일 업로드 경로 지정 */
 		String bucket = "lubway/menu";

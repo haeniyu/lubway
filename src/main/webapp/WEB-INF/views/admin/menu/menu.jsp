@@ -234,7 +234,7 @@
 				return;
 			} 
 
-		} else {
+		} else if($("#mbrLgnId3").val() == "was" || $("#mbrLgnId3").val() == "cookie") {
 
 			if ($("#name").val().trim() == '') {
 				alert("모든 정보를 기입해주세요.");
@@ -265,9 +265,16 @@
 				alert("모든 정보를 기입해주세요.");
 				return;
 			} 
-		}	
-			alert("저장되었습니다.");
+		} 
+		
 			var select = $("#mbrLgnId3").val();
+			console.log(select);
+			$("input[name=typeSelect]").val(select);
+			console.log($("input[name=typeSelect]").val());
+			
+			var form = document.getElementById("insert");
+			form.submit();
+			
 	});
 });
 
@@ -282,6 +289,7 @@
 </head>
 <body id="page-top">
 	<%@ include file="/WEB-INF/views/admin/header.jsp"%>
+	<form action="menuInsert.mdo" method="post" id="insert" enctype="multipart/form-data">
 	<!-- Begin Page Content -->
 	<div class="container-fluid">
 		<!-- Page Heading -->
@@ -290,8 +298,7 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-primary">메뉴 등록</h6>
 			</div>
-			<form name="form" id="form" role="form" method="post"
-				action="menuInsert.mdo" enctype="multipart/form-data">
+			
 				<div class="card-body">
 					<div class="mb-3">
 						<label for="open">제품 카테고리</label>
@@ -418,12 +425,14 @@
                      </div>
 					</div>
 					<div>
-						<button type="submit" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
+						<button type="button" class="btn btn-sm btn-primary" id="saveBtn" >저장</button>
 					</div>
 				</div>
-			</form>
+		
 		</div>
 	</div>
+	<input type="hidden" name="typeSelect" value="">
+	</form>
 	<%@ include file="/WEB-INF/views/admin/footer.jsp"%>
 </body>
 </html>
