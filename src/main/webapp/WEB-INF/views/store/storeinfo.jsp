@@ -112,11 +112,11 @@ $(document).ready(function(){
 					<div class="mb-3">
 						<label for="open">오픈시간</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control timepicker" id="open" required>
+							<input type="text" autocomplete="off" class="form-control timepicker" id="open" required>
 						</div>
 						<label for="close">마감시간</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control timepicker" id="close" required>
+							<input type="text" autocomplete="off" class="form-control timepicker" id="close" required>
 						</div>
 					</div>
 					<div class="mb-3">
