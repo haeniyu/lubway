@@ -44,7 +44,7 @@ public class MenuController {
 	@PostMapping("/menuInsert.mdo")
 	public String insertMenu(NutrientVO nvo, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo,
 			SaladVO svo, MorningVO mvo, DrinkVO dvo, @RequestParam("typeSelect") String select,
-			MultipartFile uploadImg, RedirectAttributes rttr) throws IOException, PSQLException {
+			MultipartFile uploadImg, RedirectAttributes rttr, String price15) throws IOException, PSQLException {
 
 		System.out.println(uploadImg);
 		
@@ -64,10 +64,12 @@ public class MenuController {
 		if (select.equals("cookie")) {
 			System.out.println(filePath.toString());
 			cvo.setFilePath(filePath);
+			System.out.println(cvo.toString());
 			menuservice.insertCookie(nvo, cvo);
 		} else if (select.equals("sandwich")) {
 			System.out.println(Svo.toString());
 			Svo.setFilePath(filePath);
+			Svo.setPrice(price15);
 			menuservice.insertSandwich(nvo, Svo);
 		} else if (select.equals("wrap")) {
 			wvo.setFilePath(filePath);

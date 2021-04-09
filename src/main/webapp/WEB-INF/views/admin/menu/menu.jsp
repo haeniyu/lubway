@@ -324,7 +324,7 @@
 						<div class="mb-3" id="hyunah">
 							<label for="price15">15cm 가격</label>
 							<div class="col-sm-3">
-								<input type="text" class="form-control" name="price"
+								<input type="text" class="form-control" name="price15"
 									id="price15" >
 							</div>
 						</div>
