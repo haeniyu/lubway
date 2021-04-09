@@ -23,23 +23,29 @@
 	</update>
 	
 	<select id="findStore" parameterType="String" resultType="storeInfo">
-		SELECT * FROM storeinfo
-		WHERE address_road LIKE '%'||#{keyword}||'%'
-		ORDER BY NO DESC
+		SELECT * FROM storeinfo a
+		LEFT OUTER JOIN lubstore b ON a.code = b.id 
+		WHERE a.address_road LIKE '%'||#{keyword}||'%' 
+		AND b.status=0
+		ORDER BY a.no DESC
 	</select>
 	
 	<select id="fastwayStore" parameterType="String" resultType="storeInfo">
-		SELECT * FROM storeinfo
-		WHERE address_road LIKE '%'||#{keyword}||'%'
+		SELECT * FROM storeinfo a
+		LEFT OUTER JOIN lubstore b ON a.code = b.id 
+		WHERE a.address_road LIKE '%'||#{keyword}||'%'
+		AND b.status=0
 		AND fastway_usable = TRUE
-		ORDER BY NO DESC
+		ORDER BY a.no DESC
 	</select>
 
 	<select id="homewayStore" parameterType="String" resultType="storeInfo">
-		SELECT * FROM storeinfo
-		WHERE address_road LIKE '%'||#{keyword}||'%'
+		SELECT * FROM storeinfo a
+		LEFT OUTER JOIN lubstore b ON a.code = b.id 
+		WHERE a.address_road LIKE '%'||#{keyword}||'%'
+		AND b.status=0
 		AND homeway_usable = TRUE
-		ORDER BY NO DESC
+		ORDER BY a.no DESC
 	</select>
 	
 	<select id="getStoreInfoByNo" resultType="storeInfo" parameterType="int">
