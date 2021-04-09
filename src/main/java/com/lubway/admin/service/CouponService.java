@@ -14,6 +14,6 @@ public interface CouponService {
 	
 	CouponVO getCoupon(CouponVO vo);
 
-	List<CouponVO> getCouponList(CouponVO vo);
+	List<CouponVO> getCouponList();
 
 }

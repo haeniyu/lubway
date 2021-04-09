@@ -13,27 +13,22 @@ public class CouponDAO {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public void insertCoupon(CouponVO vo) {
-		System.out.println("insertCoupon() 기능 처리");
 		sqlSessionTemplate.insert("CouponDAO.insertCoupon", vo);
 	}
 	
 	public void updatetCoupon(CouponVO vo) {
-		System.out.println("updateCoupon() 기능 처리");
 		sqlSessionTemplate.update("CouponDAO.updateCoupon", vo);
 	}
 	
 	public void deleteCoupon(CouponVO vo) {
-		System.out.println("deleteCoupon() 기능 처리");
 		sqlSessionTemplate.delete("CouponDAO.deleteCoupon", vo);
 	}
 
 	public CouponVO getCoupon(CouponVO vo){
-		System.out.println("getCoupon() 기능 처리");
 		return sqlSessionTemplate.selectOne("CouponDAO.getCoupon", vo);
 	}
 	
-	public List<CouponVO> getCouponList(CouponVO vo){
-		System.out.println("getCouponList() 기능 처리");
-		return sqlSessionTemplate.selectList("CouponDAO.getCouponList", vo);
+	public List<CouponVO> getCouponList(){
+		return sqlSessionTemplate.selectList("CouponDAO.getCouponList");
 	}
 }

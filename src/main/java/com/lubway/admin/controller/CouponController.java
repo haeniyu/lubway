@@ -29,7 +29,12 @@ public class CouponController {
 
 	// 쿠폰 등록 화면
 	@RequestMapping("/insertCoupon.mdo")
-	public String insertCouponView(CouponVO vo) throws IOException {
+	public String insertCouponView(Model model) throws IOException {
+
+		List<CouponVO> couponList = couponService.getCouponList();
+
+		model.addAttribute("couponList", couponList);
+		
 		return "/manage/customer/insertCoupon";
 	}
 
@@ -111,11 +116,11 @@ public class CouponController {
 
 	// 쿠폰 목록 요청
 	@GetMapping("/getCouponList.mdo")
-	public String getEventList(Model model, CouponVO vo) {
+	public String getEventList(Model model) {
 
 		System.out.println("글 목록 요청 처리");
 
-		List<CouponVO> couponList = couponService.getCouponList(vo);
+		List<CouponVO> couponList = couponService.getCouponList();
 		
 		model.addAttribute("couponList", couponList);
 

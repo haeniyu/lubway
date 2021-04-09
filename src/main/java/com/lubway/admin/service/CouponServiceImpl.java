@@ -41,8 +41,8 @@ public class CouponServiceImpl implements CouponService {
 	
 	@Override
 	@Transactional
-	public List<CouponVO> getCouponList(CouponVO vo) {
-		return couponDAO.getCouponList(vo);
+	public List<CouponVO> getCouponList() {
+		return couponDAO.getCouponList();
 	}
 
 }

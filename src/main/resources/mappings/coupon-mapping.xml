@@ -28,13 +28,11 @@
 		DELETE FROM COUPON WHERE no=#{no}
 	</delete>
 		
-	<select id="getCoupon" parameterType="coupon"
-		resultType="coupon">
+	<select id="getCoupon" parameterType="coupon" resultType="coupon">
 		SELECT * FROM COUPON WHERE NO=#{no}
 	</select>
 	
-	<select id="getCouponList" parameterType="coupon"
-		resultType="coupon">
+	<select id="getCouponList" resultType="coupon">
 		SELECT * FROM COUPON
 		ORDER BY CODE DESC, ENDDATE DESC
 	</select>

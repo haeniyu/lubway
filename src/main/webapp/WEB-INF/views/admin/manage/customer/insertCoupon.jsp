@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>회원관리 > 쿠폰</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-<script>
-	$(document).ready(function(){
+<script type="text/javascript">
+$(document).ready(function(){
 	
 	function setDate() {
 		var start = $("#start").val();
@@ -29,8 +29,69 @@
 		document.form.appendChild(closeField);
 		document.form.submit();
 	}
-	
-	});
+
+});//end of document ready
+
+	// 쿠폰코드 유효성 검사를 위한 데이터 설정
+	var list = new Array();
+	<c:forEach items="${couponList}" var="coupon">
+		list.push("${coupon.code}");
+	</c:forEach>
+
+	//쿠폰 등록 유효성 검사
+	function validate(){
+		
+		var code = $("#code").val().trim();
+		var flag = true;
+		
+		for(var i=0; i<list.length; i++){
+			if(list[i]==code){
+				alert("이미 존재하는 쿠폰코드입니다.");
+				flag = false;
+				return;
+			}
+		}
+		
+		if(code==''){
+			alert("쿠폰 코드를 입력해 주세요.");
+			flag = false;
+			return;
+		}
+		
+		if($("#name").val()==''){
+			alert("쿠폰 이름을 입력해 주세요.");
+			flag = false;
+			return;
+		}
+		
+		if($("#dc").val()==''){
+			alert("할인율을 입력해 주세요.");
+			flag = false;
+			return;
+		}
+		
+		var regexp = /^[0-9]*$/;
+		if(!regexp.test($("#dc").val())){ 
+			alert("숫자만 입력해 주세요.");
+			flag = false;
+			return;
+		}
+		
+		if($(":radio[name='type']:checked").length < 1){
+			alert("쿠폰 사용처를 선택해주세요.");
+			flag=false;
+			return;
+		}
+		
+		if($("#start").val()=='' || $("#end").val()==''){
+			alert("쿠폰 사용 기간을 입력해 주세요.");
+			flag = false;
+			return;
+		}
+		
+		if(flag) $("#insertForm").submit();
+		
+	}
 </script>
 <style type="text/css">
 *{
@@ -44,7 +105,7 @@ li{
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertedCoupon.mdo" method="post">
+	<form action="/lubway/insertedCoupon.mdo" method="post" id="insertForm">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -62,21 +123,21 @@ li{
 						<li class="code">
 							<div>
 								<div class="index">쿠폰 코드</div>
-								<input type="text" name="code" required/>
+								<input type="text" name="code" id="code" required/>
 							</div>
 						</li>
 						<!-- 쿠폰 이름 -->
 						<li class="name">
 							<div>
 								<div class="index">쿠폰 이름</div>
-								<input class="title_text" type="text" name="name" required />
+								<input class="title_text" type="text" name="name" id="name" />
 							</div>
 						</li>
 						<!-- 쿠폰 할인율 -->
 						<li class="dc">
 							<div>
 								<div class="index">쿠폰 할인율</div>
-								<input type="text" name="dc" required/>&nbsp;%
+								<input type="text" name="dc" id="dc"/>&nbsp;%
 							</div>
 						</li>
 						<!-- 쿠폰 사용 방식 -->
@@ -96,7 +157,7 @@ li{
 					</ul>
 					<div align="center">
 						<input style="padding: 5px" class="btn btn-warning btn-icon-split"
-							type="submit" id="insterBtn" value="등록하기" />
+							id="insterBtn" onclick="validate();" value="등록하기" />
 					</div>
 					<div align="right">
 						<a href="getCouponList.mdo" class="btn btn-light btn-icon-split">

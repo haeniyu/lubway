@@ -64,6 +64,7 @@ public class ExcelController {
 		row = sheet.createRow(rowNum++);
 		cell = row.createCell(0);
 		sheet.addMergedRegion(new CellRangeAddress(0,0,0,7)); //셀 병합
+		sheet.setAutoFilter(new CellRangeAddress(1,1,0,7)); //필터 적용
 		cell.setCellValue("러브웨이 매장별 매출 현황");
 		
 		//스타일 설정
@@ -201,6 +202,7 @@ public class ExcelController {
 		row = sheet.createRow(rowNum++);
 		cell = row.createCell(0);
 		sheet.addMergedRegion(new CellRangeAddress(0,0,0,8)); //셀 병합
+		sheet.setAutoFilter(new CellRangeAddress(1,1,0,8)); //필터 적용
 		cell.setCellValue("러브웨이 품목별 매출 현황");
 		
 		//스타일 설정

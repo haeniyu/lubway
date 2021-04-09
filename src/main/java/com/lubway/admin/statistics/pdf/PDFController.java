@@ -150,7 +150,7 @@ public class PDFController {
 	}
 	
 	
-	/** 매장별 - 엑셀 다운로드 */
+	/** 매장별 - PDF 다운로드 */
 	@RequestMapping(value="/pdfDownload.mdo")
     public void pdfDownload(@RequestParam("start")String start, @RequestParam("end")String end, 
     		@RequestParam("order_type")String order_type, @RequestParam("payment_list")String payment_list,
@@ -305,7 +305,7 @@ public class PDFController {
 	}
 	
 	
-	/** 품목별 - 엑셀 다운로드 */
+	/** 품목별 - PDF 다운로드 */
 	@RequestMapping("/pdfDownloadForMenu.mdo")
 	public void pdfDownloadForMenu(@RequestParam("start")String start, @RequestParam("end")String end, 
     		@RequestParam("order_type")String order_type,
