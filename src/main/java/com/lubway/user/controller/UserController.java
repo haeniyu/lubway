@@ -292,8 +292,11 @@ public class UserController {
 			check = passEncoder.matches(password, getUser.getPassword());
 		}
 
-		if(getUser == null || !check || getUser.getStatus() > 0) {
+		if(getUser == null || !check) {
 			alertView("아이디 또는 비밀번호가 틀렸습니다.", -1, response);
+			return null;
+		} else if(getUser.getStatus() > 0) {
+			alertView("관리자에 의해 정지된 계정입니다.", -1, response);
 			return null;
 		} else {
 			HttpSession session = request.getSession();
