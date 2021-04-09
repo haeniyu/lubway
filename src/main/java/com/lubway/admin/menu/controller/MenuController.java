@@ -167,38 +167,211 @@ public class MenuController {
 	/** 관리자 메뉴 수정 */
 	@PostMapping("/menuUpdate.mdo")
 	String update(Model model, CookieVO cvo, SandwichVO Svo, WrapVO wvo, WedgeAndSoupVO wasvo, SaladVO svo,
-			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code,String select,String filepath) throws PSQLException, LogException{
-
+			MorningVO mvo, DrinkVO dvo ,NutrientVO nvo, String code,String select,String filepath, MultipartFile uploadImg) throws PSQLException, LogException, IOException {
+		
 		switch (select) {
-		case "sandwich" : if(Svo.getFilePath() == null) Svo.setFilePath(menuservice.selectSandwich(Svo).getFilePath());
+		case "sandwich" : 
+						SandwichVO sand = menuservice.selectSandwich(Svo);
+						if(Svo.getFilePath() == null) Svo.setFilePath(sand.getFilePath());
+						
+						int sandIndex = sand.getFilePath().indexOf("/", 20);
+						String sandKey = sand.getFilePath().substring(sandIndex+1);
+						
+						if(!uploadImg.getOriginalFilename().equals("")) {
+							if(!sandKey.equals("menu/" + uploadImg)) {
+								awss3.delete(sandKey);
+								
+								InputStream is = uploadImg.getInputStream();
+								String uploadKey = uploadImg.getOriginalFilename();
+								String contentType = uploadImg.getContentType();
+								long contentLength = uploadImg.getSize();
+								
+								String bucket = "lubway/menu";
+								
+								awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+								
+								String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+								
+								Svo.setFilePath(filePath);
+							}
+						}
 						  menuservice.updateSandwich(nvo, Svo);
 						  System.out.println("sandwich: 들어옴");
 						  break;
-		case "wrap"     : if(wvo.getFilePath() == null) wvo.setFilePath(menuservice.selectWrap(wvo).getFilePath());
+						  
+		case "wrap"     : WrapVO wrap = menuservice.selectWrap(wvo);
+						  if(wvo.getFilePath() == null) wvo.setFilePath(wrap.getFilePath());
+						  
+						  int wrapIndex = wrap.getFilePath().indexOf("/", 20);
+							String wrapKey = wrap.getFilePath().substring(wrapIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!wrapKey.equals("menu/" + uploadImg)) {
+									awss3.delete(wrapKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									wvo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateWrap(nvo, wvo);
 						  System.out.println("wrap: 들어옴");
 						  break;
-		case "salad"    :  if(svo.getFilePath() == null) svo.setFilePath(menuservice.selectSalad(svo).getFilePath());
+						  
+		case "salad"    : SaladVO salad = menuservice.selectSalad(svo);
+						  if(svo.getFilePath() == null) svo.setFilePath(salad.getFilePath());
+						  
+						  int saladIndex = salad.getFilePath().indexOf("/", 20);
+							String saladKey = salad.getFilePath().substring(saladIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!saladKey.equals("menu/" + uploadImg)) {
+									awss3.delete(saladKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									svo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateSalad(nvo, svo);
 						  System.out.println("salad: 들어옴");
 						  break;
-		case "drink"    : if(dvo.getFilePath() == null) dvo.setFilePath(menuservice.selectDrink(dvo).getFilePath());
+						  
+		case "drink"    : DrinkVO drink = menuservice.selectDrink(dvo);
+						  if(dvo.getFilePath() == null) dvo.setFilePath(drink.getFilePath());
+						  
+						  int drinkIndex = drink.getFilePath().indexOf("/", 20);
+							String drinkKey = drink.getFilePath().substring(drinkIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!drinkKey.equals("menu/" + uploadImg)) {
+									awss3.delete(drinkKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									dvo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateDrink(dvo);
 						  System.out.println("drink: 들어옴");
 						  break;
-		case "morning"  : if(mvo.getFilePath() == null) mvo.setFilePath(menuservice.selectMorning(mvo).getFilePath());
+						  
+		case "morning"  : MorningVO morning = menuservice.selectMorning(mvo);
+						  if(mvo.getFilePath() == null) mvo.setFilePath(morning.getFilePath());
+						  
+						  int morningIndex = morning.getFilePath().indexOf("/", 20);
+							String morningKey = morning.getFilePath().substring(morningIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!morningKey.equals("menu/" + uploadImg)) {
+									awss3.delete(morningKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									mvo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateMorning(nvo, mvo);
 						  System.out.println("morning: 들어옴");
 						  break;
-		case "cookie"   :  if(cvo.getFilePath() == null) cvo.setFilePath(menuservice.selectCookie(cvo).getFilePath());
+						  
+		case "cookie"   : CookieVO cookie = menuservice.selectCookie(cvo);
+						  if(cvo.getFilePath() == null) cvo.setFilePath(cookie.getFilePath());
+						  
+						  int cookieIndex = cookie.getFilePath().indexOf("/", 20);
+							String cookieKey = cookie.getFilePath().substring(cookieIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!cookieKey.equals("menu/" + uploadImg)) {
+									awss3.delete(cookieKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									cvo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateCookie(nvo, cvo);
 						  System.out.println("cookie: 들어옴");
 						  break;
-		case "was"      :  if(wasvo.getFilePath() == null) wasvo.setFilePath(menuservice.selectWAS(wasvo).getFilePath());
+						  
+		case "was"      : WedgeAndSoupVO was = menuservice.selectWAS(wasvo);
+						  if(wasvo.getFilePath() == null) wasvo.setFilePath(was.getFilePath());
+						  
+						  int wasIndex = was.getFilePath().indexOf("/", 20);
+							String wasKey = was.getFilePath().substring(wasIndex+1);
+							
+							if(!uploadImg.getOriginalFilename().equals("")) {
+								if(!wasKey.equals("menu/" + uploadImg)) {
+									awss3.delete(wasKey);
+									
+									InputStream is = uploadImg.getInputStream();
+									String uploadKey = uploadImg.getOriginalFilename();
+									String contentType = uploadImg.getContentType();
+									long contentLength = uploadImg.getSize();
+									
+									String bucket = "lubway/menu";
+									
+									awss3.upload(is, uploadKey, contentType, contentLength, bucket);
+									
+									String filePath = "https://lubway.s3.ap-northeast-2.amazonaws.com/menu/" + uploadKey;
+									
+									wasvo.setFilePath(filePath);
+								}
+							}
+						  
 						  menuservice.updateWAS(nvo, wasvo);
 						  System.out.println("was: 들어옴");
 						  break;
-		default         : break;
 		}
 		
 		System.out.println("수정완료");
