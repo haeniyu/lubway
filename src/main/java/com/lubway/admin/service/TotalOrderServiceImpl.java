@@ -76,4 +76,16 @@ public class TotalOrderServiceImpl implements TotalOrderService {
 		return dao.countStoreOrder(store_name);
 	}
 
+	@Override
+	@Transactional
+	public int getSearchCnt(String searchKeyword) {
+		return dao.getSearchCnt(searchKeyword);
+	}
+
+	@Override
+	@Transactional
+	public List<TotalOrderVO> getSearchPagingList(Pagination pagination) {
+		return dao.getSearchPagingList(pagination);
+	}
+
 }

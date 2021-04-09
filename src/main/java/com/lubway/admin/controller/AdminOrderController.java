@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lubway.admin.TotalOrderVO;
@@ -20,20 +18,13 @@ public class AdminOrderController {
 	@Autowired
 	private TotalOrderService totalOrderService;
 
-	/** 글목록 요청  */
+	/** 주문 목록 요청  */
 	@GetMapping("/getOrderList.mdo")
 	public String getOrderList(OrderCodeVO vo, Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range) {
 
-		System.out.println("글 목록 요청 처리");
-
-		System.out.println("page : " + page);
-		System.out.println("range : " + range);
-
 		/** 전체 게시글 개수  */
 		int listCnt = totalOrderService.getTotalListCnt();
-
-		System.out.println("listCnt : " + listCnt);
 
 		/** Pagination */
 		Pagination pagination = new Pagination();
@@ -43,17 +34,34 @@ public class AdminOrderController {
 
 		model.addAttribute("pagination", pagination);
 		model.addAttribute("orderList", pageList);
+		model.addAttribute("cnt", listCnt);
 
 		return "getOrderList";
 	}
 
-	@RequestMapping(value = "/orderCnt.mdo", method = RequestMethod.GET)
-	public String getPageListCnt() {
+	
+	/**
+	 * 검색 결과 페이지 이동
+	 */
+	@GetMapping("searchOrderByName.mdo")
+	public String searchOrderByName(@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,
+			@RequestParam("searchKeyword") String searchKeyword,
+			Model model, TotalOrderVO vo) {
+		
+		Pagination pagination = new Pagination();
+		int cnt = totalOrderService.getSearchCnt(vo.getSearchKeyword());
+		
+		pagination.pageInfoList(page, range, cnt, searchKeyword);
 
-		System.out.println(totalOrderService.getTotalListCnt());
+		List<TotalOrderVO> pageList = totalOrderService.getSearchPagingList(pagination);
 
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("orderList", pageList);
+		model.addAttribute("cnt", cnt);
+		
 		return "getOrderList";
 	}
-
+	
 	
 }

@@ -4,9 +4,10 @@
 
 <mapper namespace="TotalOrderDAO">
 	
-	<!-- ADMIN 관리자 판매내역 페이지 -->
+	<!-- ADMIN 관리자 주문목록 페이지 -->
 	<select id="getTotalList" parameterType="total_order" resultType="total_order">
-		select ROW_NUMBER() OVER() rownum, * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료'
+		SELECT ROW_NUMBER() OVER() rownum, * from order_code, order_list 
+		WHERE order_code.no = order_list.no and order_code.status='주문 완료'
 		ORDER BY order_time DESC
 		limit #{listSize} offset #{startList}
 	</select>
@@ -16,6 +17,25 @@
 		(select * from order_code, order_list where order_code.no = order_list.no and order_code.status='주문 완료')
 		as totalcnt
 	</select>
+	
+	<!-- ADMIN 관리자 주문목록 검색 페이징 -->
+	<select id="getSearchPagingList" resultType="total_order">
+		SELECT ROW_NUMBER() OVER() rownum, * from order_code, order_list 
+		WHERE order_code.no = order_list.no 
+		AND order_code.status='주문 완료'
+		AND order_code.name=#{searchKeyword}
+		ORDER BY order_time DESC
+		LIMIT #{listSize} OFFSET #{startList}
+	</select>
+	
+	<select id="getSearchCnt" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM
+			(SELECT * FROM order_code, order_list WHERE order_code.no = order_list.no 
+			AND order_code.status='주문 완료'
+			AND order_code.name=#{searchKeyword})
+		AS totalcnt
+	</select>
+	
 	
 	<!-- STORE 관리자 주문내역 페이지 -->
 	<select id="getTodayList" parameterType="total_order" resultType="total_order">

@@ -26,4 +26,8 @@ public interface TotalOrderService {
 	List<TotalOrderVO> getTotalAvgStore(String store_name);
 	
 	int countStoreOrder(String store_name);
+
+	int getSearchCnt(String searchKeyword);
+
+	List<TotalOrderVO> getSearchPagingList(Pagination pagination);
 }

@@ -61,4 +61,12 @@ public class TotalOrderDAO {
 	public int countStoreOrder(String store_name) {
 		return sqlSessionTemplate.selectOne("TotalOrderDAO.countStoreOrder", store_name);
 	}
+
+	public int getSearchCnt(String searchKeyword) {
+		return sqlSessionTemplate.selectOne("TotalOrderDAO.getSearchCnt",searchKeyword);
+	}
+
+	public List<TotalOrderVO> getSearchPagingList(Pagination pagination) {
+		return sqlSessionTemplate.selectList("TotalOrderDAO.getSearchPagingList",pagination);
+	}
 }

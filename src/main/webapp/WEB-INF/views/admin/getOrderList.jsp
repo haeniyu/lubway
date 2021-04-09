@@ -11,31 +11,34 @@
 <script>
 
 	//이전 버튼 이벤트
-   function fn_prev(page, range, rangeSize) {
+   function fn_prev(page, range, rangeSize, searchKeyword) {
       var page = ((range - 2) * rangeSize) + 1;
       var range = range - 1;
-      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
+      var url = "${pageContext.request.contextPath}/searchOrderByName.mdo";
       url = url + "?page=" + page;
       url = url + "&range=" + range;
+      url = url + "&searchKeyword=" + searchKeyword;
       location.href = url;
    }
 
    //페이지 번호 클릭
-   function fn_pagination(page, range, rangeSize) {
-      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
+   function fn_pagination(page, range, rangeSize, searchKeyword) {
+      var url = "${pageContext.request.contextPath}/searchOrderByName.mdo";
       url = url + "?page=" + page;
       url = url + "&range=" + range;
+      url = url + "&searchKeyword=" + searchKeyword;
       location.href = url;
    }
    
    
    //다음 버튼 이벤트
-   function fn_next(page, range, rangeSize) {
+   function fn_next(page, range, rangeSize, searchKeyword) {
       var page = parseInt((range * rangeSize)) + 1;
       var range = parseInt(range) + 1;
-      var url = "${pageContext.request.contextPath}/getOrderList.mdo";
+      var url = "${pageContext.request.contextPath}/searchOrderByName.mdo";
       url = url + "?page=" + page;
       url = url + "&range=" + range;
+      url = url + "&searchKeyword=" + searchKeyword;
       location.href = url;
    }
 </script>
@@ -51,6 +54,15 @@
 		<div class="card shadow mb-4">
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
+				<!-- 검색 시작 -->
+				<div align="right">
+					<form action="/lubway/searchOrderByName.mdo" method="get">
+						<input type="text" name="searchKeyword" placeholder="고객명" style="width:10%" /> 
+						<input style="margin:0px 3px; padding:0px 3px" class="btn btn-warning" type="submit" value="search" />
+					</form>
+				</div>
+				<!-- 검색 종료 -->
+				<span>총 ${cnt }건</span>
 			</div>
 				<div class="card-body">
 				<div class="fixed-table-container">
@@ -118,19 +130,19 @@
 					<ul class="pagination">
 						<c:if test="${pagination.prev}">
 							<li class="page-item"><a class="page-link" href="#"
-								onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}')">Prev</a></li>
+								onClick="fn_prev('${pagination.page}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">Prev</a></li>
 						</c:if>
 						<c:forEach begin="${pagination.startPage}"
 							end="${pagination.endPage}" var="idx">
 							<li
 								class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> "><a
 								class="page-link" href="#"
-								onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}')">
+								onClick="fn_pagination('${idx}','${pagination.range}','${pagination.rangeSize}','${pagination.searchKeyword }')">
 									${idx} </a></li>
 						</c:forEach>
 						<c:if test="${pagination.next}">
 							<li class="page-item"><a class="page-link" href="#"
-								onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}')">Next</a></li>
+								onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}','${pagination.searchKeyword }')">Next</a></li>
 						</c:if>
 					</ul>
 				</div>

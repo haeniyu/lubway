@@ -37,4 +37,6 @@ public class TotalOrderVO {
 	private String step03;
 	private int set_price;
 	private int menu_price;
+	
+	private String searchKeyword;
 }
