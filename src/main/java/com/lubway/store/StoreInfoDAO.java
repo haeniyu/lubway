@@ -68,7 +68,7 @@ public class StoreInfoDAO {
 		return sqlSessionTemplate.selectList("StoreInfoDAO.getProductBasicOrderList", page);
 	}
 	
-	/**	품목별 검색 주문내역 AreaChart */
+	/**	품목별 검색 주문내역 LineChart */
 	public List<StoreStatVO> getProductSearchStat(StoreStatPagination page) {
 		return sqlSessionTemplate.selectList("StoreInfoDAO.getProductSearchStat", page);
 	}
@@ -84,6 +84,21 @@ public class StoreInfoDAO {
 
 	}
 
+	/**	품목별 검색X 주문내역 데이터 수 */
+	public int getNotProductSearchStatCnt(StoreStatPagination page) {
+		return sqlSessionTemplate.selectOne("StoreInfoDAO.getNotProductSearchStatCnt", page);
+	}
+	
+	/**	품목별 검색X 주문내역 LineChart */
+	public List<StoreStatVO> getNotProductSearchStat(StoreStatPagination page) {
+		return sqlSessionTemplate.selectList("StoreInfoDAO.getNotProductSearchStat", page);
+	}
+	
+	/**	품목별 검색X 데이터 정보 */
+	public List<StoreStatVO> getNotProductSearchOrderList(StoreStatPagination page) {
+		return sqlSessionTemplate.selectList("StoreInfoDAO.getNotProductSearchOrderList", page);
+	}
+	
 	public List<String> getMenuName(String select) {
 		return sqlSessionTemplate.selectList("StoreInfoDAO.getMenuName", select);
 	}

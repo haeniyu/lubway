@@ -184,22 +184,43 @@ public class StatController {
 		System.out.println(vo.getEnd());
 		
 		List<StatVO> productStatTypeList = new ArrayList<StatVO>();
+		List<StatVO> productStatList = new ArrayList<StatVO>();
+		List<StatVO> productOrderList = new ArrayList<StatVO>();
+		
 		StatVO type = statservice.getProductSearchTypeStat(vo);
 		productStatTypeList.add(type);
-		List<StatVO> productStatList = statservice.getProductSearchStat(vo);
-		for(StatVO v : productStatList) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+
+		if(vo.getMenu_name().equals("")) {
+			productStatList = statservice.getNotProductSearchStat(vo);
+			for(StatVO v : productStatList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
+
+			int listCnt = statservice.getNotProductSearchStatCnt(vo);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+			productOrderList = statservice.getNotProductSearchOrderList(vo);
+		} else {
+			productStatList = statservice.getProductSearchStat(vo);
+			for(StatVO v : productStatList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
+
+			int listCnt = statservice.getProductSearchStatCnt(vo);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+			productOrderList = statservice.getProductSearchOrderList(vo);
 		}
 
-		int listCnt = statservice.getProductSearchStatCnt(vo);
-		if(vo.getPage() == 0) vo.setPage(1);
-		if(vo.getRange() == 0) vo.setRange(1);
-		vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
-		List<StatVO> productOrderList = statservice.getProductSearchOrderList(vo);
 		for(StatVO v : productOrderList) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
+		
 		List<StatPagination> productPageList = new ArrayList<StatPagination>();
 		productPageList.add(vo);
+		
 		List<Object> totalList = new ArrayList<Object>();
 		totalList.add(productStatList);
 		totalList.add(productStatTypeList);

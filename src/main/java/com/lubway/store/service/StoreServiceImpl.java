@@ -75,7 +75,7 @@ public class StoreServiceImpl implements StoreService{
 		return infodao.getProductBasicOrderList(page);
 	}
 
-	/**	품목별 검색 주문내역 AreaChart */
+	/**	품목별 검색 주문내역 LineChart */
 	@Override
 	@Transactional
 	public List<StoreStatVO> getProductSearchStat(StoreStatPagination page) {
@@ -94,6 +94,27 @@ public class StoreServiceImpl implements StoreService{
 	@Transactional
 	public StoreStatVO getProductSearchTypeStat(StoreStatPagination page) {
 		return infodao.getProductSearchTypeStat(page);
+	}
+	
+	/**	품목별 검색X 주문내역 데이터 수 */
+	@Override
+	@Transactional
+	public int getNotProductSearchStatCnt(StoreStatPagination page) {
+		return infodao.getNotProductSearchStatCnt(page);
+	}
+	
+	/**	품목별 검색X 주문내역 LineChart */
+	@Override
+	@Transactional
+	public List<StoreStatVO> getNotProductSearchStat(StoreStatPagination page) {
+		return infodao.getNotProductSearchStat(page);
+	}
+
+	/**	품목별 검색X 데이터 정보 */
+	@Override
+	@Transactional
+	public List<StoreStatVO> getNotProductSearchOrderList(StoreStatPagination page) {
+		return infodao.getNotProductSearchOrderList(page);
 	}
 	
 	/** 메뉴명 DB조회 */

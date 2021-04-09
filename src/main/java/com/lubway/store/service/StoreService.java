@@ -30,7 +30,7 @@ public interface StoreService {
 	/**	품목별 총 데이터 정보 */
 	List<StoreStatVO> getProductBasicOrderList(StoreStatPagination page);
 	
-	/**	품목별 검색 주문내역 AreaChart */
+	/**	품목별 검색 주문내역 LineChart */
 	List<StoreStatVO> getProductSearchStat(StoreStatPagination page);
 
 	/**	품목별 검색 데이터 정보 */
@@ -39,6 +39,15 @@ public interface StoreService {
 	/**	품목별 검색 주문내역 TypeChart */
 	StoreStatVO getProductSearchTypeStat(StoreStatPagination page);
 
+	/**	품목별 검색X 주문내역 데이터 수 */
+	int getNotProductSearchStatCnt(StoreStatPagination page);
+	
+	/**	품목별 검색X 주문내역 LineChart */
+	List<StoreStatVO> getNotProductSearchStat(StoreStatPagination page);
+
+	/**	품목별 검색X 데이터 정보 */
+	List<StoreStatVO> getNotProductSearchOrderList(StoreStatPagination page);
+	
 	/** 메뉴 Category 선택 */
 	List<String> getMenuName(String select);
 	

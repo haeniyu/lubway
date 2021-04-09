@@ -138,7 +138,7 @@ public class StatServiceImpl implements StatService {
 		return dao.getProductBasicOrderList(page);
 	}
 
-	/**	품목별 검색 주문내역 AreaChart */
+	/**	품목별 검색 주문내역 LineChart */
 	@Override
 	@Transactional
 	public List<StatVO> getProductSearchStat(StatPagination page) {
@@ -159,6 +159,27 @@ public class StatServiceImpl implements StatService {
 		return dao.getProductSearchTypeStat(page);
 	}
 
+	/**	품목별 검색X 주문내역 데이터 수 */
+	@Override
+	@Transactional
+	public int getNotProductSearchStatCnt(StatPagination page) {
+		return dao.getNotProductSearchStatCnt(page);
+	}
+	
+	/**	품목별 검색X 주문내역 LineChart */
+	@Override
+	@Transactional
+	public List<StatVO> getNotProductSearchStat(StatPagination page) {
+		return dao.getNotProductSearchStat(page);
+	}
+
+	/**	품목별 검색X 데이터 정보 */
+	@Override
+	@Transactional
+	public List<StatVO> getNotProductSearchOrderList(StatPagination page) {
+		return dao.getNotProductSearchOrderList(page);
+	}
+	
 	/** DashBoard Today Sales */
 	@Transactional
 	public int getStoreTodaySales(String store_name) {
