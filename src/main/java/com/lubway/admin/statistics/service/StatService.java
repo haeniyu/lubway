@@ -58,7 +58,7 @@ public interface StatService {
 	/**	품목별 총 데이터 정보 */
 	List<StatVO> getProductBasicOrderList(StatPagination page);
 	
-	/**	품목별 검색 주문내역 AreaChart */
+	/**	품목별 검색 주문내역 LineChart */
 	List<StatVO> getProductSearchStat(StatPagination page);
 
 	/**	품목별 검색 데이터 정보 */
@@ -66,7 +66,16 @@ public interface StatService {
 
 	/**	품목별 검색 주문내역 TypeChart */
 	StatVO getProductSearchTypeStat(StatPagination page);
+	
+	/**	품목별 검색X 주문내역 데이터 수 */
+	int getNotProductSearchStatCnt(StatPagination page);
 
+	/**	품목별 검색X 주문내역 LineChart */
+	List<StatVO> getNotProductSearchStat(StatPagination page);
+
+	/**	품목별 검색X 데이터 정보 */
+	List<StatVO> getNotProductSearchOrderList(StatPagination page);
+	
 	/** 메뉴 Category 선택 */
 	List<String> getMenuName(String select);
 	

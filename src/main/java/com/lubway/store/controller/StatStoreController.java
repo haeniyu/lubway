@@ -98,22 +98,44 @@ public class StatStoreController {
 		vo.setStore_name(store.getStorename());
 		
 		List<StoreStatVO> productStatTypeList = new ArrayList<StoreStatVO>();
+		
 		StoreStatVO type = statservice.getProductSearchTypeStat(vo);
 		productStatTypeList.add(type);
-		List<StoreStatVO> productStatList = statservice.getProductSearchStat(vo);
-		for(StoreStatVO v : productStatList) {
-			SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
-		}
+		
+		List<StoreStatVO> productStatList = new ArrayList<StoreStatVO>();
+		List<StoreStatVO> productOrderList = new ArrayList<StoreStatVO>();
+		
+		if(vo.getMenu_name().equals("")) {
+			productStatList = statservice.getNotProductSearchStat(vo);
+			for(StoreStatVO v : productStatList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
 
-		int listCnt = statservice.getProductSearchStatCnt(vo);
-		if(vo.getPage() == 0) vo.setPage(1);
-		if(vo.getRange() == 0) vo.setRange(1);
-		vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
-		List<StoreStatVO> productOrderList = statservice.getProductSearchOrderList(vo);
+			int listCnt = statservice.getNotProductSearchStatCnt(vo);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+			productOrderList = statservice.getNotProductSearchOrderList(vo);
+		} else {
+			productStatList = statservice.getProductSearchStat(vo);
+			for(StoreStatVO v : productStatList) {
+				SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+				v.setFormatDate(simpleDateFormat.format(v.getOrder_time()));
+			}
+
+			int listCnt = statservice.getProductSearchStatCnt(vo);
+			if(vo.getPage() == 0) vo.setPage(1);
+			if(vo.getRange() == 0) vo.setRange(1);
+			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
+			productOrderList = statservice.getProductSearchOrderList(vo);
+		}
+		
 		for(StoreStatVO v : productOrderList) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
+		
 		List<StoreStatPagination> productPageList = new ArrayList<StoreStatPagination>();
 		productPageList.add(vo);
+		
 		List<Object> totalList = new ArrayList<Object>();
 		totalList.add(productStatList);
 		totalList.add(productStatTypeList);
