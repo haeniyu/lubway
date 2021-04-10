@@ -15,6 +15,7 @@ public class StatVO {
 	private String formatDate;
 	private String year_month;
 	private int total_price;
+	private int menu_price;
 	private int total;
 	private int real_total;
 	private int coupon;
