@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getOrderList" value="/lubway/getOrderList.sdo">
+<c:url var="getOrderList" value="/getOrderList.sdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -52,7 +52,7 @@
 		
 		var form = document.createElement("form");
 			form.setAttribute("method", "Post");
-		    form.setAttribute("action", "/lubway/updatepayment.sdo");
+		    form.setAttribute("action", "/updatepayment.sdo");
 		
 		var payField = document.createElement("input");
 		payField.setAttribute("type", "hidden");
@@ -72,7 +72,7 @@
 		
 		var form = document.createElement("form");
 			form.setAttribute("method", "Post");
-		    form.setAttribute("action", "/lubway/updatestatus.sdo");
+		    form.setAttribute("action", "/updatestatus.sdo");
 		
 		var payField = document.createElement("input");
 		payField.setAttribute("type", "hidden");
@@ -113,7 +113,7 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">오늘의 주문</h6>
 			</div>
-			<form action="/lubway/updateOrder.sdo" method="post">
+			<form action="/updateOrder.sdo" method="post">
 				<div class="card-body">
 					<div class="fixed-table-container">
 						<div class="fixed-table-body">

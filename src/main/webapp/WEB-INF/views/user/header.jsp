@@ -23,7 +23,7 @@
 	<div id="header" style="overflow: hidden; height: 165px;">
 		<div class="headercontent">
 			<h1 class="logo">
-				<a href="/lubway/main.do">LUBWAY</a>
+				<a href="/main.do">LUBWAY</a>
 			</h1>
 			<!-- gnb -->
 			<nav id="gnb">
@@ -32,11 +32,11 @@
 						<a class="dp1" href="#none">메뉴소개</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/menuSandwich.do">샌드위치</a></li>
-								<li><a href="/lubway/menuWrap.do">랩ㆍ기타</a></li>
-								<li><a href="/lubway/menuSalad.do">찹샐러드</a></li>
-								<li><a href="/lubway/menuMorning.do">아침메뉴</a></li>
-								<li><a href="/lubway/menuSmileWay.do">스마일 웨이</a></li>
+								<li><a href="/menuSandwich.do">샌드위치</a></li>
+								<li><a href="/menuWrap.do">랩ㆍ기타</a></li>
+								<li><a href="/menuSalad.do">찹샐러드</a></li>
+								<li><a href="/menuMorning.do">아침메뉴</a></li>
+								<li><a href="/menuSmileWay.do">스마일 웨이</a></li>
 							</ul>
 						</div>
 					</li>
@@ -44,7 +44,7 @@
 						<a class="dp1" href="#none">이용방법</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/howtouse.do">러브웨이 이용방법</a></li>
+								<li><a href="/howtouse.do">러브웨이 이용방법</a></li>
 							</ul>
 						</div>
 					</li>
@@ -52,9 +52,9 @@
 						<a class="dp1" href="#none">새소식</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/getUserEventList.do">이벤트ㆍ프로모션</a></li>
-								<li><a href="/lubway/getUserNoticeList.do">뉴스ㆍ공지사항</a></li>
-								<li><a href="/lubway/video.do">광고영상</a></li>
+								<li><a href="/getUserEventList.do">이벤트ㆍ프로모션</a></li>
+								<li><a href="/getUserNoticeList.do">뉴스ㆍ공지사항</a></li>
+								<li><a href="/video.do">광고영상</a></li>
 							</ul>
 						</div>
 					</li>
@@ -62,9 +62,9 @@
 						<a class="dp1" href="#none">러브웨이</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/history.do">러브웨이 역사</a></li>
-								<li><a href="/lubway/promise.do">러브웨이 약속</a></li>
-								<li><a href="/lubway/findStore.do">매장찾기</a></li>
+								<li><a href="/history.do">러브웨이 역사</a></li>
+								<li><a href="/promise.do">러브웨이 약속</a></li>
+								<li><a href="/findStore.do">매장찾기</a></li>
 							</ul>
 						</div>
 					</li>
@@ -72,9 +72,9 @@
 						<a class="dp1" href="#none">가맹점</a>
 						<div class="dp2" style="opacity: 0; top: -20px;">
 							<ul>
-								<li><a href="/lubway/franchise.do">써브웨이 프랜차이즈</a></li>
-								<li><a href="/lubway/franchisefaq.do">가맹관련 FAQ</a></li>
-								<li><a href="/lubway/franchiseInquiry.do">가맹신청ㆍ문의</a></li>
+								<li><a href="/franchise.do">써브웨이 프랜차이즈</a></li>
+								<li><a href="/franchisefaq.do">가맹관련 FAQ</a></li>
+								<li><a href="/franchiseInquiry.do">가맹신청ㆍ문의</a></li>
 							</ul>
 						</div>
 					</li>
@@ -84,18 +84,18 @@
 							<ul>
 								<li>
 									<c:if test="${user == null}">
-										<a href="/lubway/login.do">FAST-WAY</a>
+										<a href="/login.do">FAST-WAY</a>
 									</c:if>
 									<c:if test="${user != null}">
-										<a href="/lubway/fastway/step01.do">FAST-WAY</a>
+										<a href="/fastway/step01.do">FAST-WAY</a>
 									</c:if>
 								</li>
 								<li>
 									<c:if test="${user == null}">
-										<a href="/lubway/login.do">HOME-WAY</a>
+										<a href="/login.do">HOME-WAY</a>
 									</c:if>
 									<c:if test="${user != null}">
-										<a href="/lubway/homeway/step01.do">HOME-WAY</a>
+										<a href="/homeway/step01.do">HOME-WAY</a>
 									</c:if>	
 								</li>
 							</ul>
@@ -114,9 +114,9 @@
 								<img src="${path}/resources/images/logo.png" style="width: 30px; height: 30px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>
-						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>
+						<li class="before_sign" style="margin-left: 15px"><a href="/logout.do">로그아웃</a></li>
+						<li class="before_sign"><a href="/myway.do">MY-WAY</a></li>
+						<li class="icon_menu cart on"><a href="/basketfast.do"></a></li>
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -137,9 +137,9 @@
 								<img src="${path}/resources/images/naver.png" style="width: 25px; height: 25px; padding-top: 4px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>		
-						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>
+						<li class="before_sign" style="margin-left: 15px"><a href="/logout.do">로그아웃</a></li>
+						<li class="before_sign"><a href="/myway.do">MY-WAY</a></li>		
+						<li class="icon_menu cart on"><a href="/basketfast.do"></a></li>
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -160,9 +160,9 @@
 								<img src="${path}/resources/images/google.png" style="width: 25px; height: 25px; padding-top: 4px;" />
 							</span>
 						</li>
-						<li class="before_sign" style="margin-left: 15px"><a href="/lubway/logout.do">로그아웃</a></li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>
-						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>		
+						<li class="before_sign" style="margin-left: 15px"><a href="/logout.do">로그아웃</a></li>
+						<li class="before_sign"><a href="/myway.do">MY-WAY</a></li>
+						<li class="icon_menu cart on"><a href="/basketfast.do"></a></li>		
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -174,7 +174,7 @@
 				</div>
 			</c:if>
 			<!-- 
-			<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080/lubway/kakaoLogout.do">카카오 로그아웃</a>
+			<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080s/kakaoLogout.do">카카오 로그아웃</a>
 			 -->
 			<!-- 카카오 회원 로그인시 -->
 			<c:if test="${kuser != null}">
@@ -186,10 +186,10 @@
 							</span>
 						</li>
 						<li class="before_sign" style="margin-left: 15px">
-							<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://localhost:8080/lubway/kakaoLogout.do">로그아웃</a>
+							<a href="https://kauth.kakao.com/oauth/logout?client_id=792b6ab2dfca5a403d08ae5ab92a5d8e&logout_redirect_uri=http://ec2-52-79-190-214.ap-northeast-2.compute.amazonaws.com/kakaoLogout.do">로그아웃</a>
 						</li>
-						<li class="before_sign"><a href="/lubway/myway.do">MY-WAY</a></li>	
-						<li class="icon_menu cart on"><a href="/lubway/basketfast.do"></a></li>	
+						<li class="before_sign"><a href="/myway.do">MY-WAY</a></li>	
+						<li class="icon_menu cart on"><a href="/basketfast.do"></a></li>	
 						<li class="icon_menu global_subway">
 							<a href="http://www.subway.com/en-us/exploreourworld" target="_blank" title="Global Subway">
 								<span class="blind">
@@ -205,8 +205,8 @@
 			<c:if test="${user == null && nuser == null && guser == null && kuser == null}">
 				<div class="util_menu">
 					<ul>
-						<li class="before_sign"><a href="/lubway/login.do">로그인</a></li>
-						<li class="before_sign"><a href="/lubway/step01.do">회원가입</a></li>
+						<li class="before_sign"><a href="/login.do">로그인</a></li>
+						<li class="before_sign"><a href="/step01.do">회원가입</a></li>
 						<li class="icon_menu global_subway"><a
 							href="http://www.subway.com/en-us/exploreourworld" target="_blank"
 							title="Global Subway"><span class="blind"><img

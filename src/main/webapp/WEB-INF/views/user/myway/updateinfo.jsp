@@ -76,7 +76,7 @@ $(document).ready(function() {
 		var form = document.createElement("form");
         form.setAttribute("method", "Post");
         
-        form.setAttribute("action", "/lubway/resultmod.do");
+        form.setAttribute("action", "/resultmod.do");
 
 	    //비밀번호 저장
 	     var passField = document.createElement("input");
@@ -126,7 +126,7 @@ $(document).ready(function() {
 		var form = document.createElement("form");
         form.setAttribute("method", "Post");
         
-        form.setAttribute("action", "/lubway/resultmodSocial.do");
+        form.setAttribute("action", "/resultmodSocial.do");
 		
       	//sms 수신 동의 여부 저장
         var smsField = document.createElement("input");
@@ -161,7 +161,7 @@ $(document).ready(function() {
 		var flag = confirm("정말로 탈퇴하시겠습니까?");
 		if(flag){
 			alert("그동안 이용해주셔서 감사합니다.");
-			window.location.href="/lubway/withdrawal.do";
+			window.location.href="/withdrawal.do";
 		}
 		
 	});

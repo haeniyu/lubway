@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="btn_list">
-					<a href="/lubway/getUserNoticeList.do">목록보기</a>
+					<a href="/getUserNoticeList.do">목록보기</a>
 				</div>
 
 				<!-- 우측 영역 -->

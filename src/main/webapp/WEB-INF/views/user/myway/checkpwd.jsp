@@ -21,7 +21,7 @@ $(document).ready(function() {
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", "/lubway/checkpwdproc.do");
+		form.setAttribute("action", "/checkpwdproc.do");
 		
 		//사용자가 입력한 비밀번호 값 저장
 		var passField = document.createElement("input");

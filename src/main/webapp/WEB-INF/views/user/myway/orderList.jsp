@@ -121,7 +121,7 @@ $(document).ready(function(){
 								<c:forEach items="${order}" var="order">
 								<li>
 									<div class="order_card">
-										<a href="/lubway/orderListDetail.do?no=${order.no }">
+										<a href="/orderListDetail.do?no=${order.no }">
 											<c:if test="${order.order_type ne '배달'}">
 												<p class="order_type fast">
 													FAST-WAY

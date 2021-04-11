@@ -27,7 +27,7 @@
 					<div class="policy_top_box">
 						이 이용약관은 이용자(“이용자”)와 SUBWAY SYSTEMS SINGAPORE PTE LTD 한국사무소(“SSSPL”)(명시적으로 SUBWAY IP LLC, FRANCHISE WORLD HEADQUARTERS, LLC, DOCTOR’S ASSOCIATES LLC, SUBWAY INTERNATIONAL, B.V., SUBWAY FRANCHISEE ADVERTISING FUND TRUST B.V. 등 그 자회사 및 계열사 포함, “THE SUBWAY GROUP”, 이하 “회사”)가 제공하는 서비스를 이용자가 이용함에 있어 필요한 이용 조건, 절차 및 당사자 간의 권리, 의무 등 기본적인 사항을 규정하는 것을 목적으로 계약(이하 “합의서”)을 형성합니다.
 						<br />
-						이 합의서는 이용자가 <a href="/lubway/main.do">www.subway.co.kr</a> 웹사이트와 SSSPL이 운영하거나 위탁한 모든 웹사이트(이하 “웹사이트”)를 사용하거나, 써브웨이 모바일 앱("Subway® 앱")을 다운로드 및 사용함으로써 그 효력이 발생합니다. (이하 "웹사이트"와 "Subway® 앱"을 통칭하여 “사이트”라고 합니다.)
+						이 합의서는 이용자가 <a href="/main.do">www.subway.co.kr</a> 웹사이트와 SSSPL이 운영하거나 위탁한 모든 웹사이트(이하 “웹사이트”)를 사용하거나, 써브웨이 모바일 앱("Subway® 앱")을 다운로드 및 사용함으로써 그 효력이 발생합니다. (이하 "웹사이트"와 "Subway® 앱"을 통칭하여 “사이트”라고 합니다.)
 						<br />
 						본 합의서는 서비스를 이용하고자 하는 모든 이용자에게 그 효력이 발생하며 회원 가입 시 사이트 내에서 본 합의서에 동의 또는 주문하기 버튼을 클릭함으로써 모든 조항에 동의하는 것으로 간주합니다.
 						<br />

@@ -270,7 +270,7 @@ $(window).load(function(){
 						console.log(keyword);
 						
 						$.ajax({
-							url : '/lubway/homeway/searchStore.do?keyword=' + keyword,
+							url : '/homeway/searchStore.do?keyword=' + keyword,
 							type : 'post',
 							success : function(data) {
 								//검색결과가 없을 시
@@ -429,7 +429,7 @@ $(window).load(function(){
 	<button class="btn_close"></button>
 </div>
 <!-- 주문하기 -->
-<form action="/lubway/orderStep02.do" method="post" id="orderForm" style="display: none;">
+<form action="/orderStep02.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" name="whatWay" value="Home-Way">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
 	<input type="hidden" id="fullAddr" name="fullAddr" value="">

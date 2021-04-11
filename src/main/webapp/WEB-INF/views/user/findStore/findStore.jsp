@@ -126,7 +126,7 @@ $(window).load(function(){
 				// 현위치 기반 검색
 				function searchStoreNearHere(keyword) {
 					$.ajax({
-						url : '/lubway/searchStore.do?keyword=' + keyword,
+						url : '/searchStore.do?keyword=' + keyword,
 						type : 'post',
 						success : function(data) {
 							//검색결과가 없을 시
@@ -194,7 +194,7 @@ $(window).load(function(){
 					console.log(keyword);
 					
 					$.ajax({
-						url : '/lubway/searchStore.do?keyword=' + keyword,
+						url : '/searchStore.do?keyword=' + keyword,
 						type : 'post',
 						success : function(data) {
 							//검색결과가 없을 시

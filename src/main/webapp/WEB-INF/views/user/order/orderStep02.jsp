@@ -53,7 +53,7 @@
 	
 	function update(select) {
 		$.ajax({
-			url : '/lubway/changeCategory.do?select=' + select,
+			url : '/changeCategory.do?select=' + select,
 			type : 'post',
 			success : function(data) {
 				console.log("=== Ajax result data ===");

@@ -139,7 +139,7 @@ $(window).load(function(){
 					// 현위치 기반 검색
 					function searchStoreNearHere(keyword) {
 						$.ajax({
-							url : '/lubway/searchStore.do?keyword=' + keyword,
+							url : '/searchStore.do?keyword=' + keyword,
 							type : 'post',
 							success : function(data) {
 								//검색결과가 없을 시
@@ -205,7 +205,7 @@ $(window).load(function(){
 						console.log(keyword);
 						
 						$.ajax({
-							url : '/lubway/fastway/searchStore.do?keyword=' + keyword,
+							url : '/fastway/searchStore.do?keyword=' + keyword,
 							type : 'post',
 							success : function(data) {
 								//검색결과가 없을 시
@@ -330,7 +330,7 @@ $(window).load(function(){
 	</div>
 </div>
 <!-- 주문하기-->
-<form action="/lubway/orderStep02.do" method="post" id="orderForm" style="display: none;">
+<form action="/orderStep02.do" method="post" id="orderForm" style="display: none;">
 	<input type="hidden" name="whatWay" value="Fast-Way">
 	<input type="hidden" id="franchiseNo" name="franchiseNo" value="">
 	<input type="hidden" name="changeNo" value="${changeNo}">

@@ -53,11 +53,11 @@ $(window).load(function(){
 								</p>
 							</div>
 							<c:if test="${nuser != null || guser != null || kuser != null}">
-								<a class="btn go_view infoBtn" href="/lubway/updateinfo.do">
+								<a class="btn go_view infoBtn" href="/updateinfo.do">
 								<span>회원 정보 변경</span></a>
 							</c:if>
 							<c:if test="${user != null && nuser == null && guser == null && kuser == null}">
-								<a class="btn go_view infoBtn" href="/lubway/checkpwd.do">
+								<a class="btn go_view infoBtn" href="/checkpwd.do">
 								<span>회원 정보 변경</span></a>
 							</c:if>
 						</div>
@@ -68,7 +68,7 @@ $(window).load(function(){
 									<strong><em>${user.point }</em>P</strong>
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/lubway/point.do"><span>포인트 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/point.do"><span>포인트 관리</span></a>
 						</div>
 					</section>
 					<section class="my_info">
@@ -79,7 +79,7 @@ $(window).load(function(){
 									<strong>${countOrder}</strong>개
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/lubway/orderList.do"><span>주문 내역 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/orderList.do"><span>주문 내역 관리</span></a>
 						</div>
 						<div class="info coupon">
 							<dl>
@@ -88,7 +88,7 @@ $(window).load(function(){
 									<strong>${countCoupon}</strong>개
 								</dd>
 							</dl>
-							<a class="btn go_view whiteBtn" href="/lubway/coupon.do"><span>쿠폰 관리</span></a>
+							<a class="btn go_view whiteBtn" href="/coupon.do"><span>쿠폰 관리</span></a>
 						</div>
 					</section>
 				</section>

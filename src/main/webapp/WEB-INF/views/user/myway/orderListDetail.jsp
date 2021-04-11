@@ -282,7 +282,7 @@ $(function() {
 					<!--// 결제정보 -->
 				</div>
 				<div class="btn_area">
-					<a class="btn bgc_point" href="/lubway/orderList.do" style="width: 170px;"><span>주문목록</span></a>
+					<a class="btn bgc_point" href="/orderList.do" style="width: 170px;"><span>주문목록</span></a>
 				</div>
 			</div>
 			<!--// FAST-SUB 주문내역상세 -->

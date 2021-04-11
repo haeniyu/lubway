@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -57,12 +56,12 @@ function menuDetail(code) {
 	<div class="quick_link">
 		<div class="quick_link_content">
 			<div class="store">
-				<a href="/lubway/findStore.do"> <img alt="map"
+				<a href="/findStore.do"> <img alt="map"
 					src="${path}/resources/images/main/icon_map.png" /> <strong>매장찾기</strong>
 				</a>
 			</div>
 			<div class="franchise">
-				<a href="/lubway/franchiseInquiry.do"> <img alt="franchise"
+				<a href="/franchiseInquiry.do"> <img alt="franchise"
 					src="${path}/resources/images/main/icon_franchise.png" /> <strong>가맹신청ㆍ문의</strong></a>
 			</div>
 		</div>
@@ -156,7 +155,7 @@ function menuDetail(code) {
 				<p>
 					러브웨이를<br />제대로 즐기는 방법!
 				</p>
-				<a class="btn" href="/lubway/howtouse.do"><span>이용방법</span></a>
+				<a class="btn" href="/howtouse.do"><span>이용방법</span></a>
 			</div>
 			<!--// 이용방법 -->
 
@@ -165,7 +164,7 @@ function menuDetail(code) {
 				<p>
 					50년 역사를 가진<br />No.1 프랜차이즈의 성장기
 				</p>
-				<a class="btn" href="/lubway/history.do"><span>러브웨이 역사</span></a> <img
+				<a class="btn" href="/history.do"><span>러브웨이 역사</span></a> <img
 					src="${path}/resources/images/main/img_subway_history.png" />
 			</div>
 			<!--// 러브웨이 역사 -->
@@ -188,7 +187,7 @@ function menuDetail(code) {
 						<li><a type="hidden" href="getUserNotice.do?no=${pageList.no}">${pageList.title}</a></li>
 						</c:forEach>
 					</ul>
-					<a class="more" href="/lubway/getUserNoticeList.do">more</a>
+					<a class="more" href="/getUserNoticeList.do">more</a>
 				</div>
 			</div>
 			<!--// whats new -->
@@ -208,18 +207,18 @@ function menuDetail(code) {
 	</div>
 	<div class="quick_menu">
 		<ul>
-			<li class="qm01"><a href="/lubway/franchise.do">
+			<li class="qm01"><a href="/franchise.do">
 					<div class="icon"></div> <strong>프랜차이즈</strong> <span>개설절차/투자비용
 						정보</span>
 			</a></li>
-			<li class="qm02"><a href="/lubway/findStore.do">
+			<li class="qm02"><a href="/findStore.do">
 					<div class="icon"></div> <strong>매장찾기</strong> <span>수도권
 						지사정보</span>
 			</a></li>
-			<li class="qm03"><a href="/lubway/video.do">
+			<li class="qm03"><a href="/video.do">
 					<div class="icon"></div> <strong>광고영상</strong> <span>TV광고/동영상</span>
 			</a></li>
-			<li class="qm04"><a href="/lubway/franchiseInquiry.do">
+			<li class="qm04"><a href="/franchiseInquiry.do">
 					<div class="icon"></div> <strong>가맹문의</strong> <span>가맹/신청문의</span>
 			</a></li>
 		</ul>

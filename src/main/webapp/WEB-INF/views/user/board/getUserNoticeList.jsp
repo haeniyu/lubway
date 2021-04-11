@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.do">
+<c:url var="getNoticeList" value="/search.do">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -102,10 +102,10 @@ $(window).load(function(){
 
 				<div class="cont_right">
 					<div class="form_search">
-						<form id="searchform" method="GET" action="/lubway/search.do">
+						<form id="searchform" method="GET" action="/search.do">
 							<input name="page" type="hidden" value="1" /> 
 							<input name="searchKeyword" placeholder="검색어를 입력하세요" type="text" value="" />
-							<input type="submit" class="btn_search" value="" formaction="/lubway/search.do"/>
+							<input type="submit" class="btn_search" value="" formaction="/search.do"/>
 						</form>
 					</div>
 				</div>

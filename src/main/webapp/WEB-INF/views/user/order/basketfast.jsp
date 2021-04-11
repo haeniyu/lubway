@@ -104,7 +104,7 @@ $(document).ready(function(){
 		updateNo = $("input[name=update" + count + "]").val();
 		
 		$.ajax({
-			url : '/lubway/updateBasket.do',
+			url : '/updateBasket.do',
 			type : 'post',
 			data : {
 				no : updateNo,
@@ -138,7 +138,7 @@ $(document).ready(function(){
 		updateNo = $("input[name=update" + count + "]").val();
 		
 		$.ajax({
-			url : '/lubway/updateBasket.do',
+			url : '/updateBasket.do',
 			type : 'post',
 			data : {
 				no : updateNo,
@@ -227,8 +227,8 @@ function orderBasket() {
 			<h2 class="subTitle_02">장바구니</h2>
 			<div class="tab02">
 				<ul>
-					<li class="swiper-slide active"><a href="/lubway/basketfast.do">FAST-WAY</a></li>
-					<li class="swiper-slide "><a href="/lubway/baskethome.do">HOME-WAY</a></li>
+					<li class="swiper-slide active"><a href="/basketfast.do">FAST-WAY</a></li>
+					<li class="swiper-slide "><a href="/baskethome.do">HOME-WAY</a></li>
 				</ul>
 			</div>
 			<!-- 장바구니 목록 있을때 -->

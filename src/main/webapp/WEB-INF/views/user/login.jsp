@@ -164,7 +164,7 @@
 										console.log(res);
 										$.ajax({
 											type: "POST",
-											url: "/lubway/kakao.do",
+											url: "/kakao.do",
 											data: {
 												id : res.id,
 												email : res.kakao_account.email,
@@ -176,7 +176,7 @@
 													alert("관리자에 의해 정지된 계정입니다.");
 													return;
 												} else if(data == "success") {
-													location.href = "/lubway/main.do"													
+													location.href = "/main.do"													
 												}
 											},
 											error: function() {

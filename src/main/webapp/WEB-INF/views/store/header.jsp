@@ -47,12 +47,12 @@
 			<div class="sidebar-heading">메뉴</div>
 			
 			<!-- Nav Item - 주문조회  -->
-			<li class="nav-item"><a class="nav-link" href="/lubway/getTodayOrder.sdo">
+			<li class="nav-item"><a class="nav-link" href="/getTodayOrder.sdo">
 					<i class="fas fa-fw fa-chart-area"></i> <span>주문조회</span>
 			</a></li>
 
 			<!-- Nav Item - 매출현황  -->
-			<li class="nav-item"><a class="nav-link" href="/lubway/salesStatus.sdo">
+			<li class="nav-item"><a class="nav-link" href="/salesStatus.sdo">
 					<i class="fas fa-fw fa-chart-area"></i> <span>매출현황</span>
 			</a></li>
 
