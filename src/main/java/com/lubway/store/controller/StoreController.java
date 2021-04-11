@@ -244,7 +244,7 @@ public class StoreController {
 	
 	/** 주문 상태 변경 */
 	@RequestMapping("/updatestatus.sdo")
-	public String updatePayment(String no, String select){
+	public String updateStatus(String no, String select){
 		
 		int check = Integer.parseInt(no);
 		
