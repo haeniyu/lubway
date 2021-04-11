@@ -18,7 +18,7 @@
 		var range = range - 1;
 	
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/productSearchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -47,7 +47,7 @@
 		console.log("페이지 번호 클릭");
 	
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/productSearchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -80,7 +80,7 @@
 		var range = parseInt(range) + 1;
 	  
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/productSearchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -315,7 +315,7 @@
 		var payment_list = $("#pay").val();
 			
 		$.ajax({
-			url : '/lubway/productSearchStat.mdo',
+			url : '/productSearchStat.mdo',
 			type : 'post',
 			data : {
 				start : start,
@@ -362,7 +362,7 @@ $(document).ready(function() {
 		if(select != "side" && select != "메뉴 카테고리") {
 			$("#menu").show();
 			$.ajax({
-				url : '/lubway/selectCategory.mdo',
+				url : '/selectCategory.mdo',
 				type : 'post',
 				data : {select : select},
 				async : false,
@@ -397,7 +397,7 @@ function SaveAsExcel(){
 	var payment_list = $("#pay").val();
 	var menu_name = $("#menu").val();
 	
-	location.href="/lubway/excelDownloadForMenu.mdo?start="+start+"&end="+end+
+	location.href="/excelDownloadForMenu.mdo?start="+start+"&end="+end+
 			"&menu_type="+menu_type+"&order_type="+order_type+"&payment_list="+payment_list+"&menu_name="+menu_name;
 
 }
@@ -410,7 +410,7 @@ function SaveAsPdf(){
 	var payment_list = $("#pay").val();
 	var menu_name = $("#menu").val();
 	
-	location.href="/lubway/pdfDownloadForMenu.mdo?start="+start+"&end="+end+
+	location.href="/pdfDownloadForMenu.mdo?start="+start+"&end="+end+
 		"&menu_type="+menu_type+"&order_type="+order_type+"&payment_list="+payment_list+"&menu_name="+menu_name;
 }
 

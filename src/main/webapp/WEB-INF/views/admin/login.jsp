@@ -37,7 +37,7 @@
 
 	<div class="login_content">
 		<h3>LUBWAY 관리자 사이트 로그인</h3>
-		<form action="main.mdo" method="post" id="login">
+		<form action="/main.mdo" method="post" id="login">
 			<div class="form-group">
 				<input type="text" class="form-text" placeholder="아이디" id="id" name="id" />
 			</div>

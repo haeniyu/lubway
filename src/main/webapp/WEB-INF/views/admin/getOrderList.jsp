@@ -56,7 +56,7 @@
 				<h6 class="m-0 font-weight-bold text-warning">Order List Board</h6>
 				<!-- 검색 시작 -->
 				<div align="right">
-					<form action="/lubway/searchOrderByName.mdo" method="get">
+					<form action="/searchOrderByName.mdo" method="get">
 						<input type="text" name="searchKeyword" placeholder="고객명" style="width:10%" /> 
 						<input style="margin:0px 3px; padding:0px 3px" class="btn btn-warning" type="submit" value="search" />
 					</form>

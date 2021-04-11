@@ -44,7 +44,7 @@ li{
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/eventUpload.mdo" method="post" enctype="multipart/form-data">
+	<form action="/eventUpload.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 			<!-- Page Heading -->
 			<h1 class="h3 mb-2 text-gray-800">이벤트 등록</h1>
@@ -90,7 +90,7 @@ li{
 							type="submit" id="registerBtn" value="등록하기" />
 					</div>
 					<div align="right">
-						<a href="getEventList.mdo" class="btn btn-light btn-icon-split">
+						<a href="/getEventList.mdo" class="btn btn-light btn-icon-split">
 							<span class="text">목록가기</span>
 						</a>
 					</div>

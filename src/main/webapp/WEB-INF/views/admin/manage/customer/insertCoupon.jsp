@@ -105,7 +105,7 @@ li{
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertedCoupon.mdo" method="post" id="insertForm">
+	<form action="/insertedCoupon.mdo" method="post" id="insertForm">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -160,7 +160,7 @@ li{
 							id="insterBtn" onclick="validate();" value="등록하기" />
 					</div>
 					<div align="right">
-						<a href="getCouponList.mdo" class="btn btn-light btn-icon-split">
+						<a href="/getCouponList.mdo" class="btn btn-light btn-icon-split">
 							<span class="text">목록가기</span>
 						</a>
 					</div>

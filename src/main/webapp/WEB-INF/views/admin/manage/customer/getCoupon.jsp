@@ -41,7 +41,7 @@ $(document).ready(function(){
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-   <form action="/lubway/updateCoupon.mdo" enctype="multipart/form-data">
+   <form action="/updateCoupon.mdo" enctype="multipart/form-data">
       <input name="no" type="hidden" value="${coupon.no }">
       <div class="container-fluid">
 
@@ -101,9 +101,9 @@ $(document).ready(function(){
                <div align="right">
                   <a href="insertCoupon.mdo" class="btn btn-warning btn-icon-split">
                      <span class="text">등록하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="deleteCoupon.mdo?no=${coupon.no}"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="/deleteCoupon.mdo?no=${coupon.no}"
                      class="btn btn-danger btn-icon-split" id="deleteBtn"> <span class="text">삭제하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="getCouponList.mdo"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="/getCouponList.mdo"
                      class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
                   </a>
                </div>

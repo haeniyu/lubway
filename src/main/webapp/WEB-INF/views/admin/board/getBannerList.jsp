@@ -57,7 +57,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<form action="/lubway/insertBanner.mdo" method="post">
+					<form action="/insertBanner.mdo" method="post">
 						<div align="right">
 							<input type="submit" class="btn btn-warning btn-icon-split" style="padding: 5px" value="글등록">
 						</div>

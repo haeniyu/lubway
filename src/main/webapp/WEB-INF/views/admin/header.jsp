@@ -42,7 +42,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item active"><a class="nav-link"
-				href="/lubway/main.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
+				href="/main.mdo"> <i class="fas fa-fw fa-tachometer-alt"></i> <span>Dashboard</span></a>
 			</li>
 
 			<!-- Divider -->
@@ -61,8 +61,8 @@
 					data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Customer:</h6>
-						<a class="collapse-item" href="/lubway/getuserlist.mdo">회원 관리</a>
-						<a class="collapse-item" href="/lubway/getCouponList.mdo">쿠폰</a> 
+						<a class="collapse-item" href="/getuserlist.mdo">회원 관리</a>
+						<a class="collapse-item" href="/getCouponList.mdo">쿠폰</a> 
 					</div>
 				</div></li>
 
@@ -76,13 +76,13 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Store:</h6>
-						<a class="collapse-item" href="/lubway/getstorelist.mdo">매장 관리</a> 
-						<a class="collapse-item" href="/lubway/insertstore.mdo">매장 계정 등록</a>
+						<a class="collapse-item" href="/getstorelist.mdo">매장 관리</a> 
+						<a class="collapse-item" href="/insertstore.mdo">매장 계정 등록</a>
 					</div>
 				</div></li>
 
 			<!-- Nav Item - 주문조회  -->
-			<li class="nav-item"><a class="nav-link" href="/lubway/getOrderList.mdo">
+			<li class="nav-item"><a class="nav-link" href="/getOrderList.mdo">
 					<i class="fas fa-fw fa-chart-area"></i> <span>주문조회</span>
 			</a></li>
 
@@ -95,19 +95,19 @@
 				<div id="collapseOne" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Sales Status:</h6>
-						<a class="collapse-item" href="/lubway/storeSalesStatus.mdo">매장별 매출 현황</a>
-						<a class="collapse-item" href="/lubway/productSalesStatus.mdo">품목별 매출 현황</a>
+						<a class="collapse-item" href="/storeSalesStatus.mdo">매장별 매출 현황</a>
+						<a class="collapse-item" href="/productSalesStatus.mdo">품목별 매출 현황</a>
 					</div>
 				</div>
 			</li>
 
 			<!-- Nav Item - 메뉴관리 -->
-			<li class="nav-item"><a class="nav-link" href="/lubway/menuList.mdo">
+			<li class="nav-item"><a class="nav-link" href="/menuList.mdo">
 					<i class="fas fa-fw fa-table"></i> <span>메뉴관리</span>
 			</a></li>
 
 			<!-- Nav Item - 가맹점 문의 조회 -->
-			<li class="nav-item"><a class="nav-link" href="/lubway/getInquiryList.mdo">
+			<li class="nav-item"><a class="nav-link" href="/getInquiryList.mdo">
 					<i class="fas fa-fw fa-table"></i> <span>가맹점 문의 조회</span>
 			</a></li>
 
@@ -121,10 +121,10 @@
 					aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Manage Site:</h6>
-						 <a class="collapse-item" href="/lubway/getNoticeList.mdo">공지사항</a>
-						 <a class="collapse-item" href="getEventList.mdo">이벤트</a> 
-						 <a class="collapse-item" href="getBannerList.mdo">배너</a>
-						 <a class="collapse-item" href="/lubway/getTerms.mdo">약관동의</a>
+						 <a class="collapse-item" href="/getNoticeList.mdo">공지사항</a>
+						 <a class="collapse-item" href="/getEventList.mdo">이벤트</a> 
+						 <a class="collapse-item" href="/getBannerList.mdo">배너</a>
+						 <a class="collapse-item" href="/getTerms.mdo">약관동의</a>
 					</div>
 				</div></li>
 

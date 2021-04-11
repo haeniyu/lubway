@@ -39,7 +39,7 @@ li{
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/updateBanner.mdo" method="post" enctype="multipart/form-data">
+	<form action="/updateBanner.mdo" method="post" enctype="multipart/form-data">
 		<input name="no" type="hidden" value="${banner.no }">
 		<div class="container-fluid">
 			<!-- Page Heading -->

@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
+<c:url var="getNoticeList" value="/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -95,7 +95,7 @@
 				<h6 class="m-0 font-weight-bold text-warning">Notice Board</h6>
 			</div>
 
-			<form action="/lubway/insertNotice.mdo" method="post">
+			<form action="/insertNotice.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -128,7 +128,7 @@
 											<c:otherwise>
 												<td>${notice.rownum}</td>
 												<td align="left"><a type="hidden"
-													href="getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
+													href="/getNotice.mdo?no=${notice.no}">${notice.title }</a></td>
 												<td><fmt:formatDate value="${notice.regDate }"
 														pattern="yyyy-MM-dd" /></td>
 											</c:otherwise>
@@ -140,7 +140,7 @@
 				</form>
 				<!-- 검색 시작 -->
 				<div align="right">
-					<form action="/lubway/search.mdo" method="get">
+					<form action="/search.mdo" method="get">
 						<tr>
 							<td><input type="text" name="searchKeyword"
 								placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> 

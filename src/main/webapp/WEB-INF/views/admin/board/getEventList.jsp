@@ -62,7 +62,7 @@
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
-					<form action="/lubway/insertEvent.mdo" method="post">
+					<form action="/insertEvent.mdo" method="post">
 						<div align="right">
 							<input type="submit" class="btn btn-warning btn-icon-split" style="padding: 5px" value="글등록">
 						</div>
@@ -79,8 +79,8 @@
 							<tbody>
 								<c:forEach items="${eventList}" var="event">
 									<tr>
-										<td><a type="hidden" href="getEvent.mdo?no=${event.no}">${event.title }</a></td>
-										<td><a type="hideen" href="getEvent.mdo?no=${event.no }"><img
+										<td><a type="hidden" href="/getEvent.mdo?no=${event.no}">${event.title }</a></td>
+										<td><a type="hideen" href="/getEvent.mdo?no=${event.no }"><img
 												width="370px" src="${event.thumbnail }"></a></td>
 										<td><fmt:formatDate value="${event.regdate }"
 												pattern="yyyy-MM-dd" /></td>

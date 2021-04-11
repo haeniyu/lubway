@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getNoticeList" value="/lubway/search.mdo">
+<c:url var="getNoticeList" value="/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -31,7 +31,7 @@
 			var form = document.createElement("form");
 
 			form.setAttribute("method", "post");
-			form.setAttribute("action", "menuListTab.mdo");
+			form.setAttribute("action", "/menuListTab.mdo");
 
 			var input_select = document.createElement("input");
 			input_select.setAttribute("type", "hidden");
@@ -84,7 +84,7 @@
 						</div>
 					</div>
 					<!-- 카테고리 선택 e -->
-					<form action="/lubway/menu.mdo">
+					<form action="/menu.mdo">
 						<!-- method="post" 넣어줘야 함/ 일단 페이지만 넘어가게 했어요! -->
 						<!-- 메뉴 등록 버튼 -->
 						<div align="right">
@@ -108,7 +108,7 @@
 									<tr>
 										<td>${List.name}</td>
 										<td>${List.engname}</td>
-										<td><a type="hidden" href="menuDetail.mdo?code=${List.code}&select=${select}">${List.code}</a></td>
+										<td><a type="hidden" href="/menuDetail.mdo?code=${List.code}&select=${select}">${List.code}</a></td>
 										<td><img src="${List.filePath }" width="200px"></td>
 									</tr>
 								</c:forEach>

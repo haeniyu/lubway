@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getuserlist" value="/lubway/searchuser.mdo">
+<c:url var="getuserlist" value="/searchuser.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -25,7 +25,7 @@
 			
 			var form = document.createElement("form");
 			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/lubway/blockuser.mdo");
+			form.setAttribute("action", "/blockuser.mdo");
 			
 			var idField = document.createElement("input");
 			idField.setAttribute("type", "hidden");
@@ -48,7 +48,7 @@
 			
 			var form = document.createElement("form");
 			form.setAttribute("method", "Post");
-			form.setAttribute("action", "/lubway/activateuser.mdo");
+			form.setAttribute("action", "/activateuser.mdo");
 			
 			var idField = document.createElement("input");
 			idField.setAttribute("type", "hidden");
@@ -114,7 +114,7 @@
 				<h6 class="m-0 font-weight-bold text-primary">회원 목록</h6>
 				<!-- 검색 시작 -->
 				<div align="right">
-					<form action="/lubway/searchuser.mdo" method="get">
+					<form action="/searchuser.mdo" method="get">
 						<input type="text" name="searchKeyword"
 								placeholder="고객명" style="width:10%" /> <input
 								style="margin:0px 3px; padding:0px 3px"

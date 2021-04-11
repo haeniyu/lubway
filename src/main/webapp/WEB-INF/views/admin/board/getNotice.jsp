@@ -77,7 +77,7 @@ ul {
 <body id="page-top" onload="javascript:fix();">
 
    <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-   <form action="/lubway/updateNotice.mdo" method="post" enctype="multipart/form-data">
+   <form action="/updateNotice.mdo" method="post" enctype="multipart/form-data">
       <input name="no" type="hidden" value="${notice.no }">
       <!-- 관리자 버전 화면 만들기  -->
       <!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->

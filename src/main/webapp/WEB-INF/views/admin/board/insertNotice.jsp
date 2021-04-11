@@ -74,7 +74,7 @@ ul {
 </head>
 <body id="page-top">
 <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-	<form action="/lubway/insertDB.mdo" method="post" enctype="multipart/form-data">
+	<form action="/insertDB.mdo" method="post" enctype="multipart/form-data">
 		<div class="container-fluid">
 
 			<!-- Page Heading -->
@@ -121,7 +121,7 @@ ul {
 							type="submit" id="registerBtn" value="등록하기" />
 					</div>
 					<div align="right">
-						<a href="getNoticeList.mdo" class="btn btn-light btn-icon-split">
+						<a href="/getNoticeList.mdo" class="btn btn-light btn-icon-split">
 							<span class="text">목록가기</span>
 						</a>
 					</div>

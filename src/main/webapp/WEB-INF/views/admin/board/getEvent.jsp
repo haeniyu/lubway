@@ -43,7 +43,7 @@ $(document).ready(function(){
 <body id="page-top">
 
    <%@ include file="/WEB-INF/views/admin/header.jsp"%>
-   <form action="/lubway/updateEvent.mdo" method="post" enctype="multipart/form-data">
+   <form action="/updateEvent.mdo" method="post" enctype="multipart/form-data">
       <input name="no" type="hidden" value="${event.no }">
       <!-- 관리자 버전 화면 만들기  -->
       <!-- 이 jsp을 복사해서  container-fluid 안에 해당 화면의 내용으로 바꿔서 작성하시면 됩니다. -->
@@ -99,9 +99,9 @@ $(document).ready(function(){
                <div align="right">
                   <a href="insertEvent.mdo" class="btn btn-warning btn-icon-split">
                      <span class="text">등록하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="deleteEvent.mdo?no=${event.no}"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="/deleteEvent.mdo?no=${event.no}"
                      class="btn btn-danger btn-icon-split" id="deleteBtn"> <span class="text">삭제하기</span>
-                  </a>&nbsp;&nbsp;&nbsp; <a href="getEventList.mdo"
+                  </a>&nbsp;&nbsp;&nbsp; <a href="/getEventList.mdo"
                      class="btn btn-light btn-icon-split"> <span class="text">목록가기</span>
 
                   </a>

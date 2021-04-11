@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getstorelist" value="/lubway/searchstore.mdo">
+<c:url var="getstorelist" value="/searchstore.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -25,7 +25,7 @@ function shutdown(r) {
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", "/lubway/shutdown.mdo");
+		form.setAttribute("action", "/shutdown.mdo");
 		
 		var storenameField = document.createElement("input");
 		storenameField.setAttribute("type", "hidden");
@@ -46,7 +46,7 @@ function update(r) {
 		
 		var form = document.createElement("form");
 		form.setAttribute("method", "Post");
-		form.setAttribute("action", "/lubway/updatestore.mdo");
+		form.setAttribute("action", "/updatestore.mdo");
 		
 		var storenameField = document.createElement("input");
 		storenameField.setAttribute("type", "hidden");
@@ -115,7 +115,7 @@ function update(r) {
 				<h6 class="m-0 font-weight-bold text-primary">매장 목록</h6>
 				<!-- 검색 시작 -->
 				<div align="right">
-					<form action="/lubway/searchstore.mdo" method="get">
+					<form action="/searchstore.mdo" method="get">
 						<input type="text" name="searchKeyword"
 								placeholder="지역구" style="width:10%" /> <input
 								style="margin:0px 3px; padding:0px 3px"

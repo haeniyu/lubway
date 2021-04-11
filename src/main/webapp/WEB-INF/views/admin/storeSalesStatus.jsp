@@ -17,7 +17,7 @@
 		var range = range - 1;
 
 		$.ajax({
-			url : '/lubway/searchStat.mdo',
+			url : '/searchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -45,7 +45,7 @@
 		console.log("페이지 번호 클릭");
 
 		$.ajax({
-			url : '/lubway/searchStat.mdo',
+			url : '/searchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -76,7 +76,7 @@
 		var range = parseInt(range) + 1;
       
 		$.ajax({
-			url : '/lubway/searchStat.mdo',
+			url : '/searchStat.mdo',
 			type : 'post',
 			data : {
 				page : page,
@@ -306,7 +306,7 @@
 		var payment_list = $("#pay").val();
 			
 		$.ajax({
-			url : '/lubway/searchStat.mdo',
+			url : '/searchStat.mdo',
 			type : 'post',
 			data : {
 				start : start,
@@ -340,7 +340,7 @@
 		var order_type = $("#order").val();
 		var payment_list = $("#pay").val();
 		
-		location.href="/lubway/excelDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
+		location.href="/excelDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
 
 	}
 	
@@ -351,7 +351,7 @@
 		var order_type = $("#order").val();
 		var payment_list = $("#pay").val();
 		
-		location.href="/lubway/pdfDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
+		location.href="/pdfDownload.mdo?start="+start+"&end="+end+"&store_name="+store_name+"&order_type="+order_type+"&payment_list="+payment_list;
 
 	}
 </script>

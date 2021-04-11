@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
-<c:url var="getInquiryList" value="/lubway/franchise/search.mdo">
+<c:url var="getInquiryList" value="/franchise/search.mdo">
 	<c:param name="page" value="${pagination.page}" />
 	<c:param name="range" value="${pagination.range}" />
 	<c:param name="rangeSize" value="${pagination.rangeSize}" />
@@ -84,7 +84,7 @@
 								<c:forEach items="${list}" var="inquiry">
 									<tr>
 										<td>${inquiry.rownum}</td>
-										<td align="left"><a type="hidden" href="getInquiry.mdo?no=${inquiry.no}">${inquiry.title }</a></td>
+										<td align="left"><a type="hidden" href="/getInquiry.mdo?no=${inquiry.no}">${inquiry.title }</a></td>
 										<td>${inquiry.email }</td>
 										<td><fmt:formatDate value="${inquiry.regDate }" pattern="yyyy-MM-dd" /></td>
 									</tr>
@@ -93,7 +93,7 @@
 					</table>
 						<!-- 검색 시작 -->
 						<div align="right">
-							<form action="/lubway/franchise/search.mdo" method="get">
+							<form action="/franchise/search.mdo" method="get">
 								<tr>
 									<td><input type="text" name="searchKeyword"
 										placeholder="검색할 제목을 입력해 주세요." style="width: 20%" /> <input

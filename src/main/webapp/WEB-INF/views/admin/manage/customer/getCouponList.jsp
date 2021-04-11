@@ -20,7 +20,7 @@
 			<div class="card-header py-3">
 				<h6 class="m-0 font-weight-bold text-warning">Coupon List</h6>
 			</div>
-			<form action="/lubway/insertCoupon.mdo" method="post">
+			<form action="/insertCoupon.mdo" method="post">
 				<div class="card-body">
 					<div class="table-responsive">
 						<div align="right">
@@ -46,7 +46,7 @@
 								<c:forEach items="${couponList}" var="coupon">
 									<tr align="center">
 										<td>${coupon.code }</td>
-										<td><a type="hidden" href="getCoupon.mdo?no=${coupon.no}">${coupon.name }</a></td>
+										<td><a type="hidden" href="/getCoupon.mdo?no=${coupon.no}">${coupon.name }</a></td>
 										<td>${coupon.type }</td>
 										<td>${coupon.discount }%</td>
 										<td><fmt:formatDate value="${coupon.regdate }"
