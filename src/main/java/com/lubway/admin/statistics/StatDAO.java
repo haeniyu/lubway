@@ -153,9 +153,18 @@ public class StatDAO {
 		return sqlSessionTemplate.selectList("StatisticsDAO.getSearchOrderListForExcel", page);
 	}
 	
+	/** 매장별 검색X 엑셀&PDF */
+	public List<StatVO> getNotSearchOrderListForExcel(StatPagination page) {
+		return sqlSessionTemplate.selectList("StatisticsDAO.getNotSearchOrderListForExcel", page);
+	}
+	
 	/** 품목별 엑셀&PDF */
 	public List<StatVO> getProductSearchOrderListForExcel(StatPagination page){
 		return sqlSessionTemplate.selectList("StatisticsDAO.getProductSearchOrderListForExcel", page);
 	}
 	
+	/** 품목별 검색X 엑셀&PDF */
+	public List<StatVO> getNotProductSearchOrderListForExcel(StatPagination page){
+		return sqlSessionTemplate.selectList("StatisticsDAO.getNotProductSearchOrderListForExcel", page);
+	}
 }

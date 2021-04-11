@@ -87,9 +87,13 @@ public interface StatService {
 	/** 매장별 매출 현황 Excel&PDF */
 	List<StatVO> getSearchOrderListForExcel(StatPagination page);
 	
+	/** 매장별 검색X 매출 현황 Excel&PDF */
+	List<StatVO> getNotSearchOrderListForExcel(StatPagination page);
+	
 	/** 품목별 매출 현황 Excel&PDF */
 	List<StatVO> getProductSearchOrderListForExcel(StatPagination page);
 	
-	
+	/** 품목별 검색X 매출 현황 Excel&PDF */
+	List<StatVO> getNotProductSearchOrderListForExcel(StatPagination page);
 	
 }

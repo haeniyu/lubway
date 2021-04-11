@@ -235,7 +235,7 @@
 			elem += '</td><td>';
 			elem += searchData[i].payment_list;
 			elem += '</td><td>￦';
-			elem += searchData[i].total_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			elem += searchData[i].menu_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 			elem += '원</td></tr>';
 			document.getElementById("searchTable").innerHTML = elem;
 		}
@@ -438,7 +438,7 @@
 									<td>${result.store_name}</td>
 									<td>${result.order_type}</td>
 									<td>${result.payment_list}</td>
-									<td><fmt:formatNumber type="currency" value="${result.total_price}"/>원</td>
+									<td><fmt:formatNumber type="currency" value="${result.menu_price}"/>원</td>
 								 </tr>
 							</c:forEach>
                         </tbody>

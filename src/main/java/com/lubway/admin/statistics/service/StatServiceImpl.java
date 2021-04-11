@@ -220,6 +220,12 @@ public class StatServiceImpl implements StatService {
 		return dao.getSearchOrderListForExcel(page);
 	}
 
+	/** 매장별 검색X 매출 현황 Excel&PDF */
+	@Override
+	public List<StatVO> getNotSearchOrderListForExcel(StatPagination page) {
+		return dao.getNotSearchOrderListForExcel(page);
+	}
+	
 	/** 품목별 매출 현황 Excel&PDF */
 	@Override
 	@Transactional
@@ -227,4 +233,11 @@ public class StatServiceImpl implements StatService {
 		return dao.getProductSearchOrderListForExcel(page);
 	}
 
+	/** 품목별 검색X 매출 현황 Excel&PDF */
+	@Override
+	@Transactional
+	public List<StatVO> getNotProductSearchOrderListForExcel(StatPagination page) {
+		return dao.getNotProductSearchOrderListForExcel(page);
+	}
+	
 }

@@ -24,13 +24,14 @@
 
 	<!-- 매장별 매출 현황 총 데이터 수 -->
 	<select id="getBasicStatCnt" resultType="int">
-		select count(*) from order_code
+		select count(*) from order_list
 	</select>
 
 	<!-- 매장별 매출 현황 총 데이터 정보 -->
 	<select id="getBasicOrderList" resultType="stat">
-		select order_time::date, store_name, order_type, payment_list, total_price
-		from order_code 
+		select order_time::date, store_name, order_type, payment_list, menu_price
+		from order_code a
+		right outer join order_list b on b.no = a.no
 		order by order_time::date desc limit #{listSize} offset #{startList}
 	</select>
 
@@ -56,26 +57,31 @@
 	
 	<!-- 매장별 매출 현황 검색 데이터 수 -->
 	<select id="getSearchStatCnt" resultType="int">
-		select count(*) from order_code where 
-			store_name like #{store_name} and 
-			order_type like '%'||#{order_type}||'%' and 
-			payment_list like '%'||#{payment_list}||'%' and
-			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+		select count(*) from order_code a 
+		right join order_list b on b.no = a.no 
+		where store_name like #{store_name} and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and
+			  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								   and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 
 	<!-- 매장별 매출 현황 검색 데이터 정보 -->
 	<select id="getSearchOrderList" resultType="stat">
 		select * from (
-			select order_time::date, store_name, order_type, payment_list, total_price
+			select order_time::date, store_name, order_type, payment_list, menu_price
 			from ( 
-				select * from order_code 
-				where store_name like #{store_name} and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
-				order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
-				order by order_time::date desc) as three
+				select * from order_code a
+				right join order_list b on b.no = a.no
+				where store_name like #{store_name} and 
+					  order_type like '%'||#{order_type}||'%' and 
+					  payment_list like '%'||#{payment_list}||'%' and
+					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') and
+											   TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+				) as three
+			order by order_time::date desc
 			limit #{listSize} offset #{startList}
-			) as two
+		) as two
 	</select>
 
 	<!-- 매장별 매출 현황 검색 데이터 Chart -->
@@ -100,28 +106,33 @@
 		order by order_time::date
 	</select>
 	
-	<!-- 매장별 선택X 데이터 수 -->
+	<!-- 매장별 검색X 데이터 수 -->
 	<select id="getNotSearchStatCnt" resultType="int">
-		select count(*) from order_code where 
-			store_name like '%'||#{store_name}||'%' and 
-			order_type like '%'||#{order_type}||'%' and 
-			payment_list like '%'||#{payment_list}||'%' and
-			order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-								 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+		select count(*) from order_code a 
+		right join order_list b on b.no = a.no 
+		where store_name like '%'||#{store_name}||'%' and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and
+			  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+								   and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
 	</select>
 	
-	<!-- 매장별 선택X 데이터 정보 -->
+	<!-- 매장별 검색X 데이터 정보 -->
 	<select id="getNotSelectSerchOrderList" resultType="stat">
 		select * from (
-			select order_time::date, store_name, order_type, payment_list, total_price
+			select order_time::date, store_name, order_type, payment_list, menu_price
 			from ( 
-				select * from order_code 
-				where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
-				order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-								 	 and TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
-				order by order_time::date desc) as three
+				select * from order_code a
+				right join order_list b on b.no = a.no
+				where store_name like '%'||#{store_name}||'%' and 
+					  order_type like '%'||#{order_type}||'%' and 
+					  payment_list like '%'||#{payment_list}||'%' and
+					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') and
+											   TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+				) as three
+			order by order_time::date desc
 			limit #{listSize} offset #{startList}
-			) as two
+		) as two
 	</select>
 	
 	<!-- 매장별 매출 현황 검색X 데이터 Chart -->
@@ -153,7 +164,7 @@
 
 	<!-- 품목별 매출 현황 총 데이터 정보 -->
 	<select id="getProductBasicOrderList" resultType="stat">
-		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price
+		select order_time::date, menu_type, menu_name, order_type, payment_list, menu_price
 		from order_code a 
 		right outer join order_list b on b.no = a.no 
 		order by order_time::date desc limit #{listSize} offset #{startList}
@@ -164,10 +175,10 @@
 		select
 			order_time::date,
 			substring(order_time::date::text, 1,7) as year_month,
-			sum(case when menu_type='sandwich' then total_price end) as sandwich,
-			sum(case when menu_type='salad' then total_price end) as salad,
-			sum(case when menu_type='wrap' then total_price end) as wrap,
-			sum(case when menu_type='side' then total_price end) as side
+			sum(case when menu_type='sandwich' then menu_price end) as sandwich,
+			sum(case when menu_type='salad' then menu_price end) as salad,
+			sum(case when menu_type='wrap' then menu_price end) as wrap,
+			sum(case when menu_type='side' then menu_price end) as side
 		from order_code a 
 		right outer join order_list b on b.no = a.no
 		group by order_time::date
@@ -177,10 +188,10 @@
 	<!-- 품목별 매출 현황 총 데이터 Type Chart -->
 	<select id="getProductBasicTypeStat" resultType="stat">
 		select
-			sum(case when menu_type='sandwich' then total_price end) as sandwich,
-			sum(case when menu_type='salad' then total_price end) as salad,
-			sum(case when menu_type='wrap' then total_price end) as wrap,
-			sum(case when menu_type='side' then total_price end) as side
+			sum(case when menu_type='sandwich' then menu_price end) as sandwich,
+			sum(case when menu_type='salad' then menu_price end) as salad,
+			sum(case when menu_type='wrap' then menu_price end) as wrap,
+			sum(case when menu_type='side' then menu_price end) as side
 		from order_code a 
 		right outer join order_list b on b.no = a.no
 	</select>
@@ -200,7 +211,7 @@
 
 	<!-- 품목별 매출 현황 검색 데이터 정보 -->
 	<select id="getProductSearchOrderList" resultType="stat">
-		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price
+		select order_time::date, menu_type, menu_name, order_type, payment_list, menu_price
 		from order_code a 
 		right outer join order_list b on b.no = a.no 
 		where menu_type like '%'||#{menu_type}||'%' and 
@@ -217,10 +228,10 @@
 		select
 			order_time::date,
 			substring(order_time::date::text, 1,7) as year_month,
-			sum(case when menu_type='sandwich' then total_price end) as sandwich,
-			sum(case when menu_type='salad' then total_price end) as salad,
-			sum(case when menu_type='wrap' then total_price end) as wrap,
-			sum(case when menu_type='side' then total_price end) as side
+			sum(case when menu_type='sandwich' then menu_price end) as sandwich,
+			sum(case when menu_type='salad' then menu_price end) as salad,
+			sum(case when menu_type='wrap' then menu_price end) as wrap,
+			sum(case when menu_type='side' then menu_price end) as side
 		from order_code a
 		right outer join order_list b on b.no = a.no
 		where menu_type like '%'||#{menu_type}||'%' and
@@ -236,10 +247,10 @@
 	<!-- 품목별 매출 현황 검색 데이터 Type Chart -->
 	<select id="getProductSearchTypeStat" resultType="stat">
 		select
-			sum(case when menu_type='sandwich' then total_price end) as sandwich,
-			sum(case when menu_type='salad' then total_price end) as salad,
-			sum(case when menu_type='wrap' then total_price end) as wrap,
-			sum(case when menu_type='side' then total_price end) as side
+			sum(case when menu_type='sandwich' then menu_price end) as sandwich,
+			sum(case when menu_type='salad' then menu_price end) as salad,
+			sum(case when menu_type='wrap' then menu_price end) as wrap,
+			sum(case when menu_type='side' then menu_price end) as side
 		from order_code a 
 		right outer join order_list b on b.no = a.no
 		where order_type like '%'||#{order_type}||'%' and 
@@ -263,7 +274,7 @@
 
 	<!-- 품목별 매출 현황 검색X 데이터 정보 -->
 	<select id="getNotProductSearchOrderList" resultType="stat">
-		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price
+		select order_time::date, menu_type, menu_name, order_type, payment_list, menu_price
 		from order_code a 
 		right outer join order_list b on b.no = a.no 
 		where menu_type like '%'||#{menu_type}||'%' and 
@@ -280,10 +291,10 @@
 		select
 			order_time::date,
 			substring(order_time::date::text, 1,7) as year_month,
-			sum(case when menu_type='sandwich' then total_price end) as sandwich,
-			sum(case when menu_type='salad' then total_price end) as salad,
-			sum(case when menu_type='wrap' then total_price end) as wrap,
-			sum(case when menu_type='side' then total_price end) as side
+			sum(case when menu_type='sandwich' then menu_price end) as sandwich,
+			sum(case when menu_type='salad' then menu_price end) as salad,
+			sum(case when menu_type='wrap' then menu_price end) as wrap,
+			sum(case when menu_type='side' then menu_price end) as side
 		from order_code a
 		right outer join order_list b on b.no = a.no
 		where menu_type like '%'||#{menu_type}||'%' and 
@@ -318,8 +329,24 @@
 		]]>
 	</select>
 	
-	<!-- 매장별 엑셀&PDF 쿼리문 -->
+	<!-- 매장별 엑셀&PDF 쿼리문 
 	<select id="getSearchOrderListForExcel" resultType="stat">
+		select * from (
+			select order_time::date, order_type, store_name, payment_list
+				 ,sum(total_price) as total
+				 ,sum(total_price - use_coupon - use_point) as real_total
+				 ,sum(use_coupon) as coupon
+				 ,sum(use_point) as point
+		      	  from order_code 
+					  where store_name like #{store_name} and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
+					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
+					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
+		      	  group by order_time::date , order_type, store_name, payment_list
+			) as two
+	</select> -->
+	
+	<!-- 매장별 검색X 엑셀&PDF 쿼리문 
+	<select id="getNotSearchOrderListForExcel" resultType="stat">
 		select * from (
 			select order_time::date, order_type, store_name, payment_list
 				 ,sum(total_price) as total
@@ -332,8 +359,9 @@
 					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
 		      	  group by order_time::date , order_type, store_name, payment_list
 			) as two
-	</select>
-	<!-- 품목별 엑셀&PDF 쿼리문 -->
+	</select> -->
+	
+	<!-- 품목별 엑셀&PDF 쿼리문 
 	<select id="getProductSearchOrderListForExcel" resultType="stat">
 		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price, set_price,
 		(total_price-(single_price*quantity)-(set_price*quantity)) as topping_price, single_price 
@@ -346,7 +374,70 @@
 			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
 			  					   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
 		order by a.order_time::date
+	</select> -->
+	
+	<!-- 매장별 엑셀&PDF 쿼리문 -->
+	<select id="getSearchOrderListForExcel" resultType="stat">
+		select order_time::date, store_name, order_type, payment_list, menu_price
+		from ( 
+			select * from order_code a
+			right join order_list b on b.no = a.no
+			where store_name like #{store_name} and 
+				  order_type like '%'||#{order_type}||'%' and 
+				  payment_list like '%'||#{payment_list}||'%' and
+				  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') and
+										   TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+			) as three
+		order by order_time::date desc
 	</select>
 	
+	<!-- 매장별 검색X 엑셀&PDF 쿼리문 -->
+	<select id="getNotSearchOrderListForExcel" resultType="stat">
+		select order_time::date, store_name, order_type, payment_list, menu_price
+		from ( 
+			select * from order_code a
+			right join order_list b on b.no = a.no
+			where store_name like '%'||#{store_name}||'%' and 
+				  order_type like '%'||#{order_type}||'%' and 
+				  payment_list like '%'||#{payment_list}||'%' and
+				  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') and
+										   TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS')
+			) as three
+		order by order_time::date desc
+	</select> 
+	
+	<!-- 품목별 엑셀&PDF 쿼리문 -->
+	<select id="getProductSearchOrderListForExcel" resultType="stat">
+		select order_time::date, menu_type, menu_name, order_type, payment_list, menu_price,
+		(set_price*quantity) as set_price, 
+		(menu_price-(single_price*quantity)-(set_price*quantity)) as topping_price, 
+		(single_price*quantity) as single_price
+		from order_code a 
+		right outer join order_list b on b.no = a.no 
+		where menu_type like '%'||#{menu_type}||'%' and 
+			  menu_name like #{menu_name} and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
+								   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
+		order by a.order_time::date desc
+	</select> 
+	
+	<!-- 품목별 검색X 엑셀&PDF 쿼리문 -->
+	<select id="getNotProductSearchOrderListForExcel" resultType="stat">
+		select order_time::date, menu_type, menu_name, order_type, payment_list, menu_price,
+		(set_price*quantity) as set_price, 
+		(menu_price-(single_price*quantity)-(set_price*quantity)) as topping_price, 
+		(single_price*quantity) as single_price
+		from order_code a 
+		right outer join order_list b on b.no = a.no 
+		where menu_type like '%'||#{menu_type}||'%' and 
+			  menu_name like '%'||#{menu_name}||'%' and 
+			  order_type like '%'||#{order_type}||'%' and 
+			  payment_list like '%'||#{payment_list}||'%' and 
+			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
+								   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
+		order by a.order_time::date desc
+	</select> 
 
 </mapper>

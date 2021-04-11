@@ -1,7 +1,9 @@
 package com.lubway.admin.statistics.excel;
 
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -55,8 +57,12 @@ public class ExcelController {
 		if(sp.getEnd().equals("")) sp.setEnd("3000-12-31 23:59:59");
 		else sp.setEnd(sp.getEnd() + " 23:59:59");
 		
+		List<StatVO> list = new ArrayList<StatVO>();
+		
 		//검색 조건에 맞는 통계 결과를 가져옵니다.
-		List<StatVO> list = statservice.getSearchOrderListForExcel(sp);
+		if(sp.getStore_name().equals("")) list = statservice.getNotSearchOrderListForExcel(sp);
+		else list = statservice.getSearchOrderListForExcel(sp);
+		
 		//날짜 형식 변환
 		for(StatVO v : list) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
 
@@ -89,7 +95,7 @@ public class ExcelController {
 	    cell.setCellStyle(headerStyle);
 		
 	    //헤더 컨텐트 설정
-		String[] headerKey = { "주문 날짜", "매장명", "수령 방식", "결제 방식", "결제 금액", "실 결제 금액", "쿠폰 결제 금액", "포인트 결제 금액" };
+		String[] headerKey = { "주문 날짜", "매장명", "수령 방식", "결제 방식", "결제 금액"};
 		row = sheet.createRow(rowNum++);
 		for (int i = 0; i < headerKey.length; i++) {
 			cell = row.createCell(i);
@@ -119,17 +125,12 @@ public class ExcelController {
 			cell = row.createCell(3);
 			cell.setCellValue(vo.getPayment_list());
 			
+        	DecimalFormat Commas = new DecimalFormat("#,###");
+        	String price = String.valueOf(Commas.format(vo.getMenu_price()));
+        	price = "￦" + price + "원";
+			
 			cell = row.createCell(4);
-			cell.setCellValue(vo.getTotal());
-			
-			cell = row.createCell(5);
-			cell.setCellValue(vo.getReal_total());
-			
-			cell = row.createCell(6);
-			cell.setCellValue(vo.getCoupon());
-			
-			cell = row.createCell(7);
-			cell.setCellValue(vo.getPoint());
+			cell.setCellValue(price);
 
 		}
 		return workbook;
@@ -193,8 +194,12 @@ public class ExcelController {
 		if(sp.getEnd().equals("")) sp.setEnd("3000-12-31 23:59:59");
 		else sp.setEnd(sp.getEnd() + " 23:59:59");
 		
+		List<StatVO> list = new ArrayList<StatVO>();
+		
 		//검색 조건에 맞는 통계 결과를 가져옵니다.
-		List<StatVO> list = statservice.getProductSearchOrderListForExcel(sp);
+		if(sp.getMenu_name().equals("")) list = statservice.getNotProductSearchOrderListForExcel(sp);
+		else list = statservice.getProductSearchOrderListForExcel(sp);
+		
 		//날짜 형식 변환
 		for(StatVO v : list) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
 
@@ -240,6 +245,8 @@ public class ExcelController {
 		    sheet.setColumnWidth(i, (sheet.getColumnWidth(i))+(short)1024);
 		}
 
+    	DecimalFormat Commas = new DecimalFormat("#,###");
+    	
 		// 검색 결과 엑셀에 삽입
 		for (int i = 0; i < list.size(); i++) {
 			row = sheet.createRow(rowNum++);
@@ -260,17 +267,25 @@ public class ExcelController {
 			cell = row.createCell(4);
 			cell.setCellValue(vo.getPayment_list());
 			
+	    	String price = String.valueOf(Commas.format(vo.getMenu_price()));
+	    	price = price + "원";
 			cell = row.createCell(5);
-			cell.setCellValue(vo.getTotal_price());
-			
+			cell.setCellValue(price);
+
+	    	price = String.valueOf(Commas.format(vo.getSet_price()));
+	    	price = price + "원";
 			cell = row.createCell(6);
-			cell.setCellValue(vo.getSet_price());
+			cell.setCellValue(price);
 			
+			price = String.valueOf(Commas.format(vo.getTopping_price()));
+	    	price = price + "원";
 			cell = row.createCell(7);
-			cell.setCellValue(vo.getTopping_price());
+			cell.setCellValue(price);
 			
+			price = String.valueOf(Commas.format(vo.getSingle_price()));
+	    	price = price + "원";
 			cell = row.createCell(8);
-			cell.setCellValue(vo.getSingle_price());
+			cell.setCellValue(price);
 
 		}
 		return workbook;

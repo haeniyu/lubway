@@ -1,7 +1,9 @@
 package com.lubway.admin.statistics.pdf;
 
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,8 +50,12 @@ public class PDFController {
 			if(sp.getEnd().equals("")) sp.setEnd("3000-12-31 23:59:59");
 			else sp.setEnd(sp.getEnd() + " 23:59:59");
 			
+			List<StatVO> list = new ArrayList<StatVO>();
+			
 			//검색 조건에 맞는 통계 결과를 가져옵니다.
-			List<StatVO> list = statservice.getSearchOrderListForExcel(sp);
+			if(sp.getStore_name().equals("")) list = statservice.getNotSearchOrderListForExcel(sp);
+			else list = statservice.getSearchOrderListForExcel(sp);
+			
 			//날짜 형식 변환
 			for(StatVO v : list) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
 			
@@ -69,8 +75,8 @@ public class PDFController {
 			Font font = new Font(baseFont,10);
 			
 			//테이블 생성
-			PdfPTable table = new PdfPTable(8);
-			table.setWidths(new int[]{3, 2, 2, 2, 2, 2, 2, 2});
+			PdfPTable table = new PdfPTable(5);
+			table.setWidths(new int[]{3, 2, 2, 2, 2});
 			
 			//타이틀 설정
 			Chunk chunk = new Chunk("러브웨이 매장별 매출 현황", font); // 타이틀 객체를 생성 (타이틀의 이름을 장바구니로 하고 위에 있는 font를 사용)
@@ -97,15 +103,6 @@ public class PDFController {
             
             PdfPCell cell5 = new PdfPCell(new Phrase("결제 금액", font));
             cell5.setHorizontalAlignment(Element.ALIGN_CENTER);
-            
-            PdfPCell cell6 = new PdfPCell(new Phrase("실 결제 금액", font));
-            cell6.setHorizontalAlignment(Element.ALIGN_CENTER);
-            
-            PdfPCell cell7 = new PdfPCell(new Phrase("쿠폰 결제 금액", font));
-            cell7.setHorizontalAlignment(Element.ALIGN_CENTER);
-            
-            PdfPCell cell8 = new PdfPCell(new Phrase("포인트 결제 금액", font));
-            cell8.setHorizontalAlignment(Element.ALIGN_CENTER);
  
             //테이블에 생성된 셀 삽입
             table.addCell(cell1);
@@ -113,10 +110,8 @@ public class PDFController {
             table.addCell(cell3);
             table.addCell(cell4);
             table.addCell(cell5);
-            table.addCell(cell6);
-            table.addCell(cell7);
-            table.addCell(cell8);
-
+            
+            DecimalFormat Commas = new DecimalFormat("#,###");
             
            //검색 결과 데이터를 삽입
             for (int i=0; i< list.size(); i++) {
@@ -126,19 +121,17 @@ public class PDFController {
             	PdfPCell cellStoreName = new PdfPCell(new Phrase(vo.getStore_name(), font));
             	PdfPCell cellOrderType = new PdfPCell(new Phrase(vo.getOrder_type(), font));
             	PdfPCell cellPaymentList = new PdfPCell(new Phrase(vo.getPayment_list(), font));
-            	PdfPCell cellTotal = new PdfPCell(new Phrase(String.valueOf(vo.getTotal()), font));
-            	PdfPCell cellRealTotal = new PdfPCell(new Phrase(String.valueOf(vo.getReal_total()), font));
-            	PdfPCell cellCoupon = new PdfPCell(new Phrase(String.valueOf(vo.getCoupon()), font));
-            	PdfPCell cellPoint = new PdfPCell(new Phrase(String.valueOf(vo.getPoint()), font));	
+
+            	String price = String.valueOf(Commas.format(vo.getMenu_price()));
+            	price = "￦" + price + "원";
+            	
+            	PdfPCell cellTotal = new PdfPCell(new Phrase(price, font));
             	
             	table.addCell(cellOrderDate);
             	table.addCell(cellStoreName);
             	table.addCell(cellOrderType);
             	table.addCell(cellPaymentList);
             	table.addCell(cellTotal);
-            	table.addCell(cellRealTotal);
-            	table.addCell(cellCoupon);
-            	table.addCell(cellPoint);
             	
             }
 			document.add(table);
@@ -197,8 +190,12 @@ public class PDFController {
 			if(sp.getEnd().equals("")) sp.setEnd("3000-12-31 23:59:59");
 			else sp.setEnd(sp.getEnd() + " 23:59:59");
 			
+			List<StatVO> list = new ArrayList<StatVO>();
+			
 			//검색 조건에 맞는 통계 결과를 가져옵니다.
-			List<StatVO> list = statservice.getProductSearchOrderListForExcel(sp);
+			if(sp.getMenu_name().equals("")) list = statservice.getNotProductSearchOrderListForExcel(sp);
+			else list = statservice.getProductSearchOrderListForExcel(sp);
+			
 			//날짜 형식 변환
 			for(StatVO v : list) v.setRequest(new SimpleDateFormat("yyyy-MM-dd").format(v.getOrder_time()));
 			
@@ -270,6 +267,7 @@ public class PDFController {
 			table.addCell(cell8);
 			table.addCell(cell9);
 			
+			DecimalFormat Commas = new DecimalFormat("#,###");
 			
 			//검색 결과 데이터를 삽입
 			for (int i=0; i< list.size(); i++) {
@@ -280,10 +278,22 @@ public class PDFController {
 				PdfPCell cellMenuName = new PdfPCell(new Phrase(vo.getMenu_name(), font));
 				PdfPCell cellOrderType = new PdfPCell(new Phrase(vo.getOrder_type(), font));
 				PdfPCell cellPaymentList = new PdfPCell(new Phrase(vo.getPayment_list(), font));
-				PdfPCell cellTotalPrice = new PdfPCell(new Phrase(String.valueOf(vo.getTotal_price()),font));
-				PdfPCell cellSetPrice = new PdfPCell(new Phrase(String.valueOf(vo.getSet_price()),font));
-				PdfPCell cellToppingPrice = new PdfPCell(new Phrase(String.valueOf(vo.getTopping_price()),font));
-				PdfPCell cellSinglePrice = new PdfPCell(new Phrase(String.valueOf(vo.getSingle_price()),font));
+				
+            	String price = String.valueOf(Commas.format(vo.getMenu_price()));
+            	price = price + "원";
+				PdfPCell cellTotalPrice = new PdfPCell(new Phrase(String.valueOf(price),font));
+				
+				price = String.valueOf(Commas.format(vo.getSet_price()));
+            	price = price + "원";
+				PdfPCell cellSetPrice = new PdfPCell(new Phrase(String.valueOf(price),font));
+				
+				price = String.valueOf(Commas.format(vo.getTopping_price()));
+            	price = price + "원";
+				PdfPCell cellToppingPrice = new PdfPCell(new Phrase(String.valueOf(price),font));
+				
+				price = String.valueOf(Commas.format(vo.getSingle_price()));
+            	price = price + "원";
+				PdfPCell cellSinglePrice = new PdfPCell(new Phrase(String.valueOf(price),font));
 				
 				table.addCell(cellOrderDate);
 				table.addCell(cellMenuType);

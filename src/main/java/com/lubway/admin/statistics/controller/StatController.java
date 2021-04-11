@@ -61,10 +61,6 @@ public class StatController {
 		if(vo.getEnd().equals("")) System.out.println("종료 날짜 선택 X");
 		else System.out.println(vo.getEnd());
 		
-		System.out.println(vo.getStore_name());
-		System.out.println(vo.getOrder_type());
-		System.out.println(vo.getPayment_list());
-		
 		if(vo.getStore_name().equals("매장명 선택")) vo.setStore_name("");
 		if(vo.getOrder_type().equals("수령 방식 선택")) vo.setOrder_type("");
 		if(vo.getPayment_list().equals("결제 방식 선택")) vo.setPayment_list("");
@@ -85,7 +81,6 @@ public class StatController {
 			}
 			
 			int listCnt = statservice.getNotSearchStatCnt(vo);
-			System.out.println(listCnt);
 			if(vo.getPage() == 0) vo.setPage(1);
 			if(vo.getRange() == 0) vo.setRange(1);
 			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
@@ -99,7 +94,6 @@ public class StatController {
 			}
 			
 			int listCnt = statservice.getSearchStatCnt(vo);
-			System.out.println(listCnt);
 			if(vo.getPage() == 0) vo.setPage(1);
 			if(vo.getRange() == 0) vo.setRange(1);
 			vo.pageInfo(vo.getPage(), vo.getRange(), listCnt);
