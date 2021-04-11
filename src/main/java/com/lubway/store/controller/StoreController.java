@@ -190,7 +190,7 @@ public class StoreController {
 	
 	/** 글목록 요청  */
 	@GetMapping("/getTodayOrder.sdo")
-	public String getEventList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
+	public String getTodayOrderList(Model model, @RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "1") int range, HttpSession session) {
 
 		System.out.println("글 목록 요청 처리");
@@ -223,7 +223,7 @@ public class StoreController {
 	}
 
 	@RequestMapping(value = "/todayOrderCnt.sdo", method = RequestMethod.GET)
-	public String getEventPageListCnt() {
+	public String getTodayOrderPageListCnt() {
 
 		System.out.println(orderService.getTodayListCnt());
 
