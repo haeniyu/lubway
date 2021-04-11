@@ -23,7 +23,7 @@
 		SELECT ROW_NUMBER() OVER() rownum, * from order_code, order_list 
 		WHERE order_code.no = order_list.no 
 		AND order_code.status='주문 완료'
-		AND order_code.name=#{searchKeyword}
+		AND order_code.name like '%'||#{searchKeyword}||'%'
 		ORDER BY order_time DESC
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
@@ -32,7 +32,7 @@
 		SELECT COUNT(*) FROM
 			(SELECT * FROM order_code, order_list WHERE order_code.no = order_list.no 
 			AND order_code.status='주문 완료'
-			AND order_code.name=#{searchKeyword})
+			AND order_code.name like '%'||#{searchKeyword}||'%')
 		AS totalcnt
 	</select>
 	
