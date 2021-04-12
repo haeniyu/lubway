@@ -245,7 +245,7 @@
 		$("#page").empty();
 		if(searchPage[0].prev) {
 			elem2 += '<li class="page-item">';
-			elem2 += '<a class="page-link" href="#" onClick=';
+			elem2 += '<a class="page-link" href="javascript:void(0);" onClick=';
 			elem2 += '"fn_prev(';
 			elem2 += idx + "," + searchPage[0].range + "," + searchPage[0].rangeSize + ",";
 			if(searchPage[0].menu_type == "") elem2 += "''" + ",";
@@ -266,7 +266,7 @@
 			console.log("으어어");
 			if(searchPage[0].page == idx) elem2 += '<li class="page-item active">';
 			else elem2 += '<li class="page-item">';
-			elem2 += '<a class="page-link" href="#" onClick=';
+			elem2 += '<a class="page-link" href="javascript:void(0);" onClick=';
 			elem2 += '"fn_pagination(';
 			elem2 += idx + "," + searchPage[0].range + "," + searchPage[0].rangeSize + ",";
 			if(searchPage[0].menu_type == "") elem2 += "''" + ",";
@@ -286,7 +286,7 @@
 		
 		if(searchPage[0].next) {
 			elem2 += '<li class="page-item">';
-			elem2 += '<a class="page-link" href="#" onClick=';
+			elem2 += '<a class="page-link" href="javascript:void(0);" onClick=';
 			elem2 += '"fn_next(';
 			elem2 += idx + "," + searchPage[0].range + "," + searchPage[0].rangeSize + ",";
 			if(searchPage[0].menu_type == "") elem2 += "''" + ",";
@@ -478,19 +478,19 @@ $(document).ready(function() {
 					
 						<c:if test="${pagination.prev}">
 							<li class="page-item">
-								<a class="page-link" href="#" onClick="fn_prev('${pagination.page}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')">Prev</a>
+								<a class="page-link" href="javascript:void(0);" onClick="fn_prev('${pagination.page}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')">Prev</a>
 							</li>
 						</c:if>
 						
 						<c:forEach begin="${pagination.startPage}" end="${pagination.endPage}" var="idx">
 							<li class="page-item <c:out value="${pagination.page == idx ? 'active' : ''}"/> ">
-								<a class="page-link" href="#" onClick="fn_pagination('${idx}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')"> ${idx}</a>
+								<a class="page-link" href="javascript:void(0);" onClick="fn_pagination('${idx}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')"> ${idx}</a>
 							</li>
 						</c:forEach>
 						
 						<c:if test="${pagination.next}">
 							<li class="page-item">
-								<a class="page-link" href="#" onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')">Next</a>
+								<a class="page-link" href="javascript:void(0);" onClick="fn_next('${pagination.page}','${pagination.range}', '${pagination.rangeSize}', '${pagination.menu_type}', '${pagination.menu_name}', '${pagination.order_type}', '${pagination.payment_list}', '${pagination.start}', '${pagination.end}')">Next</a>
 							</li>
 						</c:if>
 						
