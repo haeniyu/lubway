@@ -19,3 +19,11 @@
 2. 매장 정보 관리
 3. 주문 관리
 
+<br>
+<br>
+
+#### 사용자 메인페이지
+![image](https://user-images.githubusercontent.com/66728270/114640826-dba29b00-9d0b-11eb-92ad-cde526042ea9.png)
+
+#### 관리자 매출통계 페이지
+<img width="1112" alt="품목매출1" src="https://user-images.githubusercontent.com/66728270/114640733-aac26600-9d0b-11eb-888c-1648a3999ead.png">
