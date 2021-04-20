@@ -85,7 +85,7 @@
 		for(var i=0; i<menu.length; i++) {
 			elem += '<li><a onclick="javascript:selectDetail(';
 			elem += "'" + menu[i].code + "'";
-			elem += ');" class="btn_view" href="#" style="display:block;">';
+			elem += ');" class="btn_view" href="javascript:void(0);" style="display:block;">';
 			elem += '<div class="img"><img alt="' + menu[i].name + '" src="' + menu[i].filePath + '"/></div><p>';
 			elem += '<strong class="mainname">' + menu[i].name + '</strong>';
 			elem += '<span class="eng_name">' + menu[i].engname + '</span>';
@@ -97,7 +97,7 @@
 			for(var i=0; i<menu2.length; i++) {
 				elem += '<li><a onclick="javascript:selectSide(';
 				elem += "'" + menu2[i].code + "'";
-				elem += ');" class="btn_view" href="#" style="display:block;">';
+				elem += ');" class="btn_view" href="javascript:void(0);" style="display:block;">';
 				elem += '<div class="img"><img alt="' + menu2[i].name + '" src="' + menu2[i].filePath + '"/></div><p>';
 				elem += '<strong class="mainname">' + menu2[i].name + '</strong>';
 				elem += '<span class="eng_name">' + menu2[i].engname + '</span>';
@@ -108,7 +108,7 @@
 			for(var i=0; i<menu3.length; i++) {
 				elem += '<li><a onclick="javascript:selectDetail(';
 				elem += "'" + menu3[i].code + "'";
-				elem += ');" class="btn_view" href="#" style="display:block;">';
+				elem += ');" class="btn_view" href="javascript:void(0);" style="display:block;">';
 				elem += '<div class="img"><img alt="' + menu3[i].name + '" src="' + menu3[i].filePath + '"/></div><p>';
 				elem += '<strong class="mainname">' + menu3[i].name + '</strong>';
 				elem += '<span class="eng_name">' + menu3[i].engname + '</span>';
@@ -181,10 +181,10 @@
 					</div>
 					<div class="tab02">
 						<ul class="select" id="select" >
-							<li id="sandwich"><a href="#">샌드위치</a></li>
-							<li id="wrap"><a href="#">랩ㆍ기타</a></li>
-							<li id="salad"><a href="#">찹샐러드</a></li>
-							<li id="side"><a href="#">사이드ㆍ음료</a></li>
+							<li id="sandwich"><a href="javascript:void(0);">샌드위치</a></li>
+							<li id="wrap"><a href="javascript:void(0);">랩ㆍ기타</a></li>
+							<li id="salad"><a href="javascript:void(0);">찹샐러드</a></li>
+							<li id="side"><a href="javascript:void(0);">사이드ㆍ음료</a></li>
 						</ul>
 					</div>			
 					<!-- 컨텐츠 리스트 -->
