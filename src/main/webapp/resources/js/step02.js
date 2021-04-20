@@ -23,7 +23,7 @@
 			}
 
 			$.ajax({
-				url : '/lubway/sendSms.do?tell=' + phoneNum,
+				url : '/sendSms.do?tell=' + phoneNum,
 				type : 'post',
 				success : function(data) {
 					if(data == "" && findId != 1 && findPwd == 'null') {
@@ -66,7 +66,7 @@
 					var form = document.createElement("form");
 			        form.setAttribute("method", "Post");
 			        
-			       	form.setAttribute("action", "/lubway/resultId.do");
+			       	form.setAttribute("action", "/resultId.do");
 
 			        var hiddenField = document.createElement("input");
 			        hiddenField.setAttribute("type", "hidden");
@@ -83,7 +83,7 @@
 					var form = document.createElement("form");
 			        form.setAttribute("method", "Post");
 			        
-					form.setAttribute("action", "/lubway/resultPwd.do");
+					form.setAttribute("action", "/resultPwd.do");
 
 			        var hiddenField = document.createElement("input");
 			        hiddenField.setAttribute("type", "hidden");

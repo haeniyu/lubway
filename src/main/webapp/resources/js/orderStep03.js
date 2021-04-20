@@ -5,7 +5,7 @@ function gotoBasket() {
 	var check = true;
 	
 	$.ajax({
-        url : '/lubway/checkNum.do',
+        url : '/checkNum.do',
         type : 'post',
         data : {
            whatWay : order_type

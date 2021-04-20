@@ -33,7 +33,7 @@ var view = {
 			}
 			
 			$.ajax({
-				url : '/lubway/idCheck.do?userId=' + user_email,
+				url : '/idCheck.do?userId=' + user_email,
 				type : 'get',
 				success : function(data) {
 					if(data == 1) {

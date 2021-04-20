@@ -83,7 +83,7 @@ $(function() {
 				} else {
 					$.ajax({
 						type: "POST",
-						url: "/lubway/step02.do",
+						url: "/step02.do",
 						data: {
 							sms : $("#sms_recep").is(":checked"),
 							email : $("#email_recep").is(":checked")
