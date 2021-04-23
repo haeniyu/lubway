@@ -50,12 +50,12 @@ $(document).ready(function(){
       <div class="container-fluid">
 
          <!-- Page Heading -->
-         <h1 class="h3 mb-2 text-gray-800">공지사항 등록</h1>
+         <h1 class="h3 mb-2 text-gray-800">이벤트 등록</h1>
          <br>
          <!-- DataTales Example -->
          <div class="card shadow mb-4">
             <div class="card-header py-3">
-               <h6 class="m-0 font-weight-bold text-warning">공지사항 등록</h6>
+               <h6 class="m-0 font-weight-bold text-warning">이벤트 등록</h6>
             </div>
             <div class="card-body">
               <!-- 전체 frame -->
