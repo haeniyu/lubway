@@ -6,19 +6,19 @@
 
 	<select id="getTodaySales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE order_time >= CURRENT_DATE and order_time < CURRENT_DATE+1
+		SELECT SUM(total_price) FROM order_code WHERE order_time >= (current_timestamp + '09:00:00')::date and order_time < (current_timestamp + '33:00:00')::date
 		]]>
 	</select>
 	
 	<select id="getThisMonthSales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2);
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(((current_timestamp + '09:00:00')::date)::text, 6,2)=SUBSTRING(order_time::text, 6,2);
 		]]>
 	</select>
 	
 	<select id="getThisYearSales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4);
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(((current_timestamp + '09:00:00')::date)::text, 1,4)=SUBSTRING(order_time::text, 1,4);
 		]]>
 	</select>
 
@@ -313,68 +313,21 @@
 	
 	<select id="getStoreTodaySales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE order_time >= CURRENT_DATE and order_time < CURRENT_DATE+1 and store_name=#{store_name}
+		SELECT SUM(total_price) FROM order_code WHERE order_time >= (current_timestamp + '09:00:00')::date and order_time < (current_timestamp + '33:00:00')::date and store_name=#{store_name}
 		]]>
 	</select>
 	
 	<select id="getStoreMonthSales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 6,2)=SUBSTRING(order_time::text, 6,2) and store_name=#{store_name}
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(((current_timestamp + '09:00:00')::date)::text, 6,2)=SUBSTRING(order_time::text, 6,2) and store_name=#{store_name}
 		]]>
 	</select>
 	
 	<select id="getStoreYearSales" resultType="Integer">
 		<![CDATA[
-		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(CURRENT_DATE::text, 1,4)=SUBSTRING(order_time::text, 1,4) and store_name=#{store_name}
+		SELECT SUM(total_price) FROM order_code WHERE SUBSTRING(((current_timestamp + '09:00:00')::date)::text, 1,4)=SUBSTRING(order_time::text, 1,4) and store_name=#{store_name}
 		]]>
 	</select>
-	
-	<!-- 매장별 엑셀&PDF 쿼리문 
-	<select id="getSearchOrderListForExcel" resultType="stat">
-		select * from (
-			select order_time::date, order_type, store_name, payment_list
-				 ,sum(total_price) as total
-				 ,sum(total_price - use_coupon - use_point) as real_total
-				 ,sum(use_coupon) as coupon
-				 ,sum(use_point) as point
-		      	  from order_code 
-					  where store_name like #{store_name} and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
-					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
-		      	  group by order_time::date , order_type, store_name, payment_list
-			) as two
-	</select> -->
-	
-	<!-- 매장별 검색X 엑셀&PDF 쿼리문 
-	<select id="getNotSearchOrderListForExcel" resultType="stat">
-		select * from (
-			select order_time::date, order_type, store_name, payment_list
-				 ,sum(total_price) as total
-				 ,sum(total_price - use_coupon - use_point) as real_total
-				 ,sum(use_coupon) as coupon
-				 ,sum(use_point) as point
-		      	  from order_code 
-					  where store_name like '%'||#{store_name}||'%' and order_type like '%'||#{order_type}||'%' and payment_list like '%'||#{payment_list}||'%' and
-					  order_time::date BETWEEN TO_TIMESTAMP(#{start}, 'YYYY-MM-DD HH24:MI:SS') 
-					  				   AND TO_TIMESTAMP(#{end}, 'YYYY-MM-DD HH24:MI:SS') 
-		      	  group by order_time::date , order_type, store_name, payment_list
-			) as two
-	</select> -->
-	
-	<!-- 품목별 엑셀&PDF 쿼리문 
-	<select id="getProductSearchOrderListForExcel" resultType="stat">
-		select order_time::date, menu_type, menu_name, order_type, payment_list, total_price, set_price,
-		(total_price-(single_price*quantity)-(set_price*quantity)) as topping_price, single_price 
-		from order_code a 
-		right outer join order_list b on b.no = a.no 
-		where menu_type like '%'||#{menu_type}||'%' and 
-			  menu_name like '%'||#{menu_name}||'%' and 
-			  order_type like '%'||#{order_type}||'%' and 
-			  payment_list like '%'||#{payment_list}||'%' and 
-			  order_time::date BETWEEN to_timestamp(#{start},'YYYY-MM-DD HH24:MI:SS')
-			  					   and to_timestamp(#{end},'YYYY-MM-DD HH24:MI:SS') 
-		order by a.order_time::date
-	</select> -->
 	
 	<!-- 매장별 엑셀&PDF 쿼리문 -->
 	<select id="getSearchOrderListForExcel" resultType="stat">

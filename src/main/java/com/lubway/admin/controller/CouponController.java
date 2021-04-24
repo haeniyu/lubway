@@ -55,7 +55,7 @@ public class CouponController {
 		System.out.println(vo.toString());
 		couponService.insertCoupon(vo);
 
-		return "redirect:/insertCoupon.mdo";
+		return "redirect:/getCouponList.mdo";
 	}
 
 	// 쿠폰 수정 화면

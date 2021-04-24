@@ -36,7 +36,6 @@
 						return false;
 					} else {
 						alert("인증번호를 전송하였습니다.");
-						$("#codeNum").val(data);
 						$("#checkBtn").on("click", function() {
 							if ($("#codeNum").val() == data) {
 								alert("인증에 성공하였습니다.");

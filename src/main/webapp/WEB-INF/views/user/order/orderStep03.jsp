@@ -579,7 +579,7 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 		// 미트추가 선택갯수 벨리데이션
 		if(selectTarget.length > 1) {
 			alert("미트 추가는 1개만 선택가능합니다.");
-			$(this).prop("checked", false);
+			$("input:checkbox[name=meat]").attr("checked", false);
 			return;
 		}
      
@@ -619,7 +619,7 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 		// 치즈 추가 선택갯수 벨리데이션
 		if(selectTarget.length > 1) {
 			alert("치즈 추가는 1개만 선택가능합니다.");
-			$(this).prop("checked", false);
+			$("input:checkbox[name=add_cheese]").prop("checked", false);
 			return;
 		}
      

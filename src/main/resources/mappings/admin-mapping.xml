@@ -73,9 +73,9 @@
 	</select>
 	
 	<select id="getFranchiseList" resultType="com.lubway.user.UserFranchiseVO">
-		SELECT ROW_NUMBER()
-		OVER() ROWNUM,*
-		FROM franchise ORDER BY regDate DESC, ROWNUM DESC
+		SELECT ROW_NUMBER() OVER(ORDER BY regDate) ROWNUM,*
+		FROM franchise
+		ORDER BY ROWNUM DESC
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	
@@ -84,10 +84,10 @@
 	</select>
 	
 	<select id="getSearchFranchiseList" resultType="com.lubway.user.UserFranchiseVO">
-		SELECT ROW_NUMBER()
-		OVER() ROWNUM,*
-		FROM franchise WHERE title LIKE '%'||#{searchKeyword}||'%' 
-		ORDER BY regDate DESC, ROWNUM DESC
+		SELECT ROW_NUMBER() OVER(ORDER BY regDate) ROWNUM,*
+		FROM franchise 
+		WHERE title LIKE '%'||#{searchKeyword}||'%' 
+		ORDER BY ROWNUM DESC
 		LIMIT #{listSize} OFFSET #{startList}
 	</select>
 	

@@ -16,10 +16,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.lubway.admin.board.BannerVO;
+import com.lubway.admin.board.service.BannerService;
 import com.lubway.store.StoreInfoVO;
 import com.lubway.store.service.StoreService;
 import com.lubway.user.UserCouponVO;
+import com.lubway.user.UserPagination;
 import com.lubway.user.UserVO;
+import com.lubway.user.board.UserNoticeVO;
+import com.lubway.user.board.service.UserNoticeService;
 import com.lubway.user.menu.ToppingAddVO;
 import com.lubway.user.order.OrderCodeVO;
 import com.lubway.user.order.OrderListVO;
@@ -27,6 +32,7 @@ import com.lubway.user.order.OrderPagination;
 import com.lubway.user.order.service.BasketService;
 import com.lubway.user.order.service.OrderService;
 import com.lubway.user.service.UserCouponService;
+import com.lubway.user.service.UserMenuService;
 import com.lubway.user.service.UserService;
 
 @Controller
@@ -49,6 +55,15 @@ public class MyWayController {
 	
 	@Autowired
 	private BasketService basketService;
+	
+	@Autowired
+	private BannerService bannerService;
+	
+	@Autowired
+	private UserNoticeService noticeService;
+	
+	@Autowired
+	private UserMenuService userMenuService;
 	
 	//마이웨이 페이지로 이동
 	@RequestMapping("/myway.do")
@@ -150,12 +165,29 @@ public class MyWayController {
 	
 	//회원탈퇴
 	@RequestMapping("/withdrawal.do")
-	public String withdrwal(HttpSession session) {
+	public String withdrwal(HttpSession session, BannerVO bvo, Model model,
+			@RequestParam(required = false, defaultValue = "1") int page,
+			@RequestParam(required = false, defaultValue = "1") int range,String select, String code) {
 		System.out.println("컨트롤러 - withdrawal 실행");
 		UserVO vo = (UserVO) session.getAttribute("user");
 		userService.deleteUser(vo);
 		basketService.deleteBasketByid(vo.getId());
 		session.invalidate();
+		
+		int listCnt = noticeService.getUserPageListCnt();
+		UserPagination pagination = new UserPagination();
+		pagination.pageInfoMain(page, range, listCnt);
+		List<UserNoticeVO> pageList = noticeService.getUserPageList(pagination);
+		
+		model.addAttribute("pagination", pagination);
+		model.addAttribute("UserPageList", pageList);
+		
+		model.addAttribute("select", "menuSandwich.do");
+		model.addAttribute("list1", userMenuService.getSandwichList());
+		
+		model.addAttribute("select1", "menuMorning.do");
+		model.addAttribute("list2", userMenuService.getMorningList());
+		model.addAttribute("banner", bannerService.getBannerListView(bvo));
 		return "main";
 	}
 	

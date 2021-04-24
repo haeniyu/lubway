@@ -4731,6 +4731,7 @@ input[type="button"].btn-block {
   padding-left: 0;
   list-style: none;
   border-radius: 0.35rem;
+  padding: 1.25rem;
 }
 
 .page-link {

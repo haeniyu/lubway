@@ -43,7 +43,7 @@
 			select * from
 			(select * from order_code, order_list where order_code.no = order_list.no)
 			as total
-			where store_name=#{store_name} and order_time >= current_date and order_time < current_date + integer '1'
+			where store_name=#{store_name} and order_time >= (current_timestamp + '09:00:00')::date and order_time < (current_timestamp + '33:00:00')::date
 			ORDER BY order_time DESC
 			limit #{listSize} offset #{startList}
 		]]>
@@ -54,7 +54,7 @@
 			select count(*) from
 			(select * from order_code, order_list where order_code.no = order_list.no)
 			as total
-			where store_name=#{store_name} and order_time >= current_date and order_time < current_date + integer '1'
+			where store_name=#{store_name} and order_time >= (current_timestamp + '09:00:00')::date and order_time < (current_timestamp + '33:00:00')::date
 		]]>
 	</select>
 	
