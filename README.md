@@ -1,6 +1,7 @@
 # Lubway Project 
 
 - Subway를 벤치마킹한 프로젝트입니다.
+- 시연 영상 https://www.youtube.com/watch?v=Tzj0v4q1qLE
 
 
 ### 사용자 주요기능
