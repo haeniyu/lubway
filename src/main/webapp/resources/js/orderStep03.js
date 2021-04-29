@@ -17,10 +17,11 @@ function gotoBasket() {
            if(data == 10){
         	   check = false;
         	   alert("장바구니에 담을수 있는 최대 수량은 10개 입니다.");
+        	   $('.loading').hide();
            }
         },
-        error : function(data, status, opt) {
-           alert("code:"+data.status+"\n"+"message:"+data.responseText+"\n"+"error:"+opt);
+        error : function(data) {
+           alert("error");
         }
      });
 	
@@ -222,8 +223,8 @@ function endVegetable() {
 	
 	var vegetable = $("#vegeText").text();
 	if(vegetable == "야채 모두 선택"){
-		vegetable = "야채 모두 선택";
-	}else if(vegetable.split(",").length == 8 & vegetable != "야채 모두 선택") {
+        vegetable = "야채 모두 선택";
+    }else if(vegetable.split(",").length == 8 & vegetable != "야채 모두 선택") {
 		vegetable = "야채 모두 선택";
 	} else if(vegetable == "야채를 선택해 주세요.") {
 		vegetable = "야채 제외";
@@ -237,15 +238,15 @@ function endVegetable() {
 	
 	$("#closeLength").get(0).click();
 }
+
 //야채 모두 선택
 function selectAll(selectAll)  {
-	const checkboxes = document.getElementsByName('vegetable');
-	  
-	checkboxes.forEach((checkbox) => {
-		checkbox.checked = selectAll.checked;
-	})
+    const checkboxes = document.getElementsByName('vegetable');
+      
+    checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+    })
 }
-
 
 // 소스 선택
 function endSauce() {
@@ -345,7 +346,6 @@ function endAddCheeseSelect() {
 }
 
 
-
 /******************STEP01********************/
 
 $(document).ready(function() {
@@ -426,9 +426,9 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 		var selectTarget = $("[name=vegetable]:checked");
 
 		if($(this).is(":checked") == true) {
-			if($(this).val() == "야채 모두 선택"){
-				vegeArr = [];
-			}
+            if($(this).val() == "야채 모두 선택"){
+                vegeArr = [];
+            }
 			vegeArr.push($(this).val());
 		} else {
 			for(var i=0; i<vegeArr.length; i++) {
@@ -480,7 +480,7 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
      var temp = $(this).val();
      var tempArr = temp.split(",");
      var topcost = parseInt(tempArr[1]);
-     
+    
      if($(this).is(":checked") == true) {//체크 시
         arr.push(tempArr[0]);
         ttl += topcost;
@@ -494,7 +494,6 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 			}
         }
      }
-     
      $('#toppingText').text(arr.length > 0 ? arr.join(", ") : "원하는 제품을 추가 선택해 주세요");
      $('#sum').text("+ " + ttl + "원");
 
@@ -517,7 +516,7 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 		// 미트추가 선택갯수 벨리데이션
 		if(selectTarget.length > 1) {
 			alert("미트 추가는 1개만 선택가능합니다.");
-			$(this).prop("checked", false);
+            $(this).prop("checked", false);
 			return;
 		}
      
@@ -557,7 +556,7 @@ console.log("step1 가격 (시작) :" + sumUntilStep1);
 		// 치즈 추가 선택갯수 벨리데이션
 		if(selectTarget.length > 1) {
 			alert("치즈 추가는 1개만 선택가능합니다.");
-			$(this).prop("checked", false);
+            $(this).prop("checked", false);
 			return;
 		}
      
@@ -789,6 +788,7 @@ function clearAll(){
 	ttl = 0;
 	drinkCost = 0;
 	setcost = 0;
+	arr = [];
 	
 	$("#toppingText").text("원하는 제품을 추가 선택해 주세요");
 	$("#sum").text("+ 0원");
@@ -809,7 +809,6 @@ function clearAll(){
 	$("input:radio[name=cookie]").removeAttr("checked");
 	$("input:radio[name=wedge]").removeAttr("checked");
 	$("input:radio[name=drink]").removeAttr("checked");
-	
 }
 
 });//end of document.ready
