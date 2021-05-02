@@ -73,7 +73,7 @@ public class CouponController {
 		// 쿠폰 기간 수정 여부
 		if (!start.equals("")) {
 			System.out.println("시작 기간 수정");
-			Timestamp regd = (Timestamp) new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS").parse(start);
+			Date regd = new SimpleDateFormat("yyyy-MM-dd").parse(start);
 			vo.setRegdate(regd);
 		} else {
 			System.out.println("시작 기간 수정 X");
@@ -82,7 +82,7 @@ public class CouponController {
 
 		if (!end.equals("")) {
 			System.out.println("종료 기간 수정");
-			Timestamp endd = (Timestamp) new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS").parse(end);
+			Date endd = new SimpleDateFormat("yyyy-MM-dd").parse(end);
 			vo.setEnddate(endd);
 		} else {
 			System.out.println("종료 기간 수정 X");

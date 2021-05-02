@@ -97,7 +97,7 @@ public class UserMenuController {
 			model.addAttribute("menu", menuService.selectMorning(mvo));
 			break;
 		case "menuSmileWay.do":
-			char cod = code.charAt(6);
+			char cod = code.charAt(code.length()-1);
 			System.out.println(cod);
 			if (cod == 'C') {
 				model.addAttribute("menu", menuService.selectCookie(cvo));

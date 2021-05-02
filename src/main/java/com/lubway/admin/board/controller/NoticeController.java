@@ -106,9 +106,11 @@ public class NoticeController {
 		
 		NoticeVO bringData = noticeService.getNotice(vo);
 		
-		int index = bringData.getFilePath().indexOf("/", 20);
-		String key = bringData.getFilePath().substring(index+1);
-		awss3.delete(key);
+		if(!(bringData.getFilePath() == null)) {
+			int index = bringData.getFilePath().indexOf("/", 20);
+			String key = bringData.getFilePath().substring(index+1);
+			awss3.delete(key);
+		}
 		
 		noticeService.deleteNotice(bringData);
 		System.out.println("삭제 실행됨");
