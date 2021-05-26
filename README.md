@@ -2,6 +2,7 @@
 
 - Subway를 벤치마킹한 프로젝트입니다.
 - 시연 영상 https://www.youtube.com/watch?v=Tzj0v4q1qLE
+- 사이트 링크 http://ec2-52-79-190-214.ap-northeast-2.compute.amazonaws.com/main.do
 
 
 ### 사용자 주요기능
